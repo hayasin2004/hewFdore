@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: -webkit-flex;
+    display: inline-block;
+    width: 100%;
+    margin: 30px 0 10px 0;
+}
+
+div.bar {
+    align-items: center;
+    display: flex;
+    font-size: 2rem;
+    margin-left: 0px;
+}
+
+header div.nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+header div.title h1 {
+    font-size: 2.5rem;
+    width: 200px;
+    margin-left: 110px;
+}
+
+header div.bar ul {
+    display: -webkit-flex;
+    display: flex;
+    width　: 700px;
+    align-items: center;
+    list-style: none;
+    margin-left: 30px;
+    font-size: 2rem;
+}
+
+div.bar span.long_line {
+    content: "";
+    width: 20px;
+    height: 80px;
+    margin-top: 3px;
+    margin-left: 70px;
+    margin-right: -30px;
+    margin-bottom: 5px;
+    align-items: center;
+    border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
+}
+
+
+div.bar p{
+    font-size: 1.5rem;
+    margin: 0 50px;
+    font-weight: bold;
+}
+
+input.search{
+    width: 500px;
+    padding: 20px 40px;
+    margin-right: 20px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    border: none;
+    background-color: #eee;
+}
+
+input.search:focus{
+    outline: none;
+}
+
+div.bar ul span#short_line {
+    font-size: 1.5rem;
+    content: "";
+    width: 80px;
+    height: 40px;
+    margin-top: 3px;
+    margin-left: 30px;
+    margin-right: -70px;
+    align-items: center;
+    border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
+}
+
+div.bar ul span p#short_text {
+    font-size: 1.5rem;
+    margin-top: 23px;
+    margin-left: -20px;
+}
+
+
+div.bar ul span.long_line {
+    content: "";
+    width: 20px;
+    height: 70px;
+    margin-top: 3px;
+    margin-left: 70px;
+    margin-right: -30px;
+    margin-bottom: 5px;
+    align-items: center;
+    border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
+}
+
+span.under_bar {
+    display: block;
+    content: "";
+    width: 99.5%;
+    margin-top: -7px;
+    height: 11px;
+    border-bottom: 1px solid #000000;
+}
