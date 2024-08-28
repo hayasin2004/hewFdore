@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+div.top_main    {
+    margin-top: 100px;
+    width: 870px;
+    height: 90vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: aqua;
+    margin-right: 30px;
+}
+
+
+div.slideshow {
+    flex: 8;
+    width: 900px;
+    height: 600px;
+    margin-bottom: 400px;
+}
+div.slideshow p{
+    font-size: 3rem;
+    text-align: center;
+    width: 800px;
+    height: 600px;
+}
+
+hr#slideshow_line{
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    margin-left: -22px;
+}
+div.new_Prodct{
+    display: block;
+    width: 870px;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+div.new_Prodct h2{
+    margin-top: 100px;
+    text-align: center;
+}
