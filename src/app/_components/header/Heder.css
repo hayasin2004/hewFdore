@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+header {
+    display: -webkit-flex;
+    display: inline-block;
+    width: 100%;
+}
+
+header div.nav {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+}
+
+header div.title h1 {
+    font-size: 3rem;
+    width: 200px;
+    margin-left: 100px;
+}
+div.bar{
+    width: 400px;
+    margin-left: 200px;
+}
+
+header div.bar ul {
+    display: -webkit-flex;
+    display: flex;
+    width: 900px;
+    list-style: none;
+    margin-right: 260px;
+    font-size: 1rem;
+}
+
+
+div.bar ul li {
+    font-size: 1.5rem;
+    margin-left: 30px;
+}
+
+div.bar ul span#short_line {
+    font-size: 1.5rem;
+    content: "";
+    width: 80px;
+    height: 40px;
+    margin-top: 3px;
+    margin-left: 30px;
+    margin-right: -70px;
+    align-items: center;
+    border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
+}
+
+div.bar ul span p#short_text {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    margin-left: -20px;
+    width:50px;
+}
+
+
+div.bar ul span.long_line {
+    content: "";
+    width: 20px;
+    height: 70px;
+    margin-top: 1px;
+    margin-left: 70px;
+    margin-right: -20px;
+    margin-bottom: 5px;
+    align-items: center;
+    border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
+}
+#uru_ul{
+    width :100px;
+    align-items: center;
+    padding-left: 45px;
+}
+#uru{
+    display: flex;
+    margin-top: -30px;
+    width: 90px;
+}
+
+
+span.under_bar {
+    display: block;
+    content: "";
+    width: 99.5%;
+    margin-top: -1px;
+    height: 11px;
+    border-bottom: 1px solid #000000;
+}
