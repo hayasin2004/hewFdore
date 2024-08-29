@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    margin-top: 190px;
+}
+
+div#wrap p {
+    margin-top: 5%;
+    font-size: 3rem;
+    text-align: center;
+}
+
+div#logout{
+    margin: 70px;
+    text-align: center;
+    font-size: 3rem;
+    border-radius: 10px;
+}
+
+div#logout a{
+    padding: 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    background-color: #000;
+    color: #fff;
+}
