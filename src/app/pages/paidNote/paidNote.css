@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div.paidText h2{
+    margin-top: 70px;
+    margin-bottom: 120px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+div.listing{
+    display: flex;
+    margin-left: 30px;
+
+}
+div.listing_product {
+    display: flex;
+    margin-bottom: 20px;
+}
+div.product{
+    width: 400px;
+    padding: 20px;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 10px;
+    background-color: #555555;
+}
+
+div.listingText {
+    word-break: break-all;
+    background-color: #D0C7B2;
+    width: 300px;
+    padding: 20px;
+}
+div.listingText h3{
+    font-size: 1.5rem;
+}
+
+div.listingText p {
+}
+
+div.product_text{
+    margin-left: 10px;
+}
+
+div.product_text p {
+    font-size: 30px;
+}
