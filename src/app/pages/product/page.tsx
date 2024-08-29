@@ -2,6 +2,8 @@ import React from 'react';
 import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
+import Chat from "@/app/_components/chat/Chat";
+
 
 const Product = () => {
 
@@ -10,6 +12,7 @@ const Product = () => {
             <Header />
             <main>
                 <div id="cart">
+
                     <div id={"cartText"}>
                     <h2>Cart</h2>
                     <Image src="/images/Cart_icon.png" width={50} height={50}  alt="カート" className="icon"/>
@@ -57,11 +60,7 @@ const Product = () => {
                             <p id="category">カテゴリ: ワンピース Sサイズ 春物 色</p>
                         </div>
                     </div>
-                    <div id="chat">
-                        <Image src="/images/charcoal_pro_def.png" width={23} height={2}  alt="アイコン"/>
-                        <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
-                        <input type="text" name="msg" id="msg" placeholder="出品者へのお問い合わせはこちらから"/>
-                    </div>
+                    <Chat />
 
                     <div id="control">
                         <Image width={30} height={30} src="/images/star_8.png " alt="お気に入りアイコン"/>

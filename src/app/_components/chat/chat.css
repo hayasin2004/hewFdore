@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/*チャット*/
+div#chat{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-bottom: 50px;
+    width: 70%;
+    height: 150px;
+    background: #D9D9D9;
+    border: #AAA solid 2px;
+    overflow-y: auto;
+}
+input[type=text]#msg{
+    margin: 10px;
+    width: 80%;
+    height: 50px;
+    border-style: none none solid none;
+}
+
+/* アイコン*/
+div#chat img{
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
