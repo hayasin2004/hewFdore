@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+span#btn{
+    position: sticky;
+    top: 90%;
+    left: 87%;
+}
+
+span#btn button{
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+
+div.confirm{
+    width: 700px;
+    align-items: center;
+    margin-left: 100px;
+    margin-top: 120px;
+    margin-bottom: 90px;
+    padding-bottom: 90px;
+}
+
+div.confirmPoint{
+    display:flex;
+    align-items:center;
+    margin-bottom: 20px;
+}
+
+
+
+div.confirm svg{
+    margin-right: 20px;
+}
+
+div.confirm p {
+    font-size: 2rem;
+}
+
+
+div.recommend_products{
+    width: 700px;
+    margin-left: -23px;
+}
+
+div.recommend_products h2 {
+    margin-top: 50px;
+    text-align: center;
+}
+
+
+div.recommend_product{
+    width: 1200px;
+    display: flex;
+    margin-top: 20px;
+
+}
+
+
+div.product{
+    display: flex;
+    margin-top: 60px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+div.rightbar_product_text{
+    margin-left: 20px;
+}
+
+div.rightbar_product_text p{
+    font-size: 30px;
+}
+
+
+div.rightbar{
+    margin-top: 130px;
+    margin-left: 280px;
+    width: 500px;
+    height: 800px;
+    margin-bottom: 20px;
+}
+
+div.rightbar_note {
+    width: 500px;
+    height: 600px;
+    overflow-y: auto;
+    padding-left: 20px;
+    /*background-color: aqua;*/
+    border-left: 2px solid #000;
+}
+
+div ul.rightbar_collectpoint{
+    display: flex;
+    list-style: none;
+    margin:  0 auto;
+}
+
+div ul.rightbar_collectpoint li{
+    width: 500px;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 20px;
+    padding-left: 0;
+    opacity: 0.9;
+}
+
+div ul.rightbar_point{
+    display: flex;
+    list-style: none;
+    margin:  0 auto;
+}
+
+div ul.rightbar_point li{
+    width: 500px;
+    font-size: 2rem;
+    text-align: center;
+    padding: 20px;
+    padding-left: 0;
+    word-break: break-all;
+}
+
+div.rightbar h2{
+    margin-top: -70px;
+    text-align: center;
+    font-size: 2.4rem;
+}

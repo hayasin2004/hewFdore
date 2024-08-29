@@ -3,7 +3,7 @@ import Header from "@/app/_components/header/Header";
 import "./confirmUser.css"
 import Image from "next/image"
 
-const ConfirmPassword = () => {
+const ConfirmUserProfile = () => {
 
     return (
         <>
@@ -39,8 +39,7 @@ const ConfirmPassword = () => {
                                 points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                         <div>
-                            <p>現在の保持ポイント xxxx pt</p>
-                            <p>獲得履歴を見る</p>
+                            <p>お気に入り</p>
                         </div>
                     </div>
                     <div className={"confirm"}>
@@ -60,8 +59,7 @@ const ConfirmPassword = () => {
                             <path d="m20.7 13.8 1-.4"/>
                         </svg>
                         <div>
-                            <p>現在の保持ポイント xxxx pt</p>
-                            <p>獲得履歴を見る</p>
+                            <p>ユーザー情報を変更</p>
                         </div>
                     </div>
                 </div>
@@ -116,4 +114,4 @@ const ConfirmPassword = () => {
 }
 
 
-export default ConfirmPassword;
+export default ConfirmUserProfile;
