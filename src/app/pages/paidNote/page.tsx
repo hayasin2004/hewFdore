@@ -7,7 +7,12 @@ const PaidNote = () => {
 
     return (
         <>
-            <Header/>
+
+                        <span id={"btn"}>
+                <button>
+                    戻る
+                </button>
+            </span>
             <div className={"paidText"}>
                 <h2>
                     あなたの購入履歴
@@ -73,7 +78,7 @@ const PaidNote = () => {
                     </div>
                     <div className={"listingText"}>
                         <h3>評価</h3>
-                        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjasdfasdfsadfasdfsdafasdfsdafasdfasdfasdwfasdfasdfasdfdsawff;</p>
                     </div>
                 </div>
             </div>
