@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+span#btn{
+    position: sticky;
+    top: 90%;
+    left: 87%;
+}
+
+
+span#btn button{
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+
+
+div.favorite{
+    margin-top: 80px;
+    margin-left: 90px;
+    display: flex;
+    align-items: center;
+}
+
+div.favorite_products{
+    width: 1500px;
+    display: flex;
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+
+div.product{
+    width: 400px;
+    padding: 20px;
+    display: flex;
+
+    margin: 0 auto;
+    background-color: #555555;
+}
+
+
+
+
+div.product_text{
+    margin-left: 20px;
+}
+
+div.product_text p{
+    font-size: 30px;
+}
