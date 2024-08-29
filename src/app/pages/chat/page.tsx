@@ -7,7 +7,8 @@ import Chat from "@/app/_components/chat/Chat";
 import {Rating, Typography} from "@mui/material";
 
 const ListingComplete = () => {
-    const [value, setValue] = React.useState<number | null>(2);
+    const [value, setValue] = React.useState<number | null>(0.5);
+    console.log(Rating)
     return (
         <>
             <Header/>
