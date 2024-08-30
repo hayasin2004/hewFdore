@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.radio{
+    width: 400px;
+    height: 300px;
+    padding: 30px;
+    border-radius: 20px;
+    margin:  0 auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: #D0C7B2;
+}
+
+.radio_button{
+    width: 300px;
+}
+
+/*選択されたボタンの色設定*/
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+    color: #000;
+}
+
+.left_radio_button{
+    display: flex;
+}
+
+.radio_button_flex{
+    width: 400px;
+    display: flex;
+
+}
+
+.radio_button_low1{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.radio_button_low2{
+    width: 180px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.Size_Situation{
+    width: 400px;
+    display: flex;
+    margin:  0 auto;
+
+}
+
+.Sizebutton{
+    width: 100px;
+    text-align: center;
+    margin-top: 120px;
+    margin-right: 30px;
+}
+.Situation{
+    width: 300px;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.SendDays{
+    text-align: center;
+    width: 400px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
