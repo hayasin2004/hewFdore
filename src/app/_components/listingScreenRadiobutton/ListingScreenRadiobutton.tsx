@@ -108,7 +108,26 @@ const ListingScreenRadiobutton = () => {
                 {/*    ↑商品状態*/}
 
             </Box>
+            {/*送料*/}
+            <Box className={"SendDays"}>
+
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">送料情報</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={age}
+                        label="Age"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={10}>出品者負担</MenuItem>
+                        <MenuItem value={20}>購入者負担</MenuItem>
+
+                    </Select>
+                </FormControl>
+            </Box>
             {/*    発送情報*/}
+
             <Box className={"SendDays"}>
 
                 <FormControl fullWidth>
