@@ -37,8 +37,76 @@ header div.bar ul {
 
 
 div.bar ul li {
+    position: relative;
     font-size: 1.5rem;
     margin-left: 30px;
+}
+
+.bell{
+    position: absolute;
+    top: 0%;
+    left: 20px;
+    width: 40px;
+    border: none;color: #000000;
+}
+.modal-content{
+    width: 500px;
+    height: 500px;
+    background-color: #e5e5e5;
+    border: 5px solid #fff;
+    position: absolute;
+    top: 14%;
+    right: 4%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*デフォルトで下線部がついていたのでそれを消す設定*/
+.modal-title{
+    border-bottom: none;
+
+    }
+
+/*タブの設定*/
+.modal-title-tab {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+/*選択されたときに動く下線部の設定*/
+.css-1aquho2-MuiTabs-indicator{
+    background-color: #000;
+    height: 1.3px;
+
+}
+/*選択されたものの背景色と文字の色設定*/
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected{
+    color: black;
+    background-color: #D0C7B2;
+}
+
+/*タブの項目自体の幅の設定今回はモーダル全体で500px指定で項目は二つなので一つの項目の幅を250pxにして半分になるようにしました。*/
+.modal-title-tab-text{
+    width: 250px;
+}
+/*お知らせの右に仕切りの意味でボーダーを追加しました。*/
+.modalborder{
+    border-right: 2px solid #000000;
+}
+
+/*お知らせ内容についてのＣＳＳ*/
+.alert{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #aaa;
+}
+
+.alert svg{
+    margin-right: 30px;
+    padding-bottom: 10px;
 }
 
 div.bar ul span#short_line {
