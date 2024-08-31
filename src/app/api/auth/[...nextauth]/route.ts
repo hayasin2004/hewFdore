@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.GITHUB_CLIENT_SECRET!,
         })
     ], pages: {
-        signIn: "/toppage",
+        signIn: "/login",
     }, callbacks: {
         async session({token, session}) {
             if (token) {
@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
             }
             // console.log(session)　→　これでユーザー情報の一覧がコンソールに出ます。
             return session
+
         },
 
     }

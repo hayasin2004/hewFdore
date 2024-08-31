@@ -10,6 +10,10 @@ import {signIn} from "next-auth/react";
 
 const Login = () => {
 
+    // ログインしたら自動的にトップページに飛ばされる
+    const handleLogin = () => {
+        signIn("github" , {callbackUrl : "/toppage"})
+    }
 
     return (
 
@@ -18,7 +22,7 @@ const Login = () => {
                 <h1>F'dore</h1>
             </header>
 
-            <button onClick={() => signIn("github")}>
+            <button onClick={handleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
                 githubでログイン
             </button>
             <section>
