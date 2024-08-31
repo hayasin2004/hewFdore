@@ -1,16 +1,13 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import Sample from "@/app/_components/sample/Sample"
-import Aaa from "@/app/pages/toppage/page";
-import Sidebar from "@/app/_components/sidebar/Sidebar";
-import Login from "@/app/pages/login/page";
-import Register from "@/app/pages/register/page";
+import Register from "@/app/(auth)/register/page";
+import Login from "@/app/(auth)/login/page";
+import Toppage from "./toppage/page";
 
 export default function Home() {
   return (
     <main >
       <div>
-          <Register/>
+          <Toppage />
+          {/*<Register/>*/}
       {/*<Login />*/}
       </div>
     </main>
