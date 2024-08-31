@@ -1,8 +1,11 @@
 import NextAuth from "next-auth/next"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
+import InstagramProvider from "next-auth/providers/instagram"
+import FacebookProvider from "next-auth/providers/facebook"
 import type {NextAuthOptions} from "next-auth"
 
+            // allowDangerousEmailAccountLinking: true, →これは複数のプロバイダーで同じメールアドレスでログインしたときに衝突が起きないようにするもの。これをfalseにすると同じメールアドレスでログインはできなくなります。
 
 export const authOptions: NextAuthOptions = {
 
@@ -16,6 +19,16 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            allowDangerousEmailAccountLinking: true,
+        }),
+        FacebookProvider({
+            clientId: process.env.FACEBOOK_CLIENT_ID!,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+            allowDangerousEmailAccountLinking: true,
+        }),
+        InstagramProvider({
+            clientId: process.env.INSTAGRAM_CLIENT_ID!,
+            clientSecret: process.env.INSTAGRAM_CLIENT_SECRET!,
             allowDangerousEmailAccountLinking: true,
         })
     ], pages: {

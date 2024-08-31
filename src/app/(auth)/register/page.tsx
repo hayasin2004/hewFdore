@@ -22,12 +22,7 @@ const Login = () => {
 
                 <div>
                     <div>
-                        <p>
-                                <button onClick={() => signIn("github")}>
-                                    githubでログイン
-                                </button>
 
-                        </p>
                     </div>
                     <div id="bgwhite">
                         <div id="form">
@@ -58,27 +53,27 @@ const Login = () => {
             </section>
 
 
-            {/*<div className="Slideshow">*/}
+            <div className="Slideshow">
 
 
-            {/*    <Slide slidesToShow={1} duration={2000} infinite={true} indicators={true} arrows={false}>*/}
+                <Slide slidesToShow={1} duration={2000} infinite={true} indicators={true} arrows={false}>
 
-            {/*        <div className="each-slide-effect">*/}
-            {/*            <div className={"slide_img"} style={{*/}
-            {/*                backgroundImage: 'url(/images/Winter.png)'*/}
-            {/*            }}>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*        <div className="each-slide-effect">*/}
-            {/*            <div className={"slide_img"} style={{*/}
-            {/*                backgroundImage: 'url(/images/MainImage.png)'*/}
-            {/*            }}>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
+                    <div className="each-slide-effect">
+                        <div className={"slide_img"} style={{
+                            backgroundImage: 'url(/images/Winter.png)'
+                        }}>
+                        </div>
+                    </div>
+                    <div className="each-slide-effect">
+                        <div className={"slide_img"} style={{
+                            backgroundImage: 'url(/images/MainImage.png)'
+                        }}>
+                        </div>
+                    </div>
 
-            {/*    </Slide>*/}
+                </Slide>
 
-            {/*</div>*/}
+            </div>
 
         </>
 

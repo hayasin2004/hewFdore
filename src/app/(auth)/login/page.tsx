@@ -17,6 +17,13 @@ const Login = () => {
     const handleGooleLogin = () => {
         signIn("google" , {callbackUrl : "/toppage"})
     }
+    const handleFacebookLogin = () => {
+        signIn("facebook" , {callbackUrl : "/toppage"})
+        console.log(handleFacebookLogin)
+    }
+    const handleInstagramLogin = () => {
+        signIn("instagram" , {callbackUrl : "/toppage"})
+    }
 
     return (
 
@@ -31,6 +38,12 @@ const Login = () => {
             <button onClick={handleGooleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
                 Googleでログイン
             </button>
+            {/*<button onClick={handleFacebookLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
+            {/*    FaceBookでログイン*/}
+            {/*</button>*/}
+            {/*<button onClick={handleInstagramLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
+            {/*    Instagramでログイン*/}
+            {/*</button> →実装につきエラーが出たので一旦保留で*/}
             <section>
 
                 <div>
