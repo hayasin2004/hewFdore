@@ -11,8 +11,11 @@ import {signIn} from "next-auth/react";
 const Login = () => {
 
     // ログインしたら自動的にトップページに飛ばされる
-    const handleLogin = () => {
+    const handleGithubLogin = () => {
         signIn("github" , {callbackUrl : "/toppage"})
+    }
+    const handleGooleLogin = () => {
+        signIn("google" , {callbackUrl : "/toppage"})
     }
 
     return (
@@ -22,8 +25,11 @@ const Login = () => {
                 <h1>F'dore</h1>
             </header>
 
-            <button onClick={handleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
+            <button onClick={handleGithubLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
                 githubでログイン
+            </button>
+            <button onClick={handleGooleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
+                Googleでログイン
             </button>
             <section>
 
