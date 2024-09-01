@@ -1,18 +1,28 @@
 "use client"
-import React from 'react';
+import React, {useContext} from 'react';
 import "./login.css"
 import Image from "next/image"
 import Link from "next/link";
 import Script from 'next/script';
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import {signIn} from "next-auth/react";
+import {signIn, useSession} from "next-auth/react";
+import {trackDynamicDataAccessed} from "next/dist/server/app-render/dynamic-rendering";
+import {User} from "@/models/User";
+import {string} from "prop-types";
 
 const Login = () => {
 
+    const {data : session, status} = useSession() ;
+    const dateAll = [session?.user.name , session?.user.email , session?.user.image]
+
+    if (status === "loading"){
+        console.log("123456789128912345678")
+    }
+    console.log("これはsessionです" + dateAll)
     // ログインしたら自動的にトップページに飛ばされる
     const handleGithubLogin = () => {
-        signIn("github" , {callbackUrl : "/toppage"})
+        signIn("github" , {callbackUrl : "/login"})
     }
     const handleGooleLogin = () => {
         signIn("google" , {callbackUrl : "/toppage"})
@@ -30,6 +40,9 @@ const Login = () => {
         <>
             <header>
                 <h1>F'dore</h1>
+                {dateAll.map((item, i) => (
+                    <p key={i}>{item}</p>
+                ))}
             </header>
 
             <button onClick={handleGithubLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}

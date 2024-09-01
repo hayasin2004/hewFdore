@@ -4,13 +4,33 @@ import GoogleProvider from "next-auth/providers/google"
 import InstagramProvider from "next-auth/providers/instagram"
 import FacebookProvider from "next-auth/providers/facebook"
 import type {NextAuthOptions} from "next-auth"
+import {connectDB} from "@/lib/mongodb"
+import CredentialsProvider from "next-auth/providers/credentials";
+// allowDangerousEmailAccountLinking: true, →これは複数のプロバイダーで同じメールアドレスでログインしたときに衝突が起きないようにするもの。これをfalseにすると同じメールアドレスでログインはできなくなります。
 
-            // allowDangerousEmailAccountLinking: true, →これは複数のプロバイダーで同じメールアドレスでログインしたときに衝突が起きないようにするもの。これをfalseにすると同じメールアドレスでログインはできなくなります。
+
+interface Credentials {
+    email: string;
+    password: string;
+}
+
 
 export const authOptions: NextAuthOptions = {
 
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
+       // CredentialsProvider({
+       //      name : "Credentials",
+       //      id : "credentials",
+       //      credentials : {
+       //          email : { label:"Email" , type : "text" },
+       //          password:{ label:"Password" , type : "password" },
+       //      },
+       //      async authorize({email, password} : {email : string , password : string}) {
+       //          await connectDB();
+       //          const user = await  User.findOne({email : credentials.email})
+       //      },
+       //  }),
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID!,
             clientSecret: process.env.GITHUB_CLIENT_SECRET!,
@@ -43,11 +63,13 @@ export const authOptions: NextAuthOptions = {
             //     上記の型定義はtypes/next-auth.d.ts/
 
             }
-            // console.log(session)　→　これでユーザー情報の一覧がコンソールに出ます。
+            console.log(session)　/*→　これでユーザー情報の一覧がコンソールに出ます。*/
             return session
-
         },
 
+    },
+    session : {
+        strategy : "jwt"
     }
 
 }

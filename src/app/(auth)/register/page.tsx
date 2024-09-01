@@ -9,8 +9,7 @@ import 'react-slideshow-image/dist/styles.css'
 import {useSession, signIn, signOut} from "next-auth/react"
 
 
-const Login = () => {
-
+const Register = () => {
     return (
 
         <>
@@ -82,4 +81,4 @@ const Login = () => {
 }
 
 
-export default Login;
+export default Register;

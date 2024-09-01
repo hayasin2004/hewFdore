@@ -1,4 +1,15 @@
 import mongoose　 from 'mongoose';
+//
+// export interface UserDocument {
+//     userId: string;
+//     username: string;
+//     password: string;
+//     email: string;
+//     profilePicture: string;
+//     coverProfilePicture: string;
+//     desc : string;
+//     address : string;
+// }
 
 const UserSchema = new mongoose.Schema({
     userId: {
@@ -17,7 +28,6 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
         min: 6,
         max: 20
     },
@@ -26,7 +36,7 @@ const UserSchema = new mongoose.Schema({
         unique: true,
         required: true,
         min: 6,
-        max: 30
+        max: 30,
     },
     profilePicture: {
         type: String,
@@ -63,5 +73,6 @@ const UserSchema = new mongoose.Schema({
     {timestamps: true}
 )
 
-module.exports = mongoose.model("User" , UserSchema);
-// UserSchemeをUserとして呼び出しています。　これからUserと言われたらこっから情報を取得しているって認識でお願いします。
+export  const User = mongoose.models.User || 　mongoose.model("User" , UserSchema);
+// ||でユーザーが作られているかどうかの判定。既にユーザー登録していたら左を使用。
+// UserSchemaをUserとして呼び出しています。　これからUserと言われたらこっから情報を取得しているって認識でお願いします。
