@@ -1,21 +1,27 @@
 "use client"
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import "./login.css"
 import Image from "next/image"
 import Link from "next/link";
-import Script from 'next/script';
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import {signIn, useSession} from "next-auth/react";
-import {trackDynamicDataAccessed} from "next/dist/server/app-render/dynamic-rendering";
 import {User} from "@/models/User";
-import {string} from "prop-types";
+
 import {loginUser} from "@/app/utils/loginUser";
+import {useRouter} from "next/navigation";
+import Toppage from "@/app/toppage/page";
 
 const Login = () => {
-
-
-
+    const router = useRouter();
+    const [userToken, setUserToken] = useState("")
+    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    console.log("これはログイン成功したときにユ―ザーが出ます:" + email);/*正しくはログには[object object]が出ます*/
+    console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
+    console.log("これはログインに成功した時にユーザー名が出ます:" + username);
+    console.log("これはログインに成功した時にパスワードが出ます。:" + password);
     return (
 
         <>
@@ -31,12 +37,28 @@ const Login = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ログイン</h2><br/>
-                            <form action={ async (data : FormData) => {
+                            <form action={async (data: FormData) => {
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string /*メールアドレスとパスワードをデータベースに問い合わせてる*/
                                 await loginUser(email, password).then(user => {
+                                    if (user === undefined) {
+                                        /*もしユーザー情報が間違えたいたらuserにundefinedが返って来る。*/
+                                        alert("メールアドレスもしくはパスワードが違う可能性があります。")
+                                    }
                                     if (user) {
-                                        console.log("ログインメールアドレス" + user.email)
+                                        const token = user.token
+                                        if (!token) {
+                                            console.log("ログイン情報が違う可能性があります。")
+                                        } else {
+                                            localStorage.setItem("token", token)
+                                            setUserToken(token)
+                                            setEmail(user.email)
+                                            setUsername(user.username)
+                                            setPassword(user.password)
+                                            alert("ログインに成功しました。おかえりなさい"+user.username)
+                                            console.log("トークンが発行されました。" + user?.token);
+                                            return (user)
+                                        }
                                     }
                                 })
                             }} method="post"
@@ -47,7 +69,7 @@ const Login = () => {
 
                                 {/*<input type="text" name="UserName" id="UserName"*/}
                                 {/*       placeholder="Enter your UserName"/><br/>*/}
-                                <label htmlFor="Email" >Email</label><br/>
+                                <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email"
                                        placeholder="Enter your E-mail Address"/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>

@@ -15,18 +15,6 @@ export const authOptions: NextAuthOptions = {
 
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
-       // CredentialsProvider({
-       //      name : "Credentials",
-       //      id : "credentials",
-       //      credentials : {
-       //          email : { label:"Email" , type : "text" },
-       //          password:{ label:"Password" , type : "password" },
-       //      },
-       //      async authorize({email, password} : {email : string , password : string}) {
-       //          await connectDB();
-       //          const user = await  User.findOne({email : credentials.email})
-       //      },
-       //  }),
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID!,
             clientSecret: process.env.GITHUB_CLIENT_SECRET!,

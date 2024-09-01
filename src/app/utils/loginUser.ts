@@ -1,8 +1,10 @@
 "use server"
 import {User} from "@/models/User"
+import jwt from "jsonwebtoken"
 import {connectDB} from "@/lib/mongodb";
 
 export async function loginUser(email: string, password: string) {
+
     try {
 
         // mongooseの関数findOneで該当するユーザーを一つ取得してくる
@@ -15,16 +17,21 @@ export async function loginUser(email: string, password: string) {
                 status: (404)
             })
         } else {
-            console.log("メールアドレス認証は成功しました。" + user)
+            console.log("メールアドレス認証は成功しました。" + user.email)
             //     else文でログインしたユーザーが見つかった時。
             // もしユーザーが見つかった時パスワード認証を行う
             const check_password = password === user.password
-            const pic = user.profilePicture
-            const picture = pic;
             if (!check_password) {
-                console.log("パスワードが違います。")
+                console.log("パスワードが違います。" + password)
+            } else {
+                const username = user.username
+                // ログインに成功したユーザーにトークンを発行する
+                const token = jwt.sign({
+                    username: user.username
+                }, process.env.SECRET_KEY, {expiresIn: "1 day"})
+            return {email, password, token: token , username : username}
             }
-            return {email, password, pic: picture.pic}
+
         }
         //     user→クラス , {email , password}　→オブジェクト 、email , password →クラスの中身
     } catch (err) {
