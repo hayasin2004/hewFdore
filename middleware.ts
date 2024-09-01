@@ -10,7 +10,7 @@ export default withAuth(
 
 // See "Matching Paths" below to learn more
 export const config = {
-    matcher: ['/toppage/:path', "/confirmUser/:path","/login","/register"]
+    matcher: ['/toppage/:path', "/confirmUser/:path","/login","/user"]
 }
 //説明。これはトークンを持っているユーザー（ログインしたユーザー）のIDが:path*として扱われています。
 //　つまり最終的には/toppage/ログインしたユーザーというリンクになります。

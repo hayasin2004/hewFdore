@@ -10,65 +10,44 @@ import {signIn, useSession} from "next-auth/react";
 import {trackDynamicDataAccessed} from "next/dist/server/app-render/dynamic-rendering";
 import {User} from "@/models/User";
 import {string} from "prop-types";
+import {loginUser} from "@/app/utils/loginUser";
 
 const Login = () => {
 
-    const {data : session, status} = useSession() ;
-    const dateAll = [session?.user.name , session?.user.email , session?.user.image]
 
-    if (status === "loading"){
-        console.log("123456789128912345678")
-    }
-    console.log("これはsessionです" + dateAll)
-    // ログインしたら自動的にトップページに飛ばされる
-    const handleGithubLogin = () => {
-        signIn("github" , {callbackUrl : "/login"})
-    }
-    const handleGooleLogin = () => {
-        signIn("google" , {callbackUrl : "/toppage"})
-    }
-    const handleFacebookLogin = () => {
-        signIn("facebook" , {callbackUrl : "/toppage"})
-        console.log(handleFacebookLogin)
-    }
-    const handleInstagramLogin = () => {
-        signIn("instagram" , {callbackUrl : "/toppage"})
-    }
 
     return (
 
         <>
             <header>
                 <h1>F'dore</h1>
-                {dateAll.map((item, i) => (
-                    <p key={i}>{item}</p>
-                ))}
+
             </header>
 
-            <button onClick={handleGithubLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
-                githubでログイン
-            </button>
-            <button onClick={handleGooleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
-                Googleでログイン
-            </button>
-            {/*<button onClick={handleFacebookLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
-            {/*    FaceBookでログイン*/}
-            {/*</button>*/}
-            {/*<button onClick={handleInstagramLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
-            {/*    Instagramでログイン*/}
-            {/*</button> →実装につきエラーが出たので一旦保留で*/}
+
             <section>
 
                 <div>
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ログイン</h2><br/>
-                            <form action="../Toppage/index.html" method="post">
-                                <label htmlFor="UserName">ユーザー名</label><br/>
+                            <form action={ async (data : FormData) => {
+                                const email = data.get("Email") as string
+                                const password = data.get("Password") as string /*メールアドレスとパスワードをデータベースに問い合わせてる*/
+                                await loginUser(email, password).then(user => {
+                                    if (user) {
+                                        console.log("ログインメールアドレス" + user.email)
+                                    }
+                                })
+                            }} method="post"
 
-                                <input type="text" name="UserName" id="UserName"
-                                       placeholder="Enter your UserName"/><br/>
-                                <label htmlFor="Email">Email</label><br/>
+
+                            >
+                                {/*<label htmflFor="UserName">ユーザー名</label><br/>*/}
+
+                                {/*<input type="text" name="UserName" id="UserName"*/}
+                                {/*       placeholder="Enter your UserName"/><br/>*/}
+                                <label htmlFor="Email" >Email</label><br/>
                                 <input type="text" name="Email" id="Email"
                                        placeholder="Enter your E-mail Address"/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>

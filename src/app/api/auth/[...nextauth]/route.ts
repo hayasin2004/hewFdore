@@ -9,10 +9,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 // allowDangerousEmailAccountLinking: true, →これは複数のプロバイダーで同じメールアドレスでログインしたときに衝突が起きないようにするもの。これをfalseにすると同じメールアドレスでログインはできなくなります。
 
 
-interface Credentials {
-    email: string;
-    password: string;
-}
 
 
 export const authOptions: NextAuthOptions = {

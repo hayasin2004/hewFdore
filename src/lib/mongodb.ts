@@ -1,11 +1,11 @@
-"use server"
 import mongoose from "mongoose";
 import {User} from "@/models/User"
 import {string} from "prop-types";
+import {NextApiRequest, NextApiResponse} from "next";
 
 export const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URL as string);
+        await mongoose.connect(process.env.MONGODB_URI!);
         console.log("Connected to MongoDB...");
     } catch (error) {
         console.log("エラー");
@@ -13,16 +13,6 @@ export const connectDB = async () => {
         return Promise.reject(error);
     }
 }
-
-
-// export async function createUser() {
-//
-//     await  mongoose.connect(process.env.MONGODB_URI!);
-//     const newUser = new User({ userId : "1asdfasfasdfdfasdfdaaffasdfasff", username : "aaasdfasdfsadfwdsfsfsdafsdfsdfaa", password: "test123", email: "test@asdfasdfdsfsftest.com" });
-//     await  newUser.save()
-//     // console.log(newUser)
-// }
-// createUser().catch(err => console.log(err));
 
 
 
