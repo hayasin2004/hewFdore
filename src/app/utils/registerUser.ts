@@ -15,7 +15,6 @@ export default async function createUser(username: string, email: string, passwo
     } catch (err) {
         console.log(err)
         //     ユーザーが正常に新規登録できなかったとき
-
     }
     redirect("/login")
 

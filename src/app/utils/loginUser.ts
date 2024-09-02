@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken"
 import {connectDB} from "@/lib/mongodb";
 
 export async function loginUser(email: string, password: string) {
+        const db_res = await  connectDB()
 
     try {
 
@@ -17,24 +18,27 @@ export async function loginUser(email: string, password: string) {
                 status: (404)
             })
         } else {
-            console.log("メールアドレス認証は成功しました。" + user.email)
+            // console.log("メールアドレス認証は成功しました。" + user.email)
             //     else文でログインしたユーザーが見つかった時。
             // もしユーザーが見つかった時パスワード認証を行う
             const check_password = password === user.password
             if (!check_password) {
                 console.log("パスワードが違います。" + password)
             } else {
+                const userId = user._id
                 const username = user.username
                 // ログインに成功したユーザーにトークンを発行する
                 const token = jwt.sign({
-                    username: user.username
-                }, process.env.SECRET_KEY, {expiresIn: "1 day"})
-            return {email, password, token: token , username : username}
+                    userId : user._id.toString(), /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
+                    username: user.username,
+                    email : email,
+                }, process.env.SECRET_KEY, {expiresIn: "2 day"})
+            return {email, password, token: token , userId : userId.toString() , username : username}
             }
 
         }
         //     user→クラス , {email , password}　→オブジェクト 、email , password →クラスの中身
     } catch (err) {
-        console.log(err)
+        console.log("エラー" + err)
     }
 }

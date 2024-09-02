@@ -2,11 +2,9 @@
 import React, {useState} from 'react';
 import "./login.css"
 import Image from "next/image"
-import Link from "next/link";
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import {signIn, useSession} from "next-auth/react";
-import {User} from "@/models/User";
+import {redirect} from "next/navigation";
 
 import {loginUser} from "@/app/utils/loginUser";
 import {useRouter} from "next/navigation";
@@ -17,8 +15,7 @@ const Login = () => {
     const [userToken, setUserToken] = useState("")
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    console.log("これはログイン成功したときにユ―ザーが出ます:" + email);/*正しくはログには[object object]が出ます*/
+    const [password, setPassword] = useState("")/*正しくはログには[object object]が出ます*/
     console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
     console.log("これはログインに成功した時にユーザー名が出ます:" + username);
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);
@@ -78,6 +75,7 @@ const Login = () => {
                                 <input type="password" name="PWCheck" id="PWCheck" placeholder="Enter Password again "/><br/>
                                 <button type="submit">ログイン</button>
                             </form>
+
                         </div>
                     </div>
 
