@@ -3,8 +3,17 @@ import {User} from "@/models/User"
 import jwt from "jsonwebtoken"
 import {connectDB} from "@/lib/mongodb";
 
+interface User{
+    userId : string
+    username : string
+    password : string
+    email :string
+    profilePicture : string
+    coverProfilePicture : string
+}
+
 export async function loginUser(email: string, password: string) {
-        const db_res = await  connectDB()
+       await  connectDB()
 
     try {
 
@@ -21,20 +30,25 @@ export async function loginUser(email: string, password: string) {
             // console.log("メールアドレス認証は成功しました。" + user.email)
             //     else文でログインしたユーザーが見つかった時。
             // もしユーザーが見つかった時パスワード認証を行う
-            const check_password = password === user.password
+            const check_password : boolean = password === user.password
             if (!check_password) {
                 console.log("パスワードが違います。" + password)
             } else {
-                const userId = user._id
-                const username = user.username
+                const userId :User = user._id
+                const username :User= user.username
+                const email:User = user.email
+                const password : User = user.password
+                const profilePicture:User = user.profilePicture
+                const coverProfilePicture:User = user.coverProfilePicture
                 // ログインに成功したユーザーにトークンを発行する
                 const token = jwt.sign({
                     userId : user._id.toString(), /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
                     username: user.username,
                     email : email,
                 }, process.env.SECRET_KEY, {expiresIn: "2 day"})
-            return {email, password, token: token , userId : userId.toString() , username : username}
+            return {email, password, token: token , userId : userId.toString() , username : username , profilePicture : profilePicture , coverProfilePicture : coverProfilePicture};
             }
+
 
         }
         //     user→クラス , {email , password}　→オブジェクト 、email , password →クラスの中身

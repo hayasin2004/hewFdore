@@ -10,12 +10,22 @@ import {loginUser} from "@/app/utils/loginUser";
 import {useRouter} from "next/navigation";
 import Toppage from "@/app/toppage/page";
 
+interface User{
+    userId : string
+    username : string
+    email :string
+    password :string
+    profilePicture : string
+    coverProfilePicture : string
+}
+
+
 const Login = () => {
     const router = useRouter();
-    const [userToken, setUserToken] = useState("")
-    const [email, setEmail] = useState("")
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")/*正しくはログには[object object]が出ます*/
+    const [userToken, setUserToken] = useState()
+    const [email, setEmail] = useState<User | null>(null)
+    const [username, setUsername] = useState<User | null>(null)
+    const [password, setPassword] = useState<User | null>(null)/*正しくはログには[object object]が出ます*/
     console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
     console.log("これはログインに成功した時にユーザー名が出ます:" + username);
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);

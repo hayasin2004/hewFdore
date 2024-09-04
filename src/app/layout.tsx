@@ -6,6 +6,7 @@ import NextAuthProvider from "../providers/NextAuth";
 
 const inter = Inter({subsets: ["latin"]});
 
+
 export const metadata: Metadata = {
     title: "F'dore",
     description: "日常に新しい彩を",
@@ -14,7 +15,9 @@ export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <html lang="ja">
         <body>
-        <NextAuthProvider>{children}</NextAuthProvider></body>
+            <NextAuthProvider>{children}</NextAuthProvider>
+
+        </body>
         </html>
     );
 }
