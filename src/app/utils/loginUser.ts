@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 import {connectDB} from "@/lib/mongodb";
 
 export async function loginUser(email: string, password: string) {
-        const db_res = await  connectDB()
+       await  connectDB()
 
     try {
 
