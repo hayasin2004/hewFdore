@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <main >
       <div>
-          <Toppage />
+          {/*<Toppage />*/}
           {/*<Register/>*/}
-      {/*<Login />*/}
+      <Login />
       </div>
     </main>
   );

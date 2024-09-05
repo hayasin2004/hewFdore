@@ -7,8 +7,18 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 
+interface User{
+    userId : string
+    username : string
+    email :string
+    password :string
+    profilePicture : string
+    coverProfilePicture : string
+}
 
-const Header = () => {
+
+
+const Header = ({user} : {user : User}) => {
 
     interface TabPanelProps {
         children?: React.ReactNode;
@@ -100,7 +110,7 @@ const Header = () => {
                                 ○
                             </li>
                             <li>
-                                User name
+                                {user.username}
                             </li>
                             <li>
                                 <div>
