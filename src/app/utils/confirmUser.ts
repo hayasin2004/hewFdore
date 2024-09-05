@@ -6,6 +6,7 @@ import {string} from "prop-types";
 export interface User {
     token :string;
     username: string;
+    email : string;
     userId: string;
 }
 
@@ -26,8 +27,9 @@ export default async function confirmUser(token: string) :Promise<User | null> {
         // }
         const userId  = decoded.userId
         const username= decoded.username;
+        const email = decoded.email;
         // console.log(typeof userId , typeof  username , typeof  token);
-        return {token, username: username, userId: userId.toString()};
+        return {token, username: username, userId: userId.toString() , email};
     } catch (err) {
         console.log(err)
         return null
