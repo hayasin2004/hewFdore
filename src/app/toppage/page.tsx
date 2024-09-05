@@ -25,7 +25,7 @@ const Toppage = () => {
                 <Sidebar/>
                 <ToppageMain/>
             </div>
-            {/*<Footer/>*/}
+            <Footer/>
         </div>
     );
 }
