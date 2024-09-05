@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
+import Footer from "@/app/_components/footer/Footer";
 const UpdateProfile = () => {
     return (
         <>
@@ -59,6 +60,7 @@ const UpdateProfile = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }
