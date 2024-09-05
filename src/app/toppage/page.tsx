@@ -5,7 +5,7 @@ import Sidebar from "@/app/_components/sidebar/Sidebar";
 import ToppageMain from "@/app/_components/toppageMain/ToppageMain";
 import confirmUser from "@/app/utils/confirmUser";
 import {loginUser} from "@/app/utils/loginUser";
-import useUser from "@/app/hooks/useUser";
+import useUser from "@/hooks/useUser";
 import {string} from "prop-types";
 
 
