@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
+import useUser from "@/hooks/useUser";
 
 interface User{
     userId : string
@@ -19,7 +20,8 @@ interface User{
 
 
 const Header = () => {
-
+    const { user } = useUser()
+    console.log(user?.username)
     interface TabPanelProps {
         children?: React.ReactNode;
         index: number;

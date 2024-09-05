@@ -10,11 +10,12 @@ export interface User {
     userId: string;
 }
 
-export default async function confirmUser(token: string) :Promise<User | null> {
+export default async function confirmUser(token?: string) :Promise<User | null> {
     await connectDB()
 
     if (!token) {
-        throw new Error("Token is required");
+        return null;
+
     }
     try {
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
