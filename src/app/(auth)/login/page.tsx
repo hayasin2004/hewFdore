@@ -60,6 +60,7 @@ const Login = () => {
                                             localStorage.setItem("token", token)
                                             setUserToken(token)
                                             setEmail(user.email)
+                                            console.log(user.email)
                                             setUsername(user.username)
                                             setPassword(user.password)
                                             alert("ログインに成功しました。おかえりなさい"+user.username)

@@ -9,6 +9,7 @@ import useUser from "@/hooks/useUser";
 import {string} from "prop-types";
 
 
+
 interface User {
     token: string | null;
     username: string;
@@ -20,6 +21,14 @@ const Toppage = () => {
 
     const { user, token, username, userId, email } = useUser();
     console.log(user?.email);
+
+
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+
+
+
+
 
     // console.log(user?.username)
     // console.log(user?.userId)
@@ -45,6 +54,7 @@ const Toppage = () => {
 
 
     return (
+
         <div>
             <Header/>
             <div style={{display: "flex", justifyContent: "space-between"}}>
