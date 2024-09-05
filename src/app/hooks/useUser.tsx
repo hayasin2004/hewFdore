@@ -1,34 +1,39 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import confirmUser from "@/app/utils/confirmUser";
 
+// ユーザー情報を取得するカスタムフックです
 interface User {
-    token: string;
+    token: string | null;
     username: string;
-    email : string;
+    email: string;
     userId: string;
 }
 
-const UseUser = () => {
+const useUser = () => {
     const [user, setUser] = useState<User | null>(null)
+    // console.log(user?.email)
     const token = localStorage.getItem("token");
-    if (token) {
-        (async () => {
-            const userData = await confirmUser(token);
-            console.log(userData)
-            setUser(userData)
-            if (userData !== null) {
-                setUser(userData)
-            } else {
-                console.log("トークンが確認できませんでした。")
-            }
-        })()
+
+    useEffect(() => {
+
+        if (token) {
+            (async () => {
+                const userData = await confirmUser(token);
+                // console.log(userData)
+                if (userData !== null) {
+                    setUser(userData)
+                } else {
+                    console.log("トークンが確認できませんでした。")
+                    return null
+                }
+            })()
+
+        }
+        },[token]);
+    //  useEffectの依存配列でtokenが変更されたのみ発火する
+    return {user, token, userId: user?.username, username: user?.userId, email: user?.email}
 
 }
-    return (
-        <>
-        </>
-    );
-};
 
-export default UseUser;
+export default useUser;

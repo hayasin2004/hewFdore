@@ -5,19 +5,24 @@ import Sidebar from "@/app/_components/sidebar/Sidebar";
 import ToppageMain from "@/app/_components/toppageMain/ToppageMain";
 import confirmUser from "@/app/utils/confirmUser";
 import {loginUser} from "@/app/utils/loginUser";
+import useUser from "@/app/hooks/useUser";
+import {string} from "prop-types";
 
 
 interface User {
-    token: string;
+    token: string | null;
     username: string;
     email : string;
     userId: string;
 }
 
 const Toppage = () => {
-    const [user, setUser] = useState<User | null >(null)
-    console.log(user?.username)
-    console.log(user?.userId)
+
+    const { user, token, username, userId, email } = useUser();
+    console.log(user?.email);
+
+    // console.log(user?.username)
+    // console.log(user?.userId)
     // ↑これで今ログインしているユーザーの情報を取得
     // useEffect(() => {
     //     const token = localStorage.getItem("token");
@@ -36,12 +41,12 @@ const Toppage = () => {
         // エンコードしたtokenを検証する
 
 
-    }, []);
+    // }, []);
 
 
     return (
         <div>
-            <Header user={user}/>
+            <Header/>
             <div style={{display: "flex", justifyContent: "space-between"}}>
                 <Sidebar/>
                 <ToppageMain/>

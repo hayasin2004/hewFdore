@@ -18,7 +18,7 @@ interface User{
 
 
 
-const Header = ({user} : {user : User | null}) => {
+const Header = () => {
 
     interface TabPanelProps {
         children?: React.ReactNode;
@@ -110,7 +110,7 @@ const Header = ({user} : {user : User | null}) => {
                                 ○
                             </li>
                             <li>
-                                {user?.email}
+                                {/*{user?.email}*/}
                             </li>
                             <li>
                                 <div>
