@@ -7,21 +7,22 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
+import Link from "next/link";
 
-interface User{
-    userId : string
-    username : string
-    email :string
-    password :string
-    profilePicture : string
-    coverProfilePicture : string
+interface User {
+    userId: string
+    username: string
+    email: string
+    password: string
+    profilePicture: string
+    coverProfilePicture: string
 }
 
 
-
 const Header = () => {
-    const { user } = useUser()
+    const {user} = useUser()
     console.log(user?.username)
+
     interface TabPanelProps {
         children?: React.ReactNode;
         index: number;
@@ -96,9 +97,18 @@ const Header = () => {
                         探す
                     </p>
                     </span>
-                            <li>
-                                Search 〇
-                            </li>
+                            <Link href={"/searchResult"}>
+
+                                <li>
+                                    Search <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                className="lucide lucide-search">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="m21 21-4.3-4.3"/>
+                                </svg>
+                                </li>
+                            </Link>
                             <span className="long_line"></span>
                             <li id="uru_ul">
                                 Sell
@@ -112,7 +122,7 @@ const Header = () => {
                                 ○
                             </li>
                             <li>
-                                {/*{user?.email}*/}
+                                {user?.username}
                             </li>
                             <li>
                                 <div>
@@ -135,21 +145,25 @@ const Header = () => {
                                         <Box className={"modal-content"}>
                                             <Box sx={{width: '100%'}}>
 
-                                                    <Box className={"modal-title"} sx={{borderBottom: 1, borderColor: 'error'}}>
+                                                <Box className={"modal-title"}
+                                                     sx={{borderBottom: 1, borderColor: 'error'}}>
 
-                                                            <div className={"modal-title-tab"}>
+                                                    <div className={"modal-title-tab"}>
                                                         <Tabs value={value} onChange={handleChange}>
-                                                                <Tab className={"modal-title-tab-text modalborder"}   label="お知らせ" {...a11yProps(0)} />
-                                                                <Tab  className={"modal-title-tab-text"} label="出品評価" {...a11yProps(1)} />
+                                                            <Tab className={"modal-title-tab-text modalborder"}
+                                                                 label="お知らせ" {...a11yProps(0)} />
+                                                            <Tab className={"modal-title-tab-text"}
+                                                                 label="出品評価" {...a11yProps(1)} />
                                                         </Tabs>
-                                                            </div>
-                                                    </Box>
+                                                    </div>
+                                                </Box>
 
-                                                <CustomTabPanel  value={value} index={0}>
+                                                <CustomTabPanel value={value} index={0}>
                                                     <Box className={"alert"}>
 
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                             stroke-width="2"
                                                              stroke-linecap="round" stroke-linejoin="round"
                                                              className="lucide lucide-bell">
                                                             <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
@@ -165,7 +179,8 @@ const Header = () => {
                                                     <Box className={"alert"}>
 
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                             stroke-width="2"
                                                              stroke-linecap="round" stroke-linejoin="round"
                                                              className="lucide lucide-bell">
                                                             <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
