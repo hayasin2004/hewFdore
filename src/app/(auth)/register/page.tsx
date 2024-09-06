@@ -12,23 +12,24 @@ import {useRouter} from "next/navigation";
 import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import createUser from "@/app/utils/registerUser";
-
+import Login from '../login/page';
+import  {useHistory} from  "react-router-dom"
 
 
 const Register = () => {
-    const {data : session, status} = useSession() ;
-    const dateAll = [session?.user.name , session?.user.email , session?.user.image]
+    const {data: session, status} = useSession();
+    const dateAll = [session?.user.name, session?.user.email, session?.user.image]
 
-    if (status === "loading"){
+    if (status === "loading") {
         console.log("123456789128912345678")
     }
     console.log("これはsessionです" + dateAll)
     // ログインしたら自動的にトップページに飛ばされる
     const handleGithubLogin = () => {
-        signIn("github" , {callbackUrl : "/login"})
+        signIn("github", {callbackUrl: "/login"})
     }
     const handleGooleLogin = () => {
-        signIn("google" , {callbackUrl : "/toppage"})
+        signIn("google", {callbackUrl: "/toppage"})
     }
     // const handleFacebookLogin = () => {
     //     signIn("facebook" , {callbackUrl : "/toppage"})
@@ -43,12 +44,12 @@ const Register = () => {
             <header>
                 <h1>F'dore</h1>
             </header>
-            <button onClick={handleGithubLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
-                githubでログイン
-            </button>
-            <button onClick={handleGooleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
-                Googleでログイン
-            </button>
+            {/*<button onClick={handleGithubLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
+            {/*    githubでログイン*/}
+            {/*</button>*/}
+            {/*<button onClick={handleGooleLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
+            {/*    Googleでログイン*/}
+            {/*</button>*/}
 
             <section>
 
@@ -59,7 +60,7 @@ const Register = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ユーザー登録</h2><br/>
-                            <form action={async (data : FormData) =>{
+                            <form action={async (data: FormData) => {
                                 const username = data.get("userName") as string
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
@@ -67,17 +68,22 @@ const Register = () => {
                             }}>
                                 <label htmlFor="UserName">ユーザー名</label><br/>
 
-                                <input type="text" name="userName" id="UserName" required={true}
-                                       placeholder="Enter your UserName"  /><br/>
+                                <input type="text" name="userName" id="UserName" required
+                                       placeholder="Enter your UserName"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
-                                <input type="text" name="Email" id="Email" required={true}
-                                       placeholder="Enter your E-mail Address"  /><br/>
+                                <input type="text" name="Email" id="Email" required
+                                       placeholder="Enter your E-mail Address"/><br/>
 
-                                <input required={true}   type="password" name="Password" id="Password" placeholder="Enter Password" /><br/>
+                                <input required type="password" name="Password" id="Password"
+                                       placeholder="Enter Password"/><br/>
 
                                 <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" name="PWCheck" id="PWCheck" placeholder="Enter Password again "/><br/>
-                                <button  type="submit">ユ―ザーを作成</button>
+                                <input type="password" required name="PWCheck" id="PWCheck"
+                                       placeholder="Enter Password again "/><br/>
+
+                                <button type="submit">
+                                        ユ―ザーを作成
+                                </button>
                             </form>
                         </div>
                     </div>
