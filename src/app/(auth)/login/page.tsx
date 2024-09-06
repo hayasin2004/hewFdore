@@ -9,6 +9,10 @@ import {redirect} from "next/navigation";
 import {loginUser} from "@/app/utils/loginUser";
 import {useRouter} from "next/navigation";
 import Toppage from "@/app/toppage/page";
+import Link from "next/link";
+import {User} from "@/models/User";
+import {string} from "prop-types";
+import {Form} from "react-router-dom";
 
 interface User{
     userId : string
@@ -21,7 +25,6 @@ interface User{
 
 
 const Login = () => {
-    const router = useRouter();
     const [userToken, setUserToken] = useState()
     const [email, setEmail] = useState<User | null>(null)
     const [username, setUsername] = useState<User | null>(null)
@@ -29,6 +32,22 @@ const Login = () => {
     console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
     console.log("これはログインに成功した時にユーザー名が出ます:" + username);
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);
+
+
+    const [formValue, setFormValue]
+        = useState({ Email: "", Password: "", ConfirmPassword: ""})
+        console.log(formValue.Password)
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setFormValue({...formValue, [name]: value});
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    }
+
+    const allFieldsFilled = formValue.Email && formValue.Password && formValue.ConfirmPassword;
     return (
 
         <>
@@ -44,7 +63,7 @@ const Login = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ログイン</h2><br/>
-                            <form action={async (data: FormData) => {
+                            <form onSubmit={handleSubmit} action={async (data: FormData) => {
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string /*メールアドレスとパスワードをデータベースに問い合わせてる*/
                                 await loginUser(email, password).then(user => {
@@ -62,7 +81,7 @@ const Login = () => {
                                             setEmail(user.email)
                                             setUsername(user.username)
                                             setPassword(user.password)
-                                            alert("ログインに成功しました。おかえりなさい"+user.username)
+                                            alert("ログインに成功しました。おかえりなさい" + user.username)
                                             console.log("トークンが発行されました。" + user?.token);
                                             return (user)
                                         }
@@ -77,13 +96,21 @@ const Login = () => {
                                 {/*<input type="text" name="UserName" id="UserName"*/}
                                 {/*       placeholder="Enter your UserName"/><br/>*/}
                                 <label htmlFor="Email">Email</label><br/>
-                                <input type="text" name="Email" id="Email"
+                                <input type="text" name="Email" id="Email" onChange={onChange} value={formValue.Email}
                                        placeholder="Enter your E-mail Address"/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>
-                                <input type="password" name="Password" id="Password" placeholder="Enter Password"/><br/>
+                                <input type="password" name="Password" id="Password" value={formValue.Password}
+                                       onChange={onChange} placeholder="Enter Password"/><br/>
                                 <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" name="PWCheck" id="PWCheck" placeholder="Enter Password again "/><br/>
-                                <button type="submit">ログイン</button>
+
+                                <input type="password" required name="ConfirmPassword" id="PWCheck"
+                                       value={formValue.ConfirmPassword}
+                                       placeholder="Enter Password again " onChange={onChange}/>
+
+                                <button type="submit">
+                                    {allFieldsFilled ? <Link href={"/toppage"}>トップページへ</Link> :
+                                        <Link href={"/login"}>フォームを入力</Link>}
+                                </button>
                             </form>
 
                         </div>

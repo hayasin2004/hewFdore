@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./register.css"
 import Image from "next/image"
 import Link from "next/link";
@@ -14,10 +14,11 @@ import error = Simulate.error;
 import createUser from "@/app/utils/registerUser";
 import Login from '../login/page';
 import {useNavigate} from "react-router";
+import {secondaryWritableServerSelector} from "mongodb/src/sdam/server_selection";
 
 
 const Register = () => {
-    // {
+
     //     const {data: session, status} = useSession();
     //     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
     //
@@ -39,25 +40,23 @@ const Register = () => {
     // const handleInstagramLogin = () => {
     //     signIn("instagram" , {callbackUrl : "/toppage"})
     // }
-    // }
+
+
 
     // フォームがもしすべて入力されていたら次のページ
     const [formValue, setFormValue]
-        = useState({UserName :"" , Email : "" , Password : "" , ConfirmPassword : ""})
-        console.log(formValue)
+        = useState({UserName: "", Email: "", Password: "", ConfirmPassword: ""})
 
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
-        const {name , value} = e.target;
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
         setFormValue({...formValue, [name]: value});
     }
-    const handleSubmit = (e :  React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if(formValue.UserName && formValue.Email && formValue.Password && formValue.ConfirmPassword ){
-            
-        }else{
-            window.alert("すべてのフォームを入力の上再度送信してください。")
-        }
     }
+
+    const allFieldsFilled = formValue.UserName && formValue.Email && formValue.Password && formValue.ConfirmPassword;
     return (
 
 
@@ -81,7 +80,7 @@ const Register = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ユーザー登録</h2><br/>
-                            <form onSubmit={handleSubmit}  action={async (data: FormData) => {
+                            <form onSubmit={handleSubmit} action={async (data: FormData) => {
                                 const username = data.get("userName") as string
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
@@ -89,21 +88,23 @@ const Register = () => {
                             }}>
                                 <label htmlFor="UserName">ユーザー名</label><br/>
 
-                                <input type="text" name="UserName" id="UserName" required onChange={onChange} value={formValue.UserName}
+                                <input type="text" name="UserName" id="UserName" required onChange={onChange}
+                                       value={formValue.UserName}
                                        placeholder="Enter your UserName"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
-                                <input type="text" name="Email" id="Email"  required value={formValue.Email}
+                                <input type="text" name="Email" id="Email" required value={formValue.Email}
                                        placeholder="Enter your E-mail Address" onChange={onChange}/><br/>
 
                                 <input required type="password" name="Password" id="Password" value={formValue.Password}
                                        placeholder="Enter Password" onChange={onChange}/><br/>
 
                                 <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" required name="ConfirmPassword" id="PWCheck" value={formValue.ConfirmPassword}
+                                <input type="password" required name="ConfirmPassword" id="PWCheck"
+                                       value={formValue.ConfirmPassword}
                                        placeholder="Enter Password again " onChange={onChange}/><br/>
-
                                 <button type="submit">
-                                        ユ―ザーを作成
+                                    {allFieldsFilled ? <Link href={"/login"}>ログイン画面へ</Link> :
+                                        <Link href={"/"}>フォームを入力</Link>}
                                 </button>
                             </form>
                         </div>
