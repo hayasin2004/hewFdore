@@ -83,9 +83,11 @@ const Header = () => {
             <header>
                 <div className="nav">
                     <div className="title">
-                        <h1>
-                            F'dore
-                        </h1>
+                        <Link href={"/toppage"}>
+                            <h1>
+                                F'dore
+                            </h1>
+                        </Link>
                     </div>
                     <div className="bar">
                         <ul>
