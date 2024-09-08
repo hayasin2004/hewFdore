@@ -80,16 +80,21 @@ const Register = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ユーザー登録</h2><br/>
-                            <form onSubmit={handleSubmit} action={async (data: FormData) => {
-                                const username = data.get("userName") as string
+                            <form action={async (data: FormData) => {
+                                const username = data.get("UserName") as string
+                                console.log(username)
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
-                                await createUser(username, email, password).then()
+                                await createUser(username, email, password).then(
+                                    user => {
+                                        console.log(user)
+                                    }
+                                )
                             }}>
                                 <label htmlFor="UserName">ユーザー名</label><br/>
 
                                 <input type="text" name="UserName" id="UserName" required onChange={onChange}
-                                       value={formValue.UserName}
+
                                        placeholder="Enter your UserName"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email" required value={formValue.Email}
@@ -103,8 +108,9 @@ const Register = () => {
                                        value={formValue.ConfirmPassword}
                                        placeholder="Enter Password again " onChange={onChange}/><br/>
                                 <button type="submit">
-                                    {allFieldsFilled ? <Link href={"/login"}>ログイン画面へ</Link> :
-                                        <Link href={"/"}>フォームを入力</Link>}
+                                    ログイン画面
+                                    {/*{allFieldsFilled ? <Link href={"/login"}>ログイン画面へ</Link> :*/}
+                                    {/*    <Link href={"/"}>フォームを入力</Link>}*/}
                                 </button>
                             </form>
                         </div>

@@ -63,7 +63,7 @@ const Login = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ログイン</h2><br/>
-                            <form onSubmit={handleSubmit} action={async (data: FormData) => {
+                            <form  action={async (data: FormData) => {
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string /*メールアドレスとパスワードをデータベースに問い合わせてる*/
                                 await loginUser(email, password).then(user => {
@@ -108,8 +108,9 @@ const Login = () => {
                                        placeholder="Enter Password again " onChange={onChange}/>
 
                                 <button type="submit">
-                                    {allFieldsFilled ? <Link href={"/toppage"}>トップページへ</Link> :
-                                        <Link href={"/login"}>フォームを入力</Link>}
+                                    ログイン
+                                    {/*{allFieldsFilled ? <Link href={"/toppage"}>トップページへ</Link> :*/}
+                                    {/*    <Link href={"/login"}>フォームを入力</Link>}*/}
                                 </button>
                             </form>
 
