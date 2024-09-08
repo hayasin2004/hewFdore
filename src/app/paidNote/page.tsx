@@ -2,16 +2,21 @@ import React from 'react';
 import Header from "@/app/_components/header/Header";
 import Image from "next/image";
 import "./paidNote.css"
+import Link from "next/link";
 
 const PaidNote = () => {
 
     return (
         <>
 
-                        <span id={"btn"}>
+            <span id={"btn"}>
+                    <Link href={"toppage"}>
                 <button>
+
+
                     戻る
                 </button>
+                    </Link>
             </span>
             <div className={"paidText"}>
                 <h2>

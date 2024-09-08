@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "@/app/_components/header/Header";
 import "./confirmPoints.css"
 import Image from "next/image"
+import Link from "next/link";
 
 const ConfirmUserProfile = () => {
 
@@ -9,15 +10,19 @@ const ConfirmUserProfile = () => {
         <>
             <Header/>
             <span id={"btn"}>
-                <button>
+
+                    <Link href={"confirmUser"}>
+                    <button>
+
                     戻る
-                </button>
+                    </button>
+                    </Link>
             </span>
             <div style={{display: "flex"}}>
                 <div>
 
                     <div className={"confirm"}>
-                        <div className={"confirmPoint"} >
+                        <div className={"confirmPoint"}>
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"
                                  fill="none"

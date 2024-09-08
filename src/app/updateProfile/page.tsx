@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
+import Link from "next/link";
 const UpdateProfile = () => {
     return (
         <>
@@ -53,7 +54,11 @@ const UpdateProfile = () => {
                                 <label htmlFor="PWCheck">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
                                        placeholder="配達お届け住所を入力して下さい。"/><br/>
-                                <button type="submit">更新する</button>
+                                <button type="submit">
+                                    <Link href={"toppage"}>
+                                    更新する
+                                    </Link>
+                                </button>
                             </form>
                         </div>
                     </div>
