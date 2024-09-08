@@ -3,6 +3,7 @@ import Header from "@/app/_components/header/Header";
 import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
+import Link from 'next/link';
 
 const ListingScreen = () => {
 
@@ -56,11 +57,17 @@ const ListingScreen = () => {
 
                 <div className={"btn"}>
                     <button>
+                        <Link href={"toppage"}>
+
                         <p>キャンセル</p>
+                        </Link>
                     </button>
 
                     <button>
-                        <p>出品</p>
+                        <Link href={"listingcomplete"}>
+
+                            <p>出品</p>
+                        </Link>
                     </button>
                 </div>
             </main>

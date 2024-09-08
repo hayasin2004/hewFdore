@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Sidebar.css"
 import Image from  "next/image"
+import Link from "next/link";
 
 const Sidebar = () => {
 
@@ -30,9 +31,9 @@ const Sidebar = () => {
 
 
                 </div>
-                <a href="#" id="side_product_detail">
+                <Link href={"sendAddress"} id="side_product_detail">
                     商品ページ
-                </a>
+                </Link>
                 <p id="total_price">
                     合計金額
                 </p>
