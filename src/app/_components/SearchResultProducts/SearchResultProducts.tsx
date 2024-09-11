@@ -21,19 +21,7 @@ const SearchResultProducts : React.FC<DummyDataProductsProps> = ({product}) => {
                 <div className="productlist">
                     <div className="productlist__item">
 
-                    {product.map((item , index) => (
 
-                        <div  key={item.id} >
-                            <div className={"product_detail"}></div>
-                            <Link href={"/product"}>
-                                <Image src="/images/sample01.jpg" width={200} height={200} alt="商品画像"/>
-                                <p>{item.productName}</p>
-                                <p>{item.author.userName}</p>
-                                <p>{item.price}円</p>
-                            </Link>
-                            {(index + 1) % 3 === 0 && <br />}
-                        </div>
-                    ))}
                     </div>
                     {/*<div className="product_img">*/}
 

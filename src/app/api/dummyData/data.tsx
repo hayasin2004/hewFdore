@@ -34,76 +34,9 @@ export const  products : productsProps[] =　[
             author :{
                 userName : "Matsui",
             }
-        },
-        {
-            id : 2,
-            productName : "ワンピース",
-            productDesc : "何回か使用していましたが特に目立った汚れはなくほぼ新品です。",
-            category :"" ,
-            published :"",
-            price : 100 ,
-            author :{
-                userName : "Matsui",
-            }
-        },
-        {
-            id : 2,
-            productName : "ワンピース",
-            productDesc : "何回か使用していましたが特に目立った汚れはなくほぼ新品です。",
-            category :"" ,
-            published :"",
-            price : 100 ,
-            author :{
-                userName : "Matsui",
-            }
-        },
-        {
-            id : 2,
-            productName : "ワンピース",
-            productDesc : "何回か使用していましたが特に目立った汚れはなくほぼ新品です。",
-            category :"" ,
-            published :"",
-            price : 100 ,
-            author :{
-                userName : "Matsui",
-            }
-        },
-        {
-            id : 2,
-            productName : "ワンピース",
-            productDesc : "何回か使用していましたが特に目立った汚れはなくほぼ新品です。",
-            category :"" ,
-            published :"",
-            price : 100 ,
-            author :{
-                userName : "Matsui",
-            }
-        },
-        {
-            id : 2,
-            productName : "ワンピース",
-            productDesc : "何回か使用していましたが特に目立った汚れはなくほぼ新品です。",
-            category :"" ,
-            published :"",
-            price : 100 ,
-            author :{
-                userName : "Matsui",
-            }
-        },
-        {
-            id : 2,
-            productName : "ワンピース",
-            productDesc : "何回か使用していましたが特に目立った汚れはなくほぼ新品です。",
-            category :"" ,
-            published :"",
-            price : 100 ,
-            author :{
-                userName : "Matsui",
-            }
         }
-    ]
 
-
+]
 
 //ダミーデータのテンプレート
 // {
