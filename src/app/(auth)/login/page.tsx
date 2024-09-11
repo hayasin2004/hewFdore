@@ -14,13 +14,13 @@ import {User} from "@/models/User";
 import {string} from "prop-types";
 import {Form} from "react-router-dom";
 
-interface User{
-    userId : string
-    username : string
-    email :string
-    password :string
-    profilePicture : string
-    coverProfilePicture : string
+interface User {
+    userId: string
+    username: string
+    email: string
+    password: string
+    profilePicture: string
+    coverProfilePicture: string
 }
 
 
@@ -35,8 +35,8 @@ const Login = () => {
 
 
     const [formValue, setFormValue]
-        = useState({ Email: "", Password: "", ConfirmPassword: ""})
-        console.log(formValue.Password)
+        = useState({Email: "", Password: "", ConfirmPassword: ""})
+    console.log(formValue.Password)
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -63,7 +63,7 @@ const Login = () => {
                     <div id="bgwhite">
                         <div id="form">
                             <h2>ログイン</h2><br/>
-                            <form  action={async (data: FormData) => {
+                            <form action={async (data: FormData) => {
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string /*メールアドレスとパスワードをデータベースに問い合わせてる*/
                                 await loginUser(email, password).then(user => {
@@ -113,6 +113,9 @@ const Login = () => {
                                     {/*    <Link href={"/login"}>フォームを入力</Link>}*/}
                                 </button>
                             </form>
+                            <Link href={"register"}>
+                                <p style={{marginTop :"10px"}}>ユ―ザーを持っていませんか？</p>
+                            </Link>
 
                         </div>
                     </div>

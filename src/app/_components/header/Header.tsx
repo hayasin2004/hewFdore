@@ -141,7 +141,7 @@ const Header = () => {
 
                             </li>
                             <li>
-                                {user ? user.username : <p>ログイン</p>}
+                                {user ? user.username : <Link href={"login"}><p>ログイン</p></Link>}
                             </li>
                             <li>
                                 <div>

@@ -113,6 +113,9 @@ const Register = () => {
                                     {/*    <Link href={"/"}>フォームを入力</Link>}*/}
                                 </button>
                             </form>
+                            <Link href={"login"}>
+                                <p style={{marginTop :"10px"}}>ユ―ザー登録済の方はこちら</p>
+                            </Link>
                         </div>
                     </div>
 
