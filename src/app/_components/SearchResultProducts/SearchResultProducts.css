@@ -19,6 +19,17 @@ div.product_img{
 div.productlist div{
     padding: 20px;
 }
+
+div.productlist__item{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.product_detail{
+    width: calc(33.33% - 10px); /* 3つ並べるための幅調整 */
+    margin: 5px;
+}
+
 div.productlist div.product_detail p{
     padding: 5px 0;
     margin-left: 10px;
