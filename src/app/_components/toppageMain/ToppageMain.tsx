@@ -1,18 +1,16 @@
 import React from 'react';
 import "./toppageMain.css"
+import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 
 const ToppageMain = () => {
 
     return (
         <>
-            <div >
-                <div className={"top_main"}>
+            <div>
 
-                    <div className="slideshow">
-                        <p>スライドショー</p>
-                    </div>
+                <Slideshow/>
 
-                </div>
+
                 <hr id="slideshow_line"/>
 
                 <div className="new_Prodct">

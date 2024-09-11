@@ -5,7 +5,7 @@ import Sidebar from "@/app/_components/sidebar/Sidebar";
 import ToppageMain from "@/app/_components/toppageMain/ToppageMain";
 import confirmUser from "@/app/utils/confirmUser";
 import {loginUser} from "@/app/utils/loginUser";
-
+import "./toppage.css"
 const Toppage = () => {
     useEffect(() => {
         // エンコードしたtokenを検証する
@@ -20,7 +20,7 @@ const Toppage = () => {
     return (
         <div>
             <Header/>
-            <div style={{display: "flex", justifyContent: "space-between"}}>
+            <div className={"toppage"} >
                 <Sidebar/>
                 <ToppageMain/>
             </div>
