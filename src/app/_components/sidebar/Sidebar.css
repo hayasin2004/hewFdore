@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
 
 body {
     margin: 0;
@@ -47,6 +47,7 @@ div.sidebar .cart h1 {
     align-items: center;
 }
 div.sidebar .cart p {
+
     display: flex;
     align-items: center;
 }
@@ -76,7 +77,9 @@ div.cart_inProduct figure img{
 div.cart_inProduct ul{
     margin: 10px 0 0 30px;
     width: 400px;
-
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.2rem;
 }
 
