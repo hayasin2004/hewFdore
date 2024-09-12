@@ -98,7 +98,7 @@ const Header = () => {
                             <li>
                                 <Link href={"listingScreen"}>
 
-                                    出品
+                                    Category
                                 </Link>
                             </li>
                             <span id="short_line"><br/>
