@@ -73,7 +73,7 @@ const Register = () => {
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email" required
                                        placeholder="Enter your E-mail Address"/><br/>
-
+                                <label htmlFor="Password">パスワード</label><br/>
                                 <input required type="password" name="Password" id="Password"
                                        placeholder="Enter Password"/><br/>
 
@@ -82,7 +82,7 @@ const Register = () => {
                                        placeholder="Enter Password again "/><br/>
 
                                 <button type="submit">
-                                        ユ―ザーを作成
+                                    ユ―ザーを作成
                                 </button>
                             </form>
                         </div>
