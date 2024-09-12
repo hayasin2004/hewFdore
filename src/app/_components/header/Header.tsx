@@ -102,8 +102,7 @@ const Header = () => {
                             <span className="long_line"></span>
                             <li id="uru_ul">
                                 Sell
-                                <span id="uru"></span>
-                                <br/>売る
+                                <span id="uru">売る</span>
 
                             </li>
                             <span className="long_line"></span>
