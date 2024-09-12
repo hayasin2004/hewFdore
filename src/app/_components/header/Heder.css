@@ -54,6 +54,7 @@ div.bar ul li {
     height: 500px;
     background-color: #e5e5e5;
     border: 5px solid #fff;
+    border-radius: 10px;
     position: absolute;
     top: 14%;
     right: 4%;

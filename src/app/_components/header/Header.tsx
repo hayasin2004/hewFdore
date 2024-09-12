@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
+import Image from "next/image";
 
 interface User{
     userId : string
@@ -97,7 +98,8 @@ const Header = () => {
                     </p>
                     </span>
                             <li>
-                                Search 〇
+                                Search
+                                <Image src={"/images/search_icon.png"} className="searchIcon" width={20} height={20} alt={"サーチアイコン"} />
                             </li>
                             <span className="long_line"></span>
                             <li id="uru_ul">
