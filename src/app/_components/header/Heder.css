@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:wght@100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
 body {
 
     margin: 0;
@@ -129,7 +128,9 @@ div.bar ul span#short_line {
 }
 
 div.bar ul span p#short_text {
-    font-weight: 100;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.3rem;
     margin-top: 10px;
     margin-left: -20px;
@@ -155,9 +156,10 @@ div.bar ul span.long_line {
 
 }
 #uru{
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.3rem;
-    font-weight: 100;
-    width: 100px;
     margin: 20px 0 0 10px;
     text-align: center;
 }
