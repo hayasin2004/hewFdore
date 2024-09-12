@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from "@/app/_components/header/Header";
 import "./payComplete.css"
-import Link from "next/link";
 const PayComplete = () => {
 
     return (
@@ -13,8 +12,7 @@ const PayComplete = () => {
                     発送状況に関しては</p>
                 <a href="#">xxxx</a>
                 <p>をご確認ください。</p>
-
-                <Link id="return" href={"toppage"}>TOPへ</Link>
+                <a id="return" href="../Toppage">TOPへ</a>
             </main>
         </>
     );

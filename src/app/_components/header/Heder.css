@@ -1,28 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
 body {
+
     margin: 0;
     padding: 0;
 }
 header {
     display: -webkit-flex;
     display: inline-block;
-    width: 100%;
+    width: auto;
 }
-
 header div.nav {
     margin-top: 30px;
     display: flex;
     align-items: center;
-    width: 100%;
 
 }
 
 header div.title h1 {
-    font-size: 3rem;
+    font-family: "Italiana", sans-serif;
+    font-size: 3.2rem;
+    font-weight: normal;
+    letter-spacing: 5px;
     width: 200px;
     margin-left: 100px;
 }
 div.bar{
-    width: 400px;
+    /*width: 400px;*/
     margin-left: 200px;
 }
 
@@ -35,9 +38,12 @@ header div.bar ul {
     font-size: 1rem;
 }
 
-
+/* <uniquifier>: Use a unique and descriptive class name
+   <weight>: Use a value from 100 to 800*/
 div.bar ul li {
     position: relative;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400;
     font-size: 1.5rem;
     margin-left: 30px;
 }
@@ -123,7 +129,10 @@ div.bar ul span#short_line {
 }
 
 div.bar ul span p#short_text {
-    font-size: 1.5rem;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3rem;
     margin-top: 10px;
     margin-left: -20px;
     width:50px;
@@ -145,11 +154,15 @@ div.bar ul span.long_line {
     width :100px;
     align-items: center;
     padding-left: 45px;
+
 }
 #uru{
-    display: flex;
-    margin-top: -20px;
-    width: 90px;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3rem;
+    margin: 20px 0 0 10px;
+    text-align: center;
 }
 
 
