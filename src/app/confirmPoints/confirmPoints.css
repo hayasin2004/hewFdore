@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-}asdfgh
+}
 
 span#btn{
     position: sticky;
@@ -13,7 +13,11 @@ span#btn button{
     padding: 10px 30px;
     border-radius: 20px;
 }
-
+div#point_main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 div.confirm{
     width: 700px;
     align-items: center;
@@ -47,12 +51,13 @@ div.recommend_products{
 
 div.recommend_products h2 {
     margin-top: 50px;
+    font-size: 1.5rem;
     text-align: center;
 }
 
 
 div.recommend_product{
-    width: 1200px;
+    width: 100%;
     display: flex;
     margin-top: 20px;
 
@@ -64,6 +69,7 @@ div.product{
     margin-top: 60px;
     margin-left: 30px;
     margin-bottom: 30px;
+    font-size: 1.2rem;
 }
 
 div.rightbar_product_text{
@@ -76,8 +82,7 @@ div.rightbar_product_text p{
 
 
 div.rightbar{
-    margin-top: 130px;
-    margin-left: 280px;
+    margin: 130px 50px 0 0 ;
     width: 500px;
     height: 800px;
     margin-bottom: 20px;
@@ -115,7 +120,7 @@ div ul.rightbar_point{
 
 div ul.rightbar_point li{
     width: 500px;
-    font-size: 2rem;
+    font-size: 1.25rem;
     text-align: center;
     padding: 20px;
     padding-left: 0;
@@ -125,5 +130,5 @@ div ul.rightbar_point li{
 div.rightbar h2{
     margin-top: -70px;
     text-align: center;
-    font-size: 2.4rem;
+    font-size: 2rem;
 }

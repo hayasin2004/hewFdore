@@ -9,11 +9,11 @@ const ConfirmUserProfile = () => {
         <>
             <Header/>
             <span id={"btn"}>
-                <button>
-                    戻る
-                </button>
+                {/*<button>*/}
+                {/*    戻る*/}
+                {/*</button>*/}
             </span>
-            <div style={{display: "flex"}}>
+            <div　id={"point_main"} style={{display: "flex"}}>
                 <div>
 
                     <div className={"confirm"}>
