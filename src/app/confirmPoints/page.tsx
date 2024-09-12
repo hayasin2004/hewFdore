@@ -2,7 +2,6 @@ import React from 'react';
 import Header from "@/app/_components/header/Header";
 import "./confirmPoints.css"
 import Image from "next/image"
-
 const ConfirmUserProfile = () => {
 
     return (
