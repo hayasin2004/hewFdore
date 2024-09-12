@@ -3,6 +3,7 @@ import React from 'react';
 import "./sendAddress.css"
 import Image from "next/image";
 import Link from "next/link";
+import Footer from "@/app/_components/footer/Footer";
 
 const SendAddress = () => {
 
@@ -86,6 +87,7 @@ const SendAddress = () => {
                     </Link>
                     <button type="submit" form="address">支払い画面へ</button>
                 </div>
+                <Footer/>
             </main>
         </>
     );

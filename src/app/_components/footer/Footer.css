@@ -1,0 +1,26 @@
+div#footer{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    background-color: #000;
+    margin: 20px 0 0 0;
+}
+div#links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0 20px 0;
+}
+p{
+    font-size: 0.8rem;
+    color: #aaa;
+}
+p span{
+    margin: 0 1rem 0 1rem;
+}
+p#c{
+    width: 100%;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
