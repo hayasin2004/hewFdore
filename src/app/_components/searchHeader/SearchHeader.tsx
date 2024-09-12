@@ -1,5 +1,9 @@
 import React from 'react';
 import "./searchHeader.css"
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import {Tab, Tabs} from "@mui/material";
 
 const SearchHeader = () => {
 
@@ -23,7 +27,6 @@ const SearchHeader = () => {
                         <span className="long_line"></span>
 
                         <p>Category</p>
-
 
                     </div>
                 </div>
