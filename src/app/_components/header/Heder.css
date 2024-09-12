@@ -23,15 +23,14 @@ header div.title h1 {
 }
 div.bar{
     width: 400px;
-    margin-left: 200px;
+    margin-left: 170px;
 }
 
 header div.bar ul {
     display: -webkit-flex;
     display: flex;
-    width: 900px;
+    width: 950px;
     list-style: none;
-    margin-right: 260px;
     font-size: 1rem;
 }
 

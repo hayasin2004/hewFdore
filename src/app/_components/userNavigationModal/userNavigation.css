@@ -1,0 +1,24 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+.Modal{
+    text-align:center;
+}
+
+.Modal h2{
+    margin-top: 80px;
+}
+
+.Modal p {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 15px;
+}
+
+p.btn{
+    display: flex;
+    font-size: 1rem;
+    margin-top: 10px;
+}
