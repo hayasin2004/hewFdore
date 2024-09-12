@@ -3,17 +3,18 @@ import React, {useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
-import Footer from "@/app/_components/footer/Footer";
 const UpdateProfile = () => {
     return (
         <>
             <Header/>
             <div className={"updateProfile_Text"}>
-                <h1>ユ―ザー情報の更新</h1>
+                <h1>ユ―ザー情報更新画面</h1>
             </div>
             <div className={"enterUpdateUserProfile"}>
 
-
+                <p>
+                    プロフィール画面を変更する
+                </p>
                 <div className={"updateProfile_img"}>
 
                     <div className={"profile_img"}>
@@ -29,40 +30,35 @@ const UpdateProfile = () => {
                             <Image src={"/images/sample01.jpg"} width={200} height={200}
                                    alt={"ユーザーのプロフィール"}/>
                         </div>
-
                     </div>
-                    <button type={"button"} id={"btn_imgUpdate"} form={"#"}>
-                        プロフィール画面を変更する
-                    </button>
                 </div>
 
                 <div className={"updateProfile_user"}>
-                <div>
+                    <div>
                         <div id="form">
                             <form action="../Toppage/index.html" method="post">
                                 <label htmlFor="UserName">ユーザー名 Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder="新しいユーザー名を入力して下さい"/><br/>
+                                       placeholder="新しユーザー名を入力して下さい。"/><br/>
                                 <label htmlFor="UserName">自己紹介</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder="自己紹介文を入力してください"/><br/>
+                                       placeholder="自己紹介文を入力してください。"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email"
-                                       placeholder="Eメールアドレスを入力してください"/><br/>
+                                       placeholder="Enter your E-mail Address"/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>
-                                <input type="password" name="Password" id="Password" placeholder="パスワードを入力してください"/><br/>
+                                <input type="password" name="Password" id="Password" placeholder="Enter Password"/><br/>
                                 <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" name="PWCheck" id="PWCheck" placeholder="もう一度パスワードを入力してください "/><br/>
+                                <input type="password" name="PWCheck" id="PWCheck" placeholder="Enter Password again "/><br/>
                                 <label htmlFor="PWCheck">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
-                                       placeholder="配達お届け住所を入力して下さい"/><br/>
+                                       placeholder="配達お届け住所を入力して下さい。"/><br/>
                                 <button type="submit">更新する</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <Footer/>
         </>
     );
 }

@@ -32,7 +32,7 @@ const useUser = () => {
         }
         },[token]);
     //  useEffectの依存配列でtokenが変更されたのみ発火する
-    return {user, token, userId: user?.username, username: user?.userId, email: user?.email}
+    return {user, token, userId: user?.userId, username: user?.username, email: user?.email}
 
 }
 

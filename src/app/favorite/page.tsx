@@ -2,6 +2,7 @@ import React from 'react';
 import "./favorite.css"
 import Image from "next/image";
 import Header from "@/app/_components/header/Header";
+import Link from "next/link";
 
 const Favorite = () => {
 
@@ -9,9 +10,11 @@ const Favorite = () => {
         <>
             <Header/>
             <span id={"btn"}>
-                <button>
+
+                    <Link href={"toppage"}>
+
                     戻る
-                </button>
+                    </Link>
             </span>
             <div className={"favorite"}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"

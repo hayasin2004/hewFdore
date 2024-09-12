@@ -82,10 +82,14 @@ const SendAddress = () => {
                 </form>
                 <div className={"control_button"}>
 
-                    <Link href={"../Toppage/index.html"}>
+                    <Link href={"/toppage"}>
                         <button>戻る</button>
                     </Link>
-                    <button type="submit" form="address">支払い画面へ</button>
+                    <button type="submit" form="address">
+                        <Link href={"confirmPayment"}>
+                            支払い画面へ
+                        </Link>
+                    </button>
                 </div>
                 <Footer/>
             </main>

@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div.main{
+    width: 70%;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+}
+div.main h2{
+    font-size:2rem;
+    text-align:center;
+}
+form#card{
+    width: 80%;
+    margin:auto;
+    display: inline;
+    background-color: #cdcdcd;
+    padding: 20px 50px 20px 50px; ;
+}
+form#card h3{
+    display: block;
+    font-size:1.2rem;
+}
+form#card div#form_main{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+div#Clabel{
+    /*width: 50%;*/
+}
+form#card label{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 20px 25px 0;
+}
+form#card input{
+    display: flex;
+    justify-content: flex-start;
+    height: 1.2rem;
+    border: #000 solid 1px;
+    border-radius: 5px;
+    margin: 0 0 30px 0;
+}
+
+div#checkCart{
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 120px;
+    margin-bottom: 70px;
+    display: block;
+}
+div.cartGoods{
+    font-weight: bold;
+    display: flex;
+    margin: 20px 10px 20px 10px;
+}
+div.cartGoods img{
+    display: inline;
+    height:150px;
+    width:150px;
+    box-shadow: #000a 2px 2px  5px;
+    margin: 10px 50px 10px 10px;
+}
+div.cartGoods p{
+    font-size:1.2rem;
+    line-height: 2.5rem;
+}
+
+
+div#totalprice{
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 80px;
+    font-weight: bold;
+}
+div#totalprice p{
+    text-indent: 20px;
+    text-align: right;
+    font-size: 1.2rem;
+}
+
+button[type="submit"]{
+    display: block;
+    margin: 10px 10px 30px 10px;
+    padding: 10px 50px;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    background-color: #000;
+    color: #fff;
+
+}
+button#return{
+    margin: auto;
+    padding: 10px 45px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: none;
+    background-color: #b4b4b4;
+    color: #fff;
+}

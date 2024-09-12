@@ -3,9 +3,17 @@ import Header from "@/app/_components/header/Header";
 import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
-import Footer from "@/app/_components/footer/Footer";
-const Page = () => {
 
+// ダミーデータ取得
+import {products as data}  from "../api/dummyData/data"
+import {productsProps} from "../api/dummyData/data";
+
+
+const Page = () => {
+    // ダミーデータをproductとしてdataから取得する。 dataという名前は任意で分かりやすく変えてもらって大丈夫です！
+    // 例えばdummydataApiとかHyashidummyDataとかでもいけます。その場合はインポートしているdataの名前も変える必要があります。
+    const products : productsProps[] = data
+    console.log(products)
     return (
         <div>
             <SearchHeader/>
@@ -13,12 +21,10 @@ const Page = () => {
                 <div style={{"marginTop": "60px" , width: "600px"}}>
                     <Sidebar/>
                 </div>
-                <SearchResultProducts/>
+                {/*ダミーデータをプロップスで渡している。*/}
+                <SearchResultProducts　 />
             </div>
-            <Footer/>
         </div>
-
-
     );
 }
 

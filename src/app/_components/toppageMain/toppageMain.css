@@ -3,24 +3,10 @@ body {
     padding: 0;
 }
 
-
-div.top_main    {
-    margin-top: 100px;
-    width: 870px;
-    height: 90vh;
-    display: flex;
-    justify-content: space-between;
-    background-color: aqua;
-    margin-right: 30px;
+div.toppageMain{
+    margin-left: -20px;
 }
 
-
-div.slideshow {
-    flex: 8;
-    width: 900px;
-    height: 600px;
-    margin-bottom: 400px;
-}
 div.slideshow p{
     font-size: 3rem;
     text-align: center;
@@ -30,14 +16,14 @@ div.slideshow p{
 
 hr#slideshow_line{
     display: flex;
-    margin-top: 50px;
-    width: 100%;
-    margin-left: -22px;
+    width: 108%;
+    margin-left: -40px;
 }
 div.new_Prodct{
     display: block;
-    width: 870px;
+    width: 800px;
     height: 100vh;
+    margin:  0 auto;
     background-color: antiquewhite;
 }
 
