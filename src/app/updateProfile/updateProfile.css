@@ -5,7 +5,7 @@ body {
 div.updateProfile_Text h1 {
     margin-top: 70px;
     margin-bottom: 70px;
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -28,16 +28,27 @@ div.profile_img svg {
     margin-left: 20px;
     margin-right: 20px;
 }
+button#btn_imgUpdate{
+    margin: 5px 0 0 0;
+    padding: 5px 10px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 99px;
 
+    font-weight: bold;
+}
 div#form{
     margin-top: 80px;
     margin-bottom: 120px;
+}
+div#form label{
+    margin: 0 10px 0 0;
 }
 
 div#form input{
 
     width: 500px;
-    margin: 15px auto ;
+    margin: 0 0 20px 0;
     padding: 10px 20px 10px 40px;
 }
 
