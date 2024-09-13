@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useEffect} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -74,7 +74,6 @@ const Header = () => {
         boxShadow: 24,
         p: 4,
     };
-
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

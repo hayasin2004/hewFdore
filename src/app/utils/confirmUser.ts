@@ -10,15 +10,14 @@ export interface User {
     userId: string;
 }
 
-export default async function confirmUser(token?: string) :Promise<User | null> {
+export default async function confirmUser(token? : string) :Promise<User | null> {
     await connectDB()
 
     if (!token) {
         return null;
-
     }
     try {
-        const decoded = await jwt.verify(token, process.env.SECRET_KEY);
+        const decoded = await jwt.verify(token , process.env.SECRET_KEY);
         // decodedの中身（例）テスト{
         //   userId: '66d4f569d06498d8d6dd5539',
         //   username: 'テスト',
