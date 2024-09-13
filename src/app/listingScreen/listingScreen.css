@@ -12,8 +12,11 @@ main{
 }
 
 div.content{
-    margin-top: 110px;
-    margin-bottom: 100px;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-content: center;*/
+    width: 50%;
+    margin: 100px auto 100px auto;
 }
 
 div.content h2{
@@ -45,9 +48,7 @@ div.content div#drop{
 }
 
 div.content h3{
-    margin-top: 40px;
-    margin-left: 658px;
-    /*margin-bottom: 33px;*/
+    margin: 10px 0 0 50px;
 }
 div.content .txtInput{
     display: block;
@@ -57,10 +58,9 @@ div.content .txtInput{
     border-radius: 20px;
 }
 
-div.content h3.kakaku {
-
-    margin-left: 658px;
+div.content h3.cat {
 }
+
 
 input{
     padding: 30px 30px;
@@ -79,13 +79,29 @@ table#kategory{
 }
 
 div.btn{
-    width: 400px;
+    width: 500px;
     display: flex;
+    justify-content: space-between;
     margin: 0 auto;
     margin-bottom: 120px;
 }
 
 div.btn button{
+
     padding: 10px 50px;
     margin-left: 30px;
+    border-radius: 50px;
+}
+div.btn p{
+    font-weight: 600;
+}
+
+div.btn button#cansel{
+    background-color: #D9D9D9;
+    color: #000;
+}
+
+div.btn button#sub{
+    background-color: #000000;
+    color: #fff;
 }
