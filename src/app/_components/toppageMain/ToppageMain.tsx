@@ -1,11 +1,14 @@
 import React from 'react';
 import "./toppageMain.css"
 import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
+import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 
 const ToppageMain = () => {
 
     return (
         <>
+            <div style={{display:"block"}}>
+
             <div className="toppageMain">
 
                 <Slideshow/>
@@ -13,12 +16,10 @@ const ToppageMain = () => {
 
                 <hr id="slideshow_line"/>
 
-                <div className="new_Prodct">
 
-                    <h2>
-                        New Arrival 新着
-                    </h2>
-                </div>
+
+            </div>
+
             </div>
         </>
     );

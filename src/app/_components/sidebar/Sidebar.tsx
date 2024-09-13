@@ -14,7 +14,7 @@ const Sidebar = () => {
                         Cart
                     </h1>
                     <p>
-                        ○
+                        <Image src={"/images/Cart_icon.png"} width={50}  height={50}/>
                     </p>
                 </div>
                 <hr id="side_line"/>
@@ -25,8 +25,8 @@ const Sidebar = () => {
                     </figure>
                     <ul>
                         <li>ワンピース</li>
-                        <li>出品者:〇〇〇〇</li>
-                        <li>価格:〇〇〇〇</li>
+                        <li>出品者:yuki</li>
+                        <li>価格:2000</li>
                     </ul>
 
 
@@ -38,7 +38,7 @@ const Sidebar = () => {
                     合計金額
                 </p>
                 <p id="total_yen">
-                    〇〇〇〇円
+                    2000円
                 </p>
 
 

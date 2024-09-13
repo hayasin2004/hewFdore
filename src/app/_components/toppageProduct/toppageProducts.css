@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+div.new_Prodct {
+    position: relative;
+    background: #D0C7B2;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    padding-top: 80px;
+}
+
+div.flower_images {
+    position: absolute;
+    z-index: 0;
+}
+
+.flower_image {
+    position: absolute;
+}
+
+#flower_img1 {
+    top: 1450px;
+    left: 0;
+    opacity: 0.9;
+    transform: rotate(0.08turn);
+}
+
+#flower_img2 {
+    top: 330px;
+    left: -72px;
+    opacity: 0.6;
+
+}
+
+#flower_img3 {
+    top: 1450px;
+    left: 1100px;
+}
+
+
+#flower_img4 {
+    top:-47px;
+    left: 1142px;
+    opacity: 0.6;
+    transform: rotate(0.75turn);
+}
+
+
+div.productlist {
+    position: relative;
+    z-index: 2;
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 90px;
+}
+
+div.product_img {
+    margin: 0 auto;
+    display: flex;
+}
+
+div.productlist div {
+    padding: 20px;
+}
+
+div.productlist__item {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div.product_detail {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    margin: 15px;
+    background: #eee;
+    box-shadow: #D9D9D9 8px 8px;
+
+}
+
+.productImage {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    object-fit: cover;
+    box-shadow: #D0C7B2 8px 8px;
+    margin-bottom: 10px;
+}
+
+div.productlist div.product_detail p {
+    padding: 5px 0;
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+#list {
+    display: block;
+}
+
+hr#line {
+    margin-bottom: 40px;
+    width: 1450px;
+    color: #f00;
+}
+
+div.Nextpage {
+    width: 1450px;
+}
+
+div.Nextpagelist {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.Nextpagelist p {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.nextPageNum {
+    margin-right: 40px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #000;
+
+}

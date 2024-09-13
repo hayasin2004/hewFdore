@@ -19,15 +19,3 @@ hr#slideshow_line{
     width: 120%;
     margin-left: -110px;
 }
-div.new_Prodct{
-    display: block;
-    width: 760px;
-    height: 100vh;
-    margin-left: -70px;
-    background-color: antiquewhite;
-}
-
-div.new_Prodct h2{
-    margin-top: 100px;
-    text-align: center;
-}

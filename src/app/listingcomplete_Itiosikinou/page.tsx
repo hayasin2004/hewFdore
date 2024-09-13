@@ -14,11 +14,11 @@ const ListingComplete = () => {
 
                 <div id="photo">
                     <div>
-                        <video src="/videos/sumple.mp4" width="400" height="400" loop autoPlay/>
+                        <video src="/videos/sumpleproduct.mp4" width="400" height="400" loop autoPlay/>
                     </div>
                     <ul className="piclist">
                         <li className="picts"><a href="/images/sample01.jpg">
-                            <video src="/videos/sumple.mp4" width="50" height="50" loop autoPlay={false}/>
+                            <video src="/videos/sumpleproduct.mp4" width="50" height="50" loop autoPlay={false}/>
                         </a>
                         </li>
                         <li className="picts"><a href="/images/pic_fish.jpg"><Image

@@ -3,7 +3,7 @@ div#footer{
     width: 100%;
     height: auto;
     background-color: #000;
-    margin: 20px 0 0 0;
+    margin: 0px 0 0 0;
 }
 div#links{
     display: flex;
