@@ -107,7 +107,7 @@ const Header = () => {
                     </span>
                             <Link href={"/searchResult"}>
 
-                                <li>
+                                <li id={"search"}>
                                     Search <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -139,7 +139,7 @@ const Header = () => {
 
 
                             </li>
-                            <li>
+                            <li id={"name"}>
                                 {user ? user.username : <Link href={"login"}><p>ログイン</p></Link>}
                             </li>
                             <li>
