@@ -53,9 +53,7 @@ const Login = () => {
         <>
             <header>
                 <h1>F'dore</h1>
-
             </header>
-
 
             <section>
 
@@ -83,6 +81,7 @@ const Login = () => {
                                             setPassword(user.password)
                                             alert("ログインに成功しました。おかえりなさい" + user.username)
                                             console.log("トークンが発行されました。" + user?.token);
+                                            redirect("toppage")
                                             return (user)
                                         }
                                     }
@@ -96,7 +95,8 @@ const Login = () => {
                                 {/*<input type="text" name="UserName" id="UserName"*/}
                                 {/*       placeholder="Enter your UserName"/><br/>*/}
                                 <label htmlFor="Email">Email</label><br/>
-                                <input type="text" name="Email" id="Email" onChange={onChange} value={formValue.Email}
+                                <input type="text" name="Email" id="Email" onChange={onChange}
+                                       value={formValue.Email}
                                        placeholder="Enter your E-mail Address"/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>
                                 <input type="password" name="Password" id="Password" value={formValue.Password}
@@ -114,7 +114,7 @@ const Login = () => {
                                 </button>
                             </form>
                             <Link href={"register"}>
-                                <p style={{marginTop :"10px"}}>ユ―ザーを持っていませんか？</p>
+                                <p style={{marginTop: "10px"}}>ユ―ザーを持っていませんか？</p>
                             </Link>
 
                         </div>

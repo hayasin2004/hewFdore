@@ -84,6 +84,9 @@ const Register = () => {
                                 <button type="submit">
                                     ユ―ザーを作成
                                 </button>
+                                <Link href={"login"}>
+                                    <p style={{marginTop: "10px"}}>ユ―ザー作成済ですか？</p>
+                                </Link>
                             </form>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import {Tab, Tabs} from "@mui/material";
+import Link from "next/link";
 
 const SearchHeader = () => {
 
@@ -12,9 +13,12 @@ const SearchHeader = () => {
             <header>
                 <div className="nav">
                     <div className="title">
+                        <Link href={"toppage"}>
+
                         <h1>
                             F'dore
                         </h1>
+                        </Link>
                     </div>
                     <div className="bar">
 
