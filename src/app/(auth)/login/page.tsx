@@ -50,7 +50,7 @@ const Login = () => {
     const allFieldsFilled = formValue.Email && formValue.Password && formValue.ConfirmPassword;
     return (
 
-        <>
+        <div className={"allScreen"}>
             <header>
                 <h1>F'dore</h1>
             </header>
@@ -151,7 +151,7 @@ const Login = () => {
 
             </div>
 
-        </>
+        </div>
 
 
     );
