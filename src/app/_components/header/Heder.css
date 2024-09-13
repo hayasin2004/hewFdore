@@ -25,19 +25,23 @@ header div.title h1 {
     width: 200px;
     margin-left: 100px;
 }
+header div.title h1:hover{
+    text-decoration: underline 1px solid;
+}
+
+
 div.bar{
-    width: 1270px;
-    margin-left: 120px;
+    /*width: 400px;*/
+    margin-left: 200px;
 }
 
 header div.bar ul {
     display: -webkit-flex;
     display: flex;
-    width: 880px;
+    width: 900px;
     list-style: none;
     margin-right: 260px;
     font-size: 1rem;
-
 }
 
 /* <uniquifier>: Use a unique and descriptive class name
@@ -49,6 +53,12 @@ div.bar ul li {
     font-size: 1.5rem;
     margin-left: 30px;
 }
+/*オンマウスでほんのり色づく*/
+div.bar ul li:hover{
+    /*background-color: #D0C7B2;*/
+    text-shadow: 0 0 30px #BF9E80 ,0 0 20px #D0C7B2,0 0 15px #D0C7B2;
+}
+
 
 .bell{
     position: absolute;

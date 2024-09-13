@@ -49,11 +49,28 @@ form{
     width: 600px;
     display: flex;
     flex-direction: column;
+
+    font-family: "zen KakuGothic Antique",system-ui;
+    font-weight: 600;
     font-size: 1.2rem;
 }
 label{
     line-height: 3;
 }
+/* 表示タテ合わせ用 */
+
+label.onespace{
+    margin: 0 1rem 0 0;
+}
+label.twospace{
+    margin: 0 2rem 0 0;
+}
+label.threespace{
+    margin: 0 3rem 0 0;
+}
+
+
+
 input{
     padding: 20px;
     margin-right: 30px;
@@ -69,7 +86,10 @@ input[type=radio]{
 input[type=text]{
     height: 1.5rem;
     width: 200px;
-
+    /*margin: 0 0 1rem 0;*/
+}
+input[type=text]#city,input[type=text]#number{
+    width: 400px;
 }
 
 div.Name{
@@ -111,8 +131,12 @@ button#Post{
     display: inline;
     font-size: 1rem;
     border-radius: 5px;
-    padding:5px 5px;
+    padding:5px 10px;
     margin: 0 0 0 20px;
 }
 button[type="submit"]{}
 
+p.middletext{
+    margin: 40px 0 5px 0;
+    font-size: 1.4rem;
+}

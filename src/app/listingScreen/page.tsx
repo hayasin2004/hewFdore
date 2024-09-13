@@ -35,20 +35,21 @@ const ListingScreen = () => {
 
                     <input type="text" className="txtInput" value="¥"/>
 
-                    <h3 className="kakaku">
-                        カテゴリ
-                    </h3>
-
                     <h3 id="s_name">
                         商品詳細
                     </h3>
 
                     <input type="text" className="txtInput"/>
 
+
+                    <h3 className="cat">
+                        カテゴリ
+                    </h3>
                     <ListingScreenRadiobutton/>
 
                     <h3 id="s_name">
-                        発送地域 ユーザーから取得
+                        発送地域
+                        {/*ユーザーから取得*/}
                     </h3>
 
                     <input type="text" className="txtInput"/>
@@ -56,14 +57,14 @@ const ListingScreen = () => {
                 </div>
 
                 <div className={"btn"}>
-                    <button>
+                    <button id={"cansel"}>
                         <Link href={"toppage"}>
 
-                        <p>キャンセル</p>
+                        <p >キャンセル</p>
                         </Link>
                     </button>
 
-                    <button>
+                    <button id={"sub"}>
                         <Link href={"listingcomplete"}>
 
                             <p>出品</p>
