@@ -21,24 +21,24 @@ const Sidebar = () => {
 
                 <div className="cart_inProduct">
                     <figure>
-                        <Image src="/images/pic_car.jpg" width={200} height={200} alt="商品の写真"/>
+                        <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>
                     </figure>
                     <ul>
-                        <li>ワンピース</li>
-                        <li>出品者:yuki</li>
-                        <li>価格:2000</li>
+                        <li>ニット</li>
+                        <li>出品者:Yuuna</li>
+                        <li>価格:2800</li>
                     </ul>
 
 
                 </div>
-                <Link href={"sendAddress"} id="side_product_detail">
+                <Link href={"product"} id="side_product_detail">
                     商品ページ
                 </Link>
                 <p id="total_price">
                     合計金額
                 </p>
                 <p id="total_yen">
-                    2000円
+                    2800円
                 </p>
 
 

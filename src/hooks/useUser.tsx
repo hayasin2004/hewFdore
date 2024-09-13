@@ -14,6 +14,7 @@ const useUser = () => {
     const [user, setUser] = useState<User | null>(null)
     // console.log(user?.email)
     const token = localStorage.getItem("token");
+    const userId =  user?.userId
 
     useEffect(() => {
 
@@ -30,7 +31,7 @@ const useUser = () => {
             })()
 
         }
-        },[token]);
+        },[token , userId]);
     //  useEffectの依存配列でtokenが変更されたのみ発火する
     return {user, token, userId: user?.userId, username: user?.username, email: user?.email}
 

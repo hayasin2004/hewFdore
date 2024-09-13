@@ -4,6 +4,8 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: "zen KakuGothic Antique",system-ui;
+
 }
 
 main{
@@ -116,16 +118,19 @@ a{
 div.control_button{
     margin-top: 80px;
     display: flex;
+    align-items: center;
 }
 
 button{
     display: block;
     border-radius: 20px;
     background-color: #000;
-    color: #fff;
+    color: #000;
     font-size: 1.2rem;
     padding: 10px 20px;
     margin: 20px;
+    background-color: #eee;
+    border: 0.5px solid #aaa;
 }
 button#Post{
     display: inline;
@@ -140,3 +145,4 @@ p.middletext{
     margin: 40px 0 5px 0;
     font-size: 1.4rem;
 }
+

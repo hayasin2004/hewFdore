@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 import Header from "@/app/_components/header/Header";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
-import  Images from "next/image"
+import Images from "next/image"
+
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -58,7 +59,7 @@ function ChildModal() {
                     </p>
                     <p id="child-modal-description">
                         <Link href={"paidNote"}>
-                        購入履歴
+                            購入履歴
                         </Link>
                     </p>
                     <Button onClick={handleClose}>閉じる</Button>
@@ -84,7 +85,8 @@ const UserNavigation = () => {
     return (
         <div>
             <Button onClick={handleOpen}>
-                <Images src={"/images/sampleIcon.jpg"}　style={{borderRadius : "50px"}} width={50} height={50}  alt={"サンプルユーザーアイコン"}/>
+                <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                        alt={"サンプルユーザーアイコン"}/>
             </Button>
             <Modal
                 open={open}
@@ -96,6 +98,11 @@ const UserNavigation = () => {
                     <h2 id="parent-modal-title">{username}様</h2>
                     <p id="parent-modal-description">
                         保有ポイント 10pt
+                    </p>
+                    <p>
+                        <Link href={"listingcomplete_Itiosikinou"}>
+                            イチオシ機能
+                        </Link>
                     </p>
                     <ChildModal/>
                 </Box>

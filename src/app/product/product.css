@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 main {
-    margin: 0 100px 0 50px;
+    margin: 60px 100px 0 50px;
     display: flex;
     flex-direction: row;
     /*justify-content: space-between;*/
@@ -127,6 +127,11 @@ div#text a#seller{
     color: #000;
     text-decoration: none;
 }
+div#text a#seller h2{
+    margin-right: 20px;
+    margin-left: 20px;
+
+}
 
 div#text p {
     margin-bottom: 40px;
@@ -145,7 +150,9 @@ div#text a#seller img{
 
 /* 購入ボタン・アイコン #control*/
 div#control{
-    margin: 0 0 50px 0;
+    display: flex;
+    margin-left:600px;
+    margin-bottom: 20px;
     text-align: right;
 }
 div#control img{
@@ -156,7 +163,6 @@ div#control img{
 }
 
 button{
-    width: 200px;
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;

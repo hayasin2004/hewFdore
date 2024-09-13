@@ -66,7 +66,6 @@ const ListingScreen = () => {
 
                     <button id={"sub"}>
                         <Link href={"listingcomplete"}>
-
                             <p>出品</p>
                         </Link>
                     </button>

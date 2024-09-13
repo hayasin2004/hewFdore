@@ -49,6 +49,10 @@ body {
     flex-direction: column;
 }
 
+.css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked{
+    color: #555555 !important;
+}
+
 .Size_Situation{
     width: 400px;
     display: flex;

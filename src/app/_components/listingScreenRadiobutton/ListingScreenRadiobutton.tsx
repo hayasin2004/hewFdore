@@ -15,11 +15,25 @@ import {
 import Box from "@mui/material/Box";
 
 const ListingScreenRadiobutton = () => {
-    const [age, setAge] = React.useState('');
+    const [size, setSize] = React.useState('');
+    const [condition, setCondition] = React.useState('');
+    const [postage, setPostage] = React.useState('');
+    const [days, setDays] = React.useState('');
 
-    const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value as string);
+    const handleSizeChange = (event: SelectChangeEvent) => {
+        setSize(event.target.value as string);
     };
+    const handleConditonChange = (event: SelectChangeEvent) => {
+        setCondition(event.target.value as string);
+    };
+
+    const handlePostageChange = (event: SelectChangeEvent) => {
+        setPostage(event.target.value as string);
+    }
+    const handleDaysChange = (event: SelectChangeEvent) => {
+        setDays(event.target.value as string);
+    }
+
 
     return (
         <>
@@ -38,7 +52,7 @@ const ListingScreenRadiobutton = () => {
 
                                     <Box className={"radio_button_low1"}>
 
-                                        <FormControlLabel value="tops" control={<Radio/>} label="トップス"/>
+                                        <FormControlLabel value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel value="denim" control={<Radio/>} label="デニム"/>
                                         <FormControlLabel value="outer" control={<Radio/>} label="アウター"/>
                                         <FormControlLabel value="shirt" control={<Radio/>} label="シャツ"/>
@@ -71,9 +85,9 @@ const ListingScreenRadiobutton = () => {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
+                            value={size}
                             label="Age"
-                            onChange={handleChange}
+                            onChange={handleSizeChange}
                         >
                             <MenuItem value={10}>XS</MenuItem>
                             <MenuItem value={20}>S</MenuItem>
@@ -94,13 +108,13 @@ const ListingScreenRadiobutton = () => {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
+                            value={condition}
                             label="Age"
-                            onChange={handleChange}
+                            onChange={handleConditonChange}
                         >
-                            <MenuItem value={10}>新品未使用</MenuItem>
-                            <MenuItem value={20}>未使用に近い</MenuItem>
-                            <MenuItem value={30}>使用感がある</MenuItem>
+                            <MenuItem value={"new"}>新品未使用</MenuItem>
+                            <MenuItem value={"nearNew"}>未使用に近い</MenuItem>
+                            <MenuItem value={"used"}>使用感がある</MenuItem>
 
                         </Select>
                     </FormControl>
@@ -116,12 +130,12 @@ const ListingScreenRadiobutton = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={age}
+                        value={postage}
                         label="Age"
-                        onChange={handleChange}
+                        onChange={handlePostageChange}
                     >
-                        <MenuItem value={10}>出品者負担</MenuItem>
-                        <MenuItem value={20}>購入者負担</MenuItem>
+                        <MenuItem value={"seller"}>出品者負担</MenuItem>
+                        <MenuItem value={"buyer"}>購入者負担</MenuItem>
 
                     </Select>
                 </FormControl>
@@ -135,13 +149,13 @@ const ListingScreenRadiobutton = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={age}
+                        value={days}
                         label="Age"
-                        onChange={handleChange}
+                        onChange={handleDaysChange}
                     >
-                        <MenuItem value={10}>1~2日で発送</MenuItem>
-                        <MenuItem value={20}>2~3日で発送</MenuItem>
-                        <MenuItem value={30}>3~4日で発送</MenuItem>
+                        <MenuItem value={"1day"}>1~2日で発送</MenuItem>
+                        <MenuItem value={"2day"}>2~3日で発送</MenuItem>
+                        <MenuItem value={"3day"}>3~4日で発送</MenuItem>
 
                     </Select>
                 </FormControl>

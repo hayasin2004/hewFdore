@@ -95,7 +95,7 @@ const Header = () => {
                     <div className="bar">
                         <ul>
                             <li>
-                                <Link href={"listingScreen"}>
+                                <Link href={"searchResult"}>
 
                                     Category
                                 </Link>
@@ -118,105 +118,107 @@ const Header = () => {
                                 </li>
                             </Link>
                             <span className="long_line"></span>
-                            <li id="uru_ul">
-                                Sell
-                                <span id="uru">売る</span>
 
-                            </li>
+                            <Link href={"listingScreen"}>
+
+                                <li id="uru_ul">
+                                    Sell
+                                    <span id="uru">売る</span>
+
+                                </li>
+                            </Link>
                             <span className="long_line"></span>
                             <span style={{display: "flex", alignItems: "center"}}>
 
                             <li>
 
-                                {user ? <UserNavigationModal/> :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                         stroke-linejoin="round" className="lucide lucide-circle-user-round">
-                                        <path d="M18 20a6 6 0 0 0-12 0"/>
-                                        <circle cx="12" cy="10" r="4"/>
-                                        <circle cx="12" cy="12" r="10"/>
-                                    </svg>}
+                                {user ? <UserNavigationModal/> :""}
 
 
-                            </li>
-                            <li id={"name"}>
-                                {user ? user.username : <Link href={"login"}><p>ログイン</p></Link>}
                             </li>
                             <li>
-                                <div>
-                                    <Button className={"bell"} onClick={handleOpen}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             className="lucide lucide-bell">
-                                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                        </svg>
-                                    </Button>
-                                    <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
+                                {user ? <p id={"usernameGet"}>{user.username}</p> : <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                            </li>
+                            <li>
+                                {user ?
+                                    <div>
+                                        <Button className={"bell"} onClick={handleOpen}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                 className="lucide lucide-bell">
+                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                            </svg>
+                                        </Button>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
 
-                                    >
-                                        <Box className={"modal-content"}>
-                                            <Box sx={{width: '100%'}}>
+                                        >
+                                            <Box className={"modal-content"}>
+                                                <Box sx={{width: '100%'}}>
 
-                                                <Box className={"modal-title"}
-                                                     sx={{borderBottom: 1, borderColor: 'error'}}>
+                                                    <Box className={"modal-title"}
+                                                         sx={{borderBottom: 1, borderColor: 'error'}}>
 
-                                                    <div className={"modal-title-tab"}>
-                                                        <Tabs value={value} onChange={handleChange}>
-                                                            <Tab style={{color : "#000"}} 　className={"modal-title-tab-text modalborder"}
-                                                                 label="お知らせ" {...a11yProps(0)} />
-                                                            <Tab style={{color : "#000"}} className={"modal-title-tab-text"}
-                                                                 label="出品評価" {...a11yProps(1)} />
-                                                        </Tabs>
-                                                    </div>
+                                                        <div className={"modal-title-tab"}>
+                                                            <Tabs value={value} onChange={handleChange}>
+                                                                <Tab style={{color: "#000"}}
+                                                                     className={"modal-title-tab-text modalborder"}
+                                                                     label="お知らせ" {...a11yProps(0)} />
+                                                                <Tab style={{color: "#000"}}
+                                                                     className={"modal-title-tab-text"}
+                                                                     label="出品評価" {...a11yProps(1)} />
+                                                            </Tabs>
+                                                        </div>
+                                                    </Box>
+
+                                                    <CustomTabPanel value={value} index={0}>
+                                                        <Box className={"alert"}>
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                 height="40"
+                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                 stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 className="lucide lucide-bell">
+                                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                            </svg>
+                                                            <p>
+                                                                新しい商品が出品されました！
+                                                            </p>
+                                                            <hr/>
+                                                        </Box>
+                                                    </CustomTabPanel>
+                                                    <CustomTabPanel value={value} index={1}>
+                                                        <Box className={"alert"}>
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                 height="40"
+                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                 stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                                 className="lucide lucide-bell">
+                                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                            </svg>
+                                                            <p>
+                                                                取引評価されました！
+                                                            </p>
+                                                            <hr/>
+                                                        </Box>
+
+                                                    </CustomTabPanel>
+
                                                 </Box>
 
-                                                <CustomTabPanel value={value} index={0}>
-                                                    <Box className={"alert"}>
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                             stroke-width="2"
-                                                             stroke-linecap="round" stroke-linejoin="round"
-                                                             className="lucide lucide-bell">
-                                                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                        </svg>
-                                                        <p>
-                                                            新しい商品が出品されました！
-                                                        </p>
-                                                        <hr/>
-                                                    </Box>
-                                                </CustomTabPanel>
-                                                <CustomTabPanel value={value} index={1}>
-                                                    <Box className={"alert"}>
-
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                             stroke-width="2"
-                                                             stroke-linecap="round" stroke-linejoin="round"
-                                                             className="lucide lucide-bell">
-                                                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                        </svg>
-                                                        <p>
-                                                            取引評価されました！
-                                                        </p>
-                                                        <hr/>
-                                                    </Box>
-
-                                                </CustomTabPanel>
-
                                             </Box>
-
-                                        </Box>
-                                    </Modal>
-                                </div>
+                                        </Modal>
+                                    </div> : ""}
                             </li>
                             </span>
                         </ul>

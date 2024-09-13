@@ -9,7 +9,7 @@ div#newArrival_title{
     width: 60%;
     height: 100px;
     background-color: #fff4;
-    margin: 10px 0 0 50px;
+    margin: 40px 0 0 50px;
     box-shadow: 0 0 30px #fff8;
     border-style:  double none;
 }
@@ -18,7 +18,7 @@ div#newArrival_title h2{
     font-weight: 500;
     font-size: 2.7rem;
     margin: 20px 0 0 50px;
-    text-shadow: 5px 5px 5px #000d;
+    text-shadow: 5px 5px 5px #aaae;
     display: inline;
 }
 div#newArrival_title p{
@@ -48,7 +48,7 @@ div.flower_images {
 
 #flower_img1 {
     top: 1450px;
-    left: 0;
+    left: -27px;
     opacity: 0.9;
     transform: rotate(0.08turn);
 }
@@ -63,12 +63,13 @@ div.flower_images {
 #flower_img3 {
     top: 1450px;
     left: 1100px;
+    display: block;
 }
 
 
 #flower_img4 {
-    top:-47px;
-    left: 1142px;
+    top:-52px;
+    left: 1099px;
     opacity: 0.6;
     transform: rotate(0.75turn);
 }
@@ -77,7 +78,7 @@ div.flower_images {
 div.productlist {
     position: relative;
     z-index: 2;
-    width: 700px;
+    width: 870px;
     margin: 0 auto;
     display: flex;
     margin-top: 10px;
@@ -133,7 +134,7 @@ div.productlist div.product_detail p {
 
 hr#line {
     margin-bottom: 40px;
-    width: 1420px;
+    width: 1323px;
     color: #f00;
 }
 

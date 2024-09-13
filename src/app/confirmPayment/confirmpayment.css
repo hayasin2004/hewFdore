@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+
+
+
 body {
+    font-family: "Italiana", sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -7,18 +12,27 @@ div.main{
     width: 70%;
     margin:auto;
     display: flex;
+    margin-top: 130px;
     flex-direction: column;
+    font-family: "Italiana", sans-serif ;
+    margin-bottom: 80px;
 }
-div.main h2{
+div.main p{
     font-size:2rem;
+    margin-bottom: 20px;
     text-align:center;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+
 }
 form#card{
     width: 80%;
     margin:auto;
     display: inline;
-    background-color: #cdcdcd;
+    background-color: #eee;
+    border-radius: 10px;
+    border: 0.9px solid #ccc;
     padding: 20px 50px 20px 50px; ;
+    box-shadow: #aaa 2px 0 10px;
 }
 form#card h3{
     display: block;
@@ -86,18 +100,26 @@ div#totalprice p{
     font-size: 1.2rem;
 }
 
+button.completePay{
+    width: 400px;
+    margin: auto;
+}
+
 button[type="submit"]{
     display: block;
     margin: 10px 10px 30px 10px;
     padding: 10px 50px;
     font-size: 1.5rem;
     border-radius: 30px;
-    background-color: #000;
-    color: #fff;
+    background-color: #eee;
+    border: 0.5px solid #aaa;
+    color: #000;
 
 }
 button#return{
     margin: auto;
+    margin-left: 400px;
+    margin-top: 20px;
     padding: 10px 45px;
     font-size: 1.2rem;
     border-radius: 30px;

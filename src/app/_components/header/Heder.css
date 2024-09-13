@@ -37,9 +37,9 @@ div.bar{
 header div.bar ul {
     display: -webkit-flex;
     display: flex;
-    width: 900px;
+    width: 1200px;
     list-style: none;
-    margin-right: 260px;
+    margin-right: 320px;
     font-size: 1rem;
 }
 
@@ -63,20 +63,25 @@ div.bar ul li:hover{
     /*background-color: #D0C7B2;*/
     text-shadow: 0 0 30px #BF9E80 ,0 0 20px #D0C7B2,0 0 15px #D0C7B2;
 }
-li#name{
-    width:8rem;
+
+p#usernameGet{
+    width: 8rem;
+}
+
+p#name{
+    width: 120px;
+    margin-left: 74px;
 }
 
 .bell{
     position: absolute;
     top: 0%;
-    left: 20px;
+    right: 80px;
     width: 40px;
     border: none;color: #000000;
 }
 .bell svg{
     color: #8e7560;
-
 }
 .modal-content{
     width: 500px;

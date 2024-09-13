@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "@/app/_components/header/Header";
 import "./payComplete.css"
+import Link from "next/link";
 const PayComplete = () => {
 
     return (
@@ -9,10 +10,10 @@ const PayComplete = () => {
             <main>
                 <h2>お支払いが完了しました</h2>
                 <p>ご購入ありがとうございました。<br/>
-                    発送状況に関しては</p>
-                <a href="#">xxxx</a>
-                <p>をご確認ください。</p>
-                <a id="return" href="../Toppage">TOPへ</a>
+                    お取引の連絡はご登録のメールアドレスに届きます。</p>
+                <Link  id="return" href={"chat"}>
+                取引画面
+                </Link>
             </main>
         </>
     );

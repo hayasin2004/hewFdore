@@ -16,29 +16,29 @@ const ListingComplete = () => {
                 <div id="info">
 
                     <div id="photo">
-                        <Image src="/images/sample01.jpg" width={400} height={400} alt="サンプル" id="sum"/>
+                        <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
+                        
                         <ul className="piclist">
-                            <li className="picts"><a href="/images/sample01.jpg">
-                                <Image className="pictS" src="/images/sample01.jpg" width={50} height={50} alt="画像1"/></a>
+                            <li className="picts"><a href="/images/clothes/product9.jpg">
+                                <Image src="/images/clothes/product9.jpg" width={50} height={50} alt="商品の写真"/>
+                            </a>
+                                
                             </li>
-                            <li className="picts"><a href="/images/pic_fish.jpg"><Image
-                                className="pictS" src="/images/pic_fish.jpg" width={50} height={50} alt="画像1"/></a>
-                            </li>
+
                         </ul>
                     </div>
                     <div id="text">
-                        <h1>商品名</h1>
+                        <h1>ニット</h1>
                         <span className="under_bar"></span>
-                        <a href="#" id="seller"><h2>出品者:User01</h2>
-                            <Image width={23} height={2} src="/images/pic_car.jpg" alt="icon"/>
+                        <a href="#" id="seller"><h2>出品者:Yuuna</h2>
                         </a>
                         <p>
-                            商品詳細がここに入ります。<br/>
-                            この部分は出品者が書くテキストです。<br/>
-                            手放す理由、手触りや重さなどを書いてください。
+                            商品詳細<br/>
+                            去年の冬に入って購入したものになります。<br/>
+
                         </p>
                         <p id="size">サイズ:S</p>
-                        <p id="used">使用状況:多少使用感がある</p>
+                        <p id="used">商品状態:多少使用感がある</p>
                         <p id="postage">送料:出品者負担</p>
                         <p id="category">カテゴリ: ワンピース Sサイズ 春物 色</p>
                     </div>

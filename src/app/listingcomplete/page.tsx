@@ -2,6 +2,7 @@ import React from 'react';
 import Image from "next/image";
 import "./listingcomplete.css"
 import Header from "@/app/_components/header/Header";
+import Images from "next/image";
 const ListingComplete = () => {
 
     return (
@@ -16,26 +17,25 @@ const ListingComplete = () => {
                         <li className="picts"><a href="/images/sample01.jpg">
                             <Image className="pictS" src="/images/sample01.jpg" width={50} height={50} alt="画像1"/></a>
                         </li>
-                        <li className="picts"><a href="/images/pic_fish.jpg"><Image
-                            className="pictS" src="/images/pic_fish.jpg" width={50} height={50} alt="画像1"/></a>
-                        </li>
+
                     </ul>
                 </div>
                 <div id="text">
-                    <h1>商品名</h1>
+                    <h1>スカーフ</h1>
                     <span className="under_bar"></span>
-                    <a href="#" id="seller"><h2>出品者:User01</h2>
-                        <Image width={23} height={2} src="/images/pic_car.jpg" alt="icon"/>
+                    <a href="#" id="seller"><h2>出品者:Hal</h2>
+                        <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                                alt={"サンプルユーザーアイコン"}/>
                     </a>
                     <p>
                         商品詳細がここに入ります。<br/>
                         この部分は出品者が書くテキストです。<br/>
                         手放す理由、手触りや重さなどを書いてください。
                     </p>
-                    <p id="size">サイズ:S</p>
-                    <p id="used">使用状況:多少使用感がある</p>
+                    <p id="size">サイズ:M</p>
+                    <p id="used">商品状態:使用感がある</p>
                     <p id="postage">送料:出品者負担</p>
-                    <p id="category">カテゴリ: ワンピース Sサイズ 春物 色</p>
+                    <p id="category">カテゴリ: トップス Mサイズ</p>
                 </div>
             </div>
 
