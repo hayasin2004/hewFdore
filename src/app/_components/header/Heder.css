@@ -67,6 +67,10 @@ div.bar ul li:hover{
     width: 40px;
     border: none;color: #000000;
 }
+.bell svg{
+    color: #8e7560;
+
+}
 .modal-content{
     width: 500px;
     height: 500px;
@@ -99,12 +103,21 @@ div.bar ul li:hover{
 
 }
 /*選択されたものの背景色と文字の色設定*/
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected{
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
     color: black;
     background-color: #D0C7B2;
 }
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected label{
+    color: #D9D9D9;
+}
 
-/*タブの項目自体の幅の設定今回はモーダル全体で500px指定で項目は二つなので一つの項目の幅を250pxにして半分になるようにしました。*/
+.MuiTabs-indicator{
+}
+.css-1aquho2-MuiTabs-indicator{
+    display: none;
+}
+
+    /*タブの項目自体の幅の設定今回はモーダル全体で500px指定で項目は二つなので一つの項目の幅を250pxにして半分になるようにしました。*/
 .modal-title-tab-text{
     width: 250px;
 }

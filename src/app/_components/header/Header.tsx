@@ -69,7 +69,6 @@ const Header = () => {
         transform: 'translate(-50%, -50%)',
         width: 400,
         height: 400,
-        bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
@@ -125,7 +124,7 @@ const Header = () => {
 
                             </li>
                             <span className="long_line"></span>
-                            <span style={{display :"flex" , alignItems:"center"}}>
+                            <span style={{display: "flex", alignItems: "center"}}>
 
                             <li>
 
@@ -143,7 +142,6 @@ const Header = () => {
                             <li>
                                 {user ? user.username : <Link href={"login"}><p>ログイン</p></Link>}
                             </li>
-                            </span>
                             <li>
                                 <div>
                                     <Button className={"bell"} onClick={handleOpen}>
@@ -170,9 +168,9 @@ const Header = () => {
 
                                                     <div className={"modal-title-tab"}>
                                                         <Tabs value={value} onChange={handleChange}>
-                                                            <Tab className={"modal-title-tab-text modalborder"}
+                                                            <Tab style={{color : "#000"}} 　className={"modal-title-tab-text modalborder"}
                                                                  label="お知らせ" {...a11yProps(0)} />
-                                                            <Tab className={"modal-title-tab-text"}
+                                                            <Tab style={{color : "#000"}} className={"modal-title-tab-text"}
                                                                  label="出品評価" {...a11yProps(1)} />
                                                         </Tabs>
                                                     </div>
@@ -220,6 +218,7 @@ const Header = () => {
                                     </Modal>
                                 </div>
                             </li>
+                            </span>
                         </ul>
                     </div>
                 </div>
