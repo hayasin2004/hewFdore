@@ -125,6 +125,7 @@ const Header = () => {
 
                             </li>
                             <span className="long_line"></span>
+                            <span style={{display :"flex" , alignItems:"center"}}>
 
                             <li>
 
@@ -142,6 +143,7 @@ const Header = () => {
                             <li>
                                 {user ? user.username : <Link href={"login"}><p>ログイン</p></Link>}
                             </li>
+                            </span>
                             <li>
                                 <div>
                                     <Button className={"bell"} onClick={handleOpen}>

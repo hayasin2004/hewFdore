@@ -3,6 +3,7 @@ body {
 
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 header {
     display: -webkit-flex;
@@ -25,17 +26,18 @@ header div.title h1 {
     margin-left: 100px;
 }
 div.bar{
-    /*width: 400px;*/
-    margin-left: 200px;
+    width: 1270px;
+    margin-left: 120px;
 }
 
 header div.bar ul {
     display: -webkit-flex;
     display: flex;
-    width: 900px;
+    width: 880px;
     list-style: none;
     margin-right: 260px;
     font-size: 1rem;
+
 }
 
 /* <uniquifier>: Use a unique and descriptive class name

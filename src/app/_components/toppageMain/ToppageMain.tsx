@@ -6,7 +6,7 @@ const ToppageMain = () => {
 
     return (
         <>
-            <div>
+            <div className="toppageMain">
 
                 <Slideshow/>
 

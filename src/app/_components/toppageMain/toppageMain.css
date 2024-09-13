@@ -4,7 +4,7 @@ body {
 }
 
 div.toppageMain{
-    margin-left: -20px;
+    margin-left: 80px;
 }
 
 div.slideshow p{
@@ -16,14 +16,14 @@ div.slideshow p{
 
 hr#slideshow_line{
     display: flex;
-    width: 108%;
-    margin-left: -40px;
+    width: 120%;
+    margin-left: -110px;
 }
 div.new_Prodct{
     display: block;
-    width: 800px;
+    width: 760px;
     height: 100vh;
-    margin:  0 auto;
+    margin-left: -70px;
     background-color: antiquewhite;
 }
 

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Header from "@/app/_components/header/Header";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
-
+import  Images from "next/image"
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -84,13 +84,7 @@ const UserNavigation = () => {
     return (
         <div>
             <Button onClick={handleOpen}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                     stroke-linejoin="round" className="lucide lucide-circle-user-round">
-                    <path d="M18 20a6 6 0 0 0-12 0"/>
-                    <circle cx="12" cy="10" r="4"/>
-                    <circle cx="12" cy="12" r="10"/>
-                </svg>
+                <Images src={"/images/sampleIcon.jpg"}　style={{borderRadius : "50px"}} width={50} height={50}  alt={"サンプルユーザーアイコン"}/>
             </Button>
             <Modal
                 open={open}
