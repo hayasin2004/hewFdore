@@ -1,14 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+
+
 body {
     margin: 0;
     padding: 0;
+}
+div#newArrival_title{
+    width: 60%;
+    height: 100px;
+    background-color: #fff4;
+    margin: 10px 0 0 50px;
+    box-shadow: 0 0 30px #fff8;
+    border-style:  double none;
+}
+div#newArrival_title h2{
+    font-family: "Italiana", sans-serif;
+    font-weight: 500;
+    font-size: 2.7rem;
+    margin: 20px 0 0 50px;
+    text-shadow: 5px 5px 5px #000d;
+    display: inline;
+}
+div#newArrival_title p{
+    margin: 0 0 10px 70px;
+    font-family: "zen+KakuGothic+Antique", system-ui;
+    font-size: 1.1rem;
+    font-weight: 400;
+
 }
 
 div.new_Prodct {
     position: relative;
     background: #D0C7B2;
-    margin: 0 auto;
+    margin: 50px 50px 0 50px;
     padding-bottom: 30px;
-    padding-top: 80px;
+    padding-top: 5px;
 }
 
 div.flower_images {
@@ -107,7 +133,7 @@ div.productlist div.product_detail p {
 
 hr#line {
     margin-bottom: 40px;
-    width: 1450px;
+    width: 1420px;
     color: #f00;
 }
 
@@ -135,4 +161,8 @@ div.Nextpagelist p {
     font-size: 1.5rem;
     color: #000;
 
+}
+.nextPageNum:hover{
+    text-decoration: underline;
+    text-shadow: 0 0 5px #fff;
 }

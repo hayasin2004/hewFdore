@@ -6,7 +6,13 @@ import Link from "next/link";
 
 const ToppageProducts = () => {
     return (
+
         <div className={"new_Prodct"}>
+            <div id={"newArrival_title"}>
+                <h2>New Arrival</h2>
+                <p>新着商品</p>
+            </div>
+
             <span>
                 <div className={"flower_images"}>
 
