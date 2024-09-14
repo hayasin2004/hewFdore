@@ -18,7 +18,7 @@ const UpdateProfile = () => {
                 <div className={"updateProfile_img"}>
 
                     <div className={"profile_img"}>
-                        <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"ユーザーのプロフィール"}/>
+                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"ユーザーのプロフィール"}/>
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -27,7 +27,7 @@ const UpdateProfile = () => {
                             <path d="M2 12H22"/>
                         </svg>
                         <div>
-                            <Image src={"/images/sample01.jpg"} width={200} height={200}
+                            <Image src={"/images/clothes/product.jpg"} width={200} height={200}
                                    alt={"ユーザーのプロフィール"}/>
                         </div>
                     </div>

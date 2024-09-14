@@ -96,8 +96,9 @@ const Header = () => {
                         <ul>
                             <li>
                                 <Link href={"searchResult"}>
-
-                                    Category
+                                    <p id={"category"}>
+                                        Category
+                                    </p>
                                 </Link>
                             </li>
                             <span id="short_line"><br/>
@@ -132,12 +133,13 @@ const Header = () => {
 
                             <li>
 
-                                {user ? <UserNavigationModal/> :""}
+                                {user ? <UserNavigationModal/> : ""}
 
 
                             </li>
                             <li>
-                                {user ? <p id={"usernameGet"}>{user.username}</p> : <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                                {user ? <p id={"usernameGet"}>{user.username}</p> :
+                                    <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
                             </li>
                             <li>
                                 {user ?

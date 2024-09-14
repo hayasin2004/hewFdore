@@ -81,7 +81,7 @@ const ConfirmUserProfile = () => {
             <h2>購入履歴</h2>
             <div className={"rightbar_flex"}>
                 <div className={"rightbar_product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"rightbar_product_text"}>
                         <p>
                             商品名
@@ -94,7 +94,7 @@ const ConfirmUserProfile = () => {
             </div>
             <div className={"rightbar_flex"}>
                 <div className={"rightbar_product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"rightbar_product_text"}>
                         <p>
                             商品名
@@ -107,7 +107,7 @@ const ConfirmUserProfile = () => {
             </div>
             <div className={"rightbar_flex"}>
                 <div className={"rightbar_product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"rightbar_product_text"}>
                         <p>
                             商品名

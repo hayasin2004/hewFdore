@@ -26,7 +26,7 @@ const PaidNote = () => {
             <div className={"listing"}>
                 <div className={"listing_product"}>
                     <div className={"product"}>
-                        <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
                             <p>
                                 商品名
@@ -40,7 +40,7 @@ const PaidNote = () => {
                         <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
                     </div>
                     <div className={"product"}>
-                        <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
                             <p>
                                 商品名
@@ -58,7 +58,7 @@ const PaidNote = () => {
             <div className={"listing"}>
                 <div className={"listing_product"}>
                     <div className={"product"}>
-                        <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
                             <p>
                                 商品名
@@ -72,7 +72,7 @@ const PaidNote = () => {
                         <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
                     </div>
                     <div className={"product"}>
-                        <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
                             <p>
                                 商品名

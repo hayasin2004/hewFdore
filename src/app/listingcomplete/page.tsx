@@ -8,20 +8,20 @@ const ListingComplete = () => {
     return (
         <>
             <Header/>
-        <div id="product">
-            <h1>出品が完了しました。</h1>
+        <div id="productlisning">
+            <h1　className={"liscomph2"}>出品が完了しました。</h1>
             <div id="info">
                 <div id="photo">
-                    <Image src="/images/sample01.jpg" width={400} height={400} alt="サンプル" id="sum"/>
+                    <Image className={"proimg"} src="/images/clothes/product.jpg" width={400} height={400} alt="サンプル" id="sum"/>
                     <ul className="piclist">
-                        <li className="picts"><a href="/images/sample01.jpg">
-                            <Image className="pictS" src="/images/sample01.jpg" width={50} height={50} alt="画像1"/></a>
+                        <li className="picts"><a href="/images/clothes/product.jpg">
+                            <Image className="pictS" src="/images/clothes/product.jpg" width={50} height={50} alt="画像1"/></a>
                         </li>
 
                     </ul>
                 </div>
                 <div id="text">
-                    <h1>スカーフ</h1>
+                    <h1 className={"liscomph2"}>ニット</h1>
                     <span className="under_bar"></span>
                     <a href="#" id="seller"><h2>出品者:Hal</h2>
                         <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}

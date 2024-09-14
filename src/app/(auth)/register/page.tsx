@@ -40,7 +40,7 @@ const Register = () => {
     // }
     return (
 
-        <>
+        <div className={"allScreen"}>
             <header>
                 <h1>F'dore</h1>
             </header>
@@ -122,7 +122,7 @@ const Register = () => {
 
             </div>
 
-        </>
+        </div>
 
 
     );

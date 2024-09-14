@@ -20,7 +20,7 @@ const ListingComplete = () => {
                             <video src="/videos/sampleproduct.mp4" width="400" height="400" loop autoPlay/>
                         </div>
                         <ul className="piclist">
-                            <li className="picts"><a href="/images/sample01.jpg">
+                            <li className="picts"><a href="/images/clothes/product.jpg">
                                 <video src="/videos/sampleproduct.mp4" width="50" height="50" loop autoPlay={false}/>
                             </a>
                             </li>

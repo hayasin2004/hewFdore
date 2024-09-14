@@ -18,7 +18,7 @@ const ListingScreen = () => {
                     </h2>
 
                     <div id="kamera">
-                        <Image src={"/images/sample01.jpg"} width={377} height={377} alt={"商品がないとき"}/>
+                        <Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>
                     </div>
 
                     <h3 id="s_name">

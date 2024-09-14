@@ -27,7 +27,7 @@ const Favorite = () => {
             </div>
             <div className={"favorite_products"}>
                 <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
                             商品名
@@ -37,7 +37,7 @@ const Favorite = () => {
                     </div>
                 </div>
                 <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
                             商品名
@@ -47,39 +47,7 @@ const Favorite = () => {
                     </div>
                 </div>
                 <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                    <div className={"product_text"}>
-                        <p>
-                            商品名
-                        </p>
-                        <p>出品者 : xxxx</p>
-                        <p>価格 : xxxx</p>
-                    </div>
-                </div>
-            </div>
-            <div className={"favorite_products"}>
-                <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                    <div className={"product_text"}>
-                        <p>
-                            商品名
-                        </p>
-                        <p>出品者 : xxxx</p>
-                        <p>価格 : xxxx</p>
-                    </div>
-                </div>
-                <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                    <div className={"product_text"}>
-                        <p>
-                            商品名
-                        </p>
-                        <p>出品者 : xxxx</p>
-                        <p>価格 : xxxx</p>
-                    </div>
-                </div>
-                <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
                             商品名
@@ -91,7 +59,7 @@ const Favorite = () => {
             </div>
             <div className={"favorite_products"}>
                 <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
                             商品名
@@ -101,7 +69,7 @@ const Favorite = () => {
                     </div>
                 </div>
                 <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
                             商品名
@@ -111,7 +79,39 @@ const Favorite = () => {
                     </div>
                 </div>
                 <div className={"product"}>
-                    <Image src={"/images/sample01.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <div className={"product_text"}>
+                        <p>
+                            商品名
+                        </p>
+                        <p>出品者 : xxxx</p>
+                        <p>価格 : xxxx</p>
+                    </div>
+                </div>
+            </div>
+            <div className={"favorite_products"}>
+                <div className={"product"}>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <div className={"product_text"}>
+                        <p>
+                            商品名
+                        </p>
+                        <p>出品者 : xxxx</p>
+                        <p>価格 : xxxx</p>
+                    </div>
+                </div>
+                <div className={"product"}>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                    <div className={"product_text"}>
+                        <p>
+                            商品名
+                        </p>
+                        <p>出品者 : xxxx</p>
+                        <p>価格 : xxxx</p>
+                    </div>
+                </div>
+                <div className={"product"}>
+                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
                             商品名
