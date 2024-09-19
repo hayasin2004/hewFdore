@@ -5,7 +5,7 @@ body {
 /*side_cart*/
 
 
-div.productlist {
+div.SRproductlist {
     width: 800px;
     display:flex;
     margin-top: 0px;
@@ -16,11 +16,11 @@ div.product_img{
     display: flex;
 }
 
-div.productlist div{
+div.SRproductlist div{
     padding: 20px;
 }
 
-div.productlist__item{
+div.SRproductlist__item{
     display: flex;
     flex-wrap: wrap;
 }
@@ -30,7 +30,7 @@ div.product_detail{
     margin: 5px;
 }
 
-div.productlist div.product_detail p{
+div.SRproductlist div.product_detail p{
     padding: 5px 0;
     margin-left: 10px;
     font-size: 1.5rem;
@@ -49,16 +49,19 @@ div.productlist div.product_detail p{
 
 .Nextpage div{
     display: flex;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     align-items: center;
 }
 
-.Nextpage p{
-    width: 130px;
+.Nextpage .SRNextPageNav p.SRp{
+    width: 300px;
 }
 
+.SRNextPageNav{
 
-.nextPageNum {
+}
+
+.SRnextPageNum {
     margin-right: 40px;
     text-decoration: none;
     font-size: 1.5rem;

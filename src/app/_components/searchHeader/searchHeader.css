@@ -5,14 +5,14 @@ body {
     padding: 0;
 }
 
-header {
+header.Sheader {
     display: -webkit-flex;
     display: inline-block;
     width: 100%;
     margin: 30px 0 10px 0;
 }
 
-div.bar {
+div.Sbar {
     align-items: center;
     display: flex;
 
@@ -22,13 +22,13 @@ div.bar {
     margin-left: 0;
 }
 
-header div.nav {
+header div.Snav {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-header div.title h1 {
+header div.Stitle h1 {
     font-family: "Italiana", sans-serif;
     letter-spacing: 5px;
     font-weight: normal;
@@ -37,7 +37,7 @@ header div.title h1 {
     margin-left: 110px;
 }
 
-header div.bar ul {
+header div.Sbar ul {
     display: -webkit-flex;
     display: flex;
     width: 700px;
@@ -61,7 +61,7 @@ div.bar span.long_line {
 }
 
 
-div.bar p{
+div.Sbar p.Sp{
     font-size: 1.5rem;
     margin: 0 50px;
     font-weight: bold;
@@ -94,9 +94,9 @@ div.bar ul span#short_line {
 }
 
 div.bar ul span p#short_text {
-    font-size: 1.5rem;
-    margin-top: 23px;
-    margin-left: -20px;
+    /*font-size: 1.5rem;*/
+    /*margin-top: 23px;*/
+    /*margin-left: -20px;*/
 }
 
 
@@ -112,7 +112,7 @@ div.bar ul span.long_line {
     border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
 }
 
-span.under_bar {
+span.Sunder_bar {
     display: block;
     content: "";
     width: 99.5%;
