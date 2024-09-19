@@ -56,7 +56,7 @@ const Login = () => {
                 <h1>F'dore</h1>
             </header>
 
-            <section>
+            <section id={"login"}>
 
                 <div>
                     <div id="bgwhite">
