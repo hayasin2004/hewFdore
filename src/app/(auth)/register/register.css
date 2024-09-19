@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
 
 
-
 .allScreen{
     margin: 0;
     padding: 0;
@@ -26,17 +25,18 @@ header{
     display: block;
 }
 header h1{
-    margin: 50px 0 20px 0;
+    margin: 25px 0 25px 0;
     display: block;
     text-align: center;
     font-family: "Italiana", sans-serif;
+    font-weight: normal;
     letter-spacing: 6px;
     font-size: 4rem;
 }
 
-section{
+section#register{
     width: 800px;
-    margin-top: 4%;
+    margin-top: 0;
     margin-left: 36%;
     display: flex;
     align-items: center;
@@ -56,7 +56,6 @@ div#bgwhite{
     margin: 0 auto;
     padding-bottom: 35px;
     box-shadow: #000000cc 0 0 10px;
-    margin-top:20px ;
 
 
 }
@@ -110,7 +109,7 @@ form button{
 .Slideshow{
     width: 730px;
     height: 500px;
-
+    margin: 25px 0 0 0;
     position: absolute;
     top: 50%;
     left: 3%;

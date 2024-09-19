@@ -51,7 +51,7 @@ const Register = () => {
             {/*    Googleでログイン*/}
             {/*</button>*/}
 
-            <section>
+            <section id={"register"}>
 
                 <div>
                     <div>
