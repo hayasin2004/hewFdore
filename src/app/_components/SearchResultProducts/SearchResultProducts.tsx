@@ -18,8 +18,8 @@ const SearchResultProducts : React.FC<DummyDataProductsProps> = ({product}) => {
 
 
                 <h1 style={{marginTop:"80px"}}>XXXX件の検索結果</h1>
-                <div className="productlist">
-                    <div className="productlist__item">
+                <div className="SRproductlist">
+                    <div className="SRproductlist__item">
 
 
                     </div>
@@ -48,15 +48,15 @@ const SearchResultProducts : React.FC<DummyDataProductsProps> = ({product}) => {
 
 
                 <div className="Nextpage">
-                    <div className={"NextPageNav"}>
+                    <div className={"SRNextPageNav"}>
 
-                        <p>500件の検索表示</p>
+                        <p className="SRp">500件の検索表示</p>
                         <div>
-                            <Link className={"nextPageNum"}  href={"/"}>1</Link>
-                            <Link className={"nextPageNum"}  href={"/"}>2</Link>
-                            <Link className={"nextPageNum"}  href={"/"}>3</Link>
-                            <Link className={"nextPageNum"}  href={"/"}>4</Link>
-                            <Link className={"nextPageNum"}  href={"/"}>5</Link>
+                            <Link className={"SRnextPageNum"}  href={"/"}>1</Link>
+                            <Link className={"SRnextPageNum"}  href={"/"}>2</Link>
+                            <Link className={"SRnextPageNum"}  href={"/"}>3</Link>
+                            <Link className={"SRnextPageNum"}  href={"/"}>4</Link>
+                            <Link className={"SRnextPageNum"}  href={"/"}>5</Link>
                         </div>
 
                     </div>
