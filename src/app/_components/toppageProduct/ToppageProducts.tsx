@@ -81,7 +81,7 @@ const ToppageProducts = () => {
 
                                 <div className="product_detail">
                                     <Image className={"productImage"} src="/images/clothes/product6.jpg" width={200} height={200} alt="商品画像"/>
-                                    <p>スカート</p>
+                                    <p>スカート　</p>
                                     <p>出品者<br />Uika</p>
                                     <p>価格:3000円</p>
                                 </div>
