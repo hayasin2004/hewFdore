@@ -8,9 +8,11 @@ export interface User {
     username: string;
     email : string;
     userId: string;
+    profilePicture :string;
 }
 
 export default async function confirmUser(token?: string) :Promise<User | null> {
+
     await connectDB()
 
     if (!token) {
@@ -29,8 +31,9 @@ export default async function confirmUser(token?: string) :Promise<User | null> 
         const userId  = decoded.userId
         const username= decoded.username;
         const email = decoded.email;
+        const profilePicture = decoded.profilePicture
         // console.log(typeof userId , typeof  username , typeof  token);
-        return {token, username: username, userId: userId.toString() , email};
+        return {token, username: username, userId: userId.toString() , email , profilePicture};
     } catch (err) {
         console.log(err)
         return null

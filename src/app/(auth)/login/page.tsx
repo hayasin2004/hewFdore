@@ -34,6 +34,7 @@ const Login = () => {
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);
 
 
+
     const [formValue, setFormValue]
         = useState({Email: "", Password: "", ConfirmPassword: ""})
     console.log(formValue.Password)

@@ -38,13 +38,14 @@ export async function loginUser(email: string, password: string) {
                 const username :User= user.username
                 const email:User = user.email
                 const password : User = user.password
-                const profilePicture:User = user.profilePicture
+                const profilePicture:User = "これはsプロフィール画像です！！！！！！！！！！！！！！！！"
                 const coverProfilePicture:User = user.coverProfilePicture
                 // ログインに成功したユーザーにトークンを発行する
                 const token = jwt.sign({
                     userId : user._id.toString(), /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
                     username: user.username,
                     email : email,
+                    profilePicture : profilePicture,
                 }, process.env.SECRET_KEY, {expiresIn: "2 day"})
             return {email, password, token: token , userId : userId.toString() , username : username , profilePicture : profilePicture , coverProfilePicture : coverProfilePicture};
             }

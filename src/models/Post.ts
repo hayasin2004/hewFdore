@@ -13,7 +13,6 @@ const ProductPost = new  mongoose.Schema({
         // 商品紹介
         type: String,
         max: 400,
-
     },
     productPrice : {
         type: Number,

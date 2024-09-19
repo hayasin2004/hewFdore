@@ -57,14 +57,14 @@ const ListingScreen = () => {
                 </div>
 
                 <div className={"btn"}>
-                    <button id={"cansel"}>
+                    <button id={"listingCancelbtn"}>
                         <Link href={"toppage"}>
 
                         <p >キャンセル</p>
                         </Link>
                     </button>
 
-                    <button id={"sub"}>
+                    <button id={"listingcompletebtn"}>
                         <Link href={"listingcomplete"}>
                             <p>出品</p>
                         </Link>

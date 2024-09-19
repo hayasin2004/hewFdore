@@ -8,6 +8,7 @@ interface User {
     username: string;
     email: string;
     userId: string;
+    profilePicture : string;
 }
 
 const useUser = () => {
@@ -31,9 +32,9 @@ const useUser = () => {
             })()
 
         }
-        },[token , userId]);
+        },[token]);
     //  useEffectの依存配列でtokenが変更されたのみ発火する
-    return {user, token, userId: user?.userId, username: user?.username, email: user?.email}
+    return {user, token, userId: user?.userId, username: user?.username, email: user?.email ,profilePicture : user?.profilePicture}
 
 }
 

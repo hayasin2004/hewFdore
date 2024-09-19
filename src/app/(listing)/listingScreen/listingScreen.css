@@ -96,12 +96,12 @@ div.btn p{
     font-weight: 600;
 }
 
-div.btn button#cansel{
+div.btn button#listingCancelbtns{
     background-color: #D9D9D9;
     color: #000;
 }
 
-div.btn button#sub{
+div.btn button#listingcompletebtn{
     background-color: #000000;
     color: #fff;
 }
