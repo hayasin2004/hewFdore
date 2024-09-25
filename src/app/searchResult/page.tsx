@@ -22,7 +22,7 @@ const Page = () => {
                     <Sidebar/>
                 </div>
                 {/*ダミーデータをプロップスで渡している。*/}
-                <SearchResultProducts　 />
+                <SearchResultProducts product={products} 　 />
             </div>
         </div>
     );

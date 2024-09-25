@@ -21,7 +21,7 @@ const Toppage = () => {
 
 
     return (
-        <div>
+        <>
             <Header/>
             <div className={"toppage"} >
                 <Sidebar/>
@@ -30,7 +30,7 @@ const Toppage = () => {
             <ToppageProducts/>
 
             <Footer/>
-        </div>
+        </>
     );
 }
 

@@ -33,8 +33,9 @@ div.new_Prodct {
     position: relative;
     background: #D0C7B2;
     margin: 50px 50px 0 50px;
-    padding-bottom: 30px;
     padding-top: 5px;
+    padding-bottom: 20px    ;
+    margin-bottom: 145px;
 }
 
 div.flower_images {
@@ -47,7 +48,7 @@ div.flower_images {
 }
 
 #flower_img1 {
-    top: 1450px;
+    top: 1482px;
     left: -27px;
     opacity: 0.9;
     transform: rotate(0.08turn);
@@ -61,9 +62,10 @@ div.flower_images {
 }
 
 #flower_img3 {
-    top: 1450px;
+    top: 1484px;
     left: 1100px;
     display: block;
+
 }
 
 
@@ -85,20 +87,21 @@ div.productlist {
     margin-bottom: 90px;
 }
 
-div.product_img {
-    margin: 0 auto;
-    display: flex;
-}
 
 div.productlist div {
     padding: 20px;
 }
 
-div.productlist__item {
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+div.productlist_toppage_item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px; /* 隙間を調整 */
+}
+
+
+div.product_img {
+    width: 39%; /* 3つ並べるために幅を調整 */
+    margin-left: 30px;
 }
 
 div.product_detail {
@@ -107,7 +110,8 @@ div.product_detail {
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
-    margin: 15px;
+    padding: 30px;
+
     background: #eee;
     box-shadow: #D9D9D9 8px 8px;
 
