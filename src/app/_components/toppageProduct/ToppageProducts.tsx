@@ -3,8 +3,11 @@ import "./toppageProducts.css"
 import Product from "@/app/product/page";
 import Image from "next/image"
 import Link from "next/link";
+import {products} from "@/app/api/dummyData/data";
+import {productsProps} from "@/app/api/dummyData/data";
 
 const ToppageProducts = () => {
+    const data : productsProps[] = products
     return (
 
         <div className={"new_Prodct"}>
