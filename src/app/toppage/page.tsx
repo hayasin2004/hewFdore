@@ -9,6 +9,7 @@ import {loginUser} from "@/app/utils/loginUser";
 import "./toppage.css"
 import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
+
 const Toppage = () => {
     useEffect(() => {
         // エンコードしたtokenを検証する
@@ -22,8 +23,12 @@ const Toppage = () => {
 
     return (
         <>
+            <div className={"toppageVideo"}>
+
+                <video src="/videos/background3.mp4" width={700} height={1080} autoPlay muted loop></video>
+            </div>
             <Header/>
-            <div className={"toppage"} >
+            <div className={"toppage"}>
                 <Sidebar/>
                 <Slideshow/>
             </div>
