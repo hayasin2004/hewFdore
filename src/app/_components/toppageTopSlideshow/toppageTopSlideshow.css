@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
 }
-.toppage_top_slideshow_left{
+.toppage_top_slideshow{
     display: flex;
     align-items: center;
     background: #aaaaaa;
@@ -29,10 +29,27 @@ body{
 
 .left_slide_position{
     width: 600px;
-    margin: 0 auto;
+    margin-left: -15%;
 }
 
 .slide_left_Image{
     width: 600px;
     border-radius: 32px;
+}
+
+.right_slide_position{
+    width: 370px;
+    margin: 0 auto;
+}
+.toppage_top_slideshow_next_frame{
+    padding: 16px 12px 16px 12px;
+    background: #8e7560;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.slide_right_Image{
+    width: 300px;
+    height: auto;
+    object-fit: cover;
 }
