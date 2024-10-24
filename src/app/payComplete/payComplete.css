@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #EBE8DB;
 }
 
 main{
@@ -27,7 +28,7 @@ a{
 }
 
 a#return{
-    background-color: #000;
+    background-color: #605252;
     color: #fff;
     font-size: 1.2rem;
     text-decoration: none;
