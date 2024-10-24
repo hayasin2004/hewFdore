@@ -4,12 +4,13 @@ import Toppage from "./toppage/page";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import NewToppage from "@/app/newToppage/page";
+import ToppageTopSlideshow from "@/app/_components/toppageTopSlideshow/ToppageTopSlideshow";
 export default function Home() {
   return (
     <main >
       <div>
           {/*<Toppage />*/}
-          <NewToppage/>
+          <ToppageTopSlideshow/>
       {/*<Login />*/}
       {/**/}
       </div>
