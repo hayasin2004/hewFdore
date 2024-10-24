@@ -1,7 +1,8 @@
+"use client"
 import React, {useState} from 'react';
 import "./common.css"
-import dummyData from "../../../dummydata/slide_dummy";
-import {DummyDataType} from "../../../dummydata/slide_dummy";
+import dummyData from "@/app/dummydata/slide_dummy";
+import {DummyDataType}  from "@/app/dummydata/slide_dummy";
 
 interface SlideShowProps {
     images: string[];

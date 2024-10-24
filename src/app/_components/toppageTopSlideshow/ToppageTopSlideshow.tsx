@@ -1,76 +1,69 @@
 "use client"
-import React from 'react';
-import {Slide} from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
-import Images from "next/image";
-import "./toppageTopSlideshow.css"
+import React, {useState} from 'react';
+import "./common.css"
+import dummyData from "@/app/dummydata/slide_dummy";
+import {DummyDataType}  from "@/app/dummydata/slide_dummy";
+interface SlideShowProps {
+    images: string[];
+}
 
-// スライドショーを二つに分けます。
-// 右のスライドショーはmap関数でtitle,imageを取得
-// 右のスライドショーはmap関数でid + 1で取り出して、title,imageを取得　→　次の表示。
-// 次へのボタン、戻るのボタンで二つを共有
-const ToppageTopSlideshow = () => {
+interface dummy {
+    image?: string,
+    text?: string,
+}
+
+const dummyData_slide: DummyDataType[] = dummyData
+
+const dummyData_slide_map_item: dummy[] = dummyData.map((item, index) => {
+    const image = item.url
+    const text = item.randomString
+    return {image, text}
+
+})
+
+const ToppageTopSlideshow: React.FC<dummy> = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+
+    // 配列順に画像を取り出してcurrentSlideにセットしている, テキストも同じ仕組み
+    const goToNextSlide = () => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+        // setCurrentText((prevSlide) => (prevSlide + 1));
+        // console.log(currentText)
+    };
+
+    // ひとつ前の画像を取り出してcurrentSlideにセットしている , テキストも同じ仕組み
+    const goToPrevSlide = () => {
+        // setCurrentText((prevText) => (prevText - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+        setCurrentSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+    };
+    // 長い計算の解説。
+    // prevSlide - 1 + dummyData_slide_map_item.length は、負のインデックスを防ぐための計算。配列の長さを足すことで、負の値にならないようにしている。
+
+    // 次の画像をcurrentSlide + 1 として表示している
+    const nextSlideIndex = (currentSlide + 1) % dummyData_slide_map_item.length;
+
     return (
         <>
+            <div className={"slide_master"}>
 
-            <div className={"toppage_top_slideshow"}>
-                {/*テキストのスライドショー*/}
-                <div className={"left_slide_Text_position"}>
-                    <Slide slidesToScroll={1} slidesToShow={1} transitionDuration={1460} infinite indicators={true}
-                           arrows={false}>
-                        <div className="each-slide-effect toppage_top_slideshow_slide_Text">
-                            <div>
-                                <h1>テスト１</h1>
-                                <p>これはテスト１</p>
-                            </div>
+                <div className="slide-show">
+                    <div className="photo_list">
+
+                        <div className="slide_text">
+                            <h1>{dummyData_slide_map_item[currentSlide].text}</h1>
                         </div>
-                        <div className="each-slide-effect toppage_top_slideshow_slide_Text">
-                            <div>
-                                <h1>テスト2</h1>
-                                <p>これはテスト2</p>
-                            </div>
-                        </div>
-                    </Slide>
-                </div>
-                {/*右側の画像スライドショー*/}
-                <div>
-                    <div className={"left_slide_position"}>
-                        <Slide slidesToScroll={1} slidesToShow={1} transitionDuration={1230} infinite indicators={true}>
-
-                            <div className="each-slide-effect toppage_top_slideshow_slide">
-                                <div>
-                                    <Images className={"slide_left_Image"} src={"/images/Slide/slide_perfume.png"}
-                                            width={600}
-                                            height={350} alt={"スライドショー"}/>
-
-                                </div>
-                            </div>
-                            <div className="each-slide-effect toppage_top_slideshow_slide">
-                                <div>
-                                    <Images className={"slide_left_Image"} src={"/images/Slide/slide_color.png"}
-                                            width={600}
-                                            height={350} alt={"スライドショー"}/>
-                                </div>
-                            </div>
-                        </Slide>
+                        <div
+                            className="slide"
+                            style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}
+                        />
+                        <div
+                            className="slide_next"
+                            style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
+                        />
                     </div>
-                </div>
-                <div className={"right_slide_position"}>
-                    <Slide slidesToScroll={1} slidesToShow={1} infinite indicators={true}>
-                        <div className="each-slide-effect toppage_top_slideshow_first_slide">
-                            <div className={"toppage_top_slideshow_next_frame"}>
-                                <Images className={"slide_right_Image"} src={"/images/Slide/slide_color.png"} width={100}
-                                        height={200} alt={"スライドショー"}/>
-                            </div>
-                        </div>
-                        <div className="each-slide-effect toppage_top_slideshow_second_slide">
-                            <div className={"toppage_top_slideshow_next_frame"}>
-                                <Images className={"slide_right_Image"} src={"/images/Slide/slide_perfume.png"} width={100}
-                                        height={200} alt={"スライドショー"}/>
-
-                            </div>
-                        </div>
-                    </Slide>
+                    <button onClick={goToPrevSlide}>Prev</button>
+                    <button onClick={goToNextSlide}>Next</button>
                 </div>
             </div>
         </>
