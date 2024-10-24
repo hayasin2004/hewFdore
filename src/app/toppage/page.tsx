@@ -28,10 +28,10 @@ const Toppage = () => {
                 <video src="/videos/background3.mp4" width={700} height={1080} autoPlay muted loop></video>
             </div>
             <Header/>
-            <div className={"toppage"}>
+            {/*<div className={"toppage"}>*/}
                 <Sidebar/>
                 <Slideshow/>
-            </div>
+            {/*</div>*/}
             <ToppageProducts/>
 
             <Footer/>
