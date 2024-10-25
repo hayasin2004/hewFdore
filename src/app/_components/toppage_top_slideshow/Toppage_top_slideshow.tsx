@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import "./common.css"
 import dummyData from "@/app/dummydata/slide_dummy";
-import {DummyDataType}  from "@/app/dummydata/slide_dummy";
+import {DummyDataType} from "@/app/dummydata/slide_dummy";
 
 interface SlideShowProps {
     images: string[];
@@ -28,14 +28,14 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
     // 配列順に画像を取り出してcurrentSlideにセットしている, テキストも同じ仕組み
     const goToNextSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
         // setCurrentText((prevSlide) => (prevSlide + 1));
         // console.log(currentText)
         setAnimate(true);
         setTimeout(() => {
             setAnimate(false);
+            setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
             console.log("オンになったああああああああああああああああああああああああああああああああああああああああああああ")
-        }, 1200);
+        }, 2000);
     };
 
     // ひとつ前の画像を取り出してcurrentSlideにセットしている , テキストも同じ仕組み
@@ -53,29 +53,27 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
     return (
         <>
-            <div className={animate ? 'animate' :''} >
+            <div>
                 {/*cssアニメーション*/}
 
                 <div className="slide-show">
                     <div className="photo_list">
 
-                        <div className="slide_text bgextend bgRLextend">
-                            <span className={"bgappear"}>
-
-                            <h1>{dummyData_slide_map_item[currentSlide].text}</h1>
-                            </span>
+                        <div className={`${animate ? 'animate' : ''} slide_text bgextend `}>
+                            <h1 className={"bgappear bgRLextend"}>{dummyData_slide_map_item[currentSlide].text}</h1>
                         </div>
-                        <div
-                            className="slide"
-                            style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}
-                        />
+                        <div className={`${animate ? 'animate' : ''} bgextend slide`}>
+
+                            <div className={"bgappear bgRLextend slide"} style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}} />
+
+                        </div>
                         <div
                             className="slide_next"
                             style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                         />
                     </div>
                     <button onClick={goToPrevSlide}>Prev</button>
-                    <button 　onClick={goToNextSlide}>Next</button>
+                    <button onClick={goToNextSlide}>Next</button>
                 </div>
             </div>
         </>

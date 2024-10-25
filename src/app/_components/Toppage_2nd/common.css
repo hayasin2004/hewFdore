@@ -1,5 +1,13 @@
 div.inner{
     margin:auto;
+    padding:50px 0 50px 0;
     width: 95%;
     background-color: #aaaaaa;
+    margin-bottom: 500px;
+}
+div#test{
+    margin:auto;
+    background-color: #F00;
+    width: 200px;
+    height: 200px;
 }
