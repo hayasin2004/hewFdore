@@ -35,7 +35,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
         setTimeout(() => {
             setAnimate(false);
             console.log("オンになったああああああああああああああああああああああああああああああああああああああああああああ")
-        }, 500);
+        }, 1200);
     };
 
     // ひとつ前の画像を取り出してcurrentSlideにセットしている , テキストも同じ仕組み
@@ -53,14 +53,17 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
     return (
         <>
-            <div className={animate ? 'animate' : ''}>
+            <div className={animate ? 'animate' :''} >
                 {/*cssアニメーション*/}
 
                 <div className="slide-show">
                     <div className="photo_list">
 
-                        <div className="slide_text">
+                        <div className="slide_text bgextend bgRLextend">
+                            <span className={"bgappear"}>
+
                             <h1>{dummyData_slide_map_item[currentSlide].text}</h1>
+                            </span>
                         </div>
                         <div
                             className="slide"
