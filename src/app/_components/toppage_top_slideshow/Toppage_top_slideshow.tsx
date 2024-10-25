@@ -1,6 +1,6 @@
 "use client"
 import React, {useState} from 'react';
-import "./common.css"
+import "./toppage_top_slideshow.css"
 import dummyData from "@/app/dummydata/slide_dummy";
 import {DummyDataType}  from "@/app/dummydata/slide_dummy";
 
@@ -48,7 +48,9 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
         <>
             <div className={"slide_master"}>
 
+                <button className={"topbutton"} onClick={goToPrevSlide}>←</button>
                 <div className="slide-show">
+
                     <div className="photo_list">
 
                         <div className="slide_text">
@@ -63,9 +65,9 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                             style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                         />
                     </div>
-                    <button onClick={goToPrevSlide}>Prev</button>
-                    <button onClick={goToNextSlide}>Next</button>
+
                 </div>
+                <button className={"topbutton"} onClick={goToNextSlide}>→</button>
             </div>
         </>
     );
