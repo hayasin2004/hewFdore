@@ -1,6 +1,6 @@
 "use client"
 import React, {useState} from 'react';
-import "./toppage_top_slideshow.css"
+import "./common.css"
 import dummyData from "@/app/dummydata/slide_dummy";
 import {DummyDataType}  from "@/app/dummydata/slide_dummy";
 
@@ -24,19 +24,26 @@ const dummyData_slide_map_item: dummy[] = dummyData.map((item, index) => {
 
 const ToppageTopSlideshow: React.FC<dummy> = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-
+    const [animate, setAnimate] = useState(false);
 
     // 配列順に画像を取り出してcurrentSlideにセットしている, テキストも同じ仕組み
     const goToNextSlide = () => {
         setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
         // setCurrentText((prevSlide) => (prevSlide + 1));
         // console.log(currentText)
+        setAnimate(true);
+        setTimeout(() => {
+            setAnimate(false);
+            console.log("オンになったああああああああああああああああああああああああああああああああああああああああああああ")
+        }, 500);
     };
 
     // ひとつ前の画像を取り出してcurrentSlideにセットしている , テキストも同じ仕組み
     const goToPrevSlide = () => {
         // setCurrentText((prevText) => (prevText - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
         setCurrentSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+        console.log("kkokokokokokokokokokokokokokokokkoo")
+
     };
     // 長い計算の解説。
     // prevSlide - 1 + dummyData_slide_map_item.length は、負のインデックスを防ぐための計算。配列の長さを足すことで、負の値にならないようにしている。
@@ -46,11 +53,10 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
     return (
         <>
-            <div className={"slide_master"}>
+            <div className={animate ? 'animate' : ''}>
+                {/*cssアニメーション*/}
 
-                <button className={"topbutton"} onClick={goToPrevSlide}>←</button>
                 <div className="slide-show">
-
                     <div className="photo_list">
 
                         <div className="slide_text">
@@ -65,9 +71,9 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                             style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                         />
                     </div>
-
-                </div>　
-                <button className={"topbutton"} onClick={goToNextSlide}>→</button>
+                    <button onClick={goToPrevSlide}>Prev</button>
+                    <button 　onClick={goToNextSlide}>Next</button>
+                </div>
             </div>
         </>
     );
