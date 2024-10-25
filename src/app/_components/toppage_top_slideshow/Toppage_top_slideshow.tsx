@@ -35,7 +35,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
             setAnimate(false);
             setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
             console.log("オンになったああああああああああああああああああああああああああああああああああああああああああああ")
-        }, 2000);
+        }, 1000);
     };
 
     // ひとつ前の画像を取り出してcurrentSlideにセットしている , テキストも同じ仕組み
@@ -57,6 +57,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                 {/*cssアニメーション*/}
 
                 <div className="slide-show">
+                    <button className={"topButton"} onClick={goToPrevSlide}>←</button>
                     <div className="photo_list">
 
                         <div className={`${animate ? 'animate' : ''} slide_text bgextend `}>
@@ -64,7 +65,8 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                         </div>
                         <div className={`${animate ? 'animate' : ''} bgextend slide`}>
 
-                            <div className={"bgappear bgRLextend slide"} style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}} />
+                            <div className={"bgappear bgRLextend slide"}
+                                 style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}/>
 
                         </div>
                         <div
@@ -72,8 +74,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                             style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                         />
                     </div>
-                    <button onClick={goToPrevSlide}>Prev</button>
-                    <button onClick={goToNextSlide}>Next</button>
+                    <button className={"topButton"} onClick={goToNextSlide}>→</button>
                 </div>
             </div>
         </>
