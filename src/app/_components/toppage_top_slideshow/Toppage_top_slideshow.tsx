@@ -66,7 +66,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                         />
                     </div>
 
-                </div>
+                </div>　
                 <button className={"topbutton"} onClick={goToNextSlide}>→</button>
             </div>
         </>
