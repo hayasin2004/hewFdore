@@ -7,7 +7,7 @@ import confirmUser from "@/app/utils/confirmUser";
 import Footer from "@/app/_components/footer/Footer";
 import {loginUser} from "@/app/utils/loginUser";
 import "./toppage.css"
-import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
+// import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 
 const Toppage = () => {
@@ -30,7 +30,7 @@ const Toppage = () => {
             <Header/>
             {/*<div className={"toppage"}>*/}
                 <Sidebar/>
-                <Slideshow/>
+                {/*<Slideshow/>*/}
             {/*</div>*/}
             <ToppageProducts/>
 

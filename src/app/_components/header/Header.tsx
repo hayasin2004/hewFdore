@@ -87,7 +87,7 @@ const Header = () => {
             <header>
                 <div className="nav">
                     <div className="title">
-                        <Link href={"/toppage"}>
+                        <Link href={"/"}>
                             <h1>
                                 F'dore
                             </h1>
