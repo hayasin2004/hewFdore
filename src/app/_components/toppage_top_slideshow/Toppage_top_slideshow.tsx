@@ -52,7 +52,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     const nextSlideIndex = (currentSlide + 1) % dummyData_slide_map_item.length;
 
     return (
-        <>
+        <>　
             <div>
                 {/*cssアニメーション*/}
 
