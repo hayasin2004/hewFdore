@@ -102,7 +102,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                         <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_next`}>
 
                         <div
-                            className={"bgappear bgRLextend bgLRextend slide"}
+                            className={"bgappear bgRLextend bgLRextend slide_next"}
                             style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                         />
                         </div>

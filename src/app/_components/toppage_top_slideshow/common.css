@@ -132,8 +132,10 @@
     width: 200px;
     height: 200px;
     margin: 20px;
+    object-fit: cover;
     background-size: cover;
     background-position: center;
+    border-radius: 10px;
 
 }
 
@@ -151,6 +153,7 @@
         z-index: 999;
         width: 800px;
         height: 100%;
+        border-radius: 10px;
         background-color: #600; /*伸びる背景色の設定*/
     }
 }
@@ -166,6 +169,7 @@
         z-index: 999;
         width: 800px;
         height: 100%;
+        border-radius: 10px;
         background-color: #ff0000; /* 伸びる背景色の設定 */
     }
 }
