@@ -88,21 +88,21 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                     <button className={"topButton"} onClick={goToPrevSlide}>←</button>
                     <div className="photo_list">
 
-                        <div className={`${nextanimate ? 'animate' : ''} slide_text bgextend `}>
-                            <h1 className={"bgappear bgRLextend"}>{dummyData_slide_map_item[currentSlide].text}</h1>
+                        <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_text `}>
+                            <h1 className={"bgappear bgRLextend bgLRextend "}>{dummyData_slide_map_item[currentSlide].text}</h1>
                         </div>
-                        <div className={`${nextanimate ? 'animate' : ''} bgextend slide`}>
+                        <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide`}>
 
-                            <div className={"bgappear bgRLextend slide"}
+                            <div className={"bgappear bgRLextend bgLRextend slide"}
                                  style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}/>
 
                         </div>
                         {/*prevanimate　→　前の写真に行く時に発火するＣＳＳアニメーション*/}
 
-                        <div className={`${prevanimate ? 'prevanimate' : ''} bgextend slide_next`}>
+                        <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_next`}>
 
                         <div
-                            className={"bgappear bgRLextend slide"}
+                            className={"bgappear bgRLextend bgLRextend slide"}
                             style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                         />
                         </div>
