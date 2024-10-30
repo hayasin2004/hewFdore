@@ -23,9 +23,22 @@ const dummyData_slide_map_item: dummy[] = dummyData.map((item, index) => {
 })
 
 const ToppageTopSlideshow: React.FC<dummy> = () => {
+    // これが今のスライド
     const [currentSlide, setCurrentSlide] = useState(0);
+    // これが次のスライド
+    const [nextSlide, setNextSlide] = useState(0);
+    // これがテキストのスライド
+    const [textSlide, setTextSlide] = useState(0);
+
+
     // 次のスライド
+    // これが今のアニメーション
     const [nextanimate, setNextanimate] = useState(false);
+
+    // これが次のアニメーション
+    const [nextTestanimate, setNextTestanimate] = useState(false);
+    // これがテキストのアニメーション
+    const [textanimate, setTextanimate] = useState(false);
     // ひとつ前のスライド
     const [prevanimate, setPrevanimate] = useState(false);
     const [isChanging, setIsChanging] = useState(false);
@@ -33,7 +46,6 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // 配列順に画像を取り出してcurrentSlideにセットしている, テキストも同じ仕組み
     // 次のスライドに処理
     const goToNextSlide = () => {
-        // setCurrentText((prevSlide) => (prevSlide + 1));
         // console.log(currentText)
         setNextanimate(true);
         if (!isChanging) {
@@ -41,10 +53,26 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
             setTimeout(() => {
                 setNextanimate(false);
                 setIsChanging(false);
-            }, 1500); // 0.4秒の遅延
+            }, 700); // 0.4秒の遅延
             setTimeout(() => {
                 setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                setIsChanging(false);
+
             }, 700); // 0.4秒の遅延
+            setTimeout(() => {
+                setNextSlide((prevSlide) => (prevSlide + 2) % dummyData_slide_map_item.length);
+                setNextTestanimate(true);
+                setIsChanging(false);
+
+            }, 700); // 0.4秒の遅延
+            setNextTestanimate(false);
+            setTimeout(() => {
+                setTextanimate(true);
+                setTextSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                setIsChanging(false);
+
+            }, 700); // 0.4秒の遅延
+            setTextanimate(false);
         }
         // setCurrentText((prevSlide) => (prevSlide + 1));
         // console.log(currentText)
@@ -65,10 +93,17 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                 setTimeout(() => {
                     setPrevanimate(false);
                     setIsChanging(false);
-                }, 1500); // 0.4秒の遅延
+                }, 1000); // 0.4秒の遅延
                 setTimeout(() => {
+                    setPrevanimate(false);
+
                     setCurrentSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 },700)
+                setTimeout(() => {
+                    setPrevanimate(false);
+
+                    setNextSlide((prevSlide) => (prevSlide -2) % dummyData_slide_map_item.length);
+                }, 900); // 0.4秒の遅延
 
             }
         }
@@ -77,7 +112,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // prevSlide - 1 + dummyData_slide_map_item.length は、負のインデックスを防ぐための計算。配列の長さを足すことで、負の値にならないようにしている。
 
     // 次の画像をcurrentSlide + 1 として表示している
-    const nextSlideIndex = (currentSlide + 1) % dummyData_slide_map_item.length;
+    const nextSlideIndex = (nextSlide + 1) % dummyData_slide_map_item.length;
 
     return (
         <>
@@ -88,8 +123,8 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                     <button className={"topButton"} onClick={goToPrevSlide}>←</button>
                     <div className="photo_list">
 
-                        <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_text `}>
-                            <h1 className={"bgappear bgRLextend bgLRextend "}>{dummyData_slide_map_item[currentSlide].text}</h1>
+                        <div className={`${textanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_text `}>
+                            <h1 className={"bgappear bgRLextend bgLRextend "}>{dummyData_slide_map_item[textSlide].text}</h1>
                         </div>
                         <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide`}>
 
@@ -99,7 +134,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                         </div>
                         {/*prevanimate　→　前の写真に行く時に発火するＣＳＳアニメーション*/}
 
-                        <div className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_next`}>
+                        <div className={`${nextTestanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_next`}>
 
                         <div
                             className={"bgappear bgRLextend bgLRextend slide_next"}

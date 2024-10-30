@@ -22,3 +22,73 @@ div.toppage{
     display: flex;
     margin-left: -20px;
 }
+
+div.siteIntroduction{
+    height: 800px;
+    background: #E9E5DD;
+    display: table;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+div.introduction{
+    display: block;
+    margin: auto 0;
+    height: 600px;
+    margin-top: 7%;
+    background: #CFC8A9;
+    text-align: center;
+}
+
+div.introductionMain{
+    width: 1440px;
+}
+
+div.introduction h1{
+    font-size: 4rem;
+    display:  inline-block;
+    padding-top: 80px;
+}
+div.introduction p{
+    font-size: 2rem;
+    padding-top: 80px;
+}
+
+div.toppageBottomPicture_Text{
+    display: block;
+    height: 700px;
+    background: #DFDCDC;
+    margin-bottom: 300px;
+}
+
+div.toppageBottom{
+    display: inline-block;
+    align-items: center;
+    height:500px;
+}
+div.toppageBottomDispaly{
+    display: flex;
+    align-items: center;
+}
+
+ul.toppageBottomUl{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    width: 100%;
+    margin-top: 29px;
+    background: #660000;
+}
+
+
+.toppageBottomImage{
+    width: 750px !important;
+    height: auto;
+}
+
+
+li.toppageBottomLi h2{
+    width: 750px;
+    font-size: 4rem;
+}
+
