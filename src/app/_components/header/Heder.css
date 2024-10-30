@@ -11,6 +11,8 @@ header {
     display: -webkit-flex;
     display: inline-block;
     width: auto;
+
+    background-color: #EBE8DB;
 }
 header div.nav {
     margin-top: 30px;

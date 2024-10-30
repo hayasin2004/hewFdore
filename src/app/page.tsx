@@ -6,7 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import NewToppage from "@/app/newToppage/page";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
 import Header from "@/app/_components/header/Header";
-import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
+// import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 export default function Home() {
   return (
     <main >
@@ -14,7 +14,7 @@ export default function Home() {
           {/*<Toppage />*/}
           <Header/>
           <Toppage_top_slideshow/>
-          <Toppage_2nd/>
+          {/*<Toppage_2nd/>*/}
       {/*<Login />*/}
       {/**/}
       </div>
