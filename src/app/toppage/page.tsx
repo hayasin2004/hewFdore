@@ -9,6 +9,10 @@ import {loginUser} from "@/app/utils/loginUser";
 import "./toppage.css"
 // import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
+import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
+import Image from "next/image"
+import {color} from "@mui/system";
+
 
 const Toppage = () => {
     useEffect(() => {
@@ -29,8 +33,38 @@ const Toppage = () => {
             </div>
             <Header/>
             {/*<div className={"toppage"}>*/}
-                <Sidebar/>
-                {/*<Slideshow/>*/}
+            <Toppage_top_slideshow/>
+            {/*<Sidebar/>*/}
+            <div className={"siteIntroduction"}>
+                <div className={"introduction"}>
+                    <div className={"introductionMain"}>
+
+                        <h1>F'doreとは</h1>
+                        <p>大人の女性の向けファッション</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>
+            <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3</h3>
+
+
+            <div className={"toppageBottomPicture_Text"}>
+                <ul className={"toppageBottomUl"}>
+                    <li className={"toppageBottomLi"}>
+
+
+                        <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
+                               width={1920}
+                               height={1280} alt={"トップページ下の画像"}/>
+                    </li>
+                    <li className={"toppageBottomLi"}>
+
+                        <h2>F'dore</h2>
+                    </li>
+                </ul>
+            </div>
+            {/*<Slideshow/>*/}
             {/*</div>*/}
             <ToppageProducts/>
 

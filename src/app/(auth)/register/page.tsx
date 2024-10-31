@@ -13,7 +13,6 @@ import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import createUser from "@/app/utils/registerUser";
 import Login from '../login/page';
-import  {useHistory} from  "react-router-dom"
 
 
 const Register = () => {

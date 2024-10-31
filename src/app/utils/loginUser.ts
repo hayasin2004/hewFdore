@@ -38,7 +38,7 @@ export async function loginUser(email: string, password: string) {
                 const username :User= user.username
                 const email:User = user.email
                 const password : User = user.password
-                const profilePicture:User = "これはsプロフィール画像です！！！！！！！！！！！！！！！！"
+                const profilePicture:User = "これはプロフィール画像です！！！！！！！！！！！！！！！！"
                 const coverProfilePicture:User = user.coverProfilePicture
                 // ログインに成功したユーザーにトークンを発行する
                 const token = jwt.sign({
