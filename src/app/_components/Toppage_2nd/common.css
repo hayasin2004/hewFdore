@@ -1,20 +1,41 @@
-div.inner{
-    margin:auto;
-    padding:50px 0 50px 0;
-    width: 95%;
-    background-color: #aaaaaa;
-    margin-bottom: 500px;
-}
-div#test{
-    margin:auto;
-    background-color: #F00;
-    width: 200px;
-    height: 200px;
+main{
+
+    /*background-color: #aaaaaa;*/
 }
 
+div.inner{
+    margin:auto;
+    /*padding:50px 0 50px 0;*/
+    width: 80%;
+
+}
+
+
+
 div.boxes{
+    margin: 50px 50px 0 50px;
     align-content: center;
     width: 250px;
     height: 250px;
-    object-fit: fill;
+}
+p.s2tit{
+    margin: 0 50px 0 50px;
+    width: 200px;
+    height: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    overflow: hidden;
+}
+.slide2{
+    border: none;
+    border-radius: 0;
+    background-color: #9A9A9A;
+    background-size: contain;
+    /*padding: 20px;*/
+}
+
+div#S2under{
+    width: 80%;
+    border: black;
+    border-style: solid none none none;
 }
