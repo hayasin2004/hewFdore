@@ -64,14 +64,13 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
             setTimeout(() => {
                 setNextSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 setSecondanimate(true);
-            },2000)
+            },100)
             setSecondanimate(false);
     //textanimete
             setTimeout(() => {
                 setTextSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 setTextanimate(true);
-                console.log("padjfajdilfajofjaosjfjsodfajojf")
-            },2000)
+            },200)
             setTextanimate(false);
         }
         // setCurrentText((prevSlide) => (prevSlide + 1));
