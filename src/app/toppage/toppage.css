@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+
 body {
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+
     margin: 0;
     padding: 0;
-    background:#f3f3eb;
+    background: #f3f3eb;
 }
 
-div.toppageVideo{
+div.toppageVideo {
     position: absolute;
     z-index: 10;
     width: 820px;
@@ -13,82 +17,96 @@ div.toppageVideo{
 
 }
 
-div.toppageVideo video{
+div.toppageVideo video {
     max-width: 100%;
 }
 
-div.toppage{
+div.toppage {
     width: 700px;
     display: flex;
-    margin-left: -20px;
 }
 
-div.siteIntroduction{
+div.siteIntroduction {
     height: 800px;
-    background: #E9E5DD;
-    display: table;
-    width: 100%;
+    background: #D9D0C7;
+    display: flex;
     margin-bottom: 100px;
 }
 
-div.introduction{
-    display: block;
-    margin: auto 0;
+div.introduction {
+    width: 1920px;
     height: 600px;
-    margin-top: 7%;
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background: #CFC8A9;
     text-align: center;
 }
 
-div.introductionMain{
+div.introductionMain {
     width: 1440px;
 }
 
-div.introduction h1{
+div.introduction h1 {
     font-size: 4rem;
-    display:  inline-block;
     padding-top: 80px;
 }
-div.introduction p{
+
+div.introduction p {
     font-size: 2rem;
     padding-top: 80px;
 }
 
-div.toppageBottomPicture_Text{
-    display: block;
+div.toppageBottomPicture_Text {
+    display: flex;
+    align-items: center;
     height: 700px;
     background: #DFDCDC;
     margin-bottom: 300px;
 }
 
-div.toppageBottom{
+div.toppageBottom {
     display: inline-block;
     align-items: center;
-    height:500px;
-}
-div.toppageBottomDispaly{
-    display: flex;
-    align-items: center;
+    height: 500px;
 }
 
-ul.toppageBottomUl{
+ul.toppageBottomUl {
+    width: 100%;
     display: flex;
     align-items: center;
     list-style: none;
-    width: 100%;
-    margin-top: 29px;
-    background: #660000;
+    margin-top: 1%;
 }
 
 
-.toppageBottomImage{
+.toppageBottomImage {
     width: 750px !important;
     height: auto;
+    align-items: center;
+    margin: 0;
 }
 
 
-li.toppageBottomLi h2{
-    width: 750px;
-    font-size: 4rem;
+li.toppageBottomLi {
+    height: 500px;
+    text-align: center;
+    align-items: center;
+    background: #e5e5e5;
+}
+
+li.toppageBottomLi h2 {
+    font-family: "Italiana", sans-serif;
+    font-size: 5.2rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    text-align: center;
 }
 
