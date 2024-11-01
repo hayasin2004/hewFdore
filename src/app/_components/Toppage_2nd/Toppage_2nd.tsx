@@ -31,11 +31,11 @@ const Toppage_2nd = () => {
     const Slide2dex = [
         {
             img: '../images/Slide/slide_color.png',
-        tit:'first'},
+        tit:'1st'},
         {img:'../images/Slide/slide_color.png',
             tit:'2nd'},
         {img:'../images/Slide/slide_color.png',
-            tit:'third'},
+            tit:'3rd'},
     ];
 
     return (
@@ -43,9 +43,9 @@ const Toppage_2nd = () => {
             <div className={"inner"}>
                 <Swiper
                     modules={[Autoplay,Scrollbar,Pagination,EffectCoverflow]}
-                    spaceBetween={20}
-                    slidesPerView={2.2}
-                    centeredSlides={true}
+                    spaceBetween={50}
+                    slidesPerView={2.7}
+                    // centeredSlides={true}
                     effect={"coverflow"}
                     coverflowEffect={{
                         rotate:0,
@@ -60,11 +60,6 @@ const Toppage_2nd = () => {
                     scrollbar={{draggable:true}}
                     pagination={{el:".swiper-pagination", clickable:true}}
                 >
-                    {/*<SwiperSlide>*/}
-                    {/*    {({isActive})=>(*/}
-                    {/*        <CKact isAct={isActive} num={1}></CKact>*/}
-                    {/*    )}*/}
-                    {/*</SwiperSlide>*/}
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[0].img})`}}><p className={"s2tit"}>{Slide2dex[0].tit}</p></div></SwiperSlide>
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[1].img})`}}><p className={"s2tit"}>{Slide2dex[1].tit}</p></div></SwiperSlide>
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[2].img})`}}><p className={"s2tit"}>{Slide2dex[2].tit}</p></div></SwiperSlide>

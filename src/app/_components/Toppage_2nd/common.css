@@ -1,16 +1,11 @@
-main{
-
-    /*background-color: #aaaaaa;*/
-}
-
 div.inner{
-    margin:auto;
-    /*padding:50px 0 50px 0;*/
-    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin:0 70px 50px 70px ;
+    /*padding:0 0 0 10px;*/
+    /*width: 85%;*/
     background-color: #969696;
 }
-
-
 
 div.boxes{
     margin: 50px 50px 50px 50px;
@@ -25,19 +20,6 @@ p.s2tit{
     text-align: center;
     vertical-align: bottom;
     /*overflow: hidden;*/
-}
-.slide2{
-    border: none;
-    border-radius: 0;
-    background-color: #9A9A9A;
-    background-size: contain;
-    /*padding: 20px;*/
-}
-
-div#S2under{
-    width: 80%;
-    border: black;
-    border-style: solid none none none;
 }
 
 /*Swiper設定上書き*/
