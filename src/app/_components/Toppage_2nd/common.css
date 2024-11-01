@@ -7,13 +7,13 @@ div.inner{
     margin:auto;
     /*padding:50px 0 50px 0;*/
     width: 80%;
-
+    background-color: #969696;
 }
 
 
 
 div.boxes{
-    margin: 50px 50px 0 50px;
+    margin: 50px 50px 50px 50px;
     align-content: center;
     width: 250px;
     height: 250px;
@@ -38,4 +38,9 @@ div#S2under{
     width: 80%;
     border: black;
     border-style: solid none none none;
+}
+
+/*Swiper設定上書き*/
+div.swiper-scrollbar-horizontal{
+    background-image: linear-gradient(90deg, rgba(233, 233, 233, 1), rgba(120, 120, 120, 1));
 }
