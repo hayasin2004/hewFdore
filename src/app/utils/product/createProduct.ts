@@ -1,12 +1,10 @@
 "use server"
 import {connectDB} from "@/lib/mongodb";
-import {v4 as uuidv4} from "uuid";
 import {Product} from "@/models/Product";
 import jwt from "jsonwebtoken";
 
 
 export interface createProduct {
-    product_id: string;
     productName: string;
     productPrice : string;
     shippingSend: string;
@@ -25,8 +23,11 @@ export  const createProduct = async (token : string ,　productName : string , p
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
         const userId =  decoded.userId
         const newProduct = await  Product.create({userId , productName ,  productPrice, productDesc})
-        console.log("保存完了だよ")
         await newProduct.save()
+        console.log("保存完了だよ")
+
+        const returnProduct = newProduct.toObject();
+        return returnProduct;
     }catch (err){
         console.log(err)
     }

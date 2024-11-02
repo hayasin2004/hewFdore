@@ -18,7 +18,6 @@ const useUser = () => {
     const userId =  user?.userId
 
     useEffect(() => {
-
         if (token) {
             (async () => {
                 const userData = await confirmUser(token);
@@ -30,12 +29,11 @@ const useUser = () => {
                     return null
                 }
             })()
-
         }
+        // 副作用　→　起爆のタイミングを設定
         },[token]);
     //  useEffectの依存配列でtokenが変更されたのみ発火する
     return {user, token, userId: user?.userId, username: user?.username, email: user?.email ,profilePicture : user?.profilePicture}
-
 }
 
 export default useUser;
