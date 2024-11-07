@@ -14,7 +14,6 @@ export default function Home() {
     <main>
       <div>
           <Toppage />
-          {/*<Toppage_2nd/>*/}
       {/*<Login />*/}
       {/**/}
       </div>

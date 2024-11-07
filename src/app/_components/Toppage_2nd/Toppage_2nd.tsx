@@ -27,24 +27,30 @@ const Toppage_2nd = () => {
     return (
         <>
             <div className={"inner"}>
-                <Slide　slidesToShow={3} slidesToScroll={1} indicators={true}>
+                <Slide cssClass={"slide2"} arrows={false} slidesToShow={3} slidesToScroll={1} indicators={true}
+                       pauseOnHover={true}>
                     <div className={"each-slide-effect"}>
                         <div className={"boxes"} style={{'backgroundImage': `url(${images[0]})`}}>
-                            <span>Slide 1</span>
                         </div>
+                        <p className={"s2tit"}>ここにタイトルを入力</p>
                     </div>
                     <div className={"each-slide-effect"}>
                         <div className={"boxes"} style={{'backgroundImage': `url(${images[1]})`}}>
-                            <span>Slide 2</span>
                         </div>
+                        <p className={"s2tit"}>スライド2_ここにタイトルを入力</p>
+
                     </div>
 
                     <div className={"each-slide-effect"}>
                         <div className={"boxes"} style={{'backgroundImage': `url(${images[2]})`}}>
-                            <span>Slide 3</span>
                         </div>
+                        <p className={"s2tit"}>スライド3_ここにタイトルを入力</p>
+
                     </div>
+
                 </Slide>
+                {/*<div id={"S2under"}></div>*/}
+
             </div>
 
         </>
