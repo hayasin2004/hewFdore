@@ -21,10 +21,18 @@ p.s2tit{
     vertical-align: bottom;
     /*overflow: hidden;*/
 }
-
+div.underline{
+    width: 80%;
+    border: black 5px solid;
+}
 /*Swiper設定上書き*/
-div.swiper-scrollbar-horizontal{
-    background-image: linear-gradient(90deg, rgba(233, 233, 233, 1), rgba(120, 120, 120, 1));
+
+div.swiper-scrollbar{
+    /*width: 80% !important;*/
+    background-image: linear-gradient(90deg, rgba(233, 233, 233, 1), rgba(120, 120, 120, 1)) !important;
+}
+.swiper-scrollbar-drag{
+    /*width: 10% !important;*/
 }
 .swiper-slide{
     width: 20px;

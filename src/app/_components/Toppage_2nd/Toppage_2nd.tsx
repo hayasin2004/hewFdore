@@ -44,8 +44,8 @@ const Toppage_2nd = () => {
                 <Swiper
                     modules={[Autoplay,Scrollbar,Pagination,EffectCoverflow]}
                     spaceBetween={50}
-                    slidesPerView={2.7}
-                    // centeredSlides={true}
+                    slidesPerView={2.5}
+                    centeredSlides={true}
                     effect={"coverflow"}
                     coverflowEffect={{
                         rotate:0,
@@ -55,7 +55,8 @@ const Toppage_2nd = () => {
                         slideShadows:false,
                     }}
                     autoplay={true}
-                    loop={true}
+                    rewind={true}
+                    loop={false}
                     followFinger={false}
                     scrollbar={{draggable:true}}
                     pagination={{el:".swiper-pagination", clickable:true}}
@@ -64,7 +65,6 @@ const Toppage_2nd = () => {
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[1].img})`}}><p className={"s2tit"}>{Slide2dex[1].tit}</p></div></SwiperSlide>
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[2].img})`}}><p className={"s2tit"}>{Slide2dex[2].tit}</p></div></SwiperSlide>
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[2].img})`}}><p className={"s2tit"}>{Slide2dex[2].tit}</p></div></SwiperSlide>
-
 
                 </Swiper>
 
