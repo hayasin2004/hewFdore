@@ -12,6 +12,7 @@ import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
 import Image from "next/image"
 import {color} from "@mui/system";
+import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 
 
 const Toppage = () => {
@@ -46,7 +47,8 @@ const Toppage = () => {
             </div>
 
             <h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>
-            <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3</h3>
+            <ToppageSite3/>
+
 
 
             <div className={"toppageBottomPicture_Text"}>
