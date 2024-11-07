@@ -36,6 +36,8 @@ const Toppage_2nd = () => {
             tit:'2nd'},
         {img:'../images/Slide/slide_color.png',
             tit:'3rd'},
+        {img:'../images/Slide/slide_color.png',
+            tit:'4th'},
     ];
 
     return (
@@ -60,11 +62,12 @@ const Toppage_2nd = () => {
                     followFinger={false}
                     scrollbar={{draggable:true}}
                     pagination={{el:".swiper-pagination", clickable:true}}
+
                 >
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[0].img})`}}><p className={"s2tit"}>{Slide2dex[0].tit}</p></div></SwiperSlide>
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[1].img})`}}><p className={"s2tit"}>{Slide2dex[1].tit}</p></div></SwiperSlide>
                     <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[2].img})`}}><p className={"s2tit"}>{Slide2dex[2].tit}</p></div></SwiperSlide>
-                    <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[2].img})`}}><p className={"s2tit"}>{Slide2dex[2].tit}</p></div></SwiperSlide>
+                    <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[3].img})`}}><p className={"s2tit"}>{Slide2dex[3].tit}</p></div></SwiperSlide>
 
                 </Swiper>
 
