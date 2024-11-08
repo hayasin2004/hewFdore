@@ -11,7 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import {Autoplay,Scrollbar,Pagination,EffectCoverflow} from "swiper/modules";
 import {rotate} from "next/dist/server/lib/squoosh/impl";
-import {delay} from "@reduxjs/toolkit/src/utils";
+// import {delay} from "@reduxjs/toolkit/src/utils";
 
 // import Product from "@/app/product/page";
 // import Image from "next/image"
