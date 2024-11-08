@@ -1,6 +1,6 @@
 import React from 'react';
 import "./toppageMain.css"
-import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
+// import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 
 const ToppageMain = () => {
@@ -11,7 +11,7 @@ const ToppageMain = () => {
 
             <div className="toppageMain">
 
-                <Slideshow/>
+                {/*<Slideshow/>*/}
 
 
                 <hr id="slideshow_line"/>
