@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import {Autoplay,Scrollbar,Pagination,EffectCoverflow} from "swiper/modules";
 import {rotate} from "next/dist/server/lib/squoosh/impl";
+import {delay} from "@reduxjs/toolkit/src/utils";
 
 // import Product from "@/app/product/page";
 // import Image from "next/image"
@@ -45,8 +46,8 @@ const Toppage_2nd = () => {
             <div className={"inner"}>
                 <Swiper
                     modules={[Autoplay,Scrollbar,Pagination,EffectCoverflow]}
-                    spaceBetween={50}
-                    slidesPerView={2.5}
+                    spaceBetween={20}
+                    slidesPerView={1}
                     centeredSlides={true}
                     effect={"coverflow"}
                     coverflowEffect={{
@@ -60,6 +61,20 @@ const Toppage_2nd = () => {
                     rewind={true}
                     loop={false}
                     followFinger={false}
+                    breakpoints={{
+                        500:{
+                            slidesPerView:1,
+                            spaceBetween:20,
+                        },
+                        800:{
+                            spaceBetween:25,
+                            slidesPerView:1.5,
+                        },
+                        1250:{
+                            spaceBetween:50,
+                            slidesPerView:2.5,
+                        },
+                    }}
                     scrollbar={{draggable:true}}
                     pagination={{el:".swiper-pagination", clickable:true}}
 
