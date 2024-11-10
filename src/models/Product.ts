@@ -1,10 +1,7 @@
 import mongoose  from 'mongoose';
 
 const ProductSchema = new  mongoose.Schema({
-    _id : {
-        type: String,
-        required: true,
-    },
+
     userId : {
         type: String,
         required: true,
@@ -12,11 +9,13 @@ const ProductSchema = new  mongoose.Schema({
     productName : {
         type: String,
         required: true,
+        default: '',
     },
     productDesc : {
         // 商品紹介
         type: String,
         max: 400,
+        default: "",
     },
     productPrice : {
         type: Number,

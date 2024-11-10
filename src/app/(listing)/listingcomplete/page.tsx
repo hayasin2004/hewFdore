@@ -4,10 +4,24 @@ import Image from "next/image";
 import "./listingcomplete.css"
 import Header from "@/app/_components/header/Header";
 import Images from "next/image";
-import getProduct from "@/app/utils/product/route";
 
 const ListingComplete = () => {
-
+    useEffect(() => {
+    async function fetchData() {
+        try {
+        const response = await  fetch("/api/product")
+            if (!response.ok){
+                console.log("むりやった")
+            }
+            console.log("テスト")
+            const productData = await response.json();
+            console.log(JSON.stringify(productData))
+        }catch (err){
+            console.log(err)
+        }
+    }
+    fetchData()
+    }, []);
 
 return (
     <>

@@ -2,16 +2,18 @@
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import jwt from "jsonwebtoken";
+import {string} from "prop-types";
 
 
-export interface createProduct {
+
+export interface createProductType {
     productName: string;
     productPrice : string;
     shippingSend: string;
 
 }
 
-export  const createProduct = async (token : string ,　productName : string , productPrice :number , productDesc : string ,): Promise<createProduct | null> => {
+export  const createProduct = async (token : string ,　productName : string , productPrice :number , productDesc : string , shippingArea : string): Promise<createProductType | null> => {
 
     await connectDB();
     console.log("商品関連データベースと接続中")
@@ -22,7 +24,7 @@ export  const createProduct = async (token : string ,　productName : string , p
     try {
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
         const userId =  decoded.userId
-        const newProduct = await  Product.create({userId , productName ,  productPrice, productDesc})
+        const newProduct = await  Product.create({userId , productName ,  productPrice, productDesc ,shippingArea})
         await newProduct.save()
         console.log("保存完了だよ")
 

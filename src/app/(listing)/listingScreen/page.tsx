@@ -34,12 +34,12 @@ const [product, setProduct] = useState<ProductType>({
                     <form action={async (data: FormData) => {
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
-                        const productDesc = data.get("produvDesc") as string;
-                        // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
+                        const productDesc = data.get("productDesc") as string;
+                        // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型で渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
                         const shippingArea = data.get("shippingArea") as string;
                         const token = localStorage.getItem("token") as string;
-                        await createProduct(token, productName, productPrice, productDesc).then(
+                        await createProduct(token, productName, productPrice, productDesc , shippingArea).then(
                             product => {
                                 // createProductで投げた情報がundfined（何かしらのエラーでかえってこない場合）の時の型回避
                                 if (product === undefined) {

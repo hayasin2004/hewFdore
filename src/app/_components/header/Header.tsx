@@ -126,7 +126,6 @@ const Header = () => {
                                 <li id="uru_ul">
                                     Sell
                                     <span id="uru">売る</span>
-
                                 </li>
                             </Link>
                             <span className="long_line"></span>
