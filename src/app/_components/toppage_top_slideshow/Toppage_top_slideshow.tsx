@@ -13,9 +13,8 @@ interface dummy {
     text?: string,
 }
 
-const dummyData_slide: DummyDataType[] = dummyData
 
-const dummyData_slide_map_item: dummy[] = dummyData.map((item, index) => {
+const dummyData_slide_map_item: dummy[] = dummyData.map((item : DummyDataType, index) => {
     const image = item.url
     const text = item.randomString
     return {image, text}

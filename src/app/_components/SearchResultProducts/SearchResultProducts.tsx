@@ -5,12 +5,8 @@ import Link from "next/link";
 import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
 import {productsProps} from "@/app/api/dummyData/data";
 
-interface DummyDataProductsProps {
-    product: productsProps[];
-}
 
-
-const SearchResultProducts : React.FC<DummyDataProductsProps> = ({product}) => {
+const SearchResultProducts  = ( ) => {
 
     return (
         <>
@@ -23,6 +19,7 @@ const SearchResultProducts : React.FC<DummyDataProductsProps> = ({product}) => {
 
 
                     </div>
+
                     {/*<div className="product_img">*/}
 
                     {/*    <div className="product_detail">*/}
