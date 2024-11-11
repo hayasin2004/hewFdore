@@ -8,13 +8,10 @@ const UpdateProfile = () => {
         <>
             <Header/>
             <div className={"updateProfile_Text"}>
-                <h1>ユ―ザー情報更新画面</h1>
+                <h1>ユ―ザー情報更新</h1>
             </div>
             <div className={"enterUpdateUserProfile"}>
 
-                <p>
-                    プロフィール画面を変更する
-                </p>
                 <div className={"updateProfile_img"}>
 
                     <div className={"profile_img"}>
@@ -37,12 +34,9 @@ const UpdateProfile = () => {
                     <div>
                         <div id="form">
                             <form action="../Toppage/index.html" method="post">
-                                <label htmlFor="UserName">ユーザー名 Masataka</label><br/>
+                                <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
                                        placeholder="新しユーザー名を入力して下さい。"/><br/>
-                                <label htmlFor="UserName">自己紹介</label><br/>
-                                <input type="text" name="UserName" id="UserName"
-                                       placeholder="自己紹介文を入力してください。"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email"
                                        placeholder="Enter your E-mail Address"/><br/>
@@ -52,7 +46,10 @@ const UpdateProfile = () => {
                                 <input type="password" name="PWCheck" id="PWCheck" placeholder="Enter Password again "/><br/>
                                 <label htmlFor="PWCheck">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
-                                       placeholder="配達お届け住所を入力して下さい。"/><br/>
+                                       placeholder="住所を入力して下さい。"/><br/>
+                                <label htmlFor="UserName">自己紹介</label><br/>
+                                <input type="text" name="UserName" id="UserName"
+                                       placeholder="自己紹介文を入力してください。"/><br/>
                                 <button type="submit">更新する</button>
                             </form>
                         </div>
