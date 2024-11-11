@@ -13,7 +13,6 @@ const ListingComplete = () => {
             if (!response.ok){
                 console.log("むりやった")
             }
-            console.log("テスト")
             const productData = await response.json();
             console.log(JSON.stringify(productData))
         }catch (err){
