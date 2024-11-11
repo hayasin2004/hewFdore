@@ -102,7 +102,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                 setTimeout(() => {
                     setPrevanimate(false);
 
-                    setNextSlide((prevSlide) => (prevSlide -2) % dummyData_slide_map_item.length);
+                    setNextSlide((prevSlide) => (prevSlide -2  + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 }, 900); // 0.4秒の遅延
 
             }
