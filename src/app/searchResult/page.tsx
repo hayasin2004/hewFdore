@@ -10,14 +10,6 @@ import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
 
 
-export interface ProductType {
-    productId? : string | null;
-    userId? : string;
-    productName? : string;
-    productDesc? : string;
-    productPrice? : number;
-}
-
 
 
 const Page = () => {
@@ -70,12 +62,13 @@ const Page = () => {
         return {...item ,id : item._id}
         }
     )
-
-
-    // ダミーデータをproductとしてdataから取得する。 dataという名前は任意で分かりやすく変えてもらって大丈夫です！
-    // 例えばdummydataApiとかHyashidummyDataとかでもいけます。その場合はインポートしているdataの名前も変える必要があります。
-
-
+    // HTMLでmap関数で展開するためにこの書き方してます。
+//     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
+//     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
+//     一意に商品を識別したいのでMongoDBでいうobjectIDを _idとして呼び出しています。
+//     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
+//     このidがHTML内で使われているmap関数のkey={item.id}になります。
+　
     return (
         <div>
             <SearchHeader/>
@@ -89,11 +82,17 @@ const Page = () => {
             </div>
 
 
-
+            {/* 取り出せる内容はコンソールに表示してます。*/}
             {product.map((item) => (
-                <div key={item._id}>
-                    <h1>{item._id}</h1>
-                    <h1>{item.productDesc}</h1>
+                <div key={item._id} style={{textAlign: "center"}}>
+                    <p>商品番号 : {item._id}</p>
+                    <p>ユーザーネーム : {item.userId}</p>
+                    <p>商品説明 : {item.productName}</p>
+                    <p>商品説明 : {item.productDesc}</p>
+                    <p>商品価格 : {item.productPrice}</p>
+                    <br/>
+                    <hr/>
+                    <br/>
                 </div>
             ))}
 
