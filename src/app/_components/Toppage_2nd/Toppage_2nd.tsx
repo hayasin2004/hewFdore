@@ -2,58 +2,96 @@
 import React, {useState} from 'react';
 import "./common.css"
 
-// react-slideshow-image使う場合
-import {Slide} from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
 
-// Swiperの名残　正直Swiperの方がテキストの充実という意味では使いやすいかも
-// import {Swiper,SwiperSlide} from "swiper/react";
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import {Navigation} from "swiper/modules";
+import {Swiper,SwiperSlide} from "swiper/react";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+import {Autoplay,Scrollbar,Pagination,EffectCoverflow} from "swiper/modules";
+import {rotate} from "next/dist/server/lib/squoosh/impl";
+// import {delay} from "@reduxjs/toolkit/src/utils";
 
 // import Product from "@/app/product/page";
 // import Image from "next/image"
 // import Link from "next/link";
 
-
+// Active判定で違うIDの値を返す
+// function CKact({num,isAct}){
+//     if(isAct) {
+//         // return <div className={"boxes"} style={{'backgroundImage': `url(${{dex}[{num}].img})`}}>
+//         <p className={"s2tit"}>{num}</p>
+//     // </div>
+//     }
+//     return <p> False{num}</p>;
+// }
 
 const Toppage_2nd = () => {
-    const images = [
-        '../images/Slide/slide_color.png',
-        '../images/Slide/slide_color.png',
-        '../images/Slide/slide_color.png',
+    // スライドの中身の辞書
+    const Slide2dex = [
+        {
+            img: '../images/Slide/slide_color.png',
+        tit:'1st'},
+        {img:'../images/Slide/slide_color.png',
+            tit:'2nd'},
+        {img:'../images/Slide/slide_color.png',
+            tit:'3rd'},
+        {img:'../images/Slide/slide_color.png',
+            tit:'4th'},
     ];
+
     return (
         <>
             <div className={"inner"}>
-                <Slide cssClass={"slide2"} arrows={false} slidesToShow={3} slidesToScroll={1} indicators={true}
-                       pauseOnHover={true}>
-                    <div className={"each-slide-effect"}>
-                        <div className={"boxes"} style={{'backgroundImage': `url(${images[0]})`}}>
-                        </div>
-                        <p className={"s2tit"}>ここにタイトルを入力</p>
-                    </div>
-                    <div className={"each-slide-effect"}>
-                        <div className={"boxes"} style={{'backgroundImage': `url(${images[1]})`}}>
-                        </div>
-                        <p className={"s2tit"}>スライド2_ここにタイトルを入力</p>
+                <Swiper
+                    modules={[Autoplay,Scrollbar,Pagination,EffectCoverflow]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    centeredSlides={true}
+                    effect={"coverflow"}
+                    coverflowEffect={{
+                        rotate:0,
+                        stretch: 50,
+                        depth: 100,
+                        modifier:1,
+                        slideShadows:false,
+                    }}
+                    autoplay={true}
+                    rewind={true}
+                    loop={false}
+                    followFinger={false}
+                    breakpoints={{
+                        500:{
+                            slidesPerView:1,
+                            spaceBetween:20,
+                        },
+                        800:{
+                            spaceBetween:25,
+                            slidesPerView:1.5,
+                        },
+                        1250:{
+                            spaceBetween:50,
+                            slidesPerView:2.5,
+                        },
+                    }}
+                    scrollbar={{draggable:true}}
+                    pagination={{el:".swiper-pagination", clickable:true}}
 
-                    </div>
+                >
+                    <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[0].img})`}}><p className={"s2tit"}>{Slide2dex[0].tit}</p></div></SwiperSlide>
+                    <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[1].img})`}}><p className={"s2tit"}>{Slide2dex[1].tit}</p></div></SwiperSlide>
+                    <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[2].img})`}}><p className={"s2tit"}>{Slide2dex[2].tit}</p></div></SwiperSlide>
+                    <SwiperSlide><div className={"boxes"} style={{'backgroundImage': `url(${Slide2dex[3].img})`}}><p className={"s2tit"}>{Slide2dex[3].tit}</p></div></SwiperSlide>
 
-                    <div className={"each-slide-effect"}>
-                        <div className={"boxes"} style={{'backgroundImage': `url(${images[2]})`}}>
-                        </div>
-                        <p className={"s2tit"}>スライド3_ここにタイトルを入力</p>
+                </Swiper>
 
-                    </div>
 
-                </Slide>
-                {/*<div id={"S2under"}></div>*/}
+
 
             </div>
 
-        </>
+       </>
     );
 };
 

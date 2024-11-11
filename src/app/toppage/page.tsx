@@ -14,7 +14,6 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 
 import Image from "next/image"
 import {color} from "@mui/system";
-// import ToppageSlideThird from "@/app/_components/toppage_slide3/Toppage_slide_third";
 
 
 const Toppage = () => {
@@ -48,24 +47,25 @@ const Toppage = () => {
                 </div>
             </div>
 
+            {/*<h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>*/}
+            <Toppage_2nd/>
+            <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3</h3>
+
+
             <div className={"toppageBottomPicture_Text"}>
-                <div className={"toppageBottom"}>
-                    <div className={"toppageBottomDispaly"}>
-                        <ul className={"toppageBottomUl"}>
-                            <li className={"toppageBottomLi"}>
+                <ul className={"toppageBottomUl"}>
+                    <li className={"toppageBottomLi"}>
 
 
-                                    <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
-                                           width={1920}
-                                           height={1280} alt={"トップページ下の画像"}/>
-                            </li>
-                            <li className={"toppageBottomLi"}>
+                        <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
+                               width={1920}
+                               height={1280} alt={"トップページ下の画像"}/>
+                    </li>
+                    <li className={"toppageBottomLi"}>
 
-                                    <h2>F'dore</h2>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                        <h2>F'dore</h2>
+                    </li>
+                </ul>
             </div>
             {/*<Slideshow/>*/}
             {/*</div>*/}
