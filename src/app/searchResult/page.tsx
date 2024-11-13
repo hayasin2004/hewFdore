@@ -57,7 +57,6 @@ const Page = () => {
 
     //
     // // 商品を展開
-
     const product : DBProductType[]   = productList.map((item) => {
         return {...item ,id : item._id}
         }
