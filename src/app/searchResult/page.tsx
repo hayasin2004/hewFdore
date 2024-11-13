@@ -87,7 +87,7 @@ const Page = () => {
                 <div key={item._id} style={{textAlign: "center"}}>
                     <p>商品番号 : {item._id}</p>
                     <p>ユーザーネーム : {item.userId}</p>
-                    <p>商品説明 : {item.productName}</p>
+                    <p>出品者名 : {item.productName}</p>
                     <p>商品説明 : {item.productDesc}</p>
                     <p>商品価格 : {item.productPrice}</p>
                     <br/>
