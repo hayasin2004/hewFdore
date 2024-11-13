@@ -12,8 +12,7 @@ interface dummy {
     image?: string,
     text?: string,
 }
-
-const dummyData_slide: DummyDataType[] = dummyData
+　
 
 const dummyData_slide_map_item: dummy[] = dummyData.map((item, index) => {
     const image = item.url
@@ -26,10 +25,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // これが今のスライド
     const [currentSlide, setCurrentSlide] = useState(0);
     // これが次のスライド
-    const [nextSlide, setNextSlide] = useState(0);
-    // これがテキストのスライド
-    const [textSlide, setTextSlide] = useState(0);
-
+    const [nextSlide, setNextSlide] = useState(0);　
 
     // 次のスライド
     // これが今のアニメーション
@@ -50,18 +46,14 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                 setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
             }, 880); // 0.4秒の遅延
             setTimeout(() => {
-                setNextSlide((prevSlide) => (prevSlide + 2) % dummyData_slide_map_item.length);
+                setNextSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
             }, 920); // 0.4秒の遅延　
             setTimeout(() => {
                 setNextanimate(false);
                 setIsChanging(false);
             } , 2000)
         }
-        // setCurrentText((prevSlide) => (prevSlide + 1));
-        // console.log(currentText)
-        //
-        // setTimeout(() => {
-        // }, 300);
+　
     };
 
 
@@ -69,16 +61,16 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // ひとつ前のスライドに戻るときの処理
     const goToPrevSlide = () => {
             // setCurrentText((prevText) => (prevText - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
-            console.log("kkokokokokokokokokokokokokokokokkoo")
+　
 
             setPrevanimate(true);
             if (!isChanging) {
                 setIsChanging(true);
                 setTimeout(() => {
-                    setCurrentSlide((prevSlide) => (prevSlide - 2 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+                    setCurrentSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 }, 810)
                 setTimeout(() => {
-                    setNextSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                    setNextSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length ) % dummyData_slide_map_item.length);
                 }, 820); // 0.4秒の遅延
                 setTimeout(() => {
                     setPrevanimate(false);
@@ -115,12 +107,16 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                         </div>
                         {/*prevanimate　→　前の写真に行く時に発火するＣＳＳアニメーション*/}
 
+                            {/*classnameにanimateを付与すればスライドショーアニメーションは動く*/}
                         <div
-                            className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_next`}>
+                            className={ `${nextanimate ? 'smooth' : ''} ${prevanimate ? 'prevanimate ' : ''} bgextend slide_next`}>
 
+
+                                {/*className={"bgappear bgRLextend bgLRextend slide_next"}*/}
                             <div
-                                className={"bgappear bgRLextend bgLRextend slide_next"}
-                                style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
+                                className={"bgappear bgRLextend bgLRextend slide_next "}
+                                style={{backgroundImage: `url(${dummyData_slide_map_item[0].image})`}}
+                                // style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                             />
                         </div>
                     </div>

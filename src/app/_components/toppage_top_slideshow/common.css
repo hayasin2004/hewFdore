@@ -156,7 +156,35 @@
         border-radius: 10px;
         background-color: #600; /*伸びる背景色の設定*/
     }
+
+
+
 }
+
+/*次のスライドに行くときに、画像がドロップする。*/
+/*滑らかに変形して出現*/
+.smooth{
+    animation-name:smoothAnime;
+    animation-duration:1s;
+    animation-fill-mode:forwards;
+    transform-origin:left;
+    opacity:0;
+
+}
+@keyframes smoothAnime{
+    from {
+        transform:translate3d(0, 0%, 0) skewY(12deg);
+        opacity:0;
+        margin-top: 20%;
+        margin-left: 10%;
+    }
+
+    to {
+        transform:translate3d(0%, 0, 0) skewY(0deg);
+        opacity:1;
+    }
+}
+
 
 .prevanimate{
 
@@ -172,6 +200,10 @@
         border-radius: 10px;
         background-color: #ff0000; /* 伸びる背景色の設定 */
     }
+
+
+
+
 }
 
 .topButton{
