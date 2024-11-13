@@ -1,8 +1,9 @@
 "use client"
 import React, {useEffect, useMemo, useState} from 'react';
 import CatchingUser from "@/app/_components/catchingUser/CatchingUser";
-import {UserType} from "@/app/api/catchUser/route";
+import {UserType} from "@/app/api/user/catchUser/route";
 import {DBProductType} from "@/app/api/product/route";
+import Link from "next/link";
 
 
 const Findall = () => {
@@ -12,7 +13,7 @@ const Findall = () => {
 
     useEffect(() => {
         const catchingUser = async function data() {
-            const response = await fetch("/api/catchUser")
+            const response = await fetch("/api/user/catchUser")
             const userData = await response.json();
             console.log('Fetched user data:', userData); // デバッグ用 setUserList
             setUserList(userData);
@@ -32,7 +33,11 @@ const Findall = () => {
                 ここに表示
                 {userList.map((item , index) => (
                     <ul key={index}>
-                        <li>これはMongodbのobjectId : {item.id}</li>
+                        <li>これはMongodbのobjectId :
+                            <Link href={`/userDetail/${item.id}`}>
+                            {item.id}
+                            </Link>
+                        </li>
                         <li>これはユーザー名 : {item.username}</li>
                         <li>これはメールアドレス : {item.email}</li>
                         <br/>
