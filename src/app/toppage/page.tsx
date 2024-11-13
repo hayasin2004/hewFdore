@@ -47,7 +47,7 @@ const Toppage = () => {
                 </div>
             </div>
 
-            <h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>
+            {/*<h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>*/}
             <Toppage_2nd/>
             <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3</h3>
 
