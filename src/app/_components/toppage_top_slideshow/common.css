@@ -177,7 +177,7 @@
         opacity:1;
     }
     50% {
-        transform: rotate(-20deg);
+        transform:translate3d(-60%, 10%, 0)  rotate(-45deg); ;
         opacity:0;
     }
     100% {
