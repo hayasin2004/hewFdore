@@ -169,15 +169,15 @@
     animation-fill-mode:forwards;
     transform-origin:right;
     opacity:0;
-
 }
+
 @keyframes smoothAnime{
     0% {
         transform:translate3d(0, 0%, 0)  ;
         opacity:1;
     }
     50% {
-        transform:translate3d(0, 20%, 0) ;
+        transform: rotate(-20deg);
         opacity:0;
     }
     100% {
