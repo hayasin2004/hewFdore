@@ -10,7 +10,7 @@ const SendAddress = () => {
     return (
         <>
             <Header/>
-            <main style={{marginBottom: "120px"}}>
+            <main >
                 <h2>ご購入される商品</h2>
                 <div className="goods">
                     <Image src="/images/clothes/product9.jpg" height="919" width="640" alt="商品サムネイル"/>
@@ -87,8 +87,8 @@ const SendAddress = () => {
                     <Link className={"button"} href={"/toppage"}>
                         <button>戻る</button>
                     </Link>
-                    <button  form="">
-                        <Link  className={"button"} href={"confirmPayment"}>
+                    <button id={"ToPay"} form="">
+                        <Link  className={"button"}  href={"confirmPayment"}>
                             支払い画面へ
                         </Link>
                     </button>

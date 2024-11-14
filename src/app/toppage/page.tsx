@@ -14,7 +14,6 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 
 import Image from "next/image"
 import {color} from "@mui/system";
-import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 
 
 const Toppage = () => {
@@ -49,8 +48,6 @@ const Toppage = () => {
             </div>
 
             <h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>
-            <ToppageSite3/>
-
             <Toppage_2nd/>
             <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3</h3>
 
