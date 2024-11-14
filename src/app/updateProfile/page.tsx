@@ -36,14 +36,14 @@ const UpdateProfile = () => {
                             <form action="../Toppage/index.html" method="post">
                                 <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder="新しユーザー名を入力して下さい。"/><br/>
+                                       placeholder="新しいユーザー名"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email"
-                                       placeholder="Enter your E-mail Address"/><br/>
+                                       placeholder="Eメールアドレス"/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>
-                                <input type="password" name="Password" id="Password" placeholder="Enter Password"/><br/>
+                                <input type="password" name="Password" id="Password" placeholder="パスワード"/><br/>
                                 <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" name="PWCheck" id="PWCheck" placeholder="Enter Password again "/><br/>
+                                <input type="password" name="PWCheck" id="PWCheck" placeholder="パスワードを再入力 "/><br/>
                                 <label htmlFor="PWCheck">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
                                        placeholder="住所を入力して下さい。"/><br/>
