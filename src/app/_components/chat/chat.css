@@ -7,9 +7,8 @@ body {
 div#chat{
     display: flex;
     flex-direction: row;
-    margin: auto;
-    margin-bottom: 50px;
-    width: 70%;
+    margin: 50px auto 50px 50px;
+    width: 80%;
     height: 150px;
     background: #D9D9D9;
     border: #AAA solid 2px;
@@ -20,6 +19,17 @@ input[type=text]#msg{
     width: 80%;
     height: 50px;
     border-style: none none solid none;
+}
+/* 送信ボタン仮設　作るにしてもアイコンにした方がいいかも */
+input[type=submit]{
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+    background-color:#aaa;
+    border: #555 2.5px solid;
+    border-radius: 10px;
 }
 
 /* アイコン*/
