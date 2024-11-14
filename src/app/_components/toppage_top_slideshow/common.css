@@ -165,22 +165,23 @@
 /*滑らかに変形して出現*/
 .smooth{
     animation-name:smoothAnime;
-    animation-duration:1s;
+    animation-duration:2s;
     animation-fill-mode:forwards;
-    transform-origin:left;
+    transform-origin:right;
     opacity:0;
 
 }
 @keyframes smoothAnime{
-    from {
-        transform:translate3d(0, 0%, 0) skewY(12deg);
-        opacity:0;
-        margin-top: 20%;
-        margin-left: 10%;
+    0% {
+        transform:translate3d(0, 0%, 0)  ;
+        opacity:1;
     }
-
-    to {
-        transform:translate3d(0%, 0, 0) skewY(0deg);
+    50% {
+        transform:translate3d(0, 20%, 0) ;
+        opacity:0;
+    }
+    100% {
+        transform:translate3d(0%, 0%, 0) ;
         opacity:1;
     }
 }

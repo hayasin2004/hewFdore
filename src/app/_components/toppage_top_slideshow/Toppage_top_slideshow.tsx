@@ -109,14 +109,14 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
                             {/*classnameにanimateを付与すればスライドショーアニメーションは動く*/}
                         <div
-                            className={ `${nextanimate ? 'smooth' : ''} ${prevanimate ? 'prevanimate ' : ''} bgextend slide_next`}>
+                            className={ `${nextanimate ? 'smooth , animate' : ''} ${prevanimate ? 'prevanimate ' : ''} bgextend slide_next`}>
 
 
                                 {/*className={"bgappear bgRLextend bgLRextend slide_next"}*/}
                             <div
                                 className={"bgappear bgRLextend bgLRextend slide_next "}
-                                style={{backgroundImage: `url(${dummyData_slide_map_item[0].image})`}}
-                                // style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
+                                // style={{backgroundImage: `url(${dummyData_slide_map_item[0].image})`}}
+                                style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
                             />
                         </div>
                     </div>
