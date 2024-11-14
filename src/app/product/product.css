@@ -3,6 +3,8 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #EBE8DB;
+
 }
 main {
     margin: 60px 100px 0 50px;
@@ -14,6 +16,7 @@ main {
 /*カート*/
 div#cart{
     margin-top: 70px;
+    margin-right: 50px;
     width: 27%;
     position: sticky;
     left: 50px;
@@ -54,6 +57,7 @@ div.innerCart{
 div.innerCart img{
     height: 120px;
     width: 120px;
+    box-shadow: #000a 1px 1px  3px;
 }
 div.innerCart p{
     margin: 0 0 0 20px;
@@ -84,8 +88,14 @@ div#info{
 /*商品画像 #photo*/
 div#photo{
     margin: 20px 50px 0 50px;
+
+}
+figure img{
+    box-shadow: #888 3px 3px 9px;
+
 }
 div#photo img#sum{
+
     width: 400px;
     height: 400px;
 }
@@ -107,6 +117,7 @@ li.picts a{
 li.picts a img.pictS{
     height: 50px;
     width: 50px;
+    box-shadow: #aaa 1px 1px  1px;
 }
 
 
@@ -157,7 +168,7 @@ div#control{
 }
 div#control img{
     display: inline-block;
-    margin: 0 0 10px 0;
+    margin: 0 5px 20px 0;
     height: 50px;
     width: 50px;
 }
@@ -170,3 +181,6 @@ button{
     padding: 10px 20px;
 }
 
+div#footer{
+    margin-top: 200px !important;
+}
