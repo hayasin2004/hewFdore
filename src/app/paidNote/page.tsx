@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
 import Image from "next/image";
 import "./paidNote.css"
 import Link from "next/link";
@@ -8,7 +9,7 @@ const PaidNote = () => {
 
     return (
         <>
-
+            <Header/>
             <span id={"btn"}>
                     <Link href={"toppage"}>
                 <button>
@@ -19,8 +20,8 @@ const PaidNote = () => {
                     </Link>
             </span>
             <div className={"paidText"}>
-                <h2>
-                    あなたの購入履歴
+                <h2 id={"PNtitle"}>
+                    購入履歴
                 </h2>
             </div>
             <div className={"listing"}>
@@ -87,6 +88,8 @@ const PaidNote = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer/>
         </>
     );
 }

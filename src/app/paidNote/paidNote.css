@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #D0C7B2;
 }
 
 span#btn{
@@ -10,23 +11,29 @@ span#btn{
 }
 
 span#btn button{
-    opacity: 0.5;
+    opacity: 0.7;
     padding: 10px 30px;
     border-radius: 20px;
+    background-color: #605252;
+    color: white;
+    font-weight: bold;
+
 }
 
 
-div.paidText h2{
-    margin-top: 70px;
-    margin-bottom: 120px;
+div.paidText h2#PNtitle{
+    margin-top: 50px;
+    /*margin-bottom: 100px;*/
+    padding: 25px 0;
     text-align: center;
     font-size: 2rem;
+    background-color: #8e7560;
 }
 
 div.listing{
     display: flex;
-    margin-left: 30px;
-    margin-bottom: 20px;
+    margin: 25px 25px;
+    background-color: white;
 }
 div.listing_product {
     display: flex;
@@ -38,12 +45,10 @@ div.product{
     display: flex;
     margin-left: 20px;
     margin-right: 10px;
-    background-color: #555555;
 }
 
 div.listingText {
     word-break: break-all;
-    background-color: #D0C7B2;
     width: 300px;
     padding: 20px;
 }
