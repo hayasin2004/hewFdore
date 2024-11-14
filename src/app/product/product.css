@@ -184,3 +184,9 @@ button{
 div#footer{
     margin-top: 200px !important;
 }
+
+@media screen and (max-width: 1060px) {
+    div#cart{
+        display: none;
+    }
+}
