@@ -186,7 +186,16 @@ div#footer{
 }
 
 @media screen and (max-width: 1060px) {
+    main{
+        flex-direction: column-reverse;
+    }
     div#cart{
-        display: none;
+        margin-top: 70px;
+        margin-right: 50px;
+        width: 100%;
+        position: static;
+        left: 50px;
+        top: 10px;
+
     }
 }
