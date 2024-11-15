@@ -34,11 +34,13 @@ const PaidNote = () => {
                             </p>
                             <p>出品者 : xxxx</p>
                             <p>価格 : xxxx</p>
+
                         </div>
-                    </div>
-                    <div className={"listingText"}>
-                        <h3>評価</h3>
-                        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        <div className={"listingText"}>
+                            <h3>評価</h3>
+                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        </div>
+
                     </div>
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
@@ -49,15 +51,13 @@ const PaidNote = () => {
                             <p>出品者 : xxxx</p>
                             <p>価格 : xxxx</p>
                         </div>
+                        <div className={"listingText"}>
+                            <h3>評価</h3>
+                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        </div>
+
                     </div>
-                    <div className={"listingText"}>
-                        <h3>評価</h3>
-                        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
-                    </div>
-                </div>
-            </div>
-            <div className={"listing"}>
-                <div className={"listing_product"}>
+
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
@@ -67,10 +67,11 @@ const PaidNote = () => {
                             <p>出品者 : xxxx</p>
                             <p>価格 : xxxx</p>
                         </div>
-                    </div>
-                    <div className={"listingText"}>
-                        <h3>評価</h3>
-                        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        <div className={"listingText"}>
+                            <h3>評価</h3>
+                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        </div>
+
                     </div>
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
@@ -81,10 +82,11 @@ const PaidNote = () => {
                             <p>出品者 : xxxx</p>
                             <p>価格 : xxxx</p>
                         </div>
-                    </div>
-                    <div className={"listingText"}>
-                        <h3>評価</h3>
-                        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjasdfasdfsadfasdfsdafasdfsdafasdfasdfasdwfasdfasdfasdfdsawff;</p>
+                        <div className={"listingText"}>
+                            <h3>評価</h3>
+                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
