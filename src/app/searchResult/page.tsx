@@ -8,13 +8,19 @@ import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
+import Stripe from "@/app/_components/stripe/Stripe";
+import {loadStripe} from "@stripe/stripe-js";
 
 
 
+const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+)
 
 const Page = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
+
 
     // 商品一覧の取得
     // searchResultにアクセスしたときのみ限りuseEffectでデータを取得してくる。
@@ -50,6 +56,16 @@ const Page = () => {
                 }
             })
             // console.log(JSON.stringify(productData))
+
+            const query = new URLSearchParams(window.location.search)
+            if (query.get("success")){
+                console.log("登録されたメールアドレスに支払い情報が送られました。")
+            }
+            if (query.get("canceled")){
+                console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
+            }
+
+
         }
         CallProductList()
     }, []);
@@ -79,7 +95,8 @@ const Page = () => {
                 </div>
                 <SearchResultProducts/>
             </div>
-
+        <div>
+        </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             {product.map((item) => (
@@ -89,6 +106,8 @@ const Page = () => {
                     <p>出品者名 : {item.productName}</p>
                     <p>商品説明 : {item.productDesc}</p>
                     <p>商品価格 : {item.productPrice}</p>
+                    <Stripe productId={item?._id} />
+
                     <br/>
                     <hr/>
                     <br/>
