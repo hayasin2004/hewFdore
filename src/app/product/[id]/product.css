@@ -4,8 +4,7 @@ body {
     margin: 0;
     padding: 0;
 }
-main {
-    margin: 60px 100px 0 50px;
+.productMain {
     display: flex;
     flex-direction: row;
     /*justify-content: space-between;*/
@@ -13,7 +12,10 @@ main {
 }
 /*カート*/
 div#cart{
-    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 6%;
+    margin-right: 3%;
     width: 27%;
     position: sticky;
     left: 50px;
@@ -73,6 +75,8 @@ p#total{
 div#product{
     display: flex;
     flex-direction: column;
+    margin-top: 3%;
+
 }
 /*商品情報全体*/
 div#info{

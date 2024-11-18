@@ -5,14 +5,14 @@ import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 const UserDetailPage = ({params}: { params: { id: string } }) => {
-    const [userData, setUserData] = useState<UserType[]>([])
+    const [userData, setUserData] = useState<null | UserType>(null)
 
     const id = params.id;
     console.log("取得してきた" + id);
 
     useEffect(() => {
         const response = async function data() {
-            const searchUser :UserType= await userProfile(id)
+            const searchUser 　 = await userProfile(id)
             console.log("オブジェクトの型"+searchUser)
             setUserData(searchUser)
         }
@@ -25,13 +25,10 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                 ObjectId: {params.id}
             </h1>
             <div>
-                {userData.map((item) => (
-                    <ul key={item._id}>
-                        <li>ユーザーId : {item.userId}</li>
-                        <li>ユーザー名 : {item.username}</li>
-                        <li>ユーザー名 : {item.email}</li>
-                    </ul>
-                ))}
+                        <p>ユーザーId : {userData?.userId}</p>
+                        <p>ユーザーオブジェクトID : {userData?.id}</p>
+                        <p>ユーザー名 : {userData?.username}</p>
+
             </div>
 
         </div>

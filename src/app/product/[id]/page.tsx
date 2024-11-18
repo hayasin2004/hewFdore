@@ -1,18 +1,33 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
 import Chat from "@/app/_components/chat/Chat";
 import Images from "next/image";
 import Link from 'next/link';
+import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 
-const Product = () => {
+const Product = ({params}: { params: { id: string } }) => {
+    const [product, setProduct] = useState<ProductType | null>()
+
+    const id = params.id
+    console.log("取得してきた商品" + id)
+    console.log("フロントエンドに帰ってきた" + product)
+    useEffect(() => {
+        const response = async () => {
+            const productCatch = await productDetail(id)
+            setProduct(productCatch)
+        }
+        response()
+    }, []);
 
     return (
         <>
             <Header/>
-            <main>
+            <div className={"productMain"}>
+
                 <div id="cart">
 
                     <div id={"cartText"}>
@@ -57,12 +72,15 @@ const Product = () => {
                                 <h2>出品者:
                                 </h2>
 
-                                <h2>Yuuna</h2>
+                                <h2>{product?.username}</h2>
                             </a>
                             <p>
                                 商品詳細<br/>
-                                去年の冬に入って購入したものになります。<br/>
-
+                                {product?.productDesc}<br/>
+                            </p>
+                            <p>
+                                商品価格<br/>
+                                {product?.productPrice}円<br/>
                             </p>
                             <p id="size">サイズ:S</p>
                             <p id="used">商品状態:多少使用感がある</p>
@@ -76,18 +94,18 @@ const Product = () => {
                         <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
                         <Link href={"sendAddress"}>
 
-                        <button
-                            type="button">購入する
-                        </button>
+                            <button
+                                type="button">購入する
+                            </button>
                         </Link>
                     </div>
                     <Chat/>
 
 
                 </div>
+            </div>
 
 
-            </main>
         </>
     );
 }
