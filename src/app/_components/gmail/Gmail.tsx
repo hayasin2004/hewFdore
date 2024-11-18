@@ -10,6 +10,7 @@ export default function Home() {
     const [message, setMessage] = useState("");
     const [status, setStatus] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
+    console.log(verificationCode)
     const [userInputCode, setUserInputCode] = useState("");
     const [isVerified, setIsVerified] = useState(false);
     const [showVerification, setShowVerification] = useState(false);
