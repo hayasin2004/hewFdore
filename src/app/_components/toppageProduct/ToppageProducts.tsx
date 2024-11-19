@@ -1,6 +1,6 @@
 import React from 'react';
 import "./toppageProducts.css"
-import Product from "@/app/product/page";
+import Product from "@/app/product/[id]/page";
 import Image from "next/image"
 import Link from "next/link";
 import {products} from "@/app/api/dummyData/data";

@@ -13,6 +13,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
     const loginNowUserId =  user?._id
     const id = params.id;
+    console.log("取得してきた" + id);
 
     useEffect(() => {
         const response = async function data() {
@@ -35,7 +36,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
     return (
         <div>
             <h1>
-                パラメータから取得: {params.id}
+                ObjectId: {params.id}
             </h1>
             <div>
                 <ul style={{display: "flex", flexDirection: "column"}}>

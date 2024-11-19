@@ -27,6 +27,7 @@ const userProfile = async (id?: string) :Promise<UserType | null> => {
                 followings :searchUser?.followings,
             }
         }
+
     } catch (err) {
         console.log(err)
         return null

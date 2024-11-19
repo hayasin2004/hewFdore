@@ -8,6 +8,7 @@ import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
+import Link from "next/link";
 
 
 
@@ -89,6 +90,9 @@ const Page = () => {
                     <p>出品者名 : {item.productName}</p>
                     <p>商品説明 : {item.productDesc}</p>
                     <p>商品価格 : {item.productPrice}</p>
+                    <Link href={`/product/${item._id}`} >
+                        詳細
+                    </Link>
                     <br/>
                     <hr/>
                     <br/>

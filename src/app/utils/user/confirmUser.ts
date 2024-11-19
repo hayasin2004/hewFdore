@@ -36,3 +36,4 @@ export default async function confirmUser(token?: string) :Promise<User | null> 
 
     }
 }
+
