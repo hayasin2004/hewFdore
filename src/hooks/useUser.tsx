@@ -3,19 +3,19 @@ import React, {useEffect, useState} from 'react';
 import confirmUser from "@/app/utils/user/confirmUser";
 
 // ユーザー情報を取得するカスタムフックです
-interface User {
-    token: string | null;
-    username: string;
-    email: string;
-    userId: string;
-    profilePicture : string;
+export interface useUser {
+    _id?: string;
+    token?: string | null;
+    username?: string;
+    email?: string;
+    userId?: string;
+    profilePicture? : string;
 }
 
 const useUser = () => {
-    const [user, setUser] = useState<User | null>(null)
+    const [user, setUser] = useState<useUser | null>(null)
     // console.log(user?.email)
     const token = localStorage.getItem("token");
-    const userId =  user?.userId
 
     useEffect(() => {
         if (token) {
@@ -33,7 +33,7 @@ const useUser = () => {
         // 副作用　→　起爆のタイミングを設定
         },[token]);
     //  useEffectの依存配列でtokenが変更されたのみ発火する
-    return {user, token, userId: user?.userId, username: user?.username, email: user?.email ,profilePicture : user?.profilePicture}
+    return {user}
 }
 
 export default useUser;

@@ -23,9 +23,7 @@ interface User {
 
 const Header = () => {
     const {user} = useUser()
-    console.log(user?.username)
-    console.log(user?.userId)
-    console.log(user?.email)
+
 
 
     // 通知用モーダル

@@ -14,8 +14,8 @@ export interface UserType {
     profilePicture? : string
     coverProfilePicture? : string
     desc? : string
-    followings? : string
-    followers? : string
+    followings? : string[]
+    followers? : string[]
 }
 
 
