@@ -6,21 +6,28 @@ import {stripePayment} from "@/app/utils/stripe/stripe";
 import {string} from "prop-types";
 import {useRouter} from "next/navigation";
 
-const Stripe= ({productId} : {productId : string}) => {
-    const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        const response = await stripePayment(productId);
-}
+const Stripe = ({productId}: { productId: string }) => {
+        const router = useRouter();
+    useEffect(() => {
+
+    }, []);
+        const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
+            e.preventDefault()
+            const response = await stripePayment(productId);
+            router.push(response?.checkout_url);
+
+        }
 
 
-return (
-    <div>
-        <form method="POST">
-            <button onClick={StripeUrl} type={"submit"} role={"link"}>お支払い</button>
-        </form>
-    </div>
-);
-}
+        return (
+            <div>
+                <form method="POST">
+                    <button onClick={StripeUrl} type={"submit"} role={"link"}>お支払い</button>
+                </form>
+            </div>
+
+        );
+    }
 ;
-
 export default Stripe;
+

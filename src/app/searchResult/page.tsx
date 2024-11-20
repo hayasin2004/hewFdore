@@ -14,10 +14,10 @@ import {loadStripe} from "@stripe/stripe-js";
 
 
 const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 )
 
-const Page = () => {
+const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
 
@@ -120,4 +120,4 @@ const Page = () => {
 }
 
 
-export default Page;
+export default SearchPageProducts;

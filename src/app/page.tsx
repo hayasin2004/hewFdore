@@ -6,10 +6,14 @@ import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppa
 import Header from "@/app/_components/header/Header";
 import Toppage from "@/app/toppage/page";
 import Stripe from "@/app/_components/stripe/Stripe";
+import PaidNote from "@/app/paidNote/page";
+import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
+import SearchPageProducts from "@/app/searchResult/page";
 export default function Home() {
   return (
     <main>
       <div>
+          <SearchPageProducts />
           {/*<Toppage />*/}
       {/*<Login />*/}
       {/**/}

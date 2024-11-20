@@ -8,7 +8,7 @@ import {redirect} from "next/navigation";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function stripePayment(productId: string ) {
+export async function stripePayment(productId: string) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB()
     // Mongodbから_idで商品検索
@@ -51,8 +51,8 @@ export async function stripePayment(productId: string ) {
             cancel_url: "http://localhost:3000",
         })
         console.log("こにちは"+ session.url)
-    // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
-       return {checkout_url : session.url}
+        // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
+        return  NextResponse.json({checkout_url : session.url})
 
     } catch (err) {
         console.log(err)
