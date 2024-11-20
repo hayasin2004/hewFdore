@@ -8,11 +8,12 @@ import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppa
 import Header from "@/app/_components/header/Header";
 import Toppage from "@/app/toppage/page";
 import Product from "@/app/product/[id]/page";
+import SearchProductPage from "@/app/searchResult/page";
 export default function Home() {
   return (
     <main>
       <div>
-          <Product />
+          <SearchProductPage />
           {/*<Toppage />*/}
       {/*<Login />*/}
       {/**/}

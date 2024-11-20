@@ -13,7 +13,7 @@ import Link from "next/link";
 
 
 
-const Page = () => {
+const SearchProductPage = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
 
@@ -105,4 +105,4 @@ const Page = () => {
 }
 
 
-export default Page;
+export default SearchProductPage;
