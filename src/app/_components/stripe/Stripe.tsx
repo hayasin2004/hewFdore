@@ -16,7 +16,22 @@ const Stripe = ({productId}: { productId: string }) => {
             const response = await stripePayment(productId);
             router.push(response?.checkout_url);
 
+
         }
+
+    const handlePayPayPayment = async () => {
+        const res = await fetch("/api/paypay", {
+            method: "POST",
+            headers : {
+                "content-type": "application/json",
+            },
+            body : JSON.stringify({
+                productId : productId
+            })
+        })
+        const json = await res.json()
+        window.location.href = json.url
+    }
 
 
         return (
@@ -24,6 +39,14 @@ const Stripe = ({productId}: { productId: string }) => {
                 <form method="POST">
                     <button onClick={StripeUrl} type={"submit"} role={"link"}>お支払い</button>
                 </form>
+
+                <h1>
+                    PayPay 決済テスト
+                </h1>
+
+                <button onClick={handlePayPayPayment}>
+                    支払う
+                </button>
             </div>
 
         );
