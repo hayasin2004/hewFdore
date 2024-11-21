@@ -1,5 +1,6 @@
 "use client"
 import React, {useEffect, useState} from 'react';
+import "./searchResult.css"
 import Header from "@/app/_components/header/Header";
 import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
@@ -81,10 +82,11 @@ const Page = () => {
                 <SearchResultProducts/>
             </div>
 
-
+            <div id={"items"}>
             {/* 取り出せる内容はコンソールに表示してます。*/}
             {product.map((item) => (
-                <div key={item._id} style={{textAlign: "center"}}>
+                <div className={"item_Icon"} key={item._id} style={{textAlign: "center"}}>
+
                     <p>商品番号 : {item._id}</p>
                     <p>ユーザーネーム : {item.userId}</p>
                     <p>商品説明 : {item.productName}</p>
@@ -95,6 +97,7 @@ const Page = () => {
                     <br/>
                 </div>
             ))}
+            </div>
 
 
         </div>

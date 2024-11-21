@@ -2,15 +2,15 @@ body {
 
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 
     position: relative;
     z-index: 2 ;
 }
 header {
-    display: -webkit-flex;
+    /*display: -webkit-flex;*/
     display: inline-block;
-    width: auto;
+    width: 100%;
 
     background-color: #EBE8DB;
 }
@@ -40,7 +40,7 @@ div.bar{
 }
 
 header div.bar ul {
-    display: -webkit-flex;
+    /*display: -webkit-flex;*/
     display: flex;
     width: 1200px;
     list-style: none;

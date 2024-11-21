@@ -1,0 +1,19 @@
+body{
+    background-color: #EBE8DB;
+}
+
+div#items{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:70%;
+
+}
+
+div.item_Icon{
+    display: block;
+    width: 200px;
+    height: 300px;
+    background-color: #CFC8A9;
+
+}
