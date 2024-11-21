@@ -1,6 +1,7 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
+import "./searchResult.css"
 import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";

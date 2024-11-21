@@ -12,6 +12,7 @@ const Chat = () => {
                         alt={"サンプルユーザーアイコン"}/>
                         <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
                         <input type="text" name="msg" id="msg" placeholder="出品者へのお問い合わせはこちらから"/>
+                        <input type="submit" formTarget={"msg"}/>
                 </div>
         </>
 
