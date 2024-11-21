@@ -20,6 +20,7 @@ export interface DBProductType {
 
 export  async  function GET(req : NextApiRequest , res : NextResponse){
     await  connectDB()
+
     if (req.method === "GET"){
         // _id: new ObjectId('6724500e5b27109064e40c08'),
         //     userId: '66dd839b7f87e2981ba6c7a0',
@@ -30,12 +31,12 @@ export  async  function GET(req : NextApiRequest , res : NextResponse){
         try {
             const product = await  Product.find();
             const productDetail : DBProductType[] = product.map((item) => {
+
                 return {_id :  item?._id , userId : item?.userId, productName : item?.productName,  productDesc : item?.productDesc , productPrice : item?.productPrice}
                 //     商品画像がない
             })
             // return  res.status(200).json({status : "Success" , data : productDetail})
             return  NextResponse.json(productDetail)
-
         }catch (err){
             // res.status(500).json({status : "Error" , message : "商品の取得に失敗"})
             return  NextResponse.json({status : "Error" , message: "商品の取得に失敗"})

@@ -8,7 +8,7 @@ import updateFollowings from "@/app/utils/user/ApdateFollowings";
 import useUser from "@/hooks/useUser";
 
 
-const UserDetailPage = ({params}: { params: { id: string } }) => {
+const UserDetailPage = ({params}: { params: { id?: string } }) => {
     const [userData, setUserData] = useState<UserType | null>()
     const {user} = useUser()
     const loginNowUserId =  user?._id
