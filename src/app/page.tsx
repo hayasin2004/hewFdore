@@ -6,6 +6,7 @@ import NewToppage from "@/app/newToppage/page";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
 import Header from "@/app/_components/header/Header";
 import Toppage from "@/app/toppage/page";
+
 export default function Home() {
   return (
     <main>
