@@ -11,12 +11,15 @@ import Stripe from "@/app/_components/stripe/Stripe";
 import PaidNote from "@/app/paidNote/page";
 import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
 import SearchPageProducts from "@/app/searchResult/page";
+import Gmail from "./_components/gmail/Gmail";
 export default function Home() {
   return (
     <main>
       <div>
           <SearchPageProducts />
           {/*<Toppage />*/}
+          {/*<Toppage />*/}
+          <Gmail />
       {/*<Login />*/}
       {/**/}
       </div>
