@@ -1,4 +1,5 @@
-"use server"
+"use server";
+
 import {NextApiRequest} from "next";
 import {NextResponse} from "next/server";
 import {Product} from "@/models/Product";
@@ -17,8 +18,7 @@ const PayPaySuccessResponse = z.object({
             url: z.string(),
         }),
     }),
-})
-
+});
 
 PAYPAY.Configure({
     clientId: process.env.PAYPAY_API_KEY || '',
@@ -29,92 +29,69 @@ PAYPAY.Configure({
 
 export async function stripePaymentPayPay(productId: string, paymentMethod: string) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-    await connectDB()
-    // Mongodbから_idで商品検索
+    await connectDB();
+
+    // MongoDBから_idで商品を検索
     const product = await Product.findOne({_id: productId});
-    // console.log(product);　
-    //↑のログのコメントアウト解除するとどうやって取ってるのか見れる。
-    // ↓見つかったものをここで宣言
-    const productObjectId = product._id
-    const productPrice = product.productPrice
-    const productName = product.productName
-    const productDesc = product.productDesc
+    if (!product) {
+        throw new Error("Product not found");
+    }
+
+    const productObjectId = product._id;
+    const productPrice = product.productPrice;
+    const productName = product.productName;
+    const productDesc = product.productDesc;
 
     const merchantPaymentId = uuidv4();
+
     // 製品情報をStripeに追加
     const stripeProduct = await stripe.products.create({
         name: productName,
         description: productDesc,
-    })
+    });
 
     const price = await stripe.prices.create({
         unit_amount: productPrice,
         currency: "jpy",
-        product: stripeProduct.id
-    })
-    const payload = {
-        merchantPaymentId: merchantPaymentId,
-        amount: {
-            amount: productPrice,
-            currency: "JPY",
-        },
-        requestedAt: Math.floor(Date.now() / 1000), // 現在のタイムスタンプ
-    };
-
-    const paypayResponse = await PAYPAY.QRCodeCreate(payload);
-
-    // 商品情報の取得などの処理...
+        product: stripeProduct.id,
+    });
 
     if (paymentMethod === 'paypay') {
-
         try {
             const payload = {
                 merchantPaymentId: merchantPaymentId,
-                amount: {
+                 amount: {
                     amount: productPrice,
                     currency: "JPY",
                 },
-                requestedAt: Math.floor(Date.now() / 1000), // 現在のタイムスタンプ
-                orderDescription: productName,
+                requestedAt: Math.floor(Date.now() / 1000),
+                orderDescription: productDesc,
                 codeType: 'ORDER_QR',
-
             };
-            const res = await QRCodeCreate(payload)
-            const url = PayPaySuccessResponse.parse(res).BODY.data.url
-            return {url: url,}
+
+            const res = await QRCodeCreate(payload);
+            const url = PayPaySuccessResponse.parse(res).BODY.data.url;
+
+            // PayPay QRコード情報をStripeの製品にメタデータとして保存
+              await stripe.products.create(stripeProduct.id, {
+                payment_method_types: ["card"],
+                line_items: [
+                    {
+                        price: price.id,
+                        quantity: 1,
+                    }
+                ],
+                metadata: {
+                    paypay_code_id: merchantPaymentId,
+                    paypay_qr_url: url,
+                },
+            });
+            console.log("エラー箇所特定");
+            return { url: url };
+
         } catch (error) {
             console.error("Payment Error:", error);
         }
+
     }
-
 }
-
-//     多分ここでMongoの価格が出てくる。
-// const session = await stripe.checkout.sessions.create({
-//
-//     payment_method_types : ['card'],
-//     line_items: [
-//         {
-//             price: price.id,
-//             quantity: 1,
-//         }
-//     ],
-//     mode: "payment",
-//     codeType: 'ORDER_QR',
-//     // req.bodu.url　→　mongodbのproductIdを付与するのかな？
-//     success_url: `http://localhost:3000/payComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
-//     cancel_url: "http://localhost:3000",
-//     orderDescription: 'Test Order',
-//     redirectType: 'WEB_LINK',
-// })
-// 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
-//    return {checkout_url : session.url , paypay_url : session.redirectUrl}
-//
-// } catch (err) {
-//     console.log(err)
-//     return  null
-// }
-// }
-
-
-//
