@@ -20,13 +20,14 @@ const Stripe = ({productId}: { productId: string }) => {
                 e.preventDefault()
                 if (paymentMethod === "paypay") {
                     const response = await stripePaymentPayPay(productId, paymentMethod);
-                console.log(response);
-                if (response?.url) {
-                    window.location.href = response.url;
-                }   else {
-                    console.error("Invalid payment URLs");
-                }
-                }else if (paymentMethod === "card") {
+                    console.log(response);
+                    if (response?.url) {
+                        window.location.href = response.url;
+
+                    } else {
+                        console.error("Invalid payment URLs");
+                    }
+                } else if (paymentMethod === "card") {
                     const response = await stripePayment(productId, paymentMethod);
                     console.log(response);
                     if (response?.checkout_url) {

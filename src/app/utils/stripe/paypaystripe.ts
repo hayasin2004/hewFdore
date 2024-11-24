@@ -9,8 +9,11 @@ import {redirect} from "next/navigation";
 import PAYPAY, {QRCodeCreate} from "@paypayopa/paypayopa-sdk-node";
 import {v4 as uuidv4} from 'uuid';
 import {z} from "zod";
+import {response} from "express";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+
 const PayPaySuccessResponse = z.object({
     STATUS: z.literal(201),
     BODY: z.object({
@@ -50,12 +53,12 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
         description: productDesc,
     });
 
+    // ↑特定。これともう一個の引数が正しければ今のエラーが治る
     const price = await stripe.prices.create({
         unit_amount: productPrice,
         currency: "jpy",
         product: stripeProduct.id,
     });
-
     if (paymentMethod === 'paypay') {
         try {
             const payload = {
@@ -67,25 +70,33 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
                 requestedAt: Math.floor(Date.now() / 1000),
                 orderDescription: productDesc,
                 codeType: 'ORDER_QR',
-            };
 
+
+            };
+            console.log(`Payment completed:`);
+            console.log(`Merchant Payment ID: ${merchantPaymentId}`);
             const res = await QRCodeCreate(payload);
             const url = PayPaySuccessResponse.parse(res).BODY.data.url;
 
+
             // PayPay QRコード情報をStripeの製品にメタデータとして保存
-              await stripe.products.create(stripeProduct.id, {
-                payment_method_types: ["card"],
+             const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
                 line_items: [
                     {
                         price: price.id,
                         quantity: 1,
                     }
                 ],
+                mode: "payment",
                 metadata: {
                     paypay_code_id: merchantPaymentId,
                     paypay_qr_url: url,
                 },
+                  success_url: `http://localhost:3000/payComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
+                  cancel_url: "http://localhost:3000",
             });
+
             console.log("エラー箇所特定");
             return { url: url };
 
