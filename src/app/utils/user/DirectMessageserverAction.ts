@@ -4,7 +4,7 @@ import {string} from "prop-types";
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 
-const DirectMessageserverAction =async (detailUser :string ,currentUser? : string)=> {
+const DirectMessageserverAction =async (detailUser :string ,currentUser : string)=> {
     await connectDB()
     console.log("erxtcyvugbijomkp" +currentUser)
     const partnerUserData = await User.findById({_id : detailUser});

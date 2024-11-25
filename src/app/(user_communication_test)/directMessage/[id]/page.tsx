@@ -7,12 +7,13 @@ import DirectMessageserverAction from "@/app/utils/user/DirectMessageserverActio
 const DirectMessage = ({params} : {params : {id? :string}}) => {
     console.log(params);
     const detailUser  = params?.id as string;
+    console.log(detailUser)
     const {user} = useUser()
-    const currentUser = user?._id as string
+    const currentUser = JSON.stringify(user);
     console.log(JSON.stringify(user));
     useEffect(() => {
         const response = async () => {
-            // const MessageDate = await DirectMessageserverAction(detailUser ,currentUser)
+            const MessageDate = await DirectMessageserverAction(detailUser , currentUser)
 
         }
         response()
