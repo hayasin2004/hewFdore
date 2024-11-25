@@ -11,7 +11,7 @@ import useUser from "@/hooks/useUser";
 const UserDetailPage = ({params}: { params: { id?: string } }) => {
     const [userData, setUserData] = useState<UserType | null>()
     const {user} = useUser()
-    const loginNowUserId =  user?._id
+    const loginNowUserId = user?._id
     const id = params.id;
     console.log("取得してきた" + id);
 
@@ -24,9 +24,9 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
     }, [id]);
 
     const followings = async () => {
-        const userFollowings  = userData?.id
+        const userFollowings = userData?.id
         console.log(userFollowings)
-        const response = await updateFollowings(userFollowings , loginNowUserId)
+        const response = await updateFollowings(userFollowings, loginNowUserId)
         try {
         } catch (err) {
             console.log(err)
@@ -53,6 +53,11 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
                         </button>
                     </li>
                     <li>フォロワー一覧: {userData?.followers}</li>
+                    <li>
+                        <Link href={`/directMessage/${id}`}>
+                            DMする
+                        </Link>
+                    </li>
                 </ul>
 
                 <div>

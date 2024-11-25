@@ -21,7 +21,7 @@ const Product = ({params}: { params: { id: string } }) => {
             setProduct(productCatch)
         }
         response()
-    }, []);
+    }, [id]);
 
     return (
         <>
