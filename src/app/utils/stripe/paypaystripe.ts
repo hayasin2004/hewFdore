@@ -9,7 +9,6 @@ import {redirect} from "next/navigation";
 import PAYPAY, {QRCodeCreate} from "@paypayopa/paypayopa-sdk-node";
 import {v4 as uuidv4} from 'uuid';
 import {z} from "zod";
-import {response} from "express";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -59,6 +58,8 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
         currency: "jpy",
         product: stripeProduct.id,
     });
+
+    console.log(price , stripeProduct);
     if (paymentMethod === 'paypay') {
         try {
             const payload = {
@@ -70,8 +71,6 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
                 requestedAt: Math.floor(Date.now() / 1000),
                 orderDescription: productDesc,
                 codeType: 'ORDER_QR',
-
-
             };
             console.log(`Payment completed:`);
             console.log(`Merchant Payment ID: ${merchantPaymentId}`);
@@ -97,7 +96,7 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
                   cancel_url: "http://localhost:3000",
             });
 
-            console.log("エラー箇所特定");
+             console.log(session);
             return { url: url };
 
         } catch (error) {

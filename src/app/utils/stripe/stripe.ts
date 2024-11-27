@@ -48,12 +48,11 @@ export async function stripePayment(productId: string, paymentMethod: string) {
                     }
                 ],
                 mode: "payment",
-
                 // req.bodu.url　→　mongodbのproductIdを付与するのかな？
                 success_url: `http://localhost:3000/payComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: "http://localhost:3000",
             })
-            console.log("こにちは" + session.url)
+            console.log("こにちは" + session)
             // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
             return {checkout_url: session.url}
 

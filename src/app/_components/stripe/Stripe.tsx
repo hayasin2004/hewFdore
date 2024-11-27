@@ -7,7 +7,7 @@ import {string} from "prop-types";
 import {useRouter} from "next/navigation";
 import {stripePaymentPayPay} from "@/app/utils/stripe/paypaystripe";
 
-const Stripe = ({productId}: { productId: string }) => {
+const CompleteStripe = ({productId}: { productId: string }) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
         console.log(paymentMethod)
         const router = useRouter();
@@ -23,7 +23,7 @@ const Stripe = ({productId}: { productId: string }) => {
                     console.log(response);
                     if (response?.url) {
                         window.location.href = response.url;
-
+                        console.log(response.url)
                     } else {
                         console.error("Invalid payment URLs");
                     }
@@ -81,5 +81,5 @@ const Stripe = ({productId}: { productId: string }) => {
         );
     }
 ;
-export default Stripe;
+export default CompleteStripe;
 

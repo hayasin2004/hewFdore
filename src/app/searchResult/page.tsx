@@ -9,13 +9,15 @@ import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
-import Stripe from "@/app/_components/stripe/Stripe";
+import CompleteStripe from "@/app/_components/stripe/Stripe";
 import {loadStripe} from "@stripe/stripe-js";
+import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
+import Stripe from "@/app/_components/stripe/Stripe";
 
 
 
 const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+    process.env.STRIPE_SECRET_KEY!
 )
 
 const SearchPageProducts = () => {
