@@ -3,7 +3,9 @@ import React, {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import useUser from "@/hooks/useUser";
 import DirectMessageserver from "@/app/utils/user/DirectMessageserver";
-
+import {io} from "socket.io-client";
+const socket = io("http://localhost:8080/");
+console.log(socket)
 const DirectMessage = ({params}: { params: { id?: string } } ) => {
     console.log(params);
     const detailUser = params?.id as string;
