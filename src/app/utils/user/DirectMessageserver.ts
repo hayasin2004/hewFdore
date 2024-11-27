@@ -4,8 +4,11 @@ import {string} from "prop-types";
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 
-const DirectMessageserverAction = async (detailUser?: string, currentUser?: string) => {
+const DirectMessageserver = async (detailUser?: string, currentUser?: string) => {
     await connectDB()
+
+
+
     try {
         console.log("erxtcyvugbijomkp" + currentUser)
         const partnerUserData = await User.findById({_id: detailUser});
@@ -16,4 +19,4 @@ const DirectMessageserverAction = async (detailUser?: string, currentUser?: stri
         console.log(err)
     }
 }
-export default DirectMessageserverAction
+export default DirectMessageserver
