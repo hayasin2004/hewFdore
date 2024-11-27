@@ -66,7 +66,7 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
                             </span>
                 ))}
                     <li>
-                        <Link href={`/directMessage/${id}`}>
+                        <Link href={{pathname :`/directMessage/${id}` , query : {currentUserId :loginNowUserId}}}  >
                             DMする
                         </Link>
                     </li>
