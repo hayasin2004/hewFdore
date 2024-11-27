@@ -9,7 +9,6 @@ const userProfile = async (id?: string) :Promise<UserType | null> => {
     await connectDB()
     try {
         const searchUser: UserType = await User.findOne({_id: id}).exec()
-
         if (!searchUser) {
             console.log("ユーザーが見つかりませんでした。")
             return null

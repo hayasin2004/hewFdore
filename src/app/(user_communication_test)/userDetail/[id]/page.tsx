@@ -9,11 +9,23 @@ import useUser from "@/hooks/useUser";
 
 
 const UserDetailPage = ({params}: { params: { id?: string } }) => {
-    const [userData, setUserData] = useState<UserType | null>()
+    const [userData, setUserData] = useState<UserType | null>(null)
+    console.log(userData)
     const {user} = useUser()
     const loginNowUserId = user?._id
     const id = params.id;
     console.log("取得してきた" + id);
+
+    const followings = async () => {
+        try {
+            const userFollowings = userData?.id
+            console.log(userFollowings)
+            const response  = await updateFollowings(userFollowings, loginNowUserId)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     useEffect(() => {
         const response = async function data() {
@@ -23,15 +35,6 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
         response()
     }, [id]);
 
-    const followings = async () => {
-        const userFollowings = userData?.id
-        console.log(userFollowings)
-        const response = await updateFollowings(userFollowings, loginNowUserId)
-        try {
-        } catch (err) {
-            console.log(err)
-        }
-    }
 
     return (
         <div>
@@ -40,19 +43,28 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
             </h1>
             <div>
                 <ul style={{display: "flex", flexDirection: "column"}}>
-                    <li>オブジェクトID: {userData?.id}</li>
+                    <li>オブジェクトID: {userData?._id}</li>
                     <li>ユーザーID: {userData?.userId}</li>
                     <li>ユーザー名: {userData?.username}</li>
                     <li>ユーザーメールアドレス: {userData?.email}</li>
                     <li>ユーザー自己紹介: {userData?.desc}</li>
                     <li>背景画像１: {userData?.profilePicture}</li>
                     <li>背景画像２: {userData?.coverProfilePicture}</li>
-                    <li>フォロー一覧: {userData?.followings}
+                    <li>フォロー一覧:
+                        フォロー中 : {userData?.followings?.map((item) => (
+                            <span key={item?._id}>
+                            <Link href={`${item?._id}`}><p>{item?._id}</p></Link>
+                            </span>
+                        ))}
                         <button onClick={() => followings()}>
                             フォローする
                         </button>
                     </li>
-                    <li>フォロワー一覧: {userData?.followers}</li>
+                    フォロワー: {userData?.followers?.map((item) => (
+                    <span key={item?._id}>
+                            <p>{item._id}</p>
+                            </span>
+                ))}
                     <li>
                         <Link href={`/directMessage/${id}`}>
                             DMする
@@ -62,7 +74,7 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
 
                 <div>
                     <p>ログインしている人</p>
-                    id : {user?._id}
+                    id : {user?._id} <br/>
                     username : {user?.username}
                 </div>
 

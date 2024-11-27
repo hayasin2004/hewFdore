@@ -14,17 +14,24 @@ export interface UserType {
     profilePicture? : string
     coverProfilePicture? : string
     desc? : string
-    followings? : string[]
-    followers? : string[]
+    followings? : UserFollow[]
+    followers? : UserFollow[]
 }
+
+export  interface UserFollow {
+    _id: string
+    followings? : string,
+    followers? : string,
+}
+
 
 
 export async function GET(req: NextApiRequest, res: NextResponse) {
     await connectDB()
     if (req.method === "GET") {
         try {
-            const users = await User.find()
-            const userList  :UserType[] = users.map((item) => {
+            const users   = await User.find()
+            const userList  = users.map((item) => {
                 return {id : item?._id , userId :  item?.UserId , username : item?.username , email : item?.email ,
                     profilePicture : item?.profilePicture ,coverProfilePicture : item?.coverProfilePicture , desc : item?.desc,
                     followings : item?.followings , followers : item?.followers  }

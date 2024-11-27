@@ -4,20 +4,17 @@ import useUser from "@/hooks/useUser";
 import DirectMessageserverAction from "@/app/utils/user/DirectMessageserverAction";
 
 
-const DirectMessage = ({params} : {params : {id? :string}}) => {
+const DirectMessage = ({params}: { params: { id?: string } }) => {
     console.log(params);
-    const detailUser  = params?.id as string;
+    const detailUser = params?.id as string;
     console.log(detailUser)
     const {user} = useUser()
-    const currentUser = JSON.stringify(user);
-    console.log(JSON.stringify(user));
-    useEffect(() => {
-        const response = async () => {
-            const MessageDate = await DirectMessageserverAction(detailUser , currentUser)
-
-        }
-        response()
-    }, []);
+    const currentUser = user?._id;
+    console.log(user?._id);
+    const response = async () => {
+        const MessageDate = await DirectMessageserverAction(detailUser, currentUser)
+    }
+    response()
     return (
         <>
 
