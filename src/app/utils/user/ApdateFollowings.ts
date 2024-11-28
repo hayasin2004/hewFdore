@@ -14,7 +14,8 @@ const updateFollowings = async (userFollowings? : string , loginNowUserId?: stri
         // フォローの処理
         const  following  = await currentUser.updateOne({followings : user})
         // フォローされる側の処理
-        const followers =  await user.updateOne({followers : currentUser})
+        const followers =  await user.updateOne({$push: {followers: currentUser._id}})
+        console.log("追加された？"+JSON.stringify(followers))
         if (!following) {
             console.log("ログインしてからフォローしてください")
             return  null

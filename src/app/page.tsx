@@ -21,37 +21,14 @@ export interface ChatType {
 }
 
 export default function Home() {
-    const [message, setMessage] = useState("")
-    const [chatList, setChatList] = useState<ChatType[]>([])
-    console.log(chatList)
-    const socket = io("http://localhost:8080");
-    // socket.ioに送信
-    const handleSendMessage = (e: HTMLButtonElement) => {
-        socket.emit("send_message", {message: message})
-        setMessage("")
-    }
-
-    // socket.ioから受信
-    socket.on("received_message", (data) => {
-        console.log("socketかラ受け取った奴" + JSON.stringify(data));
-        setChatList([...chatList  , data])
-    })
-
 
     return (
         <main>
-            <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
-            <button onClick={(e) => handleSendMessage(e)}>送信</button>
 
-            {chatList.map((item) => (
-                <ul key={item.message}>
-                   <li>{item.message}</li>
-                </ul>
-            ))}
 
             {/*<div>*/}
             {/*    <SearchProductResult/>*/}
-            {/*    /!*<Toppage />*!/*/}
+                <Toppage />
             {/*    /!*<Login />*!/*/}
             {/*    /!**!/*/}
             {/*</div>*/}
