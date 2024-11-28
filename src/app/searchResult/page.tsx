@@ -8,6 +8,7 @@ import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchR
 // ダミーデータ取得
 import {products as data}  from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
+import {width} from "@mui/system";
 
 
 const Page = () => {
@@ -16,14 +17,14 @@ const Page = () => {
     const products : productsProps[] = data
     console.log(products)
     return (
-        <div>
+        <div style={{backgroundColor:"#EBE8DB"}}>
             <SearchHeader/>
-            <div style={{width: "1200px", justifyContent: "space-between", display: "flex"}}>
-                <div style={{"marginTop": "60px" , width: "600px"}}>
+            <div className={"searchresult"}>
+                <div style={{width:"40%"}}>
                     <Sidebar/>
                 </div>
                 {/*ダミーデータをプロップスで渡している。*/}
-                <SearchResultProducts product={products} 　 />
+                <SearchResultProducts product={products}/>
             </div>
         </div>
     );
