@@ -11,7 +11,8 @@ export  interface Blogtype{
 
 //SSG
 export const getStaticProps = async() => {
-    const data : Blogtype= await client.get({ endpoint: "blog"  });
+    const data : Blogtype= await client(blog);
+    console.log(data)
     //console.log(data);
     return{
         props:{
@@ -20,16 +21,19 @@ export const getStaticProps = async() => {
     };
 };
 
-export default function Home({ blog }) {
+const Blogintroduction = () => {
+    console.log("呼び出してみる")
+    getStaticProps()
     return (
         <div>
-            {blog.map((blog) => (
-                <li key={blog.id}>
-                    <Link href={`blog/${blog.id}`}>
-                        <a href="">{blog.title}</a>
-                    </Link>
-                </li>
-            ))}
+            {/*{blog.map((blog) => (*/}
+            {/*    <li key={blog.id}>*/}
+            {/*        <Link href={`/blog/${blog.id}`}>*/}
+            {/*            <a href="">{blog.title}</a>*/}
+            {/*        </Link>*/}
+            {/*    </li>*/}
+            {/*))}*/}
         </div>
     );
 }
+export default Blogintroduction;

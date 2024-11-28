@@ -7,12 +7,14 @@ import NewToppage from "@/app/newToppage/page";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
 import Header from "@/app/_components/header/Header";
 import Toppage from "@/app/toppage/page";
+import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 
 export default function Home() {
   return (
     <main>
       <div>
-          <Toppage />
+          <Blogintroduction />
+          {/*<Toppage />*/}
       {/*<Login />*/}
       {/**/}
       </div>
