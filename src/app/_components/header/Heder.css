@@ -238,4 +238,5 @@ span.under_bar {
 /* 1250より小さい場合は要素を畳まないとだめかも */
 @media screen and (max-width: 1250px) {
 
+
 }

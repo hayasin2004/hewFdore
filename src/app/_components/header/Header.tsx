@@ -8,7 +8,6 @@ import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
-import userNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 
 interface User {
