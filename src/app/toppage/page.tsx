@@ -14,7 +14,7 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 
 import Image from "next/image"
 import {color} from "@mui/system";
-
+// 幅揃えします
 
 const Toppage = () => {
     useEffect(() => {
