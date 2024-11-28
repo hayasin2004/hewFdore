@@ -11,7 +11,7 @@ import axios from "axios";
 import {useRouter} from "next/navigation";
 import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
-import createUser from "@/app/utils/registerUser";
+import createUser from "@/app/utils/user/registerUser";
 import Login from '../login/page';
 
 

@@ -6,7 +6,7 @@ import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import {redirect} from "next/navigation";
 
-import {loginUser} from "@/app/utils/loginUser";
+import {loginUser} from "@/app/utils/user/loginUser";
 import {useRouter} from "next/navigation";
 import Toppage from "@/app/toppage/page";
 import Link from "next/link";

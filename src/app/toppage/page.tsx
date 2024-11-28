@@ -1,11 +1,11 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import ToppageMain from "@/app/_components/toppageMain/ToppageMain";
-import confirmUser from "@/app/utils/confirmUser";
+import confirmUser from "@/app/utils/user/confirmUser";
 import Footer from "@/app/_components/footer/Footer";
-import {loginUser} from "@/app/utils/loginUser";
+import {loginUser} from "@/app/utils/user/loginUser";
 import "./toppage.css"
 // import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
@@ -14,21 +14,45 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 
 import Image from "next/image"
 import {color} from "@mui/system";
+import route from "@/app/api/product/route";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
+import axios from "axios";
 
 
 const Toppage = () => {
+
+    const [productList, setProductList] = useState([])
+    console.log(productList)
+
+
     useEffect(() => {
-        // エンコードしたtokenを検証する
-        const token = localStorage.getItem("token") as string;
-        confirmUser(token);
+        // // エンコードしたtokenを検証する
+        // const token = localStorage.getItem("token") as string;
+        // confirmUser(token);
         // console.log(token);
         // token.username
         // const username =
+        const product = async () => {
+            try {
+                const response = await axios.get("/api/product");
+                if (response.status === 200) {
+                    setProductList(response.data);
+                } else {
+                    console.error("Error: Unable to fetch products.");
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        product()
+
     }, []);
 
 
     return (
         <>
+
             <div className={"toppageVideo"}>
 
                 <video src="/videos/background3.mp4" width={700} height={1080} autoPlay muted loop></video>

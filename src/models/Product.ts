@@ -1,6 +1,7 @@
 import mongoose  from 'mongoose';
 
-const ProductPost = new  mongoose.Schema({
+const ProductSchema = new  mongoose.Schema({
+
     userId : {
         type: String,
         required: true,
@@ -8,11 +9,13 @@ const ProductPost = new  mongoose.Schema({
     productName : {
         type: String,
         required: true,
+        default: '',
     },
     productDesc : {
         // 商品紹介
         type: String,
         max: 400,
+        default: "",
     },
     productPrice : {
         type: Number,
@@ -29,4 +32,4 @@ const ProductPost = new  mongoose.Schema({
 },
     {timestamps: true}
 )
-module.exports = mongoose.model("Product" , ProductPost)
+export const  Product = mongoose.models.Product ||  mongoose.model("Product" , ProductSchema);

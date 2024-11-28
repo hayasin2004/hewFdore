@@ -14,7 +14,7 @@ export interface User {
 export default async function confirmUser(token?: string) :Promise<User | null> {
 
     await connectDB()
-
+    console.log("うすいけんた")
     if (!token) {
         return null;
 
@@ -24,10 +24,6 @@ export default async function confirmUser(token?: string) :Promise<User | null> 
         // decodedの中身（例）テスト{
         //   userId: '66d4f569d06498d8d6dd5539',
         //   username: 'テスト',
-        //   email: 'aaa@aaa',
-        //   iat: 1725325419,
-        //   exp: 1725498219
-        // }
         const userId  = decoded.userId
         const username= decoded.username;
         const email = decoded.email;

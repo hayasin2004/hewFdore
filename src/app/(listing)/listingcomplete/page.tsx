@@ -1,21 +1,40 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import "./listingcomplete.css"
 import Header from "@/app/_components/header/Header";
 import Images from "next/image";
-const ListingComplete = () => {
 
-    return (
-        <>
-            <Header/>
+const ListingComplete = () => {
+    useEffect(() => {
+    async function fetchData() {
+        try {
+        const response = await  fetch("/api/product")
+            if (!response.ok){
+                console.log("むりやった")
+            }
+            const productData = await response.json();
+            console.log(JSON.stringify(productData))
+        }catch (err){
+            console.log(err)
+        }
+    }
+    fetchData()
+    }, []);
+
+return (
+    <>
+        <Header/>
         <div id="productlisning">
-            <h1　className={"liscomph2"}>出品が完了しました。</h1>
+            <h1 className={"liscomph2"}>出品が完了しました。</h1>
             <div id="info">
                 <div id="photo">
-                    <Image className={"proimg"} src="/images/clothes/product.jpg" width={400} height={400} alt="サンプル" id="sum"/>
+                    <Image className={"proimg"} src="/images/clothes/product.jpg" width={400} height={400}
+                           alt="サンプル" id="sum"/>
                     <ul className="piclist">
                         <li className="picts"><a href="/images/clothes/product.jpg">
-                            <Image className="pictS" src="/images/clothes/product.jpg" width={50} height={50} alt="画像1"/></a>
+                            <Image className="pictS" src="/images/clothes/product.jpg" width={50} height={50}
+                                   alt="画像1"/></a>
                         </li>
 
                     </ul>
@@ -50,9 +69,9 @@ const ListingComplete = () => {
 
         </div>
 
-        </>
+    </>
 
-    );
+);
 }
 
 

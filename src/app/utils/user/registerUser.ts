@@ -6,7 +6,8 @@ import {redirect} from 'next/navigation'
 
 // ユーザー新規登録
 export default async function createUser(username: string, email: string, password: string) {
-    await connectDB();    console.log("データベース接続" + await connectDB())
+    await connectDB();
+    console.log("データベース接続" + await connectDB())
     try {
         console.log([username, email, password])
         const userId = uuidv4()
