@@ -136,7 +136,7 @@ const Header = () => {
                                 {user ? <UserNavigationModal/> : ""}
 
                             </li>
-                            <li>
+                            <li id={"UserName"}>
                                 {user ? <p id={"usernameGet"}>{user.username}</p> :
                                     <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
                             </li>

@@ -2,10 +2,10 @@
 
 body {
     font-family: "Zen Kaku Gothic Antique", sans-serif;
-
     margin: 0;
     padding: 0;
     background: #f3f3eb;
+    /*overflow-x: hidden;*/
 }
 
 div.toppageVideo {
