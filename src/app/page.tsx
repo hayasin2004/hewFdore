@@ -12,9 +12,18 @@ import SearchProductResult from "@/app/searchResult/page";
 import io from "socket.io-client";
 import {useState} from "react";
 
+export interface ChatType {
+    currentUser :string;
+    partnerUser : string
+    message   :string
+    partnerUserMessage : string
+
+}
+
 export default function Home() {
     const [message, setMessage] = useState("")
-    const [chatList, setChatList] = useState([])
+    const [chatList, setChatList] = useState<ChatType[]>([])
+    console.log(chatList)
     const socket = io("http://localhost:8080");
     // socket.ioに送信
     const handleSendMessage = (e: HTMLButtonElement) => {
@@ -34,11 +43,11 @@ export default function Home() {
             <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
             <button onClick={(e) => handleSendMessage(e)}>送信</button>
 
-            {/*{chatList.map((item) => (*/}
-            {/*    <ul key={item}>*/}
-            {/*       <li>{chatList.data}</li>*/}
-            {/*    </ul>*/}
-            {/*))}*/}
+            {chatList.map((item) => (
+                <ul key={item.message}>
+                   <li>{item.message}</li>
+                </ul>
+            ))}
 
             {/*<div>*/}
             {/*    <SearchProductResult/>*/}
