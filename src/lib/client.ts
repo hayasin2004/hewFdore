@@ -1,7 +1,23 @@
+"use server"
 //microcms
-import {createClient} from  "microcms-js-sdk"
+import {createClient} from "microcms-js-sdk"
 
-export  const  client = createClient({
-   serviceDomain:"blogtest112",//microcmsドメイン名
-   API_KEY:process.env.API_KEY,
-});
+const GetBlog = () => {
+    const client = createClient({
+        serviceDomain: "blogGetBlog112",//microcmsドメイン名
+        apiKey: process.env.API_KEY!,
+    });
+    console.log(client);
+    try {
+
+        return {client: JSON.stringify(client)}
+    } catch (err) {
+        console.log(err)
+    }
+
+}
+
+export default GetBlog;
+
+// console.log("呼び出された")
+// export
