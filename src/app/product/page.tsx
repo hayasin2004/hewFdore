@@ -3,6 +3,7 @@ import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
 import Chat from "@/app/_components/chat/Chat";
+import Footer from "@/app/_components/footer/Footer";
 import Images from "next/image";
 import Link from 'next/link';
 
@@ -22,7 +23,7 @@ const Product = () => {
                     <span className="under_bar"></span>
                     <div className="innerCart">
                         <figure>
-                            <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>
+                            <Image src="/images/clothes/product9.jpg" width={200} height={200} id={"sumImg"} alt="商品の写真"/>
                         </figure>
                         <p>
                             <p>ニット</p>
@@ -86,8 +87,8 @@ const Product = () => {
 
                 </div>
 
-
             </main>
+            <Footer/>
         </>
     );
 }
