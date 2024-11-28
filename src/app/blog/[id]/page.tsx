@@ -1,5 +1,5 @@
 //[id].js
-import{client} from "../lib/client";
+import{client} from "@/lib/client";
 
 //SSG
 export const getStaticProps = async () => {
