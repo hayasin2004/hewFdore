@@ -11,8 +11,6 @@ import {Chat} from "@/models/Chat";
 
 const DirectMessageserver = async (detailUser?: string, currentUser?: string) => {
 
-
-
     await connectDB()
     const uri = process.env.MONGODB_URI!;
     const client = new MongoClient(uri)
