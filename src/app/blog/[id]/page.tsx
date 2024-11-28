@@ -26,14 +26,16 @@ export const getStaticPaths = async () => {
 
 
 export default function BligId({params}:{params:{blog?:string}})  {
+    console.log(params);
     return(
 
         <main >
-            <h1 >{blog.title}</h1>
-            <p>{blog.publishedAt}</p>
-            <div
-                dangerouslySetInnerHTML={{ __html: `${blog.body}` }}
-            ></div>
+
+            {/*<h1 >{params?.blog?.title}</h1>*/}
+            {/*<p>{blog.publishedAt}</p>*/}
+            {/*<div*/}
+            {/*    dangerouslySetInnerHTML={{ __html: `${blog.body}` }}*/}
+            {/*></div>*/}
         </main>
     );
 }
