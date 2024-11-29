@@ -20,6 +20,17 @@ input[type=text]#msg{
     height: 50px;
     border-style: none none solid none;
 }
+
+/* アイコン*/
+div#chat img{
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
+
 /* 送信ボタン仮設　作るにしてもアイコンにした方がいいかも */
 input[type=submit]{
     height: 50px;
@@ -32,12 +43,16 @@ input[type=submit]{
     border-radius: 10px;
 }
 
-/* アイコン*/
-div#chat img{
-    margin: 10px;
-    height: 50px;
-    width: 50px;
-    background-color: #fff;
-    border-radius: 100%;
-}
 
+/*画像にしてみた*/
+button{
+    height: 50px;
+    margin: 10px;
+    border: #555 2px solid;
+}
+button img#sendMsg{
+    height: 30px;
+    width: 30px;
+    background-color: #fff0;
+    border-radius: 0;
+}
