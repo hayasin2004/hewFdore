@@ -84,23 +84,28 @@ div.bar ul li:hover{
 
 
 /* ユーザーネーム:ログイン遷移 */
-ul#userName{
-    width: 120px;
+li#UserName{
+    width: 8rem;
+    overflow-wrap: break-word;
 }
 p#usernameGet{
-    /*width: 100%;*/
 }
+
 
 p#name{
     width: 8rem;
     /*margin-left: 74px;*/
 }
 
+li#list_bell{
+    margin: 0 25px 0 0;
+}
 .bell{
-    position: absolute;
-    top: 0;
-    right: 80px;
-    width: 40px;
+    /*position:relative;*/
+    margin: 0 0 0 25px;
+    /*top: 0;*/
+    /*right: 80px;*/
+    /*width: 40px;*/
     border: none;color: #000000;
 }
 .bell svg{
