@@ -31,6 +31,8 @@ header div.title h1 {
     letter-spacing: 5px;
     width: 100%;
     margin-left: 20%;
+    text-decoration: none;
+    transition: text-decoration 0.5s;
 }
 header div.title h1:hover{
     text-decoration: underline 1px solid;
@@ -59,6 +61,12 @@ div.bar ul li {
     font-weight: 400;
     font-size: 1.5rem;
     margin-left: 30px;
+    border: none;
+}
+/*オンマウスで色変わる*/
+div.bar ul li:hover{
+    color: #fff;
+    text-shadow: 0 0 30px #BF9E80 ,0 0 20px #BF9E80,0 0 15px #D0C7B2;
 }
 
 div.bar ul li p#category{
@@ -76,11 +84,7 @@ li#search{
 li#search svg{
     margin:5px 0 0 0;
 }
-/*オンマウスでほんのり色づく*/
-div.bar ul li:hover{
-    /*background-color: #D0C7B2;*/
-    text-shadow: 0 0 30px #BF9E80 ,0 0 20px #D0C7B2,0 0 15px #D0C7B2;
-}
+
 
 
 /* ユーザーネーム:ログイン遷移 */
