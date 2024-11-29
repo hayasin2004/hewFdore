@@ -6,7 +6,7 @@ body {
 
 
 div.SRproductlist {
-    width: 800px;
+    /*width: 800px;*/
     display:flex;
     margin-top: 0px;
     margin-bottom: 30px;
