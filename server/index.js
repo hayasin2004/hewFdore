@@ -8,7 +8,6 @@ const PORT = 8080
 
 try {
 
-
     const io = new Server(server, {
         cors: {
             origin: ["http://localhost:3000"],

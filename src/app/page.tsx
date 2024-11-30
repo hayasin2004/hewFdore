@@ -12,18 +12,13 @@ import SearchProductResult from "@/app/searchResult/page";
 import io from "socket.io-client";
 import {useState} from "react";
 
-export interface ChatType {
-    currentUser :string;
-    partnerUser : string
-    message   :string
-    partnerUserMessage : string
 
-}
 
 export default function Home() {
 
     return (
         <main>
+
 
 
             {/*<div>*/}

@@ -134,8 +134,9 @@ const Header = () => {
 
                             </li>
                             <li>
-                                {user ? <p id={"usernameGet"}>{user.username}</p> :
-                                    <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                                 {user ? <p id={"usernameGet"}>{user.username}</p> :
+                                     <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+
                             </li>
                             <li>
                                 {user ?

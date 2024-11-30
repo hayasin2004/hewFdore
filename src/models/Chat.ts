@@ -1,7 +1,17 @@
 import mongoose from "mongoose";
 
-const ChatSchema = new mongoose.Schema({
+export interface ChatType {
+    currentUser?: string;
+    partnerUser?: string
+    message?: string
+    partnerUserMessage?: string
+}
 
+const ChatSchema = new mongoose.Schema({
+    ChatroomId : {
+        type: String,
+        required: true,
+    },
     currentUser : {
         type: String,
         required: true,
