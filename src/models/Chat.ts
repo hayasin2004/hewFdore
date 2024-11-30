@@ -5,6 +5,7 @@ export interface ChatType {
     partnerUser?: string
     message?: string
     partnerUserMessage?: string
+    newChatRoom? : string
 }
 
 const ChatSchema = new mongoose.Schema({

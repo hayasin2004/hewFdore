@@ -16,6 +16,7 @@ const DirectMessageserver = async (detailUser?: string, currentUser?: string): P
     await connectDB()
     console.log("erxtcyvugbijomkp" + currentUser)
     try {
+        // 同じObjectIdだったときの処理
         if (currentUser === detailUser) {
             console.log("currentUserとdetailUserが同じであるためチャットをさくせいすることができません")
             return null
@@ -26,12 +27,11 @@ const DirectMessageserver = async (detailUser?: string, currentUser?: string): P
             partnerUser: detailUser
         })
         if (chatExists) {
-            console.log("既に作られています")
+            console.log("既にcurrentUser , detailUserのチャットルームが作られています")
             return null
         } else {
             const currentUserData = await User.findById({_id: currentUser}).select("username email profilePicture coverProfilePicture");
             const partnerUserData = await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture");
-            console.log("useEffectがかわった" + partnerUserData);
             const newChatId = uuidv4()
             const newChatRoom = await Chat.create({
                 ChatroomId: newChatId,
@@ -39,24 +39,8 @@ const DirectMessageserver = async (detailUser?: string, currentUser?: string): P
                 partnerUser: detailUser
             })
             newChatRoom.save()
-            console.log("作られてないので新しく作成しました。")
-            const chatCurrentUser = await Chat.findById({currentUser: currentUserData._id})
-            const chatPartnerUser = await Chat.findById({partnerUserChat: partnerUserData._id})
+            return {newChatRoom: newChatRoom}
         }
-
-
-        // 新しいチャット作成の処理
-        //既にcurrentUser , detailUserのペアが作られているかどうか
-
-
-        const partnerUserChat = await Chat.create({
-            currentUser: currentUserData.username,
-            partnerUser: partnerUserData.username
-        });
-
-        // console.log("対象のユーザー" + partnerUserData);
-        // console.log("ログインしているユーザー" + currentUserData);
-        return {partnerUser: JSON.stringify(partnerUserData), currentUser: JSON.stringify(currentUserData)}
     } catch (err) {
         console.log(err)
         return null

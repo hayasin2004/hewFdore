@@ -9,15 +9,15 @@ import {ChatType} from "@/models/Chat";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 
-
-
 const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
     const detailUser = params?.id as string;
     const {user} = useUser()
     const currentUser = user?._id;
+    console.log("currentUser", currentUser)
     const [partnerUser, setPartnerUser] = useState<ChatType | null>(null)
     const [currentUsers, setCurrentUsers] = useState<ChatType | null>(null)
+    console.log(JSON.stringify(currentUsers) + "どんな感じ？")
     console.log("ただしく確認相手" + partnerUser)
     console.log("ただしく確認自分" + currentUsers)
     const [message, setMessage] = useState("")
@@ -29,12 +29,12 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     useEffect(() => {
         const response = async () => {
-            const setUsersData  = await DirectMessageserver(currentUser,detailUser)
-            setPartnerUser(setUsersData?.partnerUser)
-            setCurrentUsers(setUsersData?.currentUser)
+            const setUsersData: ChatType | null = await DirectMessageserver(detailUser ,currentUser)
+            setPartnerUser(setUsersData?.newChatRoom?.partnerUser)
+            setCurrentUsers(setUsersData?.newChatRoom?.currentUser)
         }
         response()
-    }, [currentUser , detailUser]);
+    }, [currentUser, detailUser]);
 
 
     // socket.ioに送信
