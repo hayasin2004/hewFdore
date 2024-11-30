@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface ChatType {
-    currentUser?: string;
-    partnerUser?: string
+    currentUser?: UserType;
+    partnerUser?: UserType;
     message?: string
     partnerUserMessage?: string
     newChatRoom? : string

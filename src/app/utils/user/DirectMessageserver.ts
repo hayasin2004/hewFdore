@@ -12,36 +12,38 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import {v4 as uuidv4} from 'uuid';
 
 
-const DirectMessageserver = async (detailUser?: string, currentUser?: string): Promise<ChatType | null> => {
+const DirectMessageserver = async (detailUser?: string, tokenUser?: string) => {
     await connectDB()
-    console.log("erxtcyvugbijomkp" + currentUser)
+    console.log("erxtcyvugbijomkp" + tokenUser)
     try {
         // 同じObjectIdだったときの処理
-        if (currentUser === detailUser) {
+        if (tokenUser === detailUser) {
             console.log("currentUserとdetailUserが同じであるためチャットをさくせいすることができません")
-            return null
+            return {tokenUser};
         }
         // 既にチャットがあるかどうかの処理
         const chatExists = await Chat.findOne({
-            currentUser: currentUser,
-            partnerUser: detailUser
-        })
+            currentUser: tokenUser as ChatType | null,
+            partnerUser: detailUser as ChatType | null
+        }).exec()
         if (chatExists) {
             console.log("既にcurrentUser , detailUserのチャットルームが作られています")
-            return null
+            const currentUserData   = await User.findById({_id: tokenUser}).select("username email profilePicture coverProfilePicture").exec();
+            const partnerUserData   = await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture").exec();
+
+            return {currentUser :currentUserData , partnerUser : partnerUserData}
         } else {
-            const currentUserData = await User.findById({_id: currentUser}).select("username email profilePicture coverProfilePicture");
-            const partnerUserData = await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture");
             const newChatId = uuidv4()
             const newChatRoom = await Chat.create({
                 ChatroomId: newChatId,
-                currentUser: currentUser,
+                currentUser: tokenUser,
                 partnerUser: detailUser
             })
             newChatRoom.save()
-            return {newChatRoom: newChatRoom}
+            return {newChatRoom}
         }
-    } catch (err) {
+    } catch
+        (err) {
         console.log(err)
         return null
     }

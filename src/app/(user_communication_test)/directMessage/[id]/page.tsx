@@ -13,13 +13,10 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
     const detailUser = params?.id as string;
     const {user} = useUser()
-    const currentUser = user?._id;
-    console.log("currentUser", currentUser)
+    const tokenUser = user?._id;
+    console.log("currentUser", tokenUser)
     const [partnerUser, setPartnerUser] = useState<ChatType | null>(null)
-    const [currentUsers, setCurrentUsers] = useState<ChatType | null>(null)
-    console.log(JSON.stringify(currentUsers) + "どんな感じ？")
-    console.log("ただしく確認相手" + partnerUser)
-    console.log("ただしく確認自分" + currentUsers)
+    const [currentUser, setCurrentUser] = useState<ChatType | null>(null)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     console.log(JSON.stringify(chatList))
@@ -29,9 +26,13 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     useEffect(() => {
         const response = async () => {
-            const setUsersData: ChatType | null = await DirectMessageserver(detailUser ,currentUser)
-            setPartnerUser(setUsersData?.newChatRoom?.partnerUser)
-            setCurrentUsers(setUsersData?.newChatRoom?.currentUser)
+            const setUsersData = await DirectMessageserver(detailUser, tokenUser)
+            if (setUsersData?.newChatRoom) {
+                setPartnerUser(setUsersData?.newChatRoom?.partnerUser)
+                setCurrentUser(setUsersData?.newChatRoom?.currentUser)
+            }
+            setPartnerUser(setUsersData?.partnerUser._id)
+            setCurrentUser(setUsersData?.partnerUser._id)
         }
         response()
     }, [currentUser, detailUser]);
@@ -57,11 +58,11 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
 
                 <p>
-                    対象ユーザー : {params.id}
+                    対象ユーザー : {partnerUser?.partnerUser}
                 </p>
                 <br/>
                 <p>
-                    ログインユーザー : {user?._id} , {user?.username}
+                    ログインユーザー : {currentUser?.currentUser}
                 </p>
             </div>
             <form>
