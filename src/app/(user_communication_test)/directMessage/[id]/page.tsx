@@ -28,16 +28,16 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     useEffect(() => {
         const response = async () => {
-                const setUsersData = await DirectMessageserver(tokenUser, detailUser)
-                if (setUsersData?.newChatRoom) {
-                    setChatData(setUsersData)
-                } else {
-                    setChatData( setUsersData?.chatExists )
-                }
+            const setUsersData = await DirectMessageserver(tokenUser, detailUser)
+            if (setUsersData?.newChatRoom) {
+                setChatData(setUsersData)
+            } else {
+                setChatData(setUsersData?.chatExists)
+            }
             // setCurrentUser(setUsersData?.currentUser?._id)
         }
         response()
-    }, [currentUser, detailUser ,tokenUser]);
+    }, [currentUser, detailUser, tokenUser]);
 
 
     // socket.ioに送信
@@ -45,11 +45,11 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
         e.preventDefault()
         socket.emit("send_message", {message: message})
         setMessage("")
+        socket.on("received_message", (data) => {
+            console.log("socketかラ受け取った奴" + JSON.stringify(data));
+            setChatList([...chatList, data])
+        })
     }
-    socket.on("received_message", (data) => {
-        console.log("socketかラ受け取った奴" + JSON.stringify(data));
-        setChatList([...chatList, data])
-    })
 
 
     // socket.ioから受信
