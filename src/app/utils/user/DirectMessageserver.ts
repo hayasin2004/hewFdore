@@ -12,9 +12,8 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import {v4 as uuidv4} from 'uuid';
 
 
-const DirectMessageserver = async (detailUser?: string, tokenUser?: string) => {
+const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
     await connectDB()
-    console.log("erxtcyvugbijomkp" + tokenUser)
     try {
         // 同じObjectIdだったときの処理
         if (tokenUser === detailUser) {
@@ -23,24 +22,31 @@ const DirectMessageserver = async (detailUser?: string, tokenUser?: string) => {
         }
         // 既にチャットがあるかどうかの処理
         const chatExists = await Chat.findOne({
-            currentUser: tokenUser as ChatType | null,
-            partnerUser: detailUser as ChatType | null
-        }).exec()
+            currentUser: tokenUser,
+            partnerUser: detailUser
+        })
+        console.log(chatExists?._id)
         if (chatExists) {
             console.log("既にcurrentUser , detailUserのチャットルームが作られています")
-            const currentUserData   = await User.findById({_id: tokenUser}).select("username email profilePicture coverProfilePicture").exec();
-            const partnerUserData   = await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture").exec();
-
-            return {currentUser :currentUserData , partnerUser : partnerUserData}
+            // const returnUserData = async () => {
+            //     const currentUserData = await User.findById({_id: chatExists.currentUser}).select("username email profilePicture coverProfilePicture").exec();
+            //     const partnerUserData = await User.findById({_id: chatExists.partnerUser}).select(" username email profilePicture coverProfilePicture").exec();
+            // console.log("うけとり" + currentUserData)
+            // return {currentUser: currentUserData?._id, partnerUser: partnerUserData?._id}
+            return {chatExists:  chatExists }
         } else {
             const newChatId = uuidv4()
-            const newChatRoom = await Chat.create({
-                ChatroomId: newChatId,
-                currentUser: tokenUser,
-                partnerUser: detailUser
-            })
-            newChatRoom.save()
-            return {newChatRoom}
+            if (tokenUser && detailUser) {
+
+                const newChatRoom = await Chat.create({
+                    ChatroomId: newChatId,
+                    currentUser: tokenUser,
+                    partnerUser: detailUser
+                })
+                newChatRoom.save()
+                return {newChatRoom}
+            }
+            console.log("erxtcyvugbijomkp" + tokenUser)
         }
     } catch
         (err) {

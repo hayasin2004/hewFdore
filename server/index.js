@@ -10,7 +10,7 @@ try {
 
     const io = new Server(server, {
         cors: {
-            origin: ["http://localhost:3000"],
+            origin: ["http://localhost:3000" ,"http://172.20.10.3:3000" ],
         }
     })
 

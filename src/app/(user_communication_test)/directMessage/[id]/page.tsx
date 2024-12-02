@@ -15,9 +15,11 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const {user} = useUser()
     const tokenUser = user?._id;
     console.log("currentUser", tokenUser)
-    const [partnerUser, setPartnerUser] = useState<ChatType | null>(null)
+    const [chatData, setChatData] = useState<ChatType | null>(null)
     const [currentUser, setCurrentUser] = useState<ChatType | null>(null)
+    console.log(chatData)
     const [message, setMessage] = useState("")
+    console.log(message)
     const [chatList, setChatList] = useState<ChatType[]>([]);
     console.log(JSON.stringify(chatList))
     const [dateBasechatList, setDateBaseChatList] = useState<ChatType | null>(null)
@@ -26,16 +28,16 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     useEffect(() => {
         const response = async () => {
-            const setUsersData = await DirectMessageserver(detailUser, tokenUser)
-            if (setUsersData?.newChatRoom) {
-                setPartnerUser(setUsersData?.newChatRoom?.partnerUser)
-                setCurrentUser(setUsersData?.newChatRoom?.currentUser)
-            }
-            setPartnerUser(setUsersData?.partnerUser._id)
-            setCurrentUser(setUsersData?.partnerUser._id)
+                const setUsersData = await DirectMessageserver(tokenUser, detailUser)
+                if (setUsersData?.newChatRoom) {
+                    setChatData(setUsersData)
+                } else {
+                    setChatData( setUsersData?.chatExists )
+                }
+            // setCurrentUser(setUsersData?.currentUser?._id)
         }
         response()
-    }, [currentUser, detailUser]);
+    }, [currentUser, detailUser ,tokenUser]);
 
 
     // socket.ioに送信
@@ -58,11 +60,11 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
 
                 <p>
-                    対象ユーザー : {partnerUser?.partnerUser}
+                    対象ユーザー : {chatData?.partnerUser}
                 </p>
                 <br/>
                 <p>
-                    ログインユーザー : {currentUser?.currentUser}
+                    ログインユーザー : {chatData?.currentUser}
                 </p>
             </div>
             <form>
