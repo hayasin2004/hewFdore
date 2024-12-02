@@ -1,6 +1,7 @@
 "use server"
 
 import {Chat} from "@/models/Chat";
+import {string} from "prop-types";
 
 export interface ChatType {
     currentUser?: string
@@ -9,19 +10,11 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const saveMessage = async (data: string, currentUser?: string, detailUser?: string) => {
-    console.log(data, currentUser, detailUser)
-    try {
-        const messageData = await Chat.create({
-            currentUserChat: data,
-            currentUser: currentUser,
-            partnerUser: detailUser
-        })
-        console.log(messageData)
-        return {messageData : JSON.stringify(messageData)}
-    } catch (err) {
-        console.log(err)
-        return null
-    }
+const saveMessage = async (chatId: string, pushedUser : string,message: string) => {
+    console.log(chatId, pushedUser, message)
+    // チャットルーム検索
+    // const fCHatRoomId =await Chat.findById({_id : chatId})
+    // console.log(fCHatRoomId)
 }
+
 export default saveMessage

@@ -49,6 +49,11 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             console.log("socketかラ受け取った奴" + JSON.stringify(data));
             setChatList([...chatList, data])
         })
+    //     サーバーアクションでチャットを保存する
+        const SavedMessage = async () => {
+            const response = await  saveMessage(chatData?._id, chatData?.currentUser , message)
+        }
+        SavedMessage()
     }
 
 

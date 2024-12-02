@@ -46,7 +46,6 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
                 newChatRoom.save()
                 return {newChatRoom}
             }
-            console.log("erxtcyvugbijomkp" + tokenUser)
         }
     } catch
         (err) {
