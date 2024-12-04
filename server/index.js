@@ -10,14 +10,13 @@ try {
 
     const io = new Server(server, {
         cors: {
-            origin: ["http://localhost:3000" ,"http://172.20.10.3:3000" ],
+            origin: ["http://localhost:3000" ],
         }
     })
 
 
     io.on("connection", (socket) => {
         console.log("clientと接続中")
-
         // clientからの受信
         socket.on("send_message", (data) => {
             console.log("送られてきたやつ" + data)

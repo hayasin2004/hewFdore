@@ -19,13 +19,13 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const [currentUser, setCurrentUser] = useState<ChatType | null>(null)
     console.log(chatData)
     const [message, setMessage] = useState("")
-    console.log(message)
+
     const [chatList, setChatList] = useState<ChatType[]>([]);
     console.log(JSON.stringify(chatList))
     const [dateBasechatList, setDateBaseChatList] = useState<ChatType | null>(null)
     // console.log("保存したいデータ" + JSON.stringify(dateBasechatList))
-    const socket = io("http://localhost:8080");
 
+    const socket = io("http://localhost:8080");
     useEffect(() => {
         const response = async () => {
             const setUsersData = await DirectMessageserver(tokenUser, detailUser)
@@ -43,19 +43,22 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     // socket.ioに送信
     const handleSendMessage = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        socket.emit("send_message", {message: message})
-        setMessage("")
-        socket.on("received_message", (data) => {
-            console.log("socketかラ受け取った奴" + JSON.stringify(data));
-            setChatList([...chatList, data])
-        })
-    //     サーバーアクションでチャットを保存する
+        // socket.emit("send_message", {message: message})
+        // setMessage("")
+        //
+        // socket.on("received_message", (data) => {
+        //     console.log("socketかラ受け取った奴" + JSON.stringify(data));
+        //     setChatList([...chatList, data])
+        // })
         const SavedMessage = async () => {
-            const response = await  saveMessage(chatData?._id, chatData?.currentUser , message)
-        }
+            const response = await saveMessage(chatData?._id, chatData?.currentUser, message)
+            console.log(response)
+            setMessage("")
+
+         }
         SavedMessage()
     }
-
+    //     サーバーアクションでチャットを保存する
 
     // socket.ioから受信
 
@@ -76,8 +79,8 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
                 <button onClick={(e) => handleSendMessage(e)}>送信</button>
             </form>
-            {chatList.map((item) => (
-                <ul key={item?.message}>
+            {chatList.map((item, index) => (
+                <ul key={index}>
                     <li>{item?.message}</li>
                 </ul>
             ))}

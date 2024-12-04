@@ -10,11 +10,21 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const saveMessage = async (chatId: string, pushedUser : string,message: string) => {
+const saveMessage = async (chatId: string, pushedUser: string, message: string) => {
     console.log(chatId, pushedUser, message)
     // チャットルーム検索
     // const fCHatRoomId =await Chat.findById({_id : chatId})
     // console.log(fCHatRoomId)
+
+//     チャットルームにmessageを新しく挿入
+    const fChangeMessage = await Chat.findByIdAndUpdate(
+        chatId,
+        {$push: {currentUserChat: message , partnerUserChat: message}},
+        {new: true, useFindAndModify: false}
+    )
+    console.log(fChangeMessage)
+    return {fChangeMessage : fChangeMessage}
+
 }
 
 export default saveMessage
