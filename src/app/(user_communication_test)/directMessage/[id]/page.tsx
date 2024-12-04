@@ -26,6 +26,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log("保存したいデータ" + JSON.stringify(dateBasechatList))
 
     const socket = io("http://localhost:8080");
+
     useEffect(() => {
         const response = async () => {
             const setUsersData = await DirectMessageserver(tokenUser, detailUser)
@@ -43,13 +44,13 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     // socket.ioに送信
     const handleSendMessage = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        // socket.emit("send_message", {message: message})
-        // setMessage("")
-        //
-        // socket.on("received_message", (data) => {
-        //     console.log("socketかラ受け取った奴" + JSON.stringify(data));
-        //     setChatList([...chatList, data])
-        // })
+        socket.emit("send_message", {message: message})
+        setMessage("")
+
+        socket.on("received_message", (data) => {
+            console.log("socketかラ受け取った奴" + JSON.stringify(data));
+            setChatList([...chatList, data])
+        })
         const SavedMessage = async () => {
             const response = await saveMessage(chatData?._id, chatData?.currentUser, message)
             console.log(response)
