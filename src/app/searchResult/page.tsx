@@ -23,6 +23,8 @@ const Page = () => {
                 <div style={{width:"40%"}}>
                     <Sidebar/>
                 </div>
+            <div className={"searchResultMain"}>
+                <Sidebar />
                 {/*ダミーデータをプロップスで渡している。*/}
                 <SearchResultProducts product={products}/>
             </div>

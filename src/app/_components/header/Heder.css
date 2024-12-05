@@ -78,10 +78,10 @@ div.bar ul li p#category{
     margin-top: 3px;
 }
 
-li#search{
+li.Headersearch{
     text-align: center;
 }
-li#search svg{
+li.Headersearch svg{
     margin:5px 0 0 0;
 }
 

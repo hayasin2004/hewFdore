@@ -14,7 +14,7 @@ main {
     position: relative;
 }
 /*カート*/
-div#cart{
+div.productCart{
     margin-top: 70px;
     margin-right: 50px;
     width: 25%;
@@ -74,7 +74,7 @@ p#total{
 }
 
 /*全体 */
-div#product{
+div.productMain{
     display: flex;
     flex-direction: column;
     width: 75%;
@@ -161,25 +161,24 @@ div#text a#seller img{
 }
 
 /* 購入ボタン・アイコン #control*/
-div#control{
+div#controlProduct{
     display: flex;
     margin-left:600px;
     margin-bottom: 20px;
     text-align: right;
 }
-div#control img{
+div#controlProduct img{
     display: inline-block;
     margin: 0 5px 20px 0;
     height: 50px;
     width: 50px;
 }
 
-button#buy{
+button{
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;
     border-radius: 50px;
-    width: 8em;
     padding: 10px 20px;
 }
 

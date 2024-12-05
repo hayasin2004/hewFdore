@@ -6,7 +6,7 @@ import Link from "next/link";
 const Sidebar = () => {
 
     return (
-        <div className="Sintroduction">
+        <div className="introductionSidebar">
 
             <div className="Ssidebar">
                 <div className="Scart">
@@ -34,12 +34,7 @@ const Sidebar = () => {
                 <Link href={"product"} id="side_product_detail">
                     商品ページ
                 </Link>
-                <p id="total_price">
-                    合計金額
-                </p>
-                <p id="total_yen">
-                    2800円
-                </p>
+
 
 
             </div>

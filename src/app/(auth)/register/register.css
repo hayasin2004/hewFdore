@@ -23,6 +23,8 @@ div.flower_img{
 header{
     font-size: 1.5rem;
     display: block;
+    width: 100%;
+    background: none; /*これ追加*/
 }
 header h1{
     margin: 25px 0 25px 0;

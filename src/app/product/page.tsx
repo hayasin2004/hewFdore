@@ -14,7 +14,7 @@ const Product = () => {
         <>
             <Header/>
             <main>
-                <div id="cart">
+                <div className="productCart">
 
                     <div id={"cartText"}>
                         <h2>Cart</h2>
@@ -35,7 +35,10 @@ const Product = () => {
                     <p>合計金額</p>
                     <p id="total">2800円</p>
                 </div>
-                <div id="product">
+
+
+
+                <div className="productMain">
                     <div id="info">
                         <div id="photo">
                             <figure>
@@ -72,7 +75,7 @@ const Product = () => {
                         </div>
                     </div>
 
-                    <div id="control">
+                    <div id="controlProduct">
                         <Image width={30} height={30} src="/images/star_8.png " alt="お気に入りアイコン"/>
                         <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
                         <Link href={"sendAddress"}>
@@ -82,7 +85,7 @@ const Product = () => {
                         </button>
                         </Link>
                     </div>
-                    <Chat/>
+
 
 
                 </div>

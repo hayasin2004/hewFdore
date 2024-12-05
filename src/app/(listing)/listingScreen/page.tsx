@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from "@/app/_components/header/Header";
-import Footer from "@/app/_components/footer/Footer";
 import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
@@ -11,15 +10,16 @@ const ListingScreen = () => {
     return (
         <>
             <Header/>
-            <main>
                 <div className={"content"}>
-
+                    <div className={"listingScreenBackground"}>
                     <h2>
                         出品情報
                     </h2>
 
                     <div id="kamera">
                         <Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>
+                    </div>
+
                     </div>
 
                     <h3 id="s_name">
@@ -57,21 +57,20 @@ const ListingScreen = () => {
 
                 </div>
 
-                <div className={"btn"}>
-                    <button id={"listingCancelbtn"}>
+                <div className={"ListingBtn"}>
+                    <button className={"listingCancelbtn"}>
                         <Link href={"toppage"}>
 
-                        <p >キャンセル</p>
+                        <p>キャンセル</p>
                         </Link>
                     </button>
 
-                    <button id={"listingcompletebtn"}>
+                    <button className={"listingcompletebtn"}>
                         <Link href={"listingcomplete"}>
                             <p>出品</p>
                         </Link>
                     </button>
                 </div>
-                <Footer/>
             </main>
 
         </>

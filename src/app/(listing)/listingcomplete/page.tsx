@@ -4,6 +4,7 @@ import "./listingcomplete.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Images from "next/image";
+import Link from "next/link";
 const ListingComplete = () => {
 
     return (
@@ -41,12 +42,16 @@ const ListingComplete = () => {
             </div>
 
             <div id="control">
-                <button
-                    type="button" id={"edit"}>編集する
+                <Link href={""}>
+                <button type="button" className={"listingCompleteButton"}>
+                    編集する
                 </button>
-                <button
-                    type="button">トップに戻る
+                </Link>
+                <Link href={"toppage"} >
+                <button type="button" className={"listingCompleteButton"}>
+                    トップに戻る
                 </button>
+                </Link>
             </div>
 
         </div>

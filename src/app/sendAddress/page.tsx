@@ -10,7 +10,7 @@ const SendAddress = () => {
     return (
         <>
             <Header/>
-            <main >
+            <main className={"sendAddressMain"} >
                 <h2>ご購入される商品</h2>
                 <div className="goods">
                     <Image src="/images/clothes/product9.jpg" height="919" width="640" alt="商品サムネイル"/>

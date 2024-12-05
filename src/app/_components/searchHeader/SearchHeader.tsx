@@ -25,10 +25,10 @@ const SearchHeader = () => {
 
                         <p className="Sp">Search○</p>
 
+                        <span className="searchInput">
+                            <input  placeholder="お探しの商品を検索…" type="text"/>
+                        </span>
 
-                        <input className="search" placeholder="お探しの商品を検索…" type="text"/>
-
-                        <span className="long_line"></span>
 
                         <p className="Sp">Category</p>
 
