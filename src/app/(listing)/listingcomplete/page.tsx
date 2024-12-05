@@ -42,7 +42,7 @@ const ListingComplete = () => {
 
             <div id="control">
                 <button
-                    type="button">編集する
+                    type="button" id={"edit"}>編集する
                 </button>
                 <button
                     type="button">トップに戻る
