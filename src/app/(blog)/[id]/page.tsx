@@ -1,5 +1,6 @@
 import { createClient } from "microcms-js-sdk";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 const client = createClient({
     serviceDomain: "blogtest112",
@@ -25,6 +26,7 @@ export async function generateStaticParams() {
                 <p>{blog.publishedAt}</p>
                 <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
                 {/* dangerouslySetInnerHTMLの使用はセキュリティ上非推奨 */}
+                <Link href={"/blogintroduction"}>戻る</Link>
             </main>
         );
     } catch (error) {
