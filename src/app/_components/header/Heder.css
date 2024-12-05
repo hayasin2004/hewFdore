@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 body {
 
     margin: 0;
@@ -18,8 +19,8 @@ header div.nav {
     margin-top: 30px;
     display: flex;
     align-items: center;
-
 }
+
 
 header div.title h1 {
     font-family: "Italiana", sans-serif;

@@ -29,8 +29,8 @@ export  async  function GET(req : NextApiRequest , res : NextResponse){
 
         try {
             const product = await  Product.find();
-            const productDetail : DBProductType[] = product.map((item , index) => {
-                return {_id : item?._id , userId : item?.userId, productName : item?.productName,  productDesc : item?.productDesc , productPrice : item?.productPrice}
+            const productDetail : DBProductType[] = product.map((item) => {
+                return {_id :  item?._id , userId : item?.userId, productName : item?.productName,  productDesc : item?.productDesc , productPrice : item?.productPrice}
                 //     商品画像がない
             })
             // return  res.status(200).json({status : "Success" , data : productDetail})

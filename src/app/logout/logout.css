@@ -1,10 +1,15 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #EBE8DB;
 }
 
 main{
-    margin-top: 190px;
+    margin: 5% auto 10% auto;
+    background-color: #fff;
+    width: 95%;
+    height: 90%;
+    padding: 50px 0 50px 0;
 }
 
 div#wrap p {
@@ -16,12 +21,12 @@ div#wrap p {
 div#logout{
     margin: 70px;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     border-radius: 10px;
 }
 
 div#logout a{
-    padding: 10px;
+    padding: 10px 25px 10px 25px;
     border-radius: 15px;
     text-decoration: none;
     background-color: #000;

@@ -1,6 +1,7 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
+import "./searchResult.css"
 import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
@@ -8,13 +9,21 @@ import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
+import CompleteStripe from "@/app/_components/stripe/Stripe";
+import {loadStripe} from "@stripe/stripe-js";
+import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
+import Stripe from "@/app/_components/stripe/Stripe";
 
 
 
+const stripePromise = loadStripe(
+    process.env.STRIPE_SECRET_KEY!
+)
 
-const Pageee = () => {
+const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
+
 
     // 商品一覧の取得
     // searchResultにアクセスしたときのみ限りuseEffectでデータを取得してくる。
@@ -50,6 +59,16 @@ const Pageee = () => {
                 }
             })
             // console.log(JSON.stringify(productData))
+
+            const query = new URLSearchParams(window.location.search)
+            if (query.get("success")){
+                console.log("登録されたメールアドレスに支払い情報が送られました。")
+            }
+            if (query.get("canceled")){
+                console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
+            }
+
+
         }
         CallProductList()
     }, []);
@@ -57,7 +76,6 @@ const Pageee = () => {
 
     //
     // // 商品を展開
-
     const product : DBProductType[]   = productList.map((item) => {
         return {...item ,id : item._id}
         }
@@ -80,16 +98,19 @@ const Pageee = () => {
                 </div>
                 <SearchResultProducts/>
             </div>
-
+        <div>
+        </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             {product.map((item) => (
                 <div key={item._id} style={{textAlign: "center"}}>
                     <p>商品番号 : {item._id}</p>
                     <p>ユーザーネーム : {item.userId}</p>
-                    <p>商品説明 : {item.productName}</p>
+                    <p>出品者名 : {item.productName}</p>
                     <p>商品説明 : {item.productDesc}</p>
                     <p>商品価格 : {item.productPrice}</p>
+                    <Stripe productId={item?._id} />
+
                     <br/>
                     <hr/>
                     <br/>
@@ -102,4 +123,4 @@ const Pageee = () => {
 }
 
 
-export default Pageee;
+export default SearchPageProducts;
