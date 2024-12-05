@@ -71,7 +71,6 @@ const ListingScreen = () => {
                         </Link>
                     </button>
                 </div>
-            </main>
 
         </>
     );
