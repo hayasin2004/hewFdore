@@ -14,6 +14,8 @@ import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppa
 
 import Image from "next/image"
 import {color} from "@mui/system";
+import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
+import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 // 幅揃えします
 
 const Toppage = () => {
@@ -29,6 +31,7 @@ const Toppage = () => {
 
     return (
         <>
+
             <div className={"toppageVideo"}>
 
                 <video src="/videos/background3.mp4" width={700} height={1080} autoPlay muted loop></video>
@@ -47,9 +50,10 @@ const Toppage = () => {
                 </div>
             </div>
 
-            <h2 style={{color: "red", fontSize: "6rem"}}>ここにスライド2</h2>
-            {/*<Toppage_2nd/>*/}
-            <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3</h3>
+            <h2 style={{color: "red", fontSize: "6rem"}}></h2>
+            <Toppage_2nd />
+            <ToppageSite3 />
+            <h3 style={{color: "yellowgreen", fontSize: "4rem"}}>ここにスライド3\</h3>
 
 
             <div className={"toppageBottomPicture_Text"}>
