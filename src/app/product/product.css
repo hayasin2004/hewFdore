@@ -17,7 +17,7 @@ main {
 div#cart{
     margin-top: 70px;
     margin-right: 50px;
-    width: 27%;
+    width: 25%;
     position: sticky;
     left: 50px;
     top: 10px;
@@ -77,6 +77,7 @@ p#total{
 div#product{
     display: flex;
     flex-direction: column;
+    width: 75%;
 }
 /*商品情報全体*/
 div#info{

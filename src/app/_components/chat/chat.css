@@ -49,6 +49,7 @@ button{
     height: 50px;
     margin: 10px;
     border: #555 2px solid;
+    border-radius: 10%;
 }
 button img#sendMsg{
     height: 30px;

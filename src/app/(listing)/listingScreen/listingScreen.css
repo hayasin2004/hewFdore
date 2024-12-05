@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #EBE8DB;
+
 
 }
 
@@ -15,6 +15,7 @@ main{
     display: flex;
     flex-direction: column;
     align-content: center;
+    background-color: #EBE8DB;
 }
 
 div.content{
@@ -100,7 +101,7 @@ div.btn p{
     font-weight: 600;
 }
 
-div.btn button#listingCancelbtns{
+div.btn button#listingCancelbtn{
     background-color: #D9D9D9;
     color: #000;
 }
