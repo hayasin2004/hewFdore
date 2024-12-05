@@ -77,7 +77,7 @@ const Product = () => {
                         <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
                         <Link href={"sendAddress"}>
 
-                        <button
+                        <button id={"buy"}
                             type="button">購入する
                         </button>
                         </Link>

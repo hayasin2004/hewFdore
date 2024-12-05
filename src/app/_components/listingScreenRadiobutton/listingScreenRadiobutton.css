@@ -3,17 +3,16 @@ body {
     padding: 0;
 }
 
-
+/* ラジオボタン */
 
 .radio{
     width: 400px;
     height: 300px;
     padding: 30px;
     border-radius: 20px;
-    margin:  0 auto;
+    margin:  25px auto;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
     background-color: #D0C7B2;
 }
 
@@ -49,10 +48,15 @@ body {
     flex-direction: column;
 }
 
+/*　　*/
+
 .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked{
     color: #555555 !important;
 }
-
+#demo-simple-select{
+    background-color: #fff;
+    border: 2px solid #605252;
+}
 .Size_Situation{
     width: 400px;
     display: flex;

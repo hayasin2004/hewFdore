@@ -8,7 +8,6 @@ import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
-import userNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 
 interface User {
@@ -136,11 +135,13 @@ const Header = () => {
                                 {user ? <UserNavigationModal/> : ""}
 
                             </li>
-                            <li>
+                            <li id={"UserName"}>
                                 {user ? <p id={"usernameGet"}>{user.username}</p> :
                                     <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                                {/*確認用　ネーム上限15*/}
+                                {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
-                            <li>
+                            <li id={"list_bell"}>
                                 {user ?
                                     <div>
                                         <Button className={"bell"} onClick={handleOpen}>
@@ -219,7 +220,8 @@ const Header = () => {
 
                                             </Box>
                                         </Modal>
-                                    </div> : ""}
+                                    </div>
+                                     : ""}
                             </li>
                             </span>
                         </ul>

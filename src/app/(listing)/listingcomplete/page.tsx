@@ -2,6 +2,7 @@ import React from 'react';
 import Image from "next/image";
 import "./listingcomplete.css"
 import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
 import Images from "next/image";
 const ListingComplete = () => {
 
@@ -41,7 +42,7 @@ const ListingComplete = () => {
 
             <div id="control">
                 <button
-                    type="button">編集する
+                    type="button" id={"edit"}>編集する
                 </button>
                 <button
                     type="button">トップに戻る
@@ -49,6 +50,7 @@ const ListingComplete = () => {
             </div>
 
         </div>
+            <Footer/>
 
         </>
 

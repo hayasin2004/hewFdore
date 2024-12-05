@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
 import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
@@ -70,6 +71,7 @@ const ListingScreen = () => {
                         </Link>
                     </button>
                 </div>
+                <Footer/>
             </main>
 
         </>
