@@ -12,7 +12,7 @@ import {productsProps} from "../api/dummyData/data";
 
 
 
-const Page = () => {
+const Pageee = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
 
@@ -102,4 +102,4 @@ const Page = () => {
 }
 
 
-export default Page;
+export default Pageee;
