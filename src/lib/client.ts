@@ -4,7 +4,7 @@ import { createClient } from "microcms-js-sdk";
 
 
 const client = createClient({
-    serviceDomain: "blogtest112",
+    serviceDomain: "blogtest112",//サービスドメイン名
     apiKey: process.env.API_KEY!,
 });
 
@@ -19,7 +19,7 @@ export const GetBlog = async () => {
     }
 };
 
-
+//デバック用
 client
     .get({
         endpoint: 'blogs',

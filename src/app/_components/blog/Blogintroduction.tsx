@@ -32,6 +32,7 @@ const Blogintroduction = () => {
                 <ul>
                     {blogs.map((blog) => (
                         <li key={blog.id}>
+                            {/*各ブログの詳細ページのLink*/}
                             <Link href={`/blog/${blog.id}`}>
                                 {blog.title}
 

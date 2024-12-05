@@ -1,92 +1,35 @@
-import client from "@/lib/client";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { createClient } from "microcms-js-sdk";
+import { notFound } from "next/navigation";
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    const id = context.params?.id as string;
-    const data = await client.get({ endpoint: "blogs", contentId: id });
+const client = createClient({
+    serviceDomain: "blogtest112",
+    apiKey: process.env.API_KEY!,
+});
 
-    return {
-        props: {
-            blog: data,
-        },
-    };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function generateStaticParams() {
     const data = await client.get({ endpoint: "blogs" });
-    const paths = data.contents.map((content: { id: string }) => ({
-        params: { id: content.id },
+    return data.contents.map((content: { id: string }) => ({
+        id: content.id,
     }));
+}
 
-    return {
-        paths,
-        fallback: false,
-    };
-};
+ async function BlogIdPage({ params }: { params: { id: string } }) {
+    const { id } = params;
 
-const BlogId = ({ blog }: { blog: any }) => {
-    return (
-        <main>
-            <h1>{blog.title}</h1>
-            <p>{blog.publishedAt}</p>
-            <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
-            {/*dangerouslySetInnerHTMLは非推奨*/}
-        </main>
-    );
-};
+    try {
+        const blog = await client.get({ endpoint: "blogs", contentId: id });
 
-export default BlogId;
-
-
-
-
-
-
-
-//修正前
-
-// //[id]/pages.tsx
-// import client from "@/lib/client";
-// import {Blog} from "../../../../public/types/blogtype";
-// import React from "react";
-//
-//
-//
-//
-//  //SSG
-//  export const getStaticProps = async () => {
-//      const id = context.params.id;
-//      const data = await client.get({ endpoint:"blog", contentId: id});
-//
-//      return{
-//          props:{
-//              blog:data,
-//          },
-//      };
-//  };
-//
-//  export const getStaticPaths = async () => {
-//      const data = await client.get ({endpoint:"blogs"});
-//
-//      const paths = data.contents.map((content) => `/blog/${content.id}`);
-//      return{
-//          paths,
-//          fallback:false,//`/blog/${content.id}`で設定していないパスは404エラーを出す
-//      };
-//  };
-//
-//
-//  export default function BligId({params}:{params:{blog?:string}})  {
-//      console.log(params);
-//      return(
-//
-//          <main >
-//
-//              {/*<h1 >{params?.blog?.title}</h1>*/}
-//              {/*<p>{blog.publishedAt}</p>*/}
-//              {/*<div*/}
-//              {/*    dangerouslySetInnerHTML={{ __html: `${blog.body}` }}*/}
-//              {/*></div>*/}
-//          </main>
-//      );
-//  }
+        return (
+            <main>
+                <h1>{blog.title}</h1>
+                <p>{blog.publishedAt}</p>
+                <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
+                {/* dangerouslySetInnerHTMLの使用はセキュリティ上非推奨 */}
+            </main>
+        );
+    } catch (error) {
+        console.error("ブログの取得ができませんでした:", error);
+        notFound();
+    }
+}
+export default　BlogIdPage;
