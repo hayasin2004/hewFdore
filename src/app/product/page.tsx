@@ -5,6 +5,8 @@ import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Link from 'next/link';
 import Sidebar from "@/app/_components/sidebar/Sidebar";
+import Chat from "@/app/_components/chat/Chat";
+
 
 
 const Product = () => {
@@ -54,7 +56,7 @@ const Product = () => {
                             <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
                         </div>
                     </div>
-
+                    <Chat/>
                     <div id="controlProduct">
                         <Image width={30} height={30} src="/images/star_8.png " alt="お気に入りアイコン"/>
                         <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
