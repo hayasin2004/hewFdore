@@ -4,6 +4,7 @@ import "./product.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Link from 'next/link';
+import Sidebar from "@/app/_components/sidebar/Sidebar";
 
 
 const Product = () => {
@@ -11,28 +12,8 @@ const Product = () => {
     return (
         <>
             <Header/>
-            <main>
-                <div className="productCart">
-
-                    <div id={"cartText"}>
-                        <h2>Cart</h2>
-                        <Image src="/images/Cart_icon.png" width={50} height={50} alt="カート" className="icon"/>
-                    </div>
-                    <span className="under_bar"></span>
-                    <div className="innerCart">
-                        <figure>
-                            <Image src="/images/clothes/product9.jpg" width={200} height={200} id={"sumImg"} alt="商品の写真"/>
-                        </figure>
-                        <p>
-                            <p>ニット</p>
-                            <p>出品者:Yuuna</p>
-                            <p>価格:2800</p>
-                        </p>
-
-                    </div>
-                    <p>合計金額</p>
-                    <p id="total">2800円</p>
-                </div>
+            <main className={"productMainDisplay"}>
+                <Sidebar/>
 
 
 
@@ -40,7 +21,7 @@ const Product = () => {
                     <div id="info">
                         <div id="photo">
                             <figure>
-                                <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
+                                <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>
                             </figure>
                             <ul className="piclist">
                                 <li className="picts"><a href="/images/clothes/product9.jpg">
@@ -79,7 +60,7 @@ const Product = () => {
                         <Link href={"sendAddress"}>
 
                         <button id={"buy"}
-                            type="button">購入する
+                            type="button" className={"productPurchase"}>購入する
                         </button>
                         </Link>
                     </div>
