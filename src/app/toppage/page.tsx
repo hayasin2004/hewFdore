@@ -33,7 +33,7 @@ const Toppage = () => {
         <>
 
             <Header/>
-            {/*<div className={"toppage"}>*/}
+            <div className={"top"}>
             <Toppage_top_slideshow/>
             {/*<Sidebar/>*/}
             <div className={"siteIntroduction"}>
@@ -68,7 +68,7 @@ const Toppage = () => {
                 </ul>
             </div>
             {/*<Slideshow/>*/}
-            {/*</div>*/}
+            </div>
             <ToppageProducts/>
 
             <Footer/>
