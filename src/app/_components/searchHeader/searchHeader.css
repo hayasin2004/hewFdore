@@ -26,8 +26,11 @@ div.Sbar {
 header div.Snav {
     display: flex;
     align-items: center;
-    width: 100%;
-    margin-left: 7%;
+    width: 90%;
+    margin-left: 2%;
+}
+header div.Stitle {
+    margin-right: 6%;
 }
 
 header div.Stitle h1 {
@@ -62,7 +65,7 @@ div.bar span.long_line {
 }
 
 span.searchInput{
-    margin-right: 15%;
+    margin-right: 30%;
 }
 
 span.searchInput input{
@@ -106,4 +109,4 @@ span.Sunder_bar {
     margin-top: -0.7%;
     height: 1.1%;
     border-bottom: 1px solid #000000;
-}   
+}

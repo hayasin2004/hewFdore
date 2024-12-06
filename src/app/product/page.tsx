@@ -2,9 +2,7 @@ import React from 'react';
 import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
-import Chat from "@/app/_components/chat/Chat";
 import Footer from "@/app/_components/footer/Footer";
-import Images from "next/image";
 import Link from 'next/link';
 
 

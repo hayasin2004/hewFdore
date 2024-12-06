@@ -32,10 +32,6 @@ const Toppage = () => {
     return (
         <>
 
-            <div className={"toppageVideo"}>
-
-                <video src="/videos/background3.mp4" width={700} height={1080} autoPlay muted loop></video>
-            </div>
             <Header/>
             {/*<div className={"toppage"}>*/}
             <Toppage_top_slideshow/>

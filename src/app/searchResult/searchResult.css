@@ -1,5 +1,7 @@
 body{
     background-color: #EBE8DB;
+    margin: 0;
+    padding: 0;
 }
 
 div.searchResultMain{
