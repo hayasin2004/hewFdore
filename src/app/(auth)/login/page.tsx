@@ -52,8 +52,8 @@ const Login = () => {
     return (
 
         <div className={"allScreen"}>
-            <header>
-                <h1>F'dore</h1>
+            <header className={"loginHeader"}>
+                <h1 className={"loginHeaderH1"}>F'dore</h1>
             </header>
 
             <section id={"login"}>

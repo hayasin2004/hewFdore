@@ -21,7 +21,7 @@ const ConfirmUserProfile = () => {
             <div style={{display: "flex"}}>
                 <div>
 
-                    <div className={"confirm"}>
+                    <div className={"confirmPointMain"}>
                         <div className={"confirmPoint"}>
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ const ConfirmUserProfile = () => {
                 </div>
 
 
-                <div className={"rightbar"}>
+                <div className={"rightbarPoint"}>
                     <h2>ポイント獲得履歴</h2>
                     <div className={"rightbar_note"}>
                         <div>

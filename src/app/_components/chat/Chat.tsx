@@ -6,12 +6,17 @@ const Chat = () => {
 
     return (
         <>
-                <div id="chat">
+                <div className="Productchat">
                     <Images
                         src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
                         alt={"サンプルユーザーアイコン"}/>
                         <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
                         <input type="text" name="msg" id="msg" placeholder="出品者へのお問い合わせはこちらから"/>
+                        {/*<input type="submit" formTarget={"msg"}/>*/}
+                    <button   type={"submit"}>
+
+                        <img id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                    </button>
                 </div>
         </>
 

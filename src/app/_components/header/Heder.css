@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 body {
 
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 
     position: relative;
     z-index: 2 ;
@@ -10,24 +11,28 @@ body {
 header {
     display: -webkit-flex;
     display: inline-block;
-    width: auto;
+    width: 100%;
 
     background-color: #EBE8DB;
 }
 header div.nav {
     margin-top: 30px;
+    width: 100%;
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
 }
+
 
 header div.title h1 {
     font-family: "Italiana", sans-serif;
     font-size: 3.2rem;
     font-weight: normal;
     letter-spacing: 5px;
-    width: 200px;
-    margin-left: 80px;
+    width: 100%;
+    margin-left: 20%;
+    text-decoration: none;
+    transition: text-decoration 0.5s;
 }
 header div.title h1:hover{
     text-decoration: underline 1px solid;
@@ -36,15 +41,15 @@ header div.title h1:hover{
 
 div.bar{
     /*width: 400px;*/
-    margin-left: 200px;
+    margin-left: 20%;
 }
 
 header div.bar ul {
     display: -webkit-flex;
     display: flex;
-    width: 1200px;
+    width: 100%;
     list-style: none;
-    margin-right: 320px;
+    /*margin-right: 320px;*/
     font-size: 1rem;
 }
 
@@ -56,6 +61,12 @@ div.bar ul li {
     font-weight: 400;
     font-size: 1.5rem;
     margin-left: 30px;
+    border: none;
+}
+/*オンマウスで色変わる*/
+div.bar ul li:hover{
+    color: #fff;
+    text-shadow: 0 0 30px #BF9E80 ,0 0 20px #BF9E80,0 0 15px #D0C7B2;
 }
 
 div.bar ul li p#category{
@@ -67,32 +78,38 @@ div.bar ul li p#category{
     margin-top: 3px;
 }
 
-li#search{
+li.Headersearch{
     text-align: center;
 }
-li#search svg{
+li.Headersearch svg{
     margin:5px 0 0 0;
 }
-/*オンマウスでほんのり色づく*/
-div.bar ul li:hover{
-    /*background-color: #D0C7B2;*/
-    text-shadow: 0 0 30px #BF9E80 ,0 0 20px #D0C7B2,0 0 15px #D0C7B2;
+
+
+
+/* ユーザーネーム:ログイン遷移 */
+li#UserName{
+    width: 8rem;
+    overflow-wrap: break-word;
+}
+p#usernameGet{
 }
 
-p#usernameGet{
-    width: 8rem;
-}
 
 p#name{
-    width: 120px;
-    margin-left: 74px;
+    width: 8rem;
+    /*margin-left: 74px;*/
 }
 
+li#list_bell{
+    margin: 0 25px 0 0;
+}
 .bell{
-    position: absolute;
-    top: 0%;
-    right: 80px;
-    width: 40px;
+    /*position:relative;*/
+    margin: 0 0 0 25px;
+    /*top: 0;*/
+    /*right: 80px;*/
+    /*width: 40px;*/
     border: none;color: #000000;
 }
 .bell svg{
@@ -108,7 +125,7 @@ p#name{
     top: 14%;
     right: 4%;
     overflow-y: auto;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 }
 
 /*デフォルトで下線部がついていたのでそれを消す設定*/
@@ -225,4 +242,10 @@ span.under_bar {
     margin-top: -1px;
     height: 11px;
     border-bottom: 1px solid #000000;
+}
+
+/* 1250より小さい場合は要素を畳まないとだめかも */
+@media screen and (max-width: 1250px) {
+
+
 }

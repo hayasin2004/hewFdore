@@ -3,20 +3,21 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #EBE8DB;
+
 }
-.productMain {
+main.productMainDisplay {
     display: flex;
+    align-items: center;
     flex-direction: row;
     /*justify-content: space-between;*/
     position: relative;
 }
 /*カート*/
-div#cart{
-    display: flex;
-    flex-direction: column;
-    margin-top: 6%;
-    margin-right: 3%;
-    width: 27%;
+div.productCart{
+    margin-top: 70px;
+    margin-right: 50px;
+    width: 25%;
     position: sticky;
     left: 50px;
     top: 10px;
@@ -56,6 +57,7 @@ div.innerCart{
 div.innerCart img{
     height: 120px;
     width: 120px;
+    box-shadow: #000a 1px 1px  3px;
 }
 div.innerCart p{
     margin: 0 0 0 20px;
@@ -72,11 +74,11 @@ p#total{
 }
 
 /*全体 */
-div#product{
+div.productMain{
     display: flex;
     flex-direction: column;
-    margin-top: 3%;
-
+    width: 75%;
+    margin-left: -7%;
 }
 /*商品情報全体*/
 div#info{
@@ -88,6 +90,11 @@ div#info{
 /*商品画像 #photo*/
 div#photo{
     margin: 20px 50px 0 50px;
+
+}
+figure img{
+    box-shadow: #888 3px 3px 9px;
+
 }
 div#photo img#sum{
     width: 400px;
@@ -111,6 +118,7 @@ li.picts a{
 li.picts a img.pictS{
     height: 50px;
     width: 50px;
+    box-shadow: #aaa 1px 1px  1px;
 }
 
 
@@ -146,27 +154,26 @@ div#text a#seller h2{
     font-size: 1.2rem;
 }
 div#text a#seller img{
-
     height: 50px;
     width: 50px;
     border-radius: 100%;
 }
 
 /* 購入ボタン・アイコン #control*/
-div#control{
+div#controlProduct{
     display: flex;
     margin-left:600px;
     margin-bottom: 20px;
     text-align: right;
 }
-div#control img{
+div#controlProduct img{
     display: inline-block;
-    margin: 0 0 10px 0;
+    margin: 0 5px 20px 0;
     height: 50px;
     width: 50px;
 }
 
-button{
+button.productPurchase{
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;
@@ -174,3 +181,21 @@ button{
     padding: 10px 20px;
 }
 
+div#footer{
+    margin-top: 200px !important;
+}
+
+@media screen and (max-width: 1060px) {
+    main{
+        flex-direction: column-reverse;
+    }
+    div#cart{
+        margin-top: 70px;
+        margin-right: 50px;
+        width: 100%;
+        position: static;
+        left: 50px;
+        top: 10px;
+
+    }
+}

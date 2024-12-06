@@ -48,12 +48,12 @@ const ListingComplete = () => {
 
                 <div id="control">
                     <button
-                        type="button">編集する
+                        type="button" className={"ItiosikinouButton"}>編集する
                     </button>
                     <Link href={"toppage"}>
 
                         <button
-                            type="button">トップに戻る
+                            type="button" className={"ItiosikinouButton"}>トップに戻る
                         </button>
                     </Link>
                 </div>

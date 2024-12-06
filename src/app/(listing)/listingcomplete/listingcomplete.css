@@ -1,19 +1,18 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #EBE8DB;
 }
 /*全体 */
 div#productlisning{
-    width: 1200px;
-    margin-top: 100px;
+    width: 100%;
+    margin: 25px 0 50px 0;
     display: flex;
     flex-direction: column;
-    margin-left: 180px;
 }
 
 h1.liscomph2{
-    margin-top: 80px;
-    margin-bottom: 10px;
+    margin: 80px 0 10px 50px;
 }
 
 .proimg{
@@ -60,7 +59,7 @@ div#text{
     margin-top: -152px;
     display: flex;
     flex-direction: column;
-    width: 900px;
+    width: 80%;
 }
 div#text h1{
     font-size: 3rem;
@@ -102,7 +101,7 @@ div#control{
     margin-left: 60%;
 }
 
-button{
+button.listingCompleteButton{
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;
@@ -111,5 +110,8 @@ button{
     margin-right: 30px;
     margin-bottom: 30px;
 
+}
+button#edit{
+    background-color: #605252;
 }
 

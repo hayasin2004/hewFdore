@@ -9,12 +9,13 @@ body {
 
 }
 
-main{
+main.sendAddressMain{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 50px 10%;
-    background-color: #fff;
+    background-color: #eee;
+    border-radius: 10px;
 }
 
 h2{

@@ -18,10 +18,10 @@ div#point_main{
     flex-direction: row;
     justify-content: space-between;
 }
-div.confirm{
-    width: 700px;
+div.confirmPointMain{
+    width: 100%;
     align-items: center;
-    margin: 120px 0 90px 70px;
+    margin: 17% 0 13% 3%;
     padding-bottom: 90px;
 }
 
@@ -60,20 +60,20 @@ div.recommend_products h2 {
 
 
 div.recommend_product{
-    width: 1000px;
+    width: 100%;
     display: flex;
-    gap: 50px;
     margin-top: 20px;
-
 }
 
 
 div.product{
     display: flex;
+    justify-content: space-between;
     margin-top: 60px;
-    margin-left: 30px;
     margin-bottom: 30px;
     font-size: 1.2rem;
+    margin-left: 2%;
+    padding: 1.7% ;
 }
 
 div.rightbar_product_text{
@@ -86,30 +86,44 @@ div.rightbar_product_text p{
 }
 
 
-div.rightbar{
-    margin: 130px 50px 0 0 ;
-    width: 500px;
-    height: 800px;
+div.rightbarPoint{
+    width: 45%;
+    height: 40%;
+    margin: 10% 2% 0 5% ;
     margin-bottom: 20px;
 }
 
+div.rightbarPoint h2{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 7%;
+}
+
+
+div.confirm_text{
+    margin-left: 10%;
+    font-size: 1.8rem;
+}
+
 div.rightbar_note {
-    width: 500px;
-    height: 600px;
-    overflow-y: auto;
-    padding-left: 20px;
+    width: 70%;
+    height: 40%;
+    padding-left: 2%;
+    margin-left: 6%;
     /*background-color: aqua;*/
     border-left: 2px solid #000;
 }
 
 div ul.rightbar_collectpoint{
+    width: 80%;
+    text-align: center;
     display: flex;
     list-style: none;
-    margin:  0 auto;
+    margin-left: 20%;
 }
 
 div ul.rightbar_collectpoint li{
-    width: 500px;
+    width: 100%;
     font-size: 1.5rem;
     text-align: center;
     padding: 20px;
@@ -118,9 +132,11 @@ div ul.rightbar_collectpoint li{
 }
 
 div ul.rightbar_point{
+    width: 80%;
+    text-align: center;
     display: flex;
     list-style: none;
-    margin:  0 auto;
+    margin-left: 20%;
 }
 
 div ul.rightbar_point li{

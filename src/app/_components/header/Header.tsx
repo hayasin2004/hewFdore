@@ -8,7 +8,6 @@ import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
-import userNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 
 interface User {
@@ -23,7 +22,9 @@ interface User {
 
 const Header = () => {
     const {user} = useUser()
-
+    console.log(user?.username)
+    console.log(user?.userId)
+    console.log(user?.email)
 
 
     // 通知用モーダル
@@ -107,10 +108,10 @@ const Header = () => {
                     </span>
                             <Link href={"/searchResult"}>
 
-                                <li id={"search"}>
+                                <li className={"Headersearch"}>
                                     Search <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                                                strokeLinecap="round" strokeLinejoin="round"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
                                                 className="lucide lucide-search">
                                     <circle cx="11" cy="11" r="8"/>
                                     <path d="m21 21-4.3-4.3"/>
@@ -124,6 +125,7 @@ const Header = () => {
                                 <li id="uru_ul">
                                     Sell
                                     <span id="uru">売る</span>
+
                                 </li>
                             </Link>
                             <span className="long_line"></span>
@@ -133,18 +135,19 @@ const Header = () => {
                                 {user ? <UserNavigationModal/> : ""}
 
                             </li>
-                            <li>
-                                 {user ? <p id={"usernameGet"}>{user.username}</p> :
-                                     <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
-
+                            <li id={"UserName"}>
+                                {user ? <p id={"usernameGet"}>{user.username}</p> :
+                                    <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                                {/*確認用　ネーム上限15*/}
+                                {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
-                            <li>
+                            <li id={"list_bell"}>
                                 {user ?
                                     <div>
                                         <Button className={"bell"} onClick={handleOpen}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                                                 strokeLinecap="round" strokeLinejoin="round"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round"
                                                  className="lucide lucide-bell">
                                                 <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
                                                 <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
@@ -181,8 +184,8 @@ const Header = () => {
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="40"
                                                                  height="40"
                                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 strokeWidth="2"
-                                                                 strokeLinecap="round" strokeLinejoin="round"
+                                                                 stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                  className="lucide lucide-bell">
                                                                 <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
                                                                 <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
@@ -199,8 +202,8 @@ const Header = () => {
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="40"
                                                                  height="40"
                                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 strokeWidth="2"
-                                                                 strokeLinecap="round" strokeLinejoin="round"
+                                                                 stroke-width="2"
+                                                                 stroke-linecap="round" stroke-linejoin="round"
                                                                  className="lucide lucide-bell">
                                                                 <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
                                                                 <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
@@ -217,7 +220,8 @@ const Header = () => {
 
                                             </Box>
                                         </Modal>
-                                    </div> : ""}
+                                    </div>
+                                     : ""}
                             </li>
                             </span>
                         </ul>

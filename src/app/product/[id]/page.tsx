@@ -3,9 +3,9 @@ import React, {useEffect, useState} from 'react';
 import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
-import Chat from "@/app/_components/chat/Chat";
-import Images from "next/image";
+import Footer from "@/app/_components/footer/Footer";
 import Link from 'next/link';
+import Sidebar from "@/app/_components/sidebar/Sidebar";
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 
@@ -26,34 +26,21 @@ const Product = ({params}: { params: { id: string } }) => {
     return (
         <>
             <Header/>
-            <div className={"productMain"}>
 
-                <div id="cart">
+            {/*<div className={"productMain"}>*/}
 
-                    <div id={"cartText"}>
-                        <h2>Cart</h2>
-                        <Image src="/images/Cart_icon.png" width={50} height={50} alt="カート" className="icon"/>
-                    </div>
-                    <span className="under_bar"></span>
-                    <div className="innerCart">
-                        <figure>
-                            <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>
-                        </figure>
-                        <p>
-                            <p>ニット</p>
-                            <p>出品者:Yuuna</p>
-                            <p>価格:2800</p>
-                        </p>
+            {/*    <div id="cart">*/}
+            <main className={"productMainDisplay"}>
+                <div>
+                <Sidebar/>
 
-                    </div>
-                    <p>合計金額</p>
-                    <p id="total">2800円</p>
-                </div>
-                <div id="product">
+
+
+                <div className="productMain">
                     <div id="info">
                         <div id="photo">
                             <figure>
-                                <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
+                                <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>
                             </figure>
                             <ul className="piclist">
                                 <li className="picts"><a href="/images/clothes/product9.jpg">
@@ -89,23 +76,25 @@ const Product = ({params}: { params: { id: string } }) => {
                         </div>
                     </div>
 
-                    <div id="control">
+                    <div id="controlProduct">
                         <Image width={30} height={30} src="/images/star_8.png " alt="お気に入りアイコン"/>
                         <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
                         <Link href={"sendAddress"}>
 
-                            <button
-                                type="button">購入する
-                            </button>
+                        <button id={"buy"}
+                            type="button" className={"productPurchase"}>購入する
+                        </button>
                         </Link>
                     </div>
-                    <Chat/>
+
 
 
                 </div>
             </div>
 
 
+            </main>
+            <Footer/>
         </>
     );
 }
