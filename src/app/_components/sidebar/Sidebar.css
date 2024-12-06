@@ -6,9 +6,9 @@ body {
 }
 
 div.introductionSidebar{
-    margin-top: 100px;
-    width: 880px;
-    height: 90vh;
+    margin: 70px 50px 0 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -120,3 +120,10 @@ p#total_yen{
     margin-bottom: 50px;
 }
 
+@media screen and (max-width: 1060px) {
+div.introductionSidebar{
+    width: 100%;
+    margin: 50px 0;
+}
+
+}

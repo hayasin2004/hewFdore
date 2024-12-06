@@ -13,8 +13,9 @@ const Product = () => {
         <>
             <Header/>
             <main className={"productMainDisplay"}>
+                <div className={"productCart"}>
                 <Sidebar/>
-
+                </div>
 
 
                 <div className="productMain">
