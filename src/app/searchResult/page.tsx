@@ -13,6 +13,7 @@ import CompleteStripe from "@/app/_components/stripe/Stripe";
 import {loadStripe} from "@stripe/stripe-js";
 import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
 import Stripe from "@/app/_components/stripe/Stripe";
+import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
 
 
 
@@ -89,10 +90,10 @@ const SearchPageProducts = () => {
 　
     return (
         <div>
-            <SearchHeader/>
+            {/*<SearchHeader/>*/}
             <div style={{width: "1200px", justifyContent: "space-between", display: "flex"}}>
                 <div style={{"marginTop": "60px", width: "600px"}}>
-                    <Sidebar/>
+                    {/*<Sidebar/>*/}
                 </div>
                 <div >
                 </div>
@@ -102,20 +103,22 @@ const SearchPageProducts = () => {
         </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
-            {product.map((item) => (
-                <div key={item._id} style={{textAlign: "center"}}>
-                    <p>商品番号 : {item._id}</p>
-                    <p>ユーザーネーム : {item.userId}</p>
-                    <p>出品者名 : {item.productName}</p>
-                    <p>商品説明 : {item.productDesc}</p>
-                    <p>商品価格 : {item.productPrice}</p>
-                    <Stripe productId={item?._id} />
+            <div className={"productListFrame"}>
+                {product.map((item) => (
+                    <CollapsibleProductCard key={item._id} item={item} />
 
-                    <br/>
-                    <hr/>
-                    <br/>
-                </div>
-            ))}
+                    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
+                    //     {/*<p>商品番号 : {item._id}</p>*/}
+                    //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
+                    //     <p className={"listImage"}>item.いめーじ</p>
+                    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>
+                    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>
+                    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
+                    //     {/*<Stripe productId={item?._id} />*/}
+                    // </div>
+                ))}
+            </div>
+
 
 
         </div>
