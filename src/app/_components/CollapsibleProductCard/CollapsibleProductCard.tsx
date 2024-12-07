@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './CollapsibleProductCard.css';
+import Link from "next/link";
 
 const CollapsibleProductCard = ({ item }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,9 @@ const CollapsibleProductCard = ({ item }) => {
         >
             <p className="image">item.いめーじ</p>
             <p className="explanation">商品説明 : {item.productDesc}</p>
+            <Link href={`product/${item.id}`} as={`/product/${item.id}`}>
             <p className="explanation">出品者名 : {item.productName}</p>
+            </Link>
             <p className="price">商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
 
             <div className={`expanded-content ${isOpen ? 'visible' : 'hidden'}`}>

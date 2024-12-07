@@ -10,7 +10,7 @@ import useUser from "@/hooks/useUser";
 
 const UserDetailPage = ({params}: { params: { id: string } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
-
+    const id = params.id;
     const {user} = useUser()
     const loginNowUserId = user?._id
 
@@ -25,11 +25,11 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
         }
     }
     useEffect(() => {
-        const id = params.id;
         const response = async () => {
             try {
                 console.log(id)
                 const response = await userProfile(id)
+
                 setUserData(response)
             } catch (err) {
                 console.log(err)

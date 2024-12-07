@@ -9,12 +9,13 @@ import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
+import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
 
 
-
-const stripePromise = loadStripe(
-    process.env.STRIPE_SECRET_KEY!
-)
+//
+// const stripePromise = loadStripe(
+//     process.env.STRIPE_SECRET_KEY!
+// )
 
 const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])

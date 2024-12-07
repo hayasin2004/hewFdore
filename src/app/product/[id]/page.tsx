@@ -11,7 +11,7 @@ import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 const Product = ({params}: { params: { id: string } }) => {
     const [product, setProduct] = useState<ProductType | null>()
-
+    console.log(product)
     const id = params.id
     console.log("取得してきた商品" + id)
     console.log("フロントエンドに帰ってきた" + product)
@@ -31,7 +31,7 @@ const Product = ({params}: { params: { id: string } }) => {
 
             {/*    <div id="cart">*/}
             <main className={"productMainDisplay"}>
-                <div>
+                <div className={"productFlex"}>
                 <Sidebar/>
 
 
