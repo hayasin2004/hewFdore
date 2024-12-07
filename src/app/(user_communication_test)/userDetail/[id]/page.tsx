@@ -8,32 +8,36 @@ import updateFollowings from "@/app/utils/user/ApdateFollowings";
 import useUser from "@/hooks/useUser";
 
 
-const UserDetailPage = ({params}: { params: { id?: string } }) => {
+const UserDetailPage = ({params}: { params: { id:string } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
+    console.log(userData)
+    const detailUser = params.id
     console.log(userData)
     const {user} = useUser()
     const loginNowUserId = user?._id
-    const id = params.id;
-    console.log("取得してきた" + id);
 
     const followings = async () => {
         try {
             const userFollowings = userData?.id
             console.log(userFollowings)
-            const response  = await updateFollowings(userFollowings, loginNowUserId)
+            const response = await updateFollowings(userFollowings, loginNowUserId)
         } catch (err) {
             console.log(err)
         }
     }
 
-
     useEffect(() => {
-        const response = async function data() {
-            const searchUser = await userProfile(id)
-            setUserData(searchUser)
-        }
-        response()
-    }, [id]);
+            const response = async function data() {
+                try {
+
+                const searchUser = await userProfile(detailUser)
+                setUserData(searchUser)
+                }catch (err){
+                    console.log(err)
+                }
+            }
+            response()
+    }, [detailUser]);
 
 
     return (
@@ -66,7 +70,7 @@ const UserDetailPage = ({params}: { params: { id?: string } }) => {
                             </span>
                 ))}
                     <li>
-                        <Link href={{pathname :`/directMessage/${id}` , query : {currentUserId :loginNowUserId}}}  >
+                        <Link href={{pathname: `/directMessage/${params.id}`, query: {currentUserId: loginNowUserId}}}>
                             DMする
                         </Link>
                     </li>
