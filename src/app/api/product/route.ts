@@ -30,6 +30,7 @@ export  async  function GET(req : NextApiRequest , res : NextResponse){
 
         try {
             const product = await  Product.find();
+            console.log()
             const productDetail : DBProductType[] = product.map((item) => {
 
                 return {_id :  item?._id , userId : item?.userId, productName : item?.productName,  productDesc : item?.productDesc , productPrice : item?.productPrice}

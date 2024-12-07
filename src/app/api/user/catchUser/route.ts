@@ -19,7 +19,7 @@ export interface UserType {
 }
 
 export  interface UserFollow {
-    _id: string
+    _id?: string
     followings? : string,
     followers? : string,
 }

@@ -8,13 +8,12 @@ import updateFollowings from "@/app/utils/user/ApdateFollowings";
 import useUser from "@/hooks/useUser";
 
 
-const UserDetailPage = ({params}: { params: { id:string } }) => {
+const UserDetailPage = ({params}: { params: { id: string } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
-    console.log(userData)
-    const detailUser = params.id
-    console.log(userData)
+
     const {user} = useUser()
     const loginNowUserId = user?._id
+
 
     const followings = async () => {
         try {
@@ -25,19 +24,19 @@ const UserDetailPage = ({params}: { params: { id:string } }) => {
             console.log(err)
         }
     }
-
     useEffect(() => {
-            const response = async function data() {
-                try {
-
-                const searchUser = await userProfile(detailUser)
-                setUserData(searchUser)
-                }catch (err){
-                    console.log(err)
-                }
+        const id = params.id;
+        const response = async () => {
+            try {
+                console.log(id)
+                const response = await userProfile(id)
+                setUserData(response)
+            } catch (err) {
+                console.log(err)
             }
-            response()
-    }, [detailUser]);
+        }
+        response()
+    }, []);
 
 
     return (
