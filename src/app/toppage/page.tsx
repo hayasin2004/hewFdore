@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import ToppageMain from "@/app/_components/toppageMain/ToppageMain";
@@ -10,7 +10,7 @@ import "./toppage.css"
 // import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
-// import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
+import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 
 import Image from "next/image"
 import {color} from "@mui/system";
@@ -19,6 +19,11 @@ import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 // 幅揃えします
 
 const Toppage = () => {
+
+    const [productList, setProductList] = useState([])
+    console.log(productList)
+
+
     useEffect(() => {
         // エンコードしたtokenを検証する
         const token = localStorage.getItem("token") as string;
@@ -26,6 +31,20 @@ const Toppage = () => {
         // console.log(token);
         // token.username
         // const username =
+        const product = async () => {
+            try {
+                const response = await axios.get("/api/product");
+                if (response.status === 200) {
+                    setProductList(response.data);
+                } else {
+                    console.error("Error: Unable to fetch products.");
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        product()
+
     }, []);
 
 

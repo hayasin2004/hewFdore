@@ -14,7 +14,8 @@ interface dummy {
 }
 　
 
-const dummyData_slide_map_item: dummy[] = dummyData.map((item, index) => {
+
+const dummyData_slide_map_item: dummy[] = dummyData.map((item : DummyDataType, index) => {
     const image = item.url
     const text = item.randomString
     return {image, text}
@@ -25,7 +26,10 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // これが今のスライド
     const [currentSlide, setCurrentSlide] = useState(0);
     // これが次のスライド
-    const [nextSlide, setNextSlide] = useState(0);　
+    const [nextSlide, setNextSlide] = useState(0);
+    // これがテキストのスライド
+    const [textSlide, setTextSlide] = useState(0);
+
 
     // 次のスライド
     // これが今のアニメーション
