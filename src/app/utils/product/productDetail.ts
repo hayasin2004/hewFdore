@@ -27,14 +27,14 @@
             console.log(product)
             const userName : ProductType = await User.findById({_id: product.userId}).exec()
             return {
-                id: product?._id,
-                userId: product?.userId,
-                username : userName.username,
-                productName: product?.productName,
-                productDesc: product?.productDesc,
-                productPrice: product?.productPrice,
-                productPicture: product?.productPicture,
-                productVideo: product?.productVideo
+                id: JSON.stringify(product?._id),
+                userId: JSON.stringify(product?.userId),
+                username : JSON.stringify(userName.username),
+                productName: JSON.stringify(product?.productName),
+                productDesc: JSON.stringify(product?.productDesc),
+                productPrice:JSON.stringify( product?.productPrice),
+                productPicture: JSON.stringify(product?.productPicture),
+                productVideo: JSON.stringify(product?.productVideo)
             }
         } catch (err) {
             console.error(err)

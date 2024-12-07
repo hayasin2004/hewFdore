@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <main>
       <div>
+          <Toppage />
           <SearchPageProducts />
-          {/*<Toppage />*/}
           {/*<Toppage />*/}
           <Gmail />
       {/*<Login />*/}

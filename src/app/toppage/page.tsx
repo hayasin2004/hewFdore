@@ -10,7 +10,6 @@ import "./toppage.css"
 // import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
-import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 
 import Image from "next/image"
 import {color} from "@mui/system";
