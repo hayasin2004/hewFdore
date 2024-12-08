@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useState} from 'react';
 import "./listingScreenRadiobutton.css"
 import {
     FormControl,
@@ -13,26 +13,51 @@ import {
     SelectChangeEvent
 } from "@mui/material";
 import Box from "@mui/material/Box";
+import {productStatusType} from "@/app/(listing)/listingScreen/page";
 
-const ListingScreenRadiobutton = () => {
-    const [size, setSize] = React.useState('');
-    const [condition, setCondition] = React.useState('');
-    const [postage, setPostage] = React.useState('');
-    const [days, setDays] = React.useState('');
+const ListingScreenRadiobutton: React.FC<productStatusType> = ({
+                                                                   onCategoryChange,
+                                                                   onProductSizeChange,
+                                                                   onProductConditionChange,
+                                                                   onPostageBurdenChange,
+                                                                   onDeliveryTimeChange
+                                                               }) => {
+    const [productCategory, setProductCategory] = useState([])
+    const [productSize, setProductSize] = useState("")
+    console.log(productSize)
+    const [productCondition, setProductCondition] = useState("")
+    const [postageBurden, setPostageBurden] = useState("")
+    const [shippingSource, setShippingSource] = useState("")
+    const [deliveryTime, setDeliveryTime] = useState("")
 
-    const handleSizeChange = (event: SelectChangeEvent) => {
-        setSize(event.target.value as string);
+    const handleProductSizeChange = (SizeEvent: SelectChangeEvent) => {
+        setProductSize(SizeEvent.target.value as string);
     };
-    const handleConditonChange = (event: SelectChangeEvent) => {
-        setCondition(event.target.value as string);
-    };
 
-    const handlePostageChange = (event: SelectChangeEvent) => {
-        setPostage(event.target.value as string);
+
+    const handleProductExplainCategorySet = (Categoryevent: React.FC<HTMLButtonElement>) => {
+        onCategoryChange(Categoryevent)
     }
-    const handleDaysChange = (event: SelectChangeEvent) => {
-        setDays(event.target.value as string);
+
+    const handleProductExplainSizeSet = (SizeEvent: React.FC<HTMLButtonElement>) => {
+        console.log(SizeEvent)
+        setProductSize(SizeEvent)
+        onProductSizeChange(productSize)
+        console.log(productSize)
     }
+    const handleProductExplainConditionSet = (ConditionEvent: React.FC<HTMLButtonElement>) => {
+        console.log(ConditionEvent)
+        onProductConditionChange(ConditionEvent)
+    }
+    const handleProductExplainPostageBurdenSet = (PostageBurdenEvent: React.FC<HTMLButtonElement>) => {
+        console.log(PostageBurdenEvent)
+        onPostageBurdenChange(PostageBurdenEvent)
+    }
+    const handleProductExplainDeliveryTimeSet = (DeliveryTimeEvent: React.FC<HTMLButtonElement>) => {
+        console.log(DeliveryTimeEvent)
+        onCategoryChange(DeliveryTimeEvent)
+    }
+
 
 
     return (
@@ -52,19 +77,37 @@ const ListingScreenRadiobutton = () => {
 
                                     <Box className={"radio_button_low1"}>
 
-                                        <FormControlLabel value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
-                                        <FormControlLabel value="denim" control={<Radio/>} label="デニム"/>
-                                        <FormControlLabel value="outer" control={<Radio/>} label="アウター"/>
-                                        <FormControlLabel value="shirt" control={<Radio/>} label="シャツ"/>
-                                        <FormControlLabel value="longShirt" control={<Radio/>} label="長袖"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="denim" control={<Radio/>} label="デニム"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="outer" control={<Radio/>} label="アウター"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="shirt" control={<Radio/>} label="シャツ"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="longShirt" control={<Radio/>} label="長袖"/>
                                     </Box>
 
                                     <Box className={"radio_button_low2"}>
 
-                                        <FormControlLabel value="T-shirt" control={<Radio/>} label="Tシャツ"/>
-                                        <FormControlLabel value="perfume" control={<Radio/>} label="香水"/>
-                                        <FormControlLabel value="hat" control={<Radio/>} label="帽子"/>
-                                        <FormControlLabel value="shose" control={<Radio/>} label="靴"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="T-shirt" control={<Radio/>} label="Tシャツ"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="perfume" control={<Radio/>} label="香水"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="hat" control={<Radio/>} label="帽子"/>
+                                        <FormControlLabel
+                                            onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                            value="shose" control={<Radio/>} label="靴"/>
                                     </Box>
 
                                 </Box>
@@ -85,16 +128,22 @@ const ListingScreenRadiobutton = () => {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={size}
+                            value={productSize}
                             label="Age"
-                            onChange={handleSizeChange}
+                            onChange={handleProductExplainSizeSet}
                         >
-                            <MenuItem value={10}>XS</MenuItem>
-                            <MenuItem value={20}>S</MenuItem>
-                            <MenuItem value={30}>M</MenuItem>
-                            <MenuItem value={40}>L</MenuItem>
-                            <MenuItem value={50}>LL</MenuItem>
-                            <MenuItem value={60}>XXL</MenuItem>
+                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                                      value={"XS"}>XS</MenuItem>
+                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                                      value={"S"}>S</MenuItem>
+                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                                      value={"M"}>M</MenuItem>
+                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                                      value={"L"}>L</MenuItem>
+                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                                      value={"LL"}>LL</MenuItem>
+                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                                      value={"XXL"}>XXL</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
@@ -108,13 +157,12 @@ const ListingScreenRadiobutton = () => {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={condition}
+                            value={productCondition}
                             label="Age"
-                            onChange={handleConditonChange}
                         >
-                            <MenuItem value={"new"}>新品未使用</MenuItem>
-                            <MenuItem value={"nearNew"}>未使用に近い</MenuItem>
-                            <MenuItem value={"used"}>使用感がある</MenuItem>
+                            <MenuItem onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)} value={"new"}>新品未使用</MenuItem>
+                            <MenuItem onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)} value={"nearNew"}>未使用に近い</MenuItem>
+                            <MenuItem onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)} value={"used"}>使用感がある</MenuItem>
 
                         </Select>
                     </FormControl>
@@ -130,12 +178,11 @@ const ListingScreenRadiobutton = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={postage}
+                        value={postageBurden}
                         label="Age"
-                        onChange={handlePostageChange}
                     >
-                        <MenuItem value={"seller"}>出品者負担</MenuItem>
-                        <MenuItem value={"buyer"}>購入者負担</MenuItem>
+                        <MenuItem onChange={(PostageBurden) => handleProductExplainPostageBurdenSet(PostageBurdenEvent.target.value)} value={"seller"}>出品者負担</MenuItem>
+                        <MenuItem onChange={(PostageBurden) => handleProductExplainPostageBurdenSet(PostageBurdenEvent.target.value)} value={"buyer"}>購入者負担</MenuItem>
 
                     </Select>
                 </FormControl>
@@ -149,13 +196,12 @@ const ListingScreenRadiobutton = () => {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={days}
+                        value={deliveryTime}
                         label="Age"
-                        onChange={handleDaysChange}
                     >
-                        <MenuItem value={"1day"}>1~2日で発送</MenuItem>
-                        <MenuItem value={"2day"}>2~3日で発送</MenuItem>
-                        <MenuItem value={"3day"}>3~4日で発送</MenuItem>
+                        <MenuItem　onChange={(DeliveryTime) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)} value={"1day"}>1~2日で発送</MenuItem>
+                        <MenuItem　onChange={(DeliveryTime) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)} value={"2day"}>2~3日で発送</MenuItem>
+                        <MenuItem　onChange={(DeliveryTime) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)} value={"3day"}>3~4日で発送</MenuItem>
 
                     </Select>
                 </FormControl>

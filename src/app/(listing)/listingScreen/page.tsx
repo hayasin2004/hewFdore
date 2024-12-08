@@ -1,13 +1,31 @@
 "use client"
-import React from 'react';
+import React, {useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";
+import {string} from "prop-types";
 
-const ListingScreen = () => {
+export interface productStatusType {
+    productCategory?: string[],
+    productCondition?: string,
+    postageBurden?: string,
+    shippingSource?: string,
+    deliveryTime?: string,
+}
+
+const ListingScreen: React.FC = () => {
+    const [productCategory, setProductCategory] = useState([])
+    const [productSize, setProductSize] = useState("")
+    console.log(productCategory)
+    console.log(productSize)
+    const [productCondition, setProductCondition] = useState("")
+    const [postageBurden, setPostageBurden] = useState("")
+    const [shippingSource, setShippingSource] = useState("")
+    const [deliveryTime, setDeliveryTime] = useState("")
+
 
     return (
         <>
@@ -18,7 +36,7 @@ const ListingScreen = () => {
                         console.log("asfasdfdafffdfdfdfffffffdddfffff")
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
-                        const productDesc = data.get("produvDesc") as string;
+                        const productDesc = data.get("productDesc") as string;
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
@@ -59,7 +77,15 @@ const ListingScreen = () => {
                         <h3 className="cat">
                             カテゴリ
                         </h3>
-                        <ListingScreenRadiobutton/>
+                        <ListingScreenRadiobutton
+                            onCategoryChange={setProductCategory}
+                            onProductSizeChange={setProductSize}
+                            onProductConditionChange={setProductCondition}
+                            onPostageBurdenChange={setPostageBurden}
+                            onDeliveryTimeChange={setDeliveryTime}
+
+                        />
+
 
                         <h3 id="s_name">
                             発送地域
