@@ -30,8 +30,8 @@ const ListingScreen: React.FC = () => {
     const [postageBurden, setPostageBurden] = useState<string | null>(null)
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
-    const [productId, setProductId] = useState<string | null>("")
-    console.log(shippingAreaText)
+    const [productId, setProductId] = useState<string | null>(null)
+    console.log(productId)
     const shippingArea = shippingAreaText
     console.log(shippingArea)
     //
@@ -73,13 +73,8 @@ const ListingScreen: React.FC = () => {
                             shippingAreaText
                         ).then(
                             (product => {
-                                console.log(JSON.stringify(product))
-                                if (product !== null) {
-                                    setProductId(JSON.stringify(product))
-                                }
-                                if (productId !== ""){
-                                    redirect(`/listingcomplete/${productId}`)
-                                }
+                                const result = JSON.parse(product.result)
+                                setProductId(result.sellerId)
                             })
 
                             )
@@ -139,7 +134,7 @@ const ListingScreen: React.FC = () => {
 
                             <button className={"listingcompletebtn"} type={"submit"}>
                                 {/*<Link href={"listingcomplete"}>*/}
-                                <p>出品</p>
+                                {productId ? <Link href={`/userDetail/${productId}`}>確認ページ</Link> : <p>出品</p>}
                                 {/*</Link>*/}
                             </button>
                         </div>
