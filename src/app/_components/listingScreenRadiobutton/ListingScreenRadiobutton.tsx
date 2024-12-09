@@ -27,19 +27,16 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     console.log(productCategory)
 
     const [productSize, setProductSize] = useState("")
-    console.log(JSON.stringify(productSize))
+    // console.log(JSON.stringify(productSize))
     const [productCondition, setProductCondition] = useState("")
     const [postageBurden, setPostageBurden] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
-    const [shippingSource, setShippingSource] = useState("")
-    console.log(shippingSource)
-
-    const handleProductSizeChange = (SizeEvent: SelectChangeEvent) => {
-        setProductSize(SizeEvent.target.value as string);
-    };
+    const [shippingArea, setShippingArea] = useState("")
+    // console.log(postageBurden)
 
 
     const handleProductExplainCategorySet = (Categoryevent: React.FC<HTMLButtonElement>) => {
+        setProductCategory(Categoryevent)
         onCategoryChange(Categoryevent)
     }
 
@@ -64,8 +61,8 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
         onDeliveryTimeChange(DeliveryTimeEvent)
     }
     const handleProductExplainShippingSourceSet = (ShippingSourceEvent: React.FC<HTMLButtonElement>) => {
-        setShippingSource(ShippingSourceEvent)
-        console.log(shippingSource)
+        setShippingArea(ShippingSourceEvent)
+        console.log(shippingArea)
         onShippingSource(ShippingSourceEvent)
     }
 
@@ -221,7 +218,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
 
                     </Select>
                 </FormControl>
-                <Box className={"shippingSource"}>
+                <Box className={"shippingArea"}>
 
                     <TextField fullWidth
                                onChange={(ShippingSourceEvent) => handleProductExplainShippingSourceSet(ShippingSourceEvent.target.value)}

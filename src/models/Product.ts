@@ -70,7 +70,7 @@ const ProductSchema = new mongoose.Schema({
             enum: postageBurden,
             required: true
         },
-        shippingSource: {
+        shippingArea: {
             type: String,
             required: true,
         }

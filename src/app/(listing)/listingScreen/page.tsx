@@ -12,7 +12,7 @@ export interface productStatusType {
     productCategory?: string[],
     productCondition?: string,
     postageBurden?: string,
-    shippingSource?: string,
+    shippingArea?: string,
     deliveryTime?: string,
 }
 
@@ -22,14 +22,14 @@ const ListingScreen: React.FC = () => {
 
     const [productCondition, setProductCondition] = useState("")
     const [postageBurden, setPostageBurden] = useState("")
-    const [shippingSource, setShippingSource] = useState("")
+    const [shippingArea, setShippingArea] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
     console.log(productCategory)
     console.log(productSize)
     console.log(productCondition)
     console.log(postageBurden)
     console.log(deliveryTime)
-    console.log(shippingSource)
+    console.log(shippingArea)
 
 
     return (
@@ -88,7 +88,7 @@ const ListingScreen: React.FC = () => {
                             onProductConditionChange={setProductCondition}
                             onPostageBurdenChange={setPostageBurden}
                             onDeliveryTimeChange={setDeliveryTime}
-                            onShippingSource={setShippingSource}
+                            onShippingSource={setShippingArea}
 
                         />
 
