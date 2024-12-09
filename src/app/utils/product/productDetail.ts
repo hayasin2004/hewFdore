@@ -7,7 +7,7 @@
     export interface ProductType {
         id?: string
         _id?: string,
-        userId?: string,
+        sellerId?: string,
         username? :string,
         productName?: string,
         productDesc?: string,
@@ -21,20 +21,25 @@
     const productDetail = async (id: string): Promise<ProductType | null> => {
         await connectDB()
         console.log(id)
-        console.log("データベースから取得してきた")
+        console.log("データベースから取得してきた!!!")
         try {
             const product: ProductType = await Product.findById({_id: id})
             console.log(product)
-            const userName : ProductType = await User.findById({_id: product.userId}).exec()
+            const userName : ProductType = await User.findOne({_id: product.sellerId}).exec()
+            console.log(userName)
             return {
-                id: JSON.stringify(product?._id),
-                userId: JSON.stringify(product?.userId),
-                username : JSON.stringify(userName.username),
-                productName: JSON.stringify(product?.productName),
-                productDesc: JSON.stringify(product?.productDesc),
-                productPrice:JSON.stringify( product?.productPrice),
-                productPicture: JSON.stringify(product?.productPicture),
-                productVideo: JSON.stringify(product?.productVideo)
+                id:product?._id,
+                sellerId:userName?.sellerId,
+                username :userName.username,
+                productName:product?.productName,
+                productDesc:product?.productDesc,
+                productSize:product?.productSize,
+                productCategory:product?.productCategory,
+                postageBurden: product?.postageBurden,
+                productCondition : product?.productCondition,
+                productPrice: product?.productPrice,
+                productPicture:product?.productPicture,
+                productVideo:product?.productVideo
             }
         } catch (err) {
             console.error(err)

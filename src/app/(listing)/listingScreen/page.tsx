@@ -73,8 +73,8 @@ const ListingScreen: React.FC = () => {
                             shippingAreaText
                         ).then(
                             (product => {
-                                const result = JSON.parse(product.result)
-                                setProductId(result.sellerId)
+                                const result = JSON.parse(product?.result)
+                                setProductId(result)
                             })
 
                             )
@@ -134,7 +134,7 @@ const ListingScreen: React.FC = () => {
 
                             <button className={"listingcompletebtn"} type={"submit"}>
                                 {/*<Link href={"listingcomplete"}>*/}
-                                {productId ? <Link href={`/userDetail/${productId}`}>確認ページ</Link> : <p>出品</p>}
+                                {productId ? <Link href={`/listingcomplete/${productId?._id}`}>確認ページ</Link> : <p>出品</p>}
                                 {/*</Link>*/}
                             </button>
                         </div>
