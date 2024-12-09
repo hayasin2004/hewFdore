@@ -60,7 +60,7 @@ export  const createProduct = async (
         console.log("保存完了だよ")
 
         const returnProduct = newProduct.toObject();
-        return returnProduct;
+        return JSON.stringify(returnProduct);
     }catch (err){
         console.log(err)
     }

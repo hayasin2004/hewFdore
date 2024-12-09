@@ -69,7 +69,11 @@ const ListingScreen: React.FC = () => {
                             productCondition,
                             postageBurden,
                             shippingAreaText
-                        ).then();
+                        ).then(
+                            (user => {
+                                console.log(user)
+                            })
+                        );
                     }}>
                         <h2>
                             出品情報
