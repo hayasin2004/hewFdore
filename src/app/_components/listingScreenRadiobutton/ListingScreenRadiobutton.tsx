@@ -23,8 +23,10 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                                                    onDeliveryTimeChange
                                                                }) => {
     const [productCategory, setProductCategory] = useState([])
+    console.log(productCategory)
+
     const [productSize, setProductSize] = useState("")
-    console.log(productSize)
+    console.log(JSON.stringify(productSize))
     const [productCondition, setProductCondition] = useState("")
     const [postageBurden, setPostageBurden] = useState("")
     const [shippingSource, setShippingSource] = useState("")
@@ -40,21 +42,23 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     }
 
     const handleProductExplainSizeSet = (SizeEvent: React.FC<HTMLButtonElement>) => {
-        console.log(SizeEvent)
         setProductSize(SizeEvent)
         onProductSizeChange(productSize)
         console.log(productSize)
     }
     const handleProductExplainConditionSet = (ConditionEvent: React.FC<HTMLButtonElement>) => {
-        console.log(ConditionEvent)
+
+        setProductCondition(ConditionEvent)
         onProductConditionChange(ConditionEvent)
     }
     const handleProductExplainPostageBurdenSet = (PostageBurdenEvent: React.FC<HTMLButtonElement>) => {
         console.log(PostageBurdenEvent)
+        setPostageBurden(PostageBurdenEvent)
         onPostageBurdenChange(PostageBurdenEvent)
     }
     const handleProductExplainDeliveryTimeSet = (DeliveryTimeEvent: React.FC<HTMLButtonElement>) => {
         console.log(DeliveryTimeEvent)
+        setDeliveryTime(DeliveryTimeEvent)
         onCategoryChange(DeliveryTimeEvent)
     }
 
@@ -129,20 +133,20 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={productSize}
-                            label="Age"
-                            onChange={handleProductExplainSizeSet}
+                            label="Size"
+                            onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
                         >
-                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                            <MenuItem 
                                       value={"XS"}>XS</MenuItem>
-                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                            <MenuItem 
                                       value={"S"}>S</MenuItem>
-                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                            <MenuItem 
                                       value={"M"}>M</MenuItem>
-                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                            <MenuItem 
                                       value={"L"}>L</MenuItem>
-                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                            <MenuItem 
                                       value={"LL"}>LL</MenuItem>
-                            <MenuItem onChange={(SizeEvent) => handleProductExplainSizeSet(SizeEvent.target.value)}
+                            <MenuItem 
                                       value={"XXL"}>XXL</MenuItem>
                         </Select>
                     </FormControl>
@@ -158,11 +162,12 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={productCondition}
-                            label="Age"
-                        >
-                            <MenuItem onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)} value={"new"}>新品未使用</MenuItem>
-                            <MenuItem onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)} value={"nearNew"}>未使用に近い</MenuItem>
-                            <MenuItem onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)} value={"used"}>使用感がある</MenuItem>
+                            label="Condition"
+                            onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)}
+                         variant={"standard"}>
+                            <MenuItem  value={"new"}>新品未使用</MenuItem>
+                            <MenuItem  value={"nearNew"}>未使用に近い</MenuItem>
+                            <MenuItem  value={"used"}>使用感がある</MenuItem>
 
                         </Select>
                     </FormControl>
@@ -179,10 +184,11 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={postageBurden}
-                        label="Age"
+                        label="postage"
+                        onChange={(PostageBurdenEvent) => handleProductExplainPostageBurdenSet(PostageBurdenEvent.target.value)}
                     >
-                        <MenuItem onChange={(PostageBurden) => handleProductExplainPostageBurdenSet(PostageBurdenEvent.target.value)} value={"seller"}>出品者負担</MenuItem>
-                        <MenuItem onChange={(PostageBurden) => handleProductExplainPostageBurdenSet(PostageBurdenEvent.target.value)} value={"buyer"}>購入者負担</MenuItem>
+                        <MenuItem  value={"seller"}>出品者負担</MenuItem>
+                        <MenuItem  value={"buyer"}>購入者負担</MenuItem>
 
                     </Select>
                 </FormControl>
@@ -197,11 +203,12 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={deliveryTime}
-                        label="Age"
+                        label="delivery"
+                        onChange={(DeliveryTimeEvent) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)}
                     >
-                        <MenuItem　onChange={(DeliveryTime) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)} value={"1day"}>1~2日で発送</MenuItem>
-                        <MenuItem　onChange={(DeliveryTime) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)} value={"2day"}>2~3日で発送</MenuItem>
-                        <MenuItem　onChange={(DeliveryTime) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)} value={"3day"}>3~4日で発送</MenuItem>
+                        <MenuItem　value={"1to3day"}>1~3日で発送</MenuItem>
+                        <MenuItem　 value={"3to5day"}>3~5日で発送</MenuItem>
+                        <MenuItem　 value={"5to7day"}>5~7日で発送</MenuItem>
 
                     </Select>
                 </FormControl>

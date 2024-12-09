@@ -73,7 +73,7 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
-    const product : DBProductType[]   = productList.map((item) => {
+    const product : DBProductType[]   = productList?.map((item) => {
         return {...item ,id : item._id}
         }
     )
@@ -100,7 +100,7 @@ const SearchPageProducts = () => {
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
-                {product.map((item) => (
+                {product?.map((item) => (
                     <CollapsibleProductCard key={item._id} item={item} />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>

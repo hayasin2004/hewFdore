@@ -19,12 +19,17 @@ export interface productStatusType {
 const ListingScreen: React.FC = () => {
     const [productCategory, setProductCategory] = useState([])
     const [productSize, setProductSize] = useState("")
-    console.log(productCategory)
-    console.log(productSize)
+
     const [productCondition, setProductCondition] = useState("")
     const [postageBurden, setPostageBurden] = useState("")
     const [shippingSource, setShippingSource] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
+    console.log(productCategory)
+    console.log(productSize)
+    console.log(productCondition)
+    console.log(postageBurden)
+    console.log(deliveryTime)
+    // console.log(shippingSource)
 
 
     return (
