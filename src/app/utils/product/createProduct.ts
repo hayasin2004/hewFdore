@@ -3,6 +3,7 @@ import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import jwt from "jsonwebtoken";
 import {string} from "prop-types";
+import {v4 as uuidv4} from 'uuid';
 
 
 
@@ -10,6 +11,7 @@ export interface createProductType {
     productName: string;
     productPrice : string;
     shippingSend: string;
+    product : string
 
 }
 
@@ -25,7 +27,7 @@ export  const createProduct = async (
     productCondition : string |null,
     postageBurden : string |null,
     shippingArea : string |null,
-): Promise<createProductType | null> => {
+): Promise<{ product: string | null }> => {
     console.log(
     productName,
     productDesc,
@@ -45,7 +47,9 @@ export  const createProduct = async (
     try {
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
         const sellerId =  decoded.userId
+        const productId = uuidv4()
         const newProduct = await  Product.create({
+            productId,
             sellerId ,
             productName,
             productPrice,
@@ -59,8 +63,8 @@ export  const createProduct = async (
         await newProduct.save()
         console.log("保存完了だよ")
 
-        const returnProduct = newProduct.toObject();
-        return JSON.stringify(returnProduct);
+        const returnProduct = JSON.stringify(newProduct)
+        return {returnProduct};
     }catch (err){
         console.log(err)
     }

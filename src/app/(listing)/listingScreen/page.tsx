@@ -7,6 +7,7 @@ import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton
 import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";
 import {string} from "prop-types";
+import {redirect} from "next/navigation";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -29,6 +30,7 @@ const ListingScreen: React.FC = () => {
     const [postageBurden, setPostageBurden] = useState<string | null>(null)
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
+    const [productId, setProductId] = useState<string | null>("")
     console.log(shippingAreaText)
     const shippingArea = shippingAreaText
     console.log(shippingArea)
@@ -57,7 +59,7 @@ const ListingScreen: React.FC = () => {
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
                         const shippingArea = data.get("shippingArea") as string;
                         const token = localStorage.getItem("token") as string;
-                        console.log("来てる"+shippingAreaText)
+                        console.log("来てる" + shippingAreaText)
                         await createProduct(
                             token,
                             productName,
@@ -70,10 +72,18 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText
                         ).then(
-                            (user => {
-                                console.log(user)
+                            (product => {
+                                console.log(JSON.stringify(product))
+                                if (product !== null) {
+                                    setProductId(JSON.stringify(product))
+                                }
+                                if (productId !== ""){
+                                    redirect(`/listingcomplete/${productId}`)
+                                }
                             })
-                        );
+
+                            )
+                        ;
                     }}>
                         <h2>
                             出品情報
@@ -102,7 +112,7 @@ const ListingScreen: React.FC = () => {
                             商品詳細
                         </h3>
 
-                        <input type="text" name={"productDesc"}  className="txtInput"/>
+                        <input type="text" name={"productDesc"} className="txtInput"/>
 
 
                         <h3 className="cat">

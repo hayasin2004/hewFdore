@@ -16,6 +16,11 @@ type deliveryTimeType = (typeof deliveryTime)[number];
 
 const ProductSchema = new mongoose.Schema({
 
+        productId : {
+            type : String,
+            required:true
+        },
+
         sellerId: {
             type: String,
             required: true,
