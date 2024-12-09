@@ -20,7 +20,8 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                                                    onProductSizeChange,
                                                                    onProductConditionChange,
                                                                    onPostageBurdenChange,
-                                                                   onDeliveryTimeChange
+                                                                   onDeliveryTimeChange,
+                                                                   onShippingSource
                                                                }) => {
     const [productCategory, setProductCategory] = useState([])
     console.log(productCategory)
@@ -31,6 +32,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     const [postageBurden, setPostageBurden] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
     const [shippingSource, setShippingSource] = useState("")
+    console.log(shippingSource)
 
     const handleProductSizeChange = (SizeEvent: SelectChangeEvent) => {
         setProductSize(SizeEvent.target.value as string);
@@ -59,12 +61,12 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     const handleProductExplainDeliveryTimeSet = (DeliveryTimeEvent: React.FC<HTMLButtonElement>) => {
         console.log(DeliveryTimeEvent)
         setDeliveryTime(DeliveryTimeEvent)
-        onCategoryChange(DeliveryTimeEvent)
+        onDeliveryTimeChange(DeliveryTimeEvent)
     }
     const handleProductExplainShippingSourceSet = (ShippingSourceEvent: React.FC<HTMLButtonElement>) => {
         setShippingSource(ShippingSourceEvent)
         console.log(shippingSource)
-        onCategoryChange(ShippingSourceEvent)
+        onShippingSource(ShippingSourceEvent)
     }
 
 

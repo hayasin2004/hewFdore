@@ -29,7 +29,7 @@ const ListingScreen: React.FC = () => {
     console.log(productCondition)
     console.log(postageBurden)
     console.log(deliveryTime)
-    // console.log(shippingSource)
+    console.log(shippingSource)
 
 
     return (
@@ -88,6 +88,7 @@ const ListingScreen: React.FC = () => {
                             onProductConditionChange={setProductCondition}
                             onPostageBurdenChange={setPostageBurden}
                             onDeliveryTimeChange={setDeliveryTime}
+                            onShippingSource={setShippingSource}
 
                         />
 
