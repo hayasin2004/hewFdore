@@ -14,22 +14,31 @@ export interface productStatusType {
     postageBurden?: string,
     shippingArea?: string,
     deliveryTime?: string,
+    onCategoryChange?: string,
+    onProductSizeChange?: string,
+    onProductConditionChange?: string,
+    onPostageBurdenChange?: string,
+    onDeliveryTimeChange?: string,
+    onShippingSource?: string,
 }
 
 const ListingScreen: React.FC = () => {
     const [productCategory, setProductCategory] = useState([])
-    const [productSize, setProductSize] = useState("")
-
-    const [productCondition, setProductCondition] = useState("")
-    const [postageBurden, setPostageBurden] = useState("")
-    const [shippingArea, setShippingArea] = useState("")
-    const [deliveryTime, setDeliveryTime] = useState("")
-    console.log(productCategory)
-    console.log(productSize)
-    console.log(productCondition)
-    console.log(postageBurden)
-    console.log(deliveryTime)
+    const [productSize, setProductSize] = useState<string | null>("")
+    const [productCondition, setProductCondition] = useState<string | null>(null)
+    const [postageBurden, setPostageBurden] = useState<string | null>(null)
+    const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
+    const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
+    console.log(shippingAreaText)
+    const shippingArea = shippingAreaText
     console.log(shippingArea)
+    //
+    // const productCategory = productCategory
+    // const productSize = productSize
+    // const productCondition = productCondition
+    // const postageBurden = postageBurden
+    // const deliveryTime = deliveryTime
+    // const shippingArea = shippingArea
 
 
     return (
@@ -42,12 +51,25 @@ const ListingScreen: React.FC = () => {
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
                         const productDesc = data.get("productDesc") as string;
+
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
                         const shippingArea = data.get("shippingArea") as string;
                         const token = localStorage.getItem("token") as string;
-                        await createProduct(token, productName, productPrice, productDesc).then();
+                        console.log("来てる"+shippingAreaText)
+                        await createProduct(
+                            token,
+                            productName,
+                            productDesc,
+                            productPrice,
+                            productCategory,
+                            deliveryTime,
+                            productSize,
+                            productCondition,
+                            postageBurden,
+                            shippingAreaText
+                        ).then();
                     }}>
                         <h2>
                             出品情報
@@ -63,20 +85,20 @@ const ListingScreen: React.FC = () => {
                         </h3>
 
 
-                        <input type="text" className="txtInput"/>
+                        <input type="text" name={"productName"} className="txtInput"/>
 
                         <h3 className="kakaku">
                             価格
                         </h3>
 
 
-                        <input type="text" className="txtInput" placeholder={"¥"}/>
+                        <input type="text" name={"productPrice"} className="txtInput" placeholder={"¥"}/>
 
                         <h3 id="s_name">
                             商品詳細
                         </h3>
 
-                        <input type="text" className="txtInput"/>
+                        <input type="text" name={"productDesc"}  className="txtInput"/>
 
 
                         <h3 className="cat">
@@ -88,13 +110,9 @@ const ListingScreen: React.FC = () => {
                             onProductConditionChange={setProductCondition}
                             onPostageBurdenChange={setPostageBurden}
                             onDeliveryTimeChange={setDeliveryTime}
-                            onShippingSource={setShippingArea}
+                            onShippingSource={setShippingAreaText}
 
                         />
-
-
-
-
 
 
                         <div className={"ListingBtn"}>

@@ -7,9 +7,13 @@ type postageBurdenType = (typeof postageBurden)[number];
 
 const productCondition = ["new", "nearNew", "littleScar", "scar"]
 type productConditionType = (typeof productCondition)[number];
-//
-// const productCategory = ["tops", "denim", "outer", "shirt", "t-shirt", "longSleeve", "perfume", "hat", "shoes"]
-// type productCategoryType = (typeof productCategory)[number];
+
+const productSize = ["XS", "S", "M", "L","LL","XL"]
+type productSizeType = (typeof productSize)[number];
+
+const deliveryTime = ["1to3day" , "3to5day" , "5to7day"]
+type deliveryTimeType = (typeof deliveryTime)[number];
+
 const ProductSchema = new mongoose.Schema({
 
         sellerId: {
@@ -18,7 +22,6 @@ const ProductSchema = new mongoose.Schema({
         },
         buyerId: {
             type: String,
-            required: true,
         },
         productName: {
             type: String,
@@ -47,18 +50,15 @@ const ProductSchema = new mongoose.Schema({
             type: Array,
             default: [],
         },
-        DeliveryTime: {
-            type: Array,
-            default: [],
+        deliveryTime: {
+            type: String,
+            enum:deliveryTime,
             required: true,
         },
-        like: {
-            type: Array,
-            default: [],
-        },
-        comment: {
-            type: Array,
-            default: [],
+        productSize:{
+            type :String,
+            enum:productSize,
+            required:true,
         },
         productCondition: {
             type: String,
@@ -72,8 +72,16 @@ const ProductSchema = new mongoose.Schema({
         },
         shippingArea: {
             type: String,
-            required: true,
-        }
+            required:true,
+        },
+        like: {
+            type: Array,
+            default: [],
+        },
+        comment: {
+            type: Array,
+            default: [],
+        },
     },
     {timestamps: true}
 )

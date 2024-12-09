@@ -31,7 +31,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     const [productCondition, setProductCondition] = useState("")
     const [postageBurden, setPostageBurden] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
-    const [shippingArea, setShippingArea] = useState("")
+    const [shippingAreaText, setShippingAreaText] = useState("")
     // console.log(postageBurden)
 
 
@@ -42,8 +42,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
 
     const handleProductExplainSizeSet = (SizeEvent: React.FC<HTMLButtonElement>) => {
         setProductSize(SizeEvent)
-        onProductSizeChange(productSize)
-        console.log(productSize)
+        onProductSizeChange(SizeEvent)
     }
     const handleProductExplainConditionSet = (ConditionEvent: React.FC<HTMLButtonElement>) => {
 
@@ -60,12 +59,14 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
         setDeliveryTime(DeliveryTimeEvent)
         onDeliveryTimeChange(DeliveryTimeEvent)
     }
-    const handleProductExplainShippingSourceSet = (ShippingSourceEvent: React.FC<HTMLButtonElement>) => {
-        setShippingArea(ShippingSourceEvent)
-        console.log(shippingArea)
-        onShippingSource(ShippingSourceEvent)
-    }
-
+    const handleProductExplainShippingSourceSet = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = event.target.value;
+        setShippingAreaText(newValue);
+        console.log("Child component:", newValue);
+        if (onShippingSource) {
+            onShippingSource(newValue);
+        }
+    };
 
     return (
         <>
@@ -151,7 +152,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                             <MenuItem
                                 value={"LL"}>LL</MenuItem>
                             <MenuItem
-                                value={"XXL"}>XXL</MenuItem>
+                                value={"XL"}>XXL</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
@@ -171,8 +172,8 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                         >
                             <MenuItem value={"new"}>新品未使用</MenuItem>
                             <MenuItem value={"nearNew"}>未使用に近い</MenuItem>
-                            <MenuItem value={"used"}>使用感がある</MenuItem>
-
+                            <MenuItem value={"littleScar"}>多少の使用感がある</MenuItem>
+                            <MenuItem value={"scar"}>使用感がある</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
@@ -221,8 +222,9 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                 <Box className={"shippingArea"}>
 
                     <TextField fullWidth
-                               onChange={(ShippingSourceEvent) => handleProductExplainShippingSourceSet(ShippingSourceEvent.target.value)}
-                               id="outlined-basic" label="発送日時"  variant="outlined"/>
+                               onChange={handleProductExplainShippingSourceSet}
+                               id="outlined-basic" label="発送日時"
+                               variant="outlined"/>
 
                 </Box>
 
