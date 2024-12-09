@@ -10,22 +10,12 @@ import {ProductType} from "@/app/utils/product/productDetail";
 const userProfile = async (id?: string) => {
     await connectDB()
     try {
-            const searchUser: UserType = await User.findOne({_id:id}).exec()
-            console.log(searchUser)
-            // console.log(searchUser)
-            return {
-                id: searchUser?._id,
-                userId: searchUser?.userId,
-                username: searchUser?.username,
-                email: searchUser?.email,
-                profilePicture: searchUser?.profilePicture,
-                coverProfilePicture: searchUser?.profilePicture,
-                desc: searchUser?.desc,
-                followers: searchUser?.followers,
-                followings: searchUser?.followings,
-            }
-            console.log("idididid")
-            return null
+        const searchUser: UserType | null = await User.findOne({_id: id})
+        const searchProduct: ProductType | null = await Product.find({sellerId: id})
+        console.log(searchProduct)
+        return {
+            searchUser: JSON.stringify(searchUser), searchProduct : JSON.stringify(searchProduct)
+        }
 
     } catch
         (err) {

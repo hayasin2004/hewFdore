@@ -14,6 +14,10 @@
         productPrice?: string,
         productPicture?: string,
         productVideo?: string,
+        productSize?: string,
+        productCategory?: string,
+        postageBurden?: string,
+        productCondition?: string
 
     }
 

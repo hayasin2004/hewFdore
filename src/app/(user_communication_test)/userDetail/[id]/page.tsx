@@ -6,10 +6,13 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
 import updateFollowings from "@/app/utils/user/ApdateFollowings";
 import useUser from "@/hooks/useUser";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 
 const UserDetailPage = ({params}: { params: { id: string } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
+    const [productData, setProductData] = useState<ProductType[] | null>(null)
+    console.log(productData)
     const id = params.id;
     const {user} = useUser()
     const loginNowUserId = user?._id
@@ -29,8 +32,10 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
             try {
                 console.log(id)
                 const response = await userProfile(id)
-
-                setUserData(response)
+                const responesUserData = JSON.parse(response?.searchUser)
+                const responesProductData = JSON.parse(response?.searchProduct)
+                setUserData(responesUserData)
+                setProductData(responesProductData)
             } catch (err) {
                 console.log(err)
             }
@@ -74,6 +79,22 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                         </Link>
                     </li>
                 </ul>
+                <div>
+                    <h3>このユーザーが出品している商品</h3>
+                    <div>
+                        {productData?.map((item : ProductType) => (
+                            <ul key={item?._id}>
+                                <br/>
+                                <li>商品名 : {item.productName}</li>
+                                <li>商品価格 : {item.productPrice}</li>
+                                <li>送料負担 : {item.postageBurden}</li>
+                                <li>商品カテゴリー : {item.productCategory}</li>
+                                <br/>
+                                <hr/>
+                            </ul>
+                        ))}
+                    </div>
+                </div>
 
                 <div>
                     <p>ログインしている人</p>
