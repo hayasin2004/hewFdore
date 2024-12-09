@@ -82,13 +82,16 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                 <div>
                     <h3>このユーザーが出品している商品</h3>
                     <div>
-                        {productData?.map((item : ProductType) => (
+                        {productData?.map((item: ProductType) => (
                             <ul key={item?._id}>
                                 <br/>
                                 <li>商品名 : {item.productName}</li>
                                 <li>商品価格 : {item.productPrice}</li>
                                 <li>送料負担 : {item.postageBurden}</li>
                                 <li>商品カテゴリー : {item.productCategory}</li>
+                                <Link href={`/product/${item._id}`}>
+                                    <li>詳細を見る</li>
+                                </Link>
                                 <br/>
                                 <hr/>
                             </ul>
