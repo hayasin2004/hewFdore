@@ -92,13 +92,9 @@ const ListingScreen: React.FC = () => {
                         />
 
 
-                        <h3 id="s_name">
-                            発送地域
-                            {/*ユーザーから取得*/}
-                        </h3>
 
 
-                        <input type="text" className="txtInput" name={"shippingArea"} required/>
+
 
                         <div className={"ListingBtn"}>
                             <button className={"listingCancelbtn"}>

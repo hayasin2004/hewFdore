@@ -79,8 +79,15 @@ body {
 .SendDays{
     text-align: center;
     width: 400px;
-    display: flex;
     margin: 0 auto;
     margin-top: 80px;
     margin-bottom: 80px;
+    position: relative;
+}
+.shippingSource{
+    margin-top: 20%;
+}
+#s_name{
+    margin-left: 10%;
+    display: flex;
 }
