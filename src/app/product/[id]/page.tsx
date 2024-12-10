@@ -31,13 +31,13 @@ const Product = ({params}: { params: { id: string } }) => {
     const [product, setProduct] = useState<ProductType | null>(null)
     console.log(product)
     const [productLike, setProductLike] = useState<boolean>(false)
-    const id = params.id
+    const id = params?.id
     const productId = product?._id
     const likeButton = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {
-            const result = await productLikeDate(productId , currentUser)
+            const result = await productLikeDate(id , currentUser)
         }
         productLikeData()
     }

@@ -8,24 +8,27 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
     // await console.log( productId,currentUser )
     await connectDB()
     try {
-        // const productLike = await Product.findById(productId);
+        const productLike = await Product.findById(productId);
+        console.log(productLike.like);
+
         const productLikeConfirm = await Product.findOne({_id: productId}, {like: currentUser});
         console.log(productLikeConfirm)
-        if (productLikeConfirm) {
-            const productLikeUpdateDelete = await Product.findByIdAndUpdate(
-                productId,
+        if (productLike.like == currentUser) {
+            const productLikeUpdateDelete = await productLike.updateOne(
                 {$pull: {like: currentUser}},
                 {new: true}
             );
             console.log(productLikeUpdateDelete)
+            console.log("こ")
         } else {
-            const productLikeUpdatePush = await Product.findByIdAndUpdate(
-                productId,
-                {$push: {like: currentUser}} ,
-                {new :true});
+            const productLikeUpdatePush = await productLike.updateOne(
+                {$push: {like: currentUser}},
+                {new: true});
             console.log(productLikeUpdatePush)
             console.log("ここまで来てないよね")
+            console.log(productLike)
         }
+
         const pushUser = await User.findById(currentUser);
         console.log(pushUser)
     } catch (err) {
