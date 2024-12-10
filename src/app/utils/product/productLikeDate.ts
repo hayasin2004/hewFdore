@@ -17,6 +17,7 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
             const productLikeUpdateDelete = await productLike.updateOne(
                 {$pull: {like: currentUser}},
                 {new: true}
+
             );
             console.log(productLikeUpdateDelete)
             console.log("こ")
