@@ -188,7 +188,14 @@ button.productPurchase{
     padding: 10px 20px;
 }
 
-div#footer{
+.likeButton {
+    background-color: #000;
+    font-size: 1.2rem;
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+}
+    div#footer{
     margin-top: 200px !important;
 }
 

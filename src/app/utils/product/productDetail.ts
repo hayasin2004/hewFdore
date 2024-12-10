@@ -32,7 +32,7 @@
             const userName : ProductType = await User.findOne({_id: product.sellerId}).exec()
             console.log(userName)
             return {
-                id:product?._id,
+                _id:product?._id,
                 sellerId:userName?.sellerId,
                 username :userName.username,
                 productName:product?.productName,
