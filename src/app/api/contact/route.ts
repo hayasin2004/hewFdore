@@ -49,21 +49,20 @@ export async function POST(req: Request) {
         `,
     };
 
-    try {
-        // メールを送信
-        await transporter.sendMail(toHostMailData);
-        await transporter.sendMail(toUserMailData);
+        try {
+            // メールを送信
+            await transporter.sendMail(toHostMailData);
 
-        return new Response(
-            JSON.stringify({ status: "Success", code: randomCode }),
-            { status: 200, headers: { "Content-Type": "application/json" } }
-        );
-    } catch (error) {
-        console.error("メール送信エラー:", error);
+            return new Response(
+                JSON.stringify({ status: "Success", code: randomCode }),
+                { status: 200, headers: { "Content-Type": "application/json" } }
+            );
+        } catch (error) {
+            console.error("メール送信エラー:", error);
 
-        return new Response(
-            JSON.stringify({ status: "Error", message: "メール送信に失敗しました。" }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
-        );
-    }
+            return new Response(
+                JSON.stringify({ status: "Error", message: "メール送信に失敗しました。" }),
+                { status: 500, headers: { "Content-Type": "application/json" } }
+            );
+        }
 }

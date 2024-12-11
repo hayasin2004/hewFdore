@@ -29,7 +29,9 @@ const Product = ({params}: { params: { id: string } }) => {
         },
     });
     const [product, setProduct] = useState<ProductType | null>(null)
-    console.log(product)
+    console.log(JSON.stringify(product))
+    // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
+
     const [productLike, setProductLike] = useState<boolean>(false)
     const id = params?.id
     const productId = product?._id
@@ -37,18 +39,31 @@ const Product = ({params}: { params: { id: string } }) => {
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {
-            const result = await productLikeDate(id , currentUser)
+            const result = await productLikeDate(id, currentUser)
         }
         productLikeData()
     }
 
+    const test = !product
+
     useEffect(() => {
         const response = async () => {
-            const productCatch = await productDetail(id)
-            setProduct(productCatch)
+            const productCatch = await productDetail(id, currentUser)
+            const productParse = JSON.parse(productCatch?.product)
+            // console.log( await  productParse?.productLike == currentUser)
+            setProduct(productParse)
         }
+
         response()
     }, [id]);
+
+
+    useEffect(() => {
+        if (product?.productLike?.includes(currentUser)) {
+            console.log(product?.productLike.includes(currentUser));
+            setProductLike(true);
+        }
+    }, [product]);
     return (
         <>
             <Header/>
@@ -59,7 +74,6 @@ const Product = ({params}: { params: { id: string } }) => {
             <main className={"productMainDisplay"}>
                 <div className={"productFlex"}>
                     <Sidebar/>
-
 
                     <div className="productMain">
                         <div id="info">
@@ -105,12 +119,13 @@ const Product = ({params}: { params: { id: string } }) => {
                         <div id="controlProduct">
                             <ThemeProvider theme={theme}>
                                 <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
-                                          size={"large"} color={productLike ? "info" : "default"} {...label}
+                                          size={"large"} checked={productLike} {...label}
                                           icon={<FavoriteBorder/>}
                                           checkedIcon={<Favorite/>}/>
                             </ThemeProvider>
+                            <p>いいね</p>
                             <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
-                            <Link href={"sendAddress"}>
+                            <Link href={"/sendAddress"}>
 
                                 <button id={"buy"}
                                         type="button" className={"productPurchase"}>購入する

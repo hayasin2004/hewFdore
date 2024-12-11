@@ -9,29 +9,29 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
     await connectDB()
     try {
         const productLike = await Product.findById(productId);
-        console.log(productLike.like);
+        // console.log(productLike.like);
 
-        const productLikeConfirm = await Product.findOne({_id: productId}, {like: currentUser});
-        console.log(productLikeConfirm)
-        if (productLike.like == currentUser) {
-            const productLikeUpdateDelete = await productLike.updateOne(
-                {$pull: {like: currentUser}},
-                {new: true}
-
-            );
-            console.log(productLikeUpdateDelete)
-            console.log("こ")
+        if (productLike.sellerId == currentUser) {
+            console.log("自分が出品した商品にいいねはできません")
+            return null
         } else {
-            const productLikeUpdatePush = await productLike.updateOne(
-                {$push: {like: currentUser}},
-                {new: true});
-            console.log(productLikeUpdatePush)
-            console.log("ここまで来てないよね")
-            console.log(productLike)
+            if (productLike.productLike == currentUser) {
+                const productLikeUpdateDelete = await productLike.updateOne(
+                    {$pull: {productLike: currentUser}},);
+                console.log(productLikeUpdateDelete)
+                console.log("こ")
+                const productLikeOnce = await Product.findById(productId);
+                console.log("いいね削除後のろぐ" + JSON.stringify(productLikeOnce))
+            } else {
+                const productLikeUpdatePush = await productLike.updateOne(
+                    {$push: {productLike: currentUser}},);
+                console.log("ここまで来てないよね")
+                const productLikeOnce = await Product.findById(productId);
+                console.log("いいね追加後のろぐ" + JSON.stringify(productLikeOnce))
+                console.log(productLikeUpdatePush)
+                return {productLike: JSON.stringify(productLike)}
+            }
         }
-
-        const pushUser = await User.findById(currentUser);
-        console.log(pushUser)
     } catch (err) {
         console.log(err)
     }

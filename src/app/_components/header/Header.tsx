@@ -95,7 +95,7 @@ const Header = () => {
                     <div className="bar">
                         <ul>
                             <li>
-                                <Link href={"searchResult"}>
+                                <Link href={"/searchResult"}>
                                     <p id={"category"}>
                                         Category
                                     </p>
@@ -120,7 +120,7 @@ const Header = () => {
                             </Link>
                             <span className="long_line"></span>
 
-                            <Link href={"listingScreen"}>
+                            <Link href={"/listingScreen"}>
 
                                 <li id="uru_ul">
                                     Sell
@@ -137,7 +137,7 @@ const Header = () => {
                             </li>
                             <li id={"UserName"}>
                                 {user ? <p id={"usernameGet"}>{user.username}</p> :
-                                    <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                                    <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
