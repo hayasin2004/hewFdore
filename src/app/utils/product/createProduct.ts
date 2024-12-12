@@ -47,10 +47,12 @@ export  const createProduct = async (
     try {
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
         const sellerId =  decoded.userId
+        const sellerUserName =  decoded.username
         const productId = uuidv4()
         const newProduct = await  Product.create({
             productId,
             sellerId ,
+            sellerUserName,
             productName,
             productPrice,
             productDesc,

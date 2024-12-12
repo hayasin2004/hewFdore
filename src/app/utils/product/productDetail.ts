@@ -9,6 +9,7 @@ export interface ProductType {
     id?: string
     _id?: string,
     sellerId?: string,
+    sellerUserName? : string,
     username?: string,
     productName?: string,
     productDesc?: string,

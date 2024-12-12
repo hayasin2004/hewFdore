@@ -6,11 +6,11 @@ import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Images from "next/image";
 import Link from "next/link";
-import productDetail from "@/app/utils/product/productDetail";
+import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 const ListingComplete = ({params}: { params: { id: string } }) => {
 
-    const [data, setData] = useState<string | null>(null)
+    const [data, setData] = useState<ProductType | null>(null)
     console.log(data)
     const id = params.id
     console.log(id)
@@ -18,7 +18,8 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
         if (id) {
             const productData = async () => {
                 const result = await productDetail(id)
-                setData(result)
+                const resultParse = JSON.parse(result?.product)
+                setData(resultParse)
             }
             productData()
         }
@@ -43,7 +44,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                     <div id="text">
                         <h1 className={"liscomph2"}>{data?.productName}</h1>
                         <span className="under_bar"></span>
-                        <a href="#" id="seller"><h2>出品者:{data?.username}</h2>
+                        <a href="#" id="seller"><h2>出品者:{data?.sellerUserName}</h2>
                             <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
                                     alt={"サンプルユーザーアイコン"}/>
                         </a>

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";
 import {string} from "prop-types";
 import {redirect} from "next/navigation";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -72,7 +73,7 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText
                         ).then(
-                            (product => {
+                            (product  => {
                                 const result = JSON.parse(product?.result)
                                 setProductId(result)
                             })
