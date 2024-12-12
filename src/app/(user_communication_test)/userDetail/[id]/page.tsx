@@ -10,9 +10,9 @@ import {ProductType} from "@/app/utils/product/productDetail";
 
 
 const UserDetailPage = ({params}: { params: { id: string |null } }) => {
-    const [userData, setUserData] = useState<string | null>(null)
+    const [userData, setUserData] = useState<UserType | null>(null)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
-    console.log(productData)
+    console.log(userData?.followers)
     const id: string |null = params.id;
     const {user} = useUser()
     const loginNowUserId:string|null = user?._id
@@ -20,7 +20,7 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
 
     const followings = async () => {
         try {
-            const userFollowings: string | null = userData?.id
+            const userFollowings: string | null = await userData?._id
             console.log(userFollowings)
             const response: string | null = await updateFollowings(userFollowings, loginNowUserId)
             console.log(response)
@@ -59,10 +59,10 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
                     <li>ユーザー自己紹介: {userData?.desc}</li>
                     <li>背景画像１: {userData?.profilePicture}</li>
                     <li>背景画像２: {userData?.coverProfilePicture}</li>
-                    <li>フォロー一覧:
-                        フォロー中 : {userData?.followings?.map((item) => (
+                    <li>フォロワー一覧:
+                        フォロー中 : {userData?.followers?.map((item) => (
                             <span key={item?._id}>
-                            <Link href={`${item?._id}`}><p>{item?._id}</p></Link>
+                            <Link href={`/${item?._id}`}><p>{item?._id}</p></Link>
                             </span>
                         ))}
                         <button onClick={() => followings()}>
@@ -71,7 +71,7 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
                     </li>
                     フォロワー: {userData?.followers?.map((item) => (
                     <span key={item?._id}>
-                            <p>{item._id}</p>
+                            <p>{item}</p>
                             </span>
                 ))}
                     <li>
