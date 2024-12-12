@@ -96,7 +96,7 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <h1>ニット</h1>
                                 <span className="under_bar"></span>
                                 <a href="#" id="seller">
-                                    <h2>出品者:
+                                    <h2>出品者:{product?.sellerUserName}
                                     </h2>
 
                                     <h2>{product?.username}</h2>

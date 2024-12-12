@@ -1,6 +1,7 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import confirmUser from "@/app/utils/user/confirmUser";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 // ユーザー情報を取得するカスタムフックです
 export interface useUser {
@@ -13,14 +14,14 @@ export interface useUser {
 }
 
 const useUser = () => {
-    const [user, setUser] = useState<useUser | null>(null)
+    const [user, setUser] = useState<string | null>(null)
     // console.log(user?.email)
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (token) {
             (async () => {
-                const userData = await confirmUser(token);
+                const userData : string | null = await confirmUser(token);
                 // console.log(userData)
                 if (userData !== null) {
                     setUser(userData)

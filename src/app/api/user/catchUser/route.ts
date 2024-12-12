@@ -6,7 +6,7 @@ import {NextResponse} from "next/server";
 import {NextApiRequest} from "next";
 
 export interface UserType {
-    id? : string
+    id? : string | null
     _id? : string
     userId? : string;
     username? : string

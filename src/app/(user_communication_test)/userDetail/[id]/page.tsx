@@ -9,20 +9,21 @@ import useUser from "@/hooks/useUser";
 import {ProductType} from "@/app/utils/product/productDetail";
 
 
-const UserDetailPage = ({params}: { params: { id: string } }) => {
-    const [userData, setUserData] = useState<UserType | null>(null)
+const UserDetailPage = ({params}: { params: { id: string |null } }) => {
+    const [userData, setUserData] = useState<string | null>(null)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     console.log(productData)
-    const id = params.id;
+    const id: string |null = params.id;
     const {user} = useUser()
-    const loginNowUserId = user?._id
+    const loginNowUserId:string|null = user?._id
 
 
     const followings = async () => {
         try {
-            const userFollowings = userData?.id
+            const userFollowings: string | null = userData?.id
             console.log(userFollowings)
-            const response = await updateFollowings(userFollowings, loginNowUserId)
+            const response: string | null = await updateFollowings(userFollowings, loginNowUserId)
+            console.log(response)
         } catch (err) {
             console.log(err)
         }
