@@ -32,12 +32,8 @@ const Toppage = () => {
     return (
         <>
 
-            <div className={"toppageVideo"}>
-
-                <video src="/videos/background3.mp4" width={700} height={1080} autoPlay muted loop></video>
-            </div>
             <Header/>
-            {/*<div className={"toppage"}>*/}
+            <div className={"top"}>
             <Toppage_top_slideshow/>
             {/*<Sidebar/>*/}
             <div className={"siteIntroduction"}>
@@ -72,7 +68,7 @@ const Toppage = () => {
                 </ul>
             </div>
             {/*<Slideshow/>*/}
-            {/*</div>*/}
+            </div>
             <ToppageProducts/>
 
             <Footer/>

@@ -22,10 +22,10 @@ const Page = () => {
             <div className={"searchresult"}>
 
                 {/*<div style={{width:"40%"}}>*/}
-                {/*    <Sidebar/>*/}
+                    <Sidebar/>
                 {/*</div>*/}
             <div className={"searchResultMain"}>
-                <Sidebar />
+                {/*<Sidebar />*/}
                 {/*ダミーデータをプロップスで渡している。*/}
                 <SearchResultProducts product={products}/>
             </div>
