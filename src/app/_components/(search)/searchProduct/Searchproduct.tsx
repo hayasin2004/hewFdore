@@ -2,22 +2,16 @@
 import React, {useEffect, useState} from 'react';
 import productSearch from "@/app/utils/search/productSearch";
 import {ProductType} from "@/app/utils/product/productDetail";
-
+import {useRouter} from "next/navigation";
 
 const SearchProduct = () => {
+    const router = useRouter();
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
-    const [searchProductResult, setSearchProductResult] = useState<string | null>(null)
 
     const handleProductSearch = async () => {
-        const response: string | null = await productSearch(searchKeyWord)
-        if (response !== null) {
-            const responseParse = JSON.parse(response)
-            setSearchProductResult(responseParse);
-        }
-        setSearchKeyWord("")
-        console.log(response)
-    }
+        router.push(`/searchResult/${searchKeyWord}`)
 
+    }
     console.log(searchKeyWord)
     return (
         <>
@@ -25,13 +19,13 @@ const SearchProduct = () => {
                 <input type="text" onChange={(e) => setSearchKeyWord(e.target.value)} value={searchKeyWord}/>
                 <button type={"submit"} onClick={handleProductSearch}>検索</button>
             </label>
-            {searchProductResult?.map((item) => (
-                <ul key={item._id}>
-                    <li>
-                        {item.sellerId}
-                    </li>
-                </ul>
-            ))}
+            {/*{searchProductResult?.map((item) => (*/}
+            {/*    <ul key={item._id}>*/}
+            {/*        <li>*/}
+            {/*            商品名 : {item.productName}*/}
+            {/*        </li>*/}
+            {/*    </ul>*/}
+            {/*))}*/}
         </>
     );
 };
