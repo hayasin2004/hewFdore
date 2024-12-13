@@ -1,0 +1,61 @@
+.collapsible-product-card {
+    width: 20%;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 6px 7px #aaa;
+    background-color: #ddd;
+    transition: height 0.3s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/*展開時のカード*/
+.collapsible-product-card.expanded {
+    height: 500px;
+}
+
+/*通常時のカード*/
+.collapsible-product-card.collapsed {
+    height: 400px;
+}
+
+/*画像エリア*/
+.collapsible-product-card .image {
+    width: 100%;
+    height: 40vh;
+    border-radius: 10px 10px 0 0;
+    background-color: #ccc;
+}
+
+/*説明テキスト*/
+.collapsible-product-card .explanation {
+    margin: 10px 10px 0 10px;
+    text-align: left;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to left, #cccccc, #000000) 1;
+}
+
+/*価格*/
+.collapsible-product-card .price {
+    margin: 10px 10px 0 10px;
+    text-align: left;
+}
+
+/*展開時のコンテンツ*/
+.expanded-content {
+    transition: opacity 0.3s ease-in-out;
+    padding: 16px;
+    height: 100px;
+}
+
+/*表示状態*/
+.expanded-content.visible {
+    opacity: 1;
+    background-color: #1d4ed8;
+}
+
+/*非表示状態*/
+.expanded-content.hidden {
+    opacity: 0;
+}
+
