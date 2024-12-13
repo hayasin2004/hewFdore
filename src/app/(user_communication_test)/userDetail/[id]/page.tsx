@@ -13,8 +13,8 @@ import CatchLikeList from "@/app/utils/user/CatchlikeList";
 const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
-    const [likeList, setLikeList] = useState<UserType| null >([])
-    console.log(likeList?.likeList)
+    const [likeList, setLikeList] = useState<string[] | null>(null)
+    console.log(likeList)
     const id: UserType | null = params.id;
     const {user} = useUser()
     const loginNowUserId: string = user?.userId
@@ -40,8 +40,9 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 const responesProductData = JSON.parse(response?.searchProduct)
                 setUserData(responesUserData)
                 setProductData(responesProductData)
-                const likeData : UserType| null = await CatchLikeList(id)
-                setLikeList(likeData)
+                const likeData = await CatchLikeList(id)
+                const likeDataParse: UserType | null = JSON.parse(likeData?.likeList)
+                setLikeList(likeDataParse)
                 console.log(likeData)
 
             } catch (err) {
@@ -69,9 +70,12 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
 
 
                     <p>いいねリスト</p>
-                    {likeList?.likeList?.map((likeItem) => (
-                        <ul key={likeItem?.id}>
-                            <li>{likeItem}</li>
+                    {/*{likeList?.likeList}*/}
+                    {likeList?.map((likeItem) => (
+                        <ul key={likeItem}>
+                            <Link href={`/product/${likeItem}`}>
+                                <li>{likeItem}</li>
+                            </Link>
                         </ul>
                     ))}
 

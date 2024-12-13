@@ -4,13 +4,13 @@ import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 import {UserType} from "@/app/api/user/catchUser/route";
 
-const CatchLikeList = async (loginNowUserId: UserType | null):Promise<UserType | null> => {
+const CatchLikeList = async (loginNowUserId: UserType | null):Promise<{ likeList: string } | null> => {
     await connectDB()
     try {
-        const likeList: UserType | null= await User.findOne({_id: loginNowUserId}).select("likeList")
+        const likeList 　= await User.findOne({_id: loginNowUserId}).select("likeList")
         if (likeList?._id == loginNowUserId) {
             console.log("今見ているユーザーは同じユーザーです。")
-            return {likeList : likeList?.likeList}
+            return {likeList : JSON.stringify(likeList?.likeList)}
         }
         return null
     } catch (err) {
