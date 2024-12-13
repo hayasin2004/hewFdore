@@ -13,9 +13,9 @@ interface User {
     coverProfilePicture: string
 }
 
-export async function loginUser(email: UserType | null, password: UserType | null){
+export async function loginUser(email: string | null, password: string | null) {
     await connectDB()
-
+    console.log("loginUser", email, password)
     try {
 
         // mongooseの関数findOneで該当するユーザーを一つ取得してくる
@@ -34,29 +34,28 @@ export async function loginUser(email: UserType | null, password: UserType | nul
             if (password !== user.password) {
                 console.log("パスワードが違います。" + password)
             } else {
-                const userId: string = user?._id
-                const username: string = user?.username
-                const email: string = user?.email
-                const password: string = user?.password
-                const profilePicture: string = user?.profilePicture
-                const coverProfilePicture: string = user?.coverProfilePicture
+                const userId: string | null = user?._id
+                const username: string | null = user?.username
+                const email: string | null = user?.email
+                const password: string | null = user?.password
+                const profilePicture: string | null = user?.profilePicture
+                const coverProfilePicture: string | null = user?.coverProfilePicture
                 // ログインに成功したユーザーにトークンを発行する
-                const token: UserType = await jwt.sign({
+                const token: string | null = await jwt.sign({
                     userId: user._id.toString(), /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
                     username: user.username,
                     email: email,
                     profilePicture: profilePicture,
                 }, process.env.SECRET_KEY, {expiresIn: "2 day"})
                 return {
-                    userData: {
                         email,
                         password,
                         token: token,
-                        userId: userId?.toString(),
+                        userId: userId,
                         username: username,
                         profilePicture: profilePicture,
                         coverProfilePicture: coverProfilePicture
-                    }
+
                 };
             }
 

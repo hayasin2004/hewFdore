@@ -6,7 +6,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 // ユーザー情報を取得するカスタムフックです
 export interface useUser {
     _id?: string;
-    token?: string | null;
+    token?: string
     username?: string;
     email?: string;
     userId?: string;
@@ -14,21 +14,18 @@ export interface useUser {
 }
 
 const useUser = () => {
-    const [user, setUser] = useState<UserType | null>(null)
+    const [user, setUser] = useState<string | null>(null)
     // console.log(user?.email)
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (token) {
             (async () => {
-                const userData : UserType | null = await confirmUser(token);
+                const userData : string | null  = await confirmUser(token);
                 // console.log(userData)
-                if (userData !== null) {
                     setUser(userData)
-                } else {
-                    console.log("トークンが確認できませんでした。")
+                    console.log("ト?ークンが確認できませんでした。")
                     return null
-                }
             })()
         }
         // 副作用　→　起爆のタイミングを設定

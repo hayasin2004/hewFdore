@@ -26,10 +26,10 @@ interface User {
 
 
 const Login = () => {
-    const [userToken, setUserToken] = useState()
-    const [email, setEmail] = useState<UserType | null>(null)
-    const [username, setUsername] = useState<UserType | null>(null)
-    const [password, setPassword] = useState<UserType | null>(null)/*正しくはログには[object object]が出ます*/
+    const [userToken, setUserToken] = useState<string | null>()
+    const [email, setEmail] = useState<string | null>(null)
+    const [username, setUsername] = useState<string | null>(null)
+    const [password, setPassword] = useState<string | null>(null)/*正しくはログには[object object]が出ます*/
     console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
     console.log("これはログインに成功した時にユーザー名が出ます:" + username);
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);
@@ -72,7 +72,7 @@ const Login = () => {
                                         alert("メールアドレスもしくはパスワードが違う可能性があります。")
                                     }
                                     if (user) {
-                                        const token = user.token
+                                        const token :string | null = user.token
                                         if (!token) {
                                             console.log("ログイン情報が違う可能性があります。")
                                         } else {
