@@ -12,7 +12,7 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
         // console.log(productLike.like);
 
         if (productLike.sellerId == currentUser) {
-            console.log("自分が出品した商品にいいねはできません")
+            console.log("自分が出品した商品にいいねはできません　")
             return null
         } else {
             if (productLike.productLike.includes(currentUser)) {
