@@ -50,22 +50,22 @@ div.confirmPoint{
     margin-bottom: 20px;
     padding: 5% 10% 5% 5%;
     border-radius: 50px;
-    border: 2px solid #605252;
-    box-shadow:5px 5px 3px  #605252;
-
+    /*border: 2px solid #605252;*/
+    box-shadow:10px 10px 0  #605252;
     background-color: #fefeed;
 
 }
-
-
 
 div.confirm svg{
     margin-right: 20px;
 }
 
+
 div.confirm p {
     font-size: 2rem;
 }
+
+
 
 
 div.recommend_products{
