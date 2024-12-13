@@ -15,20 +15,33 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
             console.log("自分が出品した商品にいいねはできません")
             return null
         } else {
-            if (productLike.productLike == currentUser) {
+            if (productLike.productLike.includes(currentUser)) {
+                const currentUserLikeUpdateDelete = await User.findByIdAndUpdate(currentUser, {
+                    $pull : {
+                        likeList : productLike._id
+                    }
+                }, {new: true})
                 const productLikeUpdateDelete = await productLike.updateOne(
                     {$pull: {productLike: currentUser}},);
                 console.log(productLikeUpdateDelete)
                 console.log("こ")
                 const productLikeOnce = await Product.findById(productId);
+                console.log("窓辺においてきて"+JSON.stringify(currentUserLikeUpdateDelete))
+
                 console.log("いいね削除後のろぐ" + JSON.stringify(productLikeOnce))
             } else {
+                const currentUserLikeUpdatePush = await User.findByIdAndUpdate(currentUser, {
+                    $push : {
+                        likeList : productLike._id
+                    }
+                },{new : true})
                 const productLikeUpdatePush = await productLike.updateOne(
                     {$push: {productLike: currentUser}},);
-                console.log("ここまで来てないよね")
+                console.log(currentUserLikeUpdatePush)
                 const productLikeOnce = await Product.findById(productId);
                 console.log("いいね追加後のろぐ" + JSON.stringify(productLikeOnce))
-                console.log(productLikeUpdatePush)
+                console.log(JSON.stringify(productLikeUpdatePush))
+                console.log("君が褪せないように"+JSON.stringify(currentUserLikeUpdatePush))
                 return {productLike: JSON.stringify(productLike)}
             }
         }

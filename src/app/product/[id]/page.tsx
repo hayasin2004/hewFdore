@@ -16,7 +16,7 @@ import useUser from "@/hooks/useUser";
 
 const Product = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
-    const currentUser = user?._id
+    const currentUser = user?.userId
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
     const theme = createTheme({
         palette: {

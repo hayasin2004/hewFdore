@@ -13,7 +13,7 @@ import CatchLikeList from "@/app/utils/user/CatchlikeList";
 const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
-    const [likeList, setLikeList] = useState<UserType[] | null >([])
+    const [likeList, setLikeList] = useState<UserType| null >([])
     console.log(likeList?.likeList)
     const id: UserType | null = params.id;
     const {user} = useUser()
@@ -40,7 +40,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 const responesProductData = JSON.parse(response?.searchProduct)
                 setUserData(responesUserData)
                 setProductData(responesProductData)
-                const likeData : UserType[] | null = await CatchLikeList(id)
+                const likeData : UserType| null = await CatchLikeList(id)
                 setLikeList(likeData)
                 console.log(likeData)
 
