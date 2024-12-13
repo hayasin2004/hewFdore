@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import "./listingcomplete.css"
 import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
 import Images from "next/image";
 
 const ListingComplete = () => {
@@ -68,6 +69,7 @@ return (
             </div>
 
         </div>
+            <Footer/>
 
     </>
 

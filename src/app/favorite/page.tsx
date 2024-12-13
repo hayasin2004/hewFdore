@@ -2,6 +2,7 @@ import React from 'react';
 import "./favorite.css"
 import Image from "next/image";
 import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
 import Link from "next/link";
 
 const Favorite = () => {
@@ -12,8 +13,8 @@ const Favorite = () => {
             <span id={"btn"}>
 
                     <Link href={"toppage"}>
+                    <button>戻る</button>
 
-                    戻る
                     </Link>
             </span>
             <div className={"favorite"}>
@@ -121,6 +122,7 @@ const Favorite = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 }

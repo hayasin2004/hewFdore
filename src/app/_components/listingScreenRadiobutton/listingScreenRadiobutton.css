@@ -52,7 +52,10 @@ body {
 .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked{
     color: #555555 !important;
 }
-
+#demo-simple-select{
+    background-color: #fff;
+    border: 1.2px solid #605252;
+}
 .Size_Situation{
     width: 400px;
     display: flex;
