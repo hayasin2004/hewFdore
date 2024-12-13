@@ -12,7 +12,6 @@ const ConfirmUserProfile = () => {
         <span id={"btn"}>
                 <button>
                     <Link href={"toppage"}>
-
                     戻る
                     </Link>
                 </button>
