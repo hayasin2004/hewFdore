@@ -1,16 +1,19 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import productSearch from "@/app/utils/search/productSearch";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 
 
 const SearchProduct = () => {
-    const [searchKeyWord, setSearchKeyWord] = useState<string>("")
+    const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
+    const [searchProductResult, setSearchProductResult] = useState<string[] | null>([])
 
     const handleProductSearch = async () => {
         const response = await  productSearch(searchKeyWord)
+        setSearchProductResult(response);
         setSearchKeyWord("")
-        console.log(searchKeyWord)
+        console.log(response)
     }
 
     console.log(searchKeyWord)
