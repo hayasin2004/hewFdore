@@ -7,7 +7,7 @@ import {NextResponse} from "next/server";
 import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 
-const userProfile = async (id?: string) => {
+const userProfile = async (id: UserType | null) => {
     await connectDB()
     try {
         const searchUser: UserType | null = await User.findOne({_id: id})

@@ -29,7 +29,7 @@
 /*中の要素*/
 .bgappear {
     animation-name: bgextendAnimeSecond;
-    animation-duration:1s;
+    animation-duration: 1s;
     animation-delay: 0.6s;
     animation-fill-mode: forwards;
     opacity: 0;
@@ -98,10 +98,10 @@
     padding-top: 10%;
     padding-bottom: 12%;
     overflow: hidden;
-    background-color: #EBE8DB;
 }
 
 .photo_list {
+
     display: flex;
     align-items: center;
 }
@@ -136,8 +136,6 @@
     object-fit: cover;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
-
 }
 
 /* styles.css */
@@ -155,40 +153,39 @@
         width: 800px;
         height: 100%;
         border-radius: 10px;
-        background-color: #600; /*伸びる背景色の設定*/
+        background-color: #b9a795; /*伸びる背景色の設定*/
     }
-
 
 
 }
 
 /*次のスライドに行くときに、画像がドロップする。*/
 /*滑らかに変形して出現*/
-.smooth{
-    animation-name:smoothAnime;
-    animation-duration:2s;
-    animation-fill-mode:forwards;
-    transform-origin:right;
-    opacity:0;
+.smooth {
+    animation-name: smoothAnime;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    transform-origin: right;
+    opacity: 0;
 }
 
-@keyframes smoothAnime{
+@keyframes smoothAnime {
     0% {
-        transform:translate3d(0, 0%, 0)  ;
-        opacity:1;
+        transform: translate3d(0, 0%, 0);
+        opacity: 1;
     }
     50% {
-        transform:translate3d(-60%, 10%, 0)  rotate(-45deg); ;
-        opacity:0;
+        transform: translate3d(-60%, 10%, 0) rotate(-45deg);;
+        opacity: 0;
     }
     100% {
-        transform:translate3d(0%, 0%, 0) ;
-        opacity:1;
+        transform: translate3d(0%, 0%, 0);
+        opacity: 1;
     }
 }
 
 
-.prevanimate{
+.prevanimate {
 
     .bgLRextend::before {
         animation-duration: 2.0s;
@@ -200,15 +197,14 @@
         width: 800px;
         height: 100%;
         border-radius: 10px;
-        background-color: #ff0000; /* 伸びる背景色の設定 */
+
+        background-color: #e8dbcb; /* 伸びる背景色の設定 */
     }
-
-
 
 
 }
 
-.topButton{
+.topButton {
     padding: 0 10px;
-    border-radius:10px;
+    border-radius: 10px;
 }

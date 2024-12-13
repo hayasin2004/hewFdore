@@ -7,19 +7,20 @@ import {NextApiRequest} from "next";
 import {UserData} from "next-auth/providers/42-school";
 
 export interface UserType {
-    id : string
-    token : string
-    _id : string
-    userId : string;
-    username : string
-    email : string
-    password : string
-    profilePicture : string
-    coverProfilePicture : string
-    desc : string
-    followings : UserFollow[]
-    followers : UserFollow[]
-    userData : UserType
+    id? : string
+    token? : string
+    _id? : string
+    userId? : string;
+    username? : string
+    email? : string
+    password? : string
+    profilePicture? : string
+    coverProfilePicture? : string
+    desc? : string
+    followings? : UserFollow[]
+    followers? : UserFollow[]
+    likeList? : string[]
+    userData? : UserType
 }
 
 export  interface UserFollow {

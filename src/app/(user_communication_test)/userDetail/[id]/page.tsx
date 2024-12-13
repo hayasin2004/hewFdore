@@ -7,15 +7,18 @@ import Link from "next/link";
 import updateFollowings from "@/app/utils/user/ApdateFollowings";
 import useUser from "@/hooks/useUser";
 import {ProductType} from "@/app/utils/product/productDetail";
+import CatchLikeList from "@/app/utils/user/CatchlikeList";
 
 
-const UserDetailPage = ({params}: { params: { id: string |null } }) => {
+const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
-    console.log(userData?.followers)
-    const id: string |null = params.id;
+    const [likeList, setLikeList] = useState<UserType[] | null >([])
+    console.log(likeList?.likeList)
+    const id: UserType | null = params.id;
     const {user} = useUser()
-    const loginNowUserId:string|null = user?._id
+    const loginNowUserId: string = user?.userId
+    console.log(loginNowUserId)
 
 
     const followings = async () => {
@@ -37,6 +40,10 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
                 const responesProductData = JSON.parse(response?.searchProduct)
                 setUserData(responesUserData)
                 setProductData(responesProductData)
+                const likeData : UserType[] | null = await CatchLikeList(id)
+                setLikeList(likeData)
+                console.log(likeData)
+
             } catch (err) {
                 console.log(err)
             }
@@ -59,6 +66,15 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
                     <li>ユーザー自己紹介: {userData?.desc}</li>
                     <li>背景画像１: {userData?.profilePicture}</li>
                     <li>背景画像２: {userData?.coverProfilePicture}</li>
+
+
+                    <p>いいねリスト</p>
+                    {likeList?.likeList?.map((likeItem) => (
+                        <ul key={likeItem?.id}>
+                            <li>{likeItem}</li>
+                        </ul>
+                    ))}
+
                     <li>フォロワー一覧:
                         フォロー中 : {userData?.followers?.map((item) => (
                             <span key={item?._id}>
@@ -74,6 +90,7 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
                             <p>{item}</p>
                             </span>
                 ))}
+
                     <li>
                         <Link href={{pathname: `/directMessage/${params.id}`, query: {currentUserId: loginNowUserId}}}>
                             DMする
@@ -102,7 +119,7 @@ const UserDetailPage = ({params}: { params: { id: string |null } }) => {
 
                 <div>
                     <p>ログインしている人</p>
-                    id : {user?._id} <br/>
+                    id : {user?.userId} <br/>
                     username : {user?.username}
                 </div>
 

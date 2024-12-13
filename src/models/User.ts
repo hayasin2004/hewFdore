@@ -56,6 +56,10 @@ const UserSchema = new mongoose.Schema({
             // フォローされている。フォローされている人は増えたり減ったりするので、配列の型にしてます。
             type: Array,
             default: []
+        },
+        likeList : {
+            type: Array,
+            default: []
         }
 
     },

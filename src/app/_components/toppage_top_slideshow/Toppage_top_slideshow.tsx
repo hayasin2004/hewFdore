@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./common.css"
 import dummyData from "@/app/dummydata/slide_dummy";
 import {DummyDataType} from "@/app/dummydata/slide_dummy";
@@ -12,10 +12,9 @@ interface dummy {
     image?: string,
     text?: string,
 }
-　
 
 
-const dummyData_slide_map_item: dummy[] = dummyData.map((item : DummyDataType, index) => {
+const dummyData_slide_map_item: dummy[] = dummyData.map((item: DummyDataType, index) => {
     const image = item.url
     const text = item.randomString
     return {image, text}
@@ -23,6 +22,7 @@ const dummyData_slide_map_item: dummy[] = dummyData.map((item : DummyDataType, i
 })
 
 const ToppageTopSlideshow: React.FC<dummy> = () => {
+
     // これが今のスライド
     const [currentSlide, setCurrentSlide] = useState(0);
     // これが次のスライド
@@ -55,9 +55,9 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
             setTimeout(() => {
                 setNextanimate(false);
                 setIsChanging(false);
-            } , 2000)
+            }, 2000)
         }
-　
+
     };
 
 
@@ -65,7 +65,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // ひとつ前のスライドに戻るときの処理
     const goToPrevSlide = () => {
             // setCurrentText((prevText) => (prevText - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
-　
+
 
             setPrevanimate(true);
             if (!isChanging) {
@@ -74,7 +74,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                     setCurrentSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 }, 810)
                 setTimeout(() => {
-                    setNextSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length ) % dummyData_slide_map_item.length);
+                    setNextSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
                 }, 820); // 0.4秒の遅延
                 setTimeout(() => {
                     setPrevanimate(false);
@@ -88,7 +88,26 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
     // 次の画像をcurrentSlide + 1 として表示している
     const nextSlideIndex = ((nextSlide + 1) % dummyData_slide_map_item.length);
+    useEffect(() => {
+        setNextanimate(true);
+        if (!isChanging) {
+            setIsChanging(true);
+            setTimeout(() => {
+                setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+            }, 880); // 0.4秒の遅延
+            setTimeout(() => {
+                setNextSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+            }, 920); // 0.4秒の遅延　
+            setTimeout(() => {
+                setNextanimate(false);
+                setIsChanging(false);
+            }, 2000)
+        }
 
+        const interval = setInterval(() => {
+        }, 2000); // 2秒ごとに画像を変更 return () => clearInterval(interval); }, []);
+        return () => clearInterval(interval);
+    }, []);
     return (
         <>
             <div>
@@ -102,21 +121,25 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                             className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_text `}>
                             <h1 className={"bgappear bgRLextend bgLRextend "}>{dummyData_slide_map_item[currentSlide].text}</h1>
                         </div>
-                        <div
-                            className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide`}>
+                        <div className={"backgroundSlideColor"}>
 
-                            <div className={"bgappear bgRLextend bgLRextend slide"}
-                                 style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}/>
+                            <div
+                                className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''}  bgextend slide`}>
 
+                                <div className={"bgappear bgRLextend bgLRextend slide"}
+                                     style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}/>
+
+                            </div>
                         </div>
                         {/*prevanimate　→　前の写真に行く時に発火するＣＳＳアニメーション*/}
 
-                            {/*classnameにanimateを付与すればスライドショーアニメーションは動く*/}
+                        {/*classnameにanimateを付与すればスライドショーアニメーションは動く*/}
                         <div
-                            className={ `${nextanimate ? 'smooth , animate' : ''} ${prevanimate ? 'prevanimate ' : ''} bgextend slide_next`}>
+                            className={`${nextanimate ? 'smooth , animate' : ''} ${prevanimate ? 'prevanimate ' : ''} bgextend slide_next`}>
 
 
-                                {/*className={"bgappear bgRLextend bgLRextend slide_next"}*/}
+                            {/*className={"bgappear bgRLextend bgLRextend slide_next"}*/}
+
                             <div
                                 className={"bgappear bgRLextend bgLRextend slide_next "}
                                 // style={{backgroundImage: `url(${dummyData_slide_map_item[0].image})`}}
