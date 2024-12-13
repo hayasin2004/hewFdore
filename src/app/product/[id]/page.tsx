@@ -95,12 +95,12 @@ const Product = ({params}: { params: { id: string } }) => {
                             <div id="text">
                                 <h1>ニット</h1>
                                 <span className="under_bar"></span>
-                                <a href="#" id="seller">
+                                <Link href="/" id="seller">
                                     <h2>出品者:{product?.sellerUserName}
                                     </h2>
 
                                     <h2>{product?.username}</h2>
-                                </a>
+                                </Link>
                                 <p>
                                     商品詳細<br/>
                                     {product?.productDesc}<br/>

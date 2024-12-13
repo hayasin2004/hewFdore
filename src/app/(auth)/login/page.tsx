@@ -13,6 +13,7 @@ import Link from "next/link";
 import {User} from "@/models/User";
 import {string} from "prop-types";
 import {Form} from "react-router-dom";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 interface User {
     userId: string
@@ -26,9 +27,9 @@ interface User {
 
 const Login = () => {
     const [userToken, setUserToken] = useState()
-    const [email, setEmail] = useState<User | null>(null)
-    const [username, setUsername] = useState<User | null>(null)
-    const [password, setPassword] = useState<User | null>(null)/*正しくはログには[object object]が出ます*/
+    const [email, setEmail] = useState<UserType | null>(null)
+    const [username, setUsername] = useState<UserType | null>(null)
+    const [password, setPassword] = useState<UserType | null>(null)/*正しくはログには[object object]が出ます*/
     console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
     console.log("これはログインに成功した時にユーザー名が出ます:" + username);
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);

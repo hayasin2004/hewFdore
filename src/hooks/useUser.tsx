@@ -14,14 +14,14 @@ export interface useUser {
 }
 
 const useUser = () => {
-    const [user, setUser] = useState<string | null>(null)
+    const [user, setUser] = useState<UserType | null>(null)
     // console.log(user?.email)
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (token) {
             (async () => {
-                const userData : string | null = await confirmUser(token);
+                const userData : UserType | null = await confirmUser(token);
                 // console.log(userData)
                 if (userData !== null) {
                     setUser(userData)

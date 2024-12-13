@@ -4,18 +4,22 @@ import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import {NextResponse} from "next/server";
 import {NextApiRequest} from "next";
+import {UserData} from "next-auth/providers/42-school";
 
 export interface UserType {
-    id? : string | null
-    _id? : string
-    userId? : string;
-    username? : string
-    email? : string
-    profilePicture? : string
-    coverProfilePicture? : string
-    desc? : string
-    followings? : UserFollow[]
-    followers? : UserFollow[]
+    id : string
+    token : string
+    _id : string
+    userId : string;
+    username : string
+    email : string
+    password : string
+    profilePicture : string
+    coverProfilePicture : string
+    desc : string
+    followings : UserFollow[]
+    followers : UserFollow[]
+    userData : UserType
 }
 
 export  interface UserFollow {
