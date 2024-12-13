@@ -10,12 +10,14 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import Toppage from "@/app/toppage/page";
 import Gmail from "./_components/gmail/Gmail";
 import SearchPageProducts from "@/app/searchResult/page";
+import SearchProduct from "@/app/_components/(search)/searchProduct/Searchproduct";
 
 export default function Home() {
   return (
     <main>
       <div>
-          <Toppage />
+          <SearchProduct/>
+          {/*<Toppage />*/}
           <SearchPageProducts />
           {/*<Toppage />*/}
           <Gmail />
