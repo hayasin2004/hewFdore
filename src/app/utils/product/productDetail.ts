@@ -5,7 +5,7 @@ import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 
 export interface ProductType {
-    product: string;
+    product?: string;
     id?: string
     _id?: string,
     sellerId?: string,

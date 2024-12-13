@@ -5,14 +5,14 @@ import {$options} from "sift";
 import {Stripe} from "stripe";
 import {ProductType} from "@/app/utils/product/productDetail";
 
-const productSearch = async (productSearchWord: string | null): Promise<string[] | null> => {
+const productSearch = async (productSearchWord: string | null): Promise<string | null> => {
     try {
 
-        const TestProductSearchWord = "てすとゆーざーです"
+        const TestProductSearchWord = "a"
         console.log(TestProductSearchWord)
-        const searching: string[] = await Product.find({sellerUserName: {$regex: TestProductSearchWord, $options: "i"}})
+        const searching:ProductType[] | null = await Product.find({productDesc: {$regex: TestProductSearchWord, $options: "i"}})
         console.log(searching)
-        return searching
+        return JSON.stringify(searching)
     } catch (err) {
         return null
     }

@@ -4,14 +4,16 @@ import productSearch from "@/app/utils/search/productSearch";
 import {ProductType} from "@/app/utils/product/productDetail";
 
 
-
 const SearchProduct = () => {
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
-    const [searchProductResult, setSearchProductResult] = useState<string[] | null>([])
+    const [searchProductResult, setSearchProductResult] = useState<string | null>(null)
 
     const handleProductSearch = async () => {
-        const response = await  productSearch(searchKeyWord)
-        setSearchProductResult(response);
+        const response: string | null = await productSearch(searchKeyWord)
+        if (response !== null) {
+            const responseParse = JSON.parse(response)
+            setSearchProductResult(responseParse);
+        }
         setSearchKeyWord("")
         console.log(response)
     }
@@ -23,6 +25,13 @@ const SearchProduct = () => {
                 <input type="text" onChange={(e) => setSearchKeyWord(e.target.value)} value={searchKeyWord}/>
                 <button type={"submit"} onClick={handleProductSearch}>検索</button>
             </label>
+            {searchProductResult?.map((item) => (
+                <ul key={item._id}>
+                    <li>
+                        {item.sellerId}
+                    </li>
+                </ul>
+            ))}
         </>
     );
 };
