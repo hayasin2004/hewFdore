@@ -108,7 +108,7 @@ const Header = () => {
                     </span>
                             <Link href={"/searchResult"}>
 
-                                <li id={"search"}>
+                                <li className={"Headersearch"}>
                                     Search <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
                                                 strokeLinecap="round" strokeLinejoin="round"
@@ -131,14 +131,18 @@ const Header = () => {
                             <span style={{display: "flex", alignItems: "center"}}>
 
                             <li>
-                                {user ? <UserNavigationModal/> : ""}
+                                {user ?
+                                    <UserNavigationModal/>
+                                : ""}
 
                             </li>
                             <li id={"UserName"}>
                                 {user ? <p id={"usernameGet"}>{user.username}</p> :
                                     <Link href={"login"}><p id={"name"}>ログイン</p></Link>}
+                                {/*確認用　ネーム上限15*/}
+                                {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
-                            <li>
+                            <li id={"list_bell"}>
                                 {user ?
                                     <div>
                                         <Button className={"bell"} onClick={handleOpen}>
@@ -217,7 +221,8 @@ const Header = () => {
 
                                             </Box>
                                         </Modal>
-                                    </div> : ""}
+                                    </div>
+                                     : ""}
                             </li>
                             </span>
                         </ul>

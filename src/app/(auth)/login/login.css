@@ -19,10 +19,12 @@ div.flower_img{
     opacity: 0.5;
 }
 
-header{
+header.loginHeader{
+    width: 100%;
     display: block;
+    background: none; /*これ追加*/
 }
-header h1{
+h1.loginHeaderH1{
     font-family: "Italiana", sans-serif;
     font-weight: normal;
     margin: 25px 0 25px 0 ;
@@ -30,7 +32,6 @@ header h1{
     display: block;
     font-size: 4rem;
     text-align: center;
-
 }
 
 section#login{

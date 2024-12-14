@@ -20,12 +20,16 @@ const Page = () => {
         <div style={{backgroundColor:"#EBE8DB"}}>
             <SearchHeader/>
             <div className={"searchresult"}>
-                <div style={{width:"40%"}}>
+
+                {/*<div style={{width:"40%"}}>*/}
                     <Sidebar/>
-                </div>
+                {/*</div>*/}
+            <div className={"searchResultMain"}>
+                {/*<Sidebar />*/}
                 {/*ダミーデータをプロップスで渡している。*/}
                 <SearchResultProducts product={products}/>
             </div>
+        </div>
         </div>
     );
 }

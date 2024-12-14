@@ -10,7 +10,7 @@ const SearchResultProducts  = ( ) => {
 
     return (
         <>
-            <div style={{width: "1200px", display: "block"}}>
+            <div className={"searchResultOverflow"} >
 
 
                 <h1 style={{marginTop:"80px"}}>XXXX件の検索結果</h1>

@@ -2,62 +2,67 @@ body {
     margin: 0;
     padding: 0;
 }
+
 /*side_cart*/
 
+div.searchResultOverflow {
+    width: 800px;
+    display: block;
+}
 
 div.SRproductlist {
     /*width: 800px;*/
-    display:flex;
+    display: flex;
     margin-top: 0px;
     margin-bottom: 30px;
- }
+}
 
-div.product_img{
+div.product_img {
     display: flex;
 }
 
-div.SRproductlist div{
+div.SRproductlist div {
     padding: 20px;
 }
 
-div.SRproductlist__item{
+div.SRproductlist__item {
     display: flex;
     flex-wrap: wrap;
 }
 
-div.product_detail{
+div.product_detail {
     width: calc(33.33% - 10px); /* 3つ並べるための幅調整 */
     margin: 5px;
 }
 
-div.SRproductlist div.product_detail p{
+div.SRproductlist div.product_detail p {
     padding: 5px 0;
     margin-left: 10px;
     font-size: 1.5rem;
 }
 
-#list{
+#list {
     display: block;
 }
 
-#line{
+#line {
     margin-bottom: 40px;
 
     width: 100%;
 }
 
 
-.Nextpage div{
+.Nextpage div {
     display: flex;
     /*margin: 0 auto;*/
     align-items: center;
 }
 
-.Nextpage .SRNextPageNav p.SRp{
+.Nextpage .SRNextPageNav p.SRp {
     width: 300px;
 }
 
-.SRNextPageNav{
+.SRNextPageNav {
 
 }
 

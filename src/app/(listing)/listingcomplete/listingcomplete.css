@@ -6,7 +6,7 @@ body {
 /*全体 */
 div#productlisning{
     width: 100%;
-    margin: 100px 0 50px 0;
+    margin: 25px 0 50px 0;
     display: flex;
     flex-direction: column;
 }
@@ -101,7 +101,7 @@ div#control{
     margin-left: 60%;
 }
 
-button{
+button.listingCompleteButton{
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;
@@ -110,5 +110,8 @@ button{
     margin-right: 30px;
     margin-bottom: 30px;
 
+}
+button#edit{
+    background-color: #605252;
 }
 
