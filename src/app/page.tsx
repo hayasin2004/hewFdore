@@ -11,12 +11,14 @@ import Toppage from "@/app/toppage/page";
 import Gmail from "./_components/gmail/Gmail";
 import SearchPageProducts from "@/app/searchResult/page";
 import SearchProduct from "@/app/_components/(search)/searchProduct/Searchproduct";
+import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
 
 export default function Home() {
   return (
     <main>
       <div>
           <SearchProduct/>
+          <Searchuser/>
           {/*<Toppage />*/}
           <SearchPageProducts />
           {/*<Toppage />*/}

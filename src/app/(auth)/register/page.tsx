@@ -40,15 +40,22 @@ const Register = () => {
     return (
 
         <div className={"allScreen"}>
+            {dateAll.map((item) => (
+                <ul key={item}>
+                    <li>
+                        {item}
+                    </li>
+                </ul>
+            ))}
             <header>
                 <h1>F'dore</h1>
             </header>
-            {/*<button onClick={handleGithubLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
-            {/*    githubでログイン*/}
-            {/*</button>*/}
-            {/*<button onClick={handleGooleLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
-            {/*    Googleでログイン*/}
-            {/*</button>*/}
+            <button onClick={handleGithubLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
+                githubでログイン
+            </button>
+            <button onClick={handleGooleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
+                Googleでログイン
+            </button>
 
             <section id={"register"}>
 
