@@ -3,7 +3,7 @@ import React, {useEffect} from 'react';
 import Header from "@/app/_components/header/Header";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import ToppageMain from "@/app/_components/toppageMain/ToppageMain";
-import confirmUser from "@/app/utils/confirmUser";
+import confirmUser from "@/app/utils/user/confirmUser";
 import Footer from "@/app/_components/footer/Footer";
 import {loginUser} from "@/app/utils/loginUser";
 import "./toppage.css"

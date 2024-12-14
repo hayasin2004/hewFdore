@@ -13,7 +13,7 @@ export default function Home() {
     <main>
       <div>
           <Blogintroduction />
-          {/*<Toppage />*/}
+          <Toppage />
       {/*<Login />*/}
       {/**/}
       </div>

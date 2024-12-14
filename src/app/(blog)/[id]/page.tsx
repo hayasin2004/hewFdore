@@ -1,3 +1,5 @@
+// [id]/page.tsx
+
 import { createClient } from "microcms-js-sdk";
 import { notFound } from "next/navigation";
 import Link from "next/link";
