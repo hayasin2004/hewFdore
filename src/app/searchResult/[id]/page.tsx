@@ -3,27 +3,29 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from "next/navigation";
 import productSearch from "@/app/utils/search/productSearch";
 
-const SearchResultParamsId = ({params} : {params : {id: string}}) => {
-    const searchWord = params.id;
-    console.log(searchWord)
+const SearchResultParamsId = ({params}: { params: { id: string } }) => {
+    const [urlDDecoded, setUrlDDecoded] = useState<string>("")
+    console.log(urlDDecoded)
     const [searchProductResult, setSearchProductResult] = useState<string | null>(null)
+    const searchWord = params.id;
+    const searchWordDecoded = decodeURI(searchWord);
     useEffect(() => {
 
-    const handleProductSearch = async () => {
-        const response: string | null = await productSearch(searchWord)
-        if (response !== null) {
-            const responseParse = await JSON.parse(response)
-            if (responseParse) {
-                setSearchProductResult(responseParse)
+        const handleProductSearch = async () => {
+            const response: string | null = await productSearch(searchWordDecoded)
+            if (response !== null) {
+                const responseParse = await JSON.parse(response)
+                if (responseParse) {
+                    setSearchProductResult(responseParse)
+                }
             }
+            console.log(response)
         }
-        console.log(response)
-    }
-    handleProductSearch()
-    },[])
+        handleProductSearch()
+    }, [])
     return (
         <>
-            <h3>{searchWord}の検索結果</h3>
+            <h3>{searchWordDecoded}の検索結果</h3>
             {searchProductResult?.map((item) => (
                 <ul key={item._id}>
                     <li>
