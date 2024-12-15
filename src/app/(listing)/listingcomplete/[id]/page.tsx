@@ -10,7 +10,7 @@ import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 const ListingComplete = ({params}: { params: { id: string } }) => {
 
-    const [data, setData] = useState<ProductType | null>(null)
+    const [data, setData] = useState<string | null>("")
     console.log(data)
     const id = params.id
     console.log(id)
@@ -18,7 +18,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
         if (id) {
             const productData = async () => {
                 const result = await productDetail(id)
-                const resultParse = JSON.parse(result?.product)
+                const resultParse =  result?.product
                 setData(resultParse)
             }
             productData()

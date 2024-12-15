@@ -31,8 +31,8 @@ const ListingScreen: React.FC = () => {
     const [postageBurden, setPostageBurden] = useState<string | null>(null)
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
-    const [productId, setProductId] = useState<string | null>(null)
-    console.log(productId)
+    const [productId, setProductId] = useState< ProductType  | null>(null)
+    console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
     console.log(shippingArea)
     //
@@ -74,8 +74,8 @@ const ListingScreen: React.FC = () => {
                             shippingAreaText
                         ).then(
                             (product  => {
-                                const result = JSON.parse(product?.result)
-                                setProductId(result)
+                                const productParse = JSON.parse(product?.result as string)
+                                setProductId(productParse)
                             })
 
                             )

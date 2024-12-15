@@ -26,14 +26,15 @@ export interface ProductType {
 }
 
 
-const productDetail = async (id: string, currentUser: string): Promise<ProductType | null> => {
+const productDetail = async (id: string): Promise<{product :  string | null } | null> => {
     await connectDB()
     try {
-        const product: ProductType = await Product.findById(id)
-        const userName: ProductType = await User.findOne({_id: product.sellerId}).exec()
+        const product: ProductType | null = await Product.findById(id)
+        const userName: string | null = await User.findOne({_id: product?.sellerId})
         console.log(userName)
         return {product: JSON.stringify(product)}
     } catch (err) {
+        console.error(err)
         console.error(err)
         return null
     }
