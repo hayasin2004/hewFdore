@@ -9,6 +9,7 @@ import createProduct from "@/app/utils/product/createProduct";
 import {string} from "prop-types";
 import {redirect} from "next/navigation";
 import {ProductType} from "@/app/utils/product/productDetail";
+import io from "socket.io-client";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -31,7 +32,7 @@ const ListingScreen: React.FC = () => {
     const [postageBurden, setPostageBurden] = useState<string | null>(null)
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
-    const [productId, setProductId] = useState< ProductType  | null>(null)
+    const [productId, setProductId] = useState<ProductType | null>(null)
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
     console.log(shippingArea)
@@ -42,8 +43,16 @@ const ListingScreen: React.FC = () => {
     // const postageBurden = postageBurden
     // const deliveryTime = deliveryTime
     // const shippingArea = shippingArea
+    const socket = io("http://localhost:8080");
+    const toastListing = (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        socket.emit("listing", {product: productId})
+        console.log("1234")
+        redirect(`/listingcomplete/${productId?._id}`)
+    }
 
 
+    console.log(socket)
     return (
         <>
             <Header/>
@@ -73,12 +82,11 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText
                         ).then(
-                            (product  => {
+                            (product => {
                                 const productParse = JSON.parse(product?.result as string)
                                 setProductId(productParse)
                             })
-
-                            )
+                        )
                         ;
                     }}>
                         <h2>
@@ -135,7 +143,10 @@ const ListingScreen: React.FC = () => {
 
                             <button className={"listingcompletebtn"} type={"submit"}>
                                 {/*<Link href={"listingcomplete"}>*/}
-                                {productId ? <Link href={`/listingcomplete/${productId?._id}`}>確認ページ</Link> : <p>出品</p>}
+                                {productId ?
+                                    <button onClick={(e) =>toastListing(e)}>
+                                            確認ページ
+                                    </button> : <p>出品</p>}
                                 {/*</Link>*/}
                             </button>
                         </div>

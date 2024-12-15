@@ -18,7 +18,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
     const detailUser = params?.id as string;
     const {user} = useUser()
-    const tokenUser = user?._id;
+    const tokenUser = user?.userId;
     console.log("currentUser", tokenUser)
     const [chatData, setChatData] = useState<ChatType | null>(null)
     const [currentUser, setCurrentUser] = useState<ChatType | null>(null)
