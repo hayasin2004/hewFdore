@@ -6,11 +6,10 @@ import userSearch from "@/app/utils/search/userSearch";
 const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     const [urlDDecoded, setUrlDDecoded] = useState<string>("")
     console.log(urlDDecoded)
-    const [searchUserResult, setSearchUserResult] = useState<string | null>(null)
+    const [searchUserResult, setSearchUserResult] = useState<string[] | null>(null)
     const searchWord = params.id;
     const searchWordDecoded = decodeURI(searchWord);
     useEffect(() => {
-
         const handleProductSearch = async () => {
             const response: string | null = await userSearch(searchWordDecoded)
             if (response !== null) {
