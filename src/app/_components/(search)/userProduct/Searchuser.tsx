@@ -4,12 +4,12 @@ import productSearch from "@/app/utils/search/productSearch";
 import {ProductType} from "@/app/utils/product/productDetail";
 import {useRouter} from "next/navigation";
 
-const SearchProduct = () => {
+const Searchuser = () => {
     const router = useRouter();
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
 
     const handleProductSearch = async () => {
-        router.push(`/searchResult/productSearch/${searchKeyWord}`)
+        router.push(`/searchResult/userSearch/${searchKeyWord}`)
 
     }
     console.log(searchKeyWord)
@@ -30,4 +30,4 @@ const SearchProduct = () => {
     );
 };
 
-export default SearchProduct;
+export default Searchuser;
