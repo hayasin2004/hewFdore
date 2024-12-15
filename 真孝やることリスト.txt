@@ -10,3 +10,5 @@
 ６　出品者プロフィール画面
 ９　出品完了
 
+mongoexport --uri="mongodb+srv://masataka1kousuke1:Kousuke0711@cluster0.ckup8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"--collection=users --type=csv --fields=username,email,password --out=test.csv
+
