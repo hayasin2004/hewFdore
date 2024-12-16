@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import productSearch from "@/app/utils/search/productSearch";
 import {ProductType} from "@/app/utils/product/productDetail";
 import {useRouter} from "next/navigation";
+import DeleteProductCategoryLikeList from "@/app/utils/setting/update/DeleteProductCategoryLikeList";
+import InsertProductCategoryLikeList from "@/app/utils/setting/update/InserteProductCategoryLikeList";
 
 const SearchProduct = () => {
     const router = useRouter();
@@ -12,6 +14,7 @@ const SearchProduct = () => {
         router.push(`/searchResult/productSearch/${searchKeyWord}`)
 
     }
+
     console.log(searchKeyWord)
     return (
         <>
@@ -26,6 +29,7 @@ const SearchProduct = () => {
             {/*        </li>*/}
             {/*    </ul>*/}
             {/*))}*/}
+
         </>
     );
 };

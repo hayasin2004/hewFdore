@@ -1,3 +1,4 @@
+
 import Register from "@/app/(auth)/register/page";
 import Login from "@/app/(auth)/login/page";
 // import Toppage from "./toppage/page";
@@ -14,24 +15,30 @@ import SearchProduct from "@/app/_components/(search)/searchProduct/Searchproduc
 import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
 import UpdateProductLikeList from "@/app/utils/setting/update/UpdateProductLikeList";
 import productCategorySearch from "@/app/utils/search/(product)/productCategorySearch";
+import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductCategoryLikeList";
+import InsertProductCategoryLikeList from "@/app/utils/setting/update/InserteProductCategoryLikeList";
+import DeleteProductCategoryLikeList from "@/app/utils/setting/update/DeleteProductCategoryLikeList";
+import DeleteProductCategoryLikeListField from "@/app/utils/setting/update/UpdateProductCategoryLikeList";
+import TestCom from "@/app/_components/tets/Test";
 
 export default function Home() {
-    productCategorySearch()
+    DeleteProductCategoryLikeListField()
 
-  return (
-    <main>
-      <div>
-          <p>これは商品</p>
-          <SearchProduct/>
-          <p>これはユーザー</p>
-          <Searchuser/>
-          {/*<Toppage />*/}
-          {/*<SearchPageProducts />*/}
-          {/*<Toppage />*/}
-          <Gmail />
-      {/*<Login />*/}
-      {/**/}
-      </div>
-    </main>
-  );
+    return (
+        <main>
+            <div>
+                <TestCom/>
+                <p>これは商品</p>
+                <SearchProduct/>
+                <p>これはユーザー</p>
+                <Searchuser/>
+                {/*<Toppage />*/}
+                {/*<SearchPageProducts />*/}
+                {/*<Toppage />*/}
+                <Gmail/>
+                {/*<Login />*/}
+                {/**/}
+            </div>
+        </main>
+    );
 }
