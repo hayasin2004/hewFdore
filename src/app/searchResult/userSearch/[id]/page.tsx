@@ -28,7 +28,7 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
             {searchUserResult?.map((item) => (
                 <ul key={item._id}>
                     <li>
-                        商品名 : {item.username}
+                        商品名 : {item.email}
                     </li>
                 </ul>
             ))}
