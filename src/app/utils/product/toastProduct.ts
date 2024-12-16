@@ -50,7 +50,7 @@ const toastProduct = async (productId: string, sellerId: string) => {
          <p>商品カテゴリー: ${toastProduct.productCategory}</p>
          <p>商品サイズ: ${toastProduct.productSize}</p>
          <p>商品状態: ${toastProduct.productCondition}</p>
-         <p>送料負担者: ${toastProduct.productBurden}</p>
+         <p>送料負担者: ${toastProduct.postageBurden}</p>
         `,
         };
 
