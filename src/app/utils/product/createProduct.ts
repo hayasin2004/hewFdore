@@ -4,6 +4,7 @@ import {Product} from "@/models/Product";
 import jwt from "jsonwebtoken";
 import {string} from "prop-types";
 import {v4 as uuidv4} from 'uuid';
+import toastProduct from "@/app/utils/product/toastProduct";
 
 
 export interface createProductType {
@@ -46,7 +47,9 @@ export const createProduct = async (token: string | null, productName: string | 
             deliveryTime,
         })
         await newProduct.save()
-
+        const CompleteproductId = newProduct._id
+        const CompletesellerId = newProduct.sellerId
+        toastProduct(CompleteproductId,CompletesellerId)
 
         console.log("保存完了だよ")
 

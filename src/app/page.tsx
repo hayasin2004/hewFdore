@@ -12,11 +12,15 @@ import Gmail from "./_components/gmail/Gmail";
 import SearchPageProducts from "@/app/searchResult/page";
 import SearchProduct from "@/app/_components/(search)/searchProduct/Searchproduct";
 import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
+import toastProduct from "@/app/utils/product/toastProduct";
 
 export default function Home() {
+    toastProduct()
+
   return (
     <main>
       <div>
+
           <SearchProduct/>
           <Searchuser/>
           {/*<Toppage />*/}

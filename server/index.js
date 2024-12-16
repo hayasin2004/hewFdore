@@ -17,12 +17,6 @@ try {
     io.on("connection", (socket) => {
         console.log("clientと接続中")
 
-        // 商品が追加されたときの処理
-        socket.on("listing", (product) => {
-            console.log("出品完了" + JSON.stringify(product))
-        })
-
-
         // ダイレクトメッセージの設定
         // clientからの受信
         socket.on("send_message", (data) => {

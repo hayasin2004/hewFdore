@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     // Email to admin
     const toHostMailData = {
         from: body.email,
-        to: "ao09011078@gmail.com", //後で変える
+        to: "masataka1kousuke1@gmail.com.com", //後で変える
         subject: `[お問い合わせ]${body.name}様より`,
         text: `${body.message} Send from ${body.email}`,
         html: `
@@ -52,6 +52,7 @@ export async function POST(req: Request) {
         try {
             // メールを送信
             await transporter.sendMail(toHostMailData);
+            await transporter.sendMail(toUserMailData);
 
             return new Response(
                 JSON.stringify({ status: "Success", code: randomCode }),

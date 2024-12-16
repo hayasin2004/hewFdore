@@ -44,12 +44,6 @@ const ListingScreen: React.FC = () => {
     // const deliveryTime = deliveryTime
     // const shippingArea = shippingArea
     const socket = io("http://localhost:8080");
-    const toastListing = (e: React.FormEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        socket.emit("listing", {product: productId})
-        console.log("1234")
-        redirect(`/listingcomplete/${productId?._id}`)
-    }
 
 
     console.log(socket)
@@ -142,12 +136,11 @@ const ListingScreen: React.FC = () => {
                             </button>
 
                             <button className={"listingcompletebtn"} type={"submit"}>
-                                {/*<Link href={"listingcomplete"}>*/}
                                 {productId ?
-                                    <button onClick={(e) =>toastListing(e)}>
-                                            確認ページ
-                                    </button> : <p>出品</p>}
-                                {/*</Link>*/}
+                                    <Link href={`/listingcomplete/${productId?._id}`}>
+                                        <p>確認ページ</p>
+                                    </Link>
+                                    : <p>出品</p>}
                             </button>
                         </div>
 
