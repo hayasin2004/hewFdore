@@ -19,7 +19,7 @@ try {
 
         // 商品が追加されたときの処理
         socket.on("listing", (product) => {
-            console.log("出品完了" + product)
+            console.log("出品完了" + JSON.stringify(product))
         })
 
 

@@ -20,7 +20,7 @@ export default function Home() {
           <SearchProduct/>
           <Searchuser/>
           {/*<Toppage />*/}
-          <SearchPageProducts />
+          {/*<SearchPageProducts />*/}
           {/*<Toppage />*/}
           <Gmail />
       {/*<Login />*/}
