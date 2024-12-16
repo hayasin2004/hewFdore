@@ -6,7 +6,7 @@ import {connectDB} from "@/lib/mongodb";
 
 const userSearch = async (userSearchWord: string | null): Promise<string | null> => {
     await connectDB()
-    const KatakanaHenkan = (userSearchWord: string | null) => {
+    const KatakanaHenkan = 　(userSearchWord: string | null) => {
         return userSearchWord?.replace(/[\u3041-\u3096]/g, function (match) {
             return String.fromCharCode(match.charCodeAt(0) + 0x60)
         })
