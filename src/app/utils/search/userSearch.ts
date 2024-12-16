@@ -45,6 +45,7 @@ const userSearch = async (userSearchWord: string | null): Promise<string | null>
             console.log(searching)
             return JSON.stringify(searching)
         }
+        return null
     } catch (err) {
         return null
     }

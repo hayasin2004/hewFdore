@@ -27,7 +27,7 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
         NormalizationWordUpper,
         NormalizationWordLower,
     )
-        ;
+
         if (productSearchWord === null) {
             console.log("文字を入力してください")
             return null
@@ -48,6 +48,7 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
             console.log("あと三パーセント" + searching)
             return JSON.stringify(searching)
         }
+        return null
     } catch (err) {
         return null
     }
