@@ -13,8 +13,27 @@
     /* 通常時特有のスタイルをここに追加 */
 }
 
+.testttt{
+    width: 100%;
+    position: relative;
+}
+
+.product-Size{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #9C958C;
+}
+
 .testtt{
     width: 80%;
+}
+
+.expanded-box{
+    position: relative;
 }
 
 /* 展開時の画像スタイル */
@@ -27,6 +46,18 @@
     /* 展開時特有のスタイルをここに追加 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     object-fit: cover;
+}
+
+.expanded-Size{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    text-align: center;
+    font-size: 2rem;
+    border-radius: 50%;
+    background-color: #9C958C;
+
 }
 
 .collapsible-product-card .explanation {
