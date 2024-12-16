@@ -12,10 +12,11 @@ import Gmail from "./_components/gmail/Gmail";
 import SearchPageProducts from "@/app/searchResult/page";
 import SearchProduct from "@/app/_components/(search)/searchProduct/Searchproduct";
 import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
-import toastProduct from "@/app/utils/product/toastProduct";
+import UpdateProductLikeList from "@/app/utils/setting/update/UpdateProductLikeList";
+import productCategorySearch from "@/app/utils/search/(product)/productCategorySearch";
 
 export default function Home() {
-
+    productCategorySearch()
 
   return (
     <main>
