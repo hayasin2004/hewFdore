@@ -15,13 +15,14 @@ import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
 import toastProduct from "@/app/utils/product/toastProduct";
 
 export default function Home() {
-    toastProduct()
+
 
   return (
     <main>
       <div>
-
+          <p>これは商品</p>
           <SearchProduct/>
+          <p>これはユーザー</p>
           <Searchuser/>
           {/*<Toppage />*/}
           {/*<SearchPageProducts />*/}

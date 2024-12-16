@@ -3,10 +3,8 @@ import React, {useEffect, useState} from 'react';
 import {useRouter} from "next/navigation";
 import productSearch from "@/app/utils/search/productSearch";
 
-const SearchResultParamsId = ({params}: { params: { id: string } }) => {
-    const [urlDDecoded, setUrlDDecoded] = useState<string>("")
-    console.log(urlDDecoded)
-    const [searchProductResult, setSearchProductResult] = useState<string | null>(null)
+const SearchResultParamsId = ({params}: { params: { id: string } }) => {　
+    const [searchProductResult, setSearchProductResult] = useState<string[] | null>(null)
     const searchWord = params.id;
     const searchWordDecoded = decodeURI(searchWord);
     useEffect(() => {
@@ -15,6 +13,7 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
             const response: string | null = await productSearch(searchWordDecoded)
             if (response !== null) {
                 const responseParse = await JSON.parse(response)
+                console.log(responseParse)
                 if (responseParse) {
                     setSearchProductResult(responseParse)
                 }
