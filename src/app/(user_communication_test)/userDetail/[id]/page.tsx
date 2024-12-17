@@ -19,6 +19,8 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const {user} = useUser()
     const loginNowUserId: string = user?.userId
     console.log(loginNowUserId)
+    console.log(loginNowUserId == id)
+
 
 
     const followings = async () => {
@@ -40,10 +42,11 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 const responesProductData = JSON.parse(response?.searchProduct)
                 setUserData(responesUserData)
                 setProductData(responesProductData)
-                const likeData = await CatchLikeList(id)
-                const likeDataParse: UserType | null = JSON.parse(likeData?.likeList)
-                setLikeList(likeDataParse)
-                console.log(likeData)
+                if (loginNowUserId == id){
+                    const likeData = CatchLikeList(loginNowUserId)
+                    const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList)
+                    setLikeList(likeDataParse)
+                }
 
             } catch (err) {
                 console.log(err)

@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import {string} from "prop-types";
 import {v4 as uuidv4} from 'uuid';
 import toastProduct from "@/app/utils/product/toastProduct";
+import addUserProductCategoryToMail from "@/app/utils/search/(product)/AddUserProductCategoryToMail";
 
 
 export interface createProductType {
@@ -49,10 +50,11 @@ export const createProduct = async (token: string | null, productName: string | 
         await newProduct.save()
         const CompleteproductId = newProduct._id
         const CompletesellerId = newProduct.sellerId
-        toastProduct(CompleteproductId,CompletesellerId)
-
+        await toastProduct(CompleteproductId,CompletesellerId)
+        console.log(newProduct.productCategory)
+        addUserProductCategoryToMail(newProduct.productCategory , newProduct)
         console.log("保存完了だよ")
-
+        toastProduct(newProduct._id , newProduct.sellerId)
         const returnProduct = JSON.stringify(newProduct)
         return {result: returnProduct};
     } catch (err) {

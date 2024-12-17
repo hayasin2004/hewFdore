@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
 import InsertProductCategoryLikeList from "@/app/utils/setting/update/InserteProductCategoryLikeList";
-import productCategorySearch from "@/app/utils/search/(product)/productCategorySearch";
+import addUserProductCategoryToMail from "@/app/utils/search/(product)/AddUserProductCategoryToMail";
 
 const TestCom = () => {
     const testClick = async () => {
         // InsertProductCategoryLikeList()
-        productCategorySearch()
+        addUserProductCategoryToMail()
     }
     return (
         <div>

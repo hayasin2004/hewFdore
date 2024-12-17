@@ -11,25 +11,28 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import Toppage from "@/app/toppage/page";
 import Gmail from "./_components/gmail/Gmail";
 import SearchPageProducts from "@/app/searchResult/page";
-import SearchProduct from "@/app/_components/(search)/searchProduct/Searchproduct";
+import SearchProduct from "@/app/_components/(search)/searchProduct/searchProduct";
 import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
 import UpdateProductLikeList from "@/app/utils/setting/update/UpdateProductLikeList";
-import productCategorySearch from "@/app/utils/search/(product)/productCategorySearch";
+import addUserProductCategoryToMail from "@/app/utils/search/(product)/AddUserProductCategoryToMail";
 import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductCategoryLikeList";
 import InsertProductCategoryLikeList from "@/app/utils/setting/update/InserteProductCategoryLikeList";
 import DeleteProductCategoryLikeList from "@/app/utils/setting/update/DeleteProductCategoryLikeList";
 import DeleteProductCategoryLikeListField from "@/app/utils/setting/update/UpdateProductCategoryLikeList";
 import TestCom from "@/app/_components/tets/Test";
+import SearchProductCategory from "@/app/_components/(search)/searchProductCategry/searchProductCategory";
 
 export default function Home() {
-    DeleteProductCategoryLikeListField()
-
+    // DeleteProductCategoryLikeListField()
     return (
         <main>
             <div>
+                <Header/>
                 <TestCom/>
                 <p>これは商品</p>
                 <SearchProduct/>
+                <p>これはカテゴリー</p>
+                <SearchProductCategory/>
                 <p>これはユーザー</p>
                 <Searchuser/>
                 {/*<Toppage />*/}

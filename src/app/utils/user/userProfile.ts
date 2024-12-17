@@ -12,7 +12,7 @@ const userProfile = async (id: UserType | null) => {
     try {
         const searchUser: UserType | null = await User.findOne({_id: id})
         const searchProduct: ProductType[] | null = await Product.find({sellerId: id})
-        console.log(searchProduct)
+        // console.log(searchProduct)
         return {
             searchUser: JSON.stringify(searchUser), searchProduct : JSON.stringify(searchProduct)
         }

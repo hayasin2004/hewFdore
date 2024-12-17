@@ -18,13 +18,12 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
             if (productLike.productLike.includes(currentUser)) {
                 const currentUserLikeUpdateDelete = await User.findByIdAndUpdate(currentUser, {
                     $pull : {
-                        likeList : productLike._id
+                        ProductLikeList : productLike._id
                     }
                 }, {new: true})
                 const productLikeUpdateDelete = await productLike.updateOne(
                     {$pull: {productLike: currentUser}},);
                 console.log(productLikeUpdateDelete)
-                console.log("こ")
                 const productLikeOnce = await Product.findById(productId);
                 console.log("窓辺においてきて"+JSON.stringify(currentUserLikeUpdateDelete))
 

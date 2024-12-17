@@ -17,7 +17,6 @@ export async function loginUser(email: string | null, password: string | null) {
     await connectDB()
     console.log("loginUser", email, password)
     try {
-
         // mongooseの関数findOneで該当するユーザーを一つ取得してくる
         const user = await User.findOne({email: email}).exec()
         // console.log(user) /*ユーザー情報を取得している。ユーザーが見つからない時はnullが返ってくる。*/
@@ -58,8 +57,6 @@ export async function loginUser(email: string | null, password: string | null) {
 
                 };
             }
-
-
         }
         //     user→クラス , {email , password}　→オブジェクト 、email , password →クラスの中身
     } catch (err) {
