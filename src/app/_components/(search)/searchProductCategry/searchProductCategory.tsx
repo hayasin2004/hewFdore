@@ -4,14 +4,22 @@ import {useRouter} from "next/navigation";
 import {FormControl, FormControlLabel, FormLabel, Radio, RadioGroup} from "@mui/material";
 import Box from "@mui/material/Box";
 import searchProductCategoryServerAction from "@/app/utils/search/(product)/searchProductCategory";
+import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
+import useUser from "@/hooks/useUser";
 
 const searchProductCategory = () => {
+    const {user} = useUser()
+    const userId = user?.userId
     const router = useRouter();
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
-    const [productCategory, setProductCategory] = useState([])
+    const [productCategory, setProductCategory] = useState<string[] | null>(null)
     console.log(productCategory)
     const handleProductSearch = async () => {
         const searchProductCategory = await searchProductCategoryServerAction(productCategory);
+        console.log(searchProductCategory)
+    }
+    const handleSaveProductSearch = async () => {
+        const searchProductCategory = await likeListProductCategory(userId , productCategory);
         console.log(searchProductCategory)
     }
 
@@ -73,6 +81,7 @@ const searchProductCategory = () => {
             <label htmlFor="searchKeyWord">
                 <input type="text" onChange={(e) => setSearchKeyWord(e.target.value)} value={searchKeyWord}/>
                 <button type={"submit"} onClick={handleProductSearch}>カテゴリー検索</button>
+                <button type={"submit"} onClick={handleSaveProductSearch}>このカテゴリー保存する</button>
             </label>
             {/*{searchProductResult?.map((item) => (*/}
             {/*    <ul key={item._id}>*/}
