@@ -13,13 +13,14 @@ import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import createUser from "@/app/utils/user/registerUser";
 import Login from '../login/page';
+import jwt from "jsonwebtoken";
 
 
 const Register = () => {
     const [responseUserData, setResponseUserData] = useState<string | null>(null)
     const {data: session, status} = useSession();
     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
-
+    console.log(responseUserData)
     if (status === "loading") {
         console.log("123456789128912345678")
     }
@@ -75,9 +76,11 @@ const Register = () => {
                                 await createUser(username, email, password, PWCheck).then(
                                     (data) => {
                                         if (data !== undefined && data !== null) {
-                                            const dataParse = JSON.parse(data)
-                                            setResponseUserData(dataParse)
-                                            console.log(dataParse)
+                                            const UserDataParse = JSON.parse(data.newUser)
+                                            const TokenDataParse = JSON.parse(data.TenMinToken)
+                                            console.log(UserDataParse)
+                                            setResponseUserData(UserDataParse)
+                                            localStorage.setItem("TenMinToken", TokenDataParse)
                                         }
                                     }
                                 )
@@ -107,7 +110,7 @@ const Register = () => {
                                             </Link>
                                         </>
                                     )
-                                    : (<Link href={{pathname:`/AuthGmail/${responseUserData?.email}` }}>
+                                    : (<Link href={{pathname: `/AuthGmail/${responseUserData?.email}`}}>
                                         <button className={"submit"}>
                                             メール認証に進む
                                         </button>
