@@ -32,7 +32,7 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
             const product = searchProduct
             const toUserMailData = {
                 from: process.env.GMAILUSER,
-                to: user.email,
+                to: "testnodemailermastakahew@gmail.com",
                 subject: "お気に入りに追加したテゴリーに新しく商品が追加されました。",
                 html: `
                 <p>お気に入りに追加したカテゴリー商品の内容</p>
