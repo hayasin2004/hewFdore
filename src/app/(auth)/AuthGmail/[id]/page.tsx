@@ -49,8 +49,9 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
         e.preventDefault();
         if (userInputCode === verificationCode) {
             setIsVerified(true);
+            localStorage.removeItem("TenMinToken")
             setStatus('認証が完了しました！');
-            window.alert("接続が完了次第ログイン画面に遷移します。今しばらくお待ちください")
+            window.alert("接続が完了次第ログイン画面に遷移します。OKボタンを押して、今しばらくお待ちください")
             setTimeout(() => {
                 router.push("/login")
             }, 3000)

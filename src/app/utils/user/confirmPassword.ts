@@ -15,7 +15,7 @@ const confirmPassword = async (email: string | null, password: string | null) =>
             if (emailUserCheck?.email !== email || emailUserCheck?.password !== password) {
                 console.log("メールアドレスが違います。もしくはパスワードが違います。")
             } else {
-               return  NextResponse.json({success: true})
+                return NextResponse.json({success: true})
             }
         }
 
