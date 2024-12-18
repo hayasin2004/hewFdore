@@ -65,8 +65,9 @@ const Login = () => {
                             <h2>ログイン</h2><br/>
                             <form action={async (data: FormData) => {
                                 const email = data.get("Email") as string
-                                const password = data.get("Password") as string /*メールアドレスとパスワードをデータベースに問い合わせてる*/
-                                await loginUser(email, password).then(user => {
+                                const password = data.get("Password") as string
+                                const confirmPassword = data.get("ConfirmPassword") as string/*メールアドレスとパスワードをデータベースに問い合わせてる*/
+                                await loginUser(email, password , confirmPassword).then(user => {
                                     if (user === undefined) {
                                         /*もしユーザー情報が間違えたいたらuserにundefinedが返って来る。*/
                                         alert("メールアドレスもしくはパスワードが違う可能性があります。")

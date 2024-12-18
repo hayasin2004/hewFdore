@@ -82,8 +82,9 @@ const Header = () => {
 
     return (
         <>
-
             <header>
+                <h1>
+                </h1>
                 <div className="nav">
                     <div className="title">
                         <Link href={"/"}>
@@ -221,7 +222,7 @@ const Header = () => {
                                             </Box>
                                         </Modal>
                                     </div>
-                                     : ""}
+                                    : ""}
                             </li>
                             </span>
                         </ul>

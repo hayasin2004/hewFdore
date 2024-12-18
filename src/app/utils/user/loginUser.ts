@@ -13,9 +13,13 @@ interface User {
     coverProfilePicture: string
 }
 
-export async function loginUser(email: string | null, password: string | null) {
+export async function loginUser(email: string | null, password: string | null, confirmPassword: string | null) {
     await connectDB()
     console.log("loginUser", email, password)
+    if (password !== confirmPassword) {
+        console.log("パスワードと確認用パスワードが違います。" + password , confirmPassword)
+        return null
+    }
     try {
         // mongooseの関数findOneで該当するユーザーを一つ取得してくる
         const user = await User.findOne({email: email}).exec()
@@ -40,20 +44,24 @@ export async function loginUser(email: string | null, password: string | null) {
                 const profilePicture: string | null = user?.profilePicture
                 const coverProfilePicture: string | null = user?.coverProfilePicture
                 // ログインに成功したユーザーにトークンを発行する
+
+
                 const token: string | null = await jwt.sign({
                     userId: user._id.toString(), /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
                     username: user.username,
                     email: email,
                     profilePicture: profilePicture,
                 }, process.env.SECRET_KEY, {expiresIn: "2 day"})
+
+
                 return {
-                        email,
-                        password,
-                        token: token,
-                        userId: userId,
-                        username: username,
-                        profilePicture: profilePicture,
-                        coverProfilePicture: coverProfilePicture
+                    email,
+                    password,
+                    token: token,
+                    userId: userId,
+                    username: username,
+                    profilePicture: profilePicture,
+                    coverProfilePicture: coverProfilePicture
 
                 };
             }

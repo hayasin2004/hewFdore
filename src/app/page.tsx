@@ -21,8 +21,11 @@ import DeleteProductCategoryLikeList from "@/app/utils/setting/update/DeleteProd
 import DeleteProductCategoryLikeListField from "@/app/utils/setting/update/UpdateProductCategoryLikeList";
 import TestCom from "@/app/_components/tets/Test";
 import SearchProductCategory from "@/app/_components/(search)/searchProductCategry/searchProductCategory";
+import {useEffect} from "react";
 
 export default function Home() {
+
+    // const props : string = "UserId"
     // DeleteProductCategoryLikeListField()
     return (
         <main>
