@@ -130,7 +130,7 @@ const Header = () => {
                                 </li>
                             </Link>
                             <span className="long_line"></span>
-                            <span style={{display: "flex", alignItems: "center"}}>
+
 
                             <li>
                                 {user ?
@@ -226,7 +226,6 @@ const Header = () => {
                                     </div>
                                     : ""}
                             </li>
-                            </span>
                         </ul>
                     </div>
                 </div>

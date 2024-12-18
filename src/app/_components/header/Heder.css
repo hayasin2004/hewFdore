@@ -89,7 +89,9 @@ li.Headersearch svg{
 
 /* ユーザーネーム:ログイン遷移 */
 li#UserName{
+    display: flex;
     width: 8rem;
+    align-items: center;
     overflow-wrap: break-word;
 }
 p#usernameGet{
