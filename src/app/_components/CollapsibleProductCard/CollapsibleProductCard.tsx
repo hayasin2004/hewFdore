@@ -74,6 +74,7 @@ const CollapsibleProductCard = ({ item }) => {
                 </CardContent>
             </Collapse>
 
+            {/*展開した状態*/}
             <Collapse
                 className="testtt"
                 in={isOpen}
@@ -85,14 +86,14 @@ const CollapsibleProductCard = ({ item }) => {
             >
                 <CardContent>
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={5}>
                             <Box className="expanded-box" sx={{ height: '100%' }}>
                                 <p className="expanded-image">item.いめーじ</p>
                                 <p className="expanded-Size">L</p>
                             </Box>
                         </Grid>
 
-                        <Grid item xs={6}>
+                        <Grid item xs={3}>
                             <Box
                                 className={`expanded-content ${isContentVisible ? 'visible' : 'hidden'}`}
                                 sx={{
@@ -106,12 +107,23 @@ const CollapsibleProductCard = ({ item }) => {
                                 <p className="expanded-Material">素材　　：</p>
                                 <p className="expanded-Price">商品価格：{Number(item.productPrice).toLocaleString()}円</p>
                                 <p className="expanded-Situation">状態　　：</p>
+                                <p className="expanded-Cart">Add to Cart</p>
                             </Box>
                         </Grid>
 
-                        <Grid item xs={6}>
-                            <Box>
-                                <p>コメント</p>
+                        <Grid item xs={4}>
+                            <Box className={"expanded-comment"}>
+                                <div className="expanded-comment-fream">
+                                    <div className="comment-account">
+                                        {/*アカウントイメージを入れる*/}
+                                        <p id={"ac_img"}>wa!</p>
+                                        {/*アカウント名を入れる*/}
+                                        <p id={"ac_name"}>エマワトソン</p>
+                                    </div>
+                                    <div className="pu_comment">
+                                        <p>ここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入ります</p>
+                                    </div>
+                                </div>
                             </Box>
                         </Grid>
                     </Grid>
