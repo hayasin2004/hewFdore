@@ -53,8 +53,13 @@ const Login = () => {
     return (
 
         <div className={"allScreen"}>
+            <div className={"flower_img"}>
+                <Image src={"/images/flower_a.png"} alt={"背景画像"} fill objectFit="cover"/>
+            </div>
             <header className={"loginHeader"}>
-                <h1 className={"loginHeaderH1"}>F'dore</h1>
+                <Link href={'/'}>
+                    <h1 className={"loginHeaderH1"}>F'dore</h1>
+                </Link>
             </header>
 
             <section id={"login"}>
@@ -121,10 +126,6 @@ const Login = () => {
                             </Link>
 
                         </div>
-                    </div>
-
-                    <div className={"flower_img"}>
-                        <Image src={"/images/flower_a.png"} alt={"背景画像"} fill objectFit="cover"/>
                     </div>
 
 
