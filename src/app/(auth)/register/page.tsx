@@ -70,7 +70,8 @@ const Register = () => {
                                 const username = data.get("userName") as string
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
-                                await createUser(username, email, password).then()
+                                const PWCheck = data.get("PWCheck") as string
+                                await createUser(username, email, password , PWCheck).then()
                             }}>
                                 <label htmlFor="UserName">ユーザー名</label><br/>
 

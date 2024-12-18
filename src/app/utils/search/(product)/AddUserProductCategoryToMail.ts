@@ -5,13 +5,18 @@ import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import nodemailer from "nodemailer";
 import {ProductType} from "@/app/utils/product/productDetail";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const addUserProductCategoryToMail = async (category : string , newProduct : string) => {
     await connectDB()
     try {
-        const searchProduct: ProductType[] | null =await Product.findById(newProduct._id);
-        const searchProductCategory = await User.find({productCategoryLikeList: category}).select("username email productCategory");
+        const searchProduct: ProductType | null =await Product.findById(newProduct._id);
+        const searchProductCategory : UserType[] = await User.find({productCategoryLikeList: category}).select("username email productCategory");
         console.log(searchProductCategory)
+        if (searchProduct == null){
+            console.log("商品が追加されていない可能性があります。")
+            return null
+        }
 
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
@@ -23,10 +28,11 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
         })
 
         //     カテゴリーが追加されたの通知
-        for (const product of searchProduct!) {
+        for (const user of searchProductCategory) {
+            const product = searchProduct
             const toUserMailData = {
                 from: process.env.GMAILUSER,
-                to: "testnodemailermastakahew@gmail.com",
+                to: user.email,
                 subject: "お気に入りに追加したテゴリーに新しく商品が追加されました。",
                 html: `
                 <p>お気に入りに追加したカテゴリー商品の内容</p>

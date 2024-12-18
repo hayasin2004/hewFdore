@@ -20,7 +20,7 @@ const style = {
     color: '#605252',
     bgcolor: '#E8E8DB',
     border: '2px solid #605252',
-    borderRadius:5,
+    borderRadius: 5,
     boxShadow: 24,
     pt: 2,
     px: 4,
@@ -40,7 +40,13 @@ function ChildModal() {
 
     return (
         <React.Fragment>
-            <Button sx={{marginTop:2,fontWeight:"bold",bgcolor:"#D0C7B2",color:"#605252",border: '2px solid #605252'}} onClick={handleOpen}>プロフィールナビゲーション</Button>
+            <Button sx={{
+                marginTop: 2,
+                fontWeight: "bold",
+                bgcolor: "#D0C7B2",
+                color: "#605252",
+                border: '2px solid #605252'
+            }} onClick={handleOpen}>プロフィールナビゲーション</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -49,7 +55,8 @@ function ChildModal() {
             >
 
                 <Box sx={{
-                    ...style}
+                    ...style
+                }
                 }>
                     <h2 id="child-modal-title">ユーザーナビゲーション</h2>
                     <p id="child-modal-description">
@@ -73,7 +80,13 @@ function ChildModal() {
                             購入履歴
                         </Link>
                     </p>
-                    <Button sx={{marginTop:2,fontWeight:"bold",bgcolor:"#D0C7B2",color:"#605252",border: '2px solid #605252'}} onClick={handleClose}>閉じる</Button>
+                    <Button sx={{
+                        marginTop: 2,
+                        fontWeight: "bold",
+                        bgcolor: "#D0C7B2",
+                        color: "#605252",
+                        border: '2px solid #605252'
+                    }} onClick={handleClose}>閉じる</Button>
                 </Box>
             </Modal>
         </React.Fragment>
@@ -81,8 +94,12 @@ function ChildModal() {
 }
 
 const UserNavigation = () => {
-    const user = useUser()
-    const username = user.username
+    const {user} = useUser()
+    const username = user?.username
+    const Logout = async () => {
+        await localStorage.removeItem("token");
+        window.location.reload()
+    }
 
 
     const [open, setOpen] = React.useState(false);
@@ -114,6 +131,9 @@ const UserNavigation = () => {
                         <Link href={"listingcomplete_Itiosikinou"}>
                             イチオシ機能
                         </Link>
+                    </p>
+                    <p onClick={Logout}>
+                        ログアウト
                     </p>
                     <ChildModal/>
                 </Box>
