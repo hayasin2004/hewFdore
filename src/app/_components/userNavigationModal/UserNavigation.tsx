@@ -132,7 +132,7 @@ const UserNavigation = () => {
                             イチオシ機能
                         </Link>
                     </p>
-                    <p onClick={Logout}>
+                    <p class={"cursor"} onClick={Logout}>
                         ログアウト
                     </p>
                     <ChildModal/>

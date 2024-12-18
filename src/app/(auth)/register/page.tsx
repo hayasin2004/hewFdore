@@ -16,20 +16,21 @@ import Login from '../login/page';
 
 
 const Register = () => {
+    const [responseUserData, setResponseUserData] = useState<string | null>(null)
     const {data: session, status} = useSession();
     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
 
     if (status === "loading") {
         console.log("123456789128912345678")
     }
-    console.log("これはsessionです" + dateAll)
+    // console.log("これはsessionです" + dateAll)
     // ログインしたら自動的にトップページに飛ばされる
-    const handleGithubLogin = () => {
-        signIn("github", {callbackUrl: "/login"})
-    }
-    const handleGooleLogin = () => {
-        signIn("google", {callbackUrl: "/toppage"})
-    }
+    // const handleGithubLogin = () => {
+    //     signIn("github", {callbackUrl: "/login"})
+    // }
+    // const handleGooleLogin = () => {
+    //     signIn("google", {callbackUrl: "/toppage"})
+    // }
     // const handleFacebookLogin = () => {
     //     signIn("facebook" , {callbackUrl : "/toppage"})
     //     console.log(handleFacebookLogin)
@@ -50,12 +51,12 @@ const Register = () => {
             <header>
                 <h1>F'dore</h1>
             </header>
-            <button onClick={handleGithubLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
-                githubでログイン
-            </button>
-            <button onClick={handleGooleLogin}> {/*ボタンを押したらトップページに飛ぶ関数を使ってます*/}
-                Googleでログイン
-            </button>
+            {/*<button onClick={handleGithubLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
+            {/*    githubでログイン*/}
+            {/*</button>*/}
+            {/*<button onClick={handleGooleLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
+            {/*    Googleでログイン*/}
+            {/*</button>*/}
 
             <section id={"register"}>
 
@@ -71,7 +72,15 @@ const Register = () => {
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
                                 const PWCheck = data.get("PWCheck") as string
-                                await createUser(username, email, password , PWCheck).then()
+                                await createUser(username, email, password, PWCheck).then(
+                                    (data) => {
+                                        if (data !== undefined && data !== null) {
+                                            const dataParse = JSON.parse(data)
+                                            setResponseUserData(dataParse)
+                                            console.log(dataParse)
+                                        }
+                                    }
+                                )
                             }}>
                                 <label htmlFor="UserName">ユーザー名</label><br/>
 
@@ -88,12 +97,21 @@ const Register = () => {
                                 <input type="password" required name="PWCheck" id="PWCheck"
                                        placeholder="Enter Password again "/><br/>
 
-                                <button type="submit">
-                                    ユ―ザーを作成
-                                </button>
-                                <Link href={"login"}>
-                                    <p style={{marginTop: "10px"}}>ユ―ザー作成済ですか？</p>
-                                </Link>
+                                {responseUserData == null ? (
+                                        <>
+                                            <button type="submit">
+                                                ユ―ザーを作成
+                                            </button>
+                                            <Link href={"login"}>
+                                                <p style={{marginTop: "10px"}}>ユ―ザー作成済ですか？</p>
+                                            </Link>
+                                        </>
+                                    )
+                                    : (<Link href={{pathname:`/AuthGmail/${responseUserData?.email}` }}>
+                                        <button className={"submit"}>
+                                            メール認証に進む
+                                        </button>
+                                    </Link>)}
                             </form>
                         </div>
                     </div>

@@ -24,3 +24,7 @@ p#child-modal-description a:hover{
     color: #fff;
 }
 
+.cursor{
+    cursor: pointer;
+}
+

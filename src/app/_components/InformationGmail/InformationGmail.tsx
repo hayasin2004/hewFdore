@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import {useState} from "react";
-import './Gmail.css'
+import './InformationGmail.css'
 
 export default function Home() {
     const [name, setName] = useState("");

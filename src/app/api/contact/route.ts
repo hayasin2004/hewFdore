@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import confirmPassword from "@/app/utils/user/confirmPassword";
 
 function generateRandomCode(): string {
     return Math.floor(1000 + Math.random() * 9000).toString();
@@ -8,6 +9,9 @@ export async function POST(req: Request) {
     const randomCode = generateRandomCode();
 
     const body = await req.json();
+    const response = await confirmPassword(body.emailDecodedComponent,body.password)
+    console.log(response)
+    if (response?.ok == true){
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -20,17 +24,12 @@ export async function POST(req: Request) {
 
     // Email to admin
     const toHostMailData = {
-        from: body.email,
+        from: body.emailDecodedComponent,
         to: "masataka1kousuke1@gmail.com.com", //後で変える
-        subject: `[お問い合わせ]${body.name}様より`,
-        text: `${body.message} Send from ${body.email}`,
+        subject: `メールアドレス認証`,
+        text: `Send from ${body.emailDecodedComponent}`,
         html: `
-        <p>【お名前】</p>
-        <p>${body.name}</p>
-        <p>【メッセージ内容】</p>
-        <p>${body.message}</p>
-        <p>【メールアドレス】</p>
-        <p>${body.email}</p>
+
         <p>【確認コード】</p>
         <p>${randomCode}</p>
         `,
@@ -39,13 +38,13 @@ export async function POST(req: Request) {
     // Email to user
     const toUserMailData = {
         from: process.env.GMAILUSER,
-        to: body.email,
+        to: body.emailDecodedComponent,
         subject: "確認コードのお知らせ",
-        html: `
-        <p>${body.name}様</p>
-        <p>お問い合わせありがとうございます。</p>
+        html: `  
         <p>あなたの確認コードは：<strong>${randomCode}</strong></p>
         <p>このコードは本人確認のために使用されます。</p>
+        
+        <h1>尚、身に覚えのない場合は無視をしてください。</h1>
         `,
     };
 
@@ -66,4 +65,12 @@ export async function POST(req: Request) {
                 { status: 500, headers: { "Content-Type": "application/json" } }
             );
         }
+    }else {
+        console.log("メールアドレス又はパスワードが一致しませんでした")
+        return new Response(
+            JSON.stringify({ status: "Error", message: "メール送信に失敗しました。" }),
+            { status: 500, headers: { "Content-Type": "application/json" } }
+        );
+
+    }
 }
