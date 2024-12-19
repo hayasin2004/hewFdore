@@ -22,6 +22,7 @@ export default async function createUser(username: string, email: string, passwo
 
         return {newUser : JSON.stringify(newUser) ,TenMinToken : JSON.stringify(TenMinToken) }
     } catch (err) {
+
         console.log("ｓｓｓ" + err)
         //     ユーザーが正常に新規登録できなかったとき
     }
