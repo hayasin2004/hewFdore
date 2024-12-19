@@ -46,8 +46,8 @@ div.favorite_products{
 
 
 div.f_product{
-    width: 33%;
-    margin: 20px auto;
+    width: 30%;
+    margin: 20px;
     padding: 30px;
     border-radius: 5px;
     display: flex;
