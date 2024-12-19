@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const randomCode = generateRandomCode();
 
     const body = await req.json();
-    const response = await confirmPassword(body.emailDecodedComponent,body.password)
+    const response = await confirmPassword(body.email,body.password)
     console.log(response)
     if (response?.ok == true){
 
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     // Email to user
     const toUserMailData = {
         from: process.env.GMAILUSER,
-        to: body.emailDecodedComponent,
+        to: body.email,
         subject: "確認コードのお知らせ",
         html: `  
         <p>あなたの確認コードは：<strong>${randomCode}</strong></p>

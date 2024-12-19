@@ -9,7 +9,16 @@ import jwt from "jsonwebtoken";
 import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
-
+    const router = useRouter();
+    const [email, setEmail] = useState(params);
+    const [password, setPassword] = useState<string | null>(null);
+    const [message, setMessage] = useState("");
+    const [status, setStatus] = useState("");
+    const [verificationCode, setVerificationCode] = useState("");
+    const [userInputCode, setUserInputCode] = useState("");
+    const [isVerified, setIsVerified] = useState(false);
+    const [showVerification, setShowVerification] = useState(false);
+    console.log(email)
     useEffect(() => {
         const verifyTenMinToken = async () => {
             const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
@@ -17,6 +26,10 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                 try {
                     const decoded = await confirmToken(TenMinToken);
                     console.log(decoded)
+                    if (decoded !== null ) {
+                        console.log(typeof decoded)
+                        setEmail(decoded.email)
+                    }
                 } catch (err) {
                     console.log(err)
                 }
@@ -29,15 +42,7 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
         verifyTenMinToken()
     }, []);
 
-    const router = useRouter();
-    const [email, setEmail] = useState(params);
-    const [password, setPassword] = useState<string | null>(null);
-    const [message, setMessage] = useState("");
-    const [status, setStatus] = useState("");
-    const [verificationCode, setVerificationCode] = useState("");
-    const [userInputCode, setUserInputCode] = useState("");
-    const [isVerified, setIsVerified] = useState(false);
-    const [showVerification, setShowVerification] = useState(false);
+
     console.log(verificationCode)
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,7 +55,7 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                     Accept: "application/json, text/plain",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({emailDecodedComponent, password, verificationCode}),
+                body: JSON.stringify({email, password, verificationCode}),
             });
 
             const result = await res.json();
@@ -81,8 +86,6 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
             setStatus('認証コードが一致しません。もう一度お試しください。');
         }
     };
-    // const emailDecodedComponent = decodeURIComponent(params.id)
-
     return (
         <div className="container">
             <div className="form-wrapper">
@@ -98,7 +101,6 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                                 type="text"
                                 id="name"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
                                 required
                                 className="input"
                             />

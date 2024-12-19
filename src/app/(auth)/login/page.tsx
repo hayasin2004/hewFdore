@@ -14,6 +14,7 @@ import {User} from "@/models/User";
 import {string} from "prop-types";
 import {Form} from "react-router-dom";
 import {UserType} from "@/app/api/user/catchUser/route";
+import confirmToken from "@/app/utils/user/confirmToken";
 
 interface User {
     userId: string
@@ -26,12 +27,47 @@ interface User {
 
 
 const Login = () => {
+    const router =useRouter();
+
     useEffect(() => {
-        const ConfirmTenMinToken = localStorage.getItem("TemMinToken")
-        if (ConfirmTenMinToken){
-            redirect("/Auth")
+        const existTenMinToken = async () => {
+            const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
+            if (TenMinToken !== null) {
+                try {
+                    const decoded = await confirmToken(TenMinToken);
+                    console.log(decoded)
+                    if (decoded !== null) {
+                        window.alert("メール認証が終わっていない可能性があります。先に終わらしてください")
+                        router.push(`/AuthGmail/${decoded.email}`)
+                    }
+                } catch (err) {
+                    console.log(err)
+                }
+            }
         }
-    },[])
+        existTenMinToken();
+    }, [])
+    // useEffect(() => {
+    //     const confirm = async () => {
+    //         console.log("ここまで来た")
+    //         const ConfirmTenMinToken =await localStorage.getItem("TemMinToken")
+    //         console.log(ConfirmTenMinToken)
+    //         // if (ConfirmTenMinToken !== null) {
+    //         //     try {
+    //         //         const response = await confirmToken(ConfirmTenMinToken)
+    //         //         if (response !== null) {
+    //         //             console.log("あるよ")
+    //         //             const decoded = response.email
+    //         //             redirect(`/AuthGmail/${decoded}`)
+    //         //         }
+    //         //     } catch (err) {
+    //         //         console.log(err)
+    //         //     }
+    //         // }
+    //         confirm()
+    //     }
+    // }, [])
+
     const [userToken, setUserToken] = useState<string | null>()
     const [email, setEmail] = useState<string | null>(null)
     const [username, setUsername] = useState<string | null>(null)
@@ -39,7 +75,6 @@ const Login = () => {
     console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
     console.log("これはログインに成功した時にユーザー名が出ます:" + username);
     console.log("これはログインに成功した時にパスワードが出ます。:" + password);
-
 
 
     const [formValue, setFormValue]
@@ -78,13 +113,13 @@ const Login = () => {
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
                                 const confirmPassword = data.get("ConfirmPassword") as string/*メールアドレスとパスワードをデータベースに問い合わせてる*/
-                                await loginUser(email, password , confirmPassword).then(user => {
+                                await loginUser(email, password, confirmPassword).then(user => {
                                     if (user === undefined) {
                                         /*もしユーザー情報が間違えたいたらuserにundefinedが返って来る。*/
                                         alert("メールアドレスもしくはパスワードが違う可能性があります。")
                                     }
                                     if (user) {
-                                        const token :string | null = user.token
+                                        const token: string | null = user.token
                                         if (!token) {
                                             console.log("ログイン情報が違う可能性があります。")
                                         } else {
