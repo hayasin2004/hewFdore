@@ -1,5 +1,5 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./login.css"
 import Image from "next/image"
 import {Slide} from 'react-slideshow-image';
@@ -26,6 +26,12 @@ interface User {
 
 
 const Login = () => {
+    useEffect(() => {
+        const ConfirmTenMinToken = localStorage.getItem("TemMinToken")
+        if (ConfirmTenMinToken){
+            redirect("/Auth")
+        }
+    },[])
     const [userToken, setUserToken] = useState<string | null>()
     const [email, setEmail] = useState<string | null>(null)
     const [username, setUsername] = useState<string | null>(null)

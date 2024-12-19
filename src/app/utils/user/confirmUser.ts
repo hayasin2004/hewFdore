@@ -22,6 +22,7 @@ export default async function confirmUser(token?: string):Promise< string  | nul
     }
     try {
         const decoded : string | null = await jwt.verify(token, process.env.SECRET_KEY);
+        return decoded;
         // decodedの中身（例）テスト{
         //   userId: '66d4f569d06498d8d6dd5539',
         //   username: 'テスト',
@@ -30,7 +31,6 @@ export default async function confirmUser(token?: string):Promise< string  | nul
         // const email: string  = decoded?.email;
         // const profilePicture: string  = decoded?.profilePicture
         // console.log(typeof userId , typeof  username , typeof  token);
-        return decoded;
     } catch (err) {
         console.log(err)
         return null

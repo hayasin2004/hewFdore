@@ -1,12 +1,34 @@
 "use client"
 
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './AuthGmail.css'
 import {redirect} from "next/navigation";
 import {useRouter} from "next/navigation";
+import jwt from "jsonwebtoken";
+import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
+
+    useEffect(() => {
+        const verifyTenMinToken = async () => {
+            const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
+            if (TenMinToken !== null) {
+                try {
+                    const decoded = await confirmToken(TenMinToken);
+                    console.log(decoded)
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            // if (!secretKey){
+            //     console.log("secretKey not set");
+            // }
+
+        }
+        verifyTenMinToken()
+    }, []);
+
     const router = useRouter();
     const [email, setEmail] = useState(params);
     const [password, setPassword] = useState<string | null>(null);
@@ -59,7 +81,7 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
             setStatus('認証コードが一致しません。もう一度お試しください。');
         }
     };
-    const emailDecodedComponent = decodeURIComponent(params.id)
+    // const emailDecodedComponent = decodeURIComponent(params.id)
 
     return (
         <div className="container">
@@ -75,7 +97,7 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                             <input
                                 type="text"
                                 id="name"
-                                value={emailDecodedComponent}
+                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                                 className="input"
