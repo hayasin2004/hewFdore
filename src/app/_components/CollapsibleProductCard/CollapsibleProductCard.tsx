@@ -1,3 +1,4 @@
+"use client"
 import { useState, useRef } from 'react';
 import {
     Card,
@@ -63,21 +64,21 @@ const CollapsibleProductCard = ({ item }) => {
                 }
             }}
         >
-            <p className="image">item.いめーじ</p>
-            <p className="explanation">商品説明 : {item.productDesc}</p>
-            <Link href={`product/${item.id}`} as={`/product/${item.id}`}>
-            <p className="explanation">出品者名 : {item.productName}</p>
+            <p className="image">item?.いめーじ</p>
+            <p className="explanation">商品説明 : {item?.productDesc}</p>
+            <Link href={`product/${item?.id}`} as={`/product/${item?.id}`}>
+            <p className="explanation">出品者名 : {item?.productName}</p>
             </Link>
-            <p className="price">商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
+            <p className="price">商品価格 : {Number(item?.productPrice).toLocaleString()}円</p>
             <Collapse in={!isOpen} timeout="auto">
                 <CardContent>
                     <div className="testttt">
-                        <p className="collapsed-image">item.いめーじ</p>
+                        <p className="collapsed-image">item?.いめーじ</p>
                         <p className="product-Size">L</p>
                     </div>
-                    <p className="explanation">商品説明 : {item.productDesc}</p>
-                    <p className="explanation">出品者名 : {item.productName}</p>
-                    <p className="price">商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
+                    <p className="explanation">商品説明 : {item?.productDesc}</p>
+                    <p className="explanation">出品者名 : {item?.productName}</p>
+                    <p className="price">商品価格 : {Number(item?.productPrice).toLocaleString()}円</p>
                 </CardContent>
             </Collapse>
 
@@ -95,7 +96,7 @@ const CollapsibleProductCard = ({ item }) => {
                     <Grid container spacing={2}>
                         <Grid item xs={5}>
                             <Box className="expanded-box" sx={{ height: '100%' }}>
-                                <p className="expanded-image">item.いめーじい</p>
+                                <p className="expanded-image">item?.いめーじい</p>
                                 <p className="expanded-Size">L</p>
                             </Box>
                         </Grid>
@@ -112,7 +113,7 @@ const CollapsibleProductCard = ({ item }) => {
                                 <p className="expanded-Name">商品名</p>
                                 <p className="expanded-Genre">ジャンル：</p>
                                 <p className="expanded-Material">素材　　：</p>
-                                <p className="expanded-Price">商品価格：{Number(item.productPrice).toLocaleString()}円</p>
+                                <p className="expanded-Price">商品価格：{Number(item?.productPrice).toLocaleString()}円</p>
                                 <p className="expanded-Situation">状態　　：</p>
                                 <p className="expanded-Cart">Add to Cart</p>
                             </Box>

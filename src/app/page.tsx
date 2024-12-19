@@ -4,6 +4,8 @@ import SearchProduct from "@/app/_components/(search)/searchProduct/searchProduc
 import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
 import SearchProductCategory from "@/app/_components/(search)/searchProductCategry/searchProductCategory";
 import Toppage from "@/app/toppage/page";
+import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
+import SearchPageProducts from "@/app/searchResult/page";
 
 
 export default function Home() {
@@ -13,19 +15,19 @@ export default function Home() {
     return (
         <main>
             <div>
-                <Header/>
-                <p>これは商品</p>
-                <SearchProduct/>
-                <p>これはカテゴリー</p>
-                <SearchProductCategory/>
-                <p>これはユーザー</p>
-                <Searchuser/>
-                {/*<Toppage />*/}
-                {/*<SearchPageProducts />*/}
-                {/*<Toppage />*/}
-                <Gmail/>
-                {/*<Login />*/}
-                {/**/}
+                {/*<Header/>*/}
+                {/*<p>これは商品</p>*/}
+                <SearchPageProducts/>
+                {/*<p>これはカテゴリー</p>*/}
+                {/*<SearchProductCategory/>*/}
+                {/*<p>これはユーザー</p>*/}
+                {/*<Searchuser/>*/}
+                {/*/!*<Toppage />*!/*/}
+                {/*/!*<SearchPageProducts />*!/*/}
+                {/*/!*<Toppage />*!/*/}
+                {/*<Gmail/>*/}
+                {/*/!*<Login />*!/*/}
+                {/*/!**!/*/}
             </div>
         </main>
     );
