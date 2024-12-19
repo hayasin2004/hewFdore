@@ -10,7 +10,6 @@ div#conPoint_All{
     flex-direction: row;
     justify-content: space-between;
     background-color: #EBE8DB;
-    padding: 5% 0;
 
 }
 div.leftbarPoint{
@@ -113,6 +112,7 @@ div.rightbar_product_text p{
 
 
 div.rightbarPoint{
+    padding: 5% 0;
     width: 45%;
     height: 40%;
     display: flex;

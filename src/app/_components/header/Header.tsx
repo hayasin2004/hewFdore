@@ -133,9 +133,9 @@ const Header = () => {
 
 
                             <li>
-                                {user ?
+                                {/*{user ?*/}
                                     <UserNavigationModal/>
-                                : ""}
+                                {/*: ""}*/}
 
                             </li>
                             <li id={"UserName"}>

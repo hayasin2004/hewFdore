@@ -27,7 +27,7 @@ const Favorite = () => {
                 <h1>お気に入りした商品一覧</h1>
             </div>
             <div className={"favorite_products"}>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -37,7 +37,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -47,7 +47,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -57,9 +57,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-            </div>
-            <div className={"favorite_products"}>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -69,7 +67,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -79,7 +77,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -89,9 +87,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-            </div>
-            <div className={"favorite_products"}>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -101,7 +97,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
@@ -111,7 +107,7 @@ const Favorite = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-                <div className={"product"}>
+                <div className={"f_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"product_text"}>
                         <p>
