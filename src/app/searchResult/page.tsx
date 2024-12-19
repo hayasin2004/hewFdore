@@ -36,6 +36,7 @@ const SearchPageProducts = () => {
             //  やりとり。
             //  .thenはプロミスチェーンといわれる書き方。fetchで取得してきたものをitemsに配列型で渡している。　気持ちmap関数と激似。
             await fetch("/api/product").then(async (items) => {
+                console.log(items)
                 // 基本的に非同期通信はtry,catchで一回のみ試す。成功はtry ,失敗したら catch
                 try {
                     //    もし取得してきたのに空が返ってきたときのエラー対処。　catchがあるからほぼ必要ない。
@@ -45,10 +46,10 @@ const SearchPageProducts = () => {
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
                     const productData : DBProductType[] = await items.json()
-
-                    console.log(productData)
+                    const productDataParse = JSON.parse(JSON.stringify(productData))
+                    console.log(productDataParse)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
-                    setProductList(productData)
+                    setProductList(productDataParse)
                     console.log("success")
                 } catch (err) {
                     console.log("Error" + err)
@@ -73,10 +74,6 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
-    const product : DBProductType[]   = productList?.map((item) => {
-        return {...item ,id : item._id}
-        }
-    )
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
@@ -100,7 +97,7 @@ const SearchPageProducts = () => {
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
-                {product?.map((item) => (
+                {productList?.map((item) => (
                     <CollapsibleProductCard key={item._id} item={item} />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>

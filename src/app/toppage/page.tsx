@@ -15,6 +15,7 @@ import Image from "next/image"
 import {color} from "@mui/system";
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
+import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 // 幅揃えします
 
 const Toppage = () => {
@@ -49,42 +50,42 @@ const Toppage = () => {
 
     return (
         <>
-
+            <Blogintroduction/>
             <Header/>
             <div className={"top"}>
-            <Toppage_top_slideshow/>
-            {/*<Sidebar/>*/}
-            <div className={"siteIntroduction"}>
-                <div className={"introduction"}>
-                    <div className={"introductionMain"}>
+                <Toppage_top_slideshow/>
+                {/*<Sidebar/>*/}
+                <div className={"siteIntroduction"}>
+                    <div className={"introduction"}>
+                        <div className={"introductionMain"}>
 
-                        <h1>F'doreとは</h1>
-                        <p>大人の女性の向けファッション</p>
+                            <h1>F'doreとは</h1>
+                            <p>大人の女性の向けファッション</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <h2 style={{color: "red", fontSize: "6rem"}}></h2>
-            <Toppage_2nd />
-            <ToppageSite3 />
-
-
-            <div className={"toppageBottomPicture_Text"}>
-                <ul className={"toppageBottomUl"}>
-                    <li className={"toppageBottomLi"}>
+                <h2 style={{color: "red", fontSize: "6rem"}}></h2>
+                <Toppage_2nd/>
+                <ToppageSite3/>
 
 
-                        <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
-                               width={1920}
-                               height={1280} alt={"トップページ下の画像"}/>
-                    </li>
-                    <li className={"toppageBottomLi"}>
+                <div className={"toppageBottomPicture_Text"}>
+                    <ul className={"toppageBottomUl"}>
+                        <li className={"toppageBottomLi"}>
 
-                        <h2>F'dore</h2>
-                    </li>
-                </ul>
-            </div>
-            {/*<Slideshow/>*/}
+
+                            <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
+                                   width={1920}
+                                   height={1280} alt={"トップページ下の画像"}/>
+                        </li>
+                        <li className={"toppageBottomLi"}>
+
+                            <h2>F'dore</h2>
+                        </li>
+                    </ul>
+                </div>
+                {/*<Slideshow/>*/}
             </div>
             <ToppageProducts/>
 
