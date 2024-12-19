@@ -97,19 +97,19 @@ const ConfirmUserProfile = () => {
                 </div>
 
             </div>
-            <div className={"rightbar_flex"}>
-                <div className={"rightbar_product"}>
-                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                    <div className={"rightbar_product_text"}>
-                        <p>
-                            商品名
-                        </p>
-                        <p>出品者 : xxxx</p>
-                        <p>価格 : xxxx</p>
-                    </div>
-                </div>
+            {/*<div className={"rightbar_flex"}>*/}
+            {/*    <div className={"rightbar_product"}>*/}
+            {/*        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
+            {/*        <div className={"rightbar_product_text"}>*/}
+            {/*            <p>*/}
+            {/*                商品名*/}
+            {/*            </p>*/}
+            {/*            <p>出品者 : xxxx</p>*/}
+            {/*            <p>価格 : xxxx</p>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
 
-            </div>
+            {/*</div>*/}
         </div>
         </main>
             <Footer/>
