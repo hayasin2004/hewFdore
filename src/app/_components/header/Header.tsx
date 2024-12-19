@@ -132,9 +132,9 @@ const Header = () => {
                             <span style={{display: "flex", alignItems: "center"}}>
 
                             <li>
-                                {user ?
+                                {/*{user ?*/}
                                     <UserNavigationModal/>
-                                : ""}
+                                {/*: ""}*/}
 
                             </li>
                             <li id={"UserName"}>

@@ -25,6 +25,7 @@ span#btn button{
 div.favorite{
     margin: 50px 0 50px 0;
     padding: 10px 0;
+    width: 100%;
     display: flex;
     align-items: center;
     background-color: #605252;
@@ -35,8 +36,7 @@ div.favorite svg{
 }
 
 div.favorite_products{
-    width: 1500px;
-    /*%にすると表示が崩れるのでpxで処理しています*/
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     padding: 30px;
@@ -45,12 +45,12 @@ div.favorite_products{
 }
 
 
-div.product{
-    width: 400px;
-    padding: 20px;
+div.f_product{
+    width: 33%;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 5px;
     display: flex;
-
-    margin: 0 auto;
     background-color: white;
 }
 
@@ -65,4 +65,10 @@ div.product_text{
 
 div.product_text p{
     font-size: 1.5em;
+}
+
+@media screen and (max-width: 1500px){
+    div.f_product{
+        width: 40%;
+    }
 }
