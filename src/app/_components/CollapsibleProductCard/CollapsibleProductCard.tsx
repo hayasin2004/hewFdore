@@ -88,7 +88,7 @@ const CollapsibleProductCard = ({ item }) => {
                     <Grid container spacing={2}>
                         <Grid item xs={5}>
                             <Box className="expanded-box" sx={{ height: '100%' }}>
-                                <p className="expanded-image">item.いめーじ</p>
+                                <p className="expanded-image">item.いめーじい</p>
                                 <p className="expanded-Size">L</p>
                             </Box>
                         </Grid>
