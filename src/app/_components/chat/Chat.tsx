@@ -4,7 +4,9 @@ import Image from "next/image";
 import "./chat.css"
 import Images from "next/image";
 import useUser from "@/hooks/useUser";
-import SaveChatMessage from "@/app/utils/product/SaveChatMessage";
+import CreateChatMessageRoom from "@/app/utils/product/CreateChatMessageRoom";
+import sendChatMessage from "@/app/utils/product/ByListingUserSendChatMessage";
+import ByListingUserSendChatMessage from "@/app/utils/product/ByBuyerUserSendChatMessage";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState()
@@ -14,7 +16,11 @@ const Chat = (props: { paramsProductData: string }) => {
     const submitChatMessage = async () => {
 
         const currentUser = await user?.userId
-        const response = SaveChatMessage(productId, currentUser)
+        const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
+        if (CheckChatRoomResponse !== null){
+            console.log(CheckChatRoomResponse)
+            const sendChatResponse = await ByListingUserSendChatMessage(JSON.parse(CheckChatRoomResponse) ,currentUser, chatMessage )
+        }
     }
     return (
         <>
