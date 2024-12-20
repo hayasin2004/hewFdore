@@ -23,7 +23,7 @@ const ByListingUserSendChatMessage = async (chatRoomId: string | null, currentUs
                 chatRoomId: chatRoomId,
                 productId: ChatRoom.productId,
                 currentUserId: currentUser,
-                byBuyerChatMessageUsers: chatMessage
+                byBuyerChatMessage: chatMessage
 
             })
             createChatResponse.save()
