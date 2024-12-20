@@ -13,6 +13,7 @@ import {FavoriteBorder} from "@mui/icons-material";
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
+import Chat from "@/app/_components/chat/Chat";
 
 const Product = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
@@ -115,7 +116,9 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
                             </div>
                         </div>
-
+                        <div>
+                            <Chat paramsProductData={id}/>
+                        </div>
                         <div id="controlProduct">
                             <ThemeProvider theme={theme}>
                                 <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
