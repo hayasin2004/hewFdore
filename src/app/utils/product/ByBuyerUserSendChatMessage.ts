@@ -10,17 +10,16 @@ const ByListingUserSendChatMessage = async (chatRoomId: string | null, currentUs
     try {
         const ChatRoom = await ProductChatMessage.findOne({_id: chatRoomId})
         const ExistChatMessage: string | null = await BuyerProductChatMessage.findOne({currentUserId: currentUser})
+        console.log(ExistChatMessage)
         if (ChatRoom.listingUser == currentUser) {
             console.log("これは出品者の商品なのでlistingUserChatにデータが挿入されます。")
             return null
         }
-        console.log(ExistChatMessage == currentUser)
+        // console.log(ExistChatMessage == currentUser)
         if (ExistChatMessage == null) {
             console.log("kokoにくくｒの")
 
             const createChatResponse = await BuyerProductChatMessage.create({
-
-                chatRoomId: chatRoomId,
                 productId: ChatRoom.productId,
                 currentUserId: currentUser,
                 byBuyerChatMessage: chatMessage
@@ -29,11 +28,15 @@ const ByListingUserSendChatMessage = async (chatRoomId: string | null, currentUs
             createChatResponse.save()
             return null
         } else {
-            const updateChatResponse = await BuyerProductChatMessage.updateOne({
-                $push: {
-                    byBuyerChatMessage: chatMessage
+            const updateChatResponse = await BuyerProductChatMessage.updateOne(
+                {
+                    currentUserId: currentUser
+                }, {
+                    $push: {
+                        byBuyerChatMessage: chatMessage
+                    }
                 }
-            })
+            )
             console.log("すでに作成されてるからメッセージだけ、更新しました。" + JSON.stringify(updateChatResponse))
             return null
         }
