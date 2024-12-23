@@ -4,7 +4,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 export interface BuyerProductChatMessageType {
     _id?: string;
     listingUserId? : string;
-    currentUserId?: UserType;
+    buyerUserId?: UserType;
     productId?: string;
     ByBuyerChatMessageUsers?: string;
     listingChatMessage?:string;
@@ -18,11 +18,11 @@ const BuyerProductChatMessageSchema = new mongoose.Schema({
     },
     listingUserId:{
         type: String,
-        required:true,
+        default : ""　
     },
-    currentUserId:{
+    buyerUserId:{
         type: String,
-        required:true,
+        default : ""
     },
     buyerChatMessage : {
         type : Array ,
