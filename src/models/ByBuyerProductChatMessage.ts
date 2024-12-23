@@ -2,17 +2,14 @@ import mongoose from "mongoose";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface BuyerProductChatMessageType {
-    _id: string;
-    CurrentUserId?: UserType;
+    _id?: string;
+    currentUserId?: UserType;
     productId?: string
     ByBuyerChatMessageUsers?: string
 }
 
 const BuyerProductChatMessageSchema = new mongoose.Schema({
-    chatRoomId : {
-        type: String,
-        required: true,
-    },
+
     productId:{
         type: String,
         required:true,

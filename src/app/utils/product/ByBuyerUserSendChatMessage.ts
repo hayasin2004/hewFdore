@@ -2,36 +2,34 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {ProductChatMessage} from "@/models/ProductChatMessage";
-import {BuyerProductChatMessage} from "@/models/ByBuyerProductChatMessage";
+import {BuyerProductChatMessage, BuyerProductChatMessageType} from "@/models/ByBuyerProductChatMessage";
+import {Product} from "@/models/Product";
 
-const ByListingUserSendChatMessage = async (chatRoomId: string | null, currentUser: string | null, chatMessage: string | null) => {
-    console.log("ByListingUserSendChatMessage", chatRoomId, currentUser, chatMessage);
+const ByListingUserSendChatMessage = async (productId: string | null, currentUser: string | null, chatMessage: string | null) => {
+    console.log("ByBuyerUserSendChatMessage", productId, currentUser, chatMessage);
     await connectDB()
     try {
-        const ChatRoom = await ProductChatMessage.findOne({_id: chatRoomId})
-        const ExistChatMessage: string | null = await BuyerProductChatMessage.findOne({currentUserId: currentUser})
-        console.log(ExistChatMessage)
-        if (ChatRoom.listingUser == currentUser) {
+        const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
+        const ExistChatMessage: BuyerProductChatMessageType | null = await BuyerProductChatMessage.findOne({productId: productId}).select("currentUserId productId")
+        console.log(productListingUser)
+        if (productListingUser.sellerId == currentUser) {
             console.log("これは出品者の商品なのでlistingUserChatにデータが挿入されます。")
             return null
         }
-        // console.log(ExistChatMessage == currentUser)
-        if (ExistChatMessage == null) {
+        console.log(ExistChatMessage?.currentUserId == null && ExistChatMessage?.productId == null)
+        if (ExistChatMessage?.currentUserId == null && ExistChatMessage?.productId == null) {
             console.log("kokoにくくｒの")
-
             const createChatResponse = await BuyerProductChatMessage.create({
-                productId: ChatRoom.productId,
+                productId: productId,
                 currentUserId: currentUser,
                 byBuyerChatMessage: chatMessage
-
             })
             createChatResponse.save()
             return null
         } else {
             const updateChatResponse = await BuyerProductChatMessage.updateOne(
+                {_id: ExistChatMessage._id},
                 {
-                    currentUserId: currentUser
-                }, {
                     $push: {
                         byBuyerChatMessage: chatMessage
                     }
