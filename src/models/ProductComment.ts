@@ -24,24 +24,24 @@ const ProductCommentSchema = new mongoose.Schema({
         type: String,
         default : ""
     },
-    buyerChatMessage : {
+    buyerChatMessage : [{
         type : Array ,
         default: [],
         required:true,
-    },
+        buyerMessageLike : {
+            type : Array ,
+            default: []
+        }
+    }],
     listingChatMessage : {
         type : Array ,
         default: [],
         required:true,
-    },
-    buyerChatMessageLike : {
-        type : Array ,
-        default: [],
-    },
-    listingChatMessageLike : {
-        type : Array ,
-        default: [],
-     }
+        listingMessageLike : {
+            type : Array ,
+            default: []
+        }
+    }
 
 },{timestamps:true});
 export const ProductComment = mongoose.models.ProductComment || mongoose.model("ProductComment" , ProductCommentSchema);
