@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {UserType} from "@/app/api/user/catchUser/route";
 
-export interface BuyerProductChatMessageType {
+export interface productCommentType {
     _id?: string;
     listingUserId? : string;
     buyerUserId?: UserType;
@@ -10,7 +10,7 @@ export interface BuyerProductChatMessageType {
     listingChatMessage?:string;
 }
 
-const BuyerProductChatMessageSchema = new mongoose.Schema({
+const ProductCommentSchema = new mongoose.Schema({
 
     productId:{
         type: String,
@@ -36,5 +36,5 @@ const BuyerProductChatMessageSchema = new mongoose.Schema({
     }
 
 },{timestamps:true});
-export const BuyerProductChatMessage = mongoose.models.BuyerProductChatMessage || mongoose.model("BuyerProductChatMessage",BuyerProductChatMessageSchema);
+export const ProductComment = mongoose.models.ProductComment || mongoose.model("ProductComment" , ProductCommentSchema);
 

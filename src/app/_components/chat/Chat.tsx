@@ -4,13 +4,10 @@ import Image from "next/image";
 import "./chat.css"
 import Images from "next/image";
 import useUser from "@/hooks/useUser";
-import CreateChatMessageRoom from "@/app/utils/product/CreateChatMessageRoom";
-import sendChatMessage from "@/app/utils/product/ByListingUserSendChatMessage";
-import ByListingUserSendChatMessage from "@/app/utils/product/ByBuyerUserSendChatMessage";
-import ByBuyerUserSendChatMessage from "@/app/utils/product/ByBuyerUserSendChatMessage";
+import productSendComment from "@/app/utils/product/productSendComment";
 
 const Chat = (props: { paramsProductData: string }) => {
-    const [chatMessage, setChatMessage] = useState()
+    const [chatMessage, setChatMessage] = useState<string>("")
     const {user} = useUser()
     console.log(chatMessage)
     const productId = props.paramsProductData
@@ -19,7 +16,7 @@ const Chat = (props: { paramsProductData: string }) => {
         const currentUser = await user?.userId
         // const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
         if (chatMessage !== null && chatMessage !== undefined) {
-            const sendChatResponse = await ByBuyerUserSendChatMessage(productId, currentUser, chatMessage)
+            const sendChatResponse = await productSendComment(productId, currentUser, chatMessage)
         }
         // if (CheckChatRoomResponse !== null){
         //     console.log(CheckChatRoomResponse)
