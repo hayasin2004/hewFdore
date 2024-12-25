@@ -7,6 +7,7 @@ import useUser from "@/hooks/useUser";
 import productSendComment from "@/app/utils/product/productSendComment";
 import getProductChatMessage from "@/app/utils/product/getChatMessage";
 import {productCommentType} from "@/models/ProductComment";
+import productChatLike from "@/app/utils/product/productChatLike";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
@@ -27,7 +28,7 @@ const Chat = (props: { paramsProductData: string }) => {
                 if (response?.listingChatMessage) {
                     setListingChatMessageList(JSON.parse(response.listingChatMessage))
                 } else if (response?.buyerChatMessage) {
-                    setBuyerChatMessageList(JSON.parse (response.buyerChatMessage))
+                    setBuyerChatMessageList(JSON.parse(response.buyerChatMessage))
                 } else {
                     console.log("この商品にコメントはありません")
                     setBuyerChatMessageList(null)
@@ -51,6 +52,12 @@ const Chat = (props: { paramsProductData: string }) => {
         //     console.log(CheckChatRoomResponse)
         // }
     }
+
+    const testCommentLike = async(item : string | null) => {
+        const commentId = item?._id
+        const response = await productChatLike(currentUser ,productId , commentId)
+    }
+
     return (
         <>
             {buyerChatMessageList?.map((item, index) => (
@@ -58,10 +65,12 @@ const Chat = (props: { paramsProductData: string }) => {
                     質問者Id : {item.senderUserId} <br/>
                     質問者名前 : {item.buyerUsername} <br/>
                     メッセージ内容 : {item.buyerMessage} <br/>
-                    いいね : {item?.buyerMessageLike?.length}
+                    <button onClick={() => testCommentLike(item)}>
+                        いいね : {item?.buyerMessageLike?.length}
+                    </button>
                 </ul>
-                ))}
-            　{props.paramsProductData}
+            ))}
+            {props.paramsProductData}
             <div className="Productchat">
                 <Images
                     src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
