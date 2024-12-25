@@ -61,7 +61,7 @@ const Chat = (props: { paramsProductData: string }) => {
                     いいね : {item?.buyerMessageLike?.length}
                 </ul>
                 ))}
-            {props.paramsProductData}
+            　{props.paramsProductData}
             <div className="Productchat">
                 <Images
                     src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
