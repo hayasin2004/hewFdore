@@ -1,10 +1,11 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import "./chat.css"
 import Images from "next/image";
 import useUser from "@/hooks/useUser";
 import productSendComment from "@/app/utils/product/productSendComment";
+import getProductChatMessage from "@/app/utils/product/getChatMessage";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
@@ -13,6 +14,20 @@ const Chat = (props: { paramsProductData: string }) => {
     const {user} = useUser()
     console.log(chatMessage)
     const productId = props.paramsProductData
+    const currentUser =  user?.userId
+
+    // サイトレンダリング時にチャット履歴取得してくる処理
+    useEffect(() => {
+        const getProductChatFunction = async () => {
+            if (currentUser !== undefined) {
+                const response = await getProductChatMessage(currentUser, productId)
+                console.log(JSON.parse(JSON.stringify(response)))
+            }
+        }
+        getProductChatFunction()
+    }, [currentUser])
+
+
     const submitChatMessage = async () => {
 
         const currentUser = await user?.userId

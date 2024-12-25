@@ -25,9 +25,10 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 return { listingChatResponse: JSON.stringify(createChatResponse) }
             } else {
                 const updateChatResponse = await ProductComment.updateMany(
+                    {_id: ExistChatMessage?._id , "listingChatMessage.senderUserId" : currentUser},
                     {
                         $push: {
-                            listingChatMessage: ({listingMessage : chatMessage , listingMessageLike : []})
+                            listingChatMessage: ({senderUserId : currentUser,listingMessage : chatMessage , listingMessageLike : []})
                         }
                     }
                 )
@@ -43,14 +44,14 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 listingUserId:productListingUser.sellerId,
                 buyerUserId: currentUser,
                 productId: productId,
-                buyerChatMessage:({buyerMessage : chatMessage,buyerMessageLike : []})
+                buyerChatMessage:({senderUserId : currentUser,buyerMessage : chatMessage,buyerMessageLike : []})
             })
             createChatResponse.save()
             return { buyerChatResponse: JSON.stringify(createChatResponse) }
         } else {
             // 閲覧者が投稿を複数投稿したときのupdate文
             const updateChatResponse = await ProductComment.updateOne(
-                {_id: ExistChatMessage?._id},
+                {_id: ExistChatMessage?._id , "buyerChatMessage.senderUserId" : currentUser,},
                 {
                     $push: {
                         buyerChatMessage: ({buyerMessage : chatMessage , buyerMessageLike : []})
