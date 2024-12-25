@@ -10,18 +10,28 @@ import getProductChatMessage from "@/app/utils/product/getChatMessage";
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
     const [buyerChatMessageList, setBuyerChatMessageList] = useState<string[] | null>([])
+    console.log(buyerChatMessageList)
     const [listingChatMessageList, setListingChatMessageList] = useState<string[] | null>([])
+    console.log(listingChatMessageList)
     const {user} = useUser()
     console.log(chatMessage)
     const productId = props.paramsProductData
-    const currentUser =  user?.userId
+    const currentUser = user?.userId
 
     // サイトレンダリング時にチャット履歴取得してくる処理
     useEffect(() => {
         const getProductChatFunction = async () => {
             if (currentUser !== undefined) {
                 const response = await getProductChatMessage(currentUser, productId)
-                console.log(JSON.parse(JSON.stringify(response)))
+                if (response?.listingChatMessage) {
+                    setListingChatMessageList(JSON.parse(response.listingChatMessage))
+                } else if (response?.buyerChatMessage) {
+                    setBuyerChatMessageList(JSON.parse (response.buyerChatMessage))
+                } else {
+                    console.log("この商品にコメントはありません")
+                    setBuyerChatMessageList(null)
+                    setListingChatMessageList(null)
+                }
             }
         }
         getProductChatFunction()
@@ -42,6 +52,12 @@ const Chat = (props: { paramsProductData: string }) => {
     }
     return (
         <>
+            {buyerChatMessageList?.map((item, index) => (
+                <ul key={index}>
+                    {item.senderUserId}
+                    {item.buyerMessage}
+                </ul>
+                ))}
             {props.paramsProductData}
             <div className="Productchat">
                 <Images
