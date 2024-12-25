@@ -6,12 +6,13 @@ import Images from "next/image";
 import useUser from "@/hooks/useUser";
 import productSendComment from "@/app/utils/product/productSendComment";
 import getProductChatMessage from "@/app/utils/product/getChatMessage";
+import {productCommentType} from "@/models/ProductComment";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [buyerChatMessageList, setBuyerChatMessageList] = useState<string[] | null>([])
+    const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
     console.log(buyerChatMessageList)
-    const [listingChatMessageList, setListingChatMessageList] = useState<string[] | null>([])
+    const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
     console.log(listingChatMessageList)
     const {user} = useUser()
     console.log(chatMessage)
@@ -54,8 +55,10 @@ const Chat = (props: { paramsProductData: string }) => {
         <>
             {buyerChatMessageList?.map((item, index) => (
                 <ul key={index}>
-                    {item.senderUserId}
-                    {item.buyerMessage}
+                    質問者Id : {item.senderUserId} <br/>
+                    質問者名前 : {item.buyerUsername} <br/>
+                    メッセージ内容 : {item.buyerMessage} <br/>
+                    いいね : {item?.buyerMessageLike?.length}
                 </ul>
                 ))}
             {props.paramsProductData}

@@ -20,6 +20,7 @@ const getProductChatMessage = async (currentUserId: string | null, productId: st
                 console.log(getListingMessage)
                 return {listingChatMessage: JSON.stringify(getListingMessage)}
             }
+            return  null
         } else {
                 console.log("閲覧者がコメントしたやつを取得する処理")
             if (searchProductChat?.buyerChatMessage !== undefined) {
@@ -27,6 +28,8 @@ const getProductChatMessage = async (currentUserId: string | null, productId: st
                 console.log(getBuyerMessage)
                 return {buyerChatMessage: JSON.stringify(getBuyerMessage)}
             }
+            return  null
+
         }
     } catch (err) {
         console.log(err)

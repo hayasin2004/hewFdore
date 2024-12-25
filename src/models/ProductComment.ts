@@ -6,11 +6,17 @@ export interface productCommentType {
     listingUserId?: string;
     buyerUserId?: UserType;
     productId?: string;
-    buyerChatMessage? : string[];
-    listingMessage? : string[];
-    buyerMessageLike? : string[];
-    listingMessageLike? : string[];
+    buyerChatMessage?: string[];
+    listingMessage?: string[];
+    buyerMessageLike?: string[];
+    listingMessageLike?: string[];
     listingChatMessage?: string;
+    senderUserId? : string;
+    buyerUsername? : string;
+    buyerProfilePicture? :string;
+    buyerMessage? : string;
+    listingUsername? : string;
+    listingProfilePicture? :string;
 }
 
 const ProductCommentSchema = new mongoose.Schema({
@@ -28,9 +34,18 @@ const ProductCommentSchema = new mongoose.Schema({
         default: ""
     },
     buyerChatMessage: [{
-        senderUserId : {
+        senderUserId: {
             type: String,
             required: true,
+        },
+        buyerUsername: {
+            type: String,
+            unique: true,
+            required: true,
+        },
+        buyerProfilePicture: {
+            type: String,
+            default: '',
         },
         buyerMessage: {
             type: String,
@@ -42,9 +57,18 @@ const ProductCommentSchema = new mongoose.Schema({
         }
     }],
     listingChatMessage: [{
-        senderUserId : {
+        senderUserId: {
             type: String,
             required: true,
+        },
+        listingUsername: {
+            type: String,
+            unique: true,
+            required: true,
+        },
+        listingProfilePicture: {
+            type: String,
+            default: '',
         },
         listingMessage: {
             type: String,
