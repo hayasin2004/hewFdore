@@ -6,6 +6,10 @@ export interface productCommentType {
     listingUserId?: string;
     buyerUserId?: UserType;
     productId?: string;
+    buyerMessage? : string[];
+    listingMessage? : string[];
+    buyerMessageLike? : string[];
+    listingMessageLike? : string[];
     ByBuyerChatMessageUsers?: string;
     listingChatMessage?: string;
 }
@@ -25,8 +29,9 @@ const ProductCommentSchema = new mongoose.Schema({
         default: ""
     },
     buyerChatMessage: [{
-        message: {
+        buyerMessage: {
             type: String,
+            default: ""
         },
         buyerMessageLike: {
             type: Array,
@@ -34,8 +39,9 @@ const ProductCommentSchema = new mongoose.Schema({
         }
     }],
     listingChatMessage: [{
-        message: {
+        listingMessage: {
             type: String,
+            default: ""
         },
         listingMessageLike: {
             type: Array,

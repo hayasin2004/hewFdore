@@ -14,25 +14,25 @@ const productSendComment = async (productId: string | null, currentUser: string 
         // console.log(ExistChatMessage?.listingUserId !== currentUser)
         // 出品者だった場合の処理。
         if (productListingUser.sellerId == currentUser) {
-            if (ExistChatMessage?.listingUserId !== currentUser && ExistChatMessage?.productId !== productId) {
+            if (ExistChatMessage?.listingUserId  !== currentUser && ExistChatMessage?.productId !== productId) {
                 const createChatResponse = await ProductComment.create({
                     productId: productId,
                     listingUserId:productListingUser.sellerId,
-                    listingChatMessage: ({listingChatMessage : chatMessage , listingMessageLike : []})
+                    listingChatMessage: ({listingMessage : chatMessage , listingMessageLike : []})
                 })
                 console.log("出品者が初めての投稿でした。新しくチャットルームを作成します。")
                 createChatResponse.save()
-                return null
+                return { listingChatResponse: JSON.stringify(createChatResponse) }
             } else {
                 const updateChatResponse = await ProductComment.updateMany(
                     {
                         $push: {
-                            listingChatMessage: ({listingChatMessage : chatMessage , listingMessageLike : []})
+                            listingChatMessage: ({listingMessage : chatMessage , listingMessageLike : []})
                         }
                     }
                 )
                 console.log("出品者のコメント" + JSON.stringify(updateChatResponse))
-                return null
+                return { listingChatResponse: JSON.stringify(updateChatResponse) }
             }
 
         }
@@ -43,22 +43,23 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 listingUserId:productListingUser.sellerId,
                 buyerUserId: currentUser,
                 productId: productId,
-                buyerChatMessage:({message : chatMessage,buyerMessageLike : []})
+                buyerChatMessage:({buyerMessage : chatMessage,buyerMessageLike : []})
             })
             createChatResponse.save()
-            return null
+            return { buyerChatResponse: JSON.stringify(createChatResponse) }
         } else {
             // 閲覧者が投稿を複数投稿したときのupdate文
             const updateChatResponse = await ProductComment.updateOne(
                 {_id: ExistChatMessage?._id},
                 {
                     $push: {
-                        buyerChatMessage: ({message : chatMessage , buyerMessageLike : []})
+                        buyerChatMessage: ({buyerMessage : chatMessage , buyerMessageLike : []})
                     }
                 }
             )
             console.log("すでに作成されてるからメッセージだけ、更新しました。" + JSON.stringify(updateChatResponse))
-            return null
+            return { buyerChatResponse: JSON.stringify(updateChatResponse) }
+
         }
 
     } catch (err) {

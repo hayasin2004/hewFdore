@@ -8,6 +8,8 @@ import productSendComment from "@/app/utils/product/productSendComment";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
+    const [buyerChatMessageList, setBuyerChatMessageList] = useState<string[] | null>([])
+    const [listingChatMessageList, setListingChatMessageList] = useState<string[] | null>([])
     const {user} = useUser()
     console.log(chatMessage)
     const productId = props.paramsProductData
@@ -17,6 +19,7 @@ const Chat = (props: { paramsProductData: string }) => {
         // const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
         if (chatMessage !== null && chatMessage !== undefined) {
             const sendChatResponse = await productSendComment(productId, currentUser, chatMessage)
+            console.log(sendChatResponse)
         }
         // if (CheckChatRoomResponse !== null){
         //     console.log(CheckChatRoomResponse)
