@@ -18,7 +18,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 const createChatResponse = await ProductComment.create({
                     productId: productId,
                     listingUserId:productListingUser.sellerId,
-                    listingChatMessage: chatMessage
+                    listingChatMessage: ({listingChatMessage : chatMessage , listingMessageLike : []})
                 })
                 console.log("出品者が初めての投稿でした。新しくチャットルームを作成します。")
                 createChatResponse.save()
@@ -27,7 +27,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 const updateChatResponse = await ProductComment.updateMany(
                     {
                         $push: {
-                            listingChatMessage: chatMessage
+                            listingChatMessage: ({listingChatMessage : chatMessage , listingMessageLike : []})
                         }
                     }
                 )
@@ -43,7 +43,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 listingUserId:productListingUser.sellerId,
                 buyerUserId: currentUser,
                 productId: productId,
-                buyerChatMessage: chatMessage
+                buyerChatMessage:({message : chatMessage,buyerMessageLike : []})
             })
             createChatResponse.save()
             return null
@@ -53,7 +53,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 {_id: ExistChatMessage?._id},
                 {
                     $push: {
-                        buyerChatMessage: chatMessage
+                        buyerChatMessage: ({message : chatMessage , buyerMessageLike : []})
                     }
                 }
             )

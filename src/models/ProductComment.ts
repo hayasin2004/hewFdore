@@ -3,46 +3,45 @@ import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface productCommentType {
     _id?: string;
-    listingUserId? : string;
+    listingUserId?: string;
     buyerUserId?: UserType;
     productId?: string;
     ByBuyerChatMessageUsers?: string;
-    listingChatMessage?:string;
+    listingChatMessage?: string;
 }
 
 const ProductCommentSchema = new mongoose.Schema({
 
-    productId:{
+    productId: {
         type: String,
-        required:true,
+        required: true,
     },
-    listingUserId:{
+    listingUserId: {
         type: String,
-        default : ""　
+        default: ""
     },
-    buyerUserId:{
+    buyerUserId: {
         type: String,
-        default : ""
+        default: ""
     },
-    buyerChatMessage : [{
-        type : Array ,
-        default: [],
-        required:true,
-        buyerMessageLike : {
-            type : Array ,
+    buyerChatMessage: [{
+        message: {
+            type: String,
+        },
+        buyerMessageLike: {
+            type: Array,
             default: []
         }
     }],
-    listingChatMessage : {
-        type : Array ,
-        default: [],
-        required:true,
-        listingMessageLike : {
-            type : Array ,
+    listingChatMessage: [{
+        message: {
+            type: String,
+        },
+        listingMessageLike: {
+            type: Array,
             default: []
         }
-    }
+    }]
 
-},{timestamps:true});
-export const ProductComment = mongoose.models.ProductComment || mongoose.model("ProductComment" , ProductCommentSchema);
-
+}, {timestamps: true});
+export const ProductComment = mongoose.models.ProductComment || mongoose.model("ProductComment", ProductCommentSchema);
