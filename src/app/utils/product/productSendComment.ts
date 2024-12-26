@@ -50,7 +50,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
             }
         } else {
                 console.log("ここに靴")
-            const testFunction: productCommentType | null = ExistChatMessage.buyerChatMessage.find(msg => msg.senderUserId === currentUser)
+            const 　testFunction: productCommentType | null = ExistChatMessage.buyerChatMessage.find(msg => msg.senderUserId === currentUser)
             console.log(testFunction)
 
         // 出品者だった場合の処理。
