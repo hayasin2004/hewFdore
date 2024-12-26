@@ -2,7 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
-import {ProductComment, ProductCommentType} from "@/models/ProductComment";
+import {ProductComment, productCommentType, ProductCommentType} from "@/models/ProductComment";
 import {User} from "@/models/User";
 
 const productSendComment = async (productId: string | null, currentUser: string | null, chatMessage: string | null) => {
@@ -12,9 +12,13 @@ const productSendComment = async (productId: string | null, currentUser: string 
         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
         console.log(user)
-        const ExistChatMessage: ProductCommentType | null = await ProductComment.findOne({productId: productId}).select("_id listingUserId buyerUserId productId")
-
-        // console.log(ExistChatMessage?.listingUserId !== currentUser)
+        const ExistChatMessage: ProductCommentType | null = await ProductComment.findOne({productId: productId}).select("_id listingUserId buyerUserId productId buyerChatMessage")
+        const testFunction : productCommentType | null = ExistChatMessage.buyerChatMessage.find(msg => msg.senderUserId === currentUser)
+        if (testFunction) {
+            console.log(testFunction)
+        }else {
+            console.log("見つからない")
+        }
         // 出品者だった場合の処理。
         if (productListingUser.sellerId == currentUser) {
             if (ExistChatMessage?.listingUserId !== currentUser && ExistChatMessage?.productId !== productId) {
@@ -53,7 +57,9 @@ const productSendComment = async (productId: string | null, currentUser: string 
         }
 
         // 出品者ではなく閲覧者の場合の処理。
-        if (ExistChatMessage?.buyerUserId !== currentUser) {
+        // const includesCurrentUserId = ExistChatMessage.buyerChatMessage.includes(currentUser);
+        if (!includesCurrentUserId) {
+            console.log("ここまで")
             const createChatResponse = await ProductComment.create({
                 listingUserId: productListingUser.sellerId,
                 buyerUserId: currentUser,
@@ -75,6 +81,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                 {
                     $push: {
                         buyerChatMessage: ({
+                            senderUserId: currentUser,
                             buyerMessage: chatMessage,
                             buyerMessageLike: [],
                             buyerUsername: user.username,
