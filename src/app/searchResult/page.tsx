@@ -91,20 +91,20 @@ const SearchPageProducts = () => {
 //     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
-    // filter練習
-    const filterProduct = productList.filter((productList,index) => {
+    // 商品にfilter
+    var filterProduct = productList.filter((productList,index) => {
         return index <= 25;
     });
     console.log(filterProduct);
     function pageChange(page: { selected: number }){
-        var pMax = 10 * (page.selected+1);
+        var pMax = 10 * (page.selected+1)-1;
         var pMin = page.selected *10;
-         const changePfil = productList.filter((productList,index) => {
+         filterProduct = productList.filter((productList,index) => {
              if(index <= pMax){
                  return index >= pMin
              }
          })
-        console.log(page,changePfil);
+        console.log(page,filterProduct);
     }
 
 
@@ -132,8 +132,12 @@ const SearchPageProducts = () => {
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
                                />
-                {/*filterで処理*/}
+                <div className={"filterTest"}>
+                    {filterProduct.map((item) => (
+                        <CollapsibleProductCard key={item._id} item={item}  />
+                        ))}
 
+                </div>
                 {product.map((item) => (
                     <CollapsibleProductCard key={item._id} item={item} />
 
