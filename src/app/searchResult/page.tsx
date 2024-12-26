@@ -14,6 +14,9 @@ import {loadStripe} from "@stripe/stripe-js";
 import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
 import Stripe from "@/app/_components/stripe/Stripe";
 import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
+// ページネーション
+import ReactPaginate from "react-paginate";
+import propsToClassKey from "@mui/system/propsToClassKey";
 
 
 
@@ -87,24 +90,40 @@ const SearchPageProducts = () => {
 //     一意に商品を識別したいのでMongoDBでいうobjectIDを _idとして呼び出しています。
 //     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
-　
+
+    // filter練習
+    const filterProduct = productList.filter((productList,index) => {
+        return index <= 10;
+    });
+    console.log(filterProduct);
+
     return (
         <div>
             {/*<SearchHeader/>*/}
+
             <div style={{width: "1200px", justifyContent: "space-between", display: "flex"}}>
                 <div style={{"marginTop": "60px", width: "600px"}}>
                     {/*<Sidebar/>*/}
                 </div>
                 <div >
                 </div>
-                <SearchResultProducts/>
             </div>
+
         <div>
         </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
-                {product.map((item) => (
+                <ReactPaginate pageCount={product.length/5}
+                               marginPagesDisplayed={product.length}
+                               onPageChange={(page) => {console.log(page);}}
+                               containerClassName="PaginateFlame"
+                               pageClassName="PagiClassName"
+                               pageLinkClassName="PagiClassLink"
+                               />
+                {/*filterで処理*/}
+
+                {product.filter((item) => (
                     <CollapsibleProductCard key={item._id} item={item} />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
@@ -117,6 +136,8 @@ const SearchPageProducts = () => {
                     //     {/*<Stripe productId={item?._id} />*/}
                     // </div>
                 ))}
+                <SearchResultProducts/>
+
             </div>
 
 
