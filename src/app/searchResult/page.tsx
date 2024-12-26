@@ -93,9 +93,20 @@ const SearchPageProducts = () => {
 
     // filter練習
     const filterProduct = productList.filter((productList,index) => {
-        return index <= 10;
+        return index <= 25;
     });
     console.log(filterProduct);
+    function pageChange(page: { selected: number }){
+        var pMax = 10 * page.selected;
+        var pMin = (page.selected - 1) *10;
+         const changePfil = productList.filter((productList,index) => {
+             if(index <= pMax){
+                 return index >= pMin
+             }
+         })
+        console.log(page,changePfil);
+    }
+
 
     return (
         <div>
@@ -114,9 +125,9 @@ const SearchPageProducts = () => {
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
-                <ReactPaginate pageCount={product.length/5}
+                <ReactPaginate pageCount={product.length/10}
                                marginPagesDisplayed={product.length}
-                               onPageChange={(page) => {console.log(page);}}
+                               onPageChange={(page) => {pageChange(page);}}
                                containerClassName="PaginateFlame"
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
