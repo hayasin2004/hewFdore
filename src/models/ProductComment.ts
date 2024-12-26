@@ -40,7 +40,6 @@ const ProductCommentSchema = new mongoose.Schema({
         },
         buyerUsername: {
             type: String,
-            unique: true,
             required: true,
         },
         buyerProfilePicture: {
@@ -63,7 +62,6 @@ const ProductCommentSchema = new mongoose.Schema({
         },
         listingUsername: {
             type: String,
-            unique: true,
             required: true,
         },
         listingProfilePicture: {
