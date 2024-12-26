@@ -123,7 +123,7 @@ const SearchPageProducts = () => {
                                />
                 {/*filterで処理*/}
 
-                {product.filter((item) => (
+                {product.map((item) => (
                     <CollapsibleProductCard key={item._id} item={item} />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
