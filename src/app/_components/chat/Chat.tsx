@@ -28,8 +28,8 @@ const Chat = (props: { paramsProductData: string }) => {
                 const response = await getProductChatMessage(currentUser, productId)
                 if (response?.listingChatMessage) {
                     setListingChatMessageList(JSON.parse(response.listingChatMessage))
-                } else if (response?.ChatMessage) {
-                    setBuyerChatMessageList(JSON.parse(response.ChatMessage))
+                } else if (response?.chatMessage) {
+                    setBuyerChatMessageList(JSON.parse(response.chatMessage))
                 } else {
                     console.log("この商品にコメントはありません")
                     setBuyerChatMessageList(null)
@@ -55,18 +55,19 @@ const Chat = (props: { paramsProductData: string }) => {
     }
 
     const testCommentLike = async(item : string | null) => {
-        const commentId = item?._id
-        const response = await productChatLike(currentUser ,productId , commentId)
+        console.log(item)
+        const response = await productChatLike(currentUser ,productId , item)
+        console.log(response)
     }
 
     return (
         <>
-            {ChatMessageList?.map((item, index) => (
+            {listingChatMessageList?.map((item, index) => (
                 <ul key={index}>
                     質問者Id : {item.senderUserId} <br/>
-                    質問者名前 : {item.buyerUsername} <br/>
-                    メッセージ内容 : {item.buyerMessage} <br/>
-                    <button onClick={() => testCommentLike(item)}>
+                    質問者名前 : {item.listingMessage} <br/>
+                    メッセージ内容 : {item?._id} <br/>
+                    <button onClick={() => testCommentLike(item?._id)}>
                         いいね : {item?.buyerMessageLike?.length}
                     </button>
                 </ul>

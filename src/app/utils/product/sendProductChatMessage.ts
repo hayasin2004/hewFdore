@@ -51,7 +51,6 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             buyerMessageUsername: user.username,
                             buyerMessageProfilePicture: user.profilePicture,
                             timeStamp: new Date()
-
                         }]
                     })
                     createChatResponse.save()
@@ -81,7 +80,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             }
                         );
                         console.log(updateChatResponse)
-                        return null
+                        return {listingChatResponse: JSON.stringify(ExistChatMessage)}
+
                     } else {
                         const updateChatResponse = await ProductComment.updateOne(
                             {_id: ExistChatMessage?._id},
@@ -99,7 +99,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             }
                         );
                         console.log(updateChatResponse)
-                        return null
+                        return {listingChatResponse: JSON.stringify(ExistChatMessage)}
+
                     }
                 } else {
 
@@ -122,7 +123,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             }
                         );
                         console.log(updateChatResponse)
-                        return null
+                        return {listingChatResponse: JSON.stringify(ExistChatMessage)}
+
                     } else {
                         console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
                         const updateChatResponse = await ProductComment.updateOne(
@@ -142,7 +144,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             }
                         );
                         console.log(updateChatResponse)
-                        return null
+                        return {listingChatResponse: JSON.stringify(ExistChatMessage)}
+
                     }
                 }
 
