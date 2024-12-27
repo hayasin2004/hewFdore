@@ -67,7 +67,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                                 {_id: item._id, "ChatMessage.senderUserId": currentUser},
                                 {
                                     $push: {
-                                        ChatMessage: {
+                                        chatMessage: {
                                             senderUserId: currentUser,
                                             Message: chatMessage,
                                             MessageLike: [],

@@ -24,29 +24,33 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
-                        chatMessage: ({
+                        chatMessage: [{
                             senderUserId: currentUser,
                             listingMessage: chatMessage,
                             listingMessageLike: [],
                             listingMessageUsername: user.username,
                             listingMessageProfilePicture: user.profilePicture
-                        })
+                        }]
                     })
                     createChatResponse.save()
                     return {listingChatResponse: JSON.stringify(createChatResponse)}
                 } else {
+
+                            console.log(ExistChatMessage?._id + "範囲接地")
                     if (ExistChatMessage.chatMessage !== undefined) {
                         console.log(ExistChatMessage.chatMessage[0].senderUserId == currentUser)
                         if (ExistChatMessage.chatMessage[0].senderUserId == currentUser) {
-
                             const updateChatResponse = await ProductComment.updateOne(
-                                {_id: ExistChatMessage?._id, "ChatMessage.senderUserId": currentUser},
+                                {_id: ExistChatMessage?._id, "chatMessage.senderUserId": currentUser},
                                 {
                                     $push: {
-                                            "chatMessage.$.listingMessage": chatMessage,
-                                            "chatMessage.$.listingMessageLike": [],
-                                            "chatMessage.$.listingUsername": user.username,
-                                            "chatMessage.$.listingProfilePicture": user.profilePicture
+                                        chatMessage: [{
+                                            senderUserId: currentUser,
+                                            listingMessage: chatMessage,
+                                            listingMessageLike: [],
+                                            listingMessageUsername: user.username,
+                                            listingMessageProfilePicture: user.profilePicture
+                                        }]
                                     }
                                 }
                             );
