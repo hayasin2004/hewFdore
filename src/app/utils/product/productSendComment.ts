@@ -64,7 +64,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                     if (item.buyerUserId == currentUser) {
                         try {
                             const updateChatResponse = await ProductComment.updateOne(
-                                {_id: item._id, "buyerChatMessage.senderUserId": currentUser},
+                                {_id: item._id, "ChatMessage.senderUserId": currentUser},
                                 {
                                     $push: {
                                         ChatMessage: {
@@ -96,10 +96,10 @@ const productSendComment = async (productId: string | null, currentUser: string 
         //
         //                 // 閲覧者が投稿を複数投稿したときのupdate文
         //                 const updateChatResponse = await ProductComment.updateOne(
-        //                     {_id: ExistChatMessage?._id, "buyerChatMessage.senderUserId": currentUser,},
+        //                     {_id: ExistChatMessage?._id, "ChatMessage.senderUserId": currentUser,},
         //                     {
         //                         $push: {
-        //                             buyerChatMessage: ({
+        //                             ChatMessage: ({
         //                                 buyerMessage: chatMessage,
         //                                 buyerMessageLike: [],
         //                                 buyerUsername: user.username,
@@ -123,7 +123,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
         //         listingUserId: productListingUser.sellerId,
         //         buyerUserId: currentUser,
         //         productId: productId,
-        //         buyerChatMessage: ({
+        //         ChatMessage: ({
         //             senderUserId: currentUser,
         //             buyerMessage: chatMessage,
         //             buyerMessageLike: [],
@@ -143,10 +143,10 @@ const productSendComment = async (productId: string | null, currentUser: string 
 
                 // 閲覧者が投稿を複数投稿したときのupdate文
                 const updateChatResponse = await ProductComment.updateOne(
-                    {_id: ExistChatMessage?._id, "buyerChatMessage.senderUserId": currentUser,},
+                    {_id: ExistChatMessage?._id, "ChatMessage.senderUserId": currentUser,},
                     {
                         $push: {
-                            buyerChatMessage: ({
+                            ChatMessage: ({
                                 buyerMessage: chatMessage,
                                 buyerMessageLike: [],
                                 buyerUsername: user.username,

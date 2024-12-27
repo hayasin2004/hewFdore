@@ -8,11 +8,12 @@ import productSendComment from "@/app/utils/product/productSendComment";
 import getProductChatMessage from "@/app/utils/product/getChatMessage";
 import {productCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
+import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
-    console.log(buyerChatMessageList)
+    const [ChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
+    console.log(ChatMessageList)
     const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
     console.log(listingChatMessageList)
     const {user} = useUser()
@@ -27,8 +28,8 @@ const Chat = (props: { paramsProductData: string }) => {
                 const response = await getProductChatMessage(currentUser, productId)
                 if (response?.listingChatMessage) {
                     setListingChatMessageList(JSON.parse(response.listingChatMessage))
-                } else if (response?.buyerChatMessage) {
-                    setBuyerChatMessageList(JSON.parse(response.buyerChatMessage))
+                } else if (response?.ChatMessage) {
+                    setBuyerChatMessageList(JSON.parse(response.ChatMessage))
                 } else {
                     console.log("この商品にコメントはありません")
                     setBuyerChatMessageList(null)
@@ -45,7 +46,7 @@ const Chat = (props: { paramsProductData: string }) => {
         const currentUser = await user?.userId
         // const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
         if (chatMessage !== null && chatMessage !== undefined) {
-            const sendChatResponse = await productSendComment(productId, currentUser, chatMessage)
+            const sendChatResponse = await sendProductChatMessage(productId, currentUser, chatMessage)
             console.log(sendChatResponse)
         }
         // if (CheckChatRoomResponse !== null){
@@ -60,7 +61,7 @@ const Chat = (props: { paramsProductData: string }) => {
 
     return (
         <>
-            {buyerChatMessageList?.map((item, index) => (
+            {ChatMessageList?.map((item, index) => (
                 <ul key={index}>
                     質問者Id : {item.senderUserId} <br/>
                     質問者名前 : {item.buyerUsername} <br/>

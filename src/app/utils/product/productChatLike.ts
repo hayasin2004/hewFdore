@@ -12,20 +12,20 @@ const productChatLike = async (currentUserId: string | null, productId: string |
             console.log("お探しの商品は売り切れもしくは削除された可能性があります。")
             return null
         } else {
-            const searchComment = await searchProductAndComment.buyerChatMessage.id(commentId)
+            const searchComment = await searchProductAndComment.ChatMessage.id(commentId)
             console.log(searchComment)
             const includesCurrentUserId = searchComment.buyerMessageLike.includes(currentUserId);
             if (includesCurrentUserId) {
                 console.log("既にログインしているアカウントでコメントをいいねしている。")
                 const updateDeleteSearchMessage = await ProductComment.updateOne(
-                    {_id: searchProductAndComment._id, "buyerChatMessage._id": commentId},
-                    {$pull: {"buyerChatMessage.$.buyerMessageLike": currentUserId}}
+                    {_id: searchProductAndComment._id, "ChatMessage._id": commentId},
+                    {$pull: {"ChatMessage.$.buyerMessageLike": currentUserId}}
                 )
             } else {
-                // console.log(searchComment.buyerChatMessage.buyerMessageLike.includes(currentUserId))
+                // console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
                 const updateSearchMessage = await ProductComment.updateOne(
-                    {_id: searchProductAndComment._id, "buyerChatMessage._id": commentId},
-                    {$push: {"buyerChatMessage.$.buyerMessageLike": currentUserId}}
+                    {_id: searchProductAndComment._id, "ChatMessage._id": commentId},
+                    {$push: {"ChatMessage.$.buyerMessageLike": currentUserId}}
                 )
             }
         }

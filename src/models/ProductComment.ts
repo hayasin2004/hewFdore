@@ -6,7 +6,7 @@ export interface productCommentType {
     listingUserId?: string;
     buyerUserId?: UserType;
     productId?: string;
-    buyerChatMessage?: string[];
+    ChatMessage?: string[];
     listingMessage?: string[];
     buyerMessageLike?: string[];
     listingMessageLike?: string[];
@@ -29,18 +29,32 @@ const ProductCommentSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    buyerUserId: {
-        type: String,
-        default: ""
-    },
-    buyerChatMessage: [{
+    ChatMessage: [{
         senderUserId: {
             type: String,
             required: true,
         },
+        listingUsername: {
+            type: String,
+        },
+        listingProfilePicture: {
+            type: String,
+            default: '',
+        },
+        listingMessage: {
+            type: String,
+            default: ""
+        },
+        listingMessageLike: {
+            type: Array,
+            default: []
+        },
+        buyerUserId: {
+            type: Array,
+            default: []
+        },
         buyerUsername: {
             type: String,
-            required: true,
         },
         buyerProfilePicture: {
             type: String,
@@ -55,28 +69,6 @@ const ProductCommentSchema = new mongoose.Schema({
             default: []
         }
     }],
-    listingChatMessage: [{
-        senderUserId: {
-            type: String,
-            required: true,
-        },
-        listingUsername: {
-            type: String,
-            required: true,
-        },
-        listingProfilePicture: {
-            type: String,
-            default: '',
-        },
-        listingMessage: {
-            type: String,
-            default: ""
-        },
-        listingMessageLike: {
-            type: Array,
-            default: []
-        }
-    }]
 
 }, {timestamps: true});
 export const ProductComment = mongoose.models.ProductComment || mongoose.model("ProductComment", ProductCommentSchema);

@@ -11,11 +11,11 @@ const productSendComment = async (productId : string | null, currentUser : strin
         const productListingUser = await Product.findOne({ _id: productId }).select("sellerId");
         const user = await User.findOne({ _id: currentUser }).select("_id username profilePicture");
 
-        const ExistChatMessage = await ProductComment.find({ productId: productId }).select("_id listingUserId buyerUserId productId buyerChatMessage");
+        const ExistChatMessage = await ProductComment.find({ productId: productId }).select("_id listingUserId buyerUserId productId ChatMessage");
 
         // Promise.allで非同期処理をまとめて処理
         await Promise.all(ExistChatMessage.map(async (item) => {
-            const chatExists = item.buyerChatMessage.some(msg => msg.senderUserId === currentUser);
+            const chatExists = item.ChatMessage.some(msg => msg.senderUserId === currentUser);
             const status = chatExists ? "UPDATE" : "CREATE";
 
             switch (status) {
@@ -36,8 +36,8 @@ const productSendComment = async (productId : string | null, currentUser : strin
                         console.log("出品者のコメントを更新しました。");
                     } else {
                         await ProductComment.updateOne(
-                            { _id: item._id, "buyerChatMessage.senderUserId": currentUser },
-                            { $push: { buyerChatMessage: updateChatMessage } }
+                            { _id: item._id, "ChatMessage.senderUserId": currentUser },
+                            { $push: { ChatMessage: updateChatMessage } }
                         );
                         console.log("購入者のコメントを更新しました。");
                     }
@@ -53,7 +53,7 @@ const productSendComment = async (productId : string | null, currentUser : strin
                     const newComment = {
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
-                        buyerChatMessage: [newChatMessage]
+                        ChatMessage: [newChatMessage]
                     };
                     const createChatResponse = new ProductComment(newComment);
                     await createChatResponse.save();
