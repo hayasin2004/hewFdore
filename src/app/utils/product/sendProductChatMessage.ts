@@ -5,7 +5,7 @@ import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import {ProductComment, productCommentType} from "@/models/ProductComment";
 
-const sendProductChatMessage = async (productId: string | null, currentUser: string | null, chatMessage: string | null) => {
+const sendProductChatMessage = async (productId: string | null, currentUser: string | null, ListingChatMessage: string | null) => {
 
     await connectDB()
     try {
@@ -24,9 +24,9 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
-                        chatMessage: [{
+                        ListingChatMessage: [{
                             senderUserId: currentUser,
-                            listingMessage: chatMessage,
+                            listingMessage: ListingChatMessage,
                             listingMessageLike: [],
                             listingMessageUsername: user.username,
                             listingMessageProfilePicture: user.profilePicture
@@ -36,17 +36,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     return {listingChatResponse: JSON.stringify(createChatResponse)}
                 } else {
 
-                            console.log(ExistChatMessage?._id + "範囲接地")
-                    if (ExistChatMessage.chatMessage !== undefined) {
-                        console.log(ExistChatMessage.chatMessage[0].senderUserId == currentUser)
-                        if (ExistChatMessage.chatMessage[0].senderUserId == currentUser) {
+                    console.log(ExistChatMessage?._id + "範囲接地")
+                    if (ExistChatMessage.ListingChatMessage !== undefined) {
+                        console.log(ExistChatMessage.ListingChatMessage[0].senderUserId == currentUser)
+                        if (ExistChatMessage.ListingChatMessage[0].senderUserId == currentUser) {
                             const updateChatResponse = await ProductComment.updateOne(
-                                {_id: ExistChatMessage?._id, "chatMessage.senderUserId": currentUser},
+                                {_id: ExistChatMessage?._id, "ListingChatMessage.senderUserId": currentUser},
                                 {
                                     $push: {
-                                        chatMessage: [{
+                                        ListingChatMessage: [{
                                             senderUserId: currentUser,
-                                            listingMessage: chatMessage,
+                                            listingMessage: ListingChatMessage,
                                             listingMessageLike: [],
                                             listingMessageUsername: user.username,
                                             listingMessageProfilePicture: user.profilePicture
@@ -61,9 +61,50 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                 }
 
 
+            } else {
+                // 出品者ではなく閲覧者の場合の処理。
+                if (ExistChatMessage?.BuyerChatMessage == null) {
+                    const createChatResponse = await ProductComment.create({
+                        productId: productId,
+                        buyerUserId: currentUser,
+                        BuyerChatMessage: [{
+                            senderUserId: currentUser,
+                            buyerMessage: ListingChatMessage,
+                            buyerMessageLike: [],
+                            buyerMessageUsername: user.username,
+                            buyerMessageProfilePicture: user.profilePicture
+                        }]
+                    })
+                    createChatResponse.save()
+                    return {buyerChatResponse: JSON.stringify(createChatResponse)}
+                } else {
+                    console.log(ExistChatMessage?._id + "範囲接地")
+                    console.log(ExistChatMessage+ "範囲接地")
+                    if (ExistChatMessage.BuyerChatMessage !== undefined) {
+                        if (ExistChatMessage.BuyerChatMessage[0].senderUserId == currentUser) {
+                            const updateChatResponse = await ProductComment.updateOne(
+                                {_id: ExistChatMessage?._id, "BuyerChatMessage.senderUserId": currentUser},
+                                {
+                                    $push: {
+                                        BuyerChatMessage: [{
+                                            senderUserId: currentUser,
+                                            buyerMessage: ListingChatMessage,
+                                            buyerMessageLike: [],
+                                            buyerMessageUsername: user.username,
+                                            buyerMessageProfilePicture: user.profilePicture
+                                        }]
+                                    }
+                                }
+                            );
+                            console.log(updateChatResponse)
+                            return null
+                        }
+                    }
+                }
+
+
             }
 
-            // 出品者ではなく閲覧者の場合の処理。
         }
     } catch (err) {
         console.error(err)
