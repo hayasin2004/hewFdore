@@ -17,6 +17,9 @@ import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/Col
 // ページネーション
 import ReactPaginate from "react-paginate";
 import propsToClassKey from "@mui/system/propsToClassKey";
+import {
+    fillLazyItemsTillLeafWithHead
+} from "next/dist/client/components/router-reducer/fill-lazy-items-till-leaf-with-head";
 
 
 
@@ -80,10 +83,14 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
-    const product : DBProductType[]   = productList.map((item) => {
-        return {...item ,id : item._id}
-        }
-    )
+    // const product : DBProductType[]   = productList.map((item) => {
+    //     return {...item ,id : item._id}
+    //     }
+    // )
+    var page = 0;
+    const product  = productList.map((item) => {
+        return {...item,id:item._id}
+    })
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
@@ -91,14 +98,13 @@ const SearchPageProducts = () => {
 //     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
-    // 商品にfilter
-    var filterProduct = productList.filter((productList,index) => {
-        return index <= 25;
-    });
+    // ProductListを基に表示する分のデータを切り出す
+    // sliceだとA以上B未満になる
+    var filterProduct = productList.slice(0,10)
     console.log(filterProduct);
-    function pageChange(page: { selected: number }){
-        var pMax = 10 * (page.selected+1)-1;
-        var pMin = page.selected *10;
+    function pageChange(page:  number ){
+        var pMax = 10 * (page+1)-1;
+        var pMin = page *10;
          filterProduct = productList.filter((productList,index) => {
              if(index <= pMax){
                  return index >= pMin
@@ -127,15 +133,16 @@ const SearchPageProducts = () => {
             <div className={"productListFrame"}>
                 <ReactPaginate pageCount={product.length/10}
                                marginPagesDisplayed={product.length/10}
-                               onPageChange={(page) => {pageChange(page);}}
+                               onPageChange={(page) => {pageChange(page.selected);}}
                                containerClassName="PaginateFlame"
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
                                />
                 <div className={"filterTest"}>
-                    {filterProduct.map((item) => (
-                        <CollapsibleProductCard key={item._id} item={item}  />
-                        ))}
+                    {filterProduct.map((item)=>(
+                        // eslint-disable-next-line react/jsx-key
+                        <div>{item._id}</div>
+                    ))}
 
                 </div>
                 {product.map((item) => (
