@@ -5,7 +5,7 @@ import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import {ProductComment, productCommentType} from "@/models/ProductComment";
 
-const sendProductChatMessage = async (productId: string | null, currentUser: string | null, ListingChatMessage: string | null) => {
+const sendProductChatMessage = async (productId: string | null, currentUser: string | null, sendChatMessage: string | null) => {
 
     await connectDB()
     try {
@@ -13,97 +13,141 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
         console.log(user)
         const ExistChatMessage: productCommentType | null = await ProductComment.findOne({productId: productId})
+        const ExistUserId: productCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
+
+
         // 出品者だった場合の処理。
-        console.log(productListingUser)
         if (productListingUser == null) {
             console.log("売り切れもしくは削除")
             return null
         } else {
-            if (productListingUser.sellerId == currentUser) {
-                if (ExistChatMessage !== null) {
-                    console.log("ここに来る？")
+            // チャット部屋がヌルだった場合の処理
+            if (ExistChatMessage == null) {
+                if (productListingUser.sellerId == currentUser) {
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
-                        ListingChatMessage: [{
+                        listingChatMessage: [{
                             senderUserId: currentUser,
-                            listingMessage: ListingChatMessage,
+                            listingMessage: sendChatMessage,
                             listingMessageLike: [],
                             listingMessageUsername: user.username,
-                            listingMessageProfilePicture: user.profilePicture
+                            listingMessageProfilePicture: user.profilePicture,
+                            timeStamp: new Date()
+
                         }]
                     })
                     createChatResponse.save()
                     return {listingChatResponse: JSON.stringify(createChatResponse)}
                 } else {
-
-                    console.log(ExistChatMessage?._id + "範囲接地")
-                        if (ExistChatMessage?.ListingChatMessage[0]?.senderUserId == currentUser) {
-                            const updateChatResponse = await ProductComment.updateOne(
-                                {_id: ExistChatMessage?._id, "ListingChatMessage.senderUserId": currentUser},
-                                {
-                                    $push: {
-                                        ListingChatMessage: [{
-                                            senderUserId: currentUser,
-                                            listingMessage: ListingChatMessage,
-                                            listingMessageLike: [],
-                                            listingMessageUsername: user.username,
-                                            listingMessageProfilePicture: user.profilePicture
-                                        }]
-                                    }
-                                }
-                            );
-                            console.log(updateChatResponse)
-                            return null
-                        }
-                    }
-
-
-
-            } else {
-                // 出品者ではなく閲覧者の場合の処理。
-                if (ExistChatMessage?.BuyerChatMessage == null) {
-                    console.log(ExistChatMessage.BuyerChatMessage)
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
-                        buyerUserId: currentUser,
-                        BuyerChatMessage: [{
+                        buyerUserIdList: currentUser,
+                        listingUserId: productListingUser.sellerId,
+                        buyerChatMessage: [{
                             senderUserId: currentUser,
-                            buyerMessage: ListingChatMessage,
+                            buyerMessage: sendChatMessage,
                             buyerMessageLike: [],
                             buyerMessageUsername: user.username,
-                            buyerMessageProfilePicture: user.profilePicture
+                            buyerMessageProfilePicture: user.profilePicture,
+                            timeStamp: new Date()
+
                         }]
                     })
                     createChatResponse.save()
                     return {buyerChatResponse: JSON.stringify(createChatResponse)}
-                } else {
-                    console.log(ExistChatMessage?._id + "範囲接地")
-                    console.log(ExistChatMessage+ "範囲接地")
-                    if (ExistChatMessage.BuyerChatMessage !== undefined) {
-                        if (ExistChatMessage.BuyerChatMessage[0].senderUserId == currentUser) {
-                            const updateChatResponse = await ProductComment.updateOne(
-                                {_id: ExistChatMessage?._id, "BuyerChatMessage.senderUserId": currentUser},
-                                {
-                                    $push: {
-                                        BuyerChatMessage: [{
-                                            senderUserId: currentUser,
-                                            buyerMessage: ListingChatMessage,
-                                            buyerMessageLike: [],
-                                            buyerMessageUsername: user.username,
-                                            buyerMessageProfilePicture: user.profilePicture
-                                        }]
-                                    }
+                }
+            } else {
+
+
+                if (productListingUser.sellerId == currentUser) {
+                    if (ExistChatMessage?.listingChatMessage[0]?.senderUserId == currentUser) {
+
+                        const updateChatResponse = await ProductComment.updateOne(
+                            {_id: ExistChatMessage?._id, "listingChatMessage.senderUserId": currentUser},
+                            {
+                                $push: {
+                                    listingChatMessage: [{
+                                        senderUserId: currentUser,
+                                        listingMessage: sendChatMessage,
+                                        listingMessageLike: [],
+                                        listingMessageUsername: user.username,
+                                        listingMessageProfilePicture: user.profilePicture,
+                                        timeStamp: new Date()
+
+
+                                    }]
                                 }
-                            );
-                            console.log(updateChatResponse)
-                            return null
-                        }
+                            }
+                        );
+                        console.log(updateChatResponse)
+                        return null
+                    } else {
+                        const updateChatResponse = await ProductComment.updateOne(
+                            {_id: ExistChatMessage?._id},
+                            {
+                                $push: {
+                                    listingChatMessage: [{
+                                        senderUserId: currentUser,
+                                        listingMessage: sendChatMessage,
+                                        listingMessageLike: [],
+                                        listingMessageUsername: user.username,
+                                        listingMessageProfilePicture: user.profilePicture,
+                                        timeStamp: new Date()
+                                    }]
+                                }
+                            }
+                        );
+                        console.log(updateChatResponse)
+                        return null
+                    }
+                } else {
+
+                    if (ExistUserId?.buyerUserIdList?.includes(currentUser)) {
+                        console.log(ExistChatMessage?._id + "範囲接地")
+                        console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
+                        const updateChatResponse = await ProductComment.updateOne(
+                            {_id: ExistChatMessage?._id, "buyerChatMessage.senderUserId": currentUser},
+                            {
+                                $push: {
+                                    buyerChatMessage: [{
+                                        senderUserId: currentUser,
+                                        buyerMessage: sendChatMessage,
+                                        buyerMessageLike: [],
+                                        buyerMessageUsername: user.username,
+                                        buyerMessageProfilePicture: user.profilePicture,
+                                        timeStamp: new Date()
+                                    }]
+                                }
+                            }
+                        );
+                        console.log(updateChatResponse)
+                        return null
+                    } else {
+                        console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
+                        const updateChatResponse = await ProductComment.updateOne(
+                            {_id: ExistChatMessage?._id},
+                            {
+                                $push: {
+                                    buyerUserIdList: currentUser,
+                                    buyerChatMessage: [{
+                                        senderUserId: currentUser,
+                                        buyerMessage: sendChatMessage,
+                                        buyerMessageLike: [],
+                                        buyerMessageUsername: user.username,
+                                        buyerMessageProfilePicture: user.profilePicture,
+                                        timeStamp: new Date()
+                                    }]
+                                }
+                            }
+                        );
+                        console.log(updateChatResponse)
+                        return null
                     }
                 }
 
-
             }
+
 
         }
     } catch (err) {

@@ -29,14 +29,14 @@ const ProductCommentSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    BuyerChatMessage: [{
+    buyerUserIdList: {
+        type: Array,
+        default: []
+    },
+    buyerChatMessage: [{
         senderUserId: {
             type: String,
             required: true,
-        },
-        buyerUserId: {
-            type: Array,
-            default: []
         },
         buyerUsername: {
             type: String,
@@ -52,9 +52,13 @@ const ProductCommentSchema = new mongoose.Schema({
         buyerMessageLike: {
             type: Array,
             default: []
+        },
+        timeStamp : {
+            type : Date,
+            default: Date.now(),
         }
     }],
-    ListingChatMessage: [{
+    listingChatMessage: [{
         senderUserId: {
             type: String,
             required: true,
@@ -73,6 +77,10 @@ const ProductCommentSchema = new mongoose.Schema({
         listingMessageLike: {
             type: Array,
             default: []
+        },
+        timeStamp : {
+            type : Date ,
+            default : Date.now()
         }
     }]
 
