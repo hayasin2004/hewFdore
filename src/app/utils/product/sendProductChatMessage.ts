@@ -20,7 +20,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
             return null
         } else {
             if (productListingUser.sellerId == currentUser) {
-                if (ExistChatMessage == null) {
+                if (ExistChatMessage !== null) {
+                    console.log("ここに来る？")
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
@@ -37,9 +38,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                 } else {
 
                     console.log(ExistChatMessage?._id + "範囲接地")
-                    if (ExistChatMessage.ListingChatMessage !== undefined) {
-                        console.log(ExistChatMessage.ListingChatMessage[0].senderUserId == currentUser)
-                        if (ExistChatMessage.ListingChatMessage[0].senderUserId == currentUser) {
+                        if (ExistChatMessage?.ListingChatMessage[0]?.senderUserId == currentUser) {
                             const updateChatResponse = await ProductComment.updateOne(
                                 {_id: ExistChatMessage?._id, "ListingChatMessage.senderUserId": currentUser},
                                 {
@@ -58,12 +57,13 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             return null
                         }
                     }
-                }
+
 
 
             } else {
                 // 出品者ではなく閲覧者の場合の処理。
                 if (ExistChatMessage?.BuyerChatMessage == null) {
+                    console.log(ExistChatMessage.BuyerChatMessage)
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         buyerUserId: currentUser,
