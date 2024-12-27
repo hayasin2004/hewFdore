@@ -12,8 +12,8 @@ import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [ChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
-    console.log(ChatMessageList)
+    const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
+
     const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
     console.log(listingChatMessageList)
     const {user} = useUser()
@@ -28,8 +28,9 @@ const Chat = (props: { paramsProductData: string }) => {
                 const response = await getProductChatMessage(currentUser, productId)
                 if (response?.listingChatMessage) {
                     setListingChatMessageList(JSON.parse(response.listingChatMessage))
-                } else if (response?.chatMessage) {
-                    setBuyerChatMessageList(JSON.parse(response.chatMessage))
+                }
+                if (response?.buyerChatMessage) {
+                    setBuyerChatMessageList(JSON.parse(response.buyerChatMessage))
                 } else {
                     console.log("この商品にコメントはありません")
                     setBuyerChatMessageList(null)
@@ -62,10 +63,22 @@ const Chat = (props: { paramsProductData: string }) => {
 
     return (
         <>
+            <p>出品者の投稿</p>
             {listingChatMessageList?.map((item, index) => (
                 <ul key={index}>
                     質問者Id : {item.senderUserId} <br/>
                     質問者名前 : {item.listingMessage} <br/>
+                    メッセージ内容 : {item?._id} <br/>
+                    <button onClick={() => testCommentLike(item?._id)}>
+                        いいね : {item?.buyerMessageLike?.length}
+                    </button>
+                </ul>
+            ))}
+            <p>閲覧者の投稿</p>
+            {buyerChatMessageList?.map((item, index) => (
+                <ul key={index}>
+                    質問者Id : {item.senderUserId} <br/>
+                    質問者名前 : {item.buyerMessage} <br/>
                     メッセージ内容 : {item?._id} <br/>
                     <button onClick={() => testCommentLike(item?._id)}>
                         いいね : {item?.buyerMessageLike?.length}
