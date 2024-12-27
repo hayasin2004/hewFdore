@@ -21,11 +21,10 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
         } else {
             if (productListingUser.sellerId == currentUser) {
                 if (ExistChatMessage == null) {
-
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
-                        ChatMessage: ({
+                        chatMessage: ({
                             senderUserId: currentUser,
                             listingMessage: chatMessage,
                             listingMessageLike: [],
@@ -35,30 +34,32 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     })
                     createChatResponse.save()
                     return {listingChatResponse: JSON.stringify(createChatResponse)}
-                }
+                } else {
+                    if (ExistChatMessage.chatMessage !== undefined) {
+                        console.log(ExistChatMessage.chatMessage[0].senderUserId == currentUser)
+                        if (ExistChatMessage.chatMessage[0].senderUserId == currentUser) {
 
+                            const updateChatResponse = await ProductComment.updateOne(
+                                {_id: ExistChatMessage?._id, "ChatMessage.senderUserId": currentUser},
+                                {
+                                    $push: {
+                                            "chatMessage.$.listingMessage": chatMessage,
+                                            "chatMessage.$.listingMessageLike": [],
+                                            "chatMessage.$.listingUsername": user.username,
+                                            "chatMessage.$.listingProfilePicture": user.profilePicture
+                                    }
+                                }
+                            );
+                            console.log(updateChatResponse)
+                            return null
+                        }
+                    }
+                }
 
 
             }
 
             // 出品者ではなく閲覧者の場合の処理。
-            const updateChatResponse = await ProductComment.updateOne(
-                {_id: ExistChatMessage?._id, "ChatMessage.senderUserId": currentUser},
-                {
-                    $push: {
-                        ChatMessage: {
-                            senderUserId: currentUser,
-                            Message: chatMessage,
-                            MessageLike: [],
-                            Username: user.username,
-                            ProfilePicture: user.profilePicture
-                        }
-                    }
-                }
-            );
-            console.log("すでに作成されてるからメッセージだけ、更新しました。", updateChatResponse);
-            return {buyerChatResponse: updateChatResponse};
-
         }
     } catch (err) {
         console.error(err)

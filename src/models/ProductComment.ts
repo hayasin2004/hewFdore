@@ -29,7 +29,7 @@ const ProductCommentSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    ChatMessage: [{
+    chatMessage: [{
         senderUserId: {
             type: String,
             required: true,
