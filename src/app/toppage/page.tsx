@@ -16,6 +16,7 @@ import {color} from "@mui/system";
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import Blogintroduction from "@/app/_components/blog/Blogintroduction";
+import axios from "axios";
 // 幅揃えします
 
 const Toppage = () => {

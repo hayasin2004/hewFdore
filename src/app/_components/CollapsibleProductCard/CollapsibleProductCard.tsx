@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef } from 'react';
+import {useState, useRef} from 'react';
 import {
     Card,
     CardContent,
@@ -11,12 +11,12 @@ import './CollapsibleProductCard.css';
 import Link from "next/link";
 import Images from "next/image";
 
-const CollapsibleProductCard = ({ item }) => {
+const CollapsibleProductCard = ({item}: { item: string | null }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const [isContentVisible, setIsContentVisible] = useState(false);
     const cardRef = useRef(null);
-
+    console.log(item)
     const handleClick = () => {
         if (isAnimating) return; // アニメーション中は追加のクリックを防止
 
@@ -53,7 +53,7 @@ const CollapsibleProductCard = ({ item }) => {
             sx={{
                 width: isOpen ? '80%' : '20%',
                 transition: 'width 0.3s ease-in-out',
-                bgcolor: '#ddd',
+                bgColor: '#ddd',
                 boxShadow: '6px 7px #aaa',
                 borderRadius: '10px',
                 margin: '10px',
@@ -67,9 +67,7 @@ const CollapsibleProductCard = ({ item }) => {
         >
             <p className="image">item?.いめーじ</p>
             <p className="explanation">商品説明 : {item?.productDesc}</p>
-            <Link href={`product/${item?.id}`} as={`/product/${item?.id}`}>
             <p className="explanation">出品者名 : {item?.productName}</p>
-            </Link>
             <p className="price">商品価格 : {Number(item?.productPrice).toLocaleString()}円</p>
             <Collapse in={!isOpen} timeout="auto">
                 <CardContent>
@@ -96,8 +94,11 @@ const CollapsibleProductCard = ({ item }) => {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={5}>
-                            <Box className="expanded-box" sx={{ height: '100%' }}>
-                                <p className="expanded-image"><Images style={{borderRadius:"10px" , backgroundSize : "contain"}} src={"/images/clothes/product.jpg"} alt={"テスト画像"} width={450} height={ 700 }/></p>
+                            <Box className="expanded-box" sx={{height: '100%'}}>
+                                <p className="expanded-image"><Images
+                                    style={{borderRadius: "10px", backgroundSize: "contain"}}
+                                    src={"/images/clothes/product.jpg"} alt={"テスト画像"} width={450} height={700}/>
+                                </p>
                                 <p className="expanded-Size">{item.productSize}</p>
                             </Box>
                         </Grid>
@@ -113,10 +114,15 @@ const CollapsibleProductCard = ({ item }) => {
                             >
                                 <p className="expanded-Name">商品名</p>
                                 <p className="expanded-Genre">カテゴリ―：{item.productCategory}</p>
-                                <p className="expanded-Material">素材　　：</p>
+                                <p className="expanded-Material">素材 ：</p>
                                 <p className="expanded-Price">商品価格：{Number(item?.productPrice).toLocaleString()}円</p>
-                                <p className="expanded-Situation">状態　　： { item.productCondition}</p>
-                                <p className="expanded-Cart">Add to Cart</p>
+                                <p className="expanded-Situation">状態 ： {item.productCondition}</p>
+                                <p className="expanded-Cart">カートに入れる</p>
+                                <p className="expanded-Cart">
+                                    <Link href={`product/${item?._id}`}>
+                                        もっと見る
+                                    </Link>
+                                </p>
                             </Box>
                         </Grid>
 

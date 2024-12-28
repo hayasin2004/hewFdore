@@ -50,9 +50,11 @@ const Product = ({params}: { params: { id: string } }) => {
     useEffect(() => {
         const response = async () => {
             const productCatch = await productDetail(id, currentUser)
-            const productParse = JSON.parse(productCatch?.product)
-            // console.log( await  productParse?.productLike == currentUser)
-            setProduct(productParse)
+            if (productCatch?.product !== undefined) {
+                const productParse = JSON.parse(productCatch?.product)
+                // console.log( await  productParse?.productLike == currentUser)
+                setProduct(productParse)
+            }
         }
 
         response()
