@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import {string} from "prop-types";
 
 // as constを使用することで、この配列の要素はリテラル型（特定の文字列型）として扱われ、変更できないことを示しています。
 const postageBurden = ["seller", "buyer"] as const;
@@ -13,6 +12,9 @@ type productSizeType = (typeof productSize)[number];
 
 const deliveryTime = ["1to3day" , "3to5day" , "5to7day"]
 type deliveryTimeType = (typeof deliveryTime)[number];
+
+const sellStatus = ["selling" , "trading" , "soldOut"]
+type sellStatusTimeType = (typeof deliveryTime)[number];
 
 const ProductSchema = new mongoose.Schema({
 
@@ -61,13 +63,13 @@ const ProductSchema = new mongoose.Schema({
         },
         deliveryTime: {
             type: String,
-            enum:deliveryTime,
+            enum: deliveryTime,
             required: true,
         },
-        productSize:{
-            type :String,
-            enum:productSize,
-            required:true,
+        productSize: {
+            type: String,
+            enum: productSize,
+            required: true,
         },
         productCondition: {
             type: String,
@@ -79,9 +81,14 @@ const ProductSchema = new mongoose.Schema({
             enum: postageBurden,
             required: true
         },
+        sellStatus: {
+            type: String,
+            enum: sellStatus,
+            default : "selling"
+        },
         shippingArea: {
             type: String,
-            required:true,
+            required: true,
         },
         productLike: {
             type: Array,
@@ -92,6 +99,8 @@ const ProductSchema = new mongoose.Schema({
             default: [],
         },
     },
-    {timestamps: true}
-)
-export const Product = mongoose.models.Product || mongoose.model("Product", ProductSchema);
+    { timestamps: true }
+);
+
+// モデルのエクスポート
+export const Product = mongoose.models.Product || mongoose.model('Product', ProductSchema);

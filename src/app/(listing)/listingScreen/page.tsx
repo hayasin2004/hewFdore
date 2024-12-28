@@ -77,8 +77,10 @@ const ListingScreen: React.FC = () => {
                             shippingAreaText
                         ).then(
                             (product => {
-                                const productParse = JSON.parse(product?.result as string)
-                                setProductId(productParse)
+                                if (product?.result !== undefined) {
+                                    const productParse = JSON.parse(product?.result as string)
+                                    setProductId(productParse)
+                                }
                             })
                         )
                         ;

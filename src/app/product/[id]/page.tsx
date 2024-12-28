@@ -14,6 +14,10 @@ import {ThemeProvider, createTheme} from '@mui/material/styles';
 import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
 import Chat from "@/app/_components/chat/Chat";
+import Stripe from "@/app/_components/stripe/Stripe";
+import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
+import updateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
+import inserteProductSellStatus from "@/app/utils/setting/update/InserteProductSellStatus";
 
 const Product = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
@@ -116,6 +120,7 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
+                                <Stripe productId={product?._id}/>
                             </div>
                         </div>
                         <div>
@@ -130,6 +135,8 @@ const Product = ({params}: { params: { id: string } }) => {
                             </ThemeProvider>
                             <p>いいね</p>
                             <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
+
+
                             <Link href={"/sendAddress"}>
 
                                 <button id={"buy"}
