@@ -100,18 +100,23 @@ const SearchPageProducts = () => {
 
     // ProductListを基に表示する分のデータを切り出す
     // sliceだとA以上B未満になる
-    var filterProduct = productList.slice(0,10)
-    console.log(filterProduct);
+    var sliceProduct = productList.slice(0,10)
+    console.log(sliceProduct);
     function pageChange(page:  number ){
         var pMax = 10 * (page+1)-1;
         var pMin = page *10;
-         filterProduct = productList.filter((productList,index) => {
+         const filterProduct = productList.filter((productList,index) => {
              if(index <= pMax){
                  return index >= pMin
              }
          })
         console.log(page,filterProduct);
     }
+
+
+    // react-paginate公式Usage参考 なんかProduct数が2つになってるんですけど！？
+
+    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
 
 
     return (
@@ -139,13 +144,14 @@ const SearchPageProducts = () => {
                                pageLinkClassName="PagiClassLink"
                                />
                 <div className={"filterTest"}>
-                    {filterProduct.map((item)=>(
+                    {sliceProduct.map((item)=>(
                         // eslint-disable-next-line react/jsx-key
                         <div>{item._id}</div>
                     ))}
 
                 </div>
                 {product.map((item) => (
+
                     <CollapsibleProductCard key={item._id} item={item} />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
