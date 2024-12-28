@@ -12,8 +12,17 @@ import Searchuser from "@/app/_components/(search)/userProduct/Searchuser";
 import SearchProductCategory from "@/app/_components/(search)/searchProductCategry/searchProductCategory";
 import Toppage from "@/app/toppage/page";
 import Blogintroduction from "@/app/_components/blog/Blogintroduction";
+import {useEffect} from "react";
+import ChatMessageLike from "@/app/utils/setting/update/buyerChatMessageLike";
+
 
 export default function Home() {
+    useEffect(() => {
+        ChatMessageLike()
+    }, []);
+    // const props : string = "UserId"
+    // DeleteProductCategoryLikeListField()
+
   return (
     <main>
       <div>

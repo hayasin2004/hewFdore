@@ -116,7 +116,9 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
                             </div>
                         </div>
-                        <Chat />
+                        <div>
+                            <Chat paramsProductData={id}/>
+                        </div>
                         <div id="controlProduct">
                             <ThemeProvider theme={theme}>
                                 <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
