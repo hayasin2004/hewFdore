@@ -2,10 +2,9 @@
 import React, {useEffect, useState} from 'react';
 import {loadStripe} from "@stripe/stripe-js";
 import * as stripe from "stripe";
-import {stripePayment} from "@/app/utils/stripe/stripe";
 import {string} from "prop-types";
 import {useRouter} from "next/navigation";
-import {stripePaymentPayPay} from "@/app/utils/stripe/paypaystripe";
+import { stripePaymentFunc } from '@/app/utils/stripe/stripePaymentFunc';
 
 const CompleteStripe = ({productId}: { productId: string }) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
@@ -28,7 +27,7 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                         console.error("Invalid payment URLs");
                     }
                 } else if (paymentMethod === "card") {
-                    const response = await stripePayment(productId, paymentMethod);
+                    const response = await stripePaymentFunc(productId, paymentMethod);
                     console.log(response);
                     if (response?.checkout_url) {
                         window.location.href = response.checkout_url;

@@ -6,20 +6,21 @@ import {connectDB} from "@/lib/mongodb";
 import {Stripe} from "stripe";
 import {redirect} from "next/navigation";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function stripePayment(productId: string, paymentMethod: string) {
+export async function stripePaymentFunc(productId: string, paymentMethod: string) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB()
+    console.log(productId)
     // Mongodbから_idで商品検索
     const product = await Product.findOne({_id: productId});
     // console.log(product);　
     //↑のログのコメントアウト解除するとどうやって取ってるのか見れる。
     // ↓見つかったものをここで宣言
-    const productObjectId = product._id
-    const productPrice = product.productPrice
-    const productName = product.productName
-    const productDesc = product.productDesc
+    const productObjectId = product?._id
+    const productPrice = product?.productPrice
+    const productName = product?.productName
+    const productDesc = product?.productDesc
     if (paymentMethod === "card") {
 
         try {
