@@ -20,6 +20,8 @@ import propsToClassKey from "@mui/system/propsToClassKey";
 import {
     fillLazyItemsTillLeafWithHead
 } from "next/dist/client/components/router-reducer/fill-lazy-items-till-leaf-with-head";
+import {color} from "@mui/system";
+import {dividerClasses} from "@mui/material";
 
 
 
@@ -81,6 +83,8 @@ const SearchPageProducts = () => {
     }, []);
 
 
+
+
     //
     // // 商品を展開
     // const product : DBProductType[]   = productList.map((item) => {
@@ -98,6 +102,26 @@ const SearchPageProducts = () => {
 //     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
+    // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
+    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+    function T_items({currentProduct}){
+        return(
+            <>
+               <div style={{"margin":50,"color":"red"}}> {currentProduct}</div></>
+        )
+    }
+    const ProductPerPage = 2;
+    const [ProductOffset,setProductoffset] = useState(0);
+    const endOffset = ProductOffset +ProductPerPage;
+    const currentProduct = t_item.slice(ProductOffset,endOffset);
+    const pageCount = t_item.length/ProductPerPage;
+    const handlePageClick = (e:{selected:number}) =>{
+        const newOfffset = (e.selected * ProductPerPage)%t_item.length;
+        setProductoffset(newOfffset);
+
+    };
+
+    // 練習コーナー2
     // ProductListを基に表示する分のデータを切り出す
     // sliceだとA以上B未満になる
     var sliceProduct = productList.slice(0,10)
@@ -116,9 +140,6 @@ const SearchPageProducts = () => {
 
     // react-paginate公式Usage参考 なんかProduct数が2つになってるんですけど！？
 
-    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
-
-
     return (
         <div>
             {/*<SearchHeader/>*/}
@@ -136,18 +157,26 @@ const SearchPageProducts = () => {
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
-                <ReactPaginate pageCount={product.length/10}
-                               marginPagesDisplayed={product.length/10}
-                               onPageChange={(page) => {pageChange(page.selected);}}
+                <T_items currentProduct={currentProduct}/>
+                <ReactPaginate pageCount={pageCount}
+                               marginPagesDisplayed={0}
+                               pageRangeDisplayed={2}
+                               onPageChange={handlePageClick}
+                               breakLabel={"..."}
+                               nextLabel={">"}
+                               previousLabel={"<"}
                                containerClassName="PaginateFlame"
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
                                />
+
                 <div className={"filterTest"}>
-                    {sliceProduct.map((item)=>(
-                        // eslint-disable-next-line react/jsx-key
-                        <div>{item._id}</div>
-                    ))}
+                    {/*{sliceProduct.map((item)=>(*/}
+                    {/*    // eslint-disable-next-line react/jsx-key*/}
+                    {/*    <div>{item._id}</div>*/}
+                    {/*))}*/}
+                    {/*{t_item.slice()}*/}
+
 
                 </div>
                 {product.map((item) => (
