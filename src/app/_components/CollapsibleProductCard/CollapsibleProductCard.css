@@ -172,7 +172,25 @@
     font-size: 3rem;
 }
 
-.product-card-list{
+.product-card-list {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;  /* 左寄せで配置 */
+    padding: 20px;    /* コンテナの内側の余白 */
+}
+
+/* 展開時のカードのスタイル */
+.product-card-list .collapsible-product-card {
+    flex: 0 0 auto;
+    width: calc(20% - 20px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 展開時は幅いっぱいに */
+.product-card-list .collapsible-product-card.expanded {
+    width: 90% !important;
+    margin: 0;
+    order: -1;  /* 展開したカードを最上部に移動 */
 }

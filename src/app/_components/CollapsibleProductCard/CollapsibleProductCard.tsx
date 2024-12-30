@@ -98,14 +98,14 @@
                 >
                     <CardContent>
                         <Grid container spacing={2}>
-                            <Grid item xs={5}>
+                            <Grid item xs={4}>
                                 <Box className="expanded-box" sx={{ height: '100%' }}>
                                     <p className="expanded-image">item.いめーじい</p>
                                     <p className="expanded-Size">L</p>
                                 </Box>
                             </Grid>
 
-                            <Grid item xs={3}>
+                            <Grid item xs={4}>
                                 <Box
                                     className={`expanded-content ${isContentVisible ? 'visible' : 'hidden'}`}
                                     sx={{
