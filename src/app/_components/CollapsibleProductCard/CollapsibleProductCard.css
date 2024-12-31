@@ -177,7 +177,7 @@
     width: 100%;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;  /* 左寄せで配置 */
+    justify-content: center;
     padding: 20px;    /* コンテナの内側の余白 */
 }
 
