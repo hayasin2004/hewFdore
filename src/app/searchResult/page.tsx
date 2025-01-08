@@ -9,13 +9,18 @@ import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
 import {productsProps} from "../api/dummyData/data";
+import CompleteStripe from "@/app/_components/stripe/Stripe";
+import {loadStripe} from "@stripe/stripe-js";
+import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
+import Stripe from "@/app/_components/stripe/Stripe";
 import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
+import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 
 
-//
-// const stripePromise = loadStripe(
-//     process.env.STRIPE_SECRET_KEY!
-// )
+
+const stripePromise = loadStripe(
+    process.env.STRIPE_SECRET_KEY!
+)
 
 const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
@@ -36,7 +41,6 @@ const SearchPageProducts = () => {
             //  やりとり。
             //  .thenはプロミスチェーンといわれる書き方。fetchで取得してきたものをitemsに配列型で渡している。　気持ちmap関数と激似。
             await fetch("/api/product").then(async (items) => {
-                console.log(items)
                 // 基本的に非同期通信はtry,catchで一回のみ試す。成功はtry ,失敗したら catch
                 try {
                     //    もし取得してきたのに空が返ってきたときのエラー対処。　catchがあるからほぼ必要ない。
@@ -46,10 +50,10 @@ const SearchPageProducts = () => {
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
                     const productData : DBProductType[] = await items.json()
-                    const productDataParse = JSON.parse(JSON.stringify(productData))
-                    console.log(productDataParse)
+
+                    console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
-                    setProductList(productDataParse)
+                    setProductList(productData)
                     console.log("success")
                 } catch (err) {
                     console.log("Error" + err)
@@ -74,13 +78,14 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
+    const product: DBProductType[] = productList;
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
 //     一意に商品を識別したいのでMongoDBでいうobjectIDを _idとして呼び出しています。
 //     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
-　
+
     return (
         <div>
             {/*<SearchHeader/>*/}
@@ -90,30 +95,28 @@ const SearchPageProducts = () => {
                 </div>
                 <div >
                 </div>
-                <SearchResultProducts/>
+                {/*<SearchResultProducts/>*/}
             </div>
-        <div>
-        </div>
+            <div className={"productListFrame"}>
+                <ProductCardList items={product} />
+            </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
-            <div className={"productListFrame"}>
-                {productList?.map((item) => (
-                    <CollapsibleProductCard key={item._id} item={item} />
+            {/*<div className={"productListFrame"}>*/}
+            {/*    {product.map((item) => (*/}
+            {/*        <ProductCardList items={product} />*/}
 
-                    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
-                    //     {/*<p>商品番号 : {item._id}</p>*/}
-                    //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
-                    //     <p className={"listImage"}>item.いめーじ</p>
-                    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>
-                    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>
-                    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
-                    //     {/*<Stripe productId={item?._id} />*/}
-                    // </div>
-                ))}
-            </div>
-
-
-
+            {/*        // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>*/}
+            {/*        //     {/*<p>商品番号 : {item._id}</p>*/}
+            {/*        //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
+            {/*        //     <p className={"listImage"}>item.いめーじ</p>*/}
+            {/*        //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>*/}
+            {/*        //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>*/}
+            {/*        //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>*/}
+            {/*        //     {/*<Stripe productId={item?._id} />*/}
+            {/*        // </div>*/}
+            {/*    ))}*/}
+            {/*</div>*/}
         </div>
     );
 }
