@@ -73,7 +73,7 @@ const CollapsibleProductCard = ({item}: { item: string | null }) => {
                 <CardContent>
                     <div className="testttt">
                         <p className="collapsed-image">item?.いめーじ</p>
-                        <p className="product-Size">{item.productSize}</p>
+                        <p className="product-Size">{item?.productSize}</p>
                     </div>
                     <p className="explanation">商品説明 : {item?.productDesc}</p>
                     <p className="explanation">出品者名 : {item?.productName}</p>
@@ -99,7 +99,7 @@ const CollapsibleProductCard = ({item}: { item: string | null }) => {
                                     style={{borderRadius: "10px", backgroundSize: "contain"}}
                                     src={"/images/clothes/product.jpg"} alt={"テスト画像"} width={450} height={700}/>
                                 </p>
-                                <p className="expanded-Size">{item.productSize}</p>
+                                <p className="expanded-Size">{item?.productSize}</p>
                             </Box>
                         </Grid>
 
@@ -113,10 +113,10 @@ const CollapsibleProductCard = ({item}: { item: string | null }) => {
                                 }}
                             >
                                 <p className="expanded-Name">商品名</p>
-                                <p className="expanded-Genre">カテゴリ―：{item.productCategory}</p>
+                                <p className="expanded-Genre">カテゴリ―：{item?.productCategory}</p>
                                 <p className="expanded-Material">素材 ：</p>
-                                <p className="expanded-Price">商品価格：{Number(item?.productPrice).toLocaleString()}円</p>
-                                <p className="expanded-Situation">状態 ： {item.productCondition}</p>
+                                <p className="expanded-Price">商品価格：{item?.productPrice}円</p>
+                                <p className="expanded-Situation">状態 ： {item?.productCondition}</p>
                                 <p className="expanded-Cart">カートに入れる</p>
                                 <p className="expanded-Cart">
                                     <Link href={`product/${item?._id}`}>

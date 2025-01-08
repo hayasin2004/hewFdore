@@ -30,7 +30,6 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                     const response = await stripePaymentFunc(productId, paymentMethod);
                     console.log(response);
                     if (response?.checkout_url) {
-                        console.log("ここまで来てリダイレクトした。")
                         window.location.href = response.checkout_url;
                     } else {
                         console.error("Invalid payment URLs");

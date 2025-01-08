@@ -39,11 +39,10 @@
 /* 展開時の画像スタイル */
 .expanded-image {
     width: 100%;
-    height: 70vh; /* 高さを大きく */
+    height: 70vh;
+    margin: 20px 0 20px 20px;
     border-radius: 10px;
     background-color: #ccc;
-    margin: 0;
-    /* 展開時特有のスタイルをここに追加 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     object-fit: cover;
 }
@@ -57,7 +56,6 @@
     font-size: 2rem;
     border-radius: 50%;
     background-color: #9C958C;
-
 }
 
 .collapsible-product-card .explanation {
@@ -136,12 +134,14 @@
 
 }
 .expanded-comment-fream{
-    width: 70%;
+    width: 90%;
     padding: 10px;
     margin-top: 90px;
     margin-left: 20px;
     border-radius: 10px;
-    border: 2px solid #000;
+    border: 2px solid #bbb;
+    box-shadow: 2px 2px 2px #bbb;
+    background-color: #eee;
 }
 
 .comment-account{
@@ -166,3 +166,31 @@
     overflow: hidden;
 }
 
+.expanded-reverse{
+    padding: 0;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.product-card-list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;    /* コンテナの内側の余白 */
+}
+
+/* 展開時のカードのスタイル */
+.product-card-list .collapsible-product-card {
+    flex: 0 0 auto;
+    width: calc(20% - 20px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 展開時は幅いっぱいに */
+.product-card-list .collapsible-product-card.expanded {
+    width: 90% !important;
+    margin: 0;
+    order: -1;  /* 展開したカードを最上部に移動 */
+}
