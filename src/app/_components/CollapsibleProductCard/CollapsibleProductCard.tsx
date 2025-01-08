@@ -9,6 +9,7 @@
     } from '@mui/material';
     import './CollapsibleProductCard.css';
     import { DBProductType } from '@/app/api/product/route';
+    import Link from 'next/link';
 
     interface CollapsibleProductCardProps {
         item: DBProductType;
@@ -114,19 +115,23 @@
                                         borderRadius: 1
                                     }}
                                 >
-                                    <p className="expanded-Name">商品名</p>
-                                    <p className="expanded-Genre">ジャンル：</p>
-                                    <p className="expanded-Material">素材　　：</p>
-                                    <p className="expanded-Price">商品価格：{Number(item.productPrice).toLocaleString()}円</p>
-                                    <p className="expanded-Situation">状態　　：</p>
+                                    <p className="expanded-Name">商品名 : {item.productName}</p>
+                                    <p className="expanded-Genre">カテゴリー : {item.productCategory}</p>
+                                    <p className="expanded-Price">商品価格 : {item.productPrice}円</p>
+                                    <p className="expanded-Situation">状態 : {item.productCondition} </p>
                                     <p className="expanded-Cart">Add to Cart</p>
+                                    <p className="expanded-Cart">
+                                        <Link href={`product/${item?._id}`}>
+                                            もっと見る
+                                        </Link>
+                                    </p>
                                 </Box>
                             </Grid>
 
                             <Grid item xs={3}>
                                 <Box className={"expanded-comment"}>
                                     <div className="expanded-comment-fream">
-                                        <div className="comment-account">
+                                    <div className="comment-account">
                                             <p id={"ac_img"}>wa!</p>
                                             <p id={"ac_name"}>エマワトソン</p>
                                         </div>

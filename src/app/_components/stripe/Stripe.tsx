@@ -5,6 +5,7 @@ import * as stripe from "stripe";
 import {string} from "prop-types";
 import {useRouter} from "next/navigation";
 import { stripePaymentFunc } from '@/app/utils/stripe/stripePaymentFunc';
+import {stripePaymentPayPay} from "@/app/utils/stripe/paypaystripe";
 
 const CompleteStripe = ({productId}: { productId: string }) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
