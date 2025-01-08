@@ -33,6 +33,7 @@ const ProductSchema = new mongoose.Schema({
         },
         buyerId: {
             type: String,
+            default : "",
         },
         productName: {
             type: String,
@@ -97,6 +98,10 @@ const ProductSchema = new mongoose.Schema({
         comment: {
             type: Array,
             default: [],
+        },
+        StripeCode: {
+            type: String,
+            default: "",
         },
     },
     { timestamps: true }

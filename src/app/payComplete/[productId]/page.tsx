@@ -1,15 +1,36 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "../payComplete.css"
 import Link from "next/link";
 import {useSearchParams} from 'next/navigation'
+import io from "socket.io-client";
+import useUser from "@/hooks/useUser";
 
-const PayComplete = ({params}: { params: { productId: string }}) => {
+const PayComplete = () => {
 
-    const productId = decodeURI(params.productId);
-    console.log(productId);
+    const [params, setParams] = useState({});
+    console.log(params?.sessionId)
+    const {user} = useUser()
+    useEffect(() => {
+        const query = new URLSearchParams(window.location.search);
+        const sessionId = query.get('session_id');
+        const productId = query.get('productId');
+        const userId = user?.userId
+        console.log(userId)
+        setParams({sessionId, productId});
+        if (userId)
+            if (sessionId || productId || userId) {
+                console.log("成功" + sessionId)
+                console.log("成功" + productId)
+                console.log("成功" + userId)
+            } else {
+                console.log("ゾンビ")
+            }
 
+    }, [user]);
+    // const productId = decodeURI(params.productId);
+    // console.log(productId);
 
 
     // useEffect(() => {
