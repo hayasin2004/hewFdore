@@ -29,7 +29,7 @@ PAYPAY.Configure({
     productionMode: false,
 });
 
-export async function stripePaymentPayPay(productId: string, paymentMethod: string) {
+export async function stripePaymentPayPay(productId: string, paymentMethod: string , userId : string | null) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB();
 

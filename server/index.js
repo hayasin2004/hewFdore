@@ -3,6 +3,7 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const {Server} = require("socket.io");
+const {clickButton} = require("./clickButton");
 const PORT = 8080
 
 try {
@@ -12,6 +13,7 @@ try {
             origin: ["http://localhost:3000"],
         }
     })
+    let isButtonDisabled = false
 
 
     io.on("connection", (socket) => {
@@ -26,12 +28,21 @@ try {
             io.emit("received_message", data);
             console.log(data)
         })
+
+
+        socket.on("clickButtonEvent", (text) => {
+            isButtonDisabled = true;
+            io.emit("update", isButtonDisabled);
+            console.log(isButtonDisabled)
+        })
+
     })
 
 
     // socket.on("disconnect", () => {
     //     console.log("socketとclientのせつぞくがきれました")
     // })
+
 
 
     server.listen(PORT, () => {

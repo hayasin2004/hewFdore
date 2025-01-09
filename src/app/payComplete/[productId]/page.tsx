@@ -19,7 +19,7 @@ const PayComplete = () => {
         const userId = user?.userId
         console.log(userId)
         setParams({sessionId, productId});
-        if (userId)
+        if (userId) {
             if (sessionId || productId || userId) {
                 console.log("成功" + sessionId)
                 console.log("成功" + productId)
@@ -27,7 +27,7 @@ const PayComplete = () => {
             } else {
                 console.log("ゾンビ")
             }
-
+        }
     }, [user]);
     // const productId = decodeURI(params.productId);
     // console.log(productId);

@@ -39,7 +39,6 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     useEffect(() => {
         console.log(status)
         if (status) {
-
             const chatresponse = async () => {
                 if (status == "1" || status == "2") {
                     const catchUser = await catchMessageStatus1Status2(chatData?.chatId)
@@ -74,7 +73,6 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 setChatData(setUsersData?.chatExistsPart2)
                 setStatus("3")
                 console.log("ステータス3")
-
             }
             // setCurrentUser(setUsersData?.currentUser?._id)
         }

@@ -8,7 +8,7 @@ import {redirect} from "next/navigation";
 
 const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function stripePaymentFunc(productId: string, paymentMethod: string) {
+export async function stripePaymentFunc(productId: string, paymentMethod: string , userId :string | null) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB()
     console.log(productId)
