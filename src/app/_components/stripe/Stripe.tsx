@@ -13,7 +13,7 @@ import io from "socket.io-client";
 const CompleteStripe = ({productId}: { productId: string }) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [userId, setUserId] = useState(null)
-        const [isButtonDisabled, setIsButtonDisabled] = useState(() =>{
+        const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
             const status = localStorage.getItem("isButtonDisabled")
             return status === "true";
         })
@@ -42,6 +42,9 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                     }
                 } else if (paymentMethod === "card") {
                     const response = await stripePaymentFunc(productId, paymentMethod, userId);
+                    if (!isButtonDisabled) {
+                        socket.emit("clickButtonEvent");
+                    }
                     console.log(response);
                     if (response?.checkout_url) {
                         window.location.href = response.checkout_url;
@@ -69,16 +72,10 @@ const CompleteStripe = ({productId}: { productId: string }) => {
             window.location.href = json.url
         }
 
-        const testClick = () => {
-            if (!isButtonDisabled) {
-                socket.emit("clickButtonEvent")
-            }
-        }
-
         socket.on("update", (isButtonDisabled) => {
             setIsButtonDisabled(isButtonDisabled)
             console.log(isButtonDisabled)
-            localStorage.setItem("isButtonDisabled" , isButtonDisabled)
+            localStorage.setItem("isButtonDisabled", isButtonDisabled)
         })
 
 
@@ -88,7 +85,8 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                     決済テスト
                 </h1>
                 <form method="POST">
-                    <button onClick={StripeUrl} disabled={isButtonDisabled} type={"submit"} role={"link"}>
+                    {/*<button onClick={StripeUrl} disabled={isButtonDisabled} type={"submit"} role={"link"}>*/}
+                    <button onClick={StripeUrl}  type={"submit"} role={"link"}>
                         {!isButtonDisabled ? <p>購入</p> : <p>他の人が購入処理中</p>}
                     </button>
                 </form>
@@ -104,9 +102,6 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                 {/*<button onClick={handlePayPayPayment}>*/}
                 {/*    支払う*/}
                 {/*</button>*/}
-                <button onClick={testClick} disabled={isButtonDisabled}>
-                    {!isButtonDisabled ? <p>今触れるよ</p> : <p>他の人が購入処理中</p>}
-                </button>
             </div>
 
         );

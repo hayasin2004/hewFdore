@@ -49,9 +49,9 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
                     }
                 ],
                 mode: "payment",
-                // req.bodu.url　→　mongodbのproductIdを付与するのかな？
+                // req.body.url　→　mongodbのproductIdを付与するのかな？
                 success_url: `http://localhost:3000/payComplete/checkout-success?session_id={CHECKOUT_SESSION_ID}&productId=${productId}`,
-                cancel_url: "http://localhost:3000",
+                cancel_url: `http://localhost:3000/product/checkout-false?session_id=cancel&productId=${productId}`,
             })
             console.log("こにちは" + session)
             // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。

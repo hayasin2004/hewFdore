@@ -52,6 +52,12 @@ const Product = ({params}: { params: { id: string } }) => {
     const test = !product
 
     useEffect(() => {
+
+        const query = new URLSearchParams(window.location.search);
+        const sessionId = query.get('session_id');
+        if (sessionId === "cancel"){
+            localStorage.removeItem("isButtonDisabled");
+        }
         const response = async () => {
             const productCatch = await productDetail(id, currentUser)
             if (productCatch?.product !== undefined) {
