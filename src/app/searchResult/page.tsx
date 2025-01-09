@@ -164,10 +164,15 @@ const SearchPageProducts = () => {
                                onPageChange={handlePageClick}
                                breakLabel={"..."}
                                nextLabel={">"}
+                               nextLinkClassName="RPnext"
                                previousLabel={"<"}
+                               previousClassName="RPprev"
                                containerClassName="PaginateFlame"
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
+                               activeClassName="activeClassLink"
+                               disabledClassName="disable"
+                               renderOnZeroPageCount={null}
                                />
 
                 <div className={"filterTest"}>

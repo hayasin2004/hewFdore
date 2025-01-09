@@ -46,4 +46,14 @@ body{
     margin: 10px 10px 0 10px;
     list-style: none;
 }
+.activeClassLink{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/*前後のリンク*/
+a.RPnext,a.RPprev{
+    margin: 0 30px;
+
+}
 
