@@ -12,7 +12,8 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
         const CheckProduct = await Product.findById({_id: productId})
         if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
             console.log("既に購入されていていますされています。");
-            return null
+            return JSON.stringify(CheckProduct._id)
+
         } else {
 
             const purchaseId = uuidv4();
@@ -31,7 +32,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
 
             purchase.save()
 
-            return {product: JSON.stringify(product)}
+            return product._id
         }
     } catch (err) {
         console.log(err)

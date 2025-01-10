@@ -17,6 +17,9 @@ const PurchaseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    productId : {
+        type: String,
+    },
     sellerId : {
         type: String,
         required: true,
