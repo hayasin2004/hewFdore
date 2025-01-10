@@ -30,10 +30,10 @@ try {
         })
 
 
-        socket.on("clickButtonEvent", (text) => {
+        socket.on("clickButtonEvent" ,() => {
             isButtonDisabled = true;
             io.emit("update", isButtonDisabled);
-            console.log(isButtonDisabled)
+            console.log("きてた")
         })
 
     })

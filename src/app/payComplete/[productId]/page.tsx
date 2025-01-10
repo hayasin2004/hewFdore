@@ -6,6 +6,7 @@ import Link from "next/link";
 import {useSearchParams} from 'next/navigation'
 import io from "socket.io-client";
 import useUser from "@/hooks/useUser";
+import payComplete from "@/app/utils/product/payComplete";
 
 const PayComplete = () => {
 
@@ -21,9 +22,10 @@ const PayComplete = () => {
         setParams({sessionId, productId});
         if (userId) {
             if (sessionId || productId || userId) {
-                console.log("成功" + sessionId)
-                console.log("成功" + productId)
-                console.log("成功" + userId)
+                const insertPurchaseDate = async  () => {
+                    const response = await payComplete(productId,sessionId, userId)
+                }
+                insertPurchaseDate()
             } else {
                 console.log("ゾンビ")
             }

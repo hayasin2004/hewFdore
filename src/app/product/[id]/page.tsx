@@ -18,9 +18,11 @@ import Stripe from "@/app/_components/stripe/Stripe";
 import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
 import updateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
 import inserteProductSellStatus from "@/app/utils/setting/update/InserteProductSellStatus";
+import {useRouter} from "next/navigation";
 
 const Product = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
+    const router = useRouter()
     const currentUser = user?.userId
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
     const theme = createTheme({
@@ -55,8 +57,11 @@ const Product = ({params}: { params: { id: string } }) => {
 
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
+        const productId = query.get('productId');
+
         if (sessionId === "cancel"){
             localStorage.removeItem("isButtonDisabled");
+            router.push(`/product/${productId}`)
         }
         const response = async () => {
             const productCatch = await productDetail(id, currentUser)
@@ -126,7 +131,6 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
-                                <Stripe productId={product?._id}/>
                             </div>
                         </div>
                         <div>
@@ -143,12 +147,11 @@ const Product = ({params}: { params: { id: string } }) => {
                             <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
 
 
-                            <Link href={"/sendAddress"}>
+                                {/*<button id={"buy"}*/}
+                                {/*        type="button" className={"productPurchase"}>*/}
+                                    <Stripe productId={product?._id}/>
 
-                                <button id={"buy"}
-                                        type="button" className={"productPurchase"}>購入する
-                                </button>
-                            </Link>
+                                {/*</button>*/}
                         </div>
 
 

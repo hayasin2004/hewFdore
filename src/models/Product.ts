@@ -99,7 +99,7 @@ const ProductSchema = new mongoose.Schema({
             type: Array,
             default: [],
         },
-        StripeCode: {
+        stripeCode: {
             type: String,
             default: "",
         },

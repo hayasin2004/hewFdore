@@ -45,7 +45,11 @@ const Toppage = () => {
             }
         }
         product()
-
+        const query = new URLSearchParams(window.location.search);
+        const sessionId = query.get('session_id');
+        if (sessionId === "cancel"){
+            localStorage.removeItem("isButtonDisabled");
+        }
     }, []);
 
 

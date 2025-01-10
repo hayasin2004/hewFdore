@@ -9,6 +9,7 @@ import {stripePaymentPayPay} from "@/app/utils/stripe/paypaystripe";
 import useUser from "@/hooks/useUser";
 import {UserType} from "@/app/api/user/catchUser/route";
 import io from "socket.io-client";
+import "./stripe.css"
 
 const CompleteStripe = ({productId}: { productId: string }) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
@@ -23,13 +24,24 @@ const CompleteStripe = ({productId}: { productId: string }) => {
 
         const socket = io("http://localhost:8080");
 
+        useEffect(() => {
+            const browserBack = (event: PopStateEvent) => {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("ストライプの戻るボタンから戻ってください")
+            }
+            window.addEventListener("popstate", browserBack);
+            return () => {
+                window.removeEventListener("popstate", browserBack)
+            }
+        }, []);
+
 
         useEffect(() => {
             setUserId(user?.userId);
         }, [user]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             try {
-
                 e.preventDefault()
                 if (paymentMethod === "paypay") {
                     const response = await stripePaymentPayPay(productId, paymentMethod, userId);
@@ -41,13 +53,15 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                         console.error("Invalid payment URLs");
                     }
                 } else if (paymentMethod === "card") {
-                    const response = await stripePaymentFunc(productId, paymentMethod, userId);
+
                     if (!isButtonDisabled) {
                         socket.emit("clickButtonEvent");
                     }
+                    const response = await stripePaymentFunc(productId, paymentMethod, userId);
+
                     console.log(response);
                     if (response?.checkout_url) {
-                        window.location.href = response.checkout_url;
+                        window.open(response.checkout_url , "_blank");
                     } else {
                         console.error("Invalid payment URLs");
                     }
@@ -72,24 +86,21 @@ const CompleteStripe = ({productId}: { productId: string }) => {
             window.location.href = json.url
         }
 
+
         socket.on("update", (isButtonDisabled) => {
             setIsButtonDisabled(isButtonDisabled)
-            console.log(isButtonDisabled)
             localStorage.setItem("isButtonDisabled", isButtonDisabled)
+            console.log(isButtonDisabled)
         })
 
 
         return (
-            <div>
-                <h1>
-                    決済テスト
-                </h1>
-                <form method="POST">
-                    {/*<button onClick={StripeUrl} disabled={isButtonDisabled} type={"submit"} role={"link"}>*/}
-                    <button onClick={StripeUrl}  type={"submit"} role={"link"}>
-                        {!isButtonDisabled ? <p>購入</p> : <p>他の人が購入処理中</p>}
-                    </button>
-                </form>
+            <div className={"StripePurchaseButtonMain"}>
+
+                {/*<button onClick={StripeUrl} disabled={isButtonDisabled} type={"submit"} role={"link"}>*/}
+                <button onClick={StripeUrl} className={"StripePurchaseButton"} type={"submit"} role={"link"}>
+                    {!isButtonDisabled ? <p>購入</p> : <p>取引中</p>}
+                </button>
 
                 <label> 支払い方法を選択してください:
                     <select onChange={(e) => setPaymentMethod(e.target.value)}
