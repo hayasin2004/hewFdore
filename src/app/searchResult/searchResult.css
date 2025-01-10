@@ -46,6 +46,18 @@ body{
     margin: 10px 10px 0 10px;
     list-style: none;
 }
+
+/* ページ数関係 */
+a.PagiClassLink{
+    margin: 0 25px;
+    width: 2rem;
+    font-size: 1.5rem;
+}
+a.PagiClassLink:hover{
+    text-decoration: underline;
+
+
+}
 .activeClassLink{
     text-decoration: underline;
     font-weight: bold;
@@ -54,6 +66,9 @@ body{
 /*前後のリンク*/
 a.RPnext,a.RPprev{
     margin: 0 30px;
+    font-size: 1.5rem;
 
 }
-
+a.RPnext:hover,a.RPprev:hover{
+    font-weight: bold;
+}

@@ -103,7 +103,7 @@ const SearchPageProducts = () => {
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
-    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     function T_items({currentProduct}){
         return(
             <>
@@ -159,14 +159,14 @@ const SearchPageProducts = () => {
             <div className={"productListFrame"}>
                 <T_items currentProduct={currentProduct}/>
                 <ReactPaginate pageCount={pageCount}
-                               marginPagesDisplayed={0}
-                               pageRangeDisplayed={2}
+                               pageRangeDisplayed={3}
+                               marginPagesDisplayed={1}
                                onPageChange={handlePageClick}
                                breakLabel={"..."}
                                nextLabel={">"}
                                nextLinkClassName="RPnext"
                                previousLabel={"<"}
-                               previousClassName="RPprev"
+                               previousLinkClassName="RPprev"
                                containerClassName="PaginateFlame"
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
