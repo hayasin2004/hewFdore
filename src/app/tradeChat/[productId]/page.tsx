@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import "./trade.css"
 import Header from "@/app/_components/header/Header";
@@ -9,10 +9,12 @@ import tradeProduct from "@/app/utils/product/tradeProduct";
 
 const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [value, setValue] = React.useState<number | null>(0.5);
+    const [productData, setProductData] = useState<string | null>(null)
     useEffect(() => {
         const purchaseId = JSON.parse(JSON.stringify(params.productId))
         const purchase = async () => {
             const response = await tradeProduct(purchaseId);
+            setProductData(JSON.parse(response));
             console.log(response)
         }
         purchase()
@@ -38,13 +40,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                         </ul>
                     </div>
                     <div id="text">
-                        <h1>ニット</h1>
+                        <h1>{productData?.productName}</h1>
                         <span className="under_bar"></span>
-                        <a href="#" id="seller"><h2>出品者:Yuuna</h2>
+                        <a href="#" id="seller"><h2>出品者:{productData?.sellerUserName}</h2>
                         </a>
                         <p>
                             商品詳細<br/>
-                            去年の冬に入って購入したものになります。<br/>
+                            {productData?.productDesc}<br/>
 
                         </p>
                         <p id="size">サイズ:S</p>
