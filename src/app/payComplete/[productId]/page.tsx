@@ -27,7 +27,7 @@ const PayComplete = () => {
                 const insertPurchaseDate = async  () => {
                     const response = await payComplete(productId,sessionId, userId)
                     if (response !== undefined || response !== null){
-                        setProductId(JSON.parse(response))
+                        setProductId(JSON.parse(JSON.stringify(response)))
                     }
                 }
                 insertPurchaseDate()

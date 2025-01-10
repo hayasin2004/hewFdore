@@ -1,13 +1,22 @@
 "use client"
-import React from 'react';
+import React, {useEffect} from 'react';
 import Image from "next/image";
 import "./trade.css"
 import Header from "@/app/_components/header/Header";
 import Chat from "@/app/_components/chat/Chat";
 import {Rating, Typography} from "@mui/material";
+import tradeProduct from "@/app/utils/product/tradeProduct";
 
-const ListingComplete = () => {
+const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [value, setValue] = React.useState<number | null>(0.5);
+    useEffect(() => {
+        const purchaseId = JSON.parse(JSON.stringify(params.productId))
+        const purchase = async () => {
+            const response = await tradeProduct(purchaseId);
+        }
+        purchase()
+    }, [])
+
     console.log(Rating)
     return (
         <>
@@ -17,12 +26,12 @@ const ListingComplete = () => {
 
                     <div id="photo">
                         <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
-                        
+
                         <ul className="piclist">
                             <li className="picts"><a href="/images/clothes/product9.jpg">
                                 <Image src="/images/clothes/product9.jpg" width={50} height={50} alt="商品の写真"/>
                             </a>
-                                
+
                             </li>
 
                         </ul>
@@ -48,11 +57,11 @@ const ListingComplete = () => {
                 <div className={"evaluation"}>
                     <div className={"evaluation_Chat"}>
                         <h2>最終コメント</h2>
-                        <input type="text" name="msg"  placeholder="今回の取引はどうでしたか？"/>
+                        <input type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
                     </div>
                     <div>
 
-                        <Typography component="legend" style={{marginBottom :"30px"}}>今回の取引の評価</Typography>
+                        <Typography component="legend" style={{marginBottom: "30px"}}>今回の取引の評価</Typography>
                         <Rating
                             size={"large"}
                             name="simple-controlled"
