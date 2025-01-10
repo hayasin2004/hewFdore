@@ -60,23 +60,23 @@ function ChildModal() {
                 }>
                     <h2 id="child-modal-title">ユーザーナビゲーション</h2>
                     <p id="child-modal-description">
-                        <Link href={"confirmUser"}>
+                        <Link href={"/confirmUser"}>
                             プロフィール
                         </Link>
 
                     </p>
                     <p id="child-modal-description">
-                        <Link href={"confirmPoints"}>
+                        <Link href={"/confirmPoints"}>
                             獲得ポイント履歴
                         </Link>
                     </p>
                     <p id="child-modal-description">
-                        <Link href={"favorite"}>
+                        <Link href={"/favorite"}>
                             お気に入り登録ページ
                         </Link>
                     </p>
                     <p id="child-modal-description">
-                        <Link href={"paidNote"}>
+                        <Link href={"/paidNote"}>
                             購入履歴
                         </Link>
                     </p>

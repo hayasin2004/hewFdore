@@ -17,6 +17,7 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import axios from "axios";
+import InsertProductSellStatus from "@/app/utils/setting/update/InserteUserPurchase";
 // 幅揃えします
 
 const Toppage = () => {
@@ -25,7 +26,8 @@ const Toppage = () => {
     console.log(productList)
 
 
-    useEffect(() => {
+
+    useEffect(() => {　
         // エンコードしたtokenを検証する
         const token = localStorage.getItem("token") as string;
         confirmUser(token);
@@ -47,7 +49,7 @@ const Toppage = () => {
         product()
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
-        if (sessionId === "cancel"){
+        if (sessionId === "cancel") {
             localStorage.removeItem("isButtonDisabled");
         }
     }, []);

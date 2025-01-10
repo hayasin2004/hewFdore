@@ -15,11 +15,13 @@ import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
 import Chat from "@/app/_components/chat/Chat";
 import Stripe from "@/app/_components/stripe/Stripe";
-import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
-import updateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
-import inserteProductSellStatus from "@/app/utils/setting/update/InserteProductSellStatus";
+import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InsertProductSellStatus";
+import updateProductCategoryLikeList from "@/app/utils/setting/update/InsertProductSellStatus";
+import inserteProductSellStatus from "@/app/utils/setting/update/InsertProductSellStatus";
 import {useRouter} from "next/navigation";
 import sellerCheck from "@/app/utils/product/sellerCheck";
+import InsertProductSellStatus from "@/app/utils/user/InserteUserPurchase";
+import insert from "@/app/utils/user/insert";
 
 const Product = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
@@ -81,6 +83,10 @@ const Product = ({params}: { params: { id: string } }) => {
         response()
     }, [user]);
 
+    const insertColumn = async  () => {
+        await insert()
+    }
+
 
     useEffect(() => {
         if (product?.productLike?.includes(currentUser)) {
@@ -91,6 +97,7 @@ const Product = ({params}: { params: { id: string } }) => {
     return (
         <>
             <Header/>
+            <button onClick={insertColumn}>ここおして</button>
 
             {/*<div className={"productMain"}>*/}
 
@@ -155,7 +162,8 @@ const Product = ({params}: { params: { id: string } }) => {
 
                             {/*<button id={"buy"}*/}
                             {/*        type="button" className={"productPurchase"}>*/}
-                            {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> : <Stripe productId={product?._id}/>}
+                            {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
+                                <Stripe productId={product?._id}/>}
 
 
                             {/*</button>*/}

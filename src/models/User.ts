@@ -57,11 +57,15 @@ const UserSchema = new mongoose.Schema({
             type: Array,
             default: []
         },
-        productLikeList : {
+        productLikeList: {
             type: Array,
             default: []
         },
-        productCategoryLikeList : {
+        productCategoryLikeList: {
+            type: Array,
+            default: []
+        },
+        purchaseProduct: {
             type: Array,
             default: []
         }
