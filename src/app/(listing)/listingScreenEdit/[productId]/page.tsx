@@ -11,6 +11,7 @@ import {redirect} from "next/navigation";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import editProduct from "@/app/utils/product/editProduct";
+import deleteProduct from "@/app/utils/product/deleteProduct";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -48,6 +49,10 @@ const ListingScreen = ({params} : {params : {productId : string | null}}) => {
     // const shippingArea = shippingArea
     const socket = io("http://localhost:8080");
 
+    const deleteProductFunc = async () => {
+        const response = await deleteProduct(EditProduct)
+        console.log(response)
+    }
 
     console.log(socket)
     return (
@@ -144,7 +149,10 @@ const ListingScreen = ({params} : {params : {productId : string | null}}) => {
                                     <Link href={`/listingcomplete/${productId?._id}`}>
                                         <p>確認ページ</p>
                                     </Link>
-                                    : <p>出品</p>}
+                                    : <p>編集</p>}
+                            </button>
+                            <button onClick={deleteProductFunc} className={"listingcompletebtn"} type={"submit"}>　　
+                                    　<p>削除</p>　
                             </button>
                         </div>
 
