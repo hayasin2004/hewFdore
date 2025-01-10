@@ -19,11 +19,13 @@ import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InsertePro
 import updateProductCategoryLikeList from "@/app/utils/setting/update/InserteProductSellStatus";
 import inserteProductSellStatus from "@/app/utils/setting/update/InserteProductSellStatus";
 import {useRouter} from "next/navigation";
+import sellerCheck from "@/app/utils/product/sellerCheck";
 
 const Product = ({params}: { params: { id: string } }) => {
     const {user} = useUser()
     const router = useRouter()
     const currentUser = user?.userId
+    console.log(currentUser)
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
     const theme = createTheme({
         palette: {
@@ -38,7 +40,8 @@ const Product = ({params}: { params: { id: string } }) => {
     const [product, setProduct] = useState<ProductType | null>(null)
     console.log(JSON.stringify(product))
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
-
+    const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
+    console.log(status)
     const [productLike, setProductLike] = useState<boolean>(false)
     const id = params?.id
     const productId = product?._id
@@ -51,20 +54,23 @@ const Product = ({params}: { params: { id: string } }) => {
         productLikeData()
     }
 
-    const test = !product
-
     useEffect(() => {
 
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
         const productId = query.get('productId');
 
-        if (sessionId === "cancel"){
+        if (sessionId === "cancel") {
             localStorage.removeItem("isButtonDisabled");
             router.push(`/product/${productId}`)
         }
         const response = async () => {
-            const productCatch = await productDetail(id, currentUser)
+            const productCatch = await productDetail(id)
+            if (currentUser !== undefined || currentUser !== null) {
+                const sellerCheckCatch = await sellerCheck(id, currentUser)
+                setSameSellerStatus(sellerCheckCatch)
+                console.log(sellerCheckCatch)
+            }
             if (productCatch?.product !== undefined) {
                 const productParse = JSON.parse(productCatch?.product)
                 // console.log( await  productParse?.productLike == currentUser)
@@ -73,7 +79,7 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [id]);
+    }, [user]);
 
 
     useEffect(() => {
@@ -147,11 +153,12 @@ const Product = ({params}: { params: { id: string } }) => {
                             <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
 
 
-                                {/*<button id={"buy"}*/}
-                                {/*        type="button" className={"productPurchase"}>*/}
-                                    <Stripe productId={product?._id}/>
+                            {/*<button id={"buy"}*/}
+                            {/*        type="button" className={"productPurchase"}>*/}
+                            {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> : <Stripe productId={product?._id}/>}
 
-                                {/*</button>*/}
+
+                            {/*</button>*/}
                         </div>
 
 
