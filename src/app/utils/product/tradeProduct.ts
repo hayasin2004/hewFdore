@@ -8,6 +8,7 @@ const tradeProduct = async (purchaseId : string | null) => {
     try {
         const tradeProduct = await Purchase.findById(purchaseId);
         console.log(tradeProduct)
+        return JSON.stringify(tradeProduct)
     }catch (err){
         console.log(err)
         return null

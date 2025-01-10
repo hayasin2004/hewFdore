@@ -1,11 +1,33 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Image from "next/image";
 import "./paidNote.css"
 import Link from "next/link";
+import purchaseProduct from "@/app/utils/product/purchaseProduct";
+import useUser from "@/hooks/useUser";
 
 const PaidNote = () => {
+    const {user} = useUser()
+    const userId = user?.userId
+    const [purchaseData, setPurchaseData] = useState([])
+    const [productData, setProduct] = useState([])
+    console.log(purchaseData)
+    useEffect(() => {
+        const fetchPurchaseProduct = async () => {
+            const response = await purchaseProduct(userId)
+            if (response?.purchaseProduct !== undefined) {
+                setPurchaseData(JSON.parse(response?.purchaseProduct))
+            }
+            if (response?.product !== undefined) {
+                setProduct(JSON.parse(response?.product))
+            }
+            console.log(response)
+        }
+        console.log(fetchPurchaseProduct())
+    }, [user]);
+
 
     return (
         <>
@@ -26,22 +48,35 @@ const PaidNote = () => {
             </div>
             <div className={"listing"}>
                 <div className={"listing_product"}>
-                    <div className={"product"}>
-                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                        <div className={"product_text"}>
-                            <p>
-                                商品名
-                            </p>
-                            <p>出品者 : xxxx</p>
-                            <p>価格 : xxxx</p>
+                    {purchaseData?.map((purchaseItem) => (
 
-                        </div>
-                        <div className={"listingText"}>
-                            <h3>評価</h3>
-                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
-                        </div>
+                        <ul key={purchaseItem._id}>
+                            <li>
+                                <Link href={`/tradeChat/${purchaseItem._id}`}>
+                                    {purchaseItem?._id}
+                                </Link>
+                            </li>
+                        </ul>
+                    ))}
+                    {productData?.map((productItem) => (
+                        <div key={productItem._id}>
+                            <div className={"product"}>
+                                <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                                <div className={"product_text"}>
+                                    <p>
+                                        商品名 : {productItem.productName}
+                                    </p>
+                                    <p>出品者 : {productItem.sellerId}</p>
+                                    <p>価格 : {productItem.productPrice}</p>
 
-                    </div>
+                                </div>
+                                <div className={"listingText"}>
+                                    <h3>評価</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    ))}
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
@@ -93,7 +128,8 @@ const PaidNote = () => {
 
             <Footer/>
         </>
-    );
+    )
+        ;
 }
 
 

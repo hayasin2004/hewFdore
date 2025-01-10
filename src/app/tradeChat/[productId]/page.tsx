@@ -13,6 +13,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         const purchaseId = JSON.parse(JSON.stringify(params.productId))
         const purchase = async () => {
             const response = await tradeProduct(purchaseId);
+            console.log(response)
         }
         purchase()
     }, [])
