@@ -2,6 +2,8 @@
 
 import {Product} from "@/models/Product";
 import {connectDB} from "@/lib/mongodb";
+import {v4 as uuidv4} from 'uuid';
+import {Purchase} from "@/models/Purchase";
 
 const payComplete = async (productId: string | null, stripeCode: string | null, userId: string | null) => {
     await connectDB()
@@ -13,12 +15,21 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
             return null
         } else {
 
+            const purchaseId = uuidv4();
             const product = await Product.findByIdAndUpdate({_id: productId}, {
                 $set: {
                     buyerId: userId,
                     stripeCode: stripeCode
                 }
             }, {new: true, upsert: true});
+
+            const purchase = await Purchase.create({
+                purchaseId: purchaseId,
+                sellerId: CheckProduct.sellerId,
+                buyerId: userId
+            })
+
+            purchase.save()
 
             return {product: JSON.stringify(product)}
         }
