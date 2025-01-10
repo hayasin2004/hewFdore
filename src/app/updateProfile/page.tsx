@@ -5,6 +5,7 @@ import Image from "next/image"
 import "./updateProfile.css"
 import userInfoChange from "@/app/utils/user/userInfoChange";
 import useUser from "@/hooks/useUser";
+import deleteAccount from "@/app/utils/user/deleteAccount";
 
 const UpdateProfile = () => {
     const {user} = useUser()
@@ -27,6 +28,12 @@ const UpdateProfile = () => {
 
         console.log(response)
     }
+
+    const deleteUser = async () => {
+        const response = await  deleteAccount(userId)
+        console.log(response)
+    }
+
 
     return (
         <>
@@ -88,6 +95,7 @@ const UpdateProfile = () => {
                                 }}/><br/>
                                 <button type="submit" onClick={changeUserInfo}>更新する</button>
                             </form>
+                            <button type="submit" onClick={deleteUser}>ユーザーを削除する</button>
                         </div>
                     </div>
                 </div>
