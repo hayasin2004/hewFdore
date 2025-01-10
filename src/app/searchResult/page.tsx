@@ -106,6 +106,7 @@ const SearchPageProducts = () => {
     const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
     function T_items({currentProduct}){
         return(
+            // ここで表示html設定
             <>
                <div style={{"margin":50,"color":"red"}}> {currentProduct}</div></>
         )
@@ -159,7 +160,7 @@ const SearchPageProducts = () => {
             <div className={"productListFrame"}>
                 <T_items currentProduct={currentProduct}/>
                 <ReactPaginate pageCount={pageCount}
-                               pageRangeDisplayed={3}
+                               pageRangeDisplayed={2}
                                marginPagesDisplayed={1}
                                onPageChange={handlePageClick}
                                breakLabel={"..."}
