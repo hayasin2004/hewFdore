@@ -10,7 +10,7 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string) => {
+const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string ,currentUserData) => {
     console.log(purchaseId, pushedUser, message)
     await connectDB()
 
@@ -25,6 +25,9 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
             {
                 $push: {
                     buyerChatMessage: {
+                        buyerUserId : currentUserData?._id ,
+                        buyerUsername : currentUserData?.username,
+                        buyerProfilePicture : currentUserData?.profilePicture,
                         buyerMessage: message,
                         buyerMessageLike: []
                     }
@@ -33,7 +36,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
             {new: true, useFindAndModify: false}
         )
         console.log(fChangeMessage)
-        return {fChangeMessage: fChangeMessage}
+        return {fChangeMessage: JSON.stringify(fChangeMessage)}
 
 
     } catch (err) {

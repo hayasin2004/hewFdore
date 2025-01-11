@@ -28,7 +28,7 @@ export async function GET(req: NextApiRequest, res: NextResponse) {
         //     productPrice: 1111,
 
         try {
-            const product = await Product.find();
+            const product = await Product.find({sellStatus : "selling"});
             console.log()
 
             //     商品画像がない

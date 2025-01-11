@@ -46,6 +46,7 @@ export const createProduct = async (token: string | null, productName: string | 
             postageBurden,
             shippingArea,
             deliveryTime,
+            sellStatus : "selling"
         })
         await newProduct.save()
         const CompleteproductId = newProduct._id

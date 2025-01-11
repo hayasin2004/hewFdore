@@ -3,6 +3,7 @@
 import {Chat} from "@/models/Chat";
 import {string} from "prop-types";
 import {Purchase} from "@/models/Purchase";
+import {connectDB} from "@/lib/mongodb";
 
 export interface ChatType {
     currentUser?: string
@@ -13,20 +14,24 @@ export interface ChatType {
 
 const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
     console.log(purchaseId)
+    await connectDB()
+    try {
+
     // チャットルーム検索
     // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
     // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
     if (purchaseId !== undefined) {
-        const fChangeMessage = await Purchase.findById({_id: purchaseId})
-        const chatList = {
-            currentUserChat: fChangeMessage.sellerUserChat,
-            partnerUserChat: fChangeMessage.buyerUserChat
-        }
-
-        console.log(chatList)
-        return {chatCatchData : chatList}
+        const fChangeMessage = await Purchase.findOne({_id: purchaseId})
+        const    currentUserChat =  fChangeMessage?.sellerChatMessage
+        console.log("どのような形式？"+fChangeMessage)
+        const    partnerUserChat =  fChangeMessage?.buyerChatMessage
+        return {currentUserChat : JSON.stringify(currentUserChat) ,partnerUserChat : JSON.stringify(partnerUserChat) }
+    }
+    }catch (err){
+        console.log(err)
+        return null
     }
 }
 

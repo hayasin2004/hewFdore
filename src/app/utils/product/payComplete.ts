@@ -29,7 +29,8 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
             const product = await Product.findByIdAndUpdate({_id: productId}, {
                 $set: {
                     buyerId: userId,
-                    stripeCode: stripeCode
+                    stripeCode: stripeCode ,
+                    sellStatus : "trading"
                 }
             }, {new: true, upsert: true});
             return JSON.stringify(purchase._id)

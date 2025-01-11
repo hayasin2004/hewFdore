@@ -3,6 +3,8 @@
 import {Chat} from "@/models/Chat";
 import {string} from "prop-types";
 import {Purchase} from "@/models/Purchase";
+import {connectDB} from "@/lib/mongodb";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface ChatType {
     currentUser?: string
@@ -11,20 +13,26 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser: string, message: string) => {
-    console.log(purchaseId, pushedUser, message)
-    console.log("ここに来てるのが成果氏")
+const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser: string, message: string, currentUserData: string) => {
 
-    // チャットルーム検索
-    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+    await connectDB()
 
-//     チャットルームにmessageを新しく挿入
+    try {
+        console.log("ここに来てるのが成果氏")
+        console.log(currentUserData)
+        // チャットルーム検索
+        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
+        // console.log(fCHatRoomId)
+
+// //     チャットルームにmessageを新しく挿入
     const fChangeMessage = await Purchase.findByIdAndUpdate(
         purchaseId,
         {
             $push: {
                 sellerChatMessage: {
+                    sellerUserId : currentUserData?._id ,
+                    sellerUsername : currentUserData?.username,
+                    sellerProfilePicture : currentUserData?.profilePicture,
                     sellerMessage : message,
                     sellerMessageLike : []
                 }
@@ -33,7 +41,11 @@ const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser:
         {new: true, useFindAndModify: false}
     )
     console.log(fChangeMessage)
-    return {fChangeMessage: fChangeMessage}
+    return {fChangeMessage: JSON.stringify(fChangeMessage)}
+    } catch (err) {
+        console.log(err)
+        return null
+    }
 
 }
 

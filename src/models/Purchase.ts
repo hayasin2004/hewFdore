@@ -34,6 +34,17 @@ const PurchaseSchema = new mongoose.Schema({
         required: true,
     },
     buyerChatMessage: [{
+        senderUserId: {
+            type: String,
+            required: true,
+        },
+        buyerUsername: {
+            type: String,
+        },
+        buyerProfilePicture: {
+            type: String,
+            default: '',
+        },
         buyerMessage: {
             type: String,
             default: "",
@@ -48,6 +59,17 @@ const PurchaseSchema = new mongoose.Schema({
         }
     }],
     sellerChatMessage: [{
+        sellerUserId: {
+            type: String,
+            required: true,
+        },
+        sellerUsername: {
+            type: String,
+        },
+        sellerProfilePicture: {
+            type: String,
+            default: '',
+        },
         sellerMessage: {
             type: String,
             default: ""
