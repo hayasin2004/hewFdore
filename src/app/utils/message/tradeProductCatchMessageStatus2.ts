@@ -14,15 +14,15 @@ export interface ChatType {
 const tradeProductCatchMessageStatus2 = async (purchaseId?: string) => {
     console.log(purchaseId)
     // チャットルーム検索
-    // const fCHatRoomId =await Chat.findById({_id : chatId})
+    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
     // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
     if (purchaseId !== undefined) {
         const fChangeMessage = await Purchase.findById({_id: purchaseId})
         const chatList = {
-            currentUserChat: fChangeMessage.buyerUserChat,
-            partnerUserChat : fChangeMessage.sellerUserChat
+            currentUserChat: fChangeMessage?.buyerUserChat,
+            partnerUserChat: fChangeMessage?.sellerUserChat
         }
 
         console.log(chatList)

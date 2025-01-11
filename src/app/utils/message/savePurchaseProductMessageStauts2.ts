@@ -1,7 +1,7 @@
 "use server"
 
-import {Chat} from "@/models/Chat";
-import {string} from "prop-types";
+import {Purchase} from "@/models/Purchase";
+import {connectDB} from "@/lib/mongodb";
 
 export interface ChatType {
     currentUser?: string
@@ -11,20 +11,28 @@ export interface ChatType {
 }
 
 const savePurchaseProductMessageStauts2 = async (purchaseId: string, pushedUser: string, message: string) => {
-    console.log(purchaseId, pushedUser, message)
-    // チャットルーム検索
-    // const fCHatRoomId =await Chat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+
+    await connectDB()
+    try {
+        // チャットルーム検索
+        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
+        // console.log(fCHatRoomId)
+
+        console.log(message)
 
 //     チャットルームにmessageを新しく挿入
-    const fChangeMessage = await Chat.findByIdAndUpdate(
-        purchaseId,
-        {$push: {sellerUserChat: message}},
-        {new: true, useFindAndModify: false}
-    )
-    console.log(fChangeMessage)
-    return {fChangeMessage : fChangeMessage}
+        const fChangeMessage = await Purchase.findByIdAndUpdate(
+            purchaseId,
+            {$push: {buyerUserChat: message}},
+            {new: true, useFindAndModify: false}
+        )
+        console.log(fChangeMessage)
+        return {fChangeMessage: fChangeMessage}
 
+    } catch (err) {
+        console.log(err)
+        return null
+    }
 }
 
 export default savePurchaseProductMessageStauts2

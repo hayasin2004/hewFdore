@@ -14,7 +14,7 @@ export interface ChatType {
 const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
     console.log(purchaseId)
     // チャットルーム検索
-    // const fCHatRoomId =await Chat.findById({_id : chatId})
+    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
     // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入

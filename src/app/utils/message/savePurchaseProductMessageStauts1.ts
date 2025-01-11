@@ -13,14 +13,16 @@ export interface ChatType {
 
 const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser: string, message: string) => {
     console.log(purchaseId, pushedUser, message)
+    console.log("ここに来てるのが成果氏")
+
     // チャットルーム検索
-    // const fCHatRoomId =await Chat.findById({_id : chatId})
+    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
     // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
     const fChangeMessage = await Purchase.findByIdAndUpdate(
         purchaseId,
-        {$push: {buyerUserChat: message}},
+        {$push: {sellerUserChat: message}},
         {new: true, useFindAndModify: false}
     )
     console.log(fChangeMessage)

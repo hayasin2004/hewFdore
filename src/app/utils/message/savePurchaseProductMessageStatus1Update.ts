@@ -12,7 +12,7 @@ export interface ChatType {
 const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string) => {
     console.log(purchaseId, pushedUser, message)
     // チャットルーム検索
-    // const fCHatRoomId =await Chat.findById({_id : chatId})
+    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
     // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入

@@ -14,6 +14,12 @@ import tradeProductCatchMessageStatus1 from "@/app/utils/message/tradeProductCat
 import savePurchaseProductMessageStauts2 from "@/app/utils/message/savePurchaseProductMessageStauts2";
 import savePurchaseProductMessageStatus1 from "@/app/utils/message/savePurchaseProductMessageStauts1";
 import useUser from "@/hooks/useUser";
+import {Purchase} from "@/models/Purchase";
+import PurchaseChat from "@/app/_components/purchaseChat/PurchaseChat";
+import Images from "next/image";
+import userProfile from "@/app/utils/user/userProfile";
+import savePurchaseProductMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
+import savePurchaseProductMessageStatus2Update from "@/app/utils/message/savePurchaseProductMessageStatus2Update";
 
 const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [value, setValue] = React.useState<number | null>(0.5);
@@ -25,7 +31,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [status, setStatus] = useState("")
     const [buyerIdChat, setBuyerIdChat] = useState([])
     const [sellerIdChat, setSellerIdChat] = useState([])
-
+    const [currentUserData, setCurrentUserData] = useState()
+    console.log(JSON.stringify(currentUserData))
+    const [partnerUserData, setPartnerUserData] = useState()
+    console.log(partnerUserData)
     const {user} = useUser()
 
     console.log(productData)
@@ -65,12 +74,25 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             const currentUserId = user?.userId
             const sellerId = productData?.sellerId
             const buyerId = productData?.buyerId
+            console.log(buyerId)
             const setUsersData = await TradeProductMessageServer(currentUserId, sellerId)
             if (setUsersData?.chatExists) {
+                const currentUser = await userProfile(currentUserId)
+                const partnerUser = await userProfile(buyerId)
+                if (buyerId !== undefined && currentUser?.searchUser !== undefined && partnerUser?.searchUser !== undefined) {
+                    setCurrentUserData(JSON.parse( currentUser?.searchUser))
+                    setPartnerUserData(JSON.parse(partnerUser?.searchUser))
+                }
                 setChatData(setUsersData?.chatExists)
                 console.log("ステータス1")
                 setStatus("1")
             } else {
+                const currentUser = await userProfile(currentUserId)
+                const partnerUser = await userProfile(sellerId)
+                if (currentUser?.searchUser !== undefined && partnerUser?.searchUser !== undefined) {
+                    setCurrentUserData(JSON.parse( currentUser?.searchUser))
+                    setPartnerUserData(JSON.parse(partnerUser?.searchUser))
+                }
                 console.log(setUsersData)
                 setChatData(setUsersData?.chatExistsPart2)
                 setStatus("2")
@@ -115,16 +137,16 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 setChatList([...chatList, data])
             })
             const SavedPurchaseProductMessageStatus2 = async () => {
-                const response = await savePurchaseProductMessageStauts2(chatData?.chatId, chatData?.buyerId, message)
-                // const update = await savePurchaseProductMessageStatus2Update(purchaseId, chatData?.buyerId, message)
+                // const response = await savePurchaseProductMessageStatus2(purchaseId, chatData?.currentUser, message)
+                const update = await savePurchaseProductMessageStatus2Update(purchaseId, chatData?.buyerId, message)
 
-                console.log(response)
+                console.log(update)
                 setMessage("")
             }
             SavedPurchaseProductMessageStatus2()
         }
     }
-
+    console.log(productData)
     console.log(Rating)
     return (
         <>
@@ -132,33 +154,33 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             <p>
                 対象ユーザー : {chatData?.partnerUserId}
             </p>
-            <div>
-                対象ユーザーチャット : {sellerIdChat?.map((item) => (
-                <ul key={item.id}>
-                    <li>{item}</li>
-                </ul>
-            ))}
-            </div>
-            <br/>
-            <p>
-                ログインユーザー : {chatData?.currentUserId}
-            </p>
-            <div>
-                ログインしているチャット : {buyerIdChat?.map((item) => (
-                <ul key={item.id}>
-                    <li>{item}</li>
-                </ul>
-            ))}
-                {chatList.map((item, index) => (
-                    <ul key={index}>
-                        <li>{item?.message}</li>
-                    </ul>
-                ))}
-            </div>
-            <form>
-                <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
-                <button onClick={(e) => handleSendMessage(e)}>送信</button>
-            </form>
+            {/*<div>*/}
+            {/*    対象ユーザーチャット : {sellerIdChat?.map((item) => (*/}
+            {/*    <ul key={item.id}>*/}
+            {/*        <li>{item}</li>*/}
+            {/*    </ul>*/}
+            {/*))}*/}
+            {/*</div>*/}
+            {/*<br/>*/}
+            {/*<p>*/}
+            {/*    ログインユーザー : {chatData?.currentUserId}*/}
+            {/*</p>*/}
+            {/*<div>*/}
+            {/*    ログインしているチャット : {buyerIdChat?.map((item) => (*/}
+            {/*    <ul key={item.id}>*/}
+            {/*        <li>{item}</li>*/}
+            {/*    </ul>*/}
+            {/*))}*/}
+            {/*    {chatList.map((item, index) => (*/}
+            {/*        <ul key={index}>*/}
+            {/*            <li>{item?.message}</li>*/}
+            {/*        </ul>*/}
+            {/*    ))}*/}
+            {/*</div>*/}
+            {/*<form>*/}
+            {/*    <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>*/}
+            {/*    <button onClick={(e) => handleSendMessage(e)}>送信</button>*/}
+            {/*</form>*/}
             <div id="product">
                 <div id="info">
 
@@ -191,7 +213,49 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
 
                 </div>
-                <Chat/>
+
+                <div className={"purchaseMessage"}>
+                    <div className="Productchat">
+                        <div>
+                            対象ユーザーチャット : {sellerIdChat?.map((item) => (
+                            <ul key={item.id}>
+                                {partnerUserData?.username}
+                                <li>{item}</li>
+                            </ul>
+                        ))}
+                        </div>
+                        <div>
+                            ログインしているチャット : {buyerIdChat?.map((item) => (
+                            <ul key={item.id}>
+                                {currentUserData?.username}
+                                <li>{item}</li>
+                            </ul>
+                        ))}
+                            {chatList.map((item, index) => (
+                                <ul key={index}>
+                                    <li>{item?.message}</li>
+                                </ul>
+                            ))}
+                        </div>
+
+
+                    </div>
+                    <div className={"messageBox"}>
+
+                        <Images
+                            src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                            alt={"サンプルユーザーアイコン"}/>
+
+                        <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
+                        <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
+                               value={message}
+                               placeholder="出品者へのお問い合わせはこちらから"/>
+                        {/*<input type="submit" formTarget={"msg"}/>*/}
+                        <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
+                            <img id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                        </button>
+                    </div>
+                </div>
                 <div className={"evaluation"}>
                     <div className={"evaluation_Chat"}>
                         <h2>最終コメント</h2>
