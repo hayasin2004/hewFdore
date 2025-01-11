@@ -82,10 +82,7 @@ const Product = ({params}: { params: { id: string } }) => {
 
         response()
     }, [user]);
-
-    const insertColumn = async  () => {
-        await insert()
-    }
+　
 
 
     useEffect(() => {
@@ -96,8 +93,7 @@ const Product = ({params}: { params: { id: string } }) => {
     }, [product]);
     return (
         <>
-            <Header/>
-            <button onClick={insertColumn}>ここおして</button>
+            <Header/>　
 
             {/*<div className={"productMain"}>*/}
 
