@@ -25,12 +25,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [value, setValue] = React.useState<number | null>(0.5);
     const [productData, setProductData] = useState<string | null>(null)
     const [chatData, setChatData] = useState<ChatType | null>(null)
-    console.log(JSON.stringify(chatData))
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
     const [buyerIdChat, setBuyerIdChat] = useState([])
+    console.log(buyerIdChat)
     const [sellerIdChat, setSellerIdChat] = useState([])
+    console.log(sellerIdChat)
     const [currentUserData, setCurrentUserData] = useState()
     console.log(JSON.stringify(currentUserData))
     const [partnerUserData, setPartnerUserData] = useState()
@@ -60,8 +61,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     setSellerIdChat(catchUser?.chatCatchData.partnerUserChat)
                 } else if (status == "2") {
                     const catchUser = await tradeProductCatchMessageStatus2(purchaseId)
-                    setBuyerIdChat(catchUser?.chatCatchData.currentUserChat)
-                    setSellerIdChat(catchUser?.chatCatchData.partnerUserChat)
+                    setBuyerIdChat(JSON.parse(catchUser?.currentUserChat))
+                    setSellerIdChat(JSON.parse(catchUser?.partnerUserChat))
                 }
             }
             chatresponse()
@@ -124,7 +125,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 console.log(response)
                 setMessage("")
             }
-            SavedMessage()
+            console.log(SavedMessage)
         }
         // ステータス2
         else if (status === "2") {
@@ -143,17 +144,15 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 console.log(update)
                 setMessage("")
             }
-            SavedPurchaseProductMessageStatus2()
+            console.log(SavedPurchaseProductMessageStatus2)
+
         }
     }
     console.log(productData)
     console.log(Rating)
     return (
         <>
-            <Header/>
-            <p>
-                対象ユーザー : {chatData?.partnerUserId}
-            </p>
+            <Header/>　
             {/*<div>*/}
             {/*    対象ユーザーチャット : {sellerIdChat?.map((item) => (*/}
             {/*    <ul key={item.id}>*/}
@@ -220,7 +219,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             対象ユーザーチャット : {sellerIdChat?.map((item) => (
                             <ul key={item.id}>
                                 {partnerUserData?.username}
-                                <li>{item}</li>
+                                <li>{item?.sellerChatMessage}</li>
                             </ul>
                         ))}
                         </div>
@@ -228,9 +227,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             ログインしているチャット : {buyerIdChat?.map((item) => (
                             <ul key={item.id}>
                                 {currentUserData?.username}
-                                <li>{item}</li>
+                                <li>{item?.buyerMessage}</li>
                             </ul>
                         ))}
+                            {buyerIdChat?.buyerMessage}
                             {chatList.map((item, index) => (
                                 <ul key={index}>
                                     <li>{item?.message}</li>

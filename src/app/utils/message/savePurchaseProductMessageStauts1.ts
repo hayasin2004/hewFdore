@@ -22,11 +22,18 @@ const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser:
 //     チャットルームにmessageを新しく挿入
     const fChangeMessage = await Purchase.findByIdAndUpdate(
         purchaseId,
-        {$push: {sellerUserChat: message}},
+        {
+            $push: {
+                sellerChatMessage: {
+                    sellerMessage : message,
+                    sellerMessageLike : []
+                }
+            }
+        },
         {new: true, useFindAndModify: false}
     )
     console.log(fChangeMessage)
-    return {fChangeMessage : fChangeMessage}
+    return {fChangeMessage: fChangeMessage}
 
 }
 

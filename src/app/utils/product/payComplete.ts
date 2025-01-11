@@ -12,6 +12,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
         const purchaseId = uuidv4();
         console.log(productId, stripeCode, userId);
         if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
+            const purchase = await Purchase.findOne({productId: productId})
             console.log("既に購入されていていますされています。");
             return JSON.stringify(purchase._id)
 

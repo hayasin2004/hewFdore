@@ -12,6 +12,10 @@ export interface PurchaseType {
 const tradeStatus = ["取引中", "取引完了" , "取引終了"] as const;
 type tradeStatusType = (typeof tradeStatus)[number];
 
+
+const review = ["1", "2", "3", "4","5"]
+type reviewType = (typeof review)[number];
+
 const PurchaseSchema = new mongoose.Schema({
     purchaseId : {
         type: String,
@@ -29,13 +33,49 @@ const PurchaseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    sellerUserChat : {
-        type : Array ,
-        default: [],
+    buyerChatMessage: [{
+        buyerMessage: {
+            type: String,
+            default: "",
+        },
+        buyerMessageLike: {
+            type: Array,
+            default: []
+        },
+        timeStamp : {
+            type : Date,
+            default: Date.now(),
+        }
+    }],
+    sellerChatMessage: [{
+        sellerMessage: {
+            type: String,
+            default: ""
+        },
+        sellerMessageLike: {
+            type: Array,
+            default: []
+        },
+        timeStamp : {
+            type : Date ,
+            default : Date.now()
+        }
+    }],
+    sellerUserLastChat : {
+        type : String ,
+        default: "",
     },
-    buyerUserChat : {
-        type : Array ,
-        default: [],
+    buyerUserLastChat : {
+        type : String ,
+        default: "",
+    },
+    sellerUserReview : {
+        type: String,
+        enum: review,
+    },
+    buyerUserLastReview : {
+        type: String,
+        enum: review,
     },
     tradeStatus :{
         type : String ,
