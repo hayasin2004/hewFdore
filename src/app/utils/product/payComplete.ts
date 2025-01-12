@@ -10,18 +10,19 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
     try {
         const CheckProduct = await Product.findById({_id: productId})
         const purchaseId = uuidv4();
-        console.log(productId, stripeCode, userId);
+        console.log("何を得て何を得て大人になっていくんだろう"+productId, stripeCode, userId);
         if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
             const purchase = await Purchase.findOne({productId: productId})
             console.log("既に購入されていていますされています。");
             return JSON.stringify(purchase._id)
 
         } else {
+            console.log("生成"+userId)
             const purchase = await Purchase.create({
                 purchaseId: purchaseId,
                 sellerId: CheckProduct.sellerId,
                 buyerId: userId,
-                productId :productId
+                productId :productId,
             })
 
             purchase.save()

@@ -50,7 +50,7 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
                 ],
                 mode: "payment",
                 // req.body.url　→　mongodbのproductIdを付与するのかな？
-                success_url: `http://localhost:3000/payComplete/checkout-success?session_id={CHECKOUT_SESSION_ID}&productId=${productId}`,
+                success_url: `http://localhost:3000/payComplete/checkout-success?session_id={CHECKOUT_SESSION_ID}&productId=${productId}&userId=${userId}`,
                 cancel_url: `http://localhost:3000/product/checkout-false?session_id=cancel&productId=${productId}`,
             })
             console.log("こにちは" + session)

@@ -19,11 +19,12 @@ const PayComplete = () => {
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
         const productId = query.get('productId');
-        const userId = user?.userId
+        const userId = query.get('userId');
         console.log(userId)
         setParams({sessionId, productId});
         if (userId) {
             if (sessionId || productId || userId) {
+                console.log(productId,sessionId, userId)
                 const insertPurchaseDate = async  () => {
                     const response = await payComplete(productId,sessionId, userId)
                     if (response !== undefined || response !== null){
@@ -35,7 +36,7 @@ const PayComplete = () => {
                 console.log("ゾンビ")
             }
         }
-    }, [user]);
+    }, []);
     // const productId = decodeURI(params.productId);
     // console.log(productId);
 

@@ -20,16 +20,21 @@ import Images from "next/image";
 import userProfile from "@/app/utils/user/userProfile";
 import savePurchaseProductMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import savePurchaseProductMessageStatus2Update from "@/app/utils/message/savePurchaseProductMessageStatus2Update";
+import tradeEnd from "@/app/utils/product/tradeEnd";
+import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
 
 const ListingComplete = ({params}: { params: { id: string | null } }) => {
-    const [value, setValue] = React.useState<number | null>(0.5);
+    const [reviewValue, setReviewValue] = React.useState<number | null>(1);
     const [productData, setProductData] = useState<string | null>(null)
     const [chatData, setChatData] = useState<ChatType | null>(null)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
+    const [tradeStatus, setTradeStatus] = useState<number>(0)
     const [buyerIdChat, setBuyerIdChat] = useState<string | null>([])
     const [sellerIdChat, setSellerIdChat] = useState<string[] | null>([])
+    const [lastChat, setLastChat] = useState<string | null>([])
+    const [currentUserId, setCurrentUserId] = useState<string | null>([])
     console.log(sellerIdChat)
     const [currentUserData, setCurrentUserData] = useState()
     console.log(JSON.stringify(currentUserData))
@@ -42,6 +47,11 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const purchase = async () => {
             const response = await tradeProduct(purchaseId);
+            const tradeStatus = await confirmTradeStatus(purchaseId);
+            if (tradeStatus !== null && tradeStatus !== undefined) {
+                console.log(tradeStatus)
+                setTradeStatus(tradeStatus)
+            }
             setProductData(JSON.parse(response));
             console.log(response)
         }
@@ -73,6 +83,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const response = async () => {
             const currentUserId = user?.userId
+            setCurrentUserId(currentUserId)
             const sellerId = productData?.sellerId
             const buyerId = productData?.buyerId
             console.log(buyerId)
@@ -155,9 +166,16 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     }
     console.log(productData)
     console.log(Rating)
+
+    const tradeEndFunc = async () => {
+        const response = await tradeEnd(purchaseId ,status , currentUserId ,lastChat ,reviewValue)
+        console.log(response)
+    }
+
     return (
         <>
             <Header/>
+            {tradeStatus == 1 ? <p>取引終了しました。</p> : <p>取引中</p>}
             {/*{sellerIdChat}*/}
             {/*{sellerIdChat?.map((item) => ((*/}
             {/*       <ul key={item}>*/}
@@ -268,7 +286,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     <div className={"evaluation"}>
         <div className={"evaluation_Chat"}>
             <h2>最終コメント</h2>
-            <input type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
+            <input onChange={(e) => {setLastChat(e.target.value)}} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
+        </div>
+        <div>
+            <button onClick={tradeEndFunc}>取引を終了する</button>
         </div>
         <div>
 
@@ -276,9 +297,9 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             <Rating
                 size={"large"}
                 name="simple-controlled"
-                value={value}
+                value={reviewValue}
                 onChange={(event, newValue) => {
-                    setValue(newValue);
+                    setReviewValue(newValue);
                 }}
             />
 
