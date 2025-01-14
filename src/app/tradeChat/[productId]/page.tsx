@@ -33,9 +33,14 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [tradeStatus, setTradeStatus] = useState<number>(0)
     const [buyerIdChat, setBuyerIdChat] = useState<string | null>([])
     const [sellerIdChat, setSellerIdChat] = useState<string[] | null>([])
-    const [lastChat, setLastChat] = useState<string | null>([])
-    const [currentUserId, setCurrentUserId] = useState<string | null>([])
-    console.log(sellerIdChat)
+    const [lastChat, setLastChat] = useState<string | null>("")
+    const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
+    const [sellerUserReview, setSellerUserReview] = useState<string | null>(null)
+    const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
+    console.log("出品者の最終評価" + sellerUserReview)
+    const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
+    const [currentUserId, setCurrentUserId] = useState<string | null>("")
+    console.log(sellerIdChat, buyerLastChat)
     const [currentUserData, setCurrentUserData] = useState()
     console.log(JSON.stringify(currentUserData))
     const [partnerUserData, setPartnerUserData] = useState()
@@ -48,9 +53,17 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         const purchase = async () => {
             const response = await tradeProduct(purchaseId);
             const tradeStatus = await confirmTradeStatus(purchaseId);
-            if (tradeStatus !== null && tradeStatus !== undefined) {
-                console.log(tradeStatus)
-                setTradeStatus(tradeStatus)
+            console.log(tradeStatus)
+            if (tradeStatus !== undefined) {
+                const tradeStatusParse = JSON.parse(JSON.stringify(tradeStatus))
+                if (tradeStatusParse !== undefined) {
+                    console.log("トレードの今のログ" + tradeStatusParse.sellerUserLastChat)
+                    setTradeStatus(tradeStatusParse?.tradeStatus)
+                    setSellerLastChat(JSON.parse(tradeStatusParse?.sellerUserLastChat))
+                    setBuyerLastChat(JSON.parse(tradeStatusParse?.buyerUserLastChat))
+                    setSellerUserReview(JSON.parse(tradeStatusParse.sellerUserReview))
+                    setBuyerUserReview(tradeStatusParse.buyerUserReview)
+                }
             }
             setProductData(JSON.parse(response));
             console.log(response)
@@ -66,7 +79,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 if (status == "1") {
                     const catchUser = await tradeProductCatchMessageStatus1(purchaseId)
                     if (catchUser !== undefined) {
-                        setSellerIdChat(JSON.parse( catchUser?.currentUserChat))
+                        setSellerIdChat(JSON.parse(catchUser?.currentUserChat))
                         setBuyerIdChat(JSON.parse(catchUser?.partnerUserChat))
                     }
                 } else if (status == "2") {
@@ -168,8 +181,15 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     console.log(Rating)
 
     const tradeEndFunc = async () => {
-        const response = await tradeEnd(purchaseId ,status , currentUserId ,lastChat ,reviewValue)
+        const response = await tradeEnd(purchaseId, status, currentUserId, lastChat, reviewValue)
         console.log(response)
+        if (response?.tradeStatus == 0 || response?.tradeStatus == 2 || response?.tradeStatus == 4) {
+            setTradeStatus(1)
+        } else if (response?.tradeStatus == 1 || response?.tradeStatus == 5) {
+            setTradeStatus(2)
+        } else if (response?.tradeStatus == 3 || response?.tradeStatus == 5) {
+            setTradeStatus(3)
+        }
     }
 
     return (
@@ -209,115 +229,126 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             {/*    <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>*/}
             {/*    <button onClick={(e) => handleSendMessage(e)}>送信</button>*/}
             {/*</form>*/}
-                <div id="product">
+            <div id="product">
                 <div id="info">
-                <div id="photo">
-                <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
+                    <div id="photo">
+                        <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
 
-    <ul className="piclist">
-        <li className="picts"><a href="/images/clothes/product9.jpg">
-            <Image src="/images/clothes/product9.jpg" width={50} height={50} alt="商品の写真"/>
-        </a>
+                        <ul className="piclist">
+                            <li className="picts"><a href="/images/clothes/product9.jpg">
+                                <Image src="/images/clothes/product9.jpg" width={50} height={50} alt="商品の写真"/>
+                            </a>
 
-        </li>
+                            </li>
 
-    </ul>
-</div>
-    <div id="text">
-        <h1>{productData?.productName}</h1>
-        <span className="under_bar"></span>
-        <a href="#" id="seller"><h2>出品者:{productData?.sellerUserName}</h2>
-        </a>
-        <p>
-            商品詳細<br/>
-            {productData?.productDesc}<br/>
+                        </ul>
+                    </div>
+                    <div id="text">
+                        <h1>{productData?.productName}</h1>
+                        <span className="under_bar"></span>
+                        <a href="#" id="seller"><h2>出品者:{productData?.sellerUserName}</h2>
+                        </a>
+                        <p>
+                            商品詳細<br/>
+                            {productData?.productDesc}<br/>
 
-        </p>
-        <p id="size">サイズ:S</p>
-        <p id="used">商品状態:多少使用感がある</p>
-        <p id="postage">送料:出品者負担</p>
-        <p id="category">カテゴリ: ワンピース Sサイズ 春物 色</p>
-    </div>
+                        </p>
+                        <p id="size">サイズ:S</p>
+                        <p id="used">商品状態:多少使用感がある</p>
+                        <p id="postage">送料:出品者負担</p>
+                        <p id="category">カテゴリ: ワンピース Sサイズ 春物 色</p>
+                    </div>
 
-</div>
+                </div>
 
-    <div className={"purchaseMessage"}>
-        <div className="Productchat">
-            <div>
-                {/*    対象ユーザーチャット : {sellerIdChat?.map((item) => (*/}
-                {/*    <ul key={item.id}>*/}
-                {/*        {partnerUserData?.username}*/}
-                {/*        <li>{item?.sellerChatMessage}</li>*/}
-                {/*    </ul>*/}
-                {/*))}*/}
+                <div className={"purchaseMessage"}>
+                    <div className="Productchat">
+                        <div>
+                            {/*    対象ユーザーチャット : {sellerIdChat?.map((item) => (*/}
+                            {/*    <ul key={item.id}>*/}
+                            {/*        {partnerUserData?.username}*/}
+                            {/*        <li>{item?.sellerChatMessage}</li>*/}
+                            {/*    </ul>*/}
+                            {/*))}*/}
+                        </div>
+                        <div>
+                            {/*    ログインしているチャット : {buyerIdChat?.map((item) => (*/}
+                            {/*    <ul key={item.id}>*/}
+                            {/*        {currentUserData?.username}*/}
+                            {/*        <li>{item?.buyerMessage}</li>*/}
+                            {/*    </ul>*/}
+                            {/*))}*/}
+                            {chatList.map((item, index) => (
+                                <ul key={index}>
+                                    <li>{item?.message}</li>
+                                </ul>
+                            ))}
+                        </div>
+
+
+                    </div>
+                    <div className={"messageBox"}>
+
+                        <Images
+                            src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                            alt={"サンプルユーザーアイコン"}/>
+
+                        <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
+                        <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
+                               value={message}
+                               placeholder="出品者へのお問い合わせはこちらから"/>
+                        {/*<input type="submit" formTarget={"msg"}/>*/}
+                        <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
+                            <img id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                        </button>
+                    </div>
+                </div>
+                <div className={"evaluation"}>
+                    <div className={"evaluation_Chat"}>
+                        <h2>最終コメント</h2>
+                        <input onChange={(e) => {
+                            setLastChat(e.target.value)
+                        }} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
+                    </div>
+                    {tradeStatus == 1 ?
+                        <div>
+                            <p>取引終了</p>
+                        </div>
+                        : <button onClick={tradeEndFunc}>取引を終了する</button>
+                    }
+
+                    <div>
+
+                        <Typography component="legend" style={{marginBottom: "30px"}}>今回の取引の評価</Typography>
+                        <Rating
+                            size={"large"}
+                            name="simple-controlled"
+                            value={reviewValue}
+                            onChange={(event, newValue) => {
+                                setReviewValue(newValue);
+                            }}
+                        />
+
+
+                    </div>
+                </div>
+
+                <div>
+                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserReview}
+                </div>
+
+                <div id="control">
+                    <button
+                        type="button">トップに戻る
+                    </button>
+                </div>
+
             </div>
-            <div>
-                {/*    ログインしているチャット : {buyerIdChat?.map((item) => (*/}
-                {/*    <ul key={item.id}>*/}
-                {/*        {currentUserData?.username}*/}
-                {/*        <li>{item?.buyerMessage}</li>*/}
-                {/*    </ul>*/}
-                {/*))}*/}
-                {chatList.map((item, index) => (
-                    <ul key={index}>
-                        <li>{item?.message}</li>
-                    </ul>
-                ))}
-            </div>
 
+        </>
 
-        </div>
-        <div className={"messageBox"}>
-
-            <Images
-                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                alt={"サンプルユーザーアイコン"}/>
-
-            <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
-            <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
-                   value={message}
-                   placeholder="出品者へのお問い合わせはこちらから"/>
-            {/*<input type="submit" formTarget={"msg"}/>*/}
-            <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
-                <img id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
-            </button>
-        </div>
-    </div>
-    <div className={"evaluation"}>
-        <div className={"evaluation_Chat"}>
-            <h2>最終コメント</h2>
-            <input onChange={(e) => {setLastChat(e.target.value)}} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
-        </div>
-        <div>
-            <button onClick={tradeEndFunc}>取引を終了する</button>
-        </div>
-        <div>
-
-            <Typography component="legend" style={{marginBottom: "30px"}}>今回の取引の評価</Typography>
-            <Rating
-                size={"large"}
-                name="simple-controlled"
-                value={reviewValue}
-                onChange={(event, newValue) => {
-                    setReviewValue(newValue);
-                }}
-            />
-
-
-        </div>
-    </div>
-    <div id="control">
-        <button
-            type="button">トップに戻る
-        </button>
-    </div>
-
-</div>
-
-</>
-
-)
-    ;
+    )
+        ;
 }
 
 
