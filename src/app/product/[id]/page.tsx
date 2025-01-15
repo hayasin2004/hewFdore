@@ -106,16 +106,15 @@ const Product = ({params}: { params: { id: string } }) => {
                         <div id="info">
                             <div id="photo">
                                 <figure>
-                                    <Image src="/images/clothes/product9.jpg" width={200} height={200}
+                                    <Image src={product?.productImage}  width={200} height={200}
                                            alt="商品の写真"/>
                                 </figure>
                                 <ul className="piclist">
-                                    <li className="picts"><a href="/images/clothes/product9.jpg">
+                                    <li className="picts">
                                         <figure>
-                                            <Image src="/images/clothes/product9.jpg" width={50} height={50}
+                                            <Image  src={product?.productImage !== undefined ? product?.productImage : "/images/clothes/product.jpg"} width={50} height={50}
                                                    alt="商品の写真"/>
                                         </figure>
-                                    </a>
                                     </li>
                                 </ul>
                             </div>

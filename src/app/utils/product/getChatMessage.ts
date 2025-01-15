@@ -19,7 +19,7 @@ const getProductChatMessage = async (currentUserId: string | null, productId: st
         }
         console.log("出品者がコメントしたやつを取得する処理")
         if (searchProductChat) {
-            console.log(searchProductChat)
+            console.log(searchProductChat.listingChatMessage)
             return {
                 listingChatMessage: JSON.stringify(searchProductChat.listingChatMessage),
                 buyerChatMessage: JSON.stringify(searchProductChat.buyerChatMessage),
