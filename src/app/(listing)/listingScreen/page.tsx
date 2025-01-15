@@ -10,6 +10,7 @@ import {string} from "prop-types";
 import {redirect} from "next/navigation";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
+import e from "cors";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -33,9 +34,23 @@ const ListingScreen: React.FC = () => {
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
+    const [productImage, setProductImage] = useState<string | null>(null)
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
     console.log(shippingArea)
+
+    const productImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+
     //
     // const productCategory = productCategory
     // const productSize = productSize
@@ -74,7 +89,8 @@ const ListingScreen: React.FC = () => {
                             productSize,
                             productCondition,
                             postageBurden,
-                            shippingAreaText
+                            shippingAreaText,
+                            productImage
                         ).then(
                             (product => {
                                 if (product?.result !== undefined) {
@@ -90,8 +106,10 @@ const ListingScreen: React.FC = () => {
                         </h2>
 
                         <div id="kamera">
-                            <Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>
+                            {productImage && <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
+                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                         </div>
+                            <input type="file" onChange={productImageFile}/>
 
 
                         <h3 id="s_name">

@@ -1,5 +1,5 @@
     // CollapsibleProductCard.tsx
-    import { useState, useRef, useEffect } from 'react';
+    import React, { useState, useRef, useEffect } from 'react';
     import {
         Card,
         CardContent,
@@ -10,9 +10,12 @@
     import './CollapsibleProductCard.css';
     import { DBProductType } from '@/app/api/product/route';
     import Link from 'next/link';
+    import {Stripe} from "stripe";
+    import {ProductType} from "@/app/utils/product/productDetail";
+    import Image from "next/image";
 
     interface CollapsibleProductCardProps {
-        item: DBProductType;
+        item: ProductType;
         isOpen: boolean;
         onToggle: () => void;
     }
@@ -78,8 +81,11 @@
                 <Collapse in={!isOpen} timeout="auto">
                     <CardContent>
                         <div className="testttt">
-                            <p className="collapsed-image">item.いめーじ</p>
-                            <p className="product-Size">L</p>
+                            <p className="collapsed-image">
+                                <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"} width={400} height={310}
+                                       alt="サンプル" id="sum"/>
+                            </p>
+                            <p className="product-Size">{item.productSize}</p>
                         </div>
                         <p className="explanation">商品説明 : {item.productDesc}</p>
                         <p className="explanation">出品者名 : {item.productName}</p>
@@ -101,8 +107,11 @@
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
                                 <Box className="expanded-box" sx={{ height: '100%' }}>
-                                    <p className="expanded-image">item.いめーじい</p>
-                                    <p className="expanded-Size">L</p>
+                                    <p className="expanded-image">
+                                        <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"} width={420} height={550}
+                                               alt="サンプル" id="sum"/>
+                                    </p>
+                                    <p className="expanded-Size">{item.productSize}</p>
                                 </Box>
                             </Grid>
 

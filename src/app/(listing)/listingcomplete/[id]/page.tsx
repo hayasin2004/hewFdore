@@ -33,11 +33,11 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                 <h1 className={"liscomph2"}>出品が完了しました。</h1>
                 <div id="info">
                     <div id="photo">
-                        <Image className={"proimg"} src="/images/clothes/product.jpg" width={400} height={400}
+                        <Image className={"proimg"} src={data?.productImage !== undefined ? data?.productImage : "/images/clothes/product.jpg"} width={400} height={400}
                                alt="サンプル" id="sum"/>
                         <ul className="piclist">
                             <li className="picts"><a href="/images/clothes/product.jpg">
-                                <Image className="pictS" src="/images/clothes/product.jpg" width={50} height={50}
+                                <Image className="pictS" src={data?.productImage} width={50} height={50}
                                        alt="画像1"/></a>
                             </li>
 

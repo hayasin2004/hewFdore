@@ -18,6 +18,7 @@ import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import axios from "axios";
 import InsertProductSellStatus from "@/app/utils/setting/update/InserteUserPurchase";
+import InsertProductImage from "@/app/utils/setting/update/InsertProudctImage";
 // 幅揃えします
 
 const Toppage = () => {
@@ -26,6 +27,12 @@ const Toppage = () => {
     console.log(productList)
 
 
+    useEffect(() => {
+        const insert = async () => {
+         await  InsertProductImage()
+        }
+        insert()
+    }, []);
 
     useEffect(() => {　
         // エンコードしたtokenを検証する

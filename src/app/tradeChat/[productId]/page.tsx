@@ -31,7 +31,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
     const [tradeStatus, setTradeStatus] = useState<number>(0)
-    const [buyerIdChat, setBuyerIdChat] = useState<string | null>([])
+    const [buyerIdChat, setBuyerIdChat] = useState<string | null>()
+    console.log(JSON.stringify(buyerIdChat))
     const [sellerIdChat, setSellerIdChat] = useState<string[] | null>([])
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
@@ -84,8 +85,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     }
                 } else if (status == "2") {
                     const catchUser = await tradeProductCatchMessageStatus2(purchaseId)
-                    setBuyerIdChat(JSON.parse(JSON.stringify(catchUser?.currentUserChat)))
-                    setSellerIdChat(JSON.parse(JSON.stringify(catchUser?.partnerUserChat)))
+                    setBuyerIdChat(JSON.parse(JSON.stringify(catchUser)))
+                    // setSellerIdChat(JSON.parse(JSON.stringify(catchUser?.partnerUserChat)))
                 }
             }
             chatresponse()

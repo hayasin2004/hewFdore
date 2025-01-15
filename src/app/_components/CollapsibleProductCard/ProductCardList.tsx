@@ -3,9 +3,10 @@ import { useState } from 'react';
 import CollapsibleProductCard from './CollapsibleProductCard';
 import './CollapsibleProductCard.css';
 import { DBProductType } from '@/app/api/product/route';
+import {ProductType} from "@/app/utils/product/productDetail";
 
 interface ProductCardListProps {
-    items: DBProductType[];
+    items: ProductType[];
 }
 
 const ProductCardList = ({ items }: ProductCardListProps) => {

@@ -17,7 +17,7 @@ export interface createProductType {
 }
 
 // export  const createProduct = async (token : string ,　productName : string , productPrice :number , productDesc : string , shippingArea : string): Promise<createProductType | null> => {
-export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,): Promise<{
+export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,productImage : string | null): Promise<{
     result: string
 } | null> => {
     // console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
@@ -46,6 +46,7 @@ export const createProduct = async (token: string | null, productName: string | 
             postageBurden,
             shippingArea,
             deliveryTime,
+            productImage,
             sellStatus : "selling"
         })
         await newProduct.save()

@@ -21,7 +21,8 @@ export interface ProductType {
     shippingArea?: string,
     productLike?: string,
     postageBurden?: string,
-    productCondition?: string
+    productCondition?: string,
+    productImage? :string
 
 }
 
