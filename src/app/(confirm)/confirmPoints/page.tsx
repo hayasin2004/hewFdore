@@ -3,23 +3,17 @@ import Header from "@/app/_components/header/Header";
 import "./confirmPoints.css"
 import Image from "next/image"
 import Link from "next/link";
+import Footer from "@/app/_components/footer/Footer"
 
 const ConfirmUserProfile = () => {
 
     return (
         <>
             <Header/>
-            <span id={"btn"}>
 
-                    <Link href={"confirmUser"}>
-                    <button>
+            <div id={"conPoint_All"} style={{display: "flex"}}>
 
-                    戻る
-                    </button>
-                    </Link>
-            </span>
-            <div style={{display: "flex"}}>
-                <div>
+                <div className={"leftbarPoint"}>
 
                     <div className={"confirmPointMain"}>
                         <div className={"confirmPoint"}>
@@ -34,8 +28,8 @@ const ConfirmUserProfile = () => {
                                 <path d="M9 12h5a2 2 0 1 0 0-4h-3v9"/>
                             </svg>
                             <div className={"confirm_text"}>
-                                <p>現在の保持ポイント xxxx pt</p>
-                                <p>獲得履歴を見る</p>
+                                <p>現在の保持ポイント </p>
+                                <p>xxxx pt</p>
                             </div>
                         </div>
 
@@ -44,7 +38,8 @@ const ConfirmUserProfile = () => {
                             <div className={"recommend_product"}>
 
                                 <div className={"product"}>
-                                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                                    <Image src={"/images/clothes/product.jpg"} width={200} height={200}
+                                           alt={"購入履歴"}/>
                                     <div className={"rightbar_product_text"}>
                                         <p>
                                             商品名
@@ -54,7 +49,8 @@ const ConfirmUserProfile = () => {
                                     </div>
                                 </div>
                                 <div className={"product"}>
-                                    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                                    <Image src={"/images/clothes/product.jpg"} width={200} height={200}
+                                           alt={"購入履歴"}/>
                                     <div className={"rightbar_product_text"}>
                                         <p>
                                             商品名
@@ -65,15 +61,21 @@ const ConfirmUserProfile = () => {
                                 </div>
                             </div>
                         </div>
+                        <Link href={"confirmUser"}>
+                            <button id={"returnUtop"}>
+                                戻る
+                            </button>
+                        </Link>
                     </div>
 
                 </div>
 
 
                 <div className={"rightbarPoint"}>
-                    <h2>ポイント獲得履歴</h2>
+
                     <div className={"rightbar_note"}>
                         <div>
+                            <h2>ポイント獲得履歴</h2>
                             <ul className={"rightbar_collectpoint"}>
                                 <li>獲得元</li>
                                 <li>獲得ポイント</li>
@@ -107,10 +109,14 @@ const ConfirmUserProfile = () => {
                             <li>xxadfasdf</li>
                             <li>yyyy</li>
                         </ul>
+
                     </div>
+
                 </div>
 
             </div>
+
+            <Footer/>
 
         </>
     );

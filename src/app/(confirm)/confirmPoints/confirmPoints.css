@@ -3,16 +3,19 @@ body {
     padding: 0;
 }
 
-span#btn{
-    position: sticky;
-    top: 90%;
-    left: 87%;
+
+div#conPoint_All{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #EBE8DB;
+
+}
+div.leftbarPoint{
+    margin: 0 0 0 0;
 }
 
-span#btn button{
-    padding: 10px 30px;
-    border-radius: 20px;
-}
 div#point_main{
     display: flex;
     flex-direction: row;
@@ -21,25 +24,47 @@ div#point_main{
 div.confirmPointMain{
     width: 100%;
     align-items: center;
-    margin: 17% 0 13% 3%;
+    margin: 17% 0 8% 3%;
     padding-bottom: 90px;
+}
+
+button#returnUtop{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 99px;
+    border: 2px solid #333;
+    width: 6rem;
+    box-shadow: 2px 2px 0 #605252;
+}
+button#returnUtop:hover{
+    opacity: 0.8;
+    box-shadow: none;
 }
 
 div.confirmPoint{
     display:flex;
     align-items:center;
     margin-bottom: 20px;
+    padding: 5% 10% 5% 5%;
+    border-radius: 50px;
+    /*border: 2px solid #605252;*/
+    box-shadow:10px 10px 0  #605252;
+    background-color: #fefeed;
+
 }
-
-
 
 div.confirm svg{
     margin-right: 20px;
 }
 
+
 div.confirm p {
     font-size: 2rem;
 }
+
+
 
 
 div.recommend_products{
@@ -87,16 +112,19 @@ div.rightbar_product_text p{
 
 
 div.rightbarPoint{
+    padding: 5% 0;
     width: 45%;
     height: 40%;
-    margin: 10% 2% 0 5% ;
-    margin-bottom: 20px;
+    display: flex;
 }
 
 div.rightbarPoint h2{
     text-align: center;
     font-size: 3rem;
     margin-bottom: 7%;
+    border: 2px solid #000;
+    border-style: none none solid none;
+
 }
 
 
@@ -107,19 +135,20 @@ div.confirm_text{
 
 div.rightbar_note {
     width: 70%;
-    height: 40%;
+    height: 60%;
     padding-left: 2%;
-    margin-left: 6%;
+    margin-left: 10%;
     /*background-color: aqua;*/
     border-left: 2px solid #000;
 }
+
 
 div ul.rightbar_collectpoint{
     width: 80%;
     text-align: center;
     display: flex;
     list-style: none;
-    margin-left: 20%;
+    margin-left: 10%;
 }
 
 div ul.rightbar_collectpoint li{
@@ -136,7 +165,7 @@ div ul.rightbar_point{
     text-align: center;
     display: flex;
     list-style: none;
-    margin-left: 20%;
+    margin-left: 10%;
 }
 
 div ul.rightbar_point li{
@@ -152,4 +181,12 @@ div.rightbar h2{
     margin-top: -70px;
     text-align: center;
     font-size: 2rem;
+}
+
+@media screen and (max-width: 1300px) {
+    div#conPoint_All{
+        flex-direction: column;
+    }
+
+
 }

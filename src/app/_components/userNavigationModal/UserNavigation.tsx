@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './userNavigation.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -6,6 +7,9 @@ import Header from "@/app/_components/header/Header";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import Images from "next/image"
+import {borderRadius, color, fontWeight} from "@mui/system";
+import {createTheme} from "@mui/material/styles";
+import {main} from "@popperjs/core";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -13,13 +17,17 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    color: '#605252',
+    bgcolor: '#E8E8DB',
+    border: '2px solid #605252',
+    borderRadius:5,
     boxShadow: 24,
     pt: 2,
     px: 4,
     pb: 3,
+    lineHeight: 2,
 };
+
 
 function ChildModal() {
     const [open, setOpen] = React.useState(false);
@@ -32,14 +40,17 @@ function ChildModal() {
 
     return (
         <React.Fragment>
-            <Button onClick={handleOpen}>プロフィールナビゲーション</Button>
+            <Button sx={{marginTop:2,fontWeight:"bold",bgcolor:"#D0C7B2",color:"#605252",border: '2px solid #605252'}} onClick={handleOpen}>プロフィールナビゲーション</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="child-modal-title"
                 aria-describedby="child-modal-description"
             >
-                <Box sx={{...style, width: 500, height: 500}}>
+
+                <Box sx={{
+                    ...style}
+                }>
                     <h2 id="child-modal-title">ユーザーナビゲーション</h2>
                     <p id="child-modal-description">
                         <Link href={"confirmUser"}>
@@ -62,7 +73,7 @@ function ChildModal() {
                             購入履歴
                         </Link>
                     </p>
-                    <Button onClick={handleClose}>閉じる</Button>
+                    <Button sx={{marginTop:2,fontWeight:"bold",bgcolor:"#D0C7B2",color:"#605252",border: '2px solid #605252'}} onClick={handleClose}>閉じる</Button>
                 </Box>
             </Modal>
         </React.Fragment>
