@@ -8,7 +8,7 @@ import {Stripe} from "stripe";
 import {Product} from "@/models/Product";
 
 const toastProduct = async (productId: string, sellerId: string) => {
-    const toastProduct = await Product.findById({_id: productId}).select(" productName productPrice productDesc productCategory productSize productCondition postageBurden" )
+    const toastProduct = await Product.findById({_id: productId}).select(" productName productPrice productDesc productCategory productSize productCondition postageBurden")
     const toastUser = await User.findById({_id: sellerId}).select("username email")
     console.log("toastProduct" + JSON.stringify(toastUser))
     {

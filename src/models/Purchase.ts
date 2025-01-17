@@ -34,7 +34,7 @@ const PurchaseSchema = new mongoose.Schema({
         required: true,
     },
     buyerChatMessage: [{
-        senderUserId: {
+        buyerUserId: {
             type: String,
             required: true,
         },

@@ -57,29 +57,25 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     return {buyerChatResponse: JSON.stringify(createChatResponse)}
                 }
             } else {
-
-
                 if (productListingUser.sellerId == currentUser) {
-                    if (ExistChatMessage?.listingChatMessage[0]?.senderUserId == currentUser) {
-
-                        const updateChatResponse = await ProductComment.updateOne(
-                            {_id: ExistChatMessage?._id, "listingChatMessage.senderUserId": currentUser},
-                            {
-                                $push: {
-                                    listingChatMessage: [{
-                                        senderUserId: currentUser,
-                                        listingMessage: sendChatMessage,
-                                        listingMessageLike: [],
-                                        listingMessageUsername: user.username,
-                                        listingMessageProfilePicture: user.profilePicture,
-                                        timeStamp: new Date()
-
-
-                                    }]
+                    if (ExistChatMessage?.listingChatMessage !== undefined) {
+                        if (ExistChatMessage?.listingChatMessage[0]?.senderUserId == currentUser) {
+                            const updateChatResponse = await ProductComment.updateOne(
+                                {_id: ExistChatMessage?._id, "listingChatMessage.senderUserId": currentUser},
+                                {
+                                    $push: {
+                                        listingChatMessage: [{
+                                            senderUserId: currentUser,
+                                            listingMessage: sendChatMessage,
+                                            listingMessageLike: [],
+                                            listingMessageUsername: user.username,
+                                            listingMessageProfilePicture: user.profilePicture,
+                                            timeStamp: new Date()
+                                        }]
+                                    }
                                 }
-                            }
-                        );
-                        console.log(updateChatResponse)
+                            );
+                        }　
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     } else {
