@@ -26,13 +26,13 @@ const Toppage = () => {
     const [productList, setProductList] = useState([])
     console.log(productList)
 
-
-    useEffect(() => {
-        const insert = async () => {
-         await  InsertProductImage()
-        }
-        insert()
-    }, []);
+    //
+    // useEffect(() => {
+    //     const insert = async () => {
+    //      await  InsertProductImage()
+    //     }
+    //     insert()
+    // }, []);
 
     useEffect(() => {　
         // エンコードしたtokenを検証する
