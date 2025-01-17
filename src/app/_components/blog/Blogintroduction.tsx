@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { GetBlog } from "@/lib/client";
 import Link from "next/link";
+import "./Blogintroduction.css"
 
 export interface BlogType {
     id?: string;
@@ -33,9 +34,11 @@ const Blogintroduction = () => {
                     {blogs.map((blog) => (
                         <li key={blog.id}>
                             {/*各ブログの詳細ページのLink*/}
-                            <Link href={`/${blog.id}`}>
-                                {blog.title}
 
+                            <Link href={`/${blog.id}`}>
+                            <div className={"linkid"}>
+                                {blog.title}
+                            </div>
                             </Link>
                         </li>
                     ))}
