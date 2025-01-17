@@ -7,21 +7,30 @@ body {
 div.Productchat{
     display: flex;
     flex-direction: row;
-    margin: 50px auto 50px 50px;
-    width: 80%;
-    height: 150px;
+    /*margin: 50px auto 50px 50px;*/
+    width: 100%;
     background: #D9D9D9;
-    border: #AAA solid 2px;
+    border-radius: 3px;
+    border-top: #AAA solid 2px;
     overflow-y: auto;
 }
-input[type=text]#msg{
+textarea#msg{
     margin: 10px;
     width: 80%;
     height: 50px;
+    padding: 5px;
+    border-radius: 4px;
     border-style: none none solid none;
+    overflow-wrap: break-word;
+    overflow: hidden;
 }
 
 /* アイコン*/
+
+div.Productchat #usericon{
+    margin: 10px 0 10px 10px;
+}
+
 div.Productchat img{
     margin: 10px;
     height: 50px;
@@ -37,7 +46,7 @@ input[type=submit]{
     width: 50px;
     margin: 10px;
     color: white;
-    font-weight: bold;
+    font-weight: bold ;
     background-color:#aaa;
     border: #555 2.5px solid;
     border-radius: 10px;
@@ -56,4 +65,46 @@ button img#sendMsg{
     width: 30px;
     background-color: #fff0;
     border-radius: 0;
+}
+
+.comment-areaFrame{
+    /*padding: 10px;*/
+    margin: 0 50px;
+    border-radius: 5px;
+    border: #000 2px solid;
+    background-color: #bbb;
+}
+
+.comment-sec{
+    padding-top: 15px;
+}
+
+.comment-user{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    font-size: 1.1rem;
+}
+.comment-user img{
+    margin-right: 8px;
+}
+
+.comment-area{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding: 0 10px;
+    margin-left: 10px;
+    overflow-wrap: break-word;
+    border-radius: 3px;
+    border: #000 1px solid;
+    background-color: #ddd;
+}
+
+#good{
+    width: 10%;
+    height: auto;
+    border:none ;
+    background-color: #ddd;
 }
