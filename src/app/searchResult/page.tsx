@@ -96,8 +96,10 @@ const SearchPageProducts = () => {
         return(
             // ここで表示html設定
             <>
-               <div style={{"margin":50,"color":"red"}}> {currentProduct}</div>
-                {/*<ProductCardList items={currentproduct} />*/}
+                <p>{ProductOffset}件目から{endOffset}件目を表示</p>
+               {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
+                <ProductCardList items={currentProduct} />
+
 
             </>
         )
@@ -105,32 +107,15 @@ const SearchPageProducts = () => {
     const ProductPerPage = 2;
     const [ProductOffset,setProductoffset] = useState(0);
     const endOffset = ProductOffset +ProductPerPage;
-    const currentProduct = t_item.slice(ProductOffset,endOffset);
-    const pageCount = t_item.length/ProductPerPage;
+    const currentProduct = productList.slice(ProductOffset,endOffset);
+    const pageCount = product.length/ProductPerPage;
     const handlePageClick = (e:{selected:number}) =>{
-        const newOfffset = (e.selected * ProductPerPage)%t_item.length;
+        const newOfffset = (e.selected * ProductPerPage)%product.length;
         setProductoffset(newOfffset);
+
 
     };
 
-    // 練習コーナー2
-    // ProductListを基に表示する分のデータを切り出す
-    // sliceだとA以上B未満になる
-    var sliceProduct = productList.slice(0,10)
-    console.log(sliceProduct);
-    function pageChange(page:  number ){
-        var pMax = 10 * (page+1)-1;
-        var pMin = page *10;
-         const filterProduct = productList.filter((productList,index) => {
-             if(index <= pMax){
-                 return index >= pMin
-             }
-         })
-        console.log(page,filterProduct);
-    }
-
-
-    // react-paginate公式Usage参考 なんかProduct数が2つになってるんですけど！？
 
     return (
         <div>
@@ -144,11 +129,12 @@ const SearchPageProducts = () => {
                 {/*<SearchResultProducts/>*/}
             </div>
         <div>
+            <h2>{product.length}件の検索結果</h2>
         </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
-                <ProductCardList items={product} />
+                {/*<ProductCardList items={product} />*/}
                 <T_items currentProduct={currentProduct}/>
                 <ReactPaginate pageCount={pageCount}
                                pageRangeDisplayed={2}
