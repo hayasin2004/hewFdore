@@ -96,7 +96,7 @@ const SearchPageProducts = () => {
         return(
             // ここで表示html設定
             <>
-                <p>{ProductOffset}件目から{endOffset}件目を表示</p>
+                <p>{ProductOffset+1}件目から{endOffset}件目を表示</p>
                {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
                 <ProductCardList items={currentProduct} />
 
