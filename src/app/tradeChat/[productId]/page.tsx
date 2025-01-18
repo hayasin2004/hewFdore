@@ -25,10 +25,22 @@ import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
 import productChatLike from "@/app/utils/product/productChatLike";
 import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
+import insert from "@/app/utils/user/insert";
 
 
-const Status1TradeChat = ({purchaseId,currentUserId , currentUserIdChat, partnerUserIdChat}) => {
+const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
+    const [tradeChatLike, setTradeChatLike] = useState(0)
+    const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
+    const testCommentLike = async (currentUserId, purchaseId, item) => {
+        console.log(item)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item)
+        console.log(response)
+        const newLikeCount = tradeChatLikeStatus === "insert" ? likeCount + 1 : likeCount - 1;
+        setTradeChatLikeStatus(response?.likeStatus)
+        setTradeChatLike(tradeChatLike + 1)
+        console.log(partnerUserIdChat?.buyerMessageLike == currentUserId)
+    }
     return (
         <div>
 
@@ -39,10 +51,10 @@ const Status1TradeChat = ({purchaseId,currentUserId , currentUserIdChat, partner
                     <ul key={item._id}>
                         <li>{item.buyerUsername}</li>
                         <li>{item.buyerMessage}</li>
-                        <li>{item.buyerChatMessage._id}</li>
+                        <li>{item._id}</li>
 
                         <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                            ♡{item?.buyerMessageLike?.length}
+                            ♡ {item?.buyerMessageLike?.length}
                         </button>
                     </ul>
                 ))}
@@ -56,7 +68,7 @@ const Status1TradeChat = ({purchaseId,currentUserId , currentUserIdChat, partner
                     <li>{item.sellerMessage}</li>
 
                     <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                        ♡{item?.buyerMessageLike?.length}
+                        ♡{item?.sellerMessageLike?.length}
                     </button>
                 </ul>
 
@@ -68,9 +80,9 @@ const Status1TradeChat = ({purchaseId,currentUserId , currentUserIdChat, partner
 const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     // status2の時はログインしているユ―ザーが購入者だった時。
 
-    const testCommentLike = async (currentUserId, purchaseId , item) => {
+    const testCommentLike = async (currentUserId, purchaseId, item) => {
         console.log(item)
-        const response = await purchaseChatLike(currentUserId ,purchaseId , item)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item)
         console.log(response)
     }
 
@@ -89,7 +101,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                     <li>{item.sellerMessage}</li>
 
                     <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                        ♡{item?.buyerMessageLike?.length}
+                        ♡{item?.sellerMessageLike?.length}
                     </button>
                 </ul>
             ))}
@@ -98,11 +110,11 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
             <div>
                 ログインしているチャット（購入者） : {partnerUserIdChat?.map((item) => (
                 <ul key={item._id}>
-                <li>{item.buyerUsername}</li>
+                    <li>{item.buyerUsername}</li>
                     <li>{item.buyerMessage}</li>
                     <li>{item._id}</li>
 
-                    <button onClick={() => testCommentLike(currentUserId, purchaseId , item?._id)}>
+                    <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
                         ♡{item?.buyerMessageLike?.length}
                     </button>
                 </ul>
@@ -298,11 +310,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             {status == 1 ?
                 <div>
 
-                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId} currentUserIdChat={currentUserIdChat} partnerUserIdChat={partnerUserIdChat}/>
+                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                      currentUserIdChat={currentUserIdChat} partnerUserIdChat={partnerUserIdChat}/>
 
                 </div> : <div>
 
-                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId} currentUserIdChat={currentUserIdChat} partnerUserIdChat={partnerUserIdChat}/>
+                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                      currentUserIdChat={currentUserIdChat} partnerUserIdChat={partnerUserIdChat}/>
                 </div>}
 
             {chatList.map((item, index) => (
