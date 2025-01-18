@@ -32,7 +32,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     const [tradeChatLike, setTradeChatLike] = useState(0)
     const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
- 　
+
     return (
         <div>
 
@@ -44,7 +44,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                         <li>{item.buyerUsername}</li>
                         <li>{item.buyerMessage}</li>
                         <li>{item._id}</li>
-　
+
                     </ul>
                 ))}
                 </div>
@@ -55,7 +55,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                 <ul key={item._id}>
                     <li>{item.sellerUsername}</li>
                     <li>{item.sellerMessage}</li>
-　
+
                 </ul>
 
             ))}
@@ -85,7 +85,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                 <ul key={item._id}>
                     <li>{item.sellerUsername}</li>
                     <li>{item.sellerMessage}</li>
-　
+
                 </ul>
             ))}
             </div>
@@ -96,7 +96,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                     <li>{item.buyerUsername}</li>
                     <li>{item.buyerMessage}</li>
                     <li>{item._id}</li>
-　
+
                 </ul>
             ))}
             </div>
@@ -287,17 +287,6 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             <p>
                 ログインユーザー : {chatData?.currentUserId}
             </p>
-            {status == 1 ?
-                <div>
-
-                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
-                                      currentUserIdChat={currentUserIdChat} partnerUserIdChat={partnerUserIdChat}/>
-
-                </div> : <div>
-
-                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
-                                      currentUserIdChat={currentUserIdChat} partnerUserIdChat={partnerUserIdChat}/>
-                </div>}
 
             {chatList.map((item, index) => (
                 <ul key={index}>
@@ -343,20 +332,19 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 <div className={"purchaseMessage"}>
                     <div className="Productchat">
                         <div>
-                            {/*    対象ユーザーチャット : {currentUserIdChat?.map((item) => (*/}
-                            {/*    <ul key={item.id}>*/}
-                            {/*        {partnerUserData?.username}*/}
-                            {/*        <li>{item?.sellerChatMessage}</li>*/}
-                            {/*    </ul>*/}
-                            {/*))}*/}
-                        </div>
-                        <div>
-                            {/*    ログインしているチャット : {partnerUserIdChat?.map((item) => (*/}
-                            {/*    <ul key={item.id}>*/}
-                            {/*        {currentUserData?.username}*/}
-                            {/*        <li>{item?.buyerMessage}</li>*/}
-                            {/*    </ul>*/}
-                            {/*))}*/}
+                            {status == 1 ?
+                                <div>
+                                    <p>取引ステータスは１</p>
+                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                                      currentUserIdChat={currentUserIdChat}
+                                                      partnerUserIdChat={partnerUserIdChat}/>
+
+                                </div> : <div>
+                                    <p>取引ステータスは２</p>
+                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                                      currentUserIdChat={currentUserIdChat}
+                                                      partnerUserIdChat={partnerUserIdChat}/>
+                                </div>}
                             {chatList.map((item, index) => (
                                 <ul key={index}>
                                     <li>{item?.message}</li>
