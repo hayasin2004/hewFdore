@@ -32,15 +32,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     const [tradeChatLike, setTradeChatLike] = useState(0)
     const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
-    const testCommentLike = async (currentUserId, purchaseId, item) => {
-        console.log(item)
-        const response = await purchaseChatLike(currentUserId, purchaseId, item)
-        console.log(response)
-        const newLikeCount = tradeChatLikeStatus === "insert" ? likeCount + 1 : likeCount - 1;
-        setTradeChatLikeStatus(response?.likeStatus)
-        setTradeChatLike(tradeChatLike + 1)
-        console.log(partnerUserIdChat?.buyerMessageLike == currentUserId)
-    }
+ 　
     return (
         <div>
 
@@ -52,10 +44,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                         <li>{item.buyerUsername}</li>
                         <li>{item.buyerMessage}</li>
                         <li>{item._id}</li>
-
-                        <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                            ♡ {item?.buyerMessageLike?.length}
-                        </button>
+　
                     </ul>
                 ))}
                 </div>
@@ -66,10 +55,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                 <ul key={item._id}>
                     <li>{item.sellerUsername}</li>
                     <li>{item.sellerMessage}</li>
-
-                    <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                        ♡{item?.sellerMessageLike?.length}
-                    </button>
+　
                 </ul>
 
             ))}
@@ -99,10 +85,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                 <ul key={item._id}>
                     <li>{item.sellerUsername}</li>
                     <li>{item.sellerMessage}</li>
-
-                    <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                        ♡{item?.sellerMessageLike?.length}
-                    </button>
+　
                 </ul>
             ))}
             </div>
@@ -113,10 +96,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                     <li>{item.buyerUsername}</li>
                     <li>{item.buyerMessage}</li>
                     <li>{item._id}</li>
-
-                    <button onClick={() => testCommentLike(currentUserId, purchaseId, item?._id)}>
-                        ♡{item?.buyerMessageLike?.length}
-                    </button>
+　
                 </ul>
             ))}
             </div>
