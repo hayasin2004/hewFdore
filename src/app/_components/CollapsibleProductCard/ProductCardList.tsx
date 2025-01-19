@@ -10,22 +10,15 @@ interface ProductCardListProps {
 }
 
 const ProductCardList = ({ items }: ProductCardListProps) => {
-    const [openCardId, setOpenCardId] = useState<string | null>(null);
-
-    const handleCardToggle = (itemId: string) => {
-        setOpenCardId(openCardId === itemId ? null : itemId);
-    };
 
     return (
         <div className="product-card-list">
-            {items.map((item) => (
                 <CollapsibleProductCard
-                    key={item._id}
-                    item={item}
-                    isOpen={openCardId === item._id}
-                    onToggle={() => handleCardToggle(item._id)}
+                    key={items._id}
+                    item={items}
+                    isOpen={openCardId === items._id}
+                    onToggle={() => handleCardToggle(items._id)}
                 />
-            ))}
         </div>
     );
 };

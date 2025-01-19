@@ -34,6 +34,10 @@ const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
 
+    const [openCardId, setOpenCardId] = useState<string | null>(null);
+    const handleCardToggle = (itemId: string) => {
+        setOpenCardId(openCardId === itemId ? null : itemId);
+    };
 
     // 商品一覧の取得
     // searchResultにアクセスしたときのみ限りuseEffectでデータを取得してくる。
@@ -107,8 +111,14 @@ const SearchPageProducts = () => {
         return(
             <>
                 {currentProduct.map((item) => (
+                    // <ProductCardList key={item._id} items={item} />
 
-                    <CollapsibleProductCard key={item._id} item={item} />
+                    <CollapsibleProductCard
+                    key={item._id}
+                item={item}
+                isOpen={openCardId === item._id}
+                onToggle={() => handleCardToggle(item._id)}
+            />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
                     //     {/*<p>商品番号 : {item._id}</p>*/}
@@ -197,9 +207,8 @@ const SearchPageProducts = () => {
 
                 </div>
 
-                <SearchResultProducts/>
+                {/*<SearchResultProducts/>*/}
 
-                <ProductCardList items={product} />
             </div>
 
 
