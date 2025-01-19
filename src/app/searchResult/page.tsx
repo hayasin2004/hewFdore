@@ -14,6 +14,14 @@ import {loadStripe} from "@stripe/stripe-js";
 import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
 import Stripe from "@/app/_components/stripe/Stripe";
 import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
+// ページネーション
+import ReactPaginate from "react-paginate";
+import propsToClassKey from "@mui/system/propsToClassKey";
+import {
+    fillLazyItemsTillLeafWithHead
+} from "next/dist/client/components/router-reducer/fill-lazy-items-till-leaf-with-head";
+import {color} from "@mui/system";
+import {dividerClasses} from "@mui/material";
 import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 
 
@@ -78,13 +86,72 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
-    const product: DBProductType[] = productList;
+    // const product : DBProductType[]   = productList.map((item) => {
+    //     return {...item ,id : item._id}
+    //     }
+    // )
+    var page = 0;
+    const product  = productList.map((item) => {
+        return {...item,id:item._id}
+    })
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
 //     一意に商品を識別したいのでMongoDBでいうobjectIDを _idとして呼び出しています。
 //     つまりitemで各要素を取り出して、取り出した要素からitem._idとして取り出しproductにidとして渡しています。
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
+
+    // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
+    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+    function T_items({currentProduct}){
+        return(
+            <>
+                {currentProduct.map((item) => (
+
+                    <CollapsibleProductCard key={item._id} item={item} />
+
+                    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
+                    //     {/*<p>商品番号 : {item._id}</p>*/}
+                    //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
+                    //     <p className={"listImage"}>item.いめーじ</p>
+                    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>
+                    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>
+                    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
+                    //     {/*<Stripe productId={item?._id} />*/}
+                    // </div>
+                ))}
+            </>
+        )
+    }
+    const ProductPerPage = 4;
+    const [ProductOffset, setProductoffset] = useState(0);
+    const endOffset = ProductOffset + ProductPerPage;
+    const currentProduct = productList.slice(ProductOffset, ProductOffset + ProductPerPage);
+    const pageCount = Math.ceil(t_item.length / ProductPerPage);
+    const handlePageClick = (e: { selected: number }) => {
+        const newOfffset = (e.selected * ProductPerPage) % productList.length;
+        setProductoffset(newOfffset);
+
+    };
+
+    // 練習コーナー2
+    // ProductListを基に表示する分のデータを切り出す
+    // sliceだとA以上B未満になる
+    var sliceProduct = productList.slice(0,10)
+    console.log(sliceProduct);
+    function pageChange(page:  number ){
+        var pMax = 10 * (page+1)-1;
+        var pMin = page *10;
+         const filterProduct = productList.filter((productList,index) => {
+             if(index <= pMax){
+                 return index >= pMin
+             }
+         })
+        console.log(page,filterProduct);
+    }
+
+
+    // react-paginate公式Usage参考 なんかProduct数が2つになってるんですけど！？
 
     return (
         <div>
@@ -95,28 +162,48 @@ const SearchPageProducts = () => {
                 </div>
                 <div >
                 </div>
-                {/*<SearchResultProducts/>*/}
+                <SearchResultProducts/>
             </div>
+        <div>
+        </div>
+
+            {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
+                <T_items currentProduct={currentProduct}/>
+                <ReactPaginate pageCount={pageCount}
+                               marginPagesDisplayed={0}
+                               pageRangeDisplayed={2}
+                               onPageChange={handlePageClick}
+                               breakLabel={"..."}
+                               nextLabel={">"}
+                               nextLinkClassName="RPnext"
+                               previousLabel={"<"}
+                               previousClassName="RPprev"
+                               containerClassName="PaginateFlame"
+                               pageClassName="PagiClassName"
+                               pageLinkClassName="PagiClassLink"
+                               activeClassName="activeClassLink"
+                               disabledClassName="disable"
+                               renderOnZeroPageCount={null}
+                               />
+
+                <div className={"filterTest"}>
+                    {/*{sliceProduct.map((item)=>(*/}
+                    {/*    // eslint-disable-next-line react/jsx-key*/}
+                    {/*    <div>{item._id}</div>*/}
+                    {/*))}*/}
+                    {/*{t_item.slice()}*/}
+
+
+                </div>
+
+                <SearchResultProducts/>
+
                 <ProductCardList items={product} />
             </div>
 
-            {/* 取り出せる内容はコンソールに表示してます。*/}
-            {/*<div className={"productListFrame"}>*/}
-            {/*    {product.map((item) => (*/}
-            {/*        <ProductCardList items={product} />*/}
 
-            {/*        // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>*/}
-            {/*        //     {/*<p>商品番号 : {item._id}</p>*/}
-            {/*        //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
-            {/*        //     <p className={"listImage"}>item.いめーじ</p>*/}
-            {/*        //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>*/}
-            {/*        //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>*/}
-            {/*        //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>*/}
-            {/*        //     {/*<Stripe productId={item?._id} />*/}
-            {/*        // </div>*/}
-            {/*    ))}*/}
-            {/*</div>*/}
+
         </div>
     );
 }
