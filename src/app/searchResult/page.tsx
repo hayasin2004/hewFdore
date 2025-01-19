@@ -107,7 +107,7 @@ const SearchPageProducts = () => {
         return (
             <>
                 {currentProduct.map((item) => (
-                    <ul key={item._id}>
+                    <ul key={item.id}>
                         {item.sellerId}
                     </ul>
                 ))}
@@ -116,7 +116,7 @@ const SearchPageProducts = () => {
     }
 
 
-    const ProductPerPage = 2;
+    const ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = productList.slice(ProductOffset, ProductOffset + ProductPerPage);
