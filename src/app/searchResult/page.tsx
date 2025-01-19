@@ -24,7 +24,6 @@ import {color} from "@mui/system";
 import {dividerClasses} from "@mui/material";
 
 
-
 const stripePromise = loadStripe(
     process.env.STRIPE_SECRET_KEY!
 )
@@ -56,7 +55,7 @@ const SearchPageProducts = () => {
                     }
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
-                    const productData : DBProductType[] = await items.json()
+                    const productData: DBProductType[] = await items.json()
 
                     console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
@@ -70,10 +69,10 @@ const SearchPageProducts = () => {
             // console.log(JSON.stringify(productData))
 
             const query = new URLSearchParams(window.location.search)
-            if (query.get("success")){
+            if (query.get("success")) {
                 console.log("登録されたメールアドレスに支払い情報が送られました。")
             }
-            if (query.get("canceled")){
+            if (query.get("canceled")) {
                 console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
             }
 
@@ -83,8 +82,6 @@ const SearchPageProducts = () => {
     }, []);
 
 
-
-
     //
     // // 商品を展開
     // const product : DBProductType[]   = productList.map((item) => {
@@ -92,8 +89,8 @@ const SearchPageProducts = () => {
     //     }
     // )
     var page = 0;
-    const product  = productList.map((item) => {
-        return {...item,id:item._id}
+    const product = productList.map((item) => {
+        return {...item, id: item._id}
     })
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
@@ -103,20 +100,29 @@ const SearchPageProducts = () => {
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
-    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
-    function T_items({currentProduct}){
-        return(
+    const t_item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+
+    function T_items({ currentProduct }) {
+        console.log(currentProduct);
+        return (
             <>
-               <div style={{"margin":50,"color":"red"}}> {currentProduct}</div></>
-        )
+                {currentProduct.map((item) => (
+                    <ul key={item._id}>
+                        {item.sellerId}
+                    </ul>
+                ))}
+            </>
+        );
     }
+
+
     const ProductPerPage = 2;
-    const [ProductOffset,setProductoffset] = useState(0);
-    const endOffset = ProductOffset +ProductPerPage;
-    const currentProduct = t_item.slice(ProductOffset,endOffset);
-    const pageCount = t_item.length/ProductPerPage;
-    const handlePageClick = (e:{selected:number}) =>{
-        const newOfffset = (e.selected * ProductPerPage)%t_item.length;
+    const [ProductOffset, setProductoffset] = useState(0);
+    const endOffset = ProductOffset + ProductPerPage;
+    const currentProduct = productList.slice(ProductOffset, ProductOffset + ProductPerPage);
+    const pageCount = Math.ceil(t_item.length / ProductPerPage);
+    const handlePageClick = (e: { selected: number }) => {
+        const newOfffset = (e.selected * ProductPerPage) % productList.length;
         setProductoffset(newOfffset);
 
     };
@@ -124,17 +130,18 @@ const SearchPageProducts = () => {
     // 練習コーナー2
     // ProductListを基に表示する分のデータを切り出す
     // sliceだとA以上B未満になる
-    var sliceProduct = productList.slice(0,10)
+    var sliceProduct = productList.slice(0, 10)
     console.log(sliceProduct);
-    function pageChange(page:  number ){
-        var pMax = 10 * (page+1)-1;
-        var pMin = page *10;
-         const filterProduct = productList.filter((productList,index) => {
-             if(index <= pMax){
-                 return index >= pMin
-             }
-         })
-        console.log(page,filterProduct);
+
+    function pageChange(page: number) {
+        var pMax = 10 * (page + 1) - 1;
+        var pMin = page * 10;
+        const filterProduct = productList.filter((productList, index) => {
+            if (index <= pMax) {
+                return index >= pMin
+            }
+        })
+        console.log(page, filterProduct);
     }
 
 
@@ -148,12 +155,12 @@ const SearchPageProducts = () => {
                 <div style={{"marginTop": "60px", width: "600px"}}>
                     {/*<Sidebar/>*/}
                 </div>
-                <div >
+                <div>
                 </div>
             </div>
 
-        <div>
-        </div>
+            <div>
+            </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
@@ -173,7 +180,7 @@ const SearchPageProducts = () => {
                                activeClassName="activeClassLink"
                                disabledClassName="disable"
                                renderOnZeroPageCount={null}
-                               />
+                />
 
                 <div className={"filterTest"}>
                     {/*{sliceProduct.map((item)=>(*/}
@@ -184,24 +191,23 @@ const SearchPageProducts = () => {
 
 
                 </div>
-                {product.map((item) => (
+                {/*{product.map((item) => (*/}
 
-                    <CollapsibleProductCard key={item._id} item={item} />
+                {/*    <CollapsibleProductCard key={item._id} item={item}/>*/}
 
-                    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
-                    //     {/*<p>商品番号 : {item._id}</p>*/}
-                    //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
-                    //     <p className={"listImage"}>item.いめーじ</p>
-                    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>
-                    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>
-                    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
-                    //     {/*<Stripe productId={item?._id} />*/}
-                    // </div>
-                ))}
+                {/*    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>*/}
+                {/*    //     /!*<p>商品番号 : {item._id}</p>*!/*/}
+                {/*    //     /!*<p>ユーザーネーム : {item.userId}</p>*!/*/}
+                {/*    //     <p className={"listImage"}>item.いめーじ</p>*/}
+                {/*    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>*/}
+                {/*    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>*/}
+                {/*    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>*/}
+                {/*    //     /!*<Stripe productId={item?._id} />*!/*/}
+                {/*    // </div>*/}
+                {/*))}*/}
                 <SearchResultProducts/>
 
             </div>
-
 
 
         </div>
