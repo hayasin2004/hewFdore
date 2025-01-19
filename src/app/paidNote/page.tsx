@@ -12,20 +12,21 @@ const PaidNote = () => {
     const {user} = useUser()
     const userId = user?.userId
     const [purchaseData, setPurchaseData] = useState([])
-    const [productData, setProduct] = useState([])
-    console.log(purchaseData)
+    const [productData, setProductData] = useState([])
+    console.log(productData)
     useEffect(() => {
         const fetchPurchaseProduct = async () => {
             const response = await purchaseProduct(userId)
+            console.log(response)
             if (response?.purchaseProduct !== undefined) {
                 setPurchaseData(JSON.parse(response?.purchaseProduct))
             }
             if (response?.product !== undefined) {
-                setProduct(JSON.parse(response?.product))
+                setProductData(JSON.parse(response?.product))
             }
             console.log(response)
         }
-        console.log(fetchPurchaseProduct())
+        fetchPurchaseProduct()
     }, [user]);
 
 
@@ -50,24 +51,25 @@ const PaidNote = () => {
                 <div className={"listing_product"}>
                     {purchaseData?.map((purchaseItem) => (
 
-                        <ul key={purchaseItem._id}>
+                        <ul key={purchaseItem?._id}>
                             <li>
-                                <Link href={`/tradeChat/${purchaseItem._id}`}>
+                                <Link href={`/tradeChat/${purchaseItem?._id}`}>
                                     {purchaseItem?._id}
                                 </Link>
                             </li>
                         </ul>
                     ))}
+
                     {productData?.map((productItem) => (
-                        <div key={productItem._id}>
+                        <div key={productItem?._id}>
                             <div className={"product"}>
                                 <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                                 <div className={"product_text"}>
                                     <p>
-                                        商品名 : {productItem.productName}
+                                        商品名 : {productItem?.productName}
                                     </p>
-                                    <p>出品者 : {productItem.sellerId}</p>
-                                    <p>価格 : {productItem.productPrice}</p>
+                                    <p>出品者 : {productItem?.sellerId}</p>
+                                    <p>価格 : {productItem?.productPrice}</p>
 
                                 </div>
                                 <div className={"listingText"}>

@@ -68,6 +68,10 @@ const UserSchema = new mongoose.Schema({
         purchaseProduct: {
             type: Array,
             default: []
+        },
+        soldOutProduct: {
+            type: Array,
+            default: []
         }
 
     },

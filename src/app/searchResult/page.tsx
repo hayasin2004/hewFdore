@@ -25,7 +25,6 @@ import {dividerClasses} from "@mui/material";
 import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 
 
-
 const stripePromise = loadStripe(
     process.env.STRIPE_SECRET_KEY!
 )
@@ -61,7 +60,7 @@ const SearchPageProducts = () => {
                     }
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
-                    const productData : DBProductType[] = await items.json()
+                    const productData: DBProductType[] = await items.json()
 
                     console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
@@ -75,10 +74,10 @@ const SearchPageProducts = () => {
             // console.log(JSON.stringify(productData))
 
             const query = new URLSearchParams(window.location.search)
-            if (query.get("success")){
+            if (query.get("success")) {
                 console.log("登録されたメールアドレスに支払い情報が送られました。")
             }
-            if (query.get("canceled")){
+            if (query.get("canceled")) {
                 console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
             }
 
@@ -95,8 +94,8 @@ const SearchPageProducts = () => {
     //     }
     // )
     var page = 0;
-    const product  = productList.map((item) => {
-        return {...item,id:item._id}
+    const product = productList.map((item) => {
+        return {...item, id: item._id}
     })
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
@@ -106,19 +105,20 @@ const SearchPageProducts = () => {
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
-    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
-    function T_items({currentProduct}){
-        return(
+    const t_item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+
+    function T_items({currentProduct}) {
+        return (
             <>
                 {currentProduct.map((item) => (
                     // <ProductCardList key={item._id} items={item} />
 
                     <CollapsibleProductCard
-                    key={item._id}
-                item={item}
-                isOpen={openCardId === item._id}
-                onToggle={() => handleCardToggle(item._id)}
-            />
+                        key={item._id}
+                        item={item}
+                        isOpen={openCardId === item._id}
+                        onToggle={() => handleCardToggle(item._id)}
+                    />
 
                     // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
                     //     {/*<p>商品番号 : {item._id}</p>*/}
@@ -133,6 +133,7 @@ const SearchPageProducts = () => {
             </>
         )
     }
+
     const ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
     const endOffset = ProductOffset + ProductPerPage;
@@ -147,17 +148,18 @@ const SearchPageProducts = () => {
     // 練習コーナー2
     // ProductListを基に表示する分のデータを切り出す
     // sliceだとA以上B未満になる
-    var sliceProduct = productList.slice(0,10)
+    var sliceProduct = productList.slice(0, 10)
     console.log(sliceProduct);
-    function pageChange(page:  number ){
-        var pMax = 10 * (page+1)-1;
-        var pMin = page *10;
-         const filterProduct = productList.filter((productList,index) => {
-             if(index <= pMax){
-                 return index >= pMin
-             }
-         })
-        console.log(page,filterProduct);
+
+    function pageChange(page: number) {
+        var pMax = 10 * (page + 1) - 1;
+        var pMin = page * 10;
+        const filterProduct = productList.filter((productList, index) => {
+            if (index <= pMax) {
+                return index >= pMin
+            }
+        })
+        console.log(page, filterProduct);
     }
 
 
@@ -170,12 +172,12 @@ const SearchPageProducts = () => {
                 <div style={{"marginTop": "60px", width: "600px"}}>
                     {/*<Sidebar/>*/}
                 </div>
-                <div >
+                <div>
                 </div>
                 <SearchResultProducts/>
             </div>
-        <div>
-        </div>
+            <div>
+            </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
@@ -195,7 +197,7 @@ const SearchPageProducts = () => {
                                activeClassName="activeClassLink"
                                disabledClassName="disable"
                                renderOnZeroPageCount={null}
-                               />
+                />
 
                 <div className={"filterTest"}>
                     {/*{sliceProduct.map((item)=>(*/}
@@ -210,7 +212,6 @@ const SearchPageProducts = () => {
                 {/*<SearchResultProducts/>*/}
 
             </div>
-
 
 
         </div>
