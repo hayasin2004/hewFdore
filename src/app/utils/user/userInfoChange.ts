@@ -12,7 +12,7 @@ const userInfoChange = async (userId: string | null, username: string | null, pa
                 password: password,
                 email: email,
                 address: address,
-                description: description,
+                desc: description,
             }
         }, {new: true, upsert: true})
 
