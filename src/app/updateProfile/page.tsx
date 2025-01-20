@@ -7,32 +7,35 @@ import userInfoChange from "@/app/utils/user/userInfoChange";
 import useUser from "@/hooks/useUser";
 import deleteAccount from "@/app/utils/user/deleteAccount";
 import userDetail from "@/app/utils/user/userDetail";
+import confirmUser from "@/app/utils/user/confirmUser";
 
 const UpdateProfile = () => {
-    const {user} = useUser()
-    const userId = user?.userId
     const [username, setUsername] = useState<string | null>("")
     const [password, setPassword] = useState<string | null>("")
     const [email, setEmail] = useState<string | null>("")
     const [address, setAddress] = useState<string | null>("")
     const [description, setDescription] = useState<string | null>("")
-    console.log(email , address , description)
-
+    console.log(username, email, password, address)
+    const token = localStorage.getItem("token")
     useEffect(() => {
         const userData = async () => {
-            const response = await userDetail(userId)
-            const responseParse = JSON.parse(response)
-            console.log(responseParse)
-            setUsername(responseParse?.username)
-            setEmail(responseParse?.email)
-            setPassword(responseParse?.password)
-            setAddress(responseParse?.address)
-            setDescription(responseParse?.desc)
+            const response = await confirmUser(token)
+            if (response) {
+                const responseParse = JSON.parse(response)
+                console.log(responseParse)
+                setUsername(responseParse?.username)
+                setEmail(responseParse?.email)
+                setPassword(responseParse?.password)
+                setAddress(responseParse?.address)
+                setDescription(responseParse?.desc)
+            }
         }
         userData()
-    }, [userId]);
+    }, [token]);
 
-    const changeUserInfo = async () => {
+    const changeUserInfo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
+        localStorage.removeItem("token")
         const response = await userInfoChange(
             userId,
             username,
@@ -41,12 +44,16 @@ const UpdateProfile = () => {
             address,
             description
         )
+        console.log("token" + response)
+        if (response) {
+            await localStorage.setItem("token", JSON.parse(JSON.stringify(response)))
+            console.log(response)
+        }
 
-        console.log(response)
     }
 
     const deleteUser = async () => {
-        const response = await  deleteAccount(userId)
+        const response = await deleteAccount(userId)
         console.log(response)
     }
 
@@ -84,12 +91,12 @@ const UpdateProfile = () => {
                             <form>
                                 <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder={userId ? username : "新しいユーザー名"} onChange={(e) => {
+                                       placeholder={username !== "" ? username : "新しいユーザー名"} onChange={(e) => {
                                     setUsername(e.target.value)
                                 }}/><br/>
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email"
-                                       placeholder={userId ? email:"Eメールアドレス"} onChange={(e) => {
+                                       placeholder={email !== "" ? email : "Eメールアドレス"} onChange={(e) => {
                                     setEmail(e.target.value)
                                 }}/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>
@@ -101,15 +108,19 @@ const UpdateProfile = () => {
                                        placeholder="パスワードを再入力 "/><br/>
                                 <label htmlFor="Address">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
-                                       placeholder={address !== "" ? address : "住所を入力して下さい。"} onChange={(e) => {
-                                    setAddress(e.target.value)
-                                }}/><br/>
+                                       placeholder={address !== "" ? address : "住所を入力して下さい。"}
+                                       onChange={(e) => {
+                                           setAddress(e.target.value)
+                                       }}/><br/>
                                 <label htmlFor="UserName">自己紹介</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder={description !== "" ? description : "自己紹介文を入力してください。"} onChange={(e) => {
-                                    setDescription(e.target.value)
-                                }}/><br/>
-                                <button type="submit" onClick={changeUserInfo}>更新する</button>
+                                       placeholder={description !== "" ? description : "自己紹介文を入力してください。"}
+                                       onChange={(e) => {
+                                           setDescription(e.target.value)
+                                       }}/><br/>
+                                <button type="submit"
+                                        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => changeUserInfo(e)}>更新する
+                                </button>
                             </form>
                             <button type="submit" onClick={deleteUser}>ユーザーを削除する</button>
                         </div>

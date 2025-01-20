@@ -25,7 +25,7 @@ const useUser = () => {
                 // console.log(userData)
                     setUser(userData)
                     console.log("ト?ークンが確認できませんでした。")
-                    return null
+                    return JSON.stringify(userData)
             })()
         }
         // 副作用　→　起爆のタイミングを設定

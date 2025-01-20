@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,6 +9,7 @@ import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
+import confirmUser from "@/app/utils/user/confirmUser";
 
 interface User {
     userId: string
@@ -22,9 +23,21 @@ interface User {
 
 const Header = () => {
     const {user} = useUser()
-    console.log(user?.username)
-    console.log(user?.userId)
-    console.log(user?.email)
+    const userId = user?.userId
+    const [userData, setUserData] = useState(null)
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token) {
+            const confirmUserData = async () => {
+                const response = await confirmUser(token)
+                console.log(response)
+                const responseParse  = JSON.parse(response)
+                setUserData(responseParse)
+            }
+            confirmUserData()
+        }
+
+    }, [user]);
 
 
     // 通知用モーダル
@@ -135,11 +148,11 @@ const Header = () => {
                             <li>
                                 {user ?
                                     <UserNavigationModal/>
-                                : ""}
+                                    : ""}
 
                             </li>
                             <li id={"UserName"}>
-                                {user ? <p id={"usernameGet"}>{user.username}</p> :
+                                {user ? <p id={"usernameGet"}>{userData?.username}</p> :
                                     <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
