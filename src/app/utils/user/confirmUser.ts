@@ -24,6 +24,7 @@ export default async function confirmUser(token?: string):Promise< string  | nul
     try {
         const decoded : string | null = await jwt.verify(token, process.env.SECRET_KEY);
         const userData = await User.findById(decoded?.userId)
+        console.log("_id"+decoded?.userId)
         return JSON.stringify(userData);
         // decodedの中身（例）テスト{
         //   userId: '66d4f569d06498d8d6dd5539',

@@ -10,6 +10,7 @@ import userDetail from "@/app/utils/user/userDetail";
 import confirmUser from "@/app/utils/user/confirmUser";
 
 const UpdateProfile = () => {
+    const [userId, setUserId] = useState<string | null>("")
     const [username, setUsername] = useState<string | null>("")
     const [password, setPassword] = useState<string | null>("")
     const [email, setEmail] = useState<string | null>("")
@@ -23,12 +24,15 @@ const UpdateProfile = () => {
             if (response) {
                 const responseParse = JSON.parse(response)
                 console.log(responseParse)
+                setUserId(responseParse._id)
                 setUsername(responseParse?.username)
                 setEmail(responseParse?.email)
                 setPassword(responseParse?.password)
                 setAddress(responseParse?.address)
                 setDescription(responseParse?.desc)
+                console.log(responseParse._id)
             }
+
         }
         userData()
     }, [token]);
@@ -36,6 +40,7 @@ const UpdateProfile = () => {
     const changeUserInfo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         localStorage.removeItem("token")
+
         const response = await userInfoChange(
             userId,
             username,
