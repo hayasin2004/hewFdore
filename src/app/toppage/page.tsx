@@ -28,7 +28,7 @@ const Toppage = () => {
     console.log(productList)
 
     const updateButton = async () => {
-        await soldOutProduct()
+        // await soldOutProduct()
     }
 
     //
