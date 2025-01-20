@@ -8,9 +8,10 @@ import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 
 // 通知を追加する機能
-const toastPurchaseReview = async  (currentUserId : string | null ,productId : string | null ,lastMessage : string | null , reviewValue : string | null ) => {
+const toastPurchaseReview = async  (currentUserId : string | null ,productId : string | null ,lastMessage : string | null , reviewValue : number | null ) => {
 // const toastPurchaseReview = async  () => {
     await connectDB()
+    console.log("currentUserId" + currentUserId , "productId" + productId , "lastMessage" + lastMessage , "reviewValue" + reviewValue )
     try {
         const user : UserType | null = await User.findOne({_id : currentUserId})
         const product : ProductType | null = await Product.findById({_id : productId})

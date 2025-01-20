@@ -91,7 +91,7 @@ const PurchaseSchema = new mongoose.Schema({
         type : String ,
         default: "",
     },
-    sellerUserReview : {
+    sellerUserLastReview : {
         type: String,
         enum: review,
         default : ""

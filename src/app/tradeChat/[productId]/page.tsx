@@ -116,9 +116,9 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
-    const [sellerUserReview, setSellerUserReview] = useState<string | null>(null)
+    const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
     const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
-    console.log("出品者の最終評価" + sellerUserReview)
+    console.log("出品者の最終評価" + sellerUserLastReview)
     const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
     const [currentUserId, setCurrentUserId] = useState<string | null>("")
     console.log(currentUserIdChat, buyerLastChat)
@@ -146,7 +146,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     setTradeStatus(tradeStatusParse?.tradeStatus)
                     setSellerLastChat(JSON.parse(tradeStatusParse?.sellerUserLastChat))
                     setBuyerLastChat(JSON.parse(tradeStatusParse?.buyerUserLastChat))
-                    setSellerUserReview(JSON.parse(tradeStatusParse.sellerUserReview))
+                    setSellerUserReview(JSON.parse(tradeStatusParse.sellerUserLastReview))
                     setBuyerUserReview(tradeStatusParse.buyerUserReview)
                 }
             }
@@ -382,7 +382,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                     {tradeStatus == 1 ?
                         <div>
-                            <p>取引終了</p>
+                            <button onClick={tradeEndFunc}>取引を終了する</button>
+                            {/*<p>取引終了</p>*/}
                         </div>
                         : <button onClick={tradeEndFunc}>取引を終了する</button>
                     }
@@ -404,7 +405,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 </div>
 
                 <div>
-                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserReview}
+                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
                 </div>
 
                 <div id="control">
