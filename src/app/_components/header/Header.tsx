@@ -11,6 +11,9 @@ import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import confirmUser from "@/app/utils/user/confirmUser";
 import Images from "next/image";
+import toastPurchase from "@/app/utils/toast/toastPurchase";
+import catchToastProduct from "@/app/utils/toast/catchToastProduct";
+import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 
 interface User {
     userId: string
@@ -23,16 +26,19 @@ interface User {
 
 
 const Header = () => {
-    const {user} = useUser()
-    const userId = user?.userId
+    const user = useUser()
     const [userData, setUserData] = useState(null)
+    const [toastPurchase, setToastPurchase] = useState<string | null>(null)
+    const [otherToast, setOtherToast] = useState<string | null>(null)
+    console.log("商品" + toastPurchase , "その他" + otherToast)
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {
+
             const confirmUserData = async () => {
                 const response = await confirmUser(token)
                 console.log(response)
-                const responseParse  = JSON.parse(response)
+                const responseParse = JSON.parse(response)
                 console.log(responseParse)
                 setUserData(responseParse)
             }
@@ -40,6 +46,20 @@ const Header = () => {
         }
 
     }, [user]);
+
+
+    useEffect(() => {
+        const toastPurchase = async () => {
+            const response = await catchToastProduct(userData?._id)
+            setToastPurchase(response)
+        }
+        const OtherToast = async () => {
+            const response = await catchOtherToast(userData?._id)
+            setOtherToast(response)
+        }
+        toastPurchase()
+        OtherToast()
+    }, [userData]);
 
 
     // 通知用モーダル
@@ -150,7 +170,7 @@ const Header = () => {
                             <li>
                                 {userData ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
-                                    : <UserNavigationModal />}
+                                    : <UserNavigationModal/>}
 
                             </li>
                             <li id={"UserName"}>

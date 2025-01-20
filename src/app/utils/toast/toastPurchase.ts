@@ -19,6 +19,7 @@ const toastPurchase = async  () => {
             productId : product?._id,
             productName : product?.productName,
             message : `商品「${product?.productName}」が購入されました！`,
+            toastCategory : "いいね、フォローなど",
             alreadyRead : "未読",
         }
 
