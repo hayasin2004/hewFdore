@@ -9,6 +9,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
 
     await connectDB()
     try {
+        console.log("今ログインしているユーザー"+currentUser)
         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
         console.log(user)
