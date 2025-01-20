@@ -10,6 +10,7 @@ import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import confirmUser from "@/app/utils/user/confirmUser";
+import Images from "next/image";
 
 interface User {
     userId: string
@@ -146,9 +147,9 @@ const Header = () => {
 
 
                             <li>
-                                {user ?
-                                    <UserNavigationModal/>
-                                    : ""}
+                                {userData ?
+                                    <Images src={userData?.profilePicture} alt={"ユーザープロフィール画像"} width={50} height={50}/>
+                                    : <UserNavigationModal />}
 
                             </li>
                             <li id={"UserName"}>
