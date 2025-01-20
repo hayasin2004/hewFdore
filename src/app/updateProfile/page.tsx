@@ -1,11 +1,12 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
 import userInfoChange from "@/app/utils/user/userInfoChange";
 import useUser from "@/hooks/useUser";
 import deleteAccount from "@/app/utils/user/deleteAccount";
+import userDetail from "@/app/utils/user/userDetail";
 
 const UpdateProfile = () => {
     const {user} = useUser()
@@ -15,6 +16,21 @@ const UpdateProfile = () => {
     const [email, setEmail] = useState<string | null>("")
     const [address, setAddress] = useState<string | null>("")
     const [description, setDescription] = useState<string | null>("")
+    console.log(email , address , description)
+
+    useEffect(() => {
+        const userData = async () => {
+            const response = await userDetail(userId)
+            const responseParse = JSON.parse(response)
+            console.log(responseParse)
+            setUsername(responseParse?.username)
+            setEmail(responseParse?.email)
+            setPassword(responseParse?.password)
+            setAddress(responseParse?.address)
+            setDescription(responseParse?.desc)
+        }
+        userData()
+    }, [userId]);
 
     const changeUserInfo = async () => {
         const response = await userInfoChange(
@@ -68,12 +84,12 @@ const UpdateProfile = () => {
                             <form>
                                 <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder="新しいユーザー名" onChange={(e) => {
+                                       placeholder={userId ? username : "新しいユーザー名"} onChange={(e) => {
                                     setUsername(e.target.value)
                                 }}/><br/>
                                 <label htmlFor="Email">Email</label><br/>
                                 <input type="text" name="Email" id="Email"
-                                       placeholder="Eメールアドレス" onChange={(e) => {
+                                       placeholder={userId ? email:"Eメールアドレス"} onChange={(e) => {
                                     setEmail(e.target.value)
                                 }}/><br/>
                                 <label htmlFor="Password">パスワード</label><br/>
@@ -85,12 +101,12 @@ const UpdateProfile = () => {
                                        placeholder="パスワードを再入力 "/><br/>
                                 <label htmlFor="Address">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
-                                       placeholder="住所を入力して下さい。" onChange={(e) => {
+                                       placeholder={address !== "" ? address : "住所を入力して下さい。"} onChange={(e) => {
                                     setAddress(e.target.value)
                                 }}/><br/>
                                 <label htmlFor="UserName">自己紹介</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder="自己紹介文を入力してください。" onChange={(e) => {
+                                       placeholder={description !== "" ? description : "自己紹介文を入力してください。"} onChange={(e) => {
                                     setDescription(e.target.value)
                                 }}/><br/>
                                 <button type="submit" onClick={changeUserInfo}>更新する</button>
