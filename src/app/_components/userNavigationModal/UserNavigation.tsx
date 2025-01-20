@@ -95,9 +95,7 @@ function ChildModal() {
     );
 }
 
-const UserNavigation = ({src}) => {
-    const {user} = useUser()
-    const username = user?.username
+const UserNavigation = ({src}) => {　　
     const [userData, setUserData] = useState()
     const token = localStorage.getItem("token")
     useEffect(() => {

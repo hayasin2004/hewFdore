@@ -111,7 +111,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                         senderUserId: currentUser,
                                         buyerMessage: sendChatMessage,
                                         buyerMessageLike: [],
-                                        buyerMessageUsername: user.username,
+                                        buyerMessageUsername: user?.username,
                                         buyerMessageProfilePicture: user.profilePicture,
                                         timeStamp: new Date()
                                     }]

@@ -16,11 +16,12 @@ const Chat = (props: { paramsProductData: string }) => {
     const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
 
     const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
-    console.log(listingChatMessageList)
-    const {user} = useUser()
+    console.log(chatMessage)
+    const user = useUser()
+    const userParse = JSON.parse(user)
     console.log(chatMessage)
     const productId = props.paramsProductData
-    const currentUser = user?.userId
+    const currentUser = userParse?.userId
 
     // サイトレンダリング時にチャット履歴取得してくる処理
     useEffect(() => {
