@@ -5,12 +5,11 @@ import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import nodemailer from "nodemailer";
 
-const toastForSeller = async (productId: string | null, sellerId: string | null, buyerId: string | null) => {
+const toastGmailForBuyerReview = async (currentUserId : string | null ,partnerUserId : string | null ,productId : string | null ,lastMessage : string | null , reviewValue : number | null ) => {
     await connectDB()
     const toastProduct = await Product.findById({_id: productId}).select(" productName productPrice productDesc productCategory productSize productCondition postageBurden")
-    const toastSellerUser = await User.findById({_id: sellerId}).select("username email")
-    const toastBuyerUser = await User.findById({_id: buyerId}).select("username email")
-    console.log("toastProduct" + JSON.stringify(toastSellerUser ))
+    const toastSellerUser = await User.findById({_id: partnerUserId}).select("username email")
+    const toastBuyerUser = await User.findById({_id: currentUserId}).select("username email")
 
     try {
         const transporter = nodemailer.createTransport({
@@ -22,31 +21,13 @@ const toastForSeller = async (productId: string | null, sellerId: string | null,
             },
         });
 
-        const toSellerUserMailData = {
-            from: process.env.GMAILUSER,
-            to: "testnodemailermastakahew@gmail.com",
-            subject: "出品した商品が購入されました。",
-            html: ` 
-        <p>出品した商品が購入されました。</p> 　　
-         <p>購入された商品内容</p>
-         <p>出品者ユーザー名 : ${toastSellerUser.username}</p>
-         <p>購入者ユーザー名 : ${toastBuyerUser.username}</p>
-         <p>商品名: ${toastProduct.productName}</p>
-         <p>価格: ${toastProduct.productPrice}</p>
-         <p>商品説明: ${toastProduct.productDesc}</p>
-         <p>商品カテゴリー: ${toastProduct.productCategory}</p>
-         <p>商品サイズ: ${toastProduct.productSize}</p>
-         <p>商品状態: ${toastProduct.productCondition}</p>
-         <p>送料負担者: ${toastProduct.postageBurden}</p>
-        `,
-        };
 
         const  toBuyerUserMailData = {
             from: process.env.GMAILUSER,
             to: "testnodemailermastakahew@gmail.com",
-            subject: "商品購入完了のお知らせ。",
+            subject: "購入者が取引評価しました。",
             html: ` 
-        <p>商品購入完了のお知らせ。</p> 　　
+        <p>購入者から商品の取引評がされました。</p> 　　
          <p>購入商品内容</p>
          <p>出品者ユーザー名 : ${toastSellerUser.username}</p>
          <p>購入者ユーザー名 : ${toastBuyerUser.username}</p>
@@ -57,13 +38,15 @@ const toastForSeller = async (productId: string | null, sellerId: string | null,
          <p>商品サイズ: ${toastProduct.productSize}</p>
          <p>商品状態: ${toastProduct.productCondition}</p>
          <p>送料負担者: ${toastProduct.postageBurden}</p>
+        
+         <p>最終評価コメント : ${lastMessage}</p>
+         <p>最終評価 : ${reviewValue}</p>
         `,
         };
 
         try {
             // メールを送信
             // await transporter.sendMail(toHostMailData);
-            await transporter.sendMail(toSellerUserMailData);
             await transporter.sendMail(toBuyerUserMailData);
 
             return new Response(
@@ -83,4 +66,4 @@ const toastForSeller = async (productId: string | null, sellerId: string | null,
         return null
     }
 }
-export default toastForSeller
+export default toastGmailForBuyerReview

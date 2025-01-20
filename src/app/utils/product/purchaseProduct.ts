@@ -5,12 +5,13 @@ import {User} from "@/models/User";
 import {Purchase} from "@/models/Purchase";
 import {Stripe} from "stripe";
 import {Product} from "@/models/Product";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const purchaseProduct = async (userId: string | null) => {
     await connectDB()
     try {
         console.log(userId)
-        const purchase = await User.find({_id : userId}).select("purchaseProduct")
+        const purchase  = await User.find({_id : userId}).select("purchaseProduct")
         console.log(purchase)
         if (purchase == false) {
             console.log("購入した商品はありません")

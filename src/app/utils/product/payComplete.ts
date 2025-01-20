@@ -5,7 +5,7 @@ import {connectDB} from "@/lib/mongodb";
 import {v4 as uuidv4} from 'uuid';
 import {Purchase} from "@/models/Purchase";
 import {User} from "@/models/User";
-import toastForSeller from "@/app/utils/product/toastForSeller";
+import toastGmailForPurchase from "@/app/utils/product/toastGmailForPurchase";
 
 const payComplete = async (productId: string | null, stripeCode: string | null, userId: string | null) => {
     await connectDB()
@@ -44,7 +44,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                 }
             },{new : true , upsert: true});
 
-            const sendPurchaseComplete = await  toastForSeller(productId ,CheckProduct.sellerId ,userId)
+            const sendPurchaseComplete = await  toastGmailForPurchase(productId ,CheckProduct.sellerId ,userId)
             console.log(sendPurchaseComplete)
             return JSON.stringify(purchase._id)
 

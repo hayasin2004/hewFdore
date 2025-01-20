@@ -3,6 +3,8 @@
 import {connectDB} from "@/lib/mongodb"
 import {Purchase} from "@/models/Purchase";
 import toastPurchaseReview from "@/app/utils/toast/toastPurchaseReview";
+import toastGmailForSellerReview from "@/app/utils/product/toastGmailForSellerReview";
+import toastGmailForBuyerReview from "@/app/utils/product/toastGmailForBuyerReview";
 
 const tradeEnd = async (purchaseId: string | null, status: string | null, currentUserId: string | null, lastMessage: string | null, reviewValue: number | null) => {
     await connectDB()
@@ -55,6 +57,7 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                     }
                     // 出品者の評価→通知するのは購入者のベル
                     await toastPurchaseReview(purchaseCondition?.sellerId,purchaseCondition?.buyerId, purchaseCondition?.productId, lastMessage, reviewValue)
+                    await toastGmailForSellerReview(purchaseCondition?.sellerId,purchaseCondition?.buyerId, purchaseCondition?.productId, lastMessage, reviewValue)
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(lastChatReview)}
 
 
@@ -79,6 +82,8 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                     console.log(lastChatReview)
                     tradeStatus = 2;
                     await toastPurchaseReview(purchaseCondition?.sellerId,purchaseCondition?.buyerId, purchaseCondition?.productId, lastMessage, reviewValue)
+                    await toastGmailForSellerReview(purchaseCondition?.sellerId,purchaseCondition?.buyerId, purchaseCondition?.productId, lastMessage, reviewValue)
+
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(sellerUserLastChat)}
                 }
 
@@ -121,6 +126,7 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                     }
                     tradeStatus = 3;
                     await toastPurchaseReview(purchaseCondition?.buyerId , purchaseCondition?.sellerId, purchaseCondition?.productId, lastMessage, reviewValue)
+                    await toastGmailForBuyerReview(purchaseCondition?.buyerId , purchaseCondition?.sellerId, purchaseCondition?.productId, lastMessage, reviewValue)
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(lastChatReview)}
 
 
@@ -144,6 +150,7 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                     }
                     tradeStatus = 4;
                     await toastPurchaseReview(purchaseCondition?.buyerId,purchaseCondition?.sellerId, purchaseCondition?.productId, lastMessage, reviewValue)
+                    await toastGmailForBuyerReview(purchaseCondition?.buyerId,purchaseCondition?.sellerId, purchaseCondition?.productId, lastMessage, reviewValue)
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(lastChatReview)}
 
                 }
