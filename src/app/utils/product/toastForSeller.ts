@@ -25,7 +25,7 @@ const toastForSeller = async (productId: string | null, sellerId: string | null,
         const toSellerUserMailData = {
             from: process.env.GMAILUSER,
             to: "testnodemailermastakahew@gmail.com",
-            subject: "商品出品完了のお知らせ",
+            subject: "出品した商品が購入されました。",
             html: ` 
         <p>出品した商品が購入されました。</p> 　　
          <p>購入された商品内容</p>
@@ -44,7 +44,7 @@ const toastForSeller = async (productId: string | null, sellerId: string | null,
         const toBuyerUserMailData = {
             from: process.env.GMAILUSER,
             to: "testnodemailermastakahew@gmail.com",
-            subject: "商品出品完了のお知らせ",
+            subject: "商品購入完了のお知らせ。",
             html: ` 
         <p>商品購入完了のお知らせ。</p> 　　
          <p>購入商品内容</p>
