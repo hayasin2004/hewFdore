@@ -130,7 +130,6 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     console.log(partnerUserData)
     const user = useUser()
     const userParse = JSON.parse(user)
-    const currentUser =loginUserData?._id
     console.log(productData)
 
     console.log(productData)
@@ -183,7 +182,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const response = async () => {
             setLoginUserData(JSON.parse(userParse))
-            const currentUserId = loginuserData?._id
+            const currentUserId = loginUserData?._id
             setCurrentUserId(currentUserId)
             const sellerId = productData?.sellerId
             const buyerId = productData?.buyerId

@@ -10,8 +10,9 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
     await connectDB()
     try {
         const CheckProduct = await Product.findById({_id: productId})
+        console.log("何を得て何を得て大人になっていくんだろう" +CheckProduct)
         const purchaseId = uuidv4();
-        console.log("何を得て何を得て大人になっていくんだろう" + productId, stripeCode, userId);
+        console.log( productId, stripeCode, userId);
         if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
             const purchase = await Purchase.findOne({productId: productId})
             console.log("既に購入されていていますされています。");
@@ -38,7 +39,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
 
             const user = User.findByIdAndUpdate({id: userId}, {
                 $set: {
-                    purchaseProduct: purchase._id
+                    purchaseProduct: purchase?._id
                 }
             },{new : true , upsert: true});
 
