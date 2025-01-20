@@ -8,6 +8,7 @@ import useUser from "@/hooks/useUser";
 import deleteAccount from "@/app/utils/user/deleteAccount";
 import userDetail from "@/app/utils/user/userDetail";
 import confirmUser from "@/app/utils/user/confirmUser";
+import {string} from "prop-types";
 
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")
@@ -16,8 +17,23 @@ const UpdateProfile = () => {
     const [email, setEmail] = useState<string | null>("")
     const [address, setAddress] = useState<string | null>("")
     const [description, setDescription] = useState<string | null>("")
+    const [profilePicture, setProfilePicture] = useState<string | null>("")
+    const [newProfilePicture, setNewProfilePicture] = useState<string | null>("")
     console.log(username, email, password, address)
     const token = localStorage.getItem("token")
+
+    const profilePictureFunc = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setNewProfilePicture(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+
     useEffect(() => {
         const userData = async () => {
             const response = await confirmUser(token)
@@ -30,6 +46,7 @@ const UpdateProfile = () => {
                 setPassword(responseParse?.password)
                 setAddress(responseParse?.address)
                 setDescription(responseParse?.desc)
+                setProfilePicture(responseParse.profilePicture)
                 console.log(responseParse._id)
             }
 
@@ -40,19 +57,36 @@ const UpdateProfile = () => {
     const changeUserInfo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
         localStorage.removeItem("token")
-
-        const response = await userInfoChange(
-            userId,
-            username,
-            password,
-            email,
-            address,
-            description
-        )
-        console.log("token" + response)
-        if (response) {
-            await localStorage.setItem("token", JSON.parse(JSON.stringify(response)))
-            console.log(response)
+        if (newProfilePicture == "") {
+            const response = await userInfoChange(
+                userId,
+                username,
+                password,
+                email,
+                address,
+                description,
+                profilePicture
+            )
+            console.log("token" + response)
+            if (response) {
+                await localStorage.setItem("token", JSON.parse(JSON.stringify(response)))
+                console.log(response)
+            }
+        }else {
+            const response = await userInfoChange(
+                userId,
+                username,
+                password,
+                email,
+                address,
+                description,
+                newProfilePicture
+            )
+            console.log("token" + response)
+            if (response) {
+                await localStorage.setItem("token", JSON.parse(JSON.stringify(response)))
+                console.log(response)
+            }
         }
 
     }
@@ -74,7 +108,8 @@ const UpdateProfile = () => {
                 <div className={"updateProfile_img"}>
 
                     <div className={"profile_img"}>
-                        <Image src={"/images/clothes/product.jpg"} width={200} height={200}
+                        <Image src={profilePicture !== "" ? profilePictureFunc : "/images/clothes/product.jpg"}
+                               width={200} height={200}
                                alt={"ユーザーのプロフィール"}/>
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none"
@@ -84,9 +119,14 @@ const UpdateProfile = () => {
                             <path d="M2 12H22"/>
                         </svg>
                         <div>
-                            <Image src={"/images/clothes/product.jpg"} width={200} height={200}
-                                   alt={"ユーザーのプロフィール"}/>
+                            {newProfilePicture &&
+                                <Image src={newProfilePicture} width={200} height={200}
+                                       alt={"ユーザーのプロフィール"}/>
+                            }
+                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+
                         </div>
+                        <input type="file" onChange={profilePictureFunc}/>
                     </div>
                 </div>
 

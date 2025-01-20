@@ -4,7 +4,7 @@ import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import jwt from "jsonwebtoken";
 
-const userInfoChange = async (userId: string | null, username: string | null, password: string | null, email: string | null, address: string | null, description: string | null) => {
+const userInfoChange = async (userId: string | null, username: string | null, password: string | null, email: string | null, address: string | null, description: string | null , profilePicture : string | null) => {
     await connectDB()
     try {
         console.log("userID"+userId)
@@ -17,6 +17,7 @@ const userInfoChange = async (userId: string | null, username: string | null, pa
                 email: email,
                 address: address,
                 desc: description,
+                profilePicture : profilePicture
             }
         }, {new: true, upsert: true})
 
