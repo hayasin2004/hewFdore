@@ -41,7 +41,7 @@ const toastForSeller = async (productId: string | null, sellerId: string | null,
         `,
         };
 
-        const toBuyerUserMailData = {
+        const  toBuyerUserMailData = {
             from: process.env.GMAILUSER,
             to: "testnodemailermastakahew@gmail.com",
             subject: "商品購入完了のお知らせ。",

@@ -20,6 +20,7 @@ import axios from "axios";
 import InsertProductSellStatus from "@/app/utils/setting/update/InserteUserPurchase";
 import InsertProductImage from "@/app/utils/setting/update/InsertProudctImage";
 import soldOutProduct from "@/app/utils/setting/update/soldOutProduct";
+import toastPurchase from "@/app/utils/toast/toastPurchase";
 // 幅揃えします
 
 const Toppage = () => {
@@ -29,6 +30,7 @@ const Toppage = () => {
 
     const updateButton = async () => {
         // await soldOutProduct()
+        await toastPurchase()
     }
 
     //

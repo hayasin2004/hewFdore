@@ -33,6 +33,7 @@ const Header = () => {
                 const response = await confirmUser(token)
                 console.log(response)
                 const responseParse  = JSON.parse(response)
+                console.log(responseParse)
                 setUserData(responseParse)
             }
             confirmUserData()
@@ -153,13 +154,13 @@ const Header = () => {
 
                             </li>
                             <li id={"UserName"}>
-                                {user ? <p id={"usernameGet"}>{userData?.username}</p> :
+                                {userData ? <p id={"usernameGet"}>{userData?.username}</p> :
                                     <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
                             <li id={"list_bell"}>
-                                {user ?
+                                {userData ?
                                     <div>
                                         <Button className={"bell"} onClick={handleOpen}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
