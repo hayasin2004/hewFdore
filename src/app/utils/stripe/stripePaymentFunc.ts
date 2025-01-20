@@ -21,10 +21,19 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
 
         try {
             const product = await Product.findOne({_id: productId});
+
             const productObjectId = product?._id
             const productPrice = product?.productPrice
             const productName = product?.productName
             const productDesc = product?.productDesc
+
+            if (!product) {
+                console.log("Product not found.");
+            }
+            if (!productName) {
+                console.log("Product name is missing.");
+            }
+
             // 製品情報をStripeに追加
             const stripeProduct = await stripe.products.create({
                 name: productName,
