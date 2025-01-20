@@ -14,14 +14,14 @@ import {display} from "@mui/system";
 
 const CompleteStripe = ({productId}: { productId: string }) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
-        const [userId, setUserId] = useState(null)
+        const [loginNowUserData, setLoginNowUserData] = useState(null)
+    console.log(loginNowUserData?._id)
         const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
             const status = localStorage.getItem("isButtonDisabled")
             return status === "true";
         })
         console.log(paymentMethod)
-        const {user}: { user: string | null } = useUser()
-
+        const user = useUser()
 
         const socket = io("http://localhost:8080");
 
@@ -39,13 +39,14 @@ const CompleteStripe = ({productId}: { productId: string }) => {
 
 
         useEffect(() => {
-            setUserId(user?.userId);
+            const userParse = JSON.parse(user)
+            setLoginNowUserData(JSON.parse(userParse));
         }, [user]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             try {
                 e.preventDefault()
                 if (paymentMethod === "paypay") {
-                    const response = await stripePaymentPayPay(productId, paymentMethod, userId);
+                    const response = await stripePaymentPayPay(productId, paymentMethod, loginNowUserData?._id);
                     console.log(response);
                     if (response?.url) {
                         window.location.href = response.url;
@@ -58,7 +59,7 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                     if (!isButtonDisabled) {
                         socket.emit("clickButtonEvent");
                     }
-                    const response = await stripePaymentFunc(productId, paymentMethod, userId);
+                    const response = await stripePaymentFunc(productId, paymentMethod, loginNowUserData?._id);
 
                     console.log(response);
                     if (response?.checkout_url) {
@@ -108,7 +109,7 @@ const CompleteStripe = ({productId}: { productId: string }) => {
 
                     </div>
 
-                    <label style={{opacity:0}}> 支払い方法を選択してください:
+                    <label style={{opacity: 0}}> 支払い方法を選択してください:
                         <select onChange={(e) => setPaymentMethod(e.target.value)}
                                 value={paymentMethod}>
                             <option value="card">カード払い</option>

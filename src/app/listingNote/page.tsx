@@ -11,11 +11,16 @@ import useUser from "@/hooks/useUser";
 import listingNote from "@/app/utils/product/listingNote";
 
 const PaidNote = () => {
-    const {user} = useUser()
-    const userId = user?.userId
     const [productData, setProductData] = useState([])
+    const [loginUserData, setLoginUserData] = useState()
+    const {user} = useUser()
+    const userParse = JSON.parse(user)
+    const currentUser = loginUserData._id
+
     console.log(productData)
     useEffect(() => {
+        setLoginUserData(JSON.parse(userParse))
+        
         const fetchPurchaseProduct = async () => {
             const response = await listingNote(userId)
             console.log(response)

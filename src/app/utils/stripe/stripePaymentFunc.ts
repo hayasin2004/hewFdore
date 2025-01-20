@@ -11,7 +11,7 @@ const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
 export async function stripePaymentFunc(productId: string, paymentMethod: string , userId :string | null) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB()
-    console.log(productId)
+    console.log("改変ユーザーID" + userId)
     // Mongodbから_idで商品検索
     const product = await Product.findOne({_id: productId});
     // console.log(product);　

@@ -7,16 +7,21 @@ import "./paidNote.css"
 import Link from "next/link";
 import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
+import {productCommentType} from "@/models/ProductComment";
 
 const PaidNote = () => {
-    const {user} = useUser()
-    const userId = user?.userId
     const [purchaseData, setPurchaseData] = useState([])
     const [productData, setProductData] = useState([])
+    const [loginUserData, setLoginUserData] = useState()
+
+    const {user} = useUser()　
+    const userParse = JSON.parse(user)
+    const currentUser =loginUserData?._id
     console.log(productData)
     useEffect(() => {
+        setLoginUserData(JSON.parse(userParse))
         const fetchPurchaseProduct = async () => {
-            const response = await purchaseProduct(userId)
+            const response = await purchaseProduct(currentUser)
             console.log(response)
             if (response?.purchaseProduct !== undefined) {
                 setPurchaseData(JSON.parse(response?.purchaseProduct))

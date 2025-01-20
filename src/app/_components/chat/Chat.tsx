@@ -20,7 +20,7 @@ const Chat = (props: { paramsProductData: string }) => {
     const user = useUser()
     const userParse = JSON.parse(user)
     const productId = props.paramsProductData
-    const currentUser =loginUserData._id
+    const currentUser =loginUserData?._id
     useEffect(() => {
         setLoginUserData(JSON.parse(userParse))
     }, [user]);

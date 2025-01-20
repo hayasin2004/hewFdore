@@ -25,8 +25,6 @@ import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
 import productChatLike from "@/app/utils/product/productChatLike";
 import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
-import insert from "@/app/utils/user/insert";
-
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     const [tradeChatLike, setTradeChatLike] = useState(0)
@@ -127,8 +125,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [currentUserData, setCurrentUserData] = useState()
     console.log(JSON.stringify(currentUserData))
     const [partnerUserData, setPartnerUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState()
+
     console.log(partnerUserData)
-    const {user} = useUser()
+    const user = useUser()
+    const userParse = JSON.parse(user)
+    const currentUser =loginUserData?._id
+    console.log(productData)
 
     console.log(productData)
 
@@ -179,7 +182,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
 
     useEffect(() => {
         const response = async () => {
-            const currentUserId = user?.userId
+            setLoginUserData(JSON.parse(userParse))
+            const currentUserId = loginuserData?._id
             setCurrentUserId(currentUserId)
             const sellerId = productData?.sellerId
             const buyerId = productData?.buyerId
