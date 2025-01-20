@@ -2,13 +2,14 @@
 
 import {connectDB} from "@/lib/mongodb"
 import {Purchase} from "@/models/Purchase";
+import toastPurchaseReview from "@/app/utils/toast/toastPurchaseReview";
 
 const tradeEnd = async (purchaseId: string | null, status: string | null, currentUserId: string | null, lastMessage: string | null, reviewValue: string | null) => {
     await connectDB()
     try {
         let tradeStatus = 0;
         // tradeStatus :0→既に取引終了していたがバグによる入力 1→購入者評価後に購入者評価待ち , 2→購入者評価後取引終了 , 3→購入者評価後に購入者評価待ち 4→購入者評価後取引終了 5→既に評価送信済み
-        const purchaseCondition = await Purchase.findById(purchaseId).select("sellerUserLastChat sellerUserReview buyerUserLastChat buyerUserReview")
+        const purchaseCondition = await Purchase.findById(purchaseId).select("prodcutId sellerId buyerId sellerUserLastChat sellerUserReview buyerUserLastChat buyerUserReview")
         if (purchaseCondition.sellerUserLastChat !== "" && purchaseCondition.sellerUserReview !== "" && purchaseCondition.buyerUserLastChat !== "" || purchaseCondition.buyerUserReview !== "") {
             console.log("既に出品者、購入者の両者から評価をもらっています。")
             const lastChatReview = {
@@ -51,6 +52,8 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                         buyerUserLastChat: sellerPurchaseLastUpdate.buyerUserLastChat,
                         buyerUserReview: sellerPurchaseLastUpdate.buyerUserReview
                     }
+                    // 出品者の評価→通知するのは購入者のベル
+                    await toastPurchaseReview(purchaseCondition?.buyerId,purchaseCondition?.prodcutId ,lastMessage , reviewValue )
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(lastChatReview)}
 
                 }
@@ -71,7 +74,7 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                     }
                     const sellerUserLastChat = sellerPurchaseLastUpdate.sellerUserLastChat
 
-                    console.log(tradeStatusUpdate)
+                    console.log(lastChatReview)
                     tradeStatus = 2;
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(sellerUserLastChat)}
                 }
