@@ -148,7 +148,7 @@ const Header = () => {
 
                             <li>
                                 {userData ?
-                                    <Images src={userData?.profilePicture} alt={"ユーザープロフィール画像"} width={50} height={50}/>
+                                    <UserNavigationModal src={userData?.profilePicture}/>
                                     : <UserNavigationModal />}
 
                             </li>
