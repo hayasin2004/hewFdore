@@ -3,6 +3,7 @@ import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import {UserType} from "@/app/api/user/catchUser/route";
 import jwt from "jsonwebtoken";
+import toastFollowings from "@/app/utils/toast/toastFollowings";
 
 const updateFollowings = async (userFollowings?: string | null, loginNowUserId?: string | null): Promise<{
     followers: string | null
@@ -34,6 +35,8 @@ const updateFollowings = async (userFollowings?: string | null, loginNowUserId?:
             }
             console.log("following", following)
             console.log("followers", followers)
+            const toastFollow = await  toastFollowings(user?._id ,currentUser?._id)
+            console.log("toastFollow", toastFollow)
             return {followers: followers}
         }
     } catch (err) {

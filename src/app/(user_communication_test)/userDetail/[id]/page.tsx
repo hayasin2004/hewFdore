@@ -26,7 +26,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
         try {
             const userFollowings: string | null = await userData?._id
             console.log(userFollowings)
-            const response: string | null = await updateFollowings(userFollowings, loginNowUserId)
+            const response: string | null = await updateFollowings(userFollowings, loginUserData?._id)
             console.log(response)
         } catch (err) {
             console.log(err)
@@ -46,8 +46,8 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 const responesProductData = JSON.parse(response?.searchProduct)
                 setUserData(responesUserData)
                 setProductData(responesProductData)
-                if (loginNowUserId == id){
-                    const likeData = CatchLikeList(loginNowUserId)
+                if (loginUserData){
+                    const likeData = CatchLikeList(loginUserData?._id)
                     const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList)
                     setLikeList(likeDataParse)
                 }
