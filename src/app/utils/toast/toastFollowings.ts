@@ -13,7 +13,8 @@ const toastFollowings = async (followingsUserId : string | null , followerUserId
         const followerUser : UserType | null = await User.findById(followerUserId);
         const purchase = {
             userId : followingsUserId,
-            message : `${followerUser?.username}があなたをフォローしました。 `,
+            followerUserId : followerUserId,
+            message : `${followerUser?.username}があなたをフォローしました。`,
             toastCategory : "いいね、フォローなど",
             alreadyRead : "未読",
         }

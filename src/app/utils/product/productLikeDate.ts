@@ -3,6 +3,7 @@ import {ProductType} from "@/app/utils/product/productDetail";
 import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
+import toastProductLike from "@/app/utils/toast/toastProductLike";
 
 const productLikeDate = async (productId: ProductType | null, currentUser: string | null) => {
     // await console.log( productId,currentUser )
@@ -41,6 +42,7 @@ const productLikeDate = async (productId: ProductType | null, currentUser: strin
                 console.log("いいね追加後のろぐ" + JSON.stringify(productLikeOnce))
                 console.log(JSON.stringify(productLikeUpdatePush))
                 console.log("君が褪せないように"+JSON.stringify(currentUserLikeUpdatePush))
+                await toastProductLike(productId , productLike?.sellerId , currentUser )
                 return {productLike: JSON.stringify(productLike)}
             }
         }

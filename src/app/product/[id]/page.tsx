@@ -24,10 +24,10 @@ import InsertProductSellStatus from "@/app/utils/user/InserteUserPurchase";
 import insert from "@/app/utils/user/insert";
 
 const Product = ({params}: { params: { id: string } }) => {
-    const {user} = useUser()
+    const [loginUserData, setLoginUserData] = useState()
+
+    const user = useUser()
     const router = useRouter()
-    const currentUser = user?.userId
-    console.log(currentUser)
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
     const theme = createTheme({
         palette: {
@@ -51,12 +51,14 @@ const Product = ({params}: { params: { id: string } }) => {
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {
-            const result = await productLikeDate(id, currentUser)
+            const result = await productLikeDate(id, loginUserData?._id)
         }
         productLikeData()
     }
 
     useEffect(() => {
+        const userParse = JSON.parse(user)
+        setLoginUserData(JSON.parse(userParse));
 
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
@@ -68,8 +70,8 @@ const Product = ({params}: { params: { id: string } }) => {
         }
         const response = async () => {
             const productCatch = await productDetail(id)
-            if (currentUser !== undefined || currentUser !== null) {
-                const sellerCheckCatch = await sellerCheck(id, currentUser)
+            if (loginUserData?._id !== undefined || loginUserData?._id !== null) {
+                const sellerCheckCatch = await sellerCheck(id, loginUserData?._id)
                 setSameSellerStatus(sellerCheckCatch)
                 console.log(sellerCheckCatch)
             }
@@ -86,8 +88,8 @@ const Product = ({params}: { params: { id: string } }) => {
 
 
     useEffect(() => {
-        if (product?.productLike?.includes(currentUser)) {
-            console.log(product?.productLike.includes(currentUser));
+        if (product?.productLike?.includes(loginUserData?._id)) {
+            console.log(product?.productLike.includes(loginUserData?._id));
             setProductLike(true);
         }
     }, [product]);

@@ -14,6 +14,14 @@ const ToastSchema = new mongoose.Schema({
             type: String,
             default : ""
         },
+        followerUserId : {
+            type : String,
+            default : ""
+        },
+        likedUserId : {
+            type : String,
+            default : ""
+        },
         productId: {
             type: String,
             default: ""

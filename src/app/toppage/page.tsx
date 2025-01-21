@@ -21,6 +21,7 @@ import InsertProductSellStatus from "@/app/utils/setting/update/InserteUserPurch
 import InsertProductImage from "@/app/utils/setting/update/InsertProudctImage";
 import soldOutProduct from "@/app/utils/setting/update/soldOutProduct";
 import toastPurchase from "@/app/utils/toast/toastPurchase";
+import setupfollowerUserId from "@/app/utils/setting/update/setupfollowerUserId";
 // 幅揃えします
 
 const Toppage = () => {
@@ -30,7 +31,7 @@ const Toppage = () => {
 
     const updateButton = async () => {
         // await soldOutProduct()
-        await toastPurchase()
+        await setupfollowerUserId()
     }
 
     //
