@@ -24,18 +24,18 @@ const CompleteStripe = ({productId}: { productId: string }) => {
         const user = useUser()
 
         const socket = io("http://localhost:8080");
-
-        useEffect(() => {
-            const browserBack = (event: PopStateEvent) => {
-                event.preventDefault();
-                event.stopPropagation();
-                alert("ストライプの戻るボタンから戻ってください")
-            }
-            window.addEventListener("popstate", browserBack);
-            return () => {
-                window.removeEventListener("popstate", browserBack)
-            }
-        }, []);
+        //
+        // useEffect(() => {
+        //     const browserBack = (event: PopStateEvent) => {
+        //         event.preventDefault();
+        //         event.stopPropagation();
+        //         alert("ストライプの戻るボタンから戻ってください")
+        //     }
+        //     window.addEventListener("popstate", browserBack);
+        //     return () => {
+        //         window.removeEventListener("popstate", browserBack)
+        //     }
+        // }, []);
 
 
         useEffect(() => {
@@ -109,7 +109,7 @@ const CompleteStripe = ({productId}: { productId: string }) => {
 
                     </div>
 
-                    <label style={{opacity: 0}}> 支払い方法を選択してください:
+                    <label style={{opacity: 10}}> 支払い方法を選択してください:
                         <select onChange={(e) => setPaymentMethod(e.target.value)}
                                 value={paymentMethod}>
                             <option value="card">カード払い</option>

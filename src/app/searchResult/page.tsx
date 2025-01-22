@@ -135,13 +135,13 @@ const SearchPageProducts = () => {
     }
 
     const ProductPerPage = 4;
-    const [ProductOffset, setProductoffset] = useState(0);
+    const [ProductOffset, setProductOffset] = useState(0);
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = productList.slice(ProductOffset, ProductOffset + ProductPerPage);
     const pageCount = Math.ceil(t_item.length / ProductPerPage);
     const handlePageClick = (e: { selected: number }) => {
-        const newOfffset = (e.selected * ProductPerPage) % productList.length;
-        setProductoffset(newOfffset);
+        const newOffset = (e.selected * ProductPerPage) % productList.length;
+        setProductOffset(newOffset);
 
     };
 

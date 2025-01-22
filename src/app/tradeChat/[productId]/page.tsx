@@ -25,6 +25,7 @@ import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
 import productChatLike from "@/app/utils/product/productChatLike";
 import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
+import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     const [tradeChatLike, setTradeChatLike] = useState(0)
@@ -279,6 +280,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         }
     }
 
+    const TradeCancel= async () => {
+        const tradeCancel = await TradeCancelFnc(productData.stripeCode)
+    }
+
 
     return (
         <>
@@ -382,8 +387,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                     {tradeStatus == 1 ?
                         <div>
-                            <button onClick={tradeEndFunc}>取引を終了する</button>
-                            {/*<p>取引終了</p>*/}
+                            {/*<button onClick={tradeEndFunc}>取引を終了する</button>*/}
+                            <p>取引終了</p>
                         </div>
                         : <button onClick={tradeEndFunc}>取引を終了する</button>
                     }
@@ -411,6 +416,11 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 <div id="control">
                     <button
                         type="button">トップに戻る
+                    </button>
+                </div>
+                <div id="control">
+                    <button onClick={TradeCancel}
+                        type="button">取引をキャンセルする
                     </button>
                 </div>
 
