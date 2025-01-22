@@ -14,13 +14,16 @@ import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
     const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
-
+    const [loginUserData, setLoginUserData] = useState()
     const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
-    console.log(listingChatMessageList)
-    const {user} = useUser()
     console.log(chatMessage)
+    const user = useUser()
+    const userParse = JSON.parse(user)
     const productId = props.paramsProductData
-    const currentUser = user?.userId
+    const currentUser =loginUserData?._id
+    useEffect(() => {
+        setLoginUserData(JSON.parse(userParse))
+    }, [user]);
 
     // サイトレンダリング時にチャット履歴取得してくる処理
     useEffect(() => {
@@ -45,7 +48,6 @@ const Chat = (props: { paramsProductData: string }) => {
 
     const submitChatMessage = async () => {
 
-        const currentUser = await user?.userId
         // const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
         if (chatMessage !== null && chatMessage !== undefined) {
             const sendChatResponse = await sendProductChatMessage(productId, currentUser, chatMessage)

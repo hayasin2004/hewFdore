@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,6 +9,11 @@ import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
+import confirmUser from "@/app/utils/user/confirmUser";
+import Images from "next/image";
+import toastPurchase from "@/app/utils/toast/toastPurchase";
+import catchToastProduct from "@/app/utils/toast/catchToastProduct";
+import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 
 interface User {
     userId: string
@@ -21,10 +26,40 @@ interface User {
 
 
 const Header = () => {
-    const {user} = useUser()
-    console.log(user?.username)
-    console.log(user?.userId)
-    console.log(user?.email)
+    const user = useUser()
+    const [userData, setUserData] = useState(null)
+    const [toastPurchase, setToastPurchase] = useState<string | null>(null)
+    const [otherToast, setOtherToast] = useState<string | null>(null)
+    console.log("商品" + toastPurchase , "その他" + otherToast)
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token) {
+
+            const confirmUserData = async () => {
+                const response = await confirmUser(token)
+                console.log(response)
+                const responseParse = JSON.parse(response)
+                console.log(responseParse)
+                setUserData(responseParse)
+            }
+            confirmUserData()
+        }
+
+    }, [user]);
+
+
+    useEffect(() => {
+        const toastPurchase = async () => {
+            const response = await catchToastProduct(userData?._id)
+            setToastPurchase(response)
+        }
+        const OtherToast = async () => {
+            const response = await catchOtherToast(userData?._id)
+            setOtherToast(response)
+        }
+        toastPurchase()
+        OtherToast()
+    }, [userData]);
 
 
     // 通知用モーダル
@@ -133,19 +168,19 @@ const Header = () => {
 
 
                             <li>
-                                {user ?
-                                    <UserNavigationModal/>
-                                : ""}
+                                {userData ?
+                                    <UserNavigationModal src={userData?.profilePicture}/>
+                                    : <UserNavigationModal/>}
 
                             </li>
                             <li id={"UserName"}>
-                                {user ? <p id={"usernameGet"}>{user.username}</p> :
+                                {userData ? <p id={"usernameGet"}>{userData?.username}</p> :
                                     <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
                             <li id={"list_bell"}>
-                                {user ?
+                                {userData ?
                                     <div>
                                         <Button className={"bell"} onClick={handleOpen}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"

@@ -19,12 +19,20 @@ import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import axios from "axios";
 import InsertProductSellStatus from "@/app/utils/setting/update/InserteUserPurchase";
 import InsertProductImage from "@/app/utils/setting/update/InsertProudctImage";
+import soldOutProduct from "@/app/utils/setting/update/soldOutProduct";
+import toastPurchase from "@/app/utils/toast/toastPurchase";
+import setupfollowerUserId from "@/app/utils/setting/update/setupfollowerUserId";
 // 幅揃えします
 
 const Toppage = () => {
 
     const [productList, setProductList] = useState([])
     console.log(productList)
+
+    const updateButton = async () => {
+        // await soldOutProduct()
+        await setupfollowerUserId()
+    }
 
     //
     // useEffect(() => {
@@ -66,6 +74,7 @@ const Toppage = () => {
         <>
             <Blogintroduction/>
             <Header/>
+            <button onClick={updateButton}>更新</button>
             <div className={"top"}>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}

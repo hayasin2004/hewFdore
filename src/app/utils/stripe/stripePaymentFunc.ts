@@ -8,22 +8,31 @@ import {redirect} from "next/navigation";
 
 const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function stripePaymentFunc(productId: string, paymentMethod: string , userId :string | null) {
+export async function stripePaymentFunc(productId: string, paymentMethod: string, userId: string | null) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB()
-    console.log(productId)
+    console.log("改変ユーザーID")
     // Mongodbから_idで商品検索
-    const product = await Product.findOne({_id: productId});
     // console.log(product);　
     //↑のログのコメントアウト解除するとどうやって取ってるのか見れる。
     // ↓見つかったものをここで宣言
-    const productObjectId = product?._id
-    const productPrice = product?.productPrice
-    const productName = product?.productName
-    const productDesc = product?.productDesc
+
     if (paymentMethod === "card") {
 
         try {
+            const product = await Product.findOne({_id: productId});
+
+            const productObjectId = product?._id
+            const productPrice = product?.productPrice
+            const productName = product?.productName
+            const productDesc = product?.productDesc
+
+            if (!product) {
+                console.log("Product not found.");
+            }
+            if (!productName) {
+                console.log("Product name is missing.");
+            }
 
             // 製品情報をStripeに追加
             const stripeProduct = await stripe.products.create({

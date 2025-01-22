@@ -33,7 +33,7 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
         console.log(chatExists?._id)
         if (chatExists) {
             const chatId = chatExists._id
-            console.log(chatId)　
+            console.log("ここがアンディファインド"+chatId)　
             const currentUser = tokenUser
             const partnerUser = detailUser
             console.log("既にcurrentUser , detailUserのチャットルームが作られています")

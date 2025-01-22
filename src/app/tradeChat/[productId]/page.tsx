@@ -22,6 +22,86 @@ import savePurchaseProductMessageStatus2 from "@/app/utils/message/tradeProductC
 import savePurchaseProductMessageStatus2Update from "@/app/utils/message/savePurchaseProductMessageStatus2Update";
 import tradeEnd from "@/app/utils/product/tradeEnd";
 import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
+import productChatLike from "@/app/utils/product/productChatLike";
+import tradeChatLike from "@/app/utils/product/purchaseChatLike";
+import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
+
+const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
+    const [tradeChatLike, setTradeChatLike] = useState(0)
+    const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
+    // status1の時はログインしているユ―ザーが購入者だった時。
+
+    return (
+        <div>
+
+            <div>
+                対象ユーザーチャット :
+                <div>
+                    ログインしているチャット : {partnerUserIdChat?.map((item) => (
+                    <ul key={item._id}>
+                        <li>{item.buyerUsername}</li>
+                        <li>{item.buyerMessage}</li>
+                        <li>{item._id}</li>
+
+                    </ul>
+                ))}
+                </div>
+            </div>
+            <br/>
+            ログインしているユーザー（出品者のコメント）
+            {currentUserIdChat?.map((item) => (
+                <ul key={item._id}>
+                    <li>{item.sellerUsername}</li>
+                    <li>{item.sellerMessage}</li>
+
+                </ul>
+
+            ))}
+
+        </div>
+    )
+}
+const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
+    // status2の時はログインしているユ―ザーが購入者だった時。
+
+    const testCommentLike = async (currentUserId, purchaseId, item) => {
+        console.log(item)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item)
+        console.log(response)
+    }
+
+    return (
+
+        <div>
+            {currentUserIdChat?.map((item) => ((
+                <ul key={item}>
+                    <li>{item.sellerUsername}</li>
+                </ul>
+            )))}
+            <div>
+                対象ユーザーチャット : {currentUserIdChat?.map((item) => (
+                <ul key={item._id}>
+                    <li>{item.sellerUsername}</li>
+                    <li>{item.sellerMessage}</li>
+
+                </ul>
+            ))}
+            </div>
+            {/*<br/>*/}
+            <div>
+                ログインしているチャット（購入者） : {partnerUserIdChat?.map((item) => (
+                <ul key={item._id}>
+                    <li>{item.buyerUsername}</li>
+                    <li>{item.buyerMessage}</li>
+                    <li>{item._id}</li>
+
+                </ul>
+            ))}
+            </div>
+        </div>
+    )
+}
+
 
 const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [reviewValue, setReviewValue] = React.useState<number | null>(1);
@@ -31,24 +111,28 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
     const [tradeStatus, setTradeStatus] = useState<number>(0)
-    const [buyerIdChat, setBuyerIdChat] = useState<string | null>()
-    console.log(JSON.stringify(buyerIdChat))
-    const [sellerIdChat, setSellerIdChat] = useState<string[] | null>([])
+    const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
+    console.log(JSON.stringify(partnerUserIdChat))
+    const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
-    const [sellerUserReview, setSellerUserReview] = useState<string | null>(null)
+    const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
     const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
-    console.log("出品者の最終評価" + sellerUserReview)
+    console.log("出品者の最終評価" + sellerUserLastReview)
     const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
     const [currentUserId, setCurrentUserId] = useState<string | null>("")
-    console.log(sellerIdChat, buyerLastChat)
+    console.log(currentUserIdChat, buyerLastChat)
     const [currentUserData, setCurrentUserData] = useState()
     console.log(JSON.stringify(currentUserData))
     const [partnerUserData, setPartnerUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState()
+
     console.log(partnerUserData)
-    const {user} = useUser()
+    const user = useUser()
+    console.log(productData)
 
     console.log(productData)
+
     const purchaseId = JSON.parse(JSON.stringify(params.productId))
     useEffect(() => {
         const purchase = async () => {
@@ -62,7 +146,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     setTradeStatus(tradeStatusParse?.tradeStatus)
                     setSellerLastChat(JSON.parse(tradeStatusParse?.sellerUserLastChat))
                     setBuyerLastChat(JSON.parse(tradeStatusParse?.buyerUserLastChat))
-                    setSellerUserReview(JSON.parse(tradeStatusParse.sellerUserReview))
+                    setSellerUserReview(JSON.parse(tradeStatusParse.sellerUserLastReview))
                     setBuyerUserReview(tradeStatusParse.buyerUserReview)
                 }
             }
@@ -80,13 +164,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 if (status == "1") {
                     const catchUser = await tradeProductCatchMessageStatus1(purchaseId)
                     if (catchUser !== undefined) {
-                        setSellerIdChat(JSON.parse(catchUser?.currentUserChat))
-                        setBuyerIdChat(JSON.parse(catchUser?.partnerUserChat))
+                        setCurrentUserIdChat(JSON.parse(catchUser?.currentUserChat))
+                        setPartnerUserIdChat(JSON.parse(catchUser?.partnerUserChat))
                     }
                 } else if (status == "2") {
                     const catchUser = await tradeProductCatchMessageStatus2(purchaseId)
-                    setBuyerIdChat(JSON.parse(JSON.stringify(catchUser)))
-                    // setSellerIdChat(JSON.parse(JSON.stringify(catchUser?.partnerUserChat)))
+                    setPartnerUserIdChat(JSON.parse(catchUser?.buyerChatMessage))
+                    setCurrentUserIdChat(JSON.parse(catchUser?.partnerUserChat))
                 }
             }
             chatresponse()
@@ -96,7 +180,9 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
 
     useEffect(() => {
         const response = async () => {
-            const currentUserId = user?.userId
+            const userParse = JSON.parse(user)
+            setLoginUserData(JSON.parse(userParse))
+            const currentUserId = loginUserData?._id
             setCurrentUserId(currentUserId)
             const sellerId = productData?.sellerId
             const buyerId = productData?.buyerId
@@ -193,39 +279,23 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         }
     }
 
+
     return (
         <>
             <Header/>
+            {status}
             {tradeStatus == 1 ? <p>取引終了しました。</p> : <p>取引中</p>}
-            {/*{sellerIdChat}*/}
-            {/*{sellerIdChat?.map((item) => ((*/}
-            {/*       <ul key={item}>*/}
-            {/*           <li>{item}</li>*/}
-            {/*       </ul>*/}
-            {/*    )))}*/}
-            {/*<div>*/}
-            {/*    対象ユーザーチャット : {sellerIdChat?.map((item) => (*/}
-            {/*    <ul key={item._id}>*/}
-            {/*        <li>{item.sellerMessage}</li>*/}
-            {/*    </ul>*/}
-            {/*))}*/}
-            {/*</div>*/}
-            {/*<br/>*/}
-            {/*<p>*/}
-            {/*    ログインユーザー : {chatData?.currentUserId}*/}
-            {/*</p>*/}
-            {/*<div>*/}
-            {/*    ログインしているチャット : {buyerIdChat?.map((item) => (*/}
-            {/*    <ul key={item.id}>*/}
-            {/*        <li>{item}</li>*/}
-            {/*    </ul>*/}
-            {/*))}*/}
-            {/*    {chatList.map((item, index) => (*/}
-            {/*        <ul key={index}>*/}
-            {/*            <li>{item?.message}</li>*/}
-            {/*        </ul>*/}
-            {/*    ))}*/}
-            {/*</div>*/}
+            {/*{currentUserIdChat}*/}
+
+            <p>
+                ログインユーザー : {chatData?.currentUserId}
+            </p>
+
+            {chatList.map((item, index) => (
+                <ul key={index}>
+                    <li>{item?.message}</li>
+                </ul>
+            ))}
             {/*<form>*/}
             {/*    <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>*/}
             {/*    <button onClick={(e) => handleSendMessage(e)}>送信</button>*/}
@@ -265,20 +335,19 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 <div className={"purchaseMessage"}>
                     <div className="Productchat">
                         <div>
-                            {/*    対象ユーザーチャット : {sellerIdChat?.map((item) => (*/}
-                            {/*    <ul key={item.id}>*/}
-                            {/*        {partnerUserData?.username}*/}
-                            {/*        <li>{item?.sellerChatMessage}</li>*/}
-                            {/*    </ul>*/}
-                            {/*))}*/}
-                        </div>
-                        <div>
-                            {/*    ログインしているチャット : {buyerIdChat?.map((item) => (*/}
-                            {/*    <ul key={item.id}>*/}
-                            {/*        {currentUserData?.username}*/}
-                            {/*        <li>{item?.buyerMessage}</li>*/}
-                            {/*    </ul>*/}
-                            {/*))}*/}
+                            {status == 1 ?
+                                <div>
+                                    <p>取引ステータスは１</p>
+                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                                      currentUserIdChat={currentUserIdChat}
+                                                      partnerUserIdChat={partnerUserIdChat}/>
+
+                                </div> : <div>
+                                    <p>取引ステータスは２</p>
+                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                                      currentUserIdChat={currentUserIdChat}
+                                                      partnerUserIdChat={partnerUserIdChat}/>
+                                </div>}
                             {chatList.map((item, index) => (
                                 <ul key={index}>
                                     <li>{item?.message}</li>
@@ -313,7 +382,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                     {tradeStatus == 1 ?
                         <div>
-                            <p>取引終了</p>
+                            <button onClick={tradeEndFunc}>取引を終了する</button>
+                            {/*<p>取引終了</p>*/}
                         </div>
                         : <button onClick={tradeEndFunc}>取引を終了する</button>
                     }
@@ -335,7 +405,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 </div>
 
                 <div>
-                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserReview}
+                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
                 </div>
 
                 <div id="control">
@@ -352,5 +422,6 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         ;
 }
 
-
 export default ListingComplete;
+
+

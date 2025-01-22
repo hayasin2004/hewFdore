@@ -5,15 +5,26 @@ import {FormControl, FormControlLabel, FormLabel, Radio, RadioGroup} from "@mui/
 import Box from "@mui/material/Box";
 import searchProductCategoryServerAction from "@/app/utils/search/(product)/searchProductCategory";
 import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
-import useUser from "@/hooks/useUser";
+import confirmUser from "@/app/utils/user/confirmUser";
 
 const searchProductCategory = () => {
-    const {user} = useUser()
-    const userId = user?.userId
+    const token = localStorage.getItem("token")
     const router = useRouter();
+    const [loginNowUser, setLoginNowUser] = useState<string | null>(null)
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
     const [productCategory, setProductCategory] = useState<string[] | null>(null)
     console.log(productCategory)
+
+    useEffect(() => {
+
+        const loginUser = async () => {
+            const response = await confirmUser(token)
+            const responseParse = JSON.parse(response)
+            setLoginNowUser(responseParse)
+        }
+        loginUser()
+    }, [token]);
+
     const handleProductSearch = async () => {
         const searchProductCategory = await searchProductCategoryServerAction(productCategory);
         console.log(searchProductCategory)

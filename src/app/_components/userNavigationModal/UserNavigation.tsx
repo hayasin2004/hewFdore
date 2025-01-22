@@ -10,6 +10,8 @@ import Images from "next/image"
 import {borderRadius, color, fontWeight} from "@mui/system";
 import {createTheme} from "@mui/material/styles";
 import {main} from "@popperjs/core";
+import {useEffect, useState} from "react";
+import confirmUser from "@/app/utils/user/confirmUser";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -93,9 +95,17 @@ function ChildModal() {
     );
 }
 
-const UserNavigation = () => {
-    const {user} = useUser()
-    const username = user?.username
+const UserNavigation = ({src}) => {　　
+    const [userData, setUserData] = useState()
+    const token = localStorage.getItem("token")
+    useEffect(() => {
+        const userData = async () => {
+            const response = await  confirmUser(token)
+            const responseParse = JSON.parse(response)
+            setUserData(responseParse)
+        }
+        userData()
+    }, [token]);
     const Logout = async () => {
         await localStorage.removeItem("token");
         window.location.reload()
@@ -113,7 +123,7 @@ const UserNavigation = () => {
     return (
         <div>
             <Button onClick={handleOpen}>
-                <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                <Images src={src} style={{borderRadius: "50px"}} width={50} height={50}
                         alt={"サンプルユーザーアイコン"}/>
             </Button>
             <Modal
@@ -123,7 +133,7 @@ const UserNavigation = () => {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={{...style, width: 400}}>
-                    <h2 id="parent-modal-title">{username}様</h2>
+                    <h2 id="parent-modal-title">{userData?.username}様</h2>
                     <p id="parent-modal-description">
                         保有ポイント 10pt
                     </p>

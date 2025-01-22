@@ -9,6 +9,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
 
     await connectDB()
     try {
+        console.log("今ログインしているユーザー"+currentUser)
         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
         console.log(user)
@@ -57,29 +58,25 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     return {buyerChatResponse: JSON.stringify(createChatResponse)}
                 }
             } else {
-
-
                 if (productListingUser.sellerId == currentUser) {
-                    if (ExistChatMessage?.listingChatMessage[0]?.senderUserId == currentUser) {
-
-                        const updateChatResponse = await ProductComment.updateOne(
-                            {_id: ExistChatMessage?._id, "listingChatMessage.senderUserId": currentUser},
-                            {
-                                $push: {
-                                    listingChatMessage: [{
-                                        senderUserId: currentUser,
-                                        listingMessage: sendChatMessage,
-                                        listingMessageLike: [],
-                                        listingMessageUsername: user.username,
-                                        listingMessageProfilePicture: user.profilePicture,
-                                        timeStamp: new Date()
-
-
-                                    }]
+                    if (ExistChatMessage?.listingChatMessage !== undefined) {
+                        if (ExistChatMessage?.listingChatMessage[0]?.senderUserId == currentUser) {
+                            const updateChatResponse = await ProductComment.updateOne(
+                                {_id: ExistChatMessage?._id, "listingChatMessage.senderUserId": currentUser},
+                                {
+                                    $push: {
+                                        listingChatMessage: [{
+                                            senderUserId: currentUser,
+                                            listingMessage: sendChatMessage,
+                                            listingMessageLike: [],
+                                            listingMessageUsername: user.username,
+                                            listingMessageProfilePicture: user.profilePicture,
+                                            timeStamp: new Date()
+                                        }]
+                                    }
                                 }
-                            }
-                        );
-                        console.log(updateChatResponse)
+                            );
+                        }　
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     } else {
@@ -115,7 +112,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                         senderUserId: currentUser,
                                         buyerMessage: sendChatMessage,
                                         buyerMessageLike: [],
-                                        buyerMessageUsername: user.username,
+                                        buyerMessageUsername: user?.username,
                                         buyerMessageProfilePicture: user.profilePicture,
                                         timeStamp: new Date()
                                     }]

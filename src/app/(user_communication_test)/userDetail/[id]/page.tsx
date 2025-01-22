@@ -8,18 +8,17 @@ import updateFollowings from "@/app/utils/user/ApdateFollowings";
 import useUser from "@/hooks/useUser";
 import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
+import confirmUser from "@/app/utils/user/confirmUser";
 
 
 const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [likeList, setLikeList] = useState<string[] | null>(null)
+    const [loginUserData , setLoginUserData] = useState<string | null>(null)
     console.log(likeList)
     const id: UserType | null = params.id;
-    const {user} = useUser()
-    const loginNowUserId: string = user?.userId
-    console.log(loginNowUserId)
-    console.log(loginNowUserId == id)
+    const token = localStorage.getItem("token")
 
 
 
@@ -27,7 +26,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
         try {
             const userFollowings: string | null = await userData?._id
             console.log(userFollowings)
-            const response: string | null = await updateFollowings(userFollowings, loginNowUserId)
+            const response: string | null = await updateFollowings(userFollowings, loginUserData?._id)
             console.log(response)
         } catch (err) {
             console.log(err)
@@ -36,14 +35,19 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     useEffect(() => {
         const response = async () => {
             try {
+
+                const confirmToken = await confirmUser(token)
+                const confirmTokenParse = JSON.parse(confirmToken)
+                setLoginUserData(confirmTokenParse)
+
                 console.log(id)
                 const response = await userProfile(id)
                 const responesUserData = JSON.parse(response?.searchUser)
                 const responesProductData = JSON.parse(response?.searchProduct)
                 setUserData(responesUserData)
                 setProductData(responesProductData)
-                if (loginNowUserId == id){
-                    const likeData = CatchLikeList(loginNowUserId)
+                if (loginUserData){
+                    const likeData = CatchLikeList(loginUserData?._id)
                     const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList)
                     setLikeList(likeDataParse)
                 }
@@ -53,13 +57,13 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
             }
         }
         response()
-    }, []);
+    }, [token]);
 
 
     return (
         <div>
             <h1>
-                ObjectId: {params.id}
+                ObjectId: {params?.id}
             </h1>
             <div>
                 <ul style={{display: "flex", flexDirection: "column"}}>
@@ -94,12 +98,12 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                     </li>
                     フォロワー: {userData?.followers?.map((item) => (
                     <span key={item?._id}>
-                            <p>{item}</p>
+                            <p>{item?._id}</p>
                             </span>
                 ))}
 
                     <li>
-                        <Link href={{pathname: `/directMessage/${params.id}`, query: {currentUserId: loginNowUserId}}}>
+                        <Link href={{pathname: `/directMessage/${params.id}`, query: {currentUserId: loginUserData?._id}}}>
                             DMする
                         </Link>
                     </li>
@@ -126,8 +130,8 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
 
                 <div>
                     <p>ログインしている人</p>
-                    id : {user?.userId} <br/>
-                    username : {user?.username}
+                    id : {loginUserData?._id} <br/>
+                    username : {loginUserData?.username}
                 </div>
 
             </div>

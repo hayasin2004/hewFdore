@@ -17,19 +17,22 @@ const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
     await connectDB()
     try {
 
-    // チャットルーム検索
-    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+        // チャットルーム検索
+        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
+        // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
-    if (purchaseId !== undefined) {
-        const fChangeMessage = await Purchase.findOne({_id: purchaseId})
-        const    currentUserChat =  fChangeMessage?.sellerChatMessage
-        console.log("どのような形式？"+fChangeMessage)
-        const    partnerUserChat =  fChangeMessage?.buyerChatMessage
-        return {currentUserChat : JSON.stringify(currentUserChat) ,partnerUserChat : JSON.stringify(partnerUserChat) }
-    }
-    }catch (err){
+        if (purchaseId !== undefined) {
+            const fChangeMessage = await Purchase.findOne({_id: purchaseId}).select("buyerChatMessage sellerChatMessage timeStamp").sort({timeStamp : 1})
+            const currentUserChat = fChangeMessage?.sellerChatMessage
+            console.log("どのような形式？" + fChangeMessage)
+            const partnerUserChat = fChangeMessage?.buyerChatMessage
+            return {
+                currentUserChat: JSON.stringify(fChangeMessage?.sellerChatMessage),
+                partnerUserChat: JSON.stringify(fChangeMessage?.buyerChatMessage)
+            }
+        }
+    } catch (err) {
         console.log(err)
         return null
     }

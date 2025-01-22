@@ -1,33 +1,31 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import
+    React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Image from "next/image";
-import "./paidNote.css"
+import "./listingNote.css"
 import Link from "next/link";
 import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
-import {productCommentType} from "@/models/ProductComment";
+import listingNote from "@/app/utils/product/listingNote";
 
 const PaidNote = () => {
-    const [purchaseData, setPurchaseData] = useState([])
     const [productData, setProductData] = useState([])
     const [loginUserData, setLoginUserData] = useState()
-
-    const {user} = useUser()　
+    const {user} = useUser()
     const userParse = JSON.parse(user)
-    const currentUser =loginUserData?._id
+    const currentUser = loginUserData._id
+
     console.log(productData)
     useEffect(() => {
         setLoginUserData(JSON.parse(userParse))
+        
         const fetchPurchaseProduct = async () => {
-            const response = await purchaseProduct(currentUser)
+            const response = await listingNote(userId)
             console.log(response)
-            if (response?.purchaseProduct !== undefined) {
-                setPurchaseData(JSON.parse(response?.purchaseProduct))
-            }
-            if (response?.product !== undefined) {
-                setProductData(JSON.parse(response?.product))
+            if (response  !== undefined) {
+                setProductData(JSON.parse(response))
             }
             console.log(response)
         }
@@ -49,22 +47,11 @@ const PaidNote = () => {
             </span>
             <div className={"paidText"}>
                 <h2 id={"PNtitle"}>
-                    購入履歴
+                    出品履歴
                 </h2>
             </div>
             <div className={"listing"}>
                 <div className={"listing_product"}>
-                    {purchaseData?.map((purchaseItem) => (
-
-                        <ul key={purchaseItem?._id}>
-                            <li>
-                                <Link href={`/tradeChat/${purchaseItem?._id}`}>
-                                    {purchaseItem?._id}
-                                </Link>
-                            </li>
-                        </ul>
-                    ))}
-
                     {productData?.map((productItem) => (
                         <div key={productItem?._id}>
                             <div className={"product"}>

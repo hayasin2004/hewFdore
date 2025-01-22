@@ -2,6 +2,7 @@
 
 import {Chat} from "@/models/Chat";
 import {string} from "prop-types";
+import {connectDB} from "@/lib/mongodb";
 
 export interface ChatType {
     currentUser?: string
@@ -11,20 +12,28 @@ export interface ChatType {
 }
 
 const saveMessageStauts1Update = async (chatId: string, pushedUser: string, message: string) => {
-    console.log(chatId, pushedUser, message)
-    // チャットルーム検索
-    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+    await connectDB()
+    try {
+
+        console.log("asagayasimai" + chatId, pushedUser, message)
+
+        // チャットルーム検索
+        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
+        // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
-    const fChangeMessage = await Chat.findByIdAndUpdate(
-        chatId,
-        {$push: {currentUserChat: message}},
-        {new: true, useFindAndModify: false}
-    )
-    console.log(fChangeMessage)
-    return {fChangeMessage : fChangeMessage}
+        const fChangeMessage = await Chat.findByIdAndUpdate(
+            chatId,
+            {$push: {currentUserChat: message}},
+            {new: true, useFindAndModify: false}
+        )
+        console.log(fChangeMessage)
+        return {fChangeMessage: fChangeMessage}
 
+    } catch (err) {
+        console.log(err)
+        return null
+    }
 }
 
 export default saveMessageStauts1Update

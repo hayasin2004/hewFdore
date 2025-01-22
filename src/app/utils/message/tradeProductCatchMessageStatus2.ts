@@ -22,12 +22,12 @@ const tradeProductCatchMessageStatus2 = async (purchaseId?: string) => {
     // console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
-        const fChangeMessage = await Purchase.findById({_id: purchaseId})
+        const fChangeMessage = await Purchase.findById({_id: purchaseId}).select("buyerChatMessage sellerChatMessage")
         console.log("staff支店"+fChangeMessage)
         const    currentUserChat =  fChangeMessage?.buyerChatMessage
         const    partnerUserChat =  fChangeMessage?.sellerChatMessage
         // const chatList = fChangeMessage.map((item) =>)
-        return    JSON.stringify(fChangeMessage)
+        return { buyerChatMessage : JSON.stringify(fChangeMessage?.buyerChatMessage) , partnerUserChat :  JSON.stringify(fChangeMessage?.sellerChatMessage)}
     }catch (err){
         console.log(err)
         return null

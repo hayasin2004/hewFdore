@@ -34,7 +34,7 @@ const PurchaseSchema = new mongoose.Schema({
         required: true,
     },
     buyerChatMessage: [{
-        senderUserId: {
+        buyerUserId: {
             type: String,
             required: true,
         },
@@ -91,7 +91,7 @@ const PurchaseSchema = new mongoose.Schema({
         type : String ,
         default: "",
     },
-    sellerUserReview : {
+    sellerUserLastReview : {
         type: String,
         enum: review,
         default : ""

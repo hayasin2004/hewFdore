@@ -13,14 +13,19 @@ const PayComplete = () => {
     const [productId, setProductId] = useState<string | null>("")
     console.log(productId)
     const [params, setParams] = useState({});
+    const [loginUserData, setLoginUserData] = useState()
+
     console.log(params?.sessionId)
-    const {user} = useUser()
+    const user = useUser()
+    const userParse = JSON.parse(user)
+    const currentUser = loginUserData?._id
     useEffect(() => {
+        setLoginUserData(userParse)
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
         const productId = query.get('productId');
         const userId = query.get('userId');
-        console.log(userId)
+        console.log(sessionId, productId)
         setParams({sessionId, productId});
         if (userId) {
             if (sessionId || productId || userId) {

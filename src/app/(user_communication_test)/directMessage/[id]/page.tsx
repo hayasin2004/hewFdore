@@ -12,14 +12,14 @@ import saveMessageStauts2Update from "@/app/utils/message/saveMessageStauts2Upda
 import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Update";
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
+import confirmUser from "@/app/utils/user/confirmUser";
+import {JsConfigPathsPlugin} from "next/dist/build/webpack/plugins/jsconfig-paths-plugin";
 
 
 const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
     const detailUser = params?.id as string;
-    const {user} = useUser()
-    const tokenUser = user?.userId;
-    console.log("currentUser", tokenUser)
+    const token = localStorage.getItem("token")
     const [chatData, setChatData] = useState<ChatType | null>(null)
     const [currentUser, setCurrentUser] = useState<ChatType | null>(null)
     console.log(JSON.stringify(chatData))
@@ -59,6 +59,9 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     useEffect(() => {
         const response = async () => {
+            const confirmToken = await confirmUser(token)
+            const confirmTokenParse = JSON.parse(confirmToken)
+            const tokenUser = confirmTokenParse._id
             const setUsersData = await DirectMessageserver(tokenUser, detailUser)
             if (setUsersData?.newChatRoom) {
                 setChatData(setUsersData)
@@ -77,7 +80,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             // setCurrentUser(setUsersData?.currentUser?._id)
         }
         response()
-    }, [currentUser, detailUser, tokenUser]);
+    }, [currentUser, detailUser, token]);
 
 
     // socket.ioに送信
@@ -94,15 +97,15 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 setChatList([...chatList, data])
             })
             const SavedMessage = async () => {
-                const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
-                const update = await saveMessageStauts1Update(chatData?._id, chatData?.currentUser, message)
+                // const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
+                const update = await saveMessageStauts1Update(chatData?.chatId, chatData?.currentUser, message)
 
-                console.log(response)
+                console.log(update)
                 setMessage("")
             }
             SavedMessage()
         }
-        // ステータス2
+        // ステータス3
         else if (status === "3") {
             e.preventDefault()
             socket.emit("send_message", {message: message})
