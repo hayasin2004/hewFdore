@@ -26,6 +26,7 @@ import productChatLike from "@/app/utils/product/productChatLike";
 import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     const [tradeChatLike, setTradeChatLike] = useState(0)
@@ -106,12 +107,13 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 
 const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [reviewValue, setReviewValue] = React.useState<number | null>(1);
-    const [productData, setProductData] = useState<string | null>(null)
+    const [productData, setProductData] = useState<ProductType | null>(null)
     const [chatData, setChatData] = useState<ChatType | null>(null)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
-    const [tradeStatus, setTradeStatus] = useState<number>(0)
+    const [tradeStatus, setTradeStatus] = useState<number | null>(0)
+    const [tradeCancel, setTradeCancel] = useState<string | null>(null)
     const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
     console.log(JSON.stringify(partnerUserIdChat))
     const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
@@ -143,12 +145,12 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             if (tradeStatus !== undefined) {
                 const tradeStatusParse = JSON.parse(JSON.stringify(tradeStatus))
                 if (tradeStatusParse !== undefined) {
-                    console.log("トレードの今のログ" + tradeStatusParse.sellerUserLastChat)
+                    console.log("トレードの今のログ" + tradeStatusParse?.sellerUserLastChat)
                     setTradeStatus(tradeStatusParse?.tradeStatus)
                     setSellerLastChat(JSON.parse(tradeStatusParse?.sellerUserLastChat))
                     setBuyerLastChat(JSON.parse(tradeStatusParse?.buyerUserLastChat))
-                    setSellerUserReview(JSON.parse(tradeStatusParse.sellerUserLastReview))
-                    setBuyerUserReview(tradeStatusParse.buyerUserReview)
+                    setSellerUserReview(JSON.parse(tradeStatusParse?.sellerUserLastReview))
+                    setBuyerUserReview(tradeStatusParse?.buyerUserReview)
                 }
             }
             setProductData(JSON.parse(response));
@@ -280,18 +282,27 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         }
     }
 
-    const TradeCancel= async () => {
-        const tradeCancel = await TradeCancelFnc(productData.stripeCode)
+    const TradeCancel = async () => {
+        if (productData?.stripeCode !== undefined) {
+            const tradeCancel = await TradeCancelFnc(productData?.stripeCode, purchaseId)
+            console.log(tradeCancel)
+            if (tradeCancel !== undefined) {
+                setTradeCancel(tradeCancel)
+                setTradeStatus(404)
+                window.alert("取引をキャンセルしました。返金は3～5日に指定のカードに返金されます。")
+            }
+        }
     }
 
 
     return (
         <>
             <Header/>
+            {tradeStatus == 404 ? "取引をキャンセルしました。" : ""}
             {status}
+            {tradeCancel !== null ? "取引をキャンセルしました。" : ""}
             {tradeStatus == 1 ? <p>取引終了しました。</p> : <p>取引中</p>}
             {/*{currentUserIdChat}*/}
-
             <p>
                 ログインユーザー : {chatData?.currentUserId}
             </p>
@@ -345,6 +356,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                                     <p>取引ステータスは１</p>
                                     <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
                                                       currentUserIdChat={currentUserIdChat}
+
                                                       partnerUserIdChat={partnerUserIdChat}/>
 
                                 </div> : <div>
@@ -385,7 +397,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             setLastChat(e.target.value)
                         }} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
                     </div>
-                    {tradeStatus == 1 ?
+                    {tradeStatus == 1 || tradeStatus == 404 ?
                         <div>
                             {/*<button onClick={tradeEndFunc}>取引を終了する</button>*/}
                             <p>取引終了</p>
@@ -420,7 +432,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 </div>
                 <div id="control">
                     <button onClick={TradeCancel}
-                        type="button">取引をキャンセルする
+                            type="button">取引をキャンセルする
                     </button>
                 </div>
 
@@ -433,5 +445,3 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
 }
 
 export default ListingComplete;
-
-
