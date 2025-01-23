@@ -14,6 +14,7 @@ export interface BlogType {
         height: number;
         width: number;
     };
+    createdAt?: string;
 }
 
 const Blogintroduction = () => {
@@ -28,36 +29,57 @@ const Blogintroduction = () => {
         fetchBlogs();
     }, []);
 
+    const formatDate = (dateString: string | undefined): string => {
+        if (!dateString) return ""; // dateStringがundefinedの場合は空文字を返す
+        const date = new Date(dateString);
+        return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date
+            .getDate()
+            .toString()
+            .padStart(2, "0")}`;
+    };
+
     return (
         <div>
             <h1>ブログ一覧</h1>
+
             {blogs.length === 0 ? (
                 <p>読み込み中...</p>
             ) : (
                 <ul>
-                    {blogs.map((blog) => (
-                        <li key={blog.id} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                            {/* 各ブログの詳細ページのLink */}
-                            <Link href={`/${blog.id}`} style={{ display: "flex", alignItems: "center", textDecoration: "none", color: "inherit" }}>
-                                {/* 画像表示 */}
-                                {blog.image && (
-                                    <img
-                                        src={blog.image.url}
-                                        alt={blog.title}
-                                        style={{
-                                            width: "50px",
-                                            height: "auto",
-                                            marginRight: "10px",
-                                            borderRadius: "5px",
-                                        }}
-                                    />
-                                )}
-                                <div className={"linkid"}>{blog.title}</div>
-                            </Link>
-                        </li>
-                    ))}
+                    <div className={"backmain"}>
+                        {blogs.map((blog) => (
+                            <li key={blog.id} className={"blog-item"} style={{display: "flex", alignItems: "center", marginBottom: "10px"}}>
+                                {/* 各ブログの詳細ページのLink */}
+                                <Link href={`/${blog.id}`} style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    textDecoration: "none",
+                                    color: "inherit"
+                                }}>
+                                    {/* 画像表示 */}
+                                    {blog.image && (
+                                        <img
+                                            src={blog.image.url}
+                                            alt={blog.title}
+                                            style={{
+                                                width: "250px",
+                                                height: "auto",
+                                                marginRight: "10px",
+                                                borderRadius: "5px",
+                                            }}
+                                        />
+                                    )}
+                                    <div className={"text-container"}>
+                                        <div className={"blog-date"}>{formatDate(blog.createdAt)}</div>
+                                        <div className={"linkid"}>{blog.title}</div>
+                                    </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </div>
                 </ul>
-            )}
+                )}
+
         </div>
     );
 };
