@@ -1,11 +1,10 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import Header from "@/app/_components/header/Header";
 import "./searchResult.css"
-import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
+// コンポーネント読み込み
+import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
-import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
 import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
 import {products as data} from "../api/dummyData/data"
@@ -120,15 +119,38 @@ const SearchPageProducts = () => {
 
     return (
         <div>
-            <SearchHeader/>
-            <div style={{width: "1200px", justifyContent: "space-between", display: "flex"}}>
-                <div style={{"marginTop": "60px", width: "600px"}}>
-                    {/*<Sidebar/>*/}
-                </div>
-                <div >
-                </div>
-                {/*<SearchResultProducts/>*/}
+            <Header/>
+            <div id={"SearchBar"}>
+            {/* このdivに検索バー、オプションを入れる */}
+                <form id={"WordSearch"} action="#">
+                    {/*　文字入力　*/}
+                    <input placeholder="お探しの商品を検索…" type="text"/>
+                    {/*　カテゴリ絞り込み　*/}
+                    {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
+                    <select id={"SearchCat"}>
+                        <option value="カテゴリー">カテゴリー</option>
+                        <option value="トップス">トップス</option>
+                        <option value="ボトムス">ボトムス</option>
+                        <option value="アウター">アウター</option>
+                        <option value="帽子">帽子</option>
+                        <option value="靴">靴</option>
+                        <option value="アクセサリー">アクセサリー</option>
+                        <option value="香水">香水</option>
+                    </select>
+                    {/*　サイズ絞り込み　*/}
+                    <select id={"SearchSize"}>
+                        <option value="サイズ">サイズ</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="LL">LL</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    <button type={"submit"}>検索</button>
+                </form>
             </div>
+
             <div id={"NumView"}>
                 <h2 id={"SRTotal"}>{product.length}件の検索結果</h2>
                 <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>

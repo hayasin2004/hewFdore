@@ -10,6 +10,66 @@ width: 1200px;
     display: flex;
 }
 
+/* div#SearchBar 検索バー、オプションここで設定できるようにしたい */
+div#SearchBar{
+    margin: 25px 0 50px 50px;
+    width: 90%;
+}
+form#WordSearch{
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: baseline;
+
+}
+form#WordSearch input[type='text']{
+    margin: 0 1rem 0 0;
+    width: 50rem ;
+    padding: 1.5% 1% ;
+    border-radius: 10px;
+    font-size: 1.5rem ;
+    border: solid 2px #D0C7B2;
+    box-shadow: #D0C7B2 2px 2px 0 ;
+
+    background-color: #fff ;
+}
+
+form#WordSearch select{
+    font-size: 1.1rem;
+    background-color: #fffa;
+    border: 1px #D0C7B2 solid;
+    border-radius: 10px;
+    box-shadow: #8e7560 2px 2px 0 ;
+    margin: 0 10px 0 0;
+}
+form#WordSearch select:hover{
+    margin: 3px 13px 0  0;
+    box-shadow: none;
+}
+select#SearchCat{
+    width: 10rem;
+
+}
+select#SearchSize{
+    width: 6rem;
+}
+
+form#WordSearch button[type="submit"]{
+    margin: 0 0 0 0 ;
+    width: 5rem;
+    font-size: 1.2rem ;
+    border: none;
+    box-shadow: #8e7560  3px 3px 0 ;
+
+    border-radius: 10%;
+    color: #EBE8DB;
+    background-color: #605252;
+}
+form#WordSearch button[type="submit"]:hover{
+    margin: 3px 3px 0  0;
+    box-shadow: none;
+}
 
 
 .searchresult{
