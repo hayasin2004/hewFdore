@@ -8,6 +8,7 @@ import "./Blogintroduction.css";
 export interface BlogType {
     id?: string;
     title?: string;
+    sabtitle?: string;
     contents?: string;
     image?: {
         url: string;
@@ -29,6 +30,7 @@ const Blogintroduction = () => {
         fetchBlogs();
     }, []);
 
+    //日付設定
     const formatDate = (dateString: string | undefined): string => {
         if (!dateString) return ""; // dateStringがundefinedの場合は空文字を返す
         const date = new Date(dateString);
@@ -41,6 +43,7 @@ const Blogintroduction = () => {
     return (
         <div>
             <h1>ブログ一覧</h1>
+            <p>ブログ件数: {blogs.length}件</p>
 
             {blogs.length === 0 ? (
                 <p>読み込み中...</p>
@@ -48,7 +51,8 @@ const Blogintroduction = () => {
                 <ul>
                     <div className={"backmain"}>
                         {blogs.map((blog) => (
-                            <li key={blog.id} className={"blog-item"} style={{display: "flex", alignItems: "center", marginBottom: "10px"}}>
+                            <li key={blog.id} className={"blog-item"}
+                                style={{display: "flex", alignItems: "center", marginBottom: "10px"}}>
                                 {/* 各ブログの詳細ページのLink */}
                                 <Link href={`/${blog.id}`} style={{
                                     display: "flex",
@@ -73,12 +77,13 @@ const Blogintroduction = () => {
                                         <div className={"blog-date"}>{formatDate(blog.createdAt)}</div>
                                         <div className={"linkid"}>{blog.title}</div>
                                     </div>
+                                    <div>{blog.sabtitle}</div>
                                 </Link>
                             </li>
                         ))}
                     </div>
                 </ul>
-                )}
+            )}
 
         </div>
     );

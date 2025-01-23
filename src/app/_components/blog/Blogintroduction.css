@@ -1,12 +1,14 @@
 div{}
 
 h1{
+    margin-top: 20px;
     text-align: center;
 }
 
 /*各blog要素*/
 li{
-    background-color: #c8aa9a;
+    padding: 10px;
+    background-color: #CFC8A9;
 }
 
 .blog-item{
@@ -16,6 +18,10 @@ li{
     border-radius: 6px;
 }
 
+.blog-item:hover{
+    border: 2px #000;
+    background-color: #ddd;
+}
 
 
 .linkid{
@@ -32,7 +38,7 @@ li{
 
 /*blogintroductionの背景*/
 .backmain{
-    border: 3px #BF9E80;
+    border: 4px #BF9E80;
     border-style:solid none none none;
     padding: 30px 0 30px 0;
     background-color: #f8f4ef;

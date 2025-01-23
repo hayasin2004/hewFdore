@@ -26,6 +26,7 @@ export async function generateStaticParams() {
             <main>
                 <h1>{blog.title}</h1>
                 <p>{blog.publishedAt}</p>
+                <p>{blog.subtitle}</p>
                 <div dangerouslySetInnerHTML={{ __html: blog.body }}></div>
                 {/* dangerouslySetInnerHTMLの使用はセキュリティ上非推奨 */}
                 <Link href={"/blogintroduction"}>戻る</Link>
