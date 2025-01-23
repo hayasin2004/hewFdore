@@ -30,7 +30,7 @@ const Header = () => {
     const [userData, setUserData] = useState(null)
     const [toastPurchase, setToastPurchase] = useState<string | null>(null)
     const [otherToast, setOtherToast] = useState<string | null>(null)
-    console.log("商品" + toastPurchase , "その他" + otherToast)
+    // console.log("商品" + toastPurchase , "その他" + otherToast)
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {

@@ -1,8 +1,5 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import {loadStripe} from "@stripe/stripe-js";
-import * as stripe from "stripe";
-import {string} from "prop-types";
 import {useRouter} from "next/navigation";
 import {stripePaymentFunc} from '@/app/utils/stripe/stripePaymentFunc';
 import {stripePaymentPayPay} from "@/app/utils/stripe/paypaystripe";
@@ -13,9 +10,11 @@ import "./stripe.css"
 import {display} from "@mui/system";
 
 const CompleteStripe = ({productId}: { productId: string }) => {
+        const router = useRouter();
+
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [loginNowUserData, setLoginNowUserData] = useState(null)
-    console.log(loginNowUserData?._id)
+        console.log(loginNowUserData?._id)
         const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
             const status = localStorage.getItem("isButtonDisabled")
             return status === "true";
@@ -45,12 +44,13 @@ const CompleteStripe = ({productId}: { productId: string }) => {
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             try {
                 e.preventDefault()
-                if (paymentMethod === "paypay") {
+                if (paymentMethod === "payPay") {
                     const response = await stripePaymentPayPay(productId, paymentMethod, loginNowUserData?._id);
                     console.log(response);
                     if (response?.url) {
                         window.location.href = response.url;
                         console.log(response.url)
+                        router.push("localhost:3000/")
                     } else {
                         console.error("Invalid payment URLs");
                     }
@@ -113,7 +113,7 @@ const CompleteStripe = ({productId}: { productId: string }) => {
                         <select onChange={(e) => setPaymentMethod(e.target.value)}
                                 value={paymentMethod}>
                             <option value="card">カード払い</option>
-                            <option value="paypay">PayPay</option>
+                            <option value="payPay">PayPay</option>
                         </select>
                     </label>
 

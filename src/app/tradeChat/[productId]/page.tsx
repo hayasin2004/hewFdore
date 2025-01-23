@@ -283,8 +283,15 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     }
 
     const TradeCancel = async () => {
-        if (productData?.stripeCode !== undefined) {
+        if (productData?.stripeCode !== "") {
             const tradeCancel = await TradeCancelFnc(productData?.stripeCode, purchaseId)
+            if (tradeCancel !== undefined) {
+                setTradeCancel(tradeCancel)
+                setTradeStatus(404)
+                window.alert("取引をキャンセルしました。返金は3～5日に指定のカードに返金されます。")
+            }
+        } else {
+            const tradeCancel = await TradeCancelFnc(productData?.payPayCode, purchaseId)
             console.log(tradeCancel)
             if (tradeCancel !== undefined) {
                 setTradeCancel(tradeCancel)
@@ -292,6 +299,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 window.alert("取引をキャンセルしました。返金は3～5日に指定のカードに返金されます。")
             }
         }
+
     }
 
 
@@ -430,11 +438,16 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                         type="button">トップに戻る
                     </button>
                 </div>
-                <div id="control">
-                    <button onClick={TradeCancel}
-                            type="button">取引をキャンセルする
-                    </button>
-                </div>
+
+                {tradeStatus == 1 || tradeStatus == 404 ?
+                    ""
+                    :
+                    <div id="control">
+                        <button onClick={TradeCancel}
+                                type="button">取引をキャンセルする
+                        </button>
+                    </div>
+                }
 
             </div>
 

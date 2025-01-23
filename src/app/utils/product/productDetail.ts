@@ -24,6 +24,7 @@ export interface ProductType {
     productCondition?: string,
     productImage? :string,
     stripeCode? : string
+    payPayCode? : string
 }
 
 

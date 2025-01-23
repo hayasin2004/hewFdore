@@ -7,13 +7,13 @@ import {Purchase} from "@/models/Purchase";
 import {User} from "@/models/User";
 import toastGmailForPurchase from "@/app/utils/product/toastGmailForPurchase";
 
-const payComplete = async (productId: string | null, stripeCode: string | null, userId: string | null) => {
+const payComplete = async (productId: string | null, stripeCode: string | null, userId: string | null, paymentStatus: string | null) => {
     await connectDB()
     try {
         const CheckProduct = await Product.findById({_id: productId})
-        console.log("何を得て何を得て大人になっていくんだろう" +CheckProduct)
+        console.log("何を得て何を得て大人になっていくんだろう" + CheckProduct)
         const purchaseId = uuidv4();
-        console.log( productId, stripeCode, userId);
+        console.log(productId, stripeCode, userId);
         if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
             const purchase = await Purchase.findOne({productId: productId})
             console.log("既に購入されていていますされています。");
@@ -26,25 +26,38 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                 sellerId: CheckProduct.sellerId,
                 buyerId: userId,
                 productId: productId,
+                tradeStatus: "取引中"
             })
 
             purchase.save()
+            if (paymentStatus == "stripe") {
 
-            const product = await Product.findByIdAndUpdate({_id: productId}, {
-                $set: {
-                    buyerId: userId,
-                    stripeCode: stripeCode,
-                    sellStatus: "trading"
-                }
-            }, {new: true, upsert: true});
+                const product = await Product.findByIdAndUpdate({_id: productId}, {
+                    $set: {
+                        buyerId: userId,
+                        stripeCode: stripeCode,
+                        sellStatus: "trading"
+                    }
+                }, {new: true, upsert: true});
+            }
+            else if (paymentStatus == "payPay") {
+
+                const product = await Product.findByIdAndUpdate({_id: productId}, {
+                    $set: {
+                        buyerId: userId,
+                        payPayCode: stripeCode,
+                        sellStatus: "trading"
+                    }
+                }, {new: true, upsert: true});
+            }
 
             const user = User.findByIdAndUpdate({id: userId}, {
                 $set: {
                     purchaseProduct: purchase?._id
                 }
-            },{new : true , upsert: true});
+            }, {new: true, upsert: true});
 
-            const sendPurchaseComplete = await  toastGmailForPurchase(productId ,CheckProduct.sellerId ,userId)
+            const sendPurchaseComplete = await toastGmailForPurchase(productId, CheckProduct.sellerId, userId)
             console.log(sendPurchaseComplete)
             return JSON.stringify(purchase._id)
 

@@ -24,14 +24,17 @@ const PayComplete = () => {
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
         const productId = query.get('productId');
+        const paymentStatus = query.get('paymentStatus')
+
         const userId = query.get('userId');
         console.log(sessionId, productId)
         setParams({sessionId, productId});
         if (userId) {
             if (sessionId || productId || userId) {
                 console.log(productId,sessionId, userId)
+
                 const insertPurchaseDate = async  () => {
-                    const response = await payComplete(productId,sessionId, userId)
+                    const response = await payComplete(productId,sessionId, userId, paymentStatus)
                     if (response !== undefined || response !== null){
                         setProductId(JSON.parse(response))
                     }

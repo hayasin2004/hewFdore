@@ -108,6 +108,10 @@ const ProductSchema = new mongoose.Schema({
             type: String,
             default: "",
         },
+        payPayCode: {
+            type: String,
+            default: "",
+        },
     },
     { timestamps: true }
 );
