@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "./searchResult.css"
 import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
+import Footer from "@/app/_components/footer/Footer";
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
 import {DBProductType} from "@/app/api/product/route";
@@ -96,7 +97,6 @@ const SearchPageProducts = () => {
         return(
             // ここで表示html設定
             <>
-                <p>{ProductOffset+1}件目から{endOffset}件目を表示</p>
                {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
                 <ProductCardList items={currentProduct} />
 
@@ -104,6 +104,7 @@ const SearchPageProducts = () => {
             </>
         )
     }
+    // 1ページごとに表示する数はProductPerPageで変えられます
     const ProductPerPage = 2;
     const [ProductOffset,setProductoffset] = useState(0);
     const endOffset = ProductOffset +ProductPerPage;
@@ -128,9 +129,11 @@ const SearchPageProducts = () => {
                 </div>
                 {/*<SearchResultProducts/>*/}
             </div>
-        <div>
-            <h2>{product.length}件の検索結果</h2>
-        </div>
+            <div id={"NumView"}>
+                <h2 id={"SRTotal"}>{product.length}件の検索結果</h2>
+                <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
+
+            </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
@@ -180,7 +183,7 @@ const SearchPageProducts = () => {
 
             </div>
 
-
+        <Footer/>
 
         </div>
     );
