@@ -22,6 +22,7 @@ import InsertProductImage from "@/app/utils/setting/update/InsertProudctImage";
 import soldOutProduct from "@/app/utils/setting/update/soldOutProduct";
 import toastPurchase from "@/app/utils/toast/toastPurchase";
 import setupfollowerUserId from "@/app/utils/setting/update/setupfollowerUserId";
+import updatePayPay from "@/app/utils/setting/update/updatePayPay";
 // 幅揃えします
 
 const Toppage = () => {
@@ -30,8 +31,7 @@ const Toppage = () => {
     console.log(productList)
 
     const updateButton = async () => {
-        // await soldOutProduct()
-        await setupfollowerUserId()
+        await updatePayPay()
     }
 
     //

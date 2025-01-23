@@ -9,7 +9,7 @@ export interface PurchaseType {
     newChatRoom? : string
 }
 
-const tradeStatus = ["取引中", "取引完了" , "取引終了"] as const;
+const tradeStatus = ["取引中", "取引完了" , "取引終了" , "取引キャンセル"] as const;
 type tradeStatusType = (typeof tradeStatus)[number];
 
 
