@@ -113,6 +113,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
     const [tradeStatus, setTradeStatus] = useState<number | null>(0)
+    console.log(tradeStatus)
     const [tradeCancel, setTradeCancel] = useState<string | null>(null)
     const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
     console.log(JSON.stringify(partnerUserIdChat))
