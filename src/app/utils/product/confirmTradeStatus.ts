@@ -11,7 +11,7 @@ const confirmTradeStatus = async (purchaseId: string | null) => {
         const purchaseCondition = await Purchase.findById(purchaseId).select("sellerUserLastChat sellerUserLastReview buyerUserLastChat buyerUserReview tradeStatus")
         if (purchaseCondition.tradeStatus == "取引キャンセル") {
             console.log("取引はキャンセル済みです")
-            tradeStatus = 404
+            tradeStatus= 404
             return {
                 tradeStatus: tradeStatus,
                 sellerUserLastChat: JSON.stringify(purchaseCondition.sellerUserLastChat),
