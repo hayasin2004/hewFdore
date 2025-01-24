@@ -1,0 +1,57 @@
+/*全体*/
+div#wrap{
+    background-color: #EBE8DB;
+}
+/*　リスト　*/
+div#UserList{
+    margin: 5% 10%;
+}
+
+div#UserList h1{
+    margin: 0 0 25px 0;
+    font-size: 1.5em;
+
+}
+
+/* tableの配置用 */
+div#ListDirction{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+table.ListUser{
+    border: #EBE8DB 5px;
+    border-style: none none solid none;
+    background-color: #fff;
+
+}
+table.ListUser th{
+    height: 1.2rem;
+    width: 10rem;
+    text-align: right;
+    border: #EBE8DB 3px;
+    border-style: none none none none;
+}
+
+table.ListUser td{
+    width: 18rem;
+    text-indent: 1rem;
+}
+table.ListUser td.ListIcon{
+    height: 100px;
+    width: 100px;
+    padding: 2px;
+    border-radius: 50%;
+    border: #8e7560 1px solid;
+}
+table.ListUser td.idLink:hover{
+    color: #fff;
+    background-color: #8e7560;
+}
+table.ListUser td.mailLink{
+    width: 2rem;
+    text-indent: 0;
+    padding: 0 20px 0 0;
+}
