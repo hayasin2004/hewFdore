@@ -22,17 +22,16 @@ div#ListDirction{
 }
 
 table.ListUser{
-    border: #EBE8DB 5px;
-    border-style: none none solid none;
-    background-color: #fff;
+    margin: 0 0 25px 0;
+    /*border: #fff 3px;*/
+    /*border-style: none none solid none;*/
+    background-color: #EBE8DB;
 
 }
 table.ListUser th{
     height: 1.2rem;
     width: 10rem;
     text-align: right;
-    border: #EBE8DB 3px;
-    border-style: none none none none;
 }
 
 table.ListUser td{
@@ -54,4 +53,8 @@ table.ListUser td.mailLink{
     width: 2rem;
     text-indent: 0;
     padding: 0 20px 0 0;
+}
+table.ListUser td.mailLink:hover{
+    color: #fff;
+    background-color: #8e7560;
 }
