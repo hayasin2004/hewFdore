@@ -21,7 +21,8 @@ import inserteProductSellStatus from "@/app/utils/setting/update/InsertProductSe
 import {useRouter} from "next/navigation";
 import sellerCheck from "@/app/utils/product/sellerCheck";
 import InsertProductSellStatus from "@/app/utils/user/InserteUserPurchase";
-import insert from "@/app/utils/user/insert";
+import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
+
 
 const Product = ({params}: { params: { id: string } }) => {
     const [loginUserData, setLoginUserData] = useState()

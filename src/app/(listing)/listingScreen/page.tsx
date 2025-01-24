@@ -5,13 +5,9 @@ import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from 'next/link';
-import createProduct from "@/app/utils/product/createProduct";
-import {string} from "prop-types";
-import {redirect} from "next/navigation";
+import createProduct from "@/app/utils/product/createProduct";　
 import {ProductType} from "@/app/utils/product/productDetail";
-import io from "socket.io-client";
-import e from "cors";
-import uploadFiles from "@/app/utils/product/uploadFiles";
+import io from "socket.io-client";　　
 
 export interface productStatusType {
     productCategory?: string[],
@@ -75,10 +71,7 @@ const ListingScreen: React.FC = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('video', productVideoFiles);
-        await  uploadFiles(productVideoFiles)
-
-
+        formData.append('video', productVideoFiles);　
     };
 
 

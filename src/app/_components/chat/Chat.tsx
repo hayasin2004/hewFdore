@@ -10,12 +10,15 @@ import getProductChatMessage from "@/app/utils/product/getChatMessage";
 import {productCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
 import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
+import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
     const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
     const [loginUserData, setLoginUserData] = useState()
+    const [icon, setIcon] = useState("")
     const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
+
     console.log(chatMessage)
     const user = useUser()
     const userParse = JSON.parse(user)
@@ -98,7 +101,8 @@ const Chat = (props: { paramsProductData: string }) => {
 
                             メッセージ内容 : {item?._id} <br/>
                             <button id={"good"} onClick={() => testCommentLike(item?._id)}>
-                                ♡{item?.buyerMessageLike?.length}
+                                <EmojiPicker icon={icon} />
+                                {item?.buyerMessageLike?.length}
                             </button>
                         </div>
                     </div>

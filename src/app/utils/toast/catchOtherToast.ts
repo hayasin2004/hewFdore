@@ -8,7 +8,7 @@ const catchOtherToast  =async  (userId : string | null) => {
     try {
         console.log(userId);
         const toast = await Toast.find({userId: userId , toastCategory : "いいね、フォローなど"})
-        console.log("既存の通知"+toast);
+        // console.log("既存の通知"+toast);
 
         return  JSON.stringify(toast)
 
