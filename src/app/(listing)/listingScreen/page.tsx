@@ -11,6 +11,7 @@ import {redirect} from "next/navigation";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import e from "cors";
+import uploadFiles from "@/app/utils/product/uploadFiles";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -35,6 +36,9 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
+    const [productVideoFiles, setProductVideoFiles] = useState<string | null>(null)
+    const [compressedVideo, setCompressedVideo] = useState(null)
+
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
     console.log(shippingArea)
@@ -51,7 +55,7 @@ const ListingScreen: React.FC = () => {
         }
     };
 
-    //
+
     // const productCategory = productCategory
     // const productSize = productSize
     // const productCondition = productCondition
@@ -60,11 +64,39 @@ const ListingScreen: React.FC = () => {
     // const shippingArea = shippingArea
     const socket = io("http://localhost:8080");
 
+    // const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const files = e.target.files
+    //     if (files && files.length > 0) {
+    //         setProductVideoFiles(files[0])
+    //     }
+    // }
+
+    const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('video', productVideoFiles);
+        await  uploadFiles(productVideoFiles)
+
+
+    };
+
 
     console.log(socket)
     return (
         <>
             <Header/>
+            <div>
+                <h1>動画アップロード</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="file"
+                        accept="video/*"
+                        onChange={(e) => setProductVideoFiles(e.target.files[0])}
+                    />
+                    <button type="submit">アップロード</button>
+                </form>
+            </div>
             <div className={"content"}>
                 <div className={"listingScreenBackground"}>
                     <form action={async (data: FormData) => {
@@ -72,7 +104,8 @@ const ListingScreen: React.FC = () => {
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
                         const productDesc = data.get("productDesc") as string;
-
+                        const productVideo = new FormData();
+                        productVideo.append('video', productVideoFiles);
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
@@ -90,7 +123,8 @@ const ListingScreen: React.FC = () => {
                             productCondition,
                             postageBurden,
                             shippingAreaText,
-                            productImage
+                            productImage,
+                            productVideo
                         ).then(
                             (product => {
                                 if (product?.result !== undefined) {
@@ -106,10 +140,19 @@ const ListingScreen: React.FC = () => {
                         </h2>
 
                         <div id="kamera">
-                            {productImage && <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
+                            {productImage &&
+                                <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                        </div>
                             <input type="file" onChange={productImageFile}/>
+                        </div>
+
+                        <div id="kamera">
+                            {productImage &&
+                                <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}
+                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            <input type="file" accept={"video/*"}
+                                   onChange={(e) => setProductVideoFiles(e?.target?.files[0])}/>
+                        </div>
 
 
                         <h3 id="s_name">
