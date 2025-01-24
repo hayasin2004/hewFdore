@@ -92,12 +92,7 @@ const Chat = (props: { paramsProductData: string }) => {
                 <p>閲覧者の投稿</p>
                 {buyerChatMessageList?.map((item, index) => (
                     <div className={"comment-sec-rig"}>
-                        <div className={"comment-user-rig"}>
-                            <Images
-                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                                alt={"サンプルユーザーアイコン"}/>
-                            {item.buyerMessage} さん<br/>
-                        </div>
+                        
                         <div className={"comment-area-rig"} key={index}>
                             {/*{item.senderUserId} <br/>*/}
 

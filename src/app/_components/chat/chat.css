@@ -114,15 +114,16 @@ button img#sendMsg{
 .comment-sec-rig{
     padding-top: 15px;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
 }
 
 .comment-user-rig{
     display: flex;
     align-items: center;
     padding-bottom: 5px;
-    margin-left: 10px;
+    margin-right: 10px;
     font-size: 1.1rem;
+    justify-content: flex-end;
 }
 .comment-user-rig img{
     margin-right: 8px;
@@ -133,9 +134,10 @@ button img#sendMsg{
     align-items: center;
     width: 60%;
     padding: 0 10px;
-    margin-left: 10px;
+    margin-right: 10px;
     overflow-wrap: break-word;
     border-radius: 3px;
     border: #000 1px solid;
     background-color: #ddd;
+    justify-content: flex-end;
 }

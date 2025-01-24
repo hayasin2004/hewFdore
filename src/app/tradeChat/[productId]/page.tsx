@@ -40,23 +40,34 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                 対象ユーザーチャット :
                 <div>
                     ログインしているチャット : {partnerUserIdChat?.map((item) => (
-                    <ul key={item._id}>
-                        <li>{item.buyerUsername}</li>
-                        <li>{item.buyerMessage}</li>
-                        <li>{item._id}</li>
+                    <div key={item._id}>
+                        <div className={"comment-user-lef"}>
+                            <Images
+                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}
+                                alt={"サンプルユーザーアイコン"}/>
+                            <div className={"comment-user-name-lef"}>{item.buyerUsername} さん </div>
+                        </div>
 
-                    </ul>
+                        <div className={"comment-area-frame-lef"}>
+                            <div className={"comment-area-lef"}>{item.buyerMessage}</div>
+                        </div>
+                        {/*<div>{item._id}</div>*/}
+
+                    </div>
                 ))}
                 </div>
             </div>
             <br/>
             ログインしているユーザー（出品者のコメント）
             {currentUserIdChat?.map((item) => (
-                <ul key={item._id}>
-                    <li>{item.sellerUsername}</li>
-                    <li>{item.sellerMessage}</li>
+                <div key={item._id}>
+                    {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
 
-                </ul>
+                    <div className={"comment-area-frame-rig"}>
+                        <div className={"comment-area-rig"}>{item.sellerMessage}</div>
+                    </div>
+
+                </div>
 
             ))}
 
@@ -82,22 +93,33 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
             )))}
             <div>
                 対象ユーザーチャット : {currentUserIdChat?.map((item) => (
-                <ul key={item._id}>
-                    <li>{item.sellerUsername}</li>
-                    <li>{item.sellerMessage}</li>
+                <div key={item._id}>
+                    <div className={"comment-user-lef"}>
+                        <Images
+                            src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}
+                            alt={"サンプルユーザーアイコン"}/>
+                        <div className={"comment-user-name-lef"}>{item.sellerUsername} さん</div>
+                    </div>
 
-                </ul>
+                    <div className={"comment-area-frame-lef"}>
+                        <div className={"comment-area-lef"}>{item.sellerMessage}</div>
+                    </div>
+
+                </div>
             ))}
             </div>
             {/*<br/>*/}
             <div>
                 ログインしているチャット（購入者） : {partnerUserIdChat?.map((item) => (
-                <ul key={item._id}>
-                    <li>{item.buyerUsername}</li>
-                    <li>{item.buyerMessage}</li>
-                    <li>{item._id}</li>
+                <div key={item._id}>
+                    {/*<div>{item.buyerUsername}</div>*/}
 
-                </ul>
+                    <div className={"comment-area-frame-rig"}>
+                        <div className={"comment-area-rig"}>{item.buyerMessage}</div>
+                    </div>
+                    {/*<div>{item._id}</div>*/}
+
+                </div>
             ))}
             </div>
         </div>
@@ -384,7 +406,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                     <div className={"messageBox"}>
 
-                        <Images
+                        <Images id={"chatimg"}
                             src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
                             alt={"サンプルユーザーアイコン"}/>
 
