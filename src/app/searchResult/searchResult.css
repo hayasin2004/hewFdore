@@ -34,17 +34,20 @@ form#WordSearch input[type='text']{
 
     background-color: #fff ;
 }
+form#WordSearch input[type='text']:hover{
+    border: #8e7560 3px solid;
+}
 
 form#WordSearch select{
     font-size: 1.1rem;
     background-color: #fffa;
-    border: 1px #D0C7B2 solid;
+    border: 1.5px #D0C7B2 solid;
     border-radius: 10px;
     box-shadow: #8e7560 2px 2px 0 ;
     margin: 0 10px 0 0;
 }
 form#WordSearch select:hover{
-    margin: 3px 13px 0  0;
+    border: 3px #8e7560 solid;
     box-shadow: none;
 }
 select#SearchCat{
@@ -59,16 +62,16 @@ form#WordSearch button[type="submit"]{
     margin: 0 0 0 0 ;
     width: 5rem;
     font-size: 1.2rem ;
-    border: none;
-    box-shadow: #8e7560  3px 3px 0 ;
+    box-shadow: #8e7560  2px 2px 0 ;
 
     border-radius: 10%;
     color: #EBE8DB;
     background-color: #605252;
 }
 form#WordSearch button[type="submit"]:hover{
-    margin: 3px 3px 0  0;
-    box-shadow: none;
+    border: 3px #8e7560 solid;
+    box-shadow: #8e7560  1px 1px 0 ;
+
 }
 
 
@@ -129,6 +132,12 @@ p#SRNn{
     font-size: 1.2rem;
 }
 
+/* 変更 */
+div#ChangeSetting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
 
 /* ページネーションのCSS */
 .PaginateFlame{

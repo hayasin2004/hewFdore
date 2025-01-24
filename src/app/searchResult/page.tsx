@@ -104,7 +104,7 @@ const SearchPageProducts = () => {
         )
     }
     // 1ページごとに表示する数はProductPerPageで変えられます
-    const ProductPerPage = 2;
+    var ProductPerPage = 2;
     const [ProductOffset,setProductoffset] = useState(0);
     const endOffset = ProductOffset +ProductPerPage;
     const currentProduct = productList.slice(ProductOffset,endOffset);
@@ -112,7 +112,6 @@ const SearchPageProducts = () => {
     const handlePageClick = (e:{selected:number}) =>{
         const newOfffset = (e.selected * ProductPerPage)%product.length;
         setProductoffset(newOfffset);
-
 
     };
 
@@ -154,6 +153,15 @@ const SearchPageProducts = () => {
             <div id={"NumView"}>
                 <h2 id={"SRTotal"}>{product.length}件の検索結果</h2>
                 <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
+                <div id={"ChangeSetting"}>
+                    <p>ここに並び替えとProductPerPage変更を置く</p>
+                    <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
 
             </div>
 
