@@ -69,14 +69,14 @@ const Chat = (props: { paramsProductData: string }) => {
             <div className={"comment-areaFrame"}>
                 <p>出品者の投稿</p>
                 {listingChatMessageList?.map((item, index) => (
-                    <div className={"comment-sec"}>
-                        <div className={"comment-user"}>
+                    <div className={"comment-sec-lef"}>
+                        <div className={"comment-user-lef"}>
                             <Images
                                 src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
                                 alt={"サンプルユーザーアイコン"}/>
                             {item.listingMessage} さん<br/>
                         </div>
-                        <div className={"comment-area"} key={index}>
+                        <div className={"comment-area-lef"} key={index}>
                             {/*質問者Id : {item.senderUserId} <br/>*/}
 
                             メッセージ内容 : {item?._id} <br/>
@@ -91,16 +91,20 @@ const Chat = (props: { paramsProductData: string }) => {
 
                 <p>閲覧者の投稿</p>
                 {buyerChatMessageList?.map((item, index) => (
-                    <ul key={index}>
-                        {item.senderUserId} <br/>
-                        {item.buyerMessage} さん<br/>
-                        メッセージ内容 : {item?._id} <br/>
-                        <button onClick={() => testCommentLike(item?._id)}>
-                            ♡{item?.buyerMessageLike?.length}
-                        </button>
-                    </ul>
+                    <div className={"comment-sec-rig"}>
+                        
+                        <div className={"comment-area-rig"} key={index}>
+                            {/*{item.senderUserId} <br/>*/}
+
+                            メッセージ内容 : {item?._id} <br/>
+                            <button id={"good"} onClick={() => testCommentLike(item?._id)}>
+                                ♡{item?.buyerMessageLike?.length}
+                            </button>
+                        </div>
+                    </div>
+
                 ))}
-                {props.paramsProductData}
+                {/*{props.paramsProductData}*/}
 
                 <div className="Productchat">
                     <Images id={"usericon"}

@@ -75,22 +75,22 @@ button img#sendMsg{
     background-color: #bbb;
 }
 
-.comment-sec{
+.comment-sec-lef{
     padding-top: 15px;
 }
 
-.comment-user{
+.comment-user-lef{
     display: flex;
     align-items: center;
     padding-bottom: 5px;
     margin-left: 10px;
     font-size: 1.1rem;
 }
-.comment-user img{
+.comment-user-lef img{
     margin-right: 8px;
 }
 
-.comment-area{
+.comment-area-lef{
     display: flex;
     align-items: center;
     width: 60%;
@@ -107,4 +107,37 @@ button img#sendMsg{
     height: auto;
     border:none ;
     background-color: #ddd;
+}
+
+
+
+.comment-sec-rig{
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-user-rig{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    justify-content: flex-end;
+}
+.comment-user-rig img{
+    margin-right: 8px;
+}
+
+.comment-area-rig{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding: 0 10px;
+    margin-right: 10px;
+    overflow-wrap: break-word;
+    border-radius: 3px;
+    border: #000 1px solid;
+    background-color: #ddd;
+    justify-content: flex-end;
 }
