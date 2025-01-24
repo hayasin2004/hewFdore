@@ -1,4 +1,5 @@
 "use server"
+import multer from "multer"
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import jwt from "jsonwebtoken";
@@ -16,10 +17,15 @@ export interface createProductType {
 
 }
 
+
 // export  const createProduct = async (token : string ,　productName : string , productPrice :number , productDesc : string , shippingArea : string): Promise<createProductType | null> => {
-export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,productImage : string | null): Promise<{
+export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,productImage : string | null , productVideoFiles : File | null): Promise<{
     result: string
 } | null> => {
+
+    const upload = multer({
+        storage : multer.memoryStorage()
+    })
     // console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
     await connectDB();
 
@@ -29,6 +35,7 @@ export const createProduct = async (token: string | null, productName: string | 
         return null
     }
     try {
+
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
         const sellerId = decoded.userId
         const sellerUserName = decoded.username
@@ -47,6 +54,7 @@ export const createProduct = async (token: string | null, productName: string | 
             shippingArea,
             deliveryTime,
             productImage,
+            productVideo: productVideoFiles,
             sellStatus : "selling"
         })
         await newProduct.save()

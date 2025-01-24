@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {Binary} from "mongodb";
 
 // as constを使用することで、この配列の要素はリテラル型（特定の文字列型）として扱われ、変更できないことを示しています。
 const postageBurden = ["seller", "buyer"] as const;
@@ -56,7 +57,7 @@ const ProductSchema = new mongoose.Schema({
             required : true
         },
         productVideo: {
-            type: String,
+            type: Binary,
             default: '',
         },
         createdAt: {
