@@ -138,6 +138,22 @@ div#ChangeSetting{
     flex-direction: row;
     justify-content: flex-end;
 }
+div#ChangeSetting select{
+    font-size: 1.1rem;
+    font-weight: lighter;
+    text-align: right;
+    margin: 0 1rem 0 0;
+    padding: 5px 10px;
+    background-color: #EBE8DB;
+    border-style: none none solid none;
+}
+
+select#ChangeSort{
+    width: 8rem;
+}
+select#ChangePPP{
+    width: 5rem;
+}
 
 /* ページネーションのCSS */
 .PaginateFlame{
