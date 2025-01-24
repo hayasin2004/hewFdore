@@ -56,10 +56,6 @@ const ProductSchema = new mongoose.Schema({
             default: '',
             required : true
         },
-        productVideo: {
-            type: Binary,
-            default: '',
-        },
         createdAt: {
             type: Date,
             default: Date.now,

@@ -109,7 +109,7 @@ const CompleteStripe = ({productId}: { productId: string }) => {
 
                     </div>
 
-                    <label style={{opacity: 10}}> 支払い方法を選択してください:
+                    <label style={{opacity: 0}}> 支払い方法を選択してください:
                         <select onChange={(e) => setPaymentMethod(e.target.value)}
                                 value={paymentMethod}>
                             <option value="card">カード払い</option>

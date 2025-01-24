@@ -9,6 +9,7 @@ import useUser from "@/hooks/useUser";
 import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";
+import Images from "next/image";
 
 
 const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
@@ -72,7 +73,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                     <li>ユーザー名: {userData?.username}</li>
                     <li>ユーザーメールアドレス: {userData?.email}</li>
                     <li>ユーザー自己紹介: {userData?.desc}</li>
-                    <li>背景画像１: {userData?.profilePicture}</li>
+                    <li>背景画像１:<Images src={userData?.profilePicture} alt={"ユーザーのプロフィール画像"} width={100} height={100}/> </li>
                     <li>背景画像２: {userData?.coverProfilePicture}</li>
 
 

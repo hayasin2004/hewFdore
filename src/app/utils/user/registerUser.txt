@@ -9,6 +9,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 // ユーザー新規登録
 export default async function createUser(username: string, email: string, password: string , PWCheck :string) {
     await connectDB();
+    console.log("データベース接続" + await connectDB())
     try {
         const checkUserName : UserType | null= await User.findOne({username : username});
         if (checkUserName) {

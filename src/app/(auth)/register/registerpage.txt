@@ -77,7 +77,6 @@ const Register = () => {
                                     await createUser(username, email, password, PWCheck).then(
                                         (data) => {
                                             if (data?.status == "existUsername") {
-                                                console.log("ここに登録ログ北")
                                                 window.alert("そのユーザー名は既に作成されています。")
                                             } else {
 
