@@ -6,6 +6,8 @@ import {string} from "prop-types";
 import {v4 as uuidv4} from 'uuid';
 import toastProduct from "@/app/utils/product/toastProduct";
 import addUserProductCategoryToMail from "@/app/utils/search/(product)/AddUserProductCategoryToMail";
+import {User} from "@/models/User";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 
 export interface createProductType {
@@ -18,13 +20,9 @@ export interface createProductType {
 
 
 // export  const createProduct = async (token : string ,　productName : string , productPrice :number , productDesc : string , shippingArea : string): Promise<createProductType | null> => {
-export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,productImage : string | null , productVideoFiles : File | null): Promise<{
+export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,productImage : string | null ): Promise<{
     result: string
 } | null> => {
-
-    const upload = multer({
-        storage : multer.memoryStorage()
-    })
     // console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
     await connectDB();
 
@@ -37,12 +35,12 @@ export const createProduct = async (token: string | null, productName: string | 
 
         const decoded = await jwt.verify(token, process.env.SECRET_KEY);
         const sellerId = decoded.userId
-        const sellerUserName = decoded.username
+        const sellerUserData :UserType= await  User.findById(sellerId);
         const productId = uuidv4()
         const newProduct = await Product.create({
             productId,
             sellerId,
-            sellerUserName,
+            sellerUserName : sellerUserData.username ,
             productName,
             productPrice,
             productDesc,
@@ -53,7 +51,6 @@ export const createProduct = async (token: string | null, productName: string | 
             shippingArea,
             deliveryTime,
             productImage,
-            productVideo: productVideoFiles,
             sellStatus : "selling"
         })
         await newProduct.save()

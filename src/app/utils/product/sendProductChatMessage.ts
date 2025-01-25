@@ -9,7 +9,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
 
     await connectDB()
     try {
-        console.log("今ログインしているユーザー"+currentUser)
+        console.log("今ログインしているユーザー" + currentUser)
         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
         console.log(user)
@@ -28,13 +28,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
                         listingUserId: productListingUser.sellerId,
-                        listingChatMessage: [{
-                            senderUserId: currentUser,
-                            listingMessage: sendChatMessage,
-                            listingMessageLike: [],
-                            listingMessageUsername: user.username,
-                            listingMessageProfilePicture: user.profilePicture,
-                            timeStamp: new Date()
+                        productChat: [{
+                            listingChatMessage: [{
+                                senderUserId: currentUser,
+                                listingMessage: sendChatMessage,
+                                listingMessageLike: [],
+                                listingMessageUsername: user.username,
+                                listingMessageProfilePicture: user.profilePicture,
+                                timeStamp: new Date()
+
+                            }],
+                            chatUserRole: "出品者",
 
                         }]
                     })
@@ -45,13 +49,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                         productId: productId,
                         buyerUserIdList: currentUser,
                         listingUserId: productListingUser.sellerId,
-                        buyerChatMessage: [{
-                            senderUserId: currentUser,
-                            buyerMessage: sendChatMessage,
-                            buyerMessageLike: [],
-                            buyerMessageUsername: user.username,
-                            buyerMessageProfilePicture: user.profilePicture,
-                            timeStamp: new Date()
+                        productChat: [{
+
+                            buyerChatMessage: [{
+                                senderUserId: currentUser,
+                                buyerMessage: sendChatMessage,
+                                buyerMessageLike: [],
+                                buyerMessageUsername: user.username,
+                                buyerMessageProfilePicture: user.profilePicture,
+                                timeStamp: new Date()
+                            }],
+                            chatUserRole: "購入者"
                         }]
                     })
                     createChatResponse.save()
@@ -62,21 +70,28 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     if (ExistChatMessage?.listingChatMessage !== undefined) {
                         if (ExistChatMessage?.listingChatMessage[0]?.senderUserId == currentUser) {
                             const updateChatResponse = await ProductComment.updateOne(
-                                {_id: ExistChatMessage?._id, "listingChatMessage.senderUserId": currentUser},
+                                {
+                                    _id: ExistChatMessage?._id,
+                                    "productChat.listingChatMessage.senderUserId": currentUser
+                                },
                                 {
                                     $push: {
-                                        listingChatMessage: [{
-                                            senderUserId: currentUser,
-                                            listingMessage: sendChatMessage,
-                                            listingMessageLike: [],
-                                            listingMessageUsername: user.username,
-                                            listingMessageProfilePicture: user.profilePicture,
-                                            timeStamp: new Date()
+                                        productChat: [{
+
+                                            listingChatMessage: [{
+                                                senderUserId: currentUser,
+                                                listingMessage: sendChatMessage,
+                                                listingMessageLike: [],
+                                                listingMessageUsername: user.username,
+                                                listingMessageProfilePicture: user.profilePicture,
+                                                timeStamp: new Date()
+                                            }]
+                                            , chatUserRole: "出品者",
                                         }]
                                     }
                                 }
                             );
-                        }　
+                        }
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     } else {
@@ -84,13 +99,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             {_id: ExistChatMessage?._id},
                             {
                                 $push: {
-                                    listingChatMessage: [{
-                                        senderUserId: currentUser,
-                                        listingMessage: sendChatMessage,
-                                        listingMessageLike: [],
-                                        listingMessageUsername: user.username,
-                                        listingMessageProfilePicture: user.profilePicture,
-                                        timeStamp: new Date()
+                                    productChat: [{
+
+                                        listingChatMessage: [{
+                                            senderUserId: currentUser,
+                                            listingMessage: sendChatMessage,
+                                            listingMessageLike: [],
+                                            listingMessageUsername: user.username,
+                                            listingMessageProfilePicture: user.profilePicture,
+                                            timeStamp: new Date()
+                                        }],
+                                        chatUserRole: "出品者",
                                     }]
                                 }
                             }
@@ -105,16 +124,19 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                         console.log(ExistChatMessage?._id + "範囲接地")
                         console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
                         const updateChatResponse = await ProductComment.updateOne(
-                            {_id: ExistChatMessage?._id, "buyerChatMessage.senderUserId": currentUser},
+                            {_id: ExistChatMessage?._id, "productChat.buyerChatMessage.senderUserId": currentUser},
                             {
                                 $push: {
-                                    buyerChatMessage: [{
-                                        senderUserId: currentUser,
-                                        buyerMessage: sendChatMessage,
-                                        buyerMessageLike: [],
-                                        buyerMessageUsername: user?.username,
-                                        buyerMessageProfilePicture: user.profilePicture,
-                                        timeStamp: new Date()
+                                    productChat: [{
+                                        buyerChatMessage: [{
+                                            senderUserId: currentUser,
+                                            buyerMessage: sendChatMessage,
+                                            buyerMessageLike: [],
+                                            buyerMessageUsername: user?.username,
+                                            buyerMessageProfilePicture: user.profilePicture,
+                                            timeStamp: new Date(),
+                                            chatUserRole: "購入者"
+                                        }]
                                     }]
                                 }
                             }
@@ -129,13 +151,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                             {
                                 $push: {
                                     buyerUserIdList: currentUser,
-                                    buyerChatMessage: [{
-                                        senderUserId: currentUser,
-                                        buyerMessage: sendChatMessage,
-                                        buyerMessageLike: [],
-                                        buyerMessageUsername: user.username,
-                                        buyerMessageProfilePicture: user.profilePicture,
-                                        timeStamp: new Date()
+                                    productChat: [{
+
+                                        buyerChatMessage: [{
+                                            senderUserId: currentUser,
+                                            buyerMessage: sendChatMessage,
+                                            buyerMessageLike: [],
+                                            buyerMessageUsername: user.username,
+                                            buyerMessageProfilePicture: user.profilePicture,
+                                            timeStamp: new Date(),
+                                            chatUserRole: "購入者"
+                                        }]
                                     }]
                                 }
                             }

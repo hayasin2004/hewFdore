@@ -117,7 +117,6 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText,
                             productImage,
-                            productVideo
                         ).then(
                             (product => {
                                 if (product?.result !== undefined) {

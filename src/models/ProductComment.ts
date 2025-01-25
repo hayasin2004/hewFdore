@@ -33,75 +33,83 @@ const ProductCommentSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
-    buyerChatMessage: [{
-        senderUserId: {
-            type: String,
-            required: true,
-        },
-        buyerUsername: {
-            type: String,
-        },
-        buyerProfilePicture: {
-            type: String,
-            default: '',
-        },
-        buyerMessage: {
-            type: String,
-            default: "",
-        },
-        buyerMessageLike: {
-            type: Array,
-            default: []
-        },
-        timeStamp : {
-            type : Date,
-            default: Date.now(),
-        },
-        buyerMessageStamp: [{
-            buyerMessageStampLike:{
-                type: String,
-                default: "",
-            },
-            userId : {
-                type : String,
-            }
-        }],
-    }],
+    productChat: [{
 
-    listingChatMessage: [{
-        senderUserId: {
-            type: String,
-            required: true,
-        },
-        listingUsername: {
-            type: String,
-        },
-        listingProfilePicture: {
-            type: String,
-            default: '',
-        },
-        listingMessage: {
-            type: String,
-            default: ""
-        },
-        listingMessageLike: {
-            type: Array,
-            default: []
-        },
-
-        listingMessageStamp: [{
-            listingMessageLike:{
+        buyerChatMessage: [{
+            senderUserId: {
                 type: String,
-                default: "",
-            },
-            userId : {
-                type : String,
                 required: true,
-            }
+            },
+            buyerUsername: {
+                type: String,
+            },
+            buyerProfilePicture: {
+                type: String,
+                default: '',
+            },
+            buyerMessage: {
+                type: String,
+                default: "",
+            },
+            buyerMessageStampLike: {
+                type: Array,
+                default: []
+            },
+            timeStamp: {
+                type: Date,
+                default: Date.now(),
+            },
+            buyerMessageStamp: [{
+                buyerMessageStampLike: {
+                    type: String,
+                    default: "",
+                },
+                userId: {
+                    type: String,
+                }
+            }],
         }],
-        timeStamp : {
-            type : Date ,
-            default : Date.now()
+
+        listingChatMessage: [{
+            senderUserId: {
+                type: String,
+                required: true,
+            },
+            listingUsername: {
+                type: String,
+            },
+            listingProfilePicture: {
+                type: String,
+                default: '',
+            },
+            listingMessage: {
+                type: String,
+                default: ""
+            },
+            listingMessageLike: {
+                type: Array,
+                default: []
+            },
+
+            listingMessageStamp: [{
+                listingMessageStampLike: {
+                    type: String,
+                    default: "",
+                },
+                userId: {
+                    type: String,
+                    required: true,
+                }
+            }],
+            timeStamp: {
+                type: Date,
+                default: Date.now()
+            },
+        }],
+
+        chatUserRole : {
+            type: String,
+            default : ""
         }
     }]
 
