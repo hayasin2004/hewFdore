@@ -4,7 +4,7 @@ import {connectDB} from "@/lib/mongodb";
 import {ProductComment} from "@/models/ProductComment";
 import {Product} from "@/models/Product";
 
-const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null ,icon :string | null) => {
+const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null, icon: string | null) => {
     await connectDB()
     try {
         console.log(icon)
@@ -29,18 +29,32 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                     const includesCurrentUserId = searchListingProductAndComment?.listingChatMessage[0]?.listingMessageLike.includes(currentUserId);
                     // console.log("ここにいる" + searchListingProductAndComment?.listingChatMessage[0]?.listingMessageLike.includes(currentUserId));
                     if (includesCurrentUserId) {
-                        console.log("既にログインしているアカウントでコメントをいいねしている。")
+                        console.log("出品者既にログインしているアカウントでコメントをいいねしている。")
                         const updateDeleteSearchMessage = await ProductComment.updateOne(
                             {_id: searchListingProductAndComment._id, "listingChatMessage._id": commentId},
-                            {$pull: {"listingChatMessage.$.listingMessageLike": currentUserId}},
-                            {$unset: {"listingChatMessage.$.listingMessageLike.userId": currentUserId ,"listingChatMessage.$.listingMessageLike.listingMessageStampLike": icon}}
+                            {
+                                $pull: {
+                                    "listingChatMessage.$.buyerMessageLike": currentUserId,
+                                    "listingChatMessage.$.buyerMessageStamp": {
+                                        userId: currentUserId,
+                                        listingMessageStampLike: icon
+                                    }
+                                }
+                            }
                         )
                     } else {
                         // console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
                         const updateSearchMessage = await ProductComment.updateOne(
                             {_id: searchListingProductAndComment._id, "listingChatMessage._id": commentId},
-                            {$push: {"listingChatMessage.$.listingMessageLike": currentUserId}},
-                            {$set: {"listingChatMessage.$.listingMessageStamp.userId": currentUserId ,"listingChatMessage.$.listingMessageStamp.listingMessageStampLike": icon}}
+                            {
+                                $push: {
+                                    "listingChatMessage.$.buyerMessageLike": currentUserId,
+                                    "listingChatMessage.$.buyerMessageStamp": {
+                                        userId: currentUserId,
+                                        listingMessageStampLike: icon
+                                    }
+                                }
+                            }
                         )
                     }
                 } else if (searchBuyerProductAndComment !== null && searchListingProductAndComment == null) {
@@ -51,15 +65,28 @@ const productChatLike = async (currentUserId: string | null, productId: string |
 
                         const updateDeleteSearchMessage = await ProductComment.updateOne(
                             {_id: searchBuyerProductAndComment._id, "buyerChatMessage._id": commentId},
-                            {$pull: {"buyerChatMessage.$.buyerMessageLike": currentUserId}},
-                            {$unset: {"buyerChatMessage.$.buyerMessageStamp.userId": currentUserId ,"buyerChatMessage.$.buyerMessageStamp.buyerMessageStampLike": icon}}
+                            {
+                                $pull: {
+                                    "buyerChatMessage.$.buyerMessageLike": currentUserId,
+                                    "buyerChatMessage.$.buyerMessageStamp": {
+                                        userId: currentUserId,
+                                        buyerMessageStampLike: icon
+                                    }
+                                }
+                            }
                         )
                     } else {
-                        // console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
                         const updateSearchMessage = await ProductComment.updateOne(
                             {_id: searchBuyerProductAndComment._id, "buyerChatMessage._id": commentId},
-                            {$push: {"buyerChatMessage.$.buyerMessageLike": currentUserId}},
-                            {$set: {"buyerChatMessage.$.buyerMessageStamp.userId": currentUserId ,"buyerChatMessage.$.buyerMessageStamp.buyerMessageStampLike": icon}}
+                            {
+                                $push: {
+                                    "buyerChatMessage.$.buyerMessageLike": currentUserId,
+                                    "buyerChatMessage.$.buyerMessageStamp": {
+                                        userId: currentUserId,
+                                        buyerMessageStampLike: icon
+                                    }
+                                }
+                            }
                         )
                     }
                 }
