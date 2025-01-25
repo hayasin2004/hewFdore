@@ -27,11 +27,18 @@ import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 import {ProductType} from "@/app/utils/product/productDetail";
+import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     const [tradeChatLike, setTradeChatLike] = useState(0)
     const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
+    const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
+    const testCommentLike = async (currentUserId, purchaseId, item , icon) => {
+        console.log(item)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item ,icon)
+        console.log(response)
+    }
 
     return (
         <div>
@@ -50,6 +57,11 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 
                         <div className={"comment-area-frame-lef"}>
                             <div className={"comment-area-lef"}>{item.buyerMessage}</div>
+
+                            <EmojiPicker setIcon={setIcon}/>
+                            <button id={"good"} onClick={() => testCommentLike(currentUserId ,purchaseId ,item?._id, icon)}>
+                                送信{item?.sellerMessageLike?.length}
+                            </button>
                         </div>
                         {/*<div>{item._id}</div>*/}
 
@@ -76,10 +88,11 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 }
 const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     // status2の時はログインしているユ―ザーが購入者だった時。
+    const [icon, setIcon] = useState("")
 
-    const testCommentLike = async (currentUserId, purchaseId, item) => {
+    const testCommentLike = async (currentUserId, purchaseId, item , icon) => {
         console.log(item)
-        const response = await purchaseChatLike(currentUserId, purchaseId, item)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item ,icon)
         console.log(response)
     }
 
@@ -105,6 +118,11 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                         <div className={"comment-area-lef"}>{item.sellerMessage}</div>
                     </div>
 
+                    <EmojiPicker setIcon={setIcon}/>
+                    <button id={"good"} onClick={() => testCommentLike(currentUserId ,purchaseId ,item?._id, icon)}>
+                        送信{item?.sellerMessageLike?.length}
+                    </button>
+
                 </div>
             ))}
             </div>
@@ -116,7 +134,9 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 
                     <div className={"comment-area-frame-rig"}>
                         <div className={"comment-area-rig"}>{item.buyerMessage}</div>
+
                     </div>
+
                     {/*<div>{item._id}</div>*/}
 
                 </div>

@@ -83,7 +83,8 @@ const Chat = (props: { paramsProductData: string }) => {
                             {/*質問者Id : {item.senderUserId} <br/>*/}
 
                             メッセージ内容 : {item?._id} <br/>
-                            <button id={"good"} onClick={() => testCommentLike(item?._id)}>
+                            <EmojiPicker setIcon={setIcon}/>
+                            <button id={"good"} onClick={() => testCommentLike(item?._id , icon)}>
                                 ♡{item?.buyerMessageLike?.length}
                             </button>
                         </div>

@@ -19,7 +19,7 @@ const EmojiPicker = (props) => {
     return (
         <div>
             <button onClick={showPicker}>💛</button>
-            <div style={{display : isShowPicker ? "block" : "none" ,position : "absolute" , zIndex : 4}} className={"emojiPicker"}>
+            <div style={{display : isShowPicker ? "block" : "none" ,position : "absolute" , zIndex : 40}} className={"emojiPicker"}>
                 <Picker onEmojiSelect={selectEmoji}/>
             </div>
         </div>

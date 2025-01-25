@@ -53,6 +53,15 @@ const PurchaseSchema = new mongoose.Schema({
             type: Array,
             default: []
         },
+        buyerMessageStamp: [{
+            buyerMessageStampLike:{
+                type: String,
+                default: "",
+            },
+            userId : {
+                type : String,
+            }
+        }],
         timeStamp : {
             type : Date,
             default: Date.now(),
@@ -78,6 +87,15 @@ const PurchaseSchema = new mongoose.Schema({
             type: Array,
             default: []
         },
+        sellerMessageStamp: [{
+            sellerMessageStampLike:{
+                type: String,
+                default: "",
+            },
+            userId : {
+                type : String,
+            }
+        }],
         timeStamp : {
             type : Date ,
             default : Date.now()
