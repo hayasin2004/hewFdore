@@ -8,15 +8,21 @@ export interface productCommentType {
     productId?: string;
     ChatMessage?: string[];
     listingMessage?: string[];
+    productChat?: string[];
     buyerMessageLike?: string[];
     listingMessageLike?: string[];
+    buyerMessageStampLike?: string
+    listingMessageStampLike?: string
+    listingMessageStamp? : string[]
     listingChatMessage?: string;
     senderUserId?: string;
+    userId?: string;
     buyerUsername?: string;
     buyerProfilePicture?: string;
     buyerMessage?: string;
     listingUsername?: string;
     listingProfilePicture?: string;
+    chatUserRole?: string
 }
 
 const ProductCommentSchema = new mongoose.Schema({

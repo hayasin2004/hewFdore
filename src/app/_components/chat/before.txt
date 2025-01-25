@@ -84,7 +84,7 @@ const Chat = (props: { paramsProductData: string }) => {
                         <div className="comment-area-lef">
                             メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
                             <br/>
-                            <EmojiPicker item={item} setIcon={setIcon}/>
+                            <EmojiPicker setIcon={setIcon}/>
                             <button id="good" onClick={() => testCommentLike(item?.listingChatMessage[0]?._id, icon)}>
                                 ♡{item?.listingChatMessage[0]?.listingMessageStamp?.length}
                             </button>
