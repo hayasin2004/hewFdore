@@ -56,8 +56,19 @@ const ProductCommentSchema = new mongoose.Schema({
         timeStamp : {
             type : Date,
             default: Date.now(),
-        }
+        },
+        buyerMessageStamp: [{
+            buyerMessageStampLike:{
+                type: String,
+                default: "",
+            },
+            userId : {
+                type : String,
+                required: true,
+            }
+        }],
     }],
+
     listingChatMessage: [{
         senderUserId: {
             type: String,
@@ -78,6 +89,17 @@ const ProductCommentSchema = new mongoose.Schema({
             type: Array,
             default: []
         },
+
+        listingMessageStamp: [{
+            listingMessageLike:{
+                type: String,
+                default: "",
+            },
+            userId : {
+                type : String,
+                required: true,
+            }
+        }],
         timeStamp : {
             type : Date ,
             default : Date.now()

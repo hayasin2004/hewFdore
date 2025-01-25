@@ -1,4 +1,3 @@
-
 "use client"
 import React, {useEffect, useState} from 'react';
 import Image from "next/image";
@@ -17,13 +16,14 @@ const Chat = (props: { paramsProductData: string }) => {
     const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
     const [loginUserData, setLoginUserData] = useState()
     const [icon, setIcon] = useState("")
+    console.log("渡ってきた" + icon)
     const [listingChatMessageList, setListingChatMessageList] = useState<productCommentType[] | null>([])
 
     console.log(chatMessage)
     const user = useUser()
     const userParse = JSON.parse(user)
     const productId = props.paramsProductData
-    const currentUser =loginUserData?._id
+    const currentUser = loginUserData?._id
     useEffect(() => {
         setLoginUserData(JSON.parse(userParse))
     }, [user]);
@@ -61,9 +61,9 @@ const Chat = (props: { paramsProductData: string }) => {
         // }
     }
 
-    const testCommentLike = async(item : string | null) => {
+    const testCommentLike = async (item: string | null, icon: string | null) => {
         console.log(item)
-        const response = await productChatLike(currentUser ,productId , item)
+        const response = await productChatLike(currentUser, productId, item, icon)
         console.log(response)
     }
 
@@ -95,14 +95,14 @@ const Chat = (props: { paramsProductData: string }) => {
                 <p>閲覧者の投稿</p>
                 {buyerChatMessageList?.map((item, index) => (
                     <div className={"comment-sec-rig"}>
-                        
+
                         <div className={"comment-area-rig"} key={index}>
                             {/*{item.senderUserId} <br/>*/}
 
                             メッセージ内容 : {item?._id} <br/>
-                            <button id={"good"} onClick={() => testCommentLike(item?._id)}>
-                                <EmojiPicker icon={icon} />
-                                {item?.buyerMessageLike?.length}
+                            <EmojiPicker setIcon={setIcon}/>
+                            <button id={"good"} onClick={() => testCommentLike(item?._id, icon)}>
+                                送信{item?.buyerMessageLike?.length}
                             </button>
                         </div>
                     </div>

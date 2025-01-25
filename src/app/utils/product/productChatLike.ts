@@ -4,9 +4,10 @@ import {connectDB} from "@/lib/mongodb";
 import {ProductComment} from "@/models/ProductComment";
 import {Product} from "@/models/Product";
 
-const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null) => {
+const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null ,icon :string | null) => {
     await connectDB()
     try {
+        console.log(icon)
         const checkListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const searchListingProductAndComment = await ProductComment.findOne({"listingChatMessage._id": commentId}, {"listingChatMessage.$": 1})
         const searchBuyerProductAndComment = await ProductComment.findOne({"buyerChatMessage._id": commentId}, {"buyerChatMessage.$": 1})
@@ -31,29 +32,34 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                         console.log("既にログインしているアカウントでコメントをいいねしている。")
                         const updateDeleteSearchMessage = await ProductComment.updateOne(
                             {_id: searchListingProductAndComment._id, "listingChatMessage._id": commentId},
-                            {$pull: {"listingChatMessage.$.listingMessageLike": currentUserId}}
+                            {$pull: {"listingChatMessage.$.listingMessageLike": currentUserId}},
+                            {$unset: {"listingChatMessage.$.listingMessageLike.userId": currentUserId ,"listingChatMessage.$.listingMessageLike.listingMessageStampLike": icon}}
                         )
                     } else {
                         // console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
                         const updateSearchMessage = await ProductComment.updateOne(
                             {_id: searchListingProductAndComment._id, "listingChatMessage._id": commentId},
-                            {$push: {"listingChatMessage.$.listingMessageLike": currentUserId}}
+                            {$push: {"listingChatMessage.$.listingMessageLike": currentUserId}},
+                            {$set: {"listingChatMessage.$.listingMessageStamp.userId": currentUserId ,"listingChatMessage.$.listingMessageStamp.listingMessageStampLike": icon}}
                         )
                     }
                 } else if (searchBuyerProductAndComment !== null && searchListingProductAndComment == null) {
                     const includesCurrentUserId = searchBuyerProductAndComment?.buyerChatMessage[0]?.buyerMessageLike.includes(currentUserId);
 
                     if (includesCurrentUserId) {
-                        console.log("既にログインしているアカウントでコメントをいいねしている。")
+                        console.log("購入者コメント既にログインしているアカウントでコメントをいいねしている。")
+
                         const updateDeleteSearchMessage = await ProductComment.updateOne(
                             {_id: searchBuyerProductAndComment._id, "buyerChatMessage._id": commentId},
-                            {$pull: {"buyerChatMessage.$.buyerMessageLike": currentUserId}}
+                            {$pull: {"buyerChatMessage.$.buyerMessageLike": currentUserId}},
+                            {$unset: {"buyerChatMessage.$.buyerMessageStamp.userId": currentUserId ,"buyerChatMessage.$.buyerMessageStamp.buyerMessageStampLike": icon}}
                         )
                     } else {
                         // console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
                         const updateSearchMessage = await ProductComment.updateOne(
                             {_id: searchBuyerProductAndComment._id, "buyerChatMessage._id": commentId},
-                            {$push: {"buyerChatMessage.$.buyerMessageLike": currentUserId}}
+                            {$push: {"buyerChatMessage.$.buyerMessageLike": currentUserId}},
+                            {$set: {"buyerChatMessage.$.buyerMessageStamp.userId": currentUserId ,"buyerChatMessage.$.buyerMessageStamp.buyerMessageStampLike": icon}}
                         )
                     }
                 }

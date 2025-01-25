@@ -5,7 +5,6 @@ import "./emojiPicker.css"
 const EmojiPicker = (props) => {
 
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
-
     const showPicker = () => setIsShowPicker(!isShowPicker)
     const selectEmoji = (e : any) => {
         const emojiCode= e.unified.split("-");
@@ -14,12 +13,13 @@ const EmojiPicker = (props) => {
         const emoji :string = String.fromCodePoint(...codesArray);
         console.log("emoji" + emoji);
         setIsShowPicker(false)
+        props.setIcon(emoji);
     }
 
     return (
         <div>
             <button onClick={showPicker}>💛</button>
-            <div style={{display : isShowPicker ? "block" : "none"}} className={"emojiPicker"}>
+            <div style={{display : isShowPicker ? "block" : "none" ,position : "absolute" , zIndex : 4}} className={"emojiPicker"}>
                 <Picker onEmojiSelect={selectEmoji}/>
             </div>
         </div>

@@ -145,7 +145,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             </div>
                         </div>
                         <div>
-                            <Chat paramsProductData={id}/>
+                            <Chat paramsProductData={id}  />
                         </div>
                         <div id="controlProduct">
                             <ThemeProvider theme={theme}>
