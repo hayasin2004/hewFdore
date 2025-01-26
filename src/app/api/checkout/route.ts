@@ -13,7 +13,7 @@ export async function stripePayment(productId: string) {
     await connectDB()
     // Mongodbから_idで商品検索
     const product = await Product.findOne({_id: productId});
-    // console.log(product);　
+    // //console.log(product);　
     //↑のログのコメントアウト解除するとどうやって取ってるのか見れる。
     // ↓見つかったものをここで宣言
     const productObjectId = product._id
@@ -50,18 +50,18 @@ export async function stripePayment(productId: string) {
             success_url: `http://localhost:3000/payComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: "http://localhost:3000",
         })
-        console.log("こにちは"+ session.url)
+        //console.log("こにちは"+ session.url)
         // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
         return  NextResponse.json({checkout_url : session.url})
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
     }
 }
 
 
 // try {
-//     console.log("ここまでおおけーい")
+//     //console.log("ここまでおおけーい")
 //
 //     NextResponse.redirect(url, statusCode) ,
 // } catch (err) {

@@ -14,9 +14,9 @@ const updateFollowings = async (userFollowings?: string | null, loginNowUserId?:
         const user = await User.findById({_id: userFollowings})
         // フォローする人
         const currentUser = await User.findById({_id: loginNowUserId})
-        // console.log(user)
+        // //console.log(user)
         if (currentUser.followings.includes(user._id)) {
-            console.log("フォロー解除しました。")
+            //console.log("フォロー解除しました。")
             // フォローの処理
             const following: string | null = await currentUser.updateOne({$pull: {followings: user._id}})
             // フォローされる側の処理
@@ -30,17 +30,17 @@ const updateFollowings = async (userFollowings?: string | null, loginNowUserId?:
             // フォローされる側の処理
             const followers: string | null = await user.updateOne({$push: {followers: currentUser._id}})
             if (!following) {
-                console.log("ログインしてからフォローしてください")
+                //console.log("ログインしてからフォローしてください")
                 return null
             }
-            console.log("following", following)
-            console.log("followers", followers)
+            //console.log("following", following)
+            //console.log("followers", followers)
             const toastFollow = await  toastFollowings(user?._id ,currentUser?._id)
-            console.log("toastFollow", toastFollow)
+            //console.log("toastFollow", toastFollow)
             return {followers: followers}
         }
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

@@ -14,7 +14,7 @@ import {Purchase} from "@/models/Purchase";
 
 
 const TradeProductMessageServer = async (currentUserId?: string, sellerId?: string) => {
-    console.log("アイスクリーム" + sellerId, currentUserId)
+    //console.log("アイスクリーム" + sellerId, currentUserId)
     await connectDB()
     try {
         if (currentUserId !== undefined && sellerId !== undefined) {
@@ -25,12 +25,12 @@ const TradeProductMessageServer = async (currentUserId?: string, sellerId?: stri
                 })
                 if (chatExists) {
                     const chatId = chatExists._id
-                    console.log(chatId)
-                    console.log("既にcurrentUserId , sellerIdのチャットルームが作られています")
+                    //console.log(chatId)
+                    //console.log("既にcurrentUserId , sellerIdのチャットルームが作られています")
                     // const returnUserData = async () => {
                     //     const currentUserIdData = await User.findById({_id: chatExists.currentUserId}).select("username email profilePicture coverProfilePicture").exec();
                     //     const sellerIdData = await User.findById({_id: chatExists.sellerId}).select(" username email profilePicture coverProfilePicture").exec();
-                    // console.log("うけとり" + currentUserIdData)
+                    // //console.log("うけとり" + currentUserIdData)
                     // return {currentUserId: currentUserIdData?._id, sellerId: sellerIdData?._id}
                     return {
                         chatExists: {
@@ -41,8 +41,8 @@ const TradeProductMessageServer = async (currentUserId?: string, sellerId?: stri
                     }
 
                 }
-                console.log(currentUserId, sellerId)
-                console.log("currentUserIdとsellerIdが同じであるためチャットをさくせいすることができません")
+                //console.log(currentUserId, sellerId)
+                //console.log("currentUserIdとsellerIdが同じであるためチャットをさくせいすることができません")
                 return {currentUserId};
             }
             if (currentUserId !== sellerId) {
@@ -51,10 +51,10 @@ const TradeProductMessageServer = async (currentUserId?: string, sellerId?: stri
                     buyerId: currentUserId,
                     sellerId: sellerId
                 })
-                console.log("購入者もしくは販売者のどちらかが購入したときのIDが違います。" + chatExistsPart2)
+                //console.log("購入者もしくは販売者のどちらかが購入したときのIDが違います。" + chatExistsPart2)
                 if (chatExistsPart2) {
                     const chatId = chatExistsPart2._id
-                    console.log(chatId)
+                    //console.log(chatId)
                     return {
                         chatExistsPart2: {
                             chatId: chatId,
@@ -69,7 +69,7 @@ const TradeProductMessageServer = async (currentUserId?: string, sellerId?: stri
         }
     } catch
         (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

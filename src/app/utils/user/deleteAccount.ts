@@ -7,9 +7,9 @@ const deleteAccount = async (userId : string |null)=> {
     await connectDB()
     try {
         const deleteUser =await User.findByIdAndDelete(userId)
-        console.log(deleteUser)
+        //console.log(deleteUser)
     }catch (err){
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

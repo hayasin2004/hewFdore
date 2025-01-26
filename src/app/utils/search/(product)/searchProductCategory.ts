@@ -8,9 +8,9 @@ const searchProductCategoryServerAction = async  (category : string[] | null) =>
     try {
         const categoryResult = await Product.findOne({productCategory : category});
 
-    console.log(categoryResult)
+    //console.log(categoryResult)
     }catch (err){
-        console.log(err)
+        //console.log(err)
     }
 }
 

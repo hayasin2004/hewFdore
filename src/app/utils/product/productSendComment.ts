@@ -6,16 +6,16 @@ import {ProductComment, productCommentType, ProductCommentType} from "@/models/P
 import {User} from "@/models/User";
 
 const productSendComment = async (productId: string | null, currentUser: string | null, chatMessage: string | null) => {
-    console.log("ByBuyerUserSendChatMessage", productId, currentUser, chatMessage);
+    //console.log("ByBuyerUserSendChatMessage", productId, currentUser, chatMessage);
     await connectDB()
     try {
         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
-        console.log(user)
+        //console.log(user)
         const ExistChatMessage: ProductCommentType | null = await ProductComment.find({productId: productId}).select("_id listingUserId buyerUserId productId  ExistChatMessage")
         if (ExistChatMessage.length === 0 || !ExistChatMessage.some(itemBuyer => itemBuyer.buyerUserId == currentUser)) {
             // 出品者だった場合の処理。
-                console.log(!ExistChatMessage.some(itemListing => itemListing.listingUserId == currentUser))
+                //console.log(!ExistChatMessage.some(itemListing => itemListing.listingUserId == currentUser))
 
                 const testFn = async () => {
 
@@ -53,7 +53,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                                 }
                             }
                         )
-                        console.log("出品者のコメント" + JSON.stringify(updateChatResponse))
+                        //console.log("出品者のコメント" + JSON.stringify(updateChatResponse))
                         return {listingChatResponse: JSON.stringify(updateChatResponse)}
                     }
                 }
@@ -77,7 +77,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                                     }
                                 }
                             );
-                            console.log("すでに作成されてるからメッセージだけ、更新しました。", updateChatResponse);
+                            //console.log("すでに作成されてるからメッセージだけ、更新しました。", updateChatResponse);
                             return {buyerChatResponse: updateChatResponse};
                         } catch (error) {
                             console.error("更新中にエラーが発生しました:", error);
@@ -89,7 +89,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
 
 
         // ExistChatMessage.map((item) => {
-        //         console.log(item.buyerUserId == currentUser)
+        //         //console.log(item.buyerUserId == currentUser)
         //         if (item.buyerUserId == currentUser) {
         //
         //             const testFn = async () => {
@@ -108,7 +108,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
         //                         }
         //                     }
         //                 )
-        //                 console.log("すでに作成されてるからメッセージだけ、更新しました。" + JSON.stringify(updateChatResponse))
+        //                 //console.log("すでに作成されてるからメッセージだけ、更新しました。" + JSON.stringify(updateChatResponse))
         //                 return {buyerChatResponse: JSON.stringify(updateChatResponse)}
         //
         //             }
@@ -155,7 +155,7 @@ const productSendComment = async (productId: string | null, currentUser: string 
                         }
                     }
                 )
-                console.log("すでに作成されてるからメッセージだけ、更新しました。" + JSON.stringify(updateChatResponse))
+                //console.log("すでに作成されてるからメッセージだけ、更新しました。" + JSON.stringify(updateChatResponse))
                 return {buyerChatResponse: JSON.stringify(updateChatResponse)}
 
             }

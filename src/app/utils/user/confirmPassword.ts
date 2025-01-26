@@ -7,13 +7,13 @@ import {NextResponse} from "next/server";
 
 const confirmPassword = async (email: string | null, password: string | null) => {
     await connectDB()
-    console.log(email, password);
+    //console.log(email, password);
     try {
         if (email !== null && password !== null) {
             const emailUserCheck: UserType | null = await User.findOne({email: email}).select("email password");
-            console.log(emailUserCheck?.email == email || emailUserCheck?.password == password)
+            //console.log(emailUserCheck?.email == email || emailUserCheck?.password == password)
             if (emailUserCheck?.email !== email || emailUserCheck?.password !== password) {
-                console.log("メールアドレスが違います。もしくはパスワードが違います。")
+                //console.log("メールアドレスが違います。もしくはパスワードが違います。")
             } else {
                 return NextResponse.json({success: true})
             }

@@ -8,7 +8,7 @@ import {ProductType} from "@/app/utils/product/productDetail";
 const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string | null) => {
     await connectDB()
     try {
-        console.log("paymentMethod" + paymentMethod, "purchaseId" + purchaseId)
+        //console.log("paymentMethod" + paymentMethod, "purchaseId" + purchaseId)
         const tradeStripe = await Product.findOne({stripeCode: paymentMethod})
         const tradePayPay = await Product.findOne({payPayCode: paymentMethod})
         const purchase = await Purchase.findById(purchaseId)
@@ -24,7 +24,7 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
                     }
                 }, {new: true})
                 const purchaseStatus = await purchase.updateOne({$set: {tradeStatus: "取引キャンセル"}}, {new: true})
-                console.log(cancelPush, purchaseStatus)
+                //console.log(cancelPush, purchaseStatus)
 
                 return "取引をキャンセルしました。"
             }
@@ -38,13 +38,13 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
                 }
             }, {new: true})
             const purchaseStatus = await purchase.updateOne({$set: {tradeStatus: "取引キャンセル"}}, {new: true})
-            console.log("ここでぺいぺい")
+            //console.log("ここでぺいぺい")
 
             return "取引をキャンセルしました。"
         }
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

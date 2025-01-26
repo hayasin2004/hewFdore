@@ -29,7 +29,7 @@ export async function GET(req: NextApiRequest, res: NextResponse) {
 
         try {
             const product = await Product.find({sellStatus : "selling"});
-            console.log()
+            //console.log()
 
             //     商品画像がない
             // return  res.status(200).json({status : "Success" , data : productDetail})
@@ -40,7 +40,7 @@ export async function GET(req: NextApiRequest, res: NextResponse) {
 
         }
     } else {
-        console.log("動いていない")
+        //console.log("動いていない")
         // res.status(404).json({status : "Error" , message : "そのメソッド違う"})
         return NextResponse.json({status: "Error", message: "メソッドが違うかも"})
     }

@@ -12,9 +12,9 @@ const setupfollowerUserId = async () => {
             {likedUserId: {$exists: false}},
             {$set: {likedUserId: ""}}
         )
-        console.log(update)
+        //console.log(update)
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 

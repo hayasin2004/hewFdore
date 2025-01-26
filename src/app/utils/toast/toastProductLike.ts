@@ -24,9 +24,9 @@ const toastFollowings = async (productId: ProductType | null , sellerId: string 
             alreadyRead : "未読",
         }
         const toastFollow = await  Toast.create(purchase)
-        console.log(toastFollow)
+        //console.log(toastFollow)
     }catch (err){
-        console.log(err)
+        //console.log(err)
         return null
     }
 

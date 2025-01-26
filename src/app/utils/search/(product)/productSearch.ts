@@ -22,14 +22,14 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
         const NormalizationWordHiragana = HiraganaHenkan(productSearchWord);
         const NormalizationWordUpper = productSearchWord?.toUpperCase();
         const NormalizationWordLower = productSearchWord?.toLowerCase();
-        console.log(NormalizationWordHiragana,
+        //console.log(NormalizationWordHiragana,
         NormalizationWordKatakana,
         NormalizationWordUpper,
         NormalizationWordLower,
     )
 
         if (productSearchWord === null) {
-            console.log("文字を入力してください")
+            //console.log("文字を入力してください")
             return null
         }
 
@@ -45,7 +45,7 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
                 }
             ).exec()
 
-            console.log("あと三パーセント" + searching)
+            //console.log("あと三パーセント" + searching)
             return JSON.stringify(searching)
         }
         return null

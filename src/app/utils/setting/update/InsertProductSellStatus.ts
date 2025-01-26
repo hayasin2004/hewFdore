@@ -11,7 +11,7 @@ const updateProductCategoryLikeList = async () => {
             {sellStatus: {$exists: false}},  // このフィールドが存在しないユーザーのみ
             {$set: {sellStatus: []}}  // フィールドを追加し、デフォルト値を設定
         );
-        console.log(JSON.stringify(result));
+        //console.log(JSON.stringify(result));
     } catch (err) {
         console.error('Error updating users: ', err);
     }

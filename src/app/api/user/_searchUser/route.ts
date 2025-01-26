@@ -11,13 +11,13 @@ export async function GET(id : string, res: NextResponse) {
     try {
         const searchUser = await User.findOne({_id: id}).exec()
         if (!searchUser) {
-            console.log("ユーザーが見つかりませんでした。")
+            //console.log("ユーザーが見つかりませんでした。")
         } else {
-            console.log("返すことのできるモノ" + searchUser)
+            //console.log("返すことのできるモノ" + searchUser)
             return NextResponse.json(searchUser)
         }
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 

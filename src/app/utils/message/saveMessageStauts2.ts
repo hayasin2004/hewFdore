@@ -11,10 +11,10 @@ export interface ChatType {
 }
 
 const saveMessageStauts2 = async (chatId: string, pushedUser: string, message: string) => {
-    console.log(chatId, pushedUser, message)
+    //console.log(chatId, pushedUser, message)
     // チャットルーム検索
     // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+    // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
     const fChangeMessage = await Chat.findByIdAndUpdate(
@@ -22,7 +22,7 @@ const saveMessageStauts2 = async (chatId: string, pushedUser: string, message: s
         {$push: {partnerUserChat: message}},
         {new: true, useFindAndModify: false}
     )
-    console.log(fChangeMessage)
+    //console.log(fChangeMessage)
     return {fChangeMessage : fChangeMessage}
 
 }

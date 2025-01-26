@@ -19,10 +19,10 @@ const toastFollowings = async (followingsUserId : string | null , followerUserId
             alreadyRead : "未読",
         }
         const toastFollow = await  Toast.create(purchase)
-        console.log(toastFollow)
-        console.log("followingsUserId" + followingsUserId , "followerUserId" + followerUserId);
+        //console.log(toastFollow)
+        //console.log("followingsUserId" + followingsUserId , "followerUserId" + followerUserId);
     }catch (err){
-        console.log(err)
+        //console.log(err)
         return null
     }
 

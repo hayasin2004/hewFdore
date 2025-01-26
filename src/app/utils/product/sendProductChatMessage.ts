@@ -9,17 +9,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
 
     await connectDB()
     try {
-        console.log("今ログインしているユーザー" + currentUser)
+        //console.log("今ログインしているユーザー" + currentUser)
         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
-        console.log(user)
+        //console.log(user)
         const ExistChatMessage: productCommentType | null = await ProductComment.findOne({productId: productId})
         const ExistUserId: productCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
 
 
         // 出品者だった場合の処理。
         if (productListingUser == null) {
-            console.log("売り切れもしくは削除")
+            //console.log("売り切れもしくは削除")
             return null
         } else {
             // チャット部屋がヌルだった場合の処理
@@ -36,7 +36,6 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 listingMessageUsername: user.username,
                                 listingMessageProfilePicture: user.profilePicture,
                                 timeStamp: new Date()
-
                             }],
                             chatUserRole: "出品者",
 
@@ -50,7 +49,6 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                         buyerUserIdList: currentUser,
                         listingUserId: productListingUser.sellerId,
                         productChat: [{
-
                             buyerChatMessage: [{
                                 senderUserId: currentUser,
                                 buyerMessage: sendChatMessage,
@@ -85,8 +83,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                                 listingMessageUsername: user.username,
                                                 listingMessageProfilePicture: user.profilePicture,
                                                 timeStamp: new Date()
-                                            }]
-                                            , chatUserRole: "出品者",
+                                            }],
+                                            chatUserRole: "出品者",
                                         }]
                                     }
                                 }
@@ -114,15 +112,15 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
-                        console.log(updateChatResponse)
+                        //console.log(updateChatResponse)
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     }
                 } else {
 
                     if (ExistUserId?.buyerUserIdList?.includes(currentUser)) {
-                        console.log(ExistChatMessage?._id + "範囲接地")
-                        console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
+                        //console.log(ExistChatMessage?._id + "範囲接地")
+                        //console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
                         const updateChatResponse = await ProductComment.updateOne(
                             {_id: ExistChatMessage?._id, "productChat.buyerChatMessage.senderUserId": currentUser},
                             {
@@ -135,17 +133,17 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                             buyerMessageUsername: user?.username,
                                             buyerMessageProfilePicture: user.profilePicture,
                                             timeStamp: new Date(),
-                                            chatUserRole: "購入者"
-                                        }]
+                                        }],
+                                        chatUserRole: "購入者"
                                     }]
                                 }
                             }
                         );
-                        console.log(updateChatResponse)
+                        //console.log(updateChatResponse)
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     } else {
-                        console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
+                        //console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
                         const updateChatResponse = await ProductComment.updateOne(
                             {_id: ExistChatMessage?._id},
                             {
@@ -160,13 +158,13 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                             buyerMessageUsername: user.username,
                                             buyerMessageProfilePicture: user.profilePicture,
                                             timeStamp: new Date(),
-                                            chatUserRole: "購入者"
-                                        }]
+                                        }],
+                                        chatUserRole: "購入者"
                                     }]
                                 }
                             }
                         );
-                        console.log(updateChatResponse)
+                        //console.log(updateChatResponse)
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     }

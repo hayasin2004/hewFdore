@@ -12,14 +12,14 @@ export default async function createUser(username: string, email: string, passwo
     try {
         const checkUserName : UserType | null= await User.findOne({username : username});
         if (checkUserName) {
-            console.log("このユーザーネームは使われています。")
+            //console.log("このユーザーネームは使われています。")
             return  {status : "existUsername"}
         }
         if (password !== PWCheck){
-            console.log("パスワードと確認用パスワードが一致しません" + password ,PWCheck)
+            //console.log("パスワードと確認用パスワードが一致しません" + password ,PWCheck)
             return null
         }
-        console.log([username, email, password])
+        //console.log([username, email, password])
         const userId = uuidv4()
         const newUser = await User.create({userId, username, email, password})
         await newUser.save()
@@ -28,7 +28,7 @@ export default async function createUser(username: string, email: string, passwo
         return {newUser : JSON.stringify(newUser) ,TenMinToken : JSON.stringify(TenMinToken) }
     } catch (err) {
 
-        console.log("ｓｓｓ" + err)
+        //console.log("ｓｓｓ" + err)
         //     ユーザーが正常に新規登録できなかったとき
     }
 

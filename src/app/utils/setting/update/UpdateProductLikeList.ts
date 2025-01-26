@@ -12,7 +12,7 @@ const UpdateProductLikeList = async () => {
             { $set: { productId: "677e313e766d524648fb94d9" } }  // フィールドを追加し、デフォルト値を設定
         );
 
-        console.log(　JSON.stringify(result)　);
+        //console.log(　JSON.stringify(result)　);
     } catch (err) {
         console.error('Error updating users: ', err);
     }

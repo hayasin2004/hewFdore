@@ -13,19 +13,19 @@ export interface ChatType {
 }
 
 const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
-    console.log(purchaseId)
+    //console.log(purchaseId)
     await connectDB()
     try {
 
         // チャットルーム検索
         // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-        // console.log(fCHatRoomId)
+        // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
         if (purchaseId !== undefined) {
             const fChangeMessage = await Purchase.findOne({_id: purchaseId}).select("productChat timeStamp").sort({timeStamp : 1})
             const currentUserChat = fChangeMessage?.productChat.sellerChatMessage
-            console.log("どのような形式？" + fChangeMessage)
+            //console.log("どのような形式？" + fChangeMessage)
             const partnerUserChat = fChangeMessage?.productChat.buyerChatMessage
             return {
                 currentUserChat: JSON.stringify(fChangeMessage?.sellerChatMessage),
@@ -33,7 +33,7 @@ const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
             }
         }
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

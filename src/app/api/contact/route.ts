@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
     const response = await confirmPassword(body.email,body.password)
-    console.log(response)
+    //console.log(response)
     if (response?.ok == true){
 
     const transporter = nodemailer.createTransport({
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
             );
         }
     }else {
-        console.log("メールアドレス又はパスワードが一致しませんでした")
+        //console.log("メールアドレス又はパスワードが一致しませんでした")
         return new Response(
             JSON.stringify({ status: "Error", message: "メール送信に失敗しました。" }),
             { status: 500, headers: { "Content-Type": "application/json" } }

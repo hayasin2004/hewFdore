@@ -7,10 +7,10 @@ const listingNote = async (userId : string | null) => {
     await connectDB()
     try {
         const userProduct = await  Product.find({sellerId : userId})
-        console.log(userProduct)
+        //console.log(userProduct)
         return  JSON.stringify(userProduct)
     }catch (err){
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

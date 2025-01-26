@@ -11,16 +11,16 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
     await connectDB()
     try {
         const CheckProduct = await Product.findById({_id: productId})
-        console.log("何を得て何を得て大人になっていくんだろう" + CheckProduct)
+        //console.log("何を得て何を得て大人になっていくんだろう" + CheckProduct)
         const purchaseId = uuidv4();
-        console.log(productId, stripeCode, userId);
+        //console.log(productId, stripeCode, userId);
         if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
             const purchase = await Purchase.findOne({productId: productId})
-            console.log("既に購入されていていますされています。");
+            //console.log("既に購入されていていますされています。");
             return JSON.stringify(purchase._id)
 
         } else {
-            console.log("生成" + userId)
+            //console.log("生成" + userId)
             const purchase = await Purchase.create({
                 purchaseId: purchaseId,
                 sellerId: CheckProduct.sellerId,
@@ -58,12 +58,12 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
             }, {new: true, upsert: true});
 
             const sendPurchaseComplete = await toastGmailForPurchase(productId, CheckProduct.sellerId, userId)
-            console.log(sendPurchaseComplete)
+            //console.log(sendPurchaseComplete)
             return JSON.stringify(purchase._id)
 
         }
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

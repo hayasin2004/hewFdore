@@ -37,10 +37,11 @@ const Header = () => {
 
             const confirmUserData = async () => {
                 const response = await confirmUser(token)
-                console.log(response)
-                const responseParse = JSON.parse(response)
-                console.log(responseParse)
-                setUserData(responseParse)
+                    console.log("バグったかも"+response)
+                if (response !== undefined) {
+                    const responseParse = JSON.parse(response)
+                    setUserData(responseParse)
+                }
             }
             confirmUserData()
         }

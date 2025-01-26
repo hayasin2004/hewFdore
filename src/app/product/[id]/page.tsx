@@ -41,7 +41,6 @@ const Product = ({params}: { params: { id: string } }) => {
         },
     });
     const [product, setProduct] = useState<ProductType | null>(null)
-    console.log(JSON.stringify(product))
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
     console.log(status)
@@ -58,8 +57,10 @@ const Product = ({params}: { params: { id: string } }) => {
     }
 
     useEffect(() => {
-        const userParse = JSON.parse(user)
-        setLoginUserData(JSON.parse(userParse));
+        if (user !== undefined) {
+            const userParse = JSON.parse(user)
+            setLoginUserData(JSON.parse(userParse));
+        }
 
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
@@ -85,7 +86,6 @@ const Product = ({params}: { params: { id: string } }) => {
 
         response()
     }, [user]);
-　
 
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const Product = ({params}: { params: { id: string } }) => {
     }, [product]);
     return (
         <>
-            <Header/>　
+            <Header/>
 
             {/*<div className={"productMain"}>*/}
 
@@ -109,14 +109,16 @@ const Product = ({params}: { params: { id: string } }) => {
                         <div id="info">
                             <div id="photo">
                                 <figure>
-                                    <Image src={product?.productImage}  width={200} height={200}
+                                    <Image src={product?.productImage} width={200} height={200}
                                            alt="商品の写真"/>
                                 </figure>
                                 <ul className="piclist">
                                     <li className="picts">
                                         <figure>
-                                            <Image  src={product?.productImage !== undefined ? product?.productImage : "/images/clothes/product.jpg"} width={50} height={50}
-                                                   alt="商品の写真"/>
+                                            <Image
+                                                src={product?.productImage !== undefined ? product?.productImage : "/images/clothes/product.jpg"}
+                                                width={50} height={50}
+                                                alt="商品の写真"/>
                                         </figure>
                                     </li>
                                 </ul>
@@ -145,7 +147,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             </div>
                         </div>
                         <div>
-                            <Chat paramsProductData={id}  />
+                            <Chat paramsProductData={id}/>
                         </div>
                         <div id="controlProduct">
                             <ThemeProvider theme={theme}>

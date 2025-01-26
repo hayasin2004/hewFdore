@@ -20,9 +20,9 @@ export interface createProductType {
 export const editProduct = async (productId: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,): Promise<{
     result: string
 } | null> => {
-    // console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
+    // //console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
     await connectDB();
-    console.log("商品関連データベースと接続中")
+    //console.log("商品関連データベースと接続中")
     try {
         const updateProduct = await  Product.findByIdAndUpdate(productId , {
             $set : {
@@ -38,11 +38,11 @@ export const editProduct = async (productId: string | null, productName: string 
             }
         },{new : true , upsert: true}
         )
-        console.log(updateProduct)
+        //console.log(updateProduct)
         return {result: updateProduct};
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
     }
 
 

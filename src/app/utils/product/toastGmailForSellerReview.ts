@@ -10,7 +10,7 @@ const toastGmailForSellerReview = async (currentUserId : string | null ,partnerU
     const toastProduct = await Product.findById({_id: productId}).select(" productName productPrice productDesc productCategory productSize productCondition postageBurden")
     const toastSellerUser = await User.findById({_id: currentUserId}).select("username email")
     const toastBuyerUser = await User.findById({_id: partnerUserId}).select("username email")
-    console.log("toastProduct" + JSON.stringify(toastSellerUser ))
+    //console.log("toastProduct" + JSON.stringify(toastSellerUser ))
 
     try {
         const transporter = nodemailer.createTransport({
@@ -60,7 +60,7 @@ const toastGmailForSellerReview = async (currentUserId : string | null ,partnerU
             );
         }
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

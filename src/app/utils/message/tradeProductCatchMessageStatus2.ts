@@ -13,23 +13,23 @@ export interface ChatType {
 }
 
 const tradeProductCatchMessageStatus2 = async (purchaseId?: string) => {
-    console.log(purchaseId)
+    //console.log(purchaseId)
     await connectDB()
     try {
 
     // チャットルーム検索
     // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+    // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
         const fChangeMessage = await Purchase.findById({_id: purchaseId}).select("productChat ")
-        console.log("staff支店"+fChangeMessage)
+        //console.log("staff支店"+fChangeMessage)
         const    currentUserChat =  fChangeMessage?.productChat.buyerChatMessage
         const    partnerUserChat =  fChangeMessage?.productChat.sellerChatMessage
         // const chatList = fChangeMessage.map((item) =>)
         return { buyerChatMessage : JSON.stringify(fChangeMessage?.buyerChatMessage) , partnerUserChat :  JSON.stringify(fChangeMessage?.sellerChatMessage)}
     }catch (err){
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

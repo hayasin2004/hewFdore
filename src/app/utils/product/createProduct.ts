@@ -23,10 +23,10 @@ export interface createProductType {
 export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,productImage : string | null ): Promise<{
     result: string
 } | null> => {
-    // console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
+    // //console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
     await connectDB();
 
-    console.log("商品関連データベースと接続中")
+    //console.log("商品関連データベースと接続中")
 
     if (!token) {
         return null
@@ -57,14 +57,14 @@ export const createProduct = async (token: string | null, productName: string | 
         const CompleteproductId = newProduct._id
         const CompletesellerId = newProduct.sellerId
         await toastProduct(CompleteproductId,CompletesellerId)
-        console.log(newProduct.productCategory)
+        //console.log(newProduct.productCategory)
         addUserProductCategoryToMail(newProduct.productCategory , newProduct)
-        console.log("保存完了だよ")
+        //console.log("保存完了だよ")
         toastProduct(newProduct._id , newProduct.sellerId)
         const returnProduct = JSON.stringify(newProduct)
         return {result: returnProduct};
     } catch (err) {
-        console.log(err)
+        //console.log(err)
     }
 
 

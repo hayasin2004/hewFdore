@@ -2,7 +2,7 @@
 import {getPayPayProduct} from "@/app/utils/stripe/paypaystripeTest";
 
 export const saveProduct =  async () => {
-    console.log("蠢くんだ")
+    //console.log("蠢くんだ")
     try {
         const productId = "04583037014938517504"
 
@@ -11,7 +11,7 @@ export const saveProduct =  async () => {
         // ここでは単にデータを返すだけにします
         return { product: paypayProduct };
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 } ;
 

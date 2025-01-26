@@ -10,11 +10,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 export async function POST(productId : string, res: NextResponse) {
         await connectDB()
 
-        console.log("見つけてた" );
+        //console.log("見つけてた" );
         const product = await Product.findOne({ _id: productId });
 
         // try {
-        //         console.log("ここまでおおけーい")
+        //         //console.log("ここまでおおけーい")
         //     const session = stripe.checkout.sessions.create({
         //         //     多分ここでMongoの価格が出てくる。
         //         line_items: [
@@ -32,7 +32,7 @@ export async function POST(productId : string, res: NextResponse) {
         //     // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
         //     NextResponse.redirect(session.url, 303)
         // } catch (err) {
-        //     console.log("Stripe側のエラー" + err);
+        //     //console.log("Stripe側のエラー" + err);
         // }
 
 

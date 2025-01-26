@@ -7,10 +7,10 @@ const userDetail = async (userId : string | null) => {
     await connectDB()
     try {
         const user = await User.findById(userId)
-        console.log("userDetail" + user)
+        //console.log("userDetail" + user)
         return JSON.stringify(user)
     } catch (err) {
-        console.log(err)
+        //console.log(err)
     }
 
 }

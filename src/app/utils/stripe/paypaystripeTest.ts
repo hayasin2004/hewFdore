@@ -20,7 +20,7 @@ export const getPayPayProduct = async (productId :string) => {
 
             res.on('data', (chunk) => {
                 data += chunk;
-                    console.log("食い終わった" + data)
+                    //console.log("食い終わった" + data)
             });
 
             res.on('end', () => {
@@ -32,7 +32,7 @@ export const getPayPayProduct = async (productId :string) => {
                 }
             });
         });
-        console.log(req)
+        //console.log(req)
         req.on('error', (error) => {
             reject(error);
         });

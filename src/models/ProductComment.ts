@@ -4,7 +4,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 export interface productCommentType {
     _id?: string;
     listingUserId?: string;
-    buyerUserId?: UserType;
+    buyerUserIdList?: string[];
     productId?: string;
     ChatMessage?: string[];
     listingMessage?: string[];
@@ -57,7 +57,7 @@ const ProductCommentSchema = new mongoose.Schema({
                 type: String,
                 default: "",
             },
-            buyerMessageStampLike: {
+            buyerMessageLike: {
                 type: Array,
                 default: []
             },

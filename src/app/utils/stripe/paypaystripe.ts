@@ -33,7 +33,7 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB();
     try {
-        console.log("デバック用ユーザーId" + userId)
+        //console.log("デバック用ユーザーId" + userId)
         // MongoDBから_idで商品を検索
         const product = await Product.findOne({_id: productId});
         if (!product) {
@@ -60,7 +60,7 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
             product: stripeProduct.id,
         });
 
-        console.log(price, stripeProduct);
+        //console.log(price, stripeProduct);
         if (paymentMethod === 'payPay') {
             try {
                 const payload = {
@@ -74,11 +74,11 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
                     codeType: 'ORDER_QR',
                     redirectUrl: `http://localhost:3000/payComplete/checkout-success?session_id=${merchantPaymentId}&productId=${productId}&userId=${userId}&paymentStatus=payPay`,
                 };
-                console.log(`Payment completed:`);
-                console.log(`Merchant Payment ID: ${merchantPaymentId}`);
+                //console.log(`Payment completed:`);
+                //console.log(`Merchant Payment ID: ${merchantPaymentId}`);
                 const res = await QRCodeCreate(payload);
                 const url = PayPaySuccessResponse.parse(res).BODY.data.url;
-                console.log("urlデバック" + JSON.stringify(payload));
+                //console.log("urlデバック" + JSON.stringify(payload));
 
 
                 // PayPay QRコード情報をStripeの製品にメタデータとして保存
@@ -107,7 +107,7 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
         }
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

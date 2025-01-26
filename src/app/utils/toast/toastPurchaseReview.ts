@@ -11,7 +11,7 @@ import {ProductType} from "@/app/utils/product/productDetail";
 const toastPurchaseReview = async  (currentUserId : string | null ,partnerUserId : string | null ,productId : string | null ,lastMessage : string | null , reviewValue : number | null ) => {
 // const toastPurchaseReview = async  () => {
     await connectDB()
-    console.log("currentUserId" + currentUserId , "productId" + productId , "lastMessage" + lastMessage , "reviewValue" + reviewValue )
+    //console.log("currentUserId" + currentUserId , "productId" + productId , "lastMessage" + lastMessage , "reviewValue" + reviewValue )
     try {
         const user : UserType | null = await User.findOne({_id : currentUserId})
         const partnerUser : UserType | null = await User.findOne({_id : partnerUserId})
@@ -30,7 +30,7 @@ const toastPurchaseReview = async  (currentUserId : string | null ,partnerUserId
 
 
     }catch (err){
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

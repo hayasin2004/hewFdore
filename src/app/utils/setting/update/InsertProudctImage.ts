@@ -11,9 +11,9 @@ const InsertProductImage = async () => {
             {productImage: {$exists: true}},
             {$set: {productImage: "/test"}}
         )
-        console.log(insertImage)
+        //console.log(insertImage)
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

@@ -11,10 +11,10 @@ export interface ChatType {
 }
 
 const catchMessageStatus3 = async (chatId?: string) => {
-    console.log(chatId)
+    //console.log(chatId)
     // チャットルーム検索
     // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // console.log(fCHatRoomId)
+    // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
     if (chatId !== undefined) {
@@ -24,7 +24,7 @@ const catchMessageStatus3 = async (chatId?: string) => {
             partnerUserChat : fChangeMessage.currentUserChat
         }
 
-        console.log(chatList)
+        //console.log(chatList)
         return {chatCatchData : chatList}
     }
 }

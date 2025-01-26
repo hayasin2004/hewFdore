@@ -15,15 +15,15 @@ interface User {
 
 export async function loginUser(email: string | null, password: string | null, confirmPassword: string | null) {
     await connectDB()
-    console.log("loginUser", email, password)
+    //console.log("loginUser", email, password)
     if (password !== confirmPassword) {
-        console.log("パスワードと確認用パスワードが違います。" + password , confirmPassword)
+        //console.log("パスワードと確認用パスワードが違います。" + password , confirmPassword)
         return null
     }
     try {
         // mongooseの関数findOneで該当するユーザーを一つ取得してくる
         const user = await User.findOne({email: email}).exec()
-        // console.log(user) /*ユーザー情報を取得している。ユーザーが見つからない時はnullが返ってくる。*/
+        // //console.log(user) /*ユーザー情報を取得している。ユーザーが見つからない時はnullが返ってくる。*/
         if (!user) {
             /*emailアドレス検証*/
             console.log({
@@ -31,11 +31,11 @@ export async function loginUser(email: string | null, password: string | null, c
                 status: (404)
             })
         } else {
-            // console.log("メールアドレス認証は成功しました。" + user.email)
+            // //console.log("メールアドレス認証は成功しました。" + user.email)
             //     else文でログインしたユーザーが見つかった時。
             // もしユーザーが見つかった時パスワード認証を行う
             if (password !== user.password) {
-                console.log("パスワードが違います。" + password)
+                //console.log("パスワードが違います。" + password)
             } else {
                 const userId: string | null = user?._id
                 const username: string | null = user?.username
@@ -65,6 +65,6 @@ export async function loginUser(email: string | null, password: string | null, c
         }
         //     user→クラス , {email , password}　→オブジェクト 、email , password →クラスの中身
     } catch (err) {
-        console.log("エラー" + err)
+        //console.log("エラー" + err)
     }
 }

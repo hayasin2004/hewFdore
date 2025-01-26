@@ -47,7 +47,7 @@ export const authOptions: NextAuthOptions = {
             //     上記の型定義はtypes/next-auth.d.ts/
 
             }
-            // console.log(session)　/*→　これでユーザー情報の一覧がコンソールに出ます。*/
+            // //console.log(session)　/*→　これでユーザー情報の一覧がコンソールに出ます。*/
             return session
         },
 

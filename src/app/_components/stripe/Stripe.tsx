@@ -38,8 +38,10 @@ const CompleteStripe = ({productId}: { productId: string }) => {
 
 
         useEffect(() => {
-            const userParse = JSON.parse(user)
-            setLoginNowUserData(JSON.parse(userParse));
+            if (user !== undefined) {
+                const userParse = JSON.parse(user)
+                setLoginNowUserData(JSON.parse(userParse));
+            }
         }, [user]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             try {

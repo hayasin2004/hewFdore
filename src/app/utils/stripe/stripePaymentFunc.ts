@@ -11,9 +11,9 @@ const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
 export async function stripePaymentFunc(productId: string, paymentMethod: string, userId: string | null) {
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     await connectDB()
-    console.log("改変ユーザーID")
+    //console.log("改変ユーザーID")
     // Mongodbから_idで商品検索
-    // console.log(product);　
+    // //console.log(product);　
     //↑のログのコメントアウト解除するとどうやって取ってるのか見れる。
     // ↓見つかったものをここで宣言
 
@@ -28,10 +28,10 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
             const productDesc = product?.productDesc
 
             if (!product) {
-                console.log("Product not found.");
+                //console.log("Product not found.");
             }
             if (!productName) {
-                console.log("Product name is missing.");
+                //console.log("Product name is missing.");
             }
 
             // 製品情報をStripeに追加
@@ -62,19 +62,19 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
                 success_url: `http://localhost:3000/payComplete/checkout-success?session_id={CHECKOUT_SESSION_ID}&productId=${productId}&userId=${userId}&paymentStatus=stripe`,
                 cancel_url: `http://localhost:3000/product/checkout-false?session_id=cancel&productId=${productId}`,
             })
-            console.log("こにちは" + session)
+            //console.log("こにちは" + session)
             // 303 →　単にサーバーが別の場所にリダイレクトしていることを示すメッセージです。
             return {checkout_url: session.url}
 
         } catch (err) {
-            console.log(err)
+            //console.log(err)
         }
     }
 }
 
 
 // try {
-//     console.log("ここまでおおけーい")
+//     //console.log("ここまでおおけーい")
 //
 //     NextResponse.redirect(url, statusCode) ,
 // } catch (err) {

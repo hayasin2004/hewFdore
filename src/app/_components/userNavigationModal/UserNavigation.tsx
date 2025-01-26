@@ -95,14 +95,16 @@ function ChildModal() {
     );
 }
 
-const UserNavigation = ({src}) => {　　
+const UserNavigation = ({src}) => {
     const [userData, setUserData] = useState()
     const token = localStorage.getItem("token")
     useEffect(() => {
         const userData = async () => {
-            const response = await  confirmUser(token)
-            const responseParse = JSON.parse(response)
-            setUserData(responseParse)
+            const response = await confirmUser(token)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setUserData(responseParse)
+            }
         }
         userData()
     }, [token]);

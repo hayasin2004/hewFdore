@@ -7,17 +7,17 @@ const GetBlog = () => {
         serviceDomain: "blogGetBlog112",//microcmsドメイン名
         apiKey: process.env.API_KEY!,
     });
-    console.log("確認"+JSON.stringify(client));
+    //console.log("確認"+JSON.stringify(client));
     try {
 
         return {client: JSON.stringify(client)}
     } catch (err) {
-        console.log(err)
+        //console.log(err)
     }
 
 }
 
 export default GetBlog;
 
-// console.log("呼び出された")
+// //console.log("呼び出された")
 // export

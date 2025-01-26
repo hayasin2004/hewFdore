@@ -9,7 +9,7 @@ const DeleteProductCategoryLikeList = async () => {
         const result = await User.updateMany(
             {$pull: {productCategoryLikeList:"outer"}},
         ).exec();
-        console.log(JSON.stringify(result));
+        //console.log(JSON.stringify(result));
     } catch (err) {
         console.error('Error updating users: ', err);
     }

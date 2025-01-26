@@ -33,7 +33,7 @@ const productDetail = async (id: string): Promise<{product :  string | null } | 
     try {
         const product: ProductType | null = await Product.findById(id)
         const userName: string | null = await User.findOne({_id: product?.sellerId})
-        console.log(userName)
+        //console.log(userName)
         return {product: JSON.stringify(product)}
     } catch (err) {
         console.error(err)

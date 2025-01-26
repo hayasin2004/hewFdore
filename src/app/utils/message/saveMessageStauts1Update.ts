@@ -15,11 +15,11 @@ const saveMessageStauts1Update = async (chatId: string, pushedUser: string, mess
     await connectDB()
     try {
 
-        console.log("asagayasimai" + chatId, pushedUser, message)
+        //console.log("asagayasimai" + chatId, pushedUser, message)
 
         // チャットルーム検索
         // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-        // console.log(fCHatRoomId)
+        // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
         const fChangeMessage = await Chat.findByIdAndUpdate(
@@ -27,11 +27,11 @@ const saveMessageStauts1Update = async (chatId: string, pushedUser: string, mess
             {$push: {currentUserChat: message}},
             {new: true, useFindAndModify: false}
         )
-        console.log(fChangeMessage)
+        //console.log(fChangeMessage)
         return {fChangeMessage: fChangeMessage}
 
     } catch (err) {
-        console.log(err)
+        //console.log(err)
         return null
     }
 }

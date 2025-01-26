@@ -20,7 +20,7 @@ const productSendComment = async (productId : string | null, currentUser : strin
 
             switch (status) {
                 case "UPDATE":
-                    console.log("既に作成されたチャットです。");
+                    //console.log("既に作成されたチャットです。");
                     const updateChatMessage = {
                         senderUserId: currentUser,
                         buyerMessage: chatMessage,
@@ -33,13 +33,13 @@ const productSendComment = async (productId : string | null, currentUser : strin
                             { _id: item._id, "listingChatMessage.senderUserId": currentUser },
                             { $push: { listingChatMessage: updateChatMessage } }
                         );
-                        console.log("出品者のコメントを更新しました。");
+                        //console.log("出品者のコメントを更新しました。");
                     } else {
                         await ProductComment.updateOne(
                             { _id: item._id, "ChatMessage.senderUserId": currentUser },
                             { $push: { ChatMessage: updateChatMessage } }
                         );
-                        console.log("購入者のコメントを更新しました。");
+                        //console.log("購入者のコメントを更新しました。");
                     }
                     break;
                 case "CREATE":
@@ -57,16 +57,16 @@ const productSendComment = async (productId : string | null, currentUser : strin
                     };
                     const createChatResponse = new ProductComment(newComment);
                     await createChatResponse.save();
-                    console.log("新しいチャットを作成しました。");
+                    //console.log("新しいチャットを作成しました。");
                     break;
                 default:
-                    console.log("不明なステータスです。");
+                    //console.log("不明なステータスです。");
                     break;
             }
         }));
 
     } catch (err) {
-        console.log(err);
+        //console.log(err);
         return null;
     }
 };

@@ -16,12 +16,12 @@ const io = new Server(server , {
 
 
 io.on("connection" , (socket) => {
-    console.log("clientと接続中")
+    //console.log("clientと接続中")
     socket.on("disconnect" , () =>{
-        console.log("socketとclientのせつぞくがきれました")
+        //console.log("socketとclientのせつぞくがきれました")
     })
 })
 
 server.listen(PORT , () =>{
-    console.log("Server started on port 8080")
+    //console.log("Server started on port 8080")
 })
