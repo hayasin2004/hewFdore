@@ -83,7 +83,7 @@ const PurchaseSchema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        sellerMessageLike: {
+         sellerMessageLike: {
             type: Array,
             default: []
         },
