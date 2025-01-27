@@ -19,8 +19,8 @@ const getProductChatMessage = async ( productId: string | null) => {
             //console.log(searchProductChat)
             return {
                 listingChatMessage: JSON.stringify(searchProductChat.productChat),
-                buyerChatMessage: JSON.stringify(searchProductChat.productChat[0]?.buyerChatMessage),
-                buyerUserIdList: JSON.stringify(searchProductChat.productChat[0]?.buyerUserIdList),
+                buyerChatMessage: JSON.stringify(searchProductChat?.productChat[0]?.buyerChatMessage),
+                buyerUserIdList: JSON.stringify(searchProductChat?.productChat[0]?.buyerUserIdList),
             }
         }
         return null

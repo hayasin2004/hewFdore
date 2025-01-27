@@ -25,23 +25,27 @@ const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser:
         // //console.log(fCHatRoomId)
 
 // //     チャットルームにmessageを新しく挿入
-    const fChangeMessage = await Purchase.findByIdAndUpdate(
-        purchaseId,
-        {
-            $push: {
-                sellerChatMessage: {
-                    sellerUserId : currentUserData?._id ,
-                    sellerUsername : currentUserData?.username,
-                    sellerProfilePicture : currentUserData?.profilePicture,
-                    sellerMessage : message,
-                    sellerMessageLike : []
+        const fChangeMessage = await Purchase.findByIdAndUpdate(
+            purchaseId,
+            {
+                $push: {
+                    tradeChat: [{
+
+                        sellerChatMessage: {
+                            sellerUserId: currentUserData?._id,
+                            sellerUsername: currentUserData?.username,
+                            sellerProfilePicture: currentUserData?.profilePicture,
+                            sellerMessage: message,
+                            sellerMessageLike: []
+                        },
+                        chatUserRole: "出品者",
+                    }]
                 }
-            }
-        },
-        {new: true, useFindAndModify: false}
-    )
-    //console.log(fChangeMessage)
-    return {fChangeMessage: JSON.stringify(fChangeMessage)}
+            },
+            {new: true, useFindAndModify: false}
+        )
+        //console.log(fChangeMessage)
+        return {fChangeMessage: JSON.stringify(fChangeMessage)}
     } catch (err) {
         //console.log(err)
         return null

@@ -10,32 +10,36 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string ,currentUserData) => {
+const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string, currentUserData: string) => {
     //console.log(purchaseId, pushedUser, message)
     await connectDB()
 
     try {
+        console.log("正しく来てるのかな")
         // チャットルーム検索
-        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-        // //console.log(fCHatRoomId)
+
+        const fCHatRoomId = await Purchase.findById({_id: purchaseId})
 
 //     チャットルームにmessageを新しく挿入
         const fChangeMessage = await Purchase.findByIdAndUpdate(
-            purchaseId,
+            {purchaseId},
             {
                 $push: {
-                    buyerChatMessage: {
-                        buyerUserId : currentUserData?._id ,
-                        buyerUsername : currentUserData?.username,
-                        buyerProfilePicture : currentUserData?.profilePicture,
-                        buyerMessage: message,
-                        buyerMessageLike: []
-                    }
+                    tradeChat: [{
+                        buyerChatMessage: [{
+                            buyerUserId: currentUserData?._id,
+                            buyerUsername: currentUserData?.username,
+                            buyerProfilePicture: currentUserData?.profilePicture,
+                            buyerMessage: message,
+                            buyerMessageLike: []
+                        }],
+                        chatUserRole: "購入者",
+                    }]
                 }
             },
             {new: true, useFindAndModify: false}
         )
-        //console.log(fChangeMessage)
+        console.log(fChangeMessage)
         return {fChangeMessage: JSON.stringify(fChangeMessage)}
 
 

@@ -23,10 +23,10 @@ const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
 
 //     チャットルームにmessageを新しく挿入
         if (purchaseId !== undefined) {
-            const fChangeMessage = await Purchase.findOne({_id: purchaseId}).select("productChat timeStamp").sort({timeStamp : 1})
-            const currentUserChat = fChangeMessage?.productChat.sellerChatMessage
+            const fChangeMessage = await Purchase.findOne({_id: purchaseId}).select("productChat timeStamp productChat").sort({timeStamp : 1})
+            const currentUserChat = fChangeMessage?.tradeChat.sellerChatMessage
             //console.log("どのような形式？" + fChangeMessage)
-            const partnerUserChat = fChangeMessage?.productChat.buyerChatMessage
+            const partnerUserChat = fChangeMessage?.tradeChat.buyerChatMessage
             return {
                 currentUserChat: JSON.stringify(fChangeMessage?.sellerChatMessage),
                 partnerUserChat: JSON.stringify(fChangeMessage?.buyerChatMessage)

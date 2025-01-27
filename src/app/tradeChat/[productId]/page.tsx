@@ -34,9 +34,9 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
-    const testCommentLike = async (currentUserId, purchaseId, item , icon) => {
+    const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
         console.log(item)
-        const response = await purchaseChatLike(currentUserId, purchaseId, item ,icon)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
         console.log(response)
     }
 
@@ -52,14 +52,15 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                             <Images
                                 src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}
                                 alt={"サンプルユーザーアイコン"}/>
-                            <div className={"comment-user-name-lef"}>{item.buyerUsername} さん </div>
+                            <div className={"comment-user-name-lef"}>{item.buyerUsername} さん</div>
                         </div>
 
                         <div className={"comment-area-frame-lef"}>
                             <div className={"comment-area-lef"}>{item.buyerMessage}</div>
 
                             <EmojiPicker setIcon={setIcon}/>
-                            <button id={"good"} onClick={() => testCommentLike(currentUserId ,purchaseId ,item?._id, icon)}>
+                            <button id={"good"}
+                                    onClick={() => testCommentLike(currentUserId, purchaseId, item?._id, icon)}>
                                 送信{item?.sellerMessageLike?.length}
                             </button>
                         </div>
@@ -90,9 +91,9 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     // status2の時はログインしているユ―ザーが購入者だった時。
     const [icon, setIcon] = useState("")
 
-    const testCommentLike = async (currentUserId, purchaseId, item , icon) => {
+    const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
         console.log(item)
-        const response = await purchaseChatLike(currentUserId, purchaseId, item ,icon)
+        const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
         console.log(response)
     }
 
@@ -119,7 +120,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                     </div>
 
                     <EmojiPicker setIcon={setIcon}/>
-                    <button id={"good"} onClick={() => testCommentLike(currentUserId ,purchaseId ,item?._id, icon)}>
+                    <button id={"good"} onClick={() => testCommentLike(currentUserId, purchaseId, item?._id, icon)}>
                         送信{item?.sellerMessageLike?.length}
                     </button>
 
@@ -215,8 +216,16 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     }
                 } else if (status == "2") {
                     const catchUser = await tradeProductCatchMessageStatus2(purchaseId)
-                    setPartnerUserIdChat(JSON.parse(catchUser?.buyerChatMessage))
-                    setCurrentUserIdChat(JSON.parse(catchUser?.partnerUserChat))
+                    if (catchUser == undefined) {
+                        console.log("data fetching...")
+                    }
+                    if (catchUser !== undefined) {
+                        if (catchUser?.buyerChatMessage !== undefined && catchUser?.partnerUserChat !== undefined) {
+                            setPartnerUserIdChat(JSON.parse(catchUser?.buyerChatMessage))
+                            setCurrentUserIdChat(JSON.parse(catchUser?.partnerUserChat))
+                            console.log(catchUser)
+                        }
+                    }
                 }
             }
             chatresponse()
@@ -428,8 +437,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     <div className={"messageBox"}>
 
                         <Images id={"chatimg"}
-                            src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                            alt={"サンプルユーザーアイコン"}/>
+                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                                alt={"サンプルユーザーアイコン"}/>
 
                         <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
                         <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}

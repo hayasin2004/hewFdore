@@ -33,7 +33,7 @@ const PurchaseSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
-        TradeChat: [{
+        tradeChat: [{
 
             buyerChatMessage: [{
                 buyerUserId: {
@@ -105,6 +105,10 @@ const PurchaseSchema = new mongoose.Schema({
                     default: Date.now()
                 }
             }],
+            chatUserRole: {
+                type: String,
+                default: ""
+            }
         }],
         sellerUserLastChat: {
             type: String,
