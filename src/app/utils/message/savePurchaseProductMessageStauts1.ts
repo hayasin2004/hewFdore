@@ -21,11 +21,11 @@ const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser:
         //console.log("ここに来てるのが成果氏")
         //console.log(currentUserData)
         // チャットルーム検索
-        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
+        const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
         // //console.log(fCHatRoomId)
 
 // //     チャットルームにmessageを新しく挿入
-        const fChangeMessage = await Purchase.findByIdAndUpdate(
+        const fChangeMessage = await fCHatRoomId.updateOne(
             purchaseId,
             {
                 $push: {
