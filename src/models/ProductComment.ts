@@ -13,7 +13,7 @@ export interface productCommentType {
     listingMessageLike?: string[];
     buyerMessageStampLike?: string
     listingMessageStampLike?: string
-    listingMessageStamp? : string[]
+    listingMessageStamp?: string[]
     listingChatMessage?: string;
     senderUserId?: string;
     userId?: string;
@@ -72,6 +72,7 @@ const ProductCommentSchema = new mongoose.Schema({
                 },
                 userId: {
                     type: String,
+                    default: ""
                 }
             }],
         }],
@@ -113,9 +114,9 @@ const ProductCommentSchema = new mongoose.Schema({
             },
         }],
 
-        chatUserRole : {
+        chatUserRole: {
             type: String,
-            default : ""
+            default: ""
         }
     }]
 
