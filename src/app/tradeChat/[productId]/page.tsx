@@ -211,8 +211,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 if (status == "1") {
                     const catchUser = await tradeProductCatchMessageStatus1(purchaseId)
                     if (catchUser !== undefined) {
-                        setCurrentUserIdChat(JSON.parse(catchUser?.currentUserChat))
-                        setPartnerUserIdChat(JSON.parse(catchUser?.partnerUserChat))
+                        if (catchUser?.buyerChatMessage !== undefined && catchUser?.partnerUserChat !== undefined) {
+                            setCurrentUserIdChat(JSON.parse(catchUser?.currentUserChat))
+                            setPartnerUserIdChat(JSON.parse(catchUser?.partnerUserChat))
+                        }
                     }
                 } else if (status == "2") {
                     const catchUser = await tradeProductCatchMessageStatus2(purchaseId)

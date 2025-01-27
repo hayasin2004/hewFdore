@@ -22,7 +22,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
 
 //     チャットルームにmessageを新しく挿入
         const fChangeMessage = await Purchase.findByIdAndUpdate(
-            purchaseId,
+            {_id:purchaseId},
             {
                 $push: {
                     tradeChat: [{
