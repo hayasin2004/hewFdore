@@ -137,7 +137,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 
                     </div>
 
-                    <EmojiPicker setIcon={setIcon}/>
+                    <EmojiPicker item={item}　setIcon={setIcon}/>
                     <button id={"good"} onClick={() => testCommentLike(currentUserId, purchaseId, item?._id, icon)}>
                         送信{item?.sellerMessageLike?.length}
                     </button>
