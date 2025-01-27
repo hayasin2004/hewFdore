@@ -37,7 +37,7 @@ const Header = () => {
 
             const confirmUserData = async () => {
                 const response = await confirmUser(token)
-                    console.log("バグったかも"+response)
+                    // console.log("バグったかも"+response)
                 if (response !== undefined) {
                     const responseParse = JSON.parse(response)
                     setUserData(responseParse)

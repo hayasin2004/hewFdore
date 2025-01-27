@@ -39,6 +39,12 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
         const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
         console.log(response)
     }
+    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
+    const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
+    //
+    currentUserIdChatParse?.map((item) => {
+        console.log(JSON.parse(JSON.stringify(item)))
+    })
 
     return (
         <div>
@@ -46,7 +52,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
             <div>
                 対象ユーザーチャット :
                 <div>
-                    ログインしているチャット : {partnerUserIdChat?.map((item) => (
+                    ログインしているチャット : {partnerUserIdChatParse?.map((item) => (
                     <div key={item._id}>
                         <div className={"comment-user-lef"}>
                             <Images
@@ -56,6 +62,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                         </div>
 
                         <div className={"comment-area-frame-lef"}>
+                            <div className={"comment-area-lef"}><Images src={item?.buyerProfilePicture} alt={"ユーザープロフィール画像"} width={50} height={50}/></div>
                             <div className={"comment-area-lef"}>{item.buyerMessage}</div>
 
                             <EmojiPicker setIcon={setIcon}/>
@@ -72,12 +79,14 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
             </div>
             <br/>
             ログインしているユーザー（出品者のコメント）
-            {currentUserIdChat?.map((item) => (
+            {currentUserIdChatParse?.map((item) => (
                 <div key={item._id}>
                     {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
 
                     <div className={"comment-area-frame-rig"}>
-                        <div className={"comment-area-rig"}>{item.sellerMessage}</div>
+                        <div className={"comment-area-rig"}><Images src={item?.sellerProfilePicture} alt={"ユーザープロフィール画像"} width={50} height={50}/></div>
+                        <div className={"comment-area-rig"}>{item?.sellerUsername}</div>
+                        <div className={"comment-area-rig"}>{item?.sellerMessage}</div>
                     </div>
 
                 </div>
@@ -97,26 +106,35 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
         console.log(response)
     }
 
+    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
+    const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
+
     return (
 
         <div>
-            {currentUserIdChat?.map((item) => ((
+            {currentUserIdChatParse?.map((item) => ((
                 <ul key={item}>
                     <li>{item.sellerUsername}</li>
                 </ul>
             )))}
             <div>
-                対象ユーザーチャット : {currentUserIdChat?.map((item) => (
+                対象ユーザーチャット : {currentUserIdChatParse?.map((item) => (
                 <div key={item._id}>
                     <div className={"comment-user-lef"}>
                         <Images
                             src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}
                             alt={"サンプルユーザーアイコン"}/>
                         <div className={"comment-user-name-lef"}>{item.sellerUsername} さん</div>
+
+                        <div className={"comment-area-lef"}><Images src={item?.sellerProfilePicture}
+                                                                    alt={"ユーザープロフィール画像"} width={50}
+                                                                    height={50}/></div>
+                        <div className={"comment-area-lef"}>{item.sellerMessage}</div>
                     </div>
 
                     <div className={"comment-area-frame-lef"}>
                         <div className={"comment-area-lef"}>{item.sellerMessage}</div>
+
                     </div>
 
                     <EmojiPicker setIcon={setIcon}/>
@@ -129,12 +147,18 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
             </div>
             {/*<br/>*/}
             <div>
-                ログインしているチャット（購入者） : {partnerUserIdChat?.map((item) => (
+                ログインしているチャット（購入者） : {partnerUserIdChatParse?.map((item) => (
                 <div key={item._id}>
                     {/*<div>{item.buyerUsername}</div>*/}
 
                     <div className={"comment-area-frame-rig"}>
                         <div className={"comment-area-rig"}>{item.buyerMessage}</div>
+
+                        <div className={"comment-area-rig"}><Images src={item?.buyerProfilePicture}
+                                                                    alt={"ユーザープロフィール画像"} width={50}
+                                                                    height={50}/></div>
+                        <div className={"comment-area-rig"}>{item?.buyerUsername}</div>
+                        <div className={"comment-area-rig"}>{item?.buyerMessage}</div>
 
                     </div>
 
@@ -161,6 +185,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
     console.log(JSON.stringify(partnerUserIdChat))
     const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
+    console.log("取得完了" + currentUserIdChat)
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
@@ -168,17 +193,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     console.log("出品者の最終評価" + sellerUserLastReview)
     const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
     const [currentUserId, setCurrentUserId] = useState<string | null>("")
-    console.log(currentUserIdChat, buyerLastChat)
     const [currentUserData, setCurrentUserData] = useState()
-    console.log(JSON.stringify(currentUserData))
     const [partnerUserData, setPartnerUserData] = useState()
     const [loginUserData, setLoginUserData] = useState()
 
     console.log(partnerUserData)
     const user = useUser()
-    console.log(productData)
 
-    console.log(productData)
 
     const purchaseId = JSON.parse(JSON.stringify(params.productId))
     useEffect(() => {
@@ -211,7 +232,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 if (status == "1") {
                     const catchUser = await tradeProductCatchMessageStatus1(purchaseId)
                     if (catchUser !== undefined) {
-                        if (catchUser?.buyerChatMessage !== undefined && catchUser?.partnerUserChat !== undefined) {
+                        if (catchUser?.currentUserChat !== undefined && catchUser?.partnerUserChat !== undefined) {
                             setCurrentUserIdChat(JSON.parse(catchUser?.currentUserChat))
                             setPartnerUserIdChat(JSON.parse(catchUser?.partnerUserChat))
                         }
