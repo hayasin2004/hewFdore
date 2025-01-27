@@ -21,8 +21,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
         const fCHatRoomId = await Purchase.findById({_id: purchaseId})
 
 //     チャットルームにmessageを新しく挿入
-        const fChangeMessage = await Purchase.findByIdAndUpdate(
-            {purchaseId},
+        const fChangeMessage = await fCHatRoomId.updateOne(
             {
                 $push: {
                     tradeChat: [{
@@ -39,7 +38,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
             },
             {new: true, useFindAndModify: false}
         )
-        console.log(fChangeMessage)
+        console.log("これ")
         return {fChangeMessage: JSON.stringify(fChangeMessage)}
 
 
