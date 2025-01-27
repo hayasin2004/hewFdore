@@ -41,9 +41,10 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     }
     const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
     const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
+    console.log(partnerUserIdChat)
     //
-    currentUserIdChatParse?.map((item) => {
-        console.log(JSON.parse(JSON.stringify(item)))
+    partnerUserIdChatParse?.map((item) => {
+        console.log("撮れてない？？"+JSON.parse(JSON.stringify(item)))
     })
 
     return (
@@ -78,18 +79,24 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                 </div>
             </div>
             <br/>
-            ログインしているユーザー（出品者のコメント）
+            ログインしているユーザー（出品者のコメント！！）
             {currentUserIdChatParse?.map((item) => (
-                <div key={item._id}>
-                    {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
+                item?.chatUserRole == "出品者" ?(
 
-                    <div className={"comment-area-frame-rig"}>
-                        <div className={"comment-area-rig"}><Images src={item?.sellerProfilePicture} alt={"ユーザープロフィール画像"} width={50} height={50}/></div>
-                        <div className={"comment-area-rig"}>{item?.sellerUsername}</div>
-                        <div className={"comment-area-rig"}>{item?.sellerMessage}</div>
+                    <div key={item._id}>
+                        <p>これは無理だ!!!</p>
+                        {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
+
+                        <div className={"comment-area-frame-rig"}>
+                            <div className={"comment-area-rig"}><Images src={item?.sellerChatMessage[0]?.sellerProfilePicture}
+                                                                        alt={"ユーザープロフィール画像"} width={50}
+                                                                        height={50}/></div>
+                            <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerUsername}</div>
+                            <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerMessage}</div>
+                        </div>
+
                     </div>
-
-                </div>
+                ) : (<p>これは無理だ</p>)
 
             ))}
 
@@ -120,17 +127,17 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
             <div>
                 対象ユーザーチャット : {currentUserIdChatParse?.map((item) => (
                 <div key={item._id}>
-                    <div className={"comment-user-lef"}>
-                        <Images
-                            src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}
-                            alt={"サンプルユーザーアイコン"}/>
-                        <div className={"comment-user-name-lef"}>{item.sellerUsername} さん</div>
+                    {/*<div className={"comment-user-lef"}>*/}
+                    {/*    <Images*/}
+                    {/*        src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}*/}
+                    {/*        alt={"サンプルユーザーアイコン"}/>*/}
+                    {/*    <div className={"comment-user-name-lef"}>{item.sellerUsername} さん</div>*/}
 
-                        <div className={"comment-area-lef"}><Images src={item?.sellerProfilePicture}
-                                                                    alt={"ユーザープロフィール画像"} width={50}
-                                                                    height={50}/></div>
-                        <div className={"comment-area-lef"}>{item.sellerMessage}</div>
-                    </div>
+                    {/*    <div className={"comment-area-lef"}><Images src={item?.sellerProfilePicture}*/}
+                    {/*                                                alt={"ユーザープロフィール画像"} width={50}*/}
+                    {/*                                                height={50}/></div>*/}
+                    {/*    <div className={"comment-area-lef"}>{item.sellerMessage}</div>*/}
+                    {/*</div>*/}
 
                     <div className={"comment-area-frame-lef"}>
                         <div className={"comment-area-lef"}>{item.sellerMessage}</div>

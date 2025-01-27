@@ -68,13 +68,12 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                 ]
                             }
                         )
-
-                        return {likeStatus: "delete", productLike: updateDeleteSearchMessage}
+                        return {likeStatus: "delte", productLike: updateDeleteSearchMessage ,productLikeStamp : updateMessageStamp }
 
                     } else {
                         console.log("ログインしているアカウントで出品者のコメントをいいねしていないので新規いいね。")
                         // //console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
-                        const updateDeleteSearchMessage = await Purchase.updateOne(
+                        const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchSellerPurchaseAndComment?._id, "tradeChat.sellerChatMessage._id": commentId},
                             {
                                 $push: {
@@ -107,7 +106,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                 ]
                             }
                         )
-                        return {likeStatus: "insert", productLike: updateSearchMessage}
+                        return {likeStatus: "insert", productLike: updateInsertSearchMessage ,productLikeStamp : updateMessageStamp }
 
                     }
                 } else if (searchBuyerPurchaseAndComment !== null && searchSellerPurchaseAndComment == null) {
@@ -115,7 +114,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                     // これは出品者のコメントがクエリしてnullが返ってきた場合と購入者のコメントをクエリしたときに見つかったときの論理積
                     //console.log("購入者コメントに対するいいね")
 
-                    const includesCurrentUserId = searchBuyerPurchaseAndComment?.buyerChatMessage[0]?.buyerMessageLike.includes(currentUserId);
+                    const includesCurrentUserId = searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerMessageLike.includes(currentUserId);
 
                     if (includesCurrentUserId) {
                         //console.log("既にログインしているアカウントで購入者のコメントをいいねしている。")
@@ -135,7 +134,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                         // )
 
 
-                        const updateDeleteSearchMessage = await Purchase.updateOne(
+                        const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
                             {
                                 $push: {
@@ -173,9 +172,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                             }
                         )
 
-
-                        return {likeStatus: "delete", productLike: updateDeleteSearchMessage}
-
+                        return {likeStatus: "insert", productLike: updateInsertSearchMessage ,productLikeStamp : updateMessageStamp }
                     } else {
                         //console.log("ログインしているアカウントで購入者のコメントをいいねしていないので新規いいね。")
 
@@ -186,10 +183,6 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                             {
                                 $pull: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageLike": currentUserId,
-                                    "buyerChatMessage.$.buyerMessageStamp": {
-                                        userId: currentUserId,
-                                        buyerMessageStampLike: icon
-                                    }
                                 }
                             },
                             {
@@ -220,7 +213,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                         )
 
 
-                        return {likeStatus: "insert", productLike: updateSearchMessage}
+                        return {likeStatus: "delete", productLike: updateDeleteSearchMessage ,productLikeStamp : updateMessageStamp }
 
                     }
                 }

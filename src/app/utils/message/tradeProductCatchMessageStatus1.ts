@@ -26,10 +26,10 @@ const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
             const currentUserChat = fChangeMessage?.tradeChat.sellerChatMessage
             //console.log("どのような形式？" + fChangeMessage)
             const partnerUserChat = fChangeMessage?.tradeChat.buyerChatMessage
-            console.log(fChangeMessage.tradeChat[0]?.sellerChatMessage)
+            console.log(fChangeMessage?.tradeChat[1]?.buyerChatMessage)
             return {
-                currentUserChat: JSON.stringify(fChangeMessage?.tradeChat[0]?.sellerChatMessage),
-                partnerUserChat: JSON.stringify(fChangeMessage?.tradeChat[0]?.buyerChatMessage)
+                currentUserChat: JSON.stringify(fChangeMessage?.tradeChat),
+                partnerUserChat: JSON.stringify(fChangeMessage?.tradeChat)
             }
         }
     } catch (err) {
