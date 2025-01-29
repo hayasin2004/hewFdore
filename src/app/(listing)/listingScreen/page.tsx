@@ -35,7 +35,7 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
-    const [productVideoFiles, setProductVideoFiles] = useState<string | null>(null)
+    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
     const [compressedVideo, setCompressedVideo] = useState(null)
 
     console.log(JSON.stringify(productId))
@@ -93,8 +93,7 @@ const ListingScreen: React.FC = () => {
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
                         const productDesc = data.get("productDesc") as string;
-                        const productVideo = new FormData();
-                        productVideo.append('video', productVideoFiles);
+                        // const productVideo = data.get("productVideo");
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
@@ -113,6 +112,7 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText,
                             productImage,
+                            data
                         ).then(
                             (product => {
                                 if (product?.result !== undefined) {
@@ -134,12 +134,24 @@ const ListingScreen: React.FC = () => {
                             <input type="file" onChange={productImageFile}/>
                         </div>
 
+                        {/*<div id="kamera">*/}
+                        {/*    {productImage &&*/}
+                        {/*        <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}*/}
+                        {/*    /!*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*!/*/}
+                        {/*    <input type="file" accept={"video/*"}*/}
+                        {/*           onChange={(e) => setProductVideoFiles(e?.target?.files[0])}/>*/}
+                        {/*</div>*/}
+
+
                         <div id="kamera">
                             {productImage &&
                                 <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" accept={"video/*"}
-                                   onChange={(e) => setProductVideoFiles(e?.target?.files[0])}/>
+                            <input
+                                type="file"
+                                accept="video/*"
+                                name={"productVideo"}
+                            />
                         </div>
 
 

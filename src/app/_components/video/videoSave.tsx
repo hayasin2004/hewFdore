@@ -14,7 +14,7 @@ const VideoSave = () => {
                     accept="video/*"
                     name={"productVideo"}
                 />
-                <button type="submit">アップロード</button>
+                    <button type="submit">アップロード</button>
             </form>
         </div>
     );
