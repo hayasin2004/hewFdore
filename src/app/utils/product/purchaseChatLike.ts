@@ -9,18 +9,18 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
         const checkSellerUser = await Purchase.findOne({_id: purchaseId}).select("sellerId")
         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
         const searchBuyerPurchaseAndComment = await Purchase.findOne({"tradeChat.buyerChatMessage._id": commentId}, {"tradeChat.$": 1})
-        // //console.log("判定" + searchSellerPurchaseAndComment.sellerChatMessage[0]?.sellerUserId == currentUserId )
+        console.log("判定" + commentId)
 
         if (searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerUserId == currentUserId) {
             //console.log("[購入者]自分のコメントにはいいねで来ません。")
             return null
         } else if (searchSellerPurchaseAndComment?.tradeChat[0]?.sellerChatMessage[0]?.sellerUserId == currentUserId) {
-            //console.log("[出品者]自分のコメントにはいいねで来ません。")
+            console.log("[出品者]自分のコメントにはいいねで来ません。")
             return null
         } else {
 
             if (searchSellerPurchaseAndComment == null && searchBuyerPurchaseAndComment == null) {
-                //console.log("コメントが削除されている可能性があります")
+                console.log("コメントが削除されている可能性があります")
                 return null
             } else {
                 // searchBuyerPurchaseAndComment == null && searchSellerPurchaseAndComment !== null
@@ -29,8 +29,8 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                     const includesCurrentUserId = searchSellerPurchaseAndComment?.tradeChat[0]?.sellerChatMessage[0]?.sellerMessageLike.includes(currentUserId);
                     // //console.log("ここにいる" + searchSellerPurchaseAndComment?.sellerChatMessage[0]?.sellerMessageLike.includes(currentUserId));
                     if (includesCurrentUserId) {
-                        //console.log("既にログインしているアカウントで出品者のコメントをいいねしている。")
-                        //console.log("出品者のコメントに対するいいねを削除します。")
+                        console.log("既にログインしているアカウントで出品者のコメントをいいねしている。")
+                        console.log("出品者のコメントに対するいいねを削除します。")
                         const updateDeleteSearchMessage = await Purchase.updateOne(
                             {_id: searchSellerPurchaseAndComment?._id, "tradeChat.sellerChatMessage._id": commentId},
                             {
@@ -72,7 +72,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
 
                     } else {
                         console.log("ログインしているアカウントで出品者のコメントをいいねしていないので新規いいね。")
-                        // //console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
+                        //console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
                         const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchSellerPurchaseAndComment?._id, "tradeChat.sellerChatMessage._id": commentId},
                             {
@@ -112,13 +112,13 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                 } else if (searchBuyerPurchaseAndComment !== null && searchSellerPurchaseAndComment == null) {
                     // searchBuyerPurchaseAndComment !== null && searchSellerPurchaseAndComment == null
                     // これは出品者のコメントがクエリしてnullが返ってきた場合と購入者のコメントをクエリしたときに見つかったときの論理積
-                    //console.log("購入者コメントに対するいいね")
+                    console.log("購入者コメントに対するいいね")
 
                     const includesCurrentUserId = searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerMessageLike.includes(currentUserId);
 
                     if (includesCurrentUserId) {
-                        //console.log("既にログインしているアカウントで購入者のコメントをいいねしている。")
-                        //console.log("購入者のコメントに対するいいねを削除します。")
+                        console.log("既にログインしているアカウントで購入者のコメントをいいねしている。")
+                        console.log("購入者のコメントに対するいいねを削除します。")
 
                         // const updateDeleteSearchMessage = await Purchase.updateOne(
                         //     {_id: searchBuyerPurchaseAndComment._id, "buyerChatMessage._id": commentId},
@@ -137,7 +137,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                         const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
                             {
-                                $push: {
+                                $pull: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageLike": currentUserId,
                                     "buyerChatMessage.$.buyerMessageStamp": {
                                         userId: currentUserId,
@@ -156,7 +156,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                         const updateMessageStamp = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
                             {
-                                $push: {
+                                $pull: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageStamp": {
                                         userId: currentUserId,
                                         buyerMessageStampLike: icon
@@ -174,14 +174,14 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
 
                         return {likeStatus: "insert", productLike: updateInsertSearchMessage ,productLikeStamp : updateMessageStamp }
                     } else {
-                        //console.log("ログインしているアカウントで購入者のコメントをいいねしていないので新規いいね。")
+                        console.log("ログインしているアカウントで購入者のコメントをいいねしていないので新規いいね。")
 
                         // //console.log(searchComment.ChatMessage.buyerMessageLike.includes(currentUserId))
 
                         const updateDeleteSearchMessage = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
                             {
-                                $pull: {
+                                $push: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageLike": currentUserId,
                                 }
                             },
@@ -196,7 +196,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                         const updateMessageStamp = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
                             {
-                                $pull: {
+                                $push: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageStamp": {
                                         userId: currentUserId,
                                         buyerMessageStampLike: icon

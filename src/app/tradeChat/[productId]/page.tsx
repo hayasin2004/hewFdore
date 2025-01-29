@@ -44,59 +44,50 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     console.log(partnerUserIdChat)
     //
     partnerUserIdChatParse?.map((item) => {
-        console.log("撮れてない？？"+JSON.parse(JSON.stringify(item)))
+        console.log("撮れてない？？" + JSON.parse(JSON.stringify(item)))
     })
 
     return (
         <div>
-
-            <div>
-                対象ユーザーチャット :
-                <div>
-                    ログインしているチャット : {partnerUserIdChatParse?.map((item) => (
-                    <div key={item._id}>
-                        <div className={"comment-user-lef"}>
-                            <Images
-                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}
-                                alt={"サンプルユーザーアイコン"}/>
-                            <div className={"comment-user-name-lef"}>{item.buyerUsername} さん</div>
-                        </div>
-
-                        <div className={"comment-area-frame-lef"}>
-                            <div className={"comment-area-lef"}><Images src={item?.buyerProfilePicture} alt={"ユーザープロフィール画像"} width={50} height={50}/></div>
-                            <div className={"comment-area-lef"}>{item.buyerMessage}</div>
-
-                            <EmojiPicker setIcon={setIcon}/>
-                            <button id={"good"}
-                                    onClick={() => testCommentLike(currentUserId, purchaseId, item?._id, icon)}>
-                                送信{item?.sellerMessageLike?.length}
-                            </button>
-                        </div>
-                        {/*<div>{item._id}</div>*/}
-
-                    </div>
-                ))}
-                </div>
-            </div>
             <br/>
-            ログインしているユーザー（出品者のコメント！！）
+            {/*ログインしているユーザー（出品者のコメント！！）*/}
             {currentUserIdChatParse?.map((item) => (
-                item?.chatUserRole == "出品者" ?(
-
+                item?.chatUserRole == "出品者" ? (
                     <div key={item._id}>
-                        <p>これは無理だ!!!</p>
                         {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
 
                         <div className={"comment-area-frame-rig"}>
-                            <div className={"comment-area-rig"}><Images src={item?.sellerChatMessage[0]?.sellerProfilePicture}
-                                                                        alt={"ユーザープロフィール画像"} width={50}
-                                                                        height={50}/></div>
-                            <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerUsername}</div>
+                            <div className={"comment-area-rig"}><Images
+                                src={item?.sellerChatMessage[0]?.sellerProfilePicture}
+                                alt={"ユーザープロフィール画像"} width={50}
+                                height={50}/></div>
+                            <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerUsername}さん</div>
                             <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerMessage}</div>
+　
                         </div>
 
                     </div>
-                ) : (<p>これは無理だ</p>)
+                ) : (
+                    <div　key={item._id}>　
+                            {/*相手方のチャット！ :*/}　
+                                <div className={"comment-area-frame-lef"}>
+                                    <div className={"comment-area-lef"}><Images
+                                        src={item?.buyerChatMessage[0]?.buyerProfilePicture}
+                                        alt={"ユーザープロフィール画像"}
+                                        width={50}
+                                        height={50}/></div>
+                                    <div className={"comment-area-lef"}>{item.buyerChatMessage[0]?.buyerMessage}</div>
+
+
+                                    <EmojiPicker setIcon={setIcon}/>
+                                    <button id={"good"}
+                                            onClick={() => testCommentLike(currentUserId, purchaseId, item.buyerChatMessage[0]?._id, icon)}>
+                                        送信
+                                    </button>
+                                </div>
+　
+                    </div>
+                )
 
             ))}
 
@@ -119,59 +110,55 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     return (
 
         <div>
-            {currentUserIdChatParse?.map((item) => ((
-                <ul key={item}>
-                    <li>{item.sellerUsername}</li>
-                </ul>
-            )))}
+           　
             <div>
-                対象ユーザーチャット : {currentUserIdChatParse?.map((item) => (
-                <div key={item._id}>
-                    {/*<div className={"comment-user-lef"}>*/}
-                    {/*    <Images*/}
-                    {/*        src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={30} height={30}*/}
-                    {/*        alt={"サンプルユーザーアイコン"}/>*/}
-                    {/*    <div className={"comment-user-name-lef"}>{item.sellerUsername} さん</div>*/}
+                ログインしているチャット（購入者） : {currentUserIdChatParse?.map((item) => (
+                item?.chatUserRole == "出品者" ? (
+                    <div key={item._id}>
 
-                    {/*    <div className={"comment-area-lef"}><Images src={item?.sellerProfilePicture}*/}
-                    {/*                                                alt={"ユーザープロフィール画像"} width={50}*/}
-                    {/*                                                height={50}/></div>*/}
-                    {/*    <div className={"comment-area-lef"}>{item.sellerMessage}</div>*/}
-                    {/*</div>*/}
+                        <div className={"comment-user-lef"}>
+                            <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerUsername} さん
+                            </div>
+                            <div className={"comment-area-lef"}><Images
+                                src={item?.sellerChatMessage[0]?.sellerProfilePicture}
+                                alt={"ユーザープロフィール画像"} width={50}
+                                height={50}/></div>
+                            <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessage}</div>
 
-                    <div className={"comment-area-frame-lef"}>
-                        <div className={"comment-area-lef"}>{item.sellerMessage}</div>
+                            {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (<div
+                                    className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
+                            ) : ("")}
+                            <EmojiPicker item={item} setIcon={setIcon}/>
+                            <button id={"good"}
+                                    onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>
+                                送信
+                                {/*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*/}
+                            </button>
+                        </div>
 
                     </div>
+                ) : (
 
-                    <EmojiPicker item={item}　setIcon={setIcon}/>
-                    <button id={"good"} onClick={() => testCommentLike(currentUserId, purchaseId, item?._id, icon)}>
-                        送信{item?.sellerMessageLike?.length}
-                    </button>
+                    <div key={item._id}>
+                        {/*<div>{item.buyerUsername}</div>*/}
 
-                </div>
-            ))}
-            </div>
-            {/*<br/>*/}
-            <div>
-                ログインしているチャット（購入者） : {partnerUserIdChatParse?.map((item) => (
-                <div key={item._id}>
-                    {/*<div>{item.buyerUsername}</div>*/}
+                        <div className={"comment-area-frame-rig"}>
 
-                    <div className={"comment-area-frame-rig"}>
-                        <div className={"comment-area-rig"}>{item.buyerMessage}</div>
+                            <div className={"comment-area-rig"}><Images
+                                src={item?.buyerChatMessage[0]?.buyerProfilePicture}
+                                alt={"ユーザープロフィール画像"} width={50}
+                                height={50}/></div>
+                            <div className={"comment-area-rig"}>{item?.buyerChatMessage[0]?.buyerUsername}さん</div>
+                            <div className={"comment-area-rig"}>{item?.buyerChatMessage[0]?.buyerMessage}</div>
+                            {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (<div
+                                    className={"comment-area-lef"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
+                            ) : ("")}
+                        </div>
 
-                        <div className={"comment-area-rig"}><Images src={item?.buyerProfilePicture}
-                                                                    alt={"ユーザープロフィール画像"} width={50}
-                                                                    height={50}/></div>
-                        <div className={"comment-area-rig"}>{item?.buyerUsername}</div>
-                        <div className={"comment-area-rig"}>{item?.buyerMessage}</div>
+                        {/*<div>{item._id}</div>*/}
 
                     </div>
-
-                    {/*<div>{item._id}</div>*/}
-
-                </div>
+                )
             ))}
             </div>
         </div>
