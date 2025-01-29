@@ -14,7 +14,9 @@ const testvideoSave = async (video: FormData | null) => {
                 const bucket = new GridFSBucket(mongoScheme.connection.db)
                 const uploadStream = bucket.openUploadStream(productVideo?.name)
                 const writableStream =GridFSBucketWriteStream?.toWeb(uploadStream);
-                productVideo?.stream()?.pipeTo(writableStream);
+                const completeVideo =productVideo?.stream()?.pipeTo(writableStream);
+                console.log(completeVideo)
+                console.log(uploadStream.id)
             }
         }
     } catch (err) {
