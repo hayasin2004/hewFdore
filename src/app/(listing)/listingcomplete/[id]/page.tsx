@@ -58,6 +58,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                         <p id="used">商品状態:{data?.productCondition}</p>
                         <p id="postage">送料:{data?.postageBurden}</p>
                         <p id="category">カテゴリ: {data?.productCategory}</p>
+                        <video src={data?.productVideo} loop autoPlay></video>
                     </div>
                 </div>
 

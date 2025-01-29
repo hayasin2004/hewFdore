@@ -3,6 +3,7 @@
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import {User} from "@/models/User";
+import { ObjectId } from "mongodb";
 
 export interface ProductType {
     product?: string;
@@ -29,10 +30,14 @@ export interface ProductType {
 
 
 const productDetail = async (id: string): Promise<{product :  string | null } | null> => {
-    await connectDB()
+    const  mongoScheme = await connectDB()
     try {
+        const db = mongoScheme.connection.db
         const product: ProductType | null = await Product.findById(id)
         const userName: string | null = await User.findOne({_id: product?.sellerId})
+        const video  = await db?.collection("fs.files").findOne({_id : new ObjectId(product?.productVideo)})
+        console.log(product?.productVideo)
+        console.log(video)
         //console.log(userName)
         return {product: JSON.stringify(product)}
     } catch (err) {
