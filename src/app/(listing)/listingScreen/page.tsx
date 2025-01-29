@@ -7,7 +7,10 @@ import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton
 import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";　
 import {ProductType} from "@/app/utils/product/productDetail";
-import io from "socket.io-client";　　
+import io from "socket.io-client";
+import testvideoSave from "@/app/utils/product/testvideoSave";
+import videoSave from "@/app/_components/video/videoSave";
+import VideoSave from "@/app/_components/video/videoSave";　　
 
 export interface productStatusType {
     productCategory?: string[],
@@ -67,28 +70,21 @@ const ListingScreen: React.FC = () => {
     //     }
     // }
 
-    const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
+    // const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('video', productVideoFiles);　
+    //     formData.append('name', productVideoFiles?.name);　
+    //     await  testvideoSave(formData)
+    // };
 
-        const formData = new FormData();
-        formData.append('video', productVideoFiles);　
-    };
 
-
-    console.log(socket)
+    // console.log(socket)
     return (
         <>
             <Header/>
             <div>
-                <h1>動画アップロード</h1>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="file"
-                        accept="video/*"
-                        onChange={(e) => setProductVideoFiles(e.target.files[0])}
-                    />
-                    <button type="submit">アップロード</button>
-                </form>
+                <VideoSave />
             </div>
             <div className={"content"}>
                 <div className={"listingScreenBackground"}>

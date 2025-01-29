@@ -74,7 +74,7 @@ const Toppage = () => {
         <>
             <Blogintroduction/>
             <Header/>
-            <button onClick={updateButton}>更新</button>
+            {/*<button onClick={updateButton}>更新</button>*/}
             <div className={"top"}>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}
