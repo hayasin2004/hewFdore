@@ -65,11 +65,11 @@ function ChildModal() {
                         </Link>
 
                     </p>
-                    <p id="child-modal-description">
-                        <Link href={"confirmPoints"}>
-                            獲得ポイント履歴
-                        </Link>
-                    </p>
+                    {/*<p id="child-modal-description">*/}
+                    {/*    <Link href={"confirmPoints"}>*/}
+                    {/*        獲得ポイント履歴*/}
+                    {/*    </Link>*/}
+                    {/*</p>*/}
                     <p id="child-modal-description">
                         <Link href={"favorite"}>
                             お気に入り登録ページ
