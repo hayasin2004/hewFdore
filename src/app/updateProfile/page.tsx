@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
+import Link from "next/link";
 const UpdateProfile = () => {
     return (
         <>
@@ -51,6 +52,7 @@ const UpdateProfile = () => {
                                 <input type="text" name="UserName" id="UserName"
                                        placeholder="自己紹介文を入力してください。"/><br/>
                                 <button type="submit">更新する</button>
+                                <Link href={"confirmUser"}><button id={"returnCU"}>戻る</button></Link>
                             </form>
                         </div>
                     </div>
