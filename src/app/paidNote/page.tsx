@@ -8,31 +8,39 @@ import Link from "next/link";
 import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
 import {productCommentType} from "@/models/ProductComment";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const PaidNote = () => {
     const [purchaseData, setPurchaseData] = useState([])
     const [productData, setProductData] = useState([])
-    const [loginUserData, setLoginUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
-    const {user} = useUser()　
-    const userParse = JSON.parse(user)
-    const currentUser =loginUserData?._id
-    console.log(productData)
+    const user = useUser()
+    console.log(loginUserData)
     useEffect(() => {
+
+        const userParse = JSON.parse(user)
+        console.log("userParse" + userParse)
         setLoginUserData(JSON.parse(userParse))
-        const fetchPurchaseProduct = async () => {
-            const response = await purchaseProduct(currentUser)
-            console.log(response)
-            if (response?.purchaseProduct !== undefined) {
-                setPurchaseData(JSON.parse(response?.purchaseProduct))
+        if (userParse) {
+            const fetchPurchaseProduct = async () => {
+                const response = await purchaseProduct(loginUserData?._id)
+                console.log(response)
+                if (response?.purchaseProduct !== undefined) {
+                    setPurchaseData(JSON.parse(response?.purchaseProduct))
+                }
+                if (response?.product !== undefined) {
+                    setProductData(JSON.parse(response?.product))
+                }
+                console.log(response)
             }
-            if (response?.product !== undefined) {
-                setProductData(JSON.parse(response?.product))
-            }
-            console.log(response)
+            fetchPurchaseProduct()
         }
-        fetchPurchaseProduct()
     }, [user]);
+
+    useEffect(() => {
+        console.log("いまきた")
+    }, [loginUserData]);
 
 
     return (
