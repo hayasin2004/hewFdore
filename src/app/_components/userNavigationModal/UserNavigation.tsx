@@ -123,10 +123,11 @@ const UserNavigation = () => {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={{...style, width: 400}}>
+                    {/*　ここ入れ子構造辞めた方がいいかも～ */}
                     <h2 id="parent-modal-title">{username}様</h2>
-                    <p id="parent-modal-description">
-                        保有ポイント 10pt
-                    </p>
+                    {/*<p id="parent-modal-description">*/}
+                    {/*    保有ポイント 10pt*/}
+                    {/*</p>*/}
                     <p>
                         <Link href={"listingcomplete_Itiosikinou"}>
                             イチオシ機能
