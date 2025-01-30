@@ -16,7 +16,7 @@ const CatchLikeList = async (loginNowUserId: UserType | null):Promise<{ likeList
         }
         return null
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

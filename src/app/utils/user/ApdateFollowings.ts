@@ -40,7 +40,7 @@ const updateFollowings = async (userFollowings?: string | null, loginNowUserId?:
             return {followers: followers}
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

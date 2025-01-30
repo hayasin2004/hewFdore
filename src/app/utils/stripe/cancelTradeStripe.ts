@@ -10,7 +10,7 @@ const cancelTradeStripe = async (stripeCode: string | null) => {
             //console.log("Stripeにキャンセル申請しました。"+cancelStripe.id);
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

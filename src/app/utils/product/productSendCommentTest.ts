@@ -66,7 +66,7 @@ const productSendComment = async (productId : string | null, currentUser : strin
         }));
 
     } catch (err) {
-        //console.log(err);
+        console.log(err);
         return null;
     }
 };

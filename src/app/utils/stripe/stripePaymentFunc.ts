@@ -67,7 +67,7 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
             return {checkout_url: session.url}
 
         } catch (err) {
-            //console.log(err)
+            console.log(err)
         }
     }
 }

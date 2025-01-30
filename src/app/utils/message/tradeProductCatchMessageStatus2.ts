@@ -29,7 +29,7 @@ const tradeProductCatchMessageStatus2 = async (purchaseId?: string) => {
         // const chatList = fChangeMessage.map((item) =>)
         return { buyerChatMessage : JSON.stringify(fChangeMessage?.tradeChat) , partnerUserChat :  JSON.stringify(fChangeMessage?.tradeChat)}
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

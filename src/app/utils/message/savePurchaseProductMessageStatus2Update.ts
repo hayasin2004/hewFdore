@@ -44,7 +44,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
 
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

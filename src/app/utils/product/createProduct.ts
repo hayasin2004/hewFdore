@@ -101,7 +101,7 @@ export const createProduct = async (token: string | null, productName: string | 
             return {result: returnProduct};
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 
 

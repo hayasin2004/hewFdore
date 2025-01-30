@@ -13,7 +13,7 @@ const InsertProductImage = async () => {
         )
         //console.log(insertImage)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

@@ -14,7 +14,7 @@ const setupfollowerUserId = async () => {
         )
         //console.log(update)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

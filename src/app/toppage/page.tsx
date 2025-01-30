@@ -23,6 +23,7 @@ import soldOutProduct from "@/app/utils/setting/update/soldOutProduct";
 import toastPurchase from "@/app/utils/toast/toastPurchase";
 import setupfollowerUserId from "@/app/utils/setting/update/setupfollowerUserId";
 import updatePayPay from "@/app/utils/setting/update/updatePayPay";
+import tradeId from "@/app/utils/setting/update/tradeId";
 // 幅揃えします
 
 const Toppage = () => {
@@ -31,7 +32,7 @@ const Toppage = () => {
     console.log(productList)
 
     const updateButton = async () => {
-        await updatePayPay()
+        await tradeId()
     }
 
     //
@@ -74,7 +75,7 @@ const Toppage = () => {
         <>
             <Blogintroduction/>
             <Header/>
-            {/*<button onClick={updateButton}>更新</button>*/}
+            <button onClick={updateButton}>更新</button>
             <div className={"top"}>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}

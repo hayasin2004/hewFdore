@@ -221,7 +221,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
             }
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

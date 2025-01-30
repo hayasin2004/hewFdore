@@ -79,7 +79,7 @@ const toastGmailForPurchase = async (productId: string | null, sellerId: string 
             );
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

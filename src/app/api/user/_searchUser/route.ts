@@ -17,7 +17,7 @@ export async function GET(id : string, res: NextResponse) {
             return NextResponse.json(searchUser)
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

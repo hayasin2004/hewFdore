@@ -30,7 +30,7 @@ const savePurchaseProductMessageStauts2 = async (purchaseId: string, pushedUser:
         return {fChangeMessage: fChangeMessage}
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

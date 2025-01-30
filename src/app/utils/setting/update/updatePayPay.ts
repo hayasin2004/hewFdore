@@ -8,7 +8,7 @@ const updatePayPay = async () => {
         const updatePayPayResult  = await Product.updateMany({payPayCode : {$exists : false}},{$set : {payPayCode : ""}})
         //console.log(updatePayPayResult)
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 

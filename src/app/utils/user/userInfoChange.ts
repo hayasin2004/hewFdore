@@ -40,7 +40,7 @@ const userInfoChange = async (userId: string | null, username: string | null, pa
 
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

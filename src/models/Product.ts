@@ -105,6 +105,10 @@ const ProductSchema = new mongoose.Schema({
             type: Array,
             default: [],
         },
+        tradeId: {
+            type: String,
+            default: "",
+        },
         stripeCode: {
             type: String,
             default: "",

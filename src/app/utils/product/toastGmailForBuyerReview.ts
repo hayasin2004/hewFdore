@@ -62,7 +62,7 @@ const toastGmailForBuyerReview = async (currentUserId : string | null ,partnerUs
             );
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

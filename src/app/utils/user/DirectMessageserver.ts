@@ -65,7 +65,7 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
         }
     } catch
         (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

@@ -88,7 +88,7 @@ const confirmTradeStatus = async (purchaseId: string | null) => {
             }
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

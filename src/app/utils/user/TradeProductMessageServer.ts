@@ -69,7 +69,7 @@ const TradeProductMessageServer = async (currentUserId?: string, sellerId?: stri
         }
     } catch
         (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

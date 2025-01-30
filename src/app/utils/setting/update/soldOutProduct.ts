@@ -9,7 +9,7 @@ const soldOutProduct = async () => {
         const soldOutProductUpdate = await User.updateMany({soldOutProduct: {$exists: false}}, {$set: {soldOutProduct: []}})
         //console.log(soldOutProductUpdate)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

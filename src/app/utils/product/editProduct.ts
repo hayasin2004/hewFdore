@@ -42,7 +42,7 @@ export const editProduct = async (productId: string | null, productName: string 
         return {result: updateProduct};
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 
 

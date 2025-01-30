@@ -28,7 +28,7 @@ const toastPurchase = async  () => {
 
 
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

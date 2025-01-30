@@ -10,7 +10,7 @@ const userDetail = async (userId : string | null) => {
         //console.log("userDetail" + user)
         return JSON.stringify(user)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 
 }

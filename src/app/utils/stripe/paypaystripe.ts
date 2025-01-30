@@ -107,7 +107,7 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
         }
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

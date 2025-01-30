@@ -31,7 +31,7 @@ const saveMessageStauts1Update = async (chatId: string, pushedUser: string, mess
         return {fChangeMessage: fChangeMessage}
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

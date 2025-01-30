@@ -35,7 +35,7 @@ export default async function confirmUser(token?: string):Promise< string  | nul
         // //console.log(typeof userId , typeof  username , typeof  token);
         return JSON.stringify(userData)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
 
     }

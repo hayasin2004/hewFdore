@@ -12,7 +12,7 @@ const insert = async () => {
         )
         //console.log(test)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

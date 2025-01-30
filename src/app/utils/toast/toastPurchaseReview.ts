@@ -30,7 +30,7 @@ const toastPurchaseReview = async  (currentUserId : string | null ,partnerUserId
 
 
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

@@ -63,7 +63,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
 
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

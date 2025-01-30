@@ -9,10 +9,12 @@ import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
 import {productCommentType} from "@/models/ProductComment";
 import {UserType} from "@/app/api/user/catchUser/route";
+import {ProductType} from "@/app/utils/product/productDetail";
+import tradeId from "@/app/utils/setting/update/tradeId";
 
 const PaidNote = () => {
     const [purchaseData, setPurchaseData] = useState([])
-    const [productData, setProductData] = useState([])
+    const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
     const user = useUser()
@@ -62,32 +64,19 @@ const PaidNote = () => {
             </div>
             <div className={"listing"}>
                 <div className={"listing_product"}>
-                    {purchaseData?.map((purchaseItem) => (
-
-                        <ul key={purchaseItem?._id}>
-                            <li>
-                                <Link href={`/tradeChat/${purchaseItem?._id}`}>
-                                    {purchaseItem?._id}
-                                </Link>
-                            </li>
-                        </ul>
-                    ))}
 
                     {productData?.map((productItem) => (
-                        <div key={productItem?._id}>
-                            <div className={"product"}>
-                                <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                                <div className={"product_text"}>
-                                    <p>
-                                        商品名 : {productItem?.productName}
-                                    </p>
-                                    <p>出品者 : {productItem?.sellerId}</p>
-                                    <p>価格 : {productItem?.productPrice}</p>
-
-                                </div>
-                                <div className={"listingText"}>
-                                    <h3>評価</h3>
-                                </div>
+                        <div key={productItem?._id} className={"product"}>
+                            <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                            <div className={"product_text"}>
+                                <p>
+                                    商品名 :<br/> {productItem?.productName}
+                                </p>
+                                <p>出品者 : <br/>{productItem?.sellerUserName}さん</p>
+                                <p>価格 : {productItem?.productPrice}</p>
+                                <Link href={`/tradeChat/${productItem?.tradeId}`}>
+                                    <p>詳細</p>
+                                </Link>
 
                             </div>
                         </div>

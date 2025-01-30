@@ -12,7 +12,7 @@ const likeListProductCategory = async (userId: string | null, category: string [
         const categoryPush : UserType = await userSearch.updateOne({$push: {productCategoryLikeList : category }})
         //console.log(categoryPush)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 }
 

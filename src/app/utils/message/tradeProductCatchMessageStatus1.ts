@@ -33,7 +33,7 @@ const tradeProductCatchMessageStatus1 = async (purchaseId?: string) => {
             }
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

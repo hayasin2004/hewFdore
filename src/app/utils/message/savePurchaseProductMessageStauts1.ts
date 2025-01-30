@@ -46,7 +46,7 @@ const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser:
         //console.log(fChangeMessage)
         return {fChangeMessage: JSON.stringify(fChangeMessage)}
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

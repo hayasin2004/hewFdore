@@ -22,7 +22,7 @@ const toastFollowings = async (followingsUserId : string | null , followerUserId
         //console.log(toastFollow)
         //console.log("followingsUserId" + followingsUserId , "followerUserId" + followerUserId);
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 

@@ -22,6 +22,7 @@ export interface UserType {
     likeList? : string[]
     userData? : UserType,
     purchaseProduct? : string[]
+    productLikeList? : string[]
 }
 
 export  interface UserFollow {

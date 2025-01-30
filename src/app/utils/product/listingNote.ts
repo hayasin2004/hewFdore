@@ -10,7 +10,7 @@ const listingNote = async (userId : string | null) => {
         //console.log(userProduct)
         return  JSON.stringify(userProduct)
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

@@ -158,7 +158,7 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
             }
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

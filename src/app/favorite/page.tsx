@@ -1,11 +1,52 @@
-import React from 'react';
+"use client"
+import React, {useEffect, useState} from 'react';
 import "./favorite.css"
 import Image from "next/image";
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Link from "next/link";
+import {ProductType} from "@/app/utils/product/productDetail";
+import useUser from "@/hooks/useUser";
+import getFavoriteProductFunc from "@/app/utils/product/getFavoriteProductFunc";
+import confirmUser from "@/app/utils/user/confirmUser";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const Favorite = () => {
+    const [favoriteProductData, setFavoriteProductData] = useState<ProductType[] | null>(null)
+    const [userData, setUserData] = useState<UserType | null>(null)
+    console.log(userData)
+    const user = useUser()
+
+    useEffect(() => {
+
+        const token = localStorage.getItem("token")
+        if (token) {
+            const confirmUserData = async () => {
+                const response = await confirmUser(token)
+                // console.log("バグったかも"+response)
+                if (response !== undefined) {
+                    const responseParse = JSON.parse(response)
+                    setUserData(responseParse)
+                }
+            }
+            confirmUserData()
+        }
+    }, [user])
+
+    useEffect(() => {
+
+        const getFavoriteProduct = async () => {
+            if (userData?._id !== undefined) {
+                const response = await getFavoriteProductFunc(userData?._id)
+                console.log(response)
+                if (response !== undefined) {
+                    const responseParse = JSON.parse(response!)
+                    setFavoriteProductData(responseParse)
+                }
+            }
+        }
+        getFavoriteProduct()
+    }, [userData]);
 
     return (
         <>
@@ -17,6 +58,11 @@ const Favorite = () => {
 
                     </Link>
             </span>
+            {favoriteProductData?.map((item) => (
+                <ul key={item._id}>
+                    <li>{item.sellerUserName}</li>
+                </ul>
+            ))}
             <div className={"favorite"}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"

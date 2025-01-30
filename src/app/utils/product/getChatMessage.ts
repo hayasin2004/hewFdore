@@ -27,7 +27,7 @@ const getProductChatMessage = async ( productId: string | null) => {
 
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

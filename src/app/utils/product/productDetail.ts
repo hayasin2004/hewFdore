@@ -27,16 +27,18 @@ export interface ProductType {
     productImage?: string,
     stripeCode?: string
     payPayCode?: string
+    tradeId?: string
 }
 
 
 const productDetail = async (id: string): Promise<{ product: string | null } | { video: string | null } | null> => {
     const mongoScheme = await connectDB()
     try {
-        const db = mongoScheme.connection.db
+        console.log("まずここまで来たかの確認")
+        // const db = mongoScheme.connection.db
         const product: ProductType | null = await Product.findById(id)
-        const userName: string | null = await User.findOne({_id: product?.sellerId})
-        const video = await db?.collection("fs.files").findOne({_id: new ObjectId(product?.productVideo)})
+        // const userName: string | null = await User.findOne({_id: product?.sellerId})
+        // const video = await db?.collection("fs.files").findOne({_id: new ObjectId(product?.productVideo)})
         // console.log(video)
         // if (mongoScheme.connection.db !== undefined) {
         // const bucket = new GridFSBucket(mongoScheme.connection.db)
@@ -45,7 +47,9 @@ const productDetail = async (id: string): Promise<{ product: string | null } | {
         // const renderVideo = bucket?.pipeTo(readStream)
         //     return {product: JSON.stringify(product), video: JSON.stringify(video?.filename)}
         // }
-        return {product: JSON.stringify(product), video: JSON.stringify(video?.filename)}
+        console.log(product)
+        return {product: JSON.stringify(product)}
+        // return {product: JSON.stringify(product) , video : JSON.stringify(video)}
 
         //console.log(userName)
 

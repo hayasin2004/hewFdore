@@ -55,7 +55,7 @@ export async function stripePayment(productId: string) {
         return  NextResponse.json({checkout_url : session.url})
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 }
 

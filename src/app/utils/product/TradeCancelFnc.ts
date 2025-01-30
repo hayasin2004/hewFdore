@@ -44,7 +44,7 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
         }
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

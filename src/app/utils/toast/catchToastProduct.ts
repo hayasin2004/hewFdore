@@ -13,7 +13,7 @@ const catchToastProduct  =async  (userId : string | null) => {
         return  JSON.stringify(toast)
 
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 

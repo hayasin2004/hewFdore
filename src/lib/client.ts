@@ -12,7 +12,7 @@ const GetBlog = () => {
 
         return {client: JSON.stringify(client)}
     } catch (err) {
-        //console.log(err)
+        console.log(err)
     }
 
 }

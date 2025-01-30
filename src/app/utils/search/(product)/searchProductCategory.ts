@@ -10,7 +10,7 @@ const searchProductCategoryServerAction = async  (category : string[] | null) =>
 
     //console.log(categoryResult)
     }catch (err){
-        //console.log(err)
+        console.log(err)
     }
 }
 

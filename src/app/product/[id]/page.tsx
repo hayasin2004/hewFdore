@@ -25,7 +25,7 @@ import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 
 const Product = ({params}: { params: { id: string } }) => {
-    const [loginUserData, setLoginUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
     const [productVideo, setProductVideo] = useState<string>()
     const user = useUser()
@@ -42,7 +42,7 @@ const Product = ({params}: { params: { id: string } }) => {
         },
     });
     const [product, setProduct] = useState<ProductType | null>(null)
-    console.log(productVideo , product)
+    console.log(product)
 
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
@@ -83,7 +83,6 @@ const Product = ({params}: { params: { id: string } }) => {
             }
             const productCatchParse = JSON.parse(JSON.stringify(productCatch))
             if (productCatchParse?.product !== undefined) {
-                // console.log( await  productParse?.productLike == currentUser)
                 setProduct(JSON.parse(productCatchParse?.product))
             }
             if (productCatchParse?.video !== undefined && productCatchParse?.video !== null){
