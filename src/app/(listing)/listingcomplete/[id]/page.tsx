@@ -11,6 +11,8 @@ import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 const ListingComplete = ({params}: { params: { id: string } }) => {
 
     const [data, setData] = useState<ProductType | null>(null)
+    const [productVideo, setProductVideo] = useState<ProductType | null>(null)
+    console.log(productVideo)
     console.log(data)
     const id = params.id
     console.log(id)
@@ -18,9 +20,14 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
         if (id) {
             const productData = async () => {
                 const result = await productDetail(id)
+                console.log(result)
                 if (result?.product !== undefined && result?.product !== null) {
                     const resultParse = JSON.parse(result?.product)
                     setData(resultParse)
+                }
+                if (result?.video !== undefined && result?.video !== null){
+                    const resultParse = JSON.parse(result?.video)
+                    setProductVideo(resultParse)
                 }
             }
             productData()
@@ -58,7 +65,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                         <p id="used">商品状態:{data?.productCondition}</p>
                         <p id="postage">送料:{data?.postageBurden}</p>
                         <p id="category">カテゴリ: {data?.productCategory}</p>
-                        <video src={data?.productVideo} loop autoPlay></video>
+                        <video src={productVideo !== undefined && productVideo !== null ? productVideo : ""} loop autoPlay></video>
                     </div>
                 </div>
 

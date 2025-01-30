@@ -27,6 +27,7 @@ import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 const Product = ({params}: { params: { id: string } }) => {
     const [loginUserData, setLoginUserData] = useState()
 
+    const [productVideo, setProductVideo] = useState<string>()
     const user = useUser()
     const router = useRouter()
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
@@ -41,6 +42,8 @@ const Product = ({params}: { params: { id: string } }) => {
         },
     });
     const [product, setProduct] = useState<ProductType | null>(null)
+    console.log(productVideo , product)
+
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
     console.log(status)
@@ -52,6 +55,7 @@ const Product = ({params}: { params: { id: string } }) => {
         console.log(productLike)
         const productLikeData = async () => {
             const result = await productLikeDate(id, loginUserData?._id)
+
         }
         productLikeData()
     }
@@ -77,10 +81,16 @@ const Product = ({params}: { params: { id: string } }) => {
                 setSameSellerStatus(sellerCheckCatch)
                 console.log(sellerCheckCatch)
             }
-            if (productCatch?.product !== undefined) {
-                const productParse = JSON.parse(productCatch?.product)
+            const productCatchParse = JSON.parse(JSON.stringify(productCatch))
+            if (productCatchParse?.product !== undefined) {
                 // console.log( await  productParse?.productLike == currentUser)
-                setProduct(productParse)
+                setProduct(JSON.parse(productCatchParse?.product))
+            }
+            if (productCatchParse?.video !== undefined && productCatchParse?.video !== null){
+                const video = productCatchParse?.video
+                // const blob = await video?.blob()
+                // const url = URL.createObjectURL(blob)
+                setProductVideo(video)
             }
         }
 
@@ -94,6 +104,7 @@ const Product = ({params}: { params: { id: string } }) => {
             setProductLike(true);
         }
     }, [product]);
+
     return (
         <>
             <Header/>
@@ -144,6 +155,8 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
+                                <video src={productVideo !== undefined && productVideo !== null ? `/${productVideo}` : "df"}
+                                       loop autoPlay controls></video>
                             </div>
                         </div>
                         <div>
