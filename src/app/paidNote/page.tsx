@@ -23,22 +23,22 @@ const PaidNote = () => {
         console.log("userParse" + userParse)
         setLoginUserData(JSON.parse(userParse))
         if (userParse) {
-            const fetchPurchaseProduct = async () => {
-                const response = await purchaseProduct(loginUserData?._id)
-                console.log(response)
-                if (response?.purchaseProduct !== undefined) {
-                    setPurchaseData(JSON.parse(response?.purchaseProduct))
-                }
-                if (response?.product !== undefined) {
-                    setProductData(JSON.parse(response?.product))
-                }
-                console.log(response)
-            }
-            fetchPurchaseProduct()
         }
     }, [user]);
 
     useEffect(() => {
+        const fetchPurchaseProduct = async () => {
+            const response = await purchaseProduct(loginUserData)
+            console.log(response)
+            if (response?.purchaseProduct !== undefined) {
+                setPurchaseData(JSON.parse(response?.purchaseProduct))
+            }
+            if (response?.product !== undefined) {
+                setProductData(JSON.parse(response?.product))
+            }
+            console.log(response)
+        }
+        fetchPurchaseProduct()
         console.log("いまきた")
     }, [loginUserData]);
 

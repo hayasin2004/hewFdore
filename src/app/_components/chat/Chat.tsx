@@ -82,6 +82,7 @@ const Chat = (props: { paramsProductData: string }) => {
                             {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.senderUserId : ""} さん<br/>
                         </div>
                         <div className="comment-area-lef">
+
                             メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
                             メッセージ内容: {item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike ? item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike : "無理―"}
                             <br/>
