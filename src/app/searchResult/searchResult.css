@@ -58,7 +58,7 @@ select#SearchSize{
     width: 6rem;
 }
 
-form#WordSearch button[type="submit"]{
+form#WordSearch button#SearchSubmit[type="submit"]{
     margin: 0 0 0 0 ;
     width: 5rem;
     font-size: 1.2rem ;

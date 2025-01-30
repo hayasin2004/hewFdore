@@ -146,7 +146,7 @@ const SearchPageProducts = () => {
                         <option value="LL">LL</option>
                         <option value="XL">XL</option>
                     </select>
-                    <button type={"submit"}>検索</button>
+                    <button id={"SearchSubmit"} type={"submit"}>検索</button>
                 </form>
             </div>
 

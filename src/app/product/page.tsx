@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image"
-import "./product.css"
+import "./[id]/product.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Link from 'next/link';

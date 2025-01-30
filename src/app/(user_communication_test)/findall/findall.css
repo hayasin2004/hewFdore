@@ -25,7 +25,7 @@ table.ListUser{
     margin: 0 0 25px 0;
     /*border: #fff 3px;*/
     /*border-style: none none solid none;*/
-    background-color: #EBE8DB;
+    background-color: #fefeed;
 
 }
 table.ListUser th{
@@ -52,9 +52,14 @@ table.ListUser td.idLink:hover{
 table.ListUser td.mailLink{
     width: 2rem;
     text-indent: 0;
-    padding: 0 20px 0 0;
+    color: #EBE8DB;
+    padding: 0 20px 0 20px;
 }
+
+
 table.ListUser td.mailLink:hover{
-    color: #fff;
     background-color: #8e7560;
+}
+table.ListUser td.mailLink:hover img{
+    color: #fff;
 }
