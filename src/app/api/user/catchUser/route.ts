@@ -20,7 +20,8 @@ export interface UserType {
     followings? : UserFollow[]
     followers? : UserFollow[]
     likeList? : string[]
-    userData? : UserType
+    userData? : UserType,
+    purchaseProduct? : string[]
 }
 
 export  interface UserFollow {
