@@ -116,8 +116,11 @@ const Register = () => {
                                             <button type="submit">
                                                 ユ―ザーを作成
                                             </button>
-                                            <Link href={"login"}>
+                                            <Link href={"/login"}>
                                                 <p style={{marginTop: "10px"}}>ユ―ザー作成済ですか？</p>
+                                            </Link>
+                                            <Link href={"/"}>
+                                                <p style={{marginTop: "10px"}}>トップページへ</p>
                                             </Link>
                                         </>
                                     )

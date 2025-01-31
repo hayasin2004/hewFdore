@@ -7,7 +7,6 @@ import useUser from "@/hooks/useUser";
 import {UserType} from "@/app/api/user/catchUser/route";
 import io from "socket.io-client";
 import "./stripe.css"
-import {display} from "@mui/system";
 
 const CompleteStripe = ({productId, sellingOrSoldOut}) => {
         const router = useRouter();
@@ -15,7 +14,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [loginNowUserData, setLoginNowUserData] = useState<UserType | null>(null)
         const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<boolean>(false)
-        console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus , "sellingOrSoldOut"  + sellingOrSoldOut)
+        console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)
         console.log(loginNowUserData?._id)
         const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
             const status = localStorage.getItem("isButtonDisabled")
@@ -46,44 +45,49 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             }
         }, [user]);
 
-    useEffect(() => {
-        if (sellingOrSoldOut == true) {
-            console.log("売り切れです。")
-            setSellingOrSoldOutStatus(!sellingOrSoldOutStatus)
-        } else {
-            console.log("販売中です")
-        }
-    }, [sellingOrSoldOut]);
-        const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
-            try {
-                e.preventDefault()
-                if (paymentMethod === "payPay") {
-                    const response = await stripePaymentPayPay(productId, paymentMethod, loginNowUserData?._id);
-                    console.log(response);
-                    if (response?.url) {
-                        window.location.href = response.url;
-                        console.log(response.url)
-                        router.push("localhost:3000/")
-                    } else {
-                        console.error("Invalid payment URLs");
-                    }
-                } else if (paymentMethod === "card") {
-
-                    if (!isButtonDisabled) {
-                        socket.emit("clickButtonEvent");
-                    }
-                    const response = await stripePaymentFunc(productId, paymentMethod, loginNowUserData?._id);
-
-                    console.log(response);
-                    if (response?.checkout_url) {
-                        window.open(response.checkout_url, "_blank");
-                    } else {
-                        console.error("Invalid payment URLs");
-                    }
-                }
-
-            } catch (err) {
+        useEffect(() => {
+            if (sellingOrSoldOut == true) {
+                console.log("売り切れです。")
+                setSellingOrSoldOutStatus(!sellingOrSoldOutStatus)
+            } else {
+                console.log("販売中です")
             }
+        }, [sellingOrSoldOut]);
+        const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
+            if (loginNowUserData?._id == undefined || loginNowUserData == null || loginNowUserData == undefined){
+                console.log("ログインしてください。")
+                window.alert("ログインしてから購入ボタンを押してください。")
+                router.push("/login")
+            }
+                try {
+                    e.preventDefault()
+                    if (paymentMethod === "payPay") {
+                        const response = await stripePaymentPayPay(productId, paymentMethod, loginNowUserData?._id);
+                        console.log(response);
+                        if (response?.url) {
+                            window.location.href = response.url;
+                            console.log(response.url)
+                            router.push("localhost:3000/")
+                        } else {
+                            console.error("Invalid payment URLs");
+                        }
+                    } else if (paymentMethod === "card") {
+
+                        if (!isButtonDisabled) {
+                            socket.emit("clickButtonEvent");
+                        }
+                        const response = await stripePaymentFunc(productId, paymentMethod, loginNowUserData?._id);
+
+                        console.log(response);
+                        if (response?.checkout_url) {
+                            window.open(response.checkout_url, "_blank");
+                        } else {
+                            console.error("Invalid payment URLs");
+                        }
+                    }
+
+                } catch (err) {
+                }
         }
 
 

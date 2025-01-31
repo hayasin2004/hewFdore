@@ -199,7 +199,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const token = localStorage.getItem("token")
     if (!token){
         window.alert("ログインしてください。")
-        router.push("/login")
+        redirect("/login")
     }
     useEffect(() => {
         const confirmUserData = async () => {

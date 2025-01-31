@@ -168,8 +168,11 @@ const Login = () => {
                                     {/*    <Link href={"/login"}>フォームを入力</Link>}*/}
                                 </button>
                             </form>
-                            <Link href={"register"}>
+                            <Link href={"/register"}>
                                 <p style={{marginTop: "10px"}}>ユ―ザーを持っていませんか？</p>
+                            </Link>
+                            <Link href={"/"}>
+                                <p style={{marginTop: "10px"}}>トップページへ</p>
                             </Link>
 
                         </div>
