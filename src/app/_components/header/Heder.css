@@ -121,7 +121,8 @@ li#list_bell{
     /*top: 0;*/
     /*right: 80px;*/
     /*width: 40px;*/
-    border: none;color: #000000;
+    border: none;
+    color: #000000;
 }
 .bell svg{
     color: #8e7560;

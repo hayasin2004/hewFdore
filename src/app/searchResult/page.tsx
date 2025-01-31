@@ -127,7 +127,7 @@ const SearchPageProducts = () => {
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
                     <select id={"SearchCat"}>
-                        <option value="カテゴリー">カテゴリー</option>
+                        <option value=" ">カテゴリー</option>
                         <option value="トップス">トップス</option>
                         <option value="ボトムス">ボトムス</option>
                         <option value="アウター">アウター</option>
