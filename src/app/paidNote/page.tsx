@@ -10,15 +10,13 @@ const PaidNote = () => {
     return (
         <>
             <Header/>
-            <span id={"btn"}>
-                    <Link href={"toppage"}>
-                <button>
-
-
-                    戻る
-                </button>
-                    </Link>
-            </span>
+            <div id={"bread"}>
+                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <p className={"breadArrow"}>＞</p>
+                <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
+                <p className={"breadArrow"}>＞</p>
+                <Link href={"/"}><p className={"breadText"}>購入履歴</p></Link>
+            </div>
             <div className={"paidText"}>
                 <h2 id={"PNtitle"}>
                     購入履歴
