@@ -115,6 +115,9 @@ const ListingScreen: React.FC = () => {
                             data
                         ).then(
                             (product => {
+                                if (product?.result == null) {
+                                    window.alert("ログインしてから出品してください。")
+                                }
                                 if (product?.result !== undefined) {
                                     const productParse = JSON.parse(product?.result as string)
                                     setProductId(productParse)
