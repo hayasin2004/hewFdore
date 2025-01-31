@@ -56,36 +56,60 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                     <div key={item._id}>
                         {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
 
-                        <div className={"comment-area-frame-rig"}>
-                            <div className={"comment-area-rig"}><Images
-                                src={item?.sellerChatMessage[0]?.sellerProfilePicture}
-                                alt={"ユーザープロフィール画像"} width={50}
-                                height={50}/></div>
-                            <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerUsername}さん</div>
-                            <div className={"comment-area-rig"}>{item?.sellerChatMessage[0]?.sellerMessage}</div>
-　
+                        <div>
+                            <div className={"comment-user-rig"}>
+
+                                {/*ユーザーチャット*/}
+                                <div className={"comment-area-rig"}>
+                                    {item?.sellerChatMessage[0]?.sellerMessage}
+
+                                    {/*ここに絵文字*/}
+                                    {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (<div
+                                            className={"comment-emoji-rig"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
+                                    ) : ("")}
+                                </div>
+                            </div>
+
                         </div>
+
 
                     </div>
                 ) : (
-                    <div　key={item._id}>　
-                            {/*相手方のチャット！ :*/}　
-                                <div className={"comment-area-frame-lef"}>
-                                    <div className={"comment-area-lef"}><Images
-                                        src={item?.buyerChatMessage[0]?.buyerProfilePicture}
-                                        alt={"ユーザープロフィール画像"}
-                                        width={50}
-                                        height={50}/></div>
-                                    <div className={"comment-area-lef"}>{item.buyerChatMessage[0]?.buyerMessage}</div>
 
+                    <div key={item._id}>
 
-                                    <EmojiPicker setIcon={setIcon}/>
-                                    <button id={"good"}
-                                            onClick={() => testCommentLike(currentUserId, purchaseId, item.buyerChatMessage[0]?._id, icon)}>
-                                        送信
-                                    </button>
+                        <div>
+                            <div className={"comment-user-lef"}>
+                                {/*ユーザーアイコン*/}
+                                <div className={"chaticon"}><Images
+                                    src={item?.buyerChatMessage[0]?.buyerProfilePicture}
+                                    alt={"ユーザープロフィール画像"} width={30} height={30}/>
                                 </div>
-　
+
+                                {/*ユーザー名*/}
+                                <div className={"comment-user-name-lef"}>{item.buyerChatMessage[0]?.buyerUsername} さん</div>
+                            </div>
+
+                            <div className={"comment-user-lef"}>
+
+                                {/*ユーザーチャット*/}
+                                <div className={"comment-area-lef"}>
+                                    {item.buyerChatMessage[0]?.buyerMessage}
+                                    {/*絵文字*/}
+                                    {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (
+                                        <div
+                                            className={"comment-emoji-lef"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
+                                    ) : ("")}
+                                </div>
+
+
+                                <EmojiPicker setIcon={setIcon}/>
+
+                            </div>
+                        </div>
+                        {/*相手方のチャット！ :*/}
+
+
                     </div>
                 )
 
@@ -110,30 +134,46 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     return (
 
         <div>
-           　
+
             <div>
                 ログインしているチャット（購入者） : {currentUserIdChatParse?.map((item) => (
                 item?.chatUserRole == "出品者" ? (
                     <div key={item._id}>
 
-                        <div className={"comment-user-lef"}>
-                            <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerUsername} さん
-                            </div>
-                            <div className={"comment-area-lef"}><Images
-                                src={item?.sellerChatMessage[0]?.sellerProfilePicture}
-                                alt={"ユーザープロフィール画像"} width={50}
-                                height={50}/></div>
-                            <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessage}</div>
+                        <div>
+                            <div className={"comment-user-lef"}>
+                                {/*ユーザーアイコン*/}
+                                <div className={"chaticon"}><Images
+                                    src={item?.sellerChatMessage[0]?.sellerProfilePicture}
+                                    alt={"ユーザープロフィール画像"} width={30} height={30}/>
+                                </div>
 
-                            {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (<div
-                                    className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
-                            ) : ("")}
-                            <EmojiPicker item={item} setIcon={setIcon}/>
-                            <button id={"good"}
-                                    onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>
-                                送信
-                                {/*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*/}
-                            </button>
+                                {/*ユーザー名*/}
+                                <div className={"comment-user-name-lef"}>{item.sellerChatMessage[0]?.sellerUsername} さん</div>
+                            </div>
+
+                            <div className={"comment-user-lef"}>
+
+                                {/*ユーザーチャット*/}
+                                <div className={"comment-area-lef"}>
+                                    {item.sellerChatMessage[0]?.sellerMessage}
+                                    {/*絵文字*/}
+                                    {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (
+                                        <div
+                                            className={"comment-emoji-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
+                                    ) : ("")}
+
+                                </div>
+                                {/*絵文字選択*/}
+                                <EmojiPicker item={item} setIcon={setIcon}/>
+
+
+                                {/*<button id={"good"}*/}
+                                {/*        onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>*/}
+                                {/*    送信*/}
+                                {/*    /!*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*!/*/}
+                                {/*</button>*/}
+                            </div>
                         </div>
 
                     </div>
@@ -142,17 +182,21 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                     <div key={item._id}>
                         {/*<div>{item.buyerUsername}</div>*/}
 
-                        <div className={"comment-area-frame-rig"}>
+                        <div>
+                            <div className={"comment-user-rig"}>
 
-                            <div className={"comment-area-rig"}><Images
-                                src={item?.buyerChatMessage[0]?.buyerProfilePicture}
-                                alt={"ユーザープロフィール画像"} width={50}
-                                height={50}/></div>
-                            <div className={"comment-area-rig"}>{item?.buyerChatMessage[0]?.buyerUsername}さん</div>
-                            <div className={"comment-area-rig"}>{item?.buyerChatMessage[0]?.buyerMessage}</div>
-                            {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (<div
-                                    className={"comment-area-lef"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
-                            ) : ("")}
+                                {/*ユーザーチャット*/}
+                                <div className={"comment-area-rig"}>
+                                    {item?.buyerChatMessage[0]?.buyerMessage}
+
+                                    {/*絵文字*/}
+                                    {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (<div
+                                            className={"comment-emoji-rig"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
+                                    ) : ("")}
+                                </div>
+
+                            </div>
+
                         </div>
 
                         {/*<div>{item._id}</div>*/}
