@@ -1,11 +1,11 @@
 "use client"
 import React, {useState} from 'react';
 import Picker from '@emoji-mart/react'
-import "./emojiPicker.css"
+import "./emojiPickerPurchase.css"
 import productChatLike from "@/app/utils/product/productChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 
-const EmojiPicker = (props) => {
+const EmojiPickerPurchase = (props) => {
     console.log(JSON.stringify(props.item))
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
     const [icon, setIcon] = useState<string>(false)
@@ -17,21 +17,13 @@ const EmojiPicker = (props) => {
             let codesArray: string[] = []
             emojiCode.forEach((el: any) => codesArray.push("0x" + el));
             const emoji: string = String.fromCodePoint(...codesArray);
-            if (props.productId && props.purchaseId == undefined) {
-                const chatLike = async () => {
-                    const response = await productChatLike(props.currentUser, props.productId, props.item, emoji)
-                    console.log(response)
-                }
-                chatLike()
-            } else if (props.purchaseId && props.productId !== undefined) {
-                console.log("空白の出力のemoji" + emoji);
-                const testCommentLike = async () => {
-                    console.log(props)
-                    const response = await purchaseChatLike(props.currentUserId, props.purchaseId, props.item, icon)
-                    console.log(response)
-                }
-                testCommentLike()
+            console.log("空白の出力のemoji" + emoji);
+            const testCommentLike = async () => {
+                console.log(props)
+                const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, icon)
+                console.log(response)
             }
+            testCommentLike()
             setIsShowPicker(false)
             props.setIcon(emoji);
             setIcon(emoji)
@@ -53,4 +45,4 @@ const EmojiPicker = (props) => {
 }
 
 
-export default EmojiPicker;
+export default EmojiPickerPurchase;

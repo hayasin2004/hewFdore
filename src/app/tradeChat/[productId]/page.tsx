@@ -31,6 +31,7 @@ import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 import {redirect, useRouter} from 'next/navigation';
 import {UserType} from "@/app/api/user/catchUser/route";
 import confirmUser from "@/app/utils/user/confirmUser";
+import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     const [tradeChatLike, setTradeChatLike] = useState(0)
@@ -81,10 +82,10 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                 height={50}/></div>
                             <div className={"comment-area-lef"}>{item.buyerChatMessage[0]?.buyerMessage}</div>
 
+                             <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}  item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
 
-                            <EmojiPicker setIcon={setIcon}/>
                             <button id={"good"}
-                                    onClick={() => testCommentLike(currentUserId, purchaseId, item.buyerChatMessage[0]?._id, icon)}>
+                                    onClick={() => testCommentLike(currentUserId, purchaseId, item?.buyerChatMessage[0]?._id, icon)}>
                                 送信
                             </button>
                         </div>
@@ -131,12 +132,13 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                             {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (<div
                                     className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
                             ) : ("")}
-                            <EmojiPicker item={item} setIcon={setIcon}/>
-                            <button id={"good"}
-                                    onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>
-                                送信
-                                {/*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*/}
-                            </button>
+                            <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}  item={item?.sellerChatMessage[0]?._id} setIcon={setIcon}/>
+                            {/*<EmojiPickerPurchase item={item} setIcon={setIcon}/>*/}
+                            {/*<button id={"good"}*/}
+                            {/*        onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>*/}
+                            {/*    送信*/}
+                            {/*    /!*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*!/*/}
+                            {/*</button>*/}
                         </div>
 
                     </div>

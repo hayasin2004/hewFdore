@@ -50,7 +50,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                             },
                         )
 
-                        const updateMessageStamp = await Purchase.updateOne(
+                        const updateMessageStamp  = await Purchase.updateOne(
                             {_id: searchSellerPurchaseAndComment?._id, "tradeChat.sellerChatMessage._id": commentId},
                             {
                                 $pull: {

@@ -95,9 +95,6 @@ const Chat = (props: { paramsProductData: string }) => {
                             メッセージ内容: {item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike ? item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike : "無理―"}
                             <br/>
                             <EmojiPicker currentUser={currentUser} productId={productId}  item={item?.listingChatMessage[0]?._id} setIcon={setIcon}/>
-                            <button id="good" onClick={() => testCommentLike(item?.listingChatMessage[0]?._id, icon)}>
-                                ♡{item?.listingChatMessage[0]?.listingMessageStamp?.length}
-                            </button>
                         </div>
                     </div>
                 ) : (
@@ -112,10 +109,7 @@ const Chat = (props: { paramsProductData: string }) => {
                             メッセージ内容: {item?.buyerChatMessage[0]?.buyerMessage} <br/>
                             スタンプ: {item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike : "無理―"}
 
-                            <EmojiPicker currentUser={currentUser} productId={productId} setIcon={setIcon} item={item?.buyerChatMessage[0]?._id}/>
-                            <button id="good" onClick={() => testCommentLike(item?.buyerChatMessage[0]?._id, icon)}>
-                                ♡{item?.buyerChatMessage[0]?.buyerMessageStamp?.length}
-                            </button>
+                            {/*<EmojiPickerPurchase currentUser={currentUser} productId={productId} setIcon={setIcon} item={item?.buyerChatMessage[0]?._id}/>*/}
                         </div>
                     </div>
                 )
@@ -156,7 +150,7 @@ const Chat = (props: { paramsProductData: string }) => {
     //                         {/*質問者Id : {item.senderUserId} <br/>*/}
     //
     //                         メッセージ内容 : {item?.listingChatMessage[0]?.listingMessage} <br/>
-    //                         <EmojiPicker setIcon={setIcon}/>
+    //                         <EmojiPickerPurchase setIcon={setIcon}/>
     //                         <button id={"good"} onClick={() => testCommentLike(item?._id, icon)}>
     //                             ♡{item?.listingMessageLike?.length}
     //                         </button>
@@ -174,7 +168,7 @@ const Chat = (props: { paramsProductData: string }) => {
     //                         {/*{item.senderUserId} <br/>*/}
     //
     //                         メッセージ内容 : {item?.buyerChatMessage[0]?.buyerMessage} <br/>
-    //                         <EmojiPicker setIcon={setIcon}/>
+    //                         <EmojiPickerPurchase setIcon={setIcon}/>
     //                         <button id={"good"} onClick={() => testCommentLike(item?._id, icon)}>
     //                             送信{item?.buyerMessageLike?.length}
     //                         </button>
