@@ -50,7 +50,13 @@ const Product = ({params}: { params: { id: string } }) => {
         console.log(productLike)
         const productLikeData = async () => {
             const result = await productLikeDate(id, loginUserData?._id)
-
+            if (result == "mineProduct"){
+                window.alert("自分の商品にはいいねできないです。")
+            }
+            if (result == "notLogin"){
+                window.alert("ログインしていないといいねはできないです。")
+                setProductLike(false)
+            }
         }
         productLikeData()
     }

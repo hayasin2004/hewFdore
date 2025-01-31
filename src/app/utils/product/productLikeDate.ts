@@ -5,10 +5,14 @@ import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 import toastProductLike from "@/app/utils/toast/toastProductLike";
 
-const productLikeDate = async (productId: ProductType | null, currentUser: string | null) => {
+const productLikeDate = async (productId: ProductType | null, currentUser: string | null):Promise<string | null> => {
     // await //console.log( productId,currentUser )
     await connectDB()
     try {
+        if (!currentUser) {
+            console.log("ログインしてください。")
+            return "notLogin"
+        }
         console.log("ここまでが")
         const productLike = await Product.findById(productId);
         // //console.log(productLike.like);
