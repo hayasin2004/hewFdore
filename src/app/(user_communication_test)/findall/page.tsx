@@ -48,7 +48,8 @@ const Findall = () => {
                                 <Link href={`/userDetail/${item.id}`}>{item.id}</Link>
                             </td>
                             <td className={"mailLink"} rowSpan={3}>
-                                <p>DM</p>
+
+                                <img src="/images/mail_1.svg" width={50} height={50} alt="DM"/>
                             </td>
                         </tr>
                         <tr>

@@ -44,24 +44,32 @@ table.ListUser td.ListIcon{
     padding: 2px;
     border-radius: 50%;
     border: #8e7560 1px solid;
+
 }
+table.ListUser td.idLink{
+    color: #555;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
 table.ListUser td.idLink:hover{
-    color: #fff;
-    background-color: #8e7560;
+    /*color: #fff;*/
+    background-color: #D0C7B2;
 }
 table.ListUser td.mailLink{
     width: 2rem;
     text-indent: 0;
     color: #EBE8DB;
     padding: 0 20px 0 20px;
+    transition: 0.3s;
 }
-table.ListUser td.mailLink p{
+table.ListUser td.mailLink img{
+    display: inline;
     color: #605252;
+    transition: 0.2s;
 }
 
+
 table.ListUser td.mailLink:hover{
-    background-color: #8e7560;
-}
-table.ListUser td.mailLink:hover p{
-    color: #fff;
+    background-color: #D0C7B2;
 }
