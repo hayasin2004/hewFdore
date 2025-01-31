@@ -24,6 +24,7 @@ import toastPurchase from "@/app/utils/toast/toastPurchase";
 import setupfollowerUserId from "@/app/utils/setting/update/setupfollowerUserId";
 import updatePayPay from "@/app/utils/setting/update/updatePayPay";
 import tradeId from "@/app/utils/setting/update/tradeId";
+import toastTradeId from "@/app/utils/setting/update/toastTradeId";
 // 幅揃えします
 
 const Toppage = () => {
@@ -32,7 +33,7 @@ const Toppage = () => {
     console.log(productList)
 
     const updateButton = async () => {
-        await tradeId()
+        await toastTradeId()
     }
 
     //

@@ -22,6 +22,10 @@ const ToastSchema = new mongoose.Schema({
             type : String,
             default : ""
         },
+        tradeId : {
+            type : String,
+            default : ""
+        },
         productId: {
             type: String,
             default: ""

@@ -28,16 +28,16 @@ interface User {
 const Header = () => {
     const user = useUser()
     const [userData, setUserData] = useState(null)
-    const [toastPurchase, setToastPurchase] = useState<string | null>(null)
-    const [otherToast, setOtherToast] = useState<string | null>(null)
-    // console.log("商品" + toastPurchase , "その他" + otherToast)
+    const [toastPurchase, setToastPurchase] = useState<string[] | null>([])
+    const [otherToast, setOtherToast] = useState<string[] | null>([])
+    console.log("商品" + toastPurchase, "その他" + otherToast)
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {
 
             const confirmUserData = async () => {
                 const response = await confirmUser(token)
-                    // console.log("バグったかも"+response)
+                // console.log("バグったかも"+response)
                 if (response !== undefined) {
                     const responseParse = JSON.parse(response)
                     setUserData(responseParse)
@@ -52,11 +52,17 @@ const Header = () => {
     useEffect(() => {
         const toastPurchase = async () => {
             const response = await catchToastProduct(userData?._id)
-            setToastPurchase(response)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setToastPurchase(responseParse)
+            }
         }
         const OtherToast = async () => {
             const response = await catchOtherToast(userData?._id)
-            setOtherToast(response)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setOtherToast(responseParse)
+            }
         }
         toastPurchase()
         OtherToast()
@@ -220,37 +226,48 @@ const Header = () => {
                                                     <CustomTabPanel value={value} index={0}>
                                                         <Box className={"alert"}>
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40"
-                                                                 height="40"
-                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 strokeWidth="2"
-                                                                 strokeLinecap="round" strokeLinejoin="round"
-                                                                 className="lucide lucide-bell">
-                                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                            </svg>
-                                                            <p>
-                                                                新しい商品が出品されました！
-                                                            </p>
-                                                            <hr/>
+                                                            {otherToast?.map((item) => (
+                                                                <div key={item._id} className={"alertDisplay"}>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                         height="40"
+                                                                         viewBox="0 0 24 24" fill="none"
+                                                                         stroke="currentColor"
+                                                                         strokeWidth="2"
+                                                                         strokeLinecap="round" strokeLinejoin="round"
+                                                                         className="lucide lucide-bell">
+                                                                        <path
+                                                                            d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                                    </svg>
+                                                                    <p>{item.message}</p>
+                                                                    <hr/>
+                                                                </div>
+                                                            ))}
                                                         </Box>
                                                     </CustomTabPanel>
                                                     <CustomTabPanel value={value} index={1}>
                                                         <Box className={"alert"}>
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40"
-                                                                 height="40"
-                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 strokeWidth="2"
-                                                                 strokeLinecap="round" strokeLinejoin="round"
-                                                                 className="lucide lucide-bell">
-                                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                            </svg>
-                                                            <p>
-                                                                取引評価されました！
-                                                            </p>
-                                                            <hr/>
+                                                            {toastPurchase?.map((item) => (
+                                                                <div key={item._id} className={"alertDisplay"}>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                         height="40"
+                                                                         viewBox="0 0 24 24" fill="none"
+                                                                         stroke="currentColor"
+                                                                         strokeWidth="2"
+                                                                         strokeLinecap="round" strokeLinejoin="round"
+                                                                         className="lucide lucide-bell">
+                                                                        <path
+                                                                            d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                                    </svg>
+                                                                    {item.tradeId !== "" ?
+                                                                        <Link href={`/tradeChat/${item.tradeId}`}>
+                                                                            <p>リンク付き : {item.message}</p>
+                                                                        </Link>
+                                                                        : <p>{item.message}</p>}
+                                                                </div>
+                                                            ))}
                                                         </Box>
 
                                                     </CustomTabPanel>

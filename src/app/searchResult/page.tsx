@@ -168,6 +168,7 @@ const SearchPageProducts = () => {
     return (
         <div>
             {/*<SearchHeader/>*/}
+            <Header/>
             <div style={{width: "1200px", justifyContent: "space-between", display: "flex"}}>
                 <div style={{"marginTop": "60px", width: "600px"}}>
                     {/*<Sidebar/>*/}
