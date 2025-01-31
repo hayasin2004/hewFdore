@@ -7,6 +7,7 @@ import {Product} from "@/models/Product";
 const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null, icon: string | null) => {
     await connectDB()
     try {
+        console.log("kita")
         const checkListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const searchListingProductAndComment = await ProductComment.findOne({"productChat.listingChatMessage._id": commentId}, {"productChat.$": 1})
         const searchBuyerProductAndComment = await ProductComment.findOne({"productChat.buyerChatMessage._id": commentId}, {"productChat.$": 1})
@@ -30,21 +31,6 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                 const includesCurrentUserId = searchListingProductAndComment?.productChat[0]?.listingChatMessage[0]?.listingMessageLike.includes(currentUserId);
                 if (includesCurrentUserId) {
                     console.log("出品者既にログインしているアカウントでコメントをいいねしている。")
-                    // const updateDeleteSearchMessage = await ProductComment.updateOne(
-                    //     {
-                    //         _id: searchListingProductAndComment._id,
-                    //         "productChat.listingChatMessage._id": commentId
-                    //     },
-                    //     {
-                    //         $pull: {
-                    //             "productChat.$.listingChatMessage.$.buyerMessageLike": currentUserId,
-                    //             "productChat.$.listingChatMessage.$.buyerMessageStamp": {
-                    //                 userId: currentUserId,
-                    //                 listingMessageStampLike: icon
-                    //             }
-                    //         }
-                    //     }
-                    // )
                     const updateMessageLike = await ProductComment.updateOne(
                         {
                             _id: searchListingProductAndComment._id,
@@ -66,7 +52,6 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                             $pull: {
                                 "productChat.$[i].listingChatMessage.$[j].listingMessageStamp": {
                                     userId: currentUserId,
-                                    listingMessageStampLike: icon
                                 }
                             }
                         },
@@ -77,6 +62,8 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                             ]
                         }
                     );
+
+                    console.log(updateMessageStamp)
                 } else {
                     console.log("デバック用コメント4")
 
@@ -96,7 +83,7 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                     //             }
                     //         }
                     //     }
-                    // )
+                    // ))
                     const updateMessageLike = await ProductComment.updateOne(
                         {
                             _id: searchListingProductAndComment._id,
@@ -137,7 +124,7 @@ const productChatLike = async (currentUserId: string | null, productId: string |
 
                 const includesCurrentUserId = searchBuyerProductAndComment?.productChat[0]?.buyerChatMessage[0]?.buyerMessageLike.includes(currentUserId);
 
-                if (includesCurrentUserId) {　
+                if (includesCurrentUserId) {
                     console.log("購入者コメント既にログインしているアカウントでコメントをいいねしている。")
                     // const updateDeleteSearchMessage = await ProductComment.updateOne(
                     //     {_id: searchBuyerProductAndComment._id, "productChat.buyerChatMessage._id": commentId},

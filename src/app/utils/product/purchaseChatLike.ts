@@ -56,7 +56,6 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                 $pull: {
                                     "tradeChat.$[i].sellerChatMessage.$[j].sellerMessageStamp": {
                                         userId: currentUserId,
-                                        sellerMessageStampLike: icon
                                     },
 
                                 }
