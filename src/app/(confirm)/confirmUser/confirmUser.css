@@ -40,9 +40,17 @@ div.confirm{
     border-radius: 30px;
     /*border: 2px solid #000;*/
     box-shadow:10px 10px 0  #0008;
-
+    transition: 0.2s;
     background-color: #fefeed;
 }
+div.confirm:hover{
+    box-shadow: 0 0 #0002;
+    padding: 12px 22px;
+    opacity: 0.7;
+    /* ボーダーのアニメーションあるとプルプルするから無い方が良いかも～ */
+    /*border: #000000 3px solid;*/
+}
+
 div.confirm#fav{
     background-color: #605252;
 }
