@@ -38,11 +38,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
-    const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
-        //console.log(item)
-        const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
-        //console.log(response)
-    }
+
     const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
     const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
     //console.log(partnerUserIdChat)
@@ -50,7 +46,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     partnerUserIdChatParse?.map((item) => {
         //console.log("撮れてない？？" + JSON.parse(JSON.stringify(item)))
     })
-
+    console.log(purchaseId, currentUserId)
     return (
         <div>
             <br/>
@@ -466,14 +462,14 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             {status == 1 ?
                                 <div>
                                     <p>取引ステータスは１</p>
-                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
 
                                                       partnerUserIdChat={partnerUserIdChat}/>
 
                                 </div> : <div>
                                     <p>取引ステータスは２</p>
-                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
                                                       partnerUserIdChat={partnerUserIdChat}/>
                                 </div>}

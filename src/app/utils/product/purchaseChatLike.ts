@@ -118,20 +118,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                     if (includesCurrentUserId) {
                         console.log("既にログインしているアカウントで購入者のコメントをいいねしている。")
                         console.log("購入者のコメントに対するいいねを削除します。")
-
-                        // const updateDeleteSearchMessage = await Purchase.updateOne(
-                        //     {_id: searchBuyerPurchaseAndComment._id, "buyerChatMessage._id": commentId},
-                        //     {
-                        //         $pull: {
-                        //             "buyerChatMessage.$.buyerMessageLike": currentUserId,
-                        //             "buyerChatMessage.$.buyerMessageStamp": {
-                        //                 userId: currentUserId,
-                        //                 buyerMessageStampLike: icon
-                        //             }
-                        //         }
-                        //     }, {new: true},
-                        // )
-
+　
 
                         const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
@@ -157,8 +144,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                             {
                                 $pull: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageStamp": {
-                                        userId: currentUserId,
-                                        buyerMessageStampLike: icon
+                                        userId: currentUserId,　
                                     },
 
                                 }
