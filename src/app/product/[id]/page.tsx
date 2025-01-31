@@ -15,13 +15,8 @@ import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
 import Chat from "@/app/_components/chat/Chat";
 import Stripe from "@/app/_components/stripe/Stripe";
-import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InsertProductSellStatus";
-import updateProductCategoryLikeList from "@/app/utils/setting/update/InsertProductSellStatus";
-import inserteProductSellStatus from "@/app/utils/setting/update/InsertProductSellStatus";
 import {useRouter} from "next/navigation";
 import sellerCheck from "@/app/utils/product/sellerCheck";
-import InsertProductSellStatus from "@/app/utils/user/InserteUserPurchase";
-import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 
 const Product = ({params}: { params: { id: string } }) => {
@@ -80,6 +75,11 @@ const Product = ({params}: { params: { id: string } }) => {
                 const sellerCheckCatch = await sellerCheck(id, loginUserData?._id)
                 setSameSellerStatus(sellerCheckCatch)
                 console.log(sellerCheckCatch)
+            }
+            if (productCatch == null){
+                console.log("商品が消された可能性があります。")
+                window.alert("商品が消された可能性があるので商品の詳細を表示することができませんでした。トップページに戻ります。");
+                router.push("/")
             }
             const productCatchParse = JSON.parse(JSON.stringify(productCatch))
             if (productCatchParse?.product !== undefined) {
