@@ -24,7 +24,7 @@ const toastPurchase = async  (currentUserId : string | null ,productId : string 
             tradeId : purchaseId,
         }
 
-        const toastPurchase = await Toast.create(purchase)
+        const toastPurchase  = await Toast.create(purchase)
         await toastPurchase.save()
 
 

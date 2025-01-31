@@ -14,6 +14,8 @@ import Images from "next/image";
 import toastPurchase from "@/app/utils/toast/toastPurchase";
 import catchToastProduct from "@/app/utils/toast/catchToastProduct";
 import catchOtherToast from "@/app/utils/toast/catchOtherToast";
+import {ToastType} from "@/models/Toast";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 interface User {
     userId: string
@@ -27,9 +29,9 @@ interface User {
 
 const Header = () => {
     const user = useUser()
-    const [userData, setUserData] = useState(null)
-    const [toastPurchase, setToastPurchase] = useState<string[] | null>([])
-    const [otherToast, setOtherToast] = useState<string[] | null>([])
+    const [userData, setUserData] = useState<UserType | null>(null)
+    const [toastPurchase, setToastPurchase] = useState<ToastType[] | null>([])
+    const [otherToast, setOtherToast] = useState<ToastType[] | null>([])
     console.log("商品" + toastPurchase, "その他" + otherToast)
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -177,7 +179,7 @@ const Header = () => {
                             <li>
                                 {userData ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
-                                    : <UserNavigationModal/>}
+                                    : <UserNavigationModal src=""/>}
 
                             </li>
                             <li id={"UserName"}>

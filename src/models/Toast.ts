@@ -1,6 +1,17 @@
 import mongoose from 'mongoose';
 
-
+export  interface ToastType{
+    _id? : string
+    userId? : string,
+    followerUserId? : string,
+    likedUserId? :string,
+    tradeId? :string
+    productId? : string
+    message?: string,
+    productName?: string,
+    toastCategory? :string
+    alreadyRead?:string
+}
 
 const ToastCategory = ["商品関連", "いいね、フォローなど"]
 type ToastCategoryType = (typeof ToastCategory)[number];
