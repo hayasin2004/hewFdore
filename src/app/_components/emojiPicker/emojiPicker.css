@@ -3,7 +3,34 @@ body{
     margin: 0;
 }
 
+.comment-emojiPick{
+    position: relative;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .emojiPicker{
     position: absolute;
     z-index: 2;
+}
+
+.emojiBotton {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #bbb;
+    border: 1px solid #4b5563;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.emojiBotton:hover {
+    background-color: #ddd; /* ホバー時に少し明るく */
 }
