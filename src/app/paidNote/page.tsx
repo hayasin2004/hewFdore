@@ -32,6 +32,10 @@ const PaidNote = () => {
         const fetchPurchaseProduct = async () => {
             const response = await purchaseProduct(loginUserData)
             console.log(response)
+            if (response == null){
+                console.log("購入した商品はありません。")
+                window.alert("購入した商品はありません。")
+            }
             if (response?.purchaseProduct !== undefined) {
                 setPurchaseData(JSON.parse(response?.purchaseProduct))
             }
@@ -65,7 +69,7 @@ const PaidNote = () => {
             <div className={"listing"}>
                 <div className={"listing_product"}>
 
-                    {productData?.map((productItem) => (
+                    {productData !== null ? productData?.map((productItem) => (
                         <div key={productItem?._id} className={"product"}>
                             <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                             <div className={"product_text"}>
@@ -80,7 +84,7 @@ const PaidNote = () => {
 
                             </div>
                         </div>
-                    ))}
+                    )) : <p>購入した商品はありません。</p>}
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
