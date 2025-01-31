@@ -44,7 +44,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
         setProductSize(SizeEvent)
         onProductSizeChange(SizeEvent)
     }
-    const handleProductExplainConditionSet = (ConditionEvent: React.FC<HTMLButtonElement>) => {
+     const handleProductExplainConditionSet = (ConditionEvent: React.FC<HTMLButtonElement>) => {
 
         setProductCondition(ConditionEvent)
         onProductConditionChange(ConditionEvent)
