@@ -32,7 +32,6 @@ const Header = () => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [toastPurchase, setToastPurchase] = useState<ToastType[] | null>([])
     const [otherToast, setOtherToast] = useState<ToastType[] | null>([])
-    console.log("商品" + toastPurchase, "その他" + otherToast)
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {

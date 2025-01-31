@@ -9,13 +9,16 @@ import {ProductType} from "@/app/utils/product/productDetail";
 
 const userProfile = async (id: UserType | null) => {
     await connectDB()
-    //console.log("ユーザー特定したい" + id)
+    console.log("ユーザー特定したい" + id)
     try {
-        const searchUser: UserType | null = await User.findOne({_id: id})
-        const searchProduct: ProductType[] | null = await Product.find({sellerId: id})
-        // //console.log(searchProduct)
-        return {
-            searchUser: JSON.stringify(searchUser), searchProduct : JSON.stringify(searchProduct)
+        if (id !== undefined && id !== null) {
+
+            const searchUser: UserType | null = await User.findOne({_id: id})
+            const searchProduct: ProductType[] | null = await Product.find({sellerId: id})
+            // //console.log(searchProduct)
+            return {
+                searchUser: JSON.stringify(searchUser), searchProduct: JSON.stringify(searchProduct)
+            }
         }
 
     } catch

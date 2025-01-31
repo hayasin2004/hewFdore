@@ -11,6 +11,7 @@ export interface ProductType {
     id?: string
     _id?: string,
     sellerId?: string,
+    buyerId?: string,
     sellerUserName?: string,
     username?: string,
     productName?: string,
@@ -35,19 +36,9 @@ export interface ProductType {
 const productDetail = async (id: string): Promise<{ product: string | null } | { video: string | null } | null> => {
     const mongoScheme = await connectDB()
     try {
-        console.log("まずここまで来たかの確認")
+        console.log("まずここまで来たかの確認" + id)
         // const db = mongoScheme.connection.db
         const product: ProductType | null = await Product.findById(id)
-        // const userName: string | null = await User.findOne({_id: product?.sellerId})
-        // const video = await db?.collection("fs.files").findOne({_id: new ObjectId(product?.productVideo)})
-        // console.log(video)
-        // if (mongoScheme.connection.db !== undefined) {
-        // const bucket = new GridFSBucket(mongoScheme.connection.db)
-        // const readStream = bucket.openDownloadStream(new ObjectId(video?._id))
-        // console.log(readStream)
-        // const renderVideo = bucket?.pipeTo(readStream)
-        //     return {product: JSON.stringify(product), video: JSON.stringify(video?.filename)}
-        // }
         console.log(product)
         return {product: JSON.stringify(product)}
         // return {product: JSON.stringify(product) , video : JSON.stringify(video)}
