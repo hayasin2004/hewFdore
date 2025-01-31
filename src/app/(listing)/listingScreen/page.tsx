@@ -116,6 +116,7 @@ const ListingScreen: React.FC = () => {
                         <h3 className="cat">
                             カテゴリ
                         </h3>
+                        {/*視認性が悪いのでここも色変えたい*/}
                         <ListingScreenRadiobutton
                             onCategoryChange={setProductCategory}
                             onProductSizeChange={setProductSize}
