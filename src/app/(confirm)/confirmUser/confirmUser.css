@@ -42,6 +42,7 @@ div.confirm{
     box-shadow:10px 10px 0  #0008;
     transition: 0.2s;
     background-color: #fefeed;
+
 }
 div.confirm:hover{
     box-shadow: 0 0 #0002;

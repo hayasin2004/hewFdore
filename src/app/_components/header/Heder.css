@@ -31,10 +31,11 @@ header div.title h1 {
     width: 100%;
     margin-left: 20%;
     text-decoration: none;
-    transition: text-decoration 0.5s;
 }
 header div.title h1:hover{
     text-decoration: underline 1px solid;
+    transition: text-decoration 0.3s;
+
 }
 
 
@@ -62,7 +63,9 @@ div.bar ul li {
     font-size: 1.5rem;
     margin-left: 30px;
     border: none;
+    transition: 0.3s;
 }
+
 /*オンマウスで色変わる*/
 div.bar ul li:hover{
     color: #fff;

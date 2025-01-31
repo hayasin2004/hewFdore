@@ -55,11 +55,13 @@ table.ListUser td.mailLink{
     color: #EBE8DB;
     padding: 0 20px 0 20px;
 }
-
+table.ListUser td.mailLink p{
+    color: #605252;
+}
 
 table.ListUser td.mailLink:hover{
     background-color: #8e7560;
 }
-table.ListUser td.mailLink:hover img{
+table.ListUser td.mailLink:hover p{
     color: #fff;
 }
