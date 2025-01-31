@@ -12,6 +12,7 @@ const ConfirmUserProfile = () => {
         <Header/>
         <main id={"CUmain"}>
             <div id={"confirms"}>
+                <h1 id={"CUtitle"}>プロフィール</h1>
 
                 {/*<Link href={"confirmPoints"}>*/}
                 {/*    <div className={"confirm"}>*/}
@@ -70,7 +71,8 @@ const ConfirmUserProfile = () => {
                 </Link>
             </div>
             <div className={"rightbar"}>
-                <h2>購入履歴</h2>
+            <Link href={"paidNote"}><h2>購入履歴</h2></Link>
+
                 <div className={"rightbar_flex"}>
                 <div className={"rightbar_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
@@ -94,6 +96,7 @@ const ConfirmUserProfile = () => {
                         <p>出品者 : xxxx</p>
                         <p>価格 : xxxx</p>
                     </div>
+
                 </div>
 
             </div>
