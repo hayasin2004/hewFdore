@@ -162,12 +162,16 @@ const Product = ({params}: { params: { id: string } }) => {
                             <Chat paramsProductData={id}/>
                         </div>
                         <div id="controlProduct">
-                            <ThemeProvider theme={theme}>
-                                <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
-                                          size={"large"} checked={productLike} {...label}
-                                          icon={<FavoriteBorder/>}
-                                          checkedIcon={<Favorite/>}/>
-                            </ThemeProvider>
+                            {product?.sellStatus == "trading" ?
+                                <></>
+                                :
+                                <ThemeProvider theme={theme}>
+                                    <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
+                                              size={"large"} checked={productLike} {...label}
+                                              icon={<FavoriteBorder/>}
+                                              checkedIcon={<Favorite/>}/>
+                                </ThemeProvider>
+                            }
                             <p>いいね</p>
                             <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
 

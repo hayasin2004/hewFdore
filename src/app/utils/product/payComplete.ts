@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import {Purchase} from "@/models/Purchase";
 import {User} from "@/models/User";
 import toastGmailForPurchase from "@/app/utils/product/toastGmailForPurchase";
+import toastPurchase from "@/app/utils/toast/toastPurchase";
 
 const payComplete = async (productId: string | null, stripeCode: string | null, userId: string | null, paymentStatus: string | null) => {
     await connectDB()
@@ -30,6 +31,9 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
             })
 
             purchase.save()
+
+            await toastPurchase(userId,productId,purchase._id)
+
             if (paymentStatus == "stripe") {
 
                 const product = await Product.findByIdAndUpdate({_id: productId}, {

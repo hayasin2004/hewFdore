@@ -20,7 +20,7 @@ const toastFollowings = async (productId: ProductType | null , sellerId: string 
             productId : productId,
             productName : product?.productName,
             message : `${likedUserUser?.username}があなたの商品${product?.productName}をいいねしました。`,
-            toastCategory : "いいね、フォローなど",
+            toastCategory : "商品関連",
             alreadyRead : "未読",
         }
         const toastFollow = await  Toast.create(purchase)

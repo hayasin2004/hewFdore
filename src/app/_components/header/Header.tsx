@@ -239,7 +239,13 @@ const Header = () => {
                                                                             d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
                                                                         <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
                                                                     </svg>
-                                                                    <p>{item.message}</p>
+                                                                    {item.followerUserId !== "" ?
+                                                                        <Link href={`/userDetail/${item.followerUserId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>
+                                                                        :
+                                                                             <p>{item.message}</p>
+                                                                         }
                                                                     <hr/>
                                                                 </div>
                                                             ))}
@@ -263,9 +269,12 @@ const Header = () => {
                                                                     </svg>
                                                                     {item.tradeId !== "" ?
                                                                         <Link href={`/tradeChat/${item.tradeId}`}>
-                                                                            <p>リンク付き : {item.message}</p>
+                                                                            <p>{item.message}</p>
                                                                         </Link>
-                                                                        : <p>{item.message}</p>}
+                                                                        :
+                                                                        <Link href={`/product/${item.productId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>}
                                                                 </div>
                                                             ))}
                                                         </Box>
