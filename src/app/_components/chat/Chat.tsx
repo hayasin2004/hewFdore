@@ -52,7 +52,15 @@ const Chat = (props: { paramsProductData: string }) => {
 
 
     const submitChatMessage = async () => {
-
+        if (chatMessage == ""){
+            console.log("空白のままでは送れません")
+            window.alert("空白のままでは送れません")
+            return null
+        }
+        if (currentUser == undefined || currentUser == null ) {
+            window.alert("メッセージはログインしてから送信できます。")
+            return null
+        }
         // const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
         if (chatMessage !== null && chatMessage !== undefined) {
             const sendChatResponse = await sendProductChatMessage(productId, currentUser, chatMessage)
