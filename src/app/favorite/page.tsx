@@ -16,7 +16,7 @@ const Favorite = () => {
             <div id={"bread"}>
                 <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
                 <p className={"breadArrow"}>＞</p>
-                <Link href={"/"}><p className={"breadText"}>ユーザーページ</p></Link>
+                <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
                 <p className={"breadArrow"}>＞</p>
                 <Link href={"/"}><p className={"breadText"}>お気に入り</p></Link>
 
