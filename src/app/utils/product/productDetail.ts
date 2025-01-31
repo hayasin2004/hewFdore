@@ -19,6 +19,7 @@ export interface ProductType {
     productPicture?: string,
     productVideo?: string,
     productSize?: string,
+    sellStatus?: string,
     productCategory?: string,
     shippingArea?: string,
     productLike?: string,

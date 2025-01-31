@@ -154,7 +154,7 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
-                                <video src={productVideo !== undefined && productVideo !== null ? `/${productVideo}` : "df"}
+                                <video src={productVideo !== undefined && productVideo !== null ? `/${productVideo}` : ""}
                                        loop autoPlay controls></video>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             {/*<button id={"buy"}*/}
                             {/*        type="button" className={"productPurchase"}>*/}
                             {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
-                                <Stripe productId={product?._id}/>}
+                                <Stripe productId={product?._id} sellingOrSoldOut={product?.sellStatus == "trading" ? true : false}/>}
 
 
                             {/*</button>*/}
