@@ -52,7 +52,7 @@ const EmojiPickerPurchase = (props) => {
                              className={"emojiPicker"}>
                             <Picker onEmojiSelect={selectEmoji}/>
                         </div>
-
+                    
                     </div>
             ) : (
 
