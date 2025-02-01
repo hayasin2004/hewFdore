@@ -94,7 +94,6 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                     {/*絵文字*/}
                                         <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
                                                              stamp={item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike} item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
-                                    {/* <div className={"comment-emoji-lef"}><p>保存されてる</p><button onClick={(e)=> {testCommentLike(item?.buyerChatMessage[0]?._id)}}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</button></div>*/}
                                 </div>
 
 
