@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import "./trade.css"
 import Header from "@/app/_components/header/Header";
-import Chat from "@/app/_components/chat/Chat";
 import {Rating, Typography} from "@mui/material";
 import tradeProduct from "@/app/utils/product/tradeProduct";
 import io from "socket.io-client";
@@ -11,29 +10,23 @@ import {ChatType} from "@/models/Chat";
 import TradeProductMessageServer from "@/app/utils/user/TradeProductMessageServer";
 import tradeProductCatchMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import tradeProductCatchMessageStatus1 from "@/app/utils/message/tradeProductCatchMessageStatus1";
-import savePurchaseProductMessageStauts2 from "@/app/utils/message/savePurchaseProductMessageStauts2";
 import savePurchaseProductMessageStatus1 from "@/app/utils/message/savePurchaseProductMessageStauts1";
 import useUser from "@/hooks/useUser";
-import {Purchase} from "@/models/Purchase";
-import PurchaseChat from "@/app/_components/purchaseChat/PurchaseChat";
 import Images from "next/image";
 import userProfile from "@/app/utils/user/userProfile";
-import savePurchaseProductMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import savePurchaseProductMessageStatus2Update from "@/app/utils/message/savePurchaseProductMessageStatus2Update";
 import tradeEnd from "@/app/utils/product/tradeEnd";
 import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
-import productChatLike from "@/app/utils/product/productChatLike";
-import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 import {ProductType} from "@/app/utils/product/productDetail";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 import {redirect, useRouter} from 'next/navigation';
-import {UserType} from "@/app/api/user/catchUser/route";
 import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
+
     const [tradeChatLike, setTradeChatLike] = useState(0)
     const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     const [icon, setIcon] = useState("")
@@ -42,10 +35,12 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
     const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
     console.log(partnerUserIdChat)
-    //
-    partnerUserIdChatParse?.map((item) => {
-        console.log("撮れてない？？" + JSON.parse(JSON.stringify(item)))
-    })
+
+
+    const testCommentLike = async (item : string) => {
+        const response = await purchaseChatLike(currentUserId ,purchaseId, item, icon)
+        console.log(response)
+    }
 
     return (
         <div>
@@ -70,7 +65,9 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                 </div>
                             </div>
 
+                        </div>
                     </div>
+
                 ) : (
 
                     <div key={item._id}>
@@ -84,7 +81,9 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                 </div>
 
                                 {/*ユーザー名*/}
-                                <div className={"comment-user-name-lef"}>{item.buyerChatMessage[0]?.buyerUsername} さん</div>
+                                <div
+                                    className={"comment-user-name-lef"}>{item.buyerChatMessage[0]?.buyerUsername} さん
+                                </div>
                             </div>
 
                             <div className={"comment-user-lef"}>
@@ -93,29 +92,19 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                 <div className={"comment-area-lef"}>
                                     {item.buyerChatMessage[0]?.buyerMessage}
                                     {/*絵文字*/}
-                                    {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (
-                                        <div
-                                            className={"comment-emoji-lef"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
-                                    ) : ("")}
+                                        <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
+                                                             stamp={item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike} item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                                    {/* <div className={"comment-emoji-lef"}><p>保存されてる</p><button onClick={(e)=> {testCommentLike(item?.buyerChatMessage[0]?._id)}}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</button></div>*/}
                                 </div>
 
-                             <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}  item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
 
-                            <button id={"good"}
-                                    onClick={() => testCommentLike(currentUserId, purchaseId, item?.buyerChatMessage[0]?._id, icon)}>
-                                送信
-                            </button>
+
+                            </div>
+
                         </div>
-
                     </div>
                 )
-
-
-                    </div>
-                )
-
             ))}
-
         </div>
     )
 }
@@ -135,81 +124,85 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     return (
 
         <div>
-           　
+
             <div>
                 ログインしているチャット（購入者） : {currentUserIdChatParse?.map((item) => (
                 item?.chatUserRole == "出品者" ? (
-                    <div key={item._id}>
+                        <div key={item._id}>
 
-                        <div>
-                            <div className={"comment-user-lef"}>
-                                {/*ユーザーアイコン*/}
-                                <div className={"chaticon"}><Images
+                            <div>
+                                <div className={"comment-user-lef"}>
+                                    {/*ユーザーアイコン*/}
+                                    <div className={"chaticon"}><Images
+                                        src={item?.sellerChatMessage[0]?.sellerProfilePicture}
+                                        alt={"ユーザープロフィール画像"} width={30} height={30}/>
+                                    </div>
+
+                                    {/*ユーザー名*/}
+                                    <div
+                                        className={"comment-user-name-lef"}>{item.sellerChatMessage[0]?.sellerUsername} さん
+                                    </div>
+                                </div>
+                                <div className={"comment-area-lef"}><Images
                                     src={item?.sellerChatMessage[0]?.sellerProfilePicture}
-                                    alt={"ユーザープロフィール画像"} width={30} height={30}/>
+                                    alt={"ユーザープロフィール画像"} width={50}
+                                    height={50}/></div>
+                                <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessage}</div>
+
+                                <div className={"comment-user-lef"}>
+
+                                    {/*ユーザーチャット*/}
+                                    <div className={"comment-area-lef"}>
+                                        {item.sellerChatMessage[0]?.sellerMessage}
+                                        {/*絵文字*/}
+                                        {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (
+                                            <div
+                                                className={"comment-emoji-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
+                                        ) : ("")}
+
+                                    </div>
+                                    {/*絵文字選択*/}
+                                    <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
+                                                         item={item?.sellerChatMessage[0]?._id} setIcon={setIcon}/>
+
+
+                                    {/*<button id={"good"}*/}
+                                    {/*        onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>*/}
+                                    {/*    送信*/}
+                                    {/*    /!*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*!/*/}
+                                    {/*</button>*/}
                                 </div>
-
-                                {/*ユーザー名*/}
-                                <div className={"comment-user-name-lef"}>{item.sellerChatMessage[0]?.sellerUsername} さん</div>
-                            </div>
-                            <div className={"comment-area-lef"}><Images
-                                src={item?.sellerChatMessage[0]?.sellerProfilePicture}
-                                alt={"ユーザープロフィール画像"} width={50}
-                                height={50}/></div>
-                            <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessage}</div>
-
-                            <div className={"comment-user-lef"}>
-
-                                {/*ユーザーチャット*/}
-                                <div className={"comment-area-lef"}>
-                                    {item.sellerChatMessage[0]?.sellerMessage}
-                                    {/*絵文字*/}
-                                    {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (
-                                        <div
-                                            className={"comment-emoji-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
-                                    ) : ("")}
-
-                                </div>
-                                {/*絵文字選択*/}
-                                <EmojiPicker item={item} setIcon={setIcon}/>
-                                <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}  item={item?.sellerChatMessage[0]?._id} setIcon={setIcon}/>
-
-
-                                {/*<button id={"good"}*/}
-                                {/*        onClick={() => testCommentLike(currentUserId, purchaseId, item.sellerChatMessage[0]?._id, icon)}>*/}
-                                {/*    送信*/}
-                                {/*    /!*{item?.sellerChatMessage[0]?.sellerMessageLike?.length}*!/*/}
-                                {/*</button>*/}
-                            </div>
-                        </div>
-
-                    </div>
-                ) : (
-
-                    <div key={item._id}>
-                        {/*<div>{item.buyerUsername}</div>*/}
-
-                        <div>
-                            <div className={"comment-user-rig"}>
-
-                                {/*ユーザーチャット*/}
-                                <div className={"comment-area-rig"}>
-                                    {item?.buyerChatMessage[0]?.buyerMessage}
-
-                                    {/*絵文字*/}
-                                    {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (<div
-                                            className={"comment-emoji-rig"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
-                                    ) : ("")}
-                                </div>
-
                             </div>
 
                         </div>
+                    )
+                    :
+                    (
 
-                        {/*<div>{item._id}</div>*/}
+                        <div key={item._id}>
+                            {/*<div>{item.buyerUsername}</div>*/}
 
-                    </div>
-                )
+                            <div>
+                                <div className={"comment-user-rig"}>
+
+                                    {/*ユーザーチャット*/}
+                                    <div className={"comment-area-rig"}>
+                                        {item?.buyerChatMessage[0]?.buyerMessage}
+
+                                        {/*絵文字*/}
+                                        {item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? (<div
+                                                className={"comment-emoji-rig"}>{item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}</div>
+                                        ) : ("")}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            {/*<div>{item._id}</div>*/}
+
+                        </div>
+                    )
             ))}
             </div>
         </div>
@@ -217,7 +210,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 }
 
 
-const ListingComplete = ({params}: { params: { id: string | null } }) => {
+const ListingComplete = ({params}: {params: { id: string | null } }) => {
     const [reviewValue, setReviewValue] = React.useState<number | null>(1);
     const [productData, setProductData] = useState<ProductType | null>(null)
     const [chatData, setChatData] = useState<ChatType | null>(null)
@@ -245,7 +238,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     console.log(partnerUserData)
     const user = useUser()
     const token = localStorage.getItem("token")
-    if (!token){
+    if (!token) {
         window.alert("ログインしてください。")
         redirect("/login")
     }
@@ -512,14 +505,14 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             {status == 1 ?
                                 <div>
                                     <p>取引ステータスは１</p>
-                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
 
                                                       partnerUserIdChat={partnerUserIdChat}/>
 
                                 </div> : <div>
                                     <p>取引ステータスは２</p>
-                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
+                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
                                                       partnerUserIdChat={partnerUserIdChat}/>
                                 </div>}

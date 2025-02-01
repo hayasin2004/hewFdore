@@ -30,17 +30,23 @@ const EmojiPickerPurchase = (props) => {
         }
     }
 
+    console.log(typeof props.stamp)
+
     return (
-        <div>
-            <button onClick={showPicker}>💛</button>
-            <div style={{display: isShowPicker ? "block" : "none", position: "absolute", zIndex: 40}}
-                 className={"emojiPicker"}>
-                <Picker onEmojiSelect={selectEmoji}/>
-            </div>
-            {icon}<br/>
+        <>
+            {props.stamp == undefined ? (
+                <div className={"comment-emojiPick"}>
+                    <button className={"emojiBotton"} onClick={showPicker}>+</button>
+                    <div style={{display: isShowPicker ? "block" : "none", position: "absolute", zIndex: 40}}
+                         className={"emojiPicker"}>
+                        <Picker onEmojiSelect={selectEmoji}/>
+                    </div>
+                    {icon}<br/>
+                </div>) : (
+                <div className={"comment-emoji-lef"}><p>保存されてる{props.stamp}</p></div>)}
 
+        </>
 
-        </div>
     );
 }
 
