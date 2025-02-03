@@ -8,15 +8,7 @@ import NextAuthProvider from "../providers/NextAuth";
 const inter = Inter({subsets: ["latin"]});
 console.log(inter)
 
-// Userインターフェースは、ユーザー情報の型を定義
-interface User {
-    userId: string
-    username: string
-    email: string
-    password: string
-    profilePicture: string
-    coverProfilePicture: string
-}
+
 
 
 //

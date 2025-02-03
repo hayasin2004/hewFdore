@@ -20,13 +20,6 @@ const confirmTradeStatus = async (purchaseId: string | null) => {
         }
         if (purchaseCondition.sellerUserLastChat == "" && purchaseCondition.sellerUserLastReview == "" && purchaseCondition.buyerUserLastChat == "" && purchaseCondition.buyerUserReview == "") {
              tradeStatus = 0;
-            const lastChatReview = {
-                sellerUserLastChat: purchaseCondition.sellerUserLastChat,
-                sellerUserLastReview: purchaseCondition.sellerUserLastReview,
-                buyerUserLastChat: purchaseCondition.buyerUserLastChat,
-                buyerUserReview: purchaseCondition.buyerUserReview
-            }
-
 
             return {
                 tradeStatus: tradeStatus,
@@ -38,13 +31,7 @@ const confirmTradeStatus = async (purchaseId: string | null) => {
         }
         if (purchaseCondition.sellerUserLastChat !== "" && purchaseCondition.sellerUserLastReview !== "" && purchaseCondition.buyerUserLastChat !== "" && purchaseCondition.buyerUserReview !== "") {
               tradeStatus = 1;
-            const lastChatReview = {
-                sellerUserLastChat: purchaseCondition.sellerUserLastChat,
-                sellerUserLastReview: purchaseCondition.sellerUserLastReview,
-                buyerUserLastChat: purchaseCondition.buyerUserLastChat,
-                buyerUserReview: purchaseCondition.buyerUserReview
 
-            }
             return {
                 tradeStatus: tradeStatus,
                 sellerUserLastChat: JSON.stringify(purchaseCondition.sellerUserLastChat),

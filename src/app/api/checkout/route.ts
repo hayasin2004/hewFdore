@@ -7,7 +7,8 @@ import {Stripe} from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 console.log(stripe)
 export async function stripePayment(productId: string) {
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
     await connectDB()
      const product = await Product.findOne({_id: productId});
     const productPrice = product.productPrice

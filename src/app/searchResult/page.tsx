@@ -78,10 +78,7 @@ const SearchPageProducts = () => {
     //     return {...item ,id : item._id}
     //     }
     // )
-    var page = 0;
-    const product = productList.map((item) => {
-        return {...item, id: item._id}
-    })
+
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
@@ -120,8 +117,7 @@ const SearchPageProducts = () => {
     }
 
     const ProductPerPage = 4;
-    const [ProductOffset, setProductOffset] = useState(0);
-    const endOffset = ProductOffset + ProductPerPage;
+    const [ProductOffset, setProductOffset] = useState(0); 
     const currentProduct = productList.slice(ProductOffset, ProductOffset + ProductPerPage);
     const pageCount = Math.ceil(t_item.length / ProductPerPage);
     const handlePageClick = (e: { selected: number }) => {
@@ -133,12 +129,12 @@ const SearchPageProducts = () => {
     // 練習コーナー2
     // ProductListを基に表示する分のデータを切り出す
     // sliceだとA以上B未満になる
-    var sliceProduct = productList.slice(0, 10)
+    let sliceProduct = productList.slice(0, 10)
     console.log(sliceProduct);
 
     function pageChange(page: number) {
-        var pMax = 10 * (page + 1) - 1;
-        var pMin = page * 10;
+        let pMax = 10 * (page + 1) - 1;
+        let pMin = page * 10;
         const filterProduct = productList.filter((productList, index) => {
             if (index <= pMax) {
                 return index >= pMin

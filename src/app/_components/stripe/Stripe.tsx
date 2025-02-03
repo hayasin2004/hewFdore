@@ -92,20 +92,20 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             }
         }
 
-
-        const handlePayPayPayment = async () => {
-            const res = await fetch("/api/paypay", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify({
-                    productId: productId
-                })
-            })
-            const json = await res.json()
-            window.location.href = json.url
-        }
+        //
+        // const handlePayPayPayment = async () => {
+        //     const res = await fetch("/api/paypay", {
+        //         method: "POST",
+        //         headers: {
+        //             "content-type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //             productId: productId
+        //         })
+        //     })
+        //     const json = await res.json()
+        //     window.location.href = json.url
+        // }
 
 
         socket.on("update", (isButtonDisabled) => {

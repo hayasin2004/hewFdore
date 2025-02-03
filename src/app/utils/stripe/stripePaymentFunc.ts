@@ -15,7 +15,6 @@ export async function stripePaymentFunc(productId: string, paymentMethod: string
         try {
             const product = await Product.findOne({_id: productId});
 
-            const productObjectId = product?._id
             const productPrice = product?.productPrice
             const productName = product?.productName
             const productDesc = product?.productDesc

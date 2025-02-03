@@ -2,7 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 
-import {Chat, ChatType} from "@/models/Chat";
+import {Chat } from "@/models/Chat";
 import {v4 as uuidv4} from 'uuid';
 
 

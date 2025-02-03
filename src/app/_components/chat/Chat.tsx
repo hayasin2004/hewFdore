@@ -6,8 +6,7 @@ import Images from "next/image";
 import useUser from "@/hooks/useUser";
  import getProductChatMessage from "@/app/utils/product/getChatMessage";
 import {ProductCommentType} from "@/models/ProductComment";
-import productChatLike from "@/app/utils/product/productChatLike";
-import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
+ import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 const Chat = (props: { paramsProductData: string }) => {

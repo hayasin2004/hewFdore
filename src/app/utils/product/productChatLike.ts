@@ -2,8 +2,6 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {ProductComment} from "@/models/ProductComment";
-import {Product} from "@/models/Product";
-
 const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null, icon: string | null) => {
     await connectDB()
     try {　

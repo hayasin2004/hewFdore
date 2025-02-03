@@ -12,7 +12,7 @@ const PayComplete = () => {
     const [params, setParams] = useState({});
     const [loginUserData, setLoginUserData] = useState()
 
-    console.log(params?.sessionId)
+    console.log(loginUserData,params?.sessionId)
     const user = useUser()
     const userParse = JSON.parse(user)
     useEffect(() => {

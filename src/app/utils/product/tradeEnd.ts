@@ -68,7 +68,7 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                      tradeStatus = 2;
                     await toastPurchaseReview(purchaseCondition?.sellerId,purchaseCondition?.buyerId, purchaseCondition?.productId, lastMessage, reviewValue)
                     await toastGmailForSellerReview(purchaseCondition?.sellerId,purchaseCondition?.buyerId, purchaseCondition?.productId, lastMessage, reviewValue)
-
+                    console.log(tradeStatusUpdate)
                     return {tradeStatus: tradeStatus, lastChatReview: JSON.stringify(sellerUserLastChat)}
                 }
 

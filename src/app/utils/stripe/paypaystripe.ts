@@ -6,7 +6,6 @@ import PAYPAY, {QRCodeCreate} from "@paypayopa/paypayopa-sdk-node";
 import {v4 as uuidv4} from 'uuid';
 import {z} from "zod";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 console.log(stripe)
 const PayPaySuccessResponse = z.object({
@@ -26,7 +25,8 @@ PAYPAY.Configure({
 });
 
 export async function stripePaymentPayPay(productId: string, paymentMethod: string, userId: string | null) {
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
     await connectDB();
     try {
         const product = await Product.findOne({_id: productId});

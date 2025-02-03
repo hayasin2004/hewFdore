@@ -21,12 +21,11 @@ import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 import {ProductType} from "@/app/utils/product/productDetail";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
-import {redirect, useRouter} from 'next/navigation';
+import {redirect } from 'next/navigation';
 import {UserType} from "@/app/api/user/catchUser/route";
 import confirmUser from "@/app/utils/user/confirmUser";
 
-const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
- 
+const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat }) => {
     const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
     const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
@@ -84,7 +83,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
         </div>
     )
 }
-const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
+const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat }) => {
     // status2の時はログインしているユ―ザーが購入者だった時。
     const [icon, setIcon] = useState("")
 
@@ -449,13 +448,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                                     <Status1TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
                                                       currentUserIdChat={currentUserIdChat}
 
-                                                      partnerUserIdChat={partnerUserIdChat}/>
+                                                  />
 
                                 </div> : <div>
                                     <p>取引ステータスは２</p>
                                     <Status2TradeChat purchaseId={purchaseId} currentUserId={currentUserId}
                                                       currentUserIdChat={currentUserIdChat}
-                                                      partnerUserIdChat={partnerUserIdChat}/>
+                                                     />
                                 </div>}
                             {chatList.map((item, index) => (
                                 <ul key={index}>

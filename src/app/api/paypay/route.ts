@@ -20,6 +20,7 @@ const PayPaySuccessResponse = z.object({
 
 export async function POST(req :Request ) {
     const merchantPaymentId = uuidv4();
+    console.log(req)
     const payload = {
         merchantPaymentId,
         amount: {
