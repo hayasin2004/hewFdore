@@ -74,7 +74,6 @@ const tradeCancelMessage = async (purchase: ProductType | null, tradeCode: Produ
             JSON.stringify({status: "Success"}),
             {status: 200, headers: {"Content-Type": "application/json"}}
         );
-
     } catch (err) {
         console.log(err)
         return null
