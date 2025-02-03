@@ -166,7 +166,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
     //console.log(JSON.stringify(partnerUserIdChat))
     const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
-    //console.log("取得完了" + currentUserIdChat)
+    console.log("取得完了" + currentUserIdChat , partnerUserIdChat)
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
@@ -178,6 +178,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     console.log(loginUserData )
     const user = useUser()
+    console.log(user)
     const token = localStorage.getItem("token")
     if (!token){
         window.alert("ログインしてください。")

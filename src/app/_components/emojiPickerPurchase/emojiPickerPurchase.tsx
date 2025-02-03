@@ -18,12 +18,12 @@ const EmojiPickerPurchase = (props) => {
     }, [props]);
 
     const showPicker = () => setIsShowPicker(!isShowPicker)
-    const selectEmoji = (e: any) => {
+    const selectEmoji = (e: React.FormEvent<HTMLButtonElement>) => {
         console.log(e)
         if (e.unified !== "") {
             const emojiCode = e.unified.split("-");
             const codesArray: number[] = []
-            emojiCode.forEach((el: any) => codesArray.push("0x" + el));
+            emojiCode.forEach((el:string) => codesArray.push("0x" + el));
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {

@@ -129,19 +129,19 @@ const SearchPageProducts = () => {
     // 練習コーナー2
     // ProductListを基に表示する分のデータを切り出す
     // sliceだとA以上B未満になる
-    let sliceProduct = productList.slice(0, 10)
+    const sliceProduct = productList.slice(0, 10)
     console.log(sliceProduct);
-
-    function pageChange(page: number) {
-        let pMax = 10 * (page + 1) - 1;
-        let pMin = page * 10;
-        const filterProduct = productList.filter((productList, index) => {
-            if (index <= pMax) {
-                return index >= pMin
-            }
-        })
-        console.log(page, filterProduct);
-    }
+    //
+    // function pageChange(page: number) {
+    //     let pMax = 10 * (page + 1) - 1;
+    //     let pMin = page * 10;
+    //     const filterProduct = productList.filter((productList, index) => {
+    //         if (index <= pMax) {
+    //             return index >= pMin
+    //         }
+    //     })
+    //     console.log(page, filterProduct);
+    // }
 
 
     // react-paginate公式Usage参考 なんかProduct数が2つになってるんですけど！？
