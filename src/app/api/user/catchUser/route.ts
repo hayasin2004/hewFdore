@@ -2,8 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
-import {NextResponse} from "next/server";
-import {NextApiRequest} from "next";
+import {NextRequest, NextResponse} from "next/server";
 
 export interface UserType {
     id? : string
@@ -32,11 +31,10 @@ export  interface UserFollow {
 
 
 
-export async function GET(req: NextApiRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
     await connectDB()
     if (req.method === "GET") {
         try {
-            console.log(res)
             const users   = await User.find()
             const userList  = users.map((item) => {
                 return {id : item?._id , userId :  item?.UserId , username : item?.username , email : item?.email ,
