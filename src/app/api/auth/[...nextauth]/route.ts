@@ -1,12 +1,11 @@
-import NextAuth from "next-auth/next"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
-import InstagramProvider from "next-auth/providers/instagram"
-import FacebookProvider from "next-auth/providers/facebook"　
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import InstagramProvider from "next-auth/providers/instagram";
+import FacebookProvider from "next-auth/providers/facebook";
+import type { NextAuthOptions } from "next-auth";
 
-
-export const authOptions　= {
-
+export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
         GithubProvider({
@@ -29,25 +28,25 @@ export const authOptions　= {
             clientSecret: process.env.INSTAGRAM_CLIENT_SECRET!,
             allowDangerousEmailAccountLinking: true,
         })
-    ], pages: {
+    ],
+    pages: {
         signIn: "/login",
-    }, callbacks: {
-        async session({token, session}) {
+    },
+    callbacks: {
+        async session({ token, session }) {
             if (token) {
                 session.user.id = token.id;
                 session.user.name = token.name;
                 session.user.email = token.email;
                 session.user.image = token.picture;
-
             }
-             return session
+            return session;
         },
-
     },
-    session : {
-        strategy : "jwt"
-    }
+    session: {
+        strategy: "jwt",
+    },
+};
 
-}
-const handler = NextAuth(authOptions)
-export {handler as GET, handler as POST}
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
