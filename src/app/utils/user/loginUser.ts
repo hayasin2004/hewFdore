@@ -2,7 +2,6 @@
 import {User} from "@/models/User"
 import jwt from "jsonwebtoken"
 import {connectDB} from "@/lib/mongodb";
-import {UserType} from "@/app/api/user/catchUser/route";
 
 interface User {
     userId: string

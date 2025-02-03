@@ -1,6 +1,5 @@
 "use server"
 
-import {string} from "prop-types";
 import jwt from "jsonwebtoken";
 
 const confirmToken = async (token: string | null) => {

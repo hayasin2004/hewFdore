@@ -14,10 +14,10 @@ export  interface ToastType{
 }
 
 const ToastCategory = ["商品関連", "いいね、フォローなど"]
-type ToastCategoryType = (typeof ToastCategory)[number];
+// type ToastCategoryType = (typeof ToastCategory)[number];
 
 const AlreadyRead = ["既読", "未読", "削除"]
-type AlreadyReadType = (typeof AlreadyRead)[number];
+// type AlreadyReadType = (typeof AlreadyRead)[number];
 
 const ToastSchema = new mongoose.Schema({
 

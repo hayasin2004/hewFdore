@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import {User} from "@/models/User"
-import {string} from "prop-types";
-import {NextApiRequest, NextApiResponse} from "next";
 
 export const connectDB = async () => {
     try {

@@ -3,16 +3,13 @@ import React, {useEffect, useState} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+ import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import confirmUser from "@/app/utils/user/confirmUser";
-import Images from "next/image";
-import toastPurchase from "@/app/utils/toast/toastPurchase";
-import catchToastProduct from "@/app/utils/toast/catchToastProduct";
+ import catchToastProduct from "@/app/utils/toast/catchToastProduct";
 import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 import {ToastType} from "@/models/Toast";
 import {UserType} from "@/app/api/user/catchUser/route";

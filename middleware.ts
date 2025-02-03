@@ -1,6 +1,5 @@
 import {withAuth} from "next-auth/middleware";
-import {getToken} from "next-auth/jwt";
-import {NextRequest, NextResponse} from "next/server";
+import { NextResponse} from "next/server";
 
 export default withAuth(
     async function middleware(req) {
@@ -10,14 +9,14 @@ export default withAuth(
             req.nextUrl.pathname.startsWith("/login")
 
         if (isAuthPage) {
-            if (isAuth) {
+            if (token) {
                 return NextResponse.redirect(new URL("/toppage", req.url))
             }
 
             return null
 
         }
-        if (!isAuth) {
+        if (!token) {
             return NextResponse.redirect(new URL("/login", req.url))
         }
 

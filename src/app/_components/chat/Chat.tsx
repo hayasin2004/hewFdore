@@ -1,11 +1,10 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import Image from "next/image";
+
 import "./chat.css"
 import Images from "next/image";
 import useUser from "@/hooks/useUser";
-import productSendComment from "@/app/utils/product/productSendComment";
-import getProductChatMessage from "@/app/utils/product/getChatMessage";
+ import getProductChatMessage from "@/app/utils/product/getChatMessage";
 import {productCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
 import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";

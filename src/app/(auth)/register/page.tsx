@@ -3,17 +3,10 @@ import React, {useState} from 'react';
 import "./register.css"
 import Image from "next/image"
 import Link from "next/link";
-import Script from 'next/script';
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import {useSession, signIn, signOut} from "next-auth/react"
-import axios from "axios";
-import {useRouter} from "next/navigation";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import {useSession} from "next-auth/react"
 import createUser from "@/app/utils/user/registerUser";
-import Login from '../login/page';
-import jwt from "jsonwebtoken";
 
 
 const Register = () => {

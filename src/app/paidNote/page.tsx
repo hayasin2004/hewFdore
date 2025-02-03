@@ -7,10 +7,8 @@ import "./paidNote.css"
 import Link from "next/link";
 import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
-import {productCommentType} from "@/models/ProductComment";
 import {UserType} from "@/app/api/user/catchUser/route";
 import {ProductType} from "@/app/utils/product/productDetail";
-import tradeId from "@/app/utils/setting/update/tradeId";
 
 const PaidNote = () => {
     const [purchaseData, setPurchaseData] = useState([])

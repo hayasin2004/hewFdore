@@ -1,14 +1,8 @@
 "use server"
 
-import {string} from "prop-types";
-import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
-import {MongoClient} from "mongodb";
 
-import {Server} from "socket.io";
-import mongoose from "mongoose";
 import {Chat, ChatType} from "@/models/Chat";
-import {UserType} from "@/app/api/user/catchUser/route";
 import {v4 as uuidv4} from 'uuid';
 
 
