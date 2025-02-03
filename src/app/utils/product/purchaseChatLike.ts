@@ -9,8 +9,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
         const checkSellerUser = await Purchase.findOne({_id: purchaseId}).select("sellerId")
         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
         const searchBuyerPurchaseAndComment = await Purchase.findOne({"tradeChat.buyerChatMessage._id": commentId}, {"tradeChat.$": 1})
-        console.log("判定" + currentUserId ,purchaseId, commentId)
-        console.log("判定" +icon)
+        console.log("判定" + commentId)
 
         if (searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerUserId == currentUserId) {
             //console.log("[購入者]自分のコメントにはいいねで来ません。")
@@ -39,6 +38,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                     "tradeChat.$[i].sellerChatMessage.$[j].sellerMessageLike": currentUserId,
                                     "sellerChatMessage.$.sellerMessageStamp": {
                                         userId: currentUserId,
+                                        sellerMessageStampLike: icon
                                     }
                                 }
                             },
@@ -50,12 +50,13 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                             },
                         )
 
-                        const updateMessageStamp  = await Purchase.updateOne(
+                        const updateMessageStamp = await Purchase.updateOne(
                             {_id: searchSellerPurchaseAndComment?._id, "tradeChat.sellerChatMessage._id": commentId},
                             {
                                 $pull: {
                                     "tradeChat.$[i].sellerChatMessage.$[j].sellerMessageStamp": {
                                         userId: currentUserId,
+                                        sellerMessageStampLike: icon
                                     },
 
                                 }
@@ -67,7 +68,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                 ]
                             }
                         )
-                        return {likeStatus: "delete", productLike: updateDeleteSearchMessage ,productLikeStamp : updateMessageStamp }
+                        return {likeStatus: "delte", productLike: updateDeleteSearchMessage ,productLikeStamp : updateMessageStamp }
 
                     } else {
                         console.log("ログインしているアカウントで出品者のコメントをいいねしていないので新規いいね。")
@@ -118,7 +119,20 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                     if (includesCurrentUserId) {
                         console.log("既にログインしているアカウントで購入者のコメントをいいねしている。")
                         console.log("購入者のコメントに対するいいねを削除します。")
-　
+
+                        // const updateDeleteSearchMessage = await Purchase.updateOne(
+                        //     {_id: searchBuyerPurchaseAndComment._id, "buyerChatMessage._id": commentId},
+                        //     {
+                        //         $pull: {
+                        //             "buyerChatMessage.$.buyerMessageLike": currentUserId,
+                        //             "buyerChatMessage.$.buyerMessageStamp": {
+                        //                 userId: currentUserId,
+                        //                 buyerMessageStampLike: icon
+                        //             }
+                        //         }
+                        //     }, {new: true},
+                        // )
+
 
                         const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchBuyerPurchaseAndComment?._id, "tradeChat.buyerChatMessage._id": commentId},
@@ -144,7 +158,8 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                             {
                                 $pull: {
                                     "tradeChat.$[i].buyerChatMessage.$[j].buyerMessageStamp": {
-                                        userId: currentUserId,　
+                                        userId: currentUserId,
+                                        buyerMessageStampLike: icon
                                     },
 
                                 }

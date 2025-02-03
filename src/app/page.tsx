@@ -1,13 +1,11 @@
-import Register from "@/app/(auth)/register/page";
-import Login from "@/app/(auth)/login/page";
-import Toppage from "./toppage/page";
-import { ChakraProvider } from "@chakra-ui/react";
+import Toppage from "@/app/toppage/page";
+
 export default function Home() {
   return (
     <main >
       <div>
-          {/*<Toppage />*/}
-          <Register/>
+          <Toppage />
+          {/*<Register/>*/}
       {/*<Login />*/}
       {/**/}
       </div>

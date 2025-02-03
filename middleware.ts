@@ -5,7 +5,7 @@ import {NextRequest, NextResponse} from "next/server";
 export default withAuth(
     async function middleware(req) {
         const token = await localStorage.getItem("token");
-        console.log("これはミドルウェアのトークンです" + token)
+        //console.log("これはミドルウェアのトークンです" + token)
         const isAuth = !!token /* !!二個はトークンがあるか否かの強制二択に絞る*/
         const isAuthPage =
             req.nextUrl.pathname.startsWith("/topppage") ||

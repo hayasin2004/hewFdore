@@ -202,16 +202,12 @@ const ListingScreen: React.FC = () => {
                             </button>
 
                             <button className={"listingcompletebtn"} type={"submit"}>
-                                <p>出品</p>
+                                {productId ?
+                                    <Link href={`/listingcomplete/${productId?._id}`}>
+                                        <p>確認ページ</p>
+                                    </Link>
+                                    : <p>出品</p>}
                             </button>
-
-                            {/*<button className={"listingcompletebtn"} type={"submit"}>*/}
-                            {/*    {productId ?*/}
-                            {/*        <Link href={`/listingcomplete/${productId?._id}`}>*/}
-                            {/*            <p>確認ページ</p>*/}
-                            {/*        </Link>*/}
-                            {/*        : <p>出品</p>}*/}
-                            {/*</button>*/}
                         </div>
 
                     </form>

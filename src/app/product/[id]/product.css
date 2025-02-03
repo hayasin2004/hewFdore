@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:wght@100..800&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #EBE8DB;
+
+}
+main.productMainDisplay {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    position: relative;
+}
+
+div.productFlex{
+    width: 100%;
+    display: flex;
+}
+
+/*カート*/
+div.productCart{
+    margin-top: 70px;
+    margin-right: 50px;
+    width: 25%;
+    position: sticky;
+    left: 50px;
+    top: 10px;
+
+}
+
+div#cartText{
+    margin-left: 20px;
+    width: 400px;
+    display: flex;
+}
+
+div#cartText h2{
+
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-right: 30px;
+}
+
+div.cart h2{
+    display: inline-block;
+    font-size: 2rem;
+}
+div.cart img.icon{
+    width: 50px;
+    height: 50px;
+}
+
+/*カート内商品.innerCart*/
+div.innerCart{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 20px 20px 0;
+}
+div.innerCart img{
+    height: 120px;
+    width: 120px;
+    box-shadow: #000a 1px 1px  3px;
+}
+div.innerCart p{
+    margin: 0 0 0 20px;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+div.cart p span.title{
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+p#total{
+    text-align: right;
+    margin-right: 20px;
+}
+
+/*全体 */
+div.productMain{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin-left: -28%;
+    margin-top: 5%;
+}
+/*商品情報全体*/
+div#info{
+    display: flex;
+    flex-direction: row;
+    margin: 40px 0 50px 0;
+}
+
+/*商品画像 #photo*/
+div#photo{
+    margin: 20px 50px 0 50px;
+
+}
+figure img{
+    box-shadow: #888 3px 3px 9px;
+
+}
+div#photo img#sum{
+    width: 400px;
+    height: 400px;
+}
+/* 画像リスト */
+ul.piclist{
+    display: flex;
+    justify-content: left;
+    margin: 10px 0 10px 0;
+    padding: 0;
+}
+li.picts{
+    list-style: none;
+    margin: 0 10px 0 0 ;
+}
+li.picts a{
+    display: block;
+    outline: none;
+}
+li.picts a img.pictS{
+    height: 50px;
+    width: 50px;
+    box-shadow: #aaa 1px 1px  1px;
+}
+
+
+/*商品説明 #text*/
+div#text{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+div#text h1{
+    font-size: 3rem;
+}
+div#text a#seller{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px 10px 10px 10px;
+    color: #000;
+    text-decoration: none;
+}
+div#text a#seller h2{
+    margin-right: 20px;
+    margin-left: 20px;
+
+}
+
+div#text p {
+    margin-bottom: 40px;
+}
+
+
+div#text a#seller h2{
+    font-size: 1.2rem;
+}
+div#text a#seller img{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}
+
+/* 購入ボタン・アイコン #control*/
+div#controlProduct{
+    display: flex;
+    margin-left: 50%;
+    margin-bottom: 20px;
+    text-align: right;
+}
+div#controlProduct img{
+    display: inline-block;
+    margin: 0 5px 20px 0;
+    height: 50px;
+    width: 50px;
+}
+
+button.productPurchase{
+    background-color: #000;
+    font-size: 1.2rem;
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+}
+
+.likeButton {
+    background-color: #000;
+    font-size: 1.2rem;
+    color: #fff;
+    border-radius: 50px;
+    padding: 10px 20px;
+}
+div#footer{
+    margin-top: 200px !important;
+}
+
+@media screen and (max-width: 1060px) {
+    main{
+        flex-direction: column-reverse;
+    }
+    div#cart{
+        margin-top: 70px;
+        margin-right: 50px;
+        width: 100%;
+        position: static;
+        left: 50px;
+        top: 10px;
+
+    }
+}

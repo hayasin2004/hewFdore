@@ -4,7 +4,6 @@ import {Product} from "@/models/Product";
 import {Purchase} from "@/models/Purchase";
 import cancelTradeStripe from "@/app/utils/stripe/cancelTradeStripe";
 import {ProductType} from "@/app/utils/product/productDetail";
-import tradeCancelMessage from "@/app/utils/toast/tradeCancelMessage";
 
 const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string | null) => {
     await connectDB()
@@ -26,7 +25,6 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
                 }, {new: true})
                 const purchaseStatus = await purchase.updateOne({$set: {tradeStatus: "取引キャンセル"}}, {new: true})
                 //console.log(cancelPush, purchaseStatus)
-                await tradeCancelMessage(purchase,tradeStripe)
 
                 return "取引をキャンセルしました。"
             }
@@ -41,7 +39,7 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
             }, {new: true})
             const purchaseStatus = await purchase.updateOne({$set: {tradeStatus: "取引キャンセル"}}, {new: true})
             //console.log("ここでぺいぺい")
-            await tradeCancelMessage(purchase ,tradePayPay)
+
             return "取引をキャンセルしました。"
         }
 

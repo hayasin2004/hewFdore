@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import "./register.css"
 import Image from "next/image"
 import Link from "next/link";
@@ -8,30 +8,29 @@ import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import {useSession, signIn, signOut} from "next-auth/react"
 import axios from "axios";
-import {redirect, useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
-import createUser from "@/app/utils/registerUser";
+import createUser from "@/app/utils/user/registerUser";
 import Login from '../login/page';
-import {useNavigate} from "react-router";
-import {secondaryWritableServerSelector} from "mongodb/src/sdam/server_selection";
+import jwt from "jsonwebtoken";
 
 
 const Register = () => {
-
-    //     const {data: session, status} = useSession();
-    //     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
-    //
-    //     if (status === "loading") {
-    //         console.log("123456789128912345678")
-    //     }
-    //     console.log("これはsessionです" + dateAll)
-    //     // ログインしたら自動的にトップページに飛ばされる
-    //     const handleGithubLogin = () => {
-    //         signIn("github", {callbackUrl: "/login"})
-    //     }
-    //     const handleGooleLogin = () => {
-    //         signIn("google", {callbackUrl: "/toppage"})
+    const [responseUserData, setResponseUserData] = useState<string | null>(null)
+    const {data: session, status} = useSession();
+    const dateAll = [session?.user.name, session?.user.email, session?.user.image]
+    console.log(responseUserData)
+    if (status === "loading") {
+        console.log("123456789128912345678")
+    }
+    // console.log("これはsessionです" + dateAll)
+    // ログインしたら自動的にトップページに飛ばされる
+    // const handleGithubLogin = () => {
+    //     signIn("github", {callbackUrl: "/login"})
+    // }
+    // const handleGooleLogin = () => {
+    //     signIn("google", {callbackUrl: "/toppage"})
     // }
     // const handleFacebookLogin = () => {
     //     signIn("facebook" , {callbackUrl : "/toppage"})
@@ -40,27 +39,16 @@ const Register = () => {
     // const handleInstagramLogin = () => {
     //     signIn("instagram" , {callbackUrl : "/toppage"})
     // }
-
-
-
-    // フォームがもしすべて入力されていたら次のページ
-    const [formValue, setFormValue]
-        = useState({UserName: "", Email: "", Password: "", ConfirmPassword: ""})
-
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
-        setFormValue({...formValue, [name]: value});
-    }
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-    }
-
-    const allFieldsFilled = formValue.UserName && formValue.Email && formValue.Password && formValue.ConfirmPassword;
     return (
 
-
-        <>
+        <div className={"allScreen"}>
+            {dateAll.map((item) => (
+                <ul key={item}>
+                    <li>
+                        {item}
+                    </li>
+                </ul>
+            ))}
             <header>
                 <h1>F'dore</h1>
             </header>
@@ -71,7 +59,7 @@ const Register = () => {
             {/*    Googleでログイン*/}
             {/*</button>*/}
 
-            <section>
+            <section id={"register"}>
 
                 <div>
                     <div>
@@ -81,41 +69,67 @@ const Register = () => {
                         <div id="form">
                             <h2>ユーザー登録</h2><br/>
                             <form action={async (data: FormData) => {
-                                const username = data.get("UserName") as string
-                                console.log(username)
+                                const username = data.get("userName") as string
                                 const email = data.get("Email") as string
                                 const password = data.get("Password") as string
-                                await createUser(username, email, password).then(
-                                    user => {
-                                        console.log(user)
-                                    }
-                                )
+                                const PWCheck = data.get("PWCheck") as string
+                                if (email.includes("@")) {
+                                    await createUser(username, email, password, PWCheck).then(
+                                        (data) => {
+                                            if (data?.status == "existUsername") {
+                                                console.log("ここに登録ログ北")
+                                                window.alert("そのユーザー名は既に作成されています。")
+                                            } else {
+
+                                                if (data !== undefined && data !== null) {
+                                                    const UserDataParse = JSON.parse(data.newUser)
+                                                    const TokenDataParse = JSON.parse(data.TenMinToken)
+                                                    console.log(UserDataParse)
+                                                    setResponseUserData(UserDataParse)
+                                                    localStorage.setItem("TenMinToken", TokenDataParse)
+                                                }
+                                            }
+                                        }
+                                    )
+                                } else {
+                                    window.alert("メールアドレスに@が含まれていません。今一度入力しなおしてください")
+                                    return;
+                                }
                             }}>
                                 <label htmlFor="UserName">ユーザー名</label><br/>
 
-                                <input type="text" name="UserName" id="UserName" required onChange={onChange}
-
+                                <input type="text" name="userName" id="UserName" required
                                        placeholder="Enter your UserName"/><br/>
                                 <label htmlFor="Email">Email</label><br/>
-                                <input type="text" name="Email" id="Email" required value={formValue.Email}
-                                       placeholder="Enter your E-mail Address" onChange={onChange}/><br/>
-
-                                <input required type="password" name="Password" id="Password" value={formValue.Password}
-                                       placeholder="Enter Password" onChange={onChange}/><br/>
+                                <input type="text" name="Email" id="Email" required
+                                       placeholder="Enter your E-mail Address"/><br/>
+                                <label htmlFor="Password">パスワード</label><br/>
+                                <input required type="password" name="Password" id="Password"
+                                       placeholder="Enter Password"/><br/>
 
                                 <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" required name="ConfirmPassword" id="PWCheck"
-                                       value={formValue.ConfirmPassword}
-                                       placeholder="Enter Password again " onChange={onChange}/><br/>
-                                <button type="submit">
-                                    ログイン画面
-                                    {/*{allFieldsFilled ? <Link href={"/login"}>ログイン画面へ</Link> :*/}
-                                    {/*    <Link href={"/"}>フォームを入力</Link>}*/}
-                                </button>
+                                <input type="password" required name="PWCheck" id="PWCheck"
+                                       placeholder="Enter Password again "/><br/>
+
+                                {responseUserData == null ? (
+                                        <>
+                                            <button type="submit">
+                                                ユ―ザーを作成
+                                            </button>
+                                            <Link href={"/login"}>
+                                                <p style={{marginTop: "10px"}}>ユ―ザー作成済ですか？</p>
+                                            </Link>
+                                            <Link href={"/"}>
+                                                <p style={{marginTop: "10px"}}>トップページへ</p>
+                                            </Link>
+                                        </>
+                                    )
+                                    : (<Link href={{pathname: `/AuthGmail/${responseUserData?.email}`}}>
+                                        <button className={"submit"}>
+                                            メール認証に進む
+                                        </button>
+                                    </Link>)}
                             </form>
-                            <Link href={"login"}>
-                                <p style={{marginTop :"10px"}}>ユ―ザー登録済の方はこちら</p>
-                            </Link>
                         </div>
                     </div>
 
@@ -150,7 +164,7 @@ const Register = () => {
 
             </div>
 
-        </>
+        </div>
 
 
     );

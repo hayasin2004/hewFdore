@@ -17,7 +17,7 @@ const Cart = () => {
                         <input type="checkbox" name="goods_0" id="goods_0"/>
 
                         <div className="goods_box">
-                            <Image src={"/images/sample01.jpg"} width={150} height={150} alt="商品画像"/>
+                            <Image src={"/images/clothes/product.jpg"} width={150} height={150} alt="商品画像"/>
                             <div className="goods_desc">
                                 <h3>ニット上着</h3>
                                 <p>出品者:User02 さん<br/>
@@ -31,7 +31,7 @@ const Cart = () => {
                         <input type="checkbox" name="goods_0" id="goods_0"/>
 
                         <div className="goods_box">
-                            <Image src={"/images/sample01.jpg"} width={150} height={150} alt="商品画像"/>
+                            <Image src={"/images/clothes/product.jpg"} width={150} height={150} alt="商品画像"/>
                             <div className="goods_desc">
                                 <h3>ニット上着</h3>
                                 <p>出品者:User02 さん<br/>

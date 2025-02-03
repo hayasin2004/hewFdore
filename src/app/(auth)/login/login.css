@@ -1,8 +1,12 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+
+
+.allScreen{
     margin: 0;
     padding: 0;
     background-color: #D0C7B2;
-    overflow-x: hidden;
+    height: 100vh;
+    overflow: hidden;
 }
 
 div.flower_img{
@@ -11,21 +15,26 @@ div.flower_img{
     position: fixed;
     top:0;
     left: -1px;
-    z-index: -1;
+    z-index: 0;
     opacity: 0.5;
 }
 
-header{
-    font-size: 1.5rem;
+header.loginHeader{
+    width: 100%;
     display: block;
+    background: none; /*これ追加*/
 }
-header h1{
-    margin-top: 50px;
+h1.loginHeaderH1{
+    font-family: "Italiana", sans-serif;
+    font-weight: normal;
+    margin: 25px 0 25px 0 ;
+    letter-spacing: 6px;
     display: block;
+    font-size: 4rem;
     text-align: center;
 }
 
-section{
+section#login{
     width: 800px;
     margin-top: 4%;
     margin-left: 36%;
@@ -44,7 +53,11 @@ div#bgwhite{
     border-radius: 10px;
     margin: 0 auto;
     padding-bottom: 35px;
-    box-shadow: #000000cc 0px 0px 10px;
+    box-shadow: #000000cc 0 0 10px;
+    /*margin-top:50px ;*/
+
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -60,6 +73,7 @@ form{
 }
 
 form h2{
+    margin: 10px 0 10px 0;
 }
 
 form input{
@@ -95,7 +109,7 @@ form button{
 .Slideshow{
     width: 730px;
     height: 500px;
-
+    margin: 25px 0 0 0;
     position: absolute;
     top: 50%;
     left: 3%;
