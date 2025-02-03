@@ -39,7 +39,7 @@ const productDetail = async (id: string): Promise<{ product: string | null } | {
         console.log("まずここまで来たかの確認" + id)
         const product: ProductType | null = await Product.findById(id)
         console.log(product)
-        return {product: JSON.stringify(product)}  bc
+        return {product: JSON.stringify(product)}
     } catch (err) {
         console.error(err)
         console.error(err)

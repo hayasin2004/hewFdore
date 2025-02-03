@@ -36,13 +36,7 @@ const Toppage = () => {
         await toastTradeId()
     }
 
-    //
-    // useEffect(() => {
-    //     const insert = async () => {
-    //      await  InsertProductImage()
-    //     }
-    //     insert()
-    // }, []);
+
 
     useEffect(() => {　
         // エンコードしたtokenを検証する
