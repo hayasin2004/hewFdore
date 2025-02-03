@@ -60,7 +60,6 @@ const Product = () => {
                         <Image width={30} height={30} src="/images/star_8.png " alt="お気に入りアイコン"/>
                         <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
                         <Link href={"sendAddress"}>
-
                         <button id={"buy"}
                             type="button" className={"productPurchase"}>購入する
                         </button>
