@@ -10,7 +10,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
         const searchBuyerPurchaseAndComment = await Purchase.findOne({"tradeChat.buyerChatMessage._id": commentId}, {"tradeChat.$": 1})
         console.log("判定" + currentUserId ,purchaseId, commentId)
-        console.log("判定" +searchSellerPurchaseAndComment)
+        console.log("判定" +icon)
 
         if (searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerUserId == currentUserId) {
             //console.log("[購入者]自分のコメントにはいいねで来ません。")
@@ -39,7 +39,6 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                     "tradeChat.$[i].sellerChatMessage.$[j].sellerMessageLike": currentUserId,
                                     "sellerChatMessage.$.sellerMessageStamp": {
                                         userId: currentUserId,
-                                        sellerMessageStampLike: icon
                                     }
                                 }
                             },
@@ -68,7 +67,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                                 ]
                             }
                         )
-                        return {likeStatus: "delte", productLike: updateDeleteSearchMessage ,productLikeStamp : updateMessageStamp }
+                        return {likeStatus: "delete", productLike: updateDeleteSearchMessage ,productLikeStamp : updateMessageStamp }
 
                     } else {
                         console.log("ログインしているアカウントで出品者のコメントをいいねしていないので新規いいね。")

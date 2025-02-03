@@ -1,15 +1,23 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPickerPurchase.css"
 import productChatLike from "@/app/utils/product/productChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 
 const EmojiPickerPurchase = (props) => {
-    console.log(JSON.stringify(props.item))
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
     const [icon, setIcon] = useState<string>("")
     const [existIcon, setExistIcon] = useState<boolean>(false)
+    console.log(existIcon)
+    useEffect(() => {
+        if (props.stamp !== undefined && props.stamp !== null) {
+            setExistIcon(!existIcon)
+            setIcon(props.stamp)
+            console.log(existIcon)
+        }
+    }, [props]);
+
     const showPicker = () => setIsShowPicker(!isShowPicker)
     const selectEmoji = (e: any) => {
         console.log(e)
@@ -21,20 +29,22 @@ const EmojiPickerPurchase = (props) => {
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {
                 console.log(props.currentUser)
-                const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, icon)
+                const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, emoji)
                 console.log(response)
+                console.log("そうにゅう処理")
             }
             testCommentLike()
             setIsShowPicker(false)
             setExistIcon(!existIcon)
-            props.setIcon(emoji);
-            setIcon(emoji)
+            setIcon(emoji);
         }
     }
 
     const deleteStamp = async () => {
-        const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, props.stamp)
+        const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, icon)
+        console.log("消す処理")
         console.log(response)
+        setIcon("")
         setExistIcon(!existIcon)
     }
 
@@ -44,34 +54,45 @@ const EmojiPickerPurchase = (props) => {
             {props.stamp == undefined ? (
                 existIcon ?
                     <div key={props.item}>
-                        <button className={"emojiBotton"} onClick={deleteStamp}>{icon}</button>
-                    </div>
-                    : <div key={props.item} className={"comment-emojiPick"}>
-                    <button className={"emojiBotton"} onClick={showPicker}>+</button>
-                        <div style={{display: isShowPicker ? "block" : "none", position: "absolute", zIndex: 40}}
-                             className={"emojiPicker"}>
-                            <Picker onEmojiSelect={selectEmoji}/>
+                        <div className={"comment-emoji-rig"} onClick={deleteStamp}>
+                            {icon}
                         </div>
-                    
                     </div>
+                    : <div className={"comment-emojiPick"}>
+                        <div>
+                            <button className={"emojiButton"} onClick={showPicker}>+</button>
+                            <div
+                                style={{display: isShowPicker ? "block" : "none", position: "absolute", zIndex: 40}}
+                                className={"emojiPicker"}>
+                                <Picker onEmojiSelect={selectEmoji}/>
+                            </div>
+                        </div>
+                    </div>
+
             ) : (
-
-                existIcon ? props.stamp : (
-
-                    <div className={"comment-emojiPick"}>
-                        <button className={"emojiBotton"} onClick={showPicker}>+</button>
-                        <div style={{display: isShowPicker ? "block" : "none", position: "absolute", zIndex: 40}}
-                             className={"emojiPicker"}>
-                            <Picker onEmojiSelect={selectEmoji}/>
+                !existIcon ? (
+                        <div key={props.item}>
+                            <div className={"comment-emoji-lef"} onClick={deleteStamp}>
+                                {icon}
+                            </div>
                         </div>
-                        {icon}<br/>
-                    </div>
-                )
+                    )
+                    : (
+                        <div className={"comment-emojiPick"}>
+                            <div>
+                                <button className={"emojiButton"} onClick={showPicker}>+</button>
+                                <div
+                                    style={{display: isShowPicker ? "block" : "none", position: "absolute", zIndex: 40}}
+                                    className={"emojiPicker"}>
+                                    <Picker onEmojiSelect={selectEmoji}/>
+                                </div>
+                            </div>
+                        </div>
+                    )
 
             )
 
             }
-
         </>
 
     )
