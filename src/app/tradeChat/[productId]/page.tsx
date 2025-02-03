@@ -162,7 +162,8 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                     </div>
                                     {/*絵文字選択*/}
                                     <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
-                                                         item={item?.sellerChatMessage[0]?._id} setIcon={setIcon}/>
+                                                         item={item?.sellerChatMessage[0]?._id} setIcon={setIcon} stamp={item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}/>
+                                     
 
 
                                     {/*<button id={"good"}*/}

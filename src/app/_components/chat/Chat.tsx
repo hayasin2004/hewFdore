@@ -92,9 +92,8 @@ const Chat = (props: { paramsProductData: string }) => {
                         <div className="comment-area-lef">
 
                             メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
-                            メッセージ内容: {item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike ? item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike : "無理―"}
-                            <br/>
-                            <EmojiPicker currentUser={currentUser} productId={productId}  item={item?.listingChatMessage[0]?._id} setIcon={setIcon}/>
+                              <br/>
+                            <EmojiPicker stamp={item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.listingChatMessage[0]?._id} setIcon={setIcon}/>
                         </div>
                     </div>
                 ) : (
@@ -107,10 +106,8 @@ const Chat = (props: { paramsProductData: string }) => {
                         </div>
                         <div className="comment-area-rig">
                             メッセージ内容: {item?.buyerChatMessage[0]?.buyerMessage} <br/>
-                            スタンプ: {item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike : "無理―"}
-
-                            {/*<EmojiPickerPurchase currentUser={currentUser} productId={productId} setIcon={setIcon} item={item?.buyerChatMessage[0]?._id}/>*/}
-                        </div>
+                             <EmojiPicker stamp={item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                              </div>
                     </div>
                 )
             ))}

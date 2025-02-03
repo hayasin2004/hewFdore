@@ -16,7 +16,7 @@ body{
     z-index: 2;
 }
 
-.emojiBotton {
+.emojiButton {
     width: 20px;
     height: 20px;
     margin: 0 auto;
@@ -31,6 +31,6 @@ body{
     cursor: pointer;
 }
 
-.emojiBotton:hover {
+.emojiButton:hover {
     background-color: #ddd; /* ホバー時に少し明るく */
 }
