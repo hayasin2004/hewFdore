@@ -9,7 +9,6 @@ import {ProductType} from "@/app/utils/product/productDetail";
 
 const toastFollowings = async (productId: ProductType | null , sellerId: string | null , likedUserId : string | null  ) => {
     await connectDB()
-    // followingsUserId →　フォロー対象ユーザー　、　followerUserId　→　フォローするユーザー
     try {
         const product : ProductType | null = await Product.findById(productId);
         const sellerUser : UserType | null = await User.findById(sellerId);
@@ -24,8 +23,7 @@ const toastFollowings = async (productId: ProductType | null , sellerId: string 
             alreadyRead : "未読",
         }
         const toastFollow = await  Toast.create(purchase)
-        //console.log(toastFollow)
-    }catch (err){
+        }catch (err){
         console.log(err)
         return null
     }

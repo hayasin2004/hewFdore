@@ -17,8 +17,7 @@ const purchaseProduct = async (userData: UserType | null) => {
         if (userId) {
 
             const purchase: UserType[] = await User.find({_id: userId}).select("purchaseProduct")
-            //console.log(purchase)
-            if (purchase == null) {
+              if (purchase == null) {
                 console.log("購入した商品はありません")
                 return null
             }

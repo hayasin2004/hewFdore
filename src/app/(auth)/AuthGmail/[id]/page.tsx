@@ -34,9 +34,6 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                     console.log(err)
                 }
             }
-            // if (!secretKey){
-            //     console.log("secretKey not set");
-            // }
 
         }
         verifyTenMinToken()

@@ -49,7 +49,6 @@ export async function GET(req: NextApiRequest, res: NextResponse) {
         }
 
     }else {
-        //console.log("ユーザーリスト表示失敗")
     }
 
 }

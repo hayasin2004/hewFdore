@@ -1,16 +1,12 @@
 "use server"
-//NodeMailer
 import nodemailer from "nodemailer";
-import productDetail from "@/app/utils/product/productDetail";
-import userProfile from "@/app/utils/user/userProfile";
 import {User} from "@/models/User";
-import {Stripe} from "stripe";
 import {Product} from "@/models/Product";
 
 const toastProduct = async (productId: string, sellerId: string) => {
     const toastProduct = await Product.findById({_id: productId}).select(" productName productPrice productDesc productCategory productSize productCondition postageBurden")
-    const toastUser = await User.findById({_id: sellerId}).select("username email")
-    //console.log("toastProduct" + JSON.stringify(toastUser))
+
+
     {
 
         const transporter = nodemailer.createTransport({
@@ -22,21 +18,7 @@ const toastProduct = async (productId: string, sellerId: string) => {
             },
         });
 
-        // Email to admin
-        // const toHostMailData = {
-        //     from: process.env.GMAILUSER,
-        //     to: "masataka1kousuke1@gmail.com.com", //後で変える
-        //     subject: " `[お問い合わせ]${body.name}様より`",
-        //     text: "${body.message} Send from ${body.email}",
-        //     html: `
-        // <p>【お名前】</p>
-        // <p>【メッセージ内容】</p>
-        // <p>【メールアドレス】</p>
-        // <p>【確認コード】</p>
-        // `,
-        // };
 
-        // Email to user
         const toUserMailData = {
             from: process.env.GMAILUSER,
             to: "testnodemailermastakahew@gmail.com",
@@ -55,8 +37,6 @@ const toastProduct = async (productId: string, sellerId: string) => {
         };
 
         try {
-            // メールを送信
-            // await transporter.sendMail(toHostMailData);
             await transporter.sendMail(toUserMailData);
 
             return new Response(

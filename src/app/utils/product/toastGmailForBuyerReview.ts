@@ -45,8 +45,6 @@ const toastGmailForBuyerReview = async (currentUserId : string | null ,partnerUs
         };
 
         try {
-            // メールを送信
-            // await transporter.sendMail(toHostMailData);
             await transporter.sendMail(toBuyerUserMailData);
 
             return new Response(

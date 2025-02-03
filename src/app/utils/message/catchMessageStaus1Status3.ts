@@ -11,12 +11,7 @@ export interface ChatType {
 }
 
 const catchMessageStatus1Status2 = async (chatId?: string) => {
-    //console.log(chatId)
-    // チャットルーム検索
-    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // //console.log(fCHatRoomId)
 
-//     チャットルームにmessageを新しく挿入
     if (chatId !== undefined) {
         const fChangeMessage = await Chat.findById({_id: chatId})
         const chatList = {
@@ -24,7 +19,6 @@ const catchMessageStatus1Status2 = async (chatId?: string) => {
             partnerUserChat : fChangeMessage.partnerUserChat
         }
 
-        //console.log(chatList)
         return {chatCatchData : chatList}
     }
 }

@@ -47,26 +47,7 @@ const Login = () => {
         }
         existTenMinToken();
     }, [])
-    // useEffect(() => {
-    //     const confirm = async () => {
-    //         console.log("ここまで来た")
-    //         const ConfirmTenMinToken =await localStorage.getItem("TemMinToken")
-    //         console.log(ConfirmTenMinToken)
-    //         // if (ConfirmTenMinToken !== null) {
-    //         //     try {
-    //         //         const response = await confirmToken(ConfirmTenMinToken)
-    //         //         if (response !== null) {
-    //         //             console.log("あるよ")
-    //         //             const decoded = response.email
-    //         //             redirect(`/AuthGmail/${decoded}`)
-    //         //         }
-    //         //     } catch (err) {
-    //         //         console.log(err)
-    //         //     }
-    //         // }
-    //         confirm()
-    //     }
-    // }, [])
+
 
     const [userToken, setUserToken] = useState<string | null>()
     const [email, setEmail] = useState<string | null>(null)

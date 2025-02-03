@@ -7,9 +7,8 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 
-// 通知を追加する機能
 const toastPurchase = async  (currentUserId : string | null ,productId : string | null ,purchaseId : string | null ) => {
-// const toastPurchase = async  () => {
+
     await connectDB()
     try {
         const user : UserType | null = await User.findOne({_id : currentUserId})

@@ -65,8 +65,6 @@ const tradeCancelMessage = async (purchase: ProductType | null, tradeCode: Produ
         `,
         };
 
-        // メールを送信
-        // await transporter.sendMail(toHostMailData);
         await transporter.sendMail(toBuyerUserMailData);
         await transporter.sendMail(toListingUserMailData);
 

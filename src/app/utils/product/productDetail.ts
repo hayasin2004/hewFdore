@@ -37,14 +37,9 @@ const productDetail = async (id: string): Promise<{ product: string | null } | {
     const mongoScheme = await connectDB()
     try {
         console.log("まずここまで来たかの確認" + id)
-        // const db = mongoScheme.connection.db
         const product: ProductType | null = await Product.findById(id)
         console.log(product)
-        return {product: JSON.stringify(product)}
-        // return {product: JSON.stringify(product) , video : JSON.stringify(video)}
-
-        //console.log(userName)
-
+        return {product: JSON.stringify(product)}  bc
     } catch (err) {
         console.error(err)
         console.error(err)
@@ -53,21 +48,3 @@ const productDetail = async (id: string): Promise<{ product: string | null } | {
 }
 
 export default productDetail;
-
-// return {
-// product: {
-//     sellerId: userName?.sellerId,
-//     _id: product?._id,
-//     username: userName.username,
-//     productName: product?.productName,
-//     productDesc: product?.productDesc,
-//     productSize: product?.productSize,
-//     productCategory: product?.productCategory,
-//     postageBurden: product?.postageBurden,
-//     shippingArea: product?.shippingArea,
-//     productLike: product?.shippingArea,
-//     productCondition: product?.productCondition,
-//     productPrice: product?.productPrice,
-//     productPicture: product?.productPicture,
-//     productVideo: product?.productVideo
-// }

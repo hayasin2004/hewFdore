@@ -5,8 +5,6 @@ import {NextRequest, NextResponse} from "next/server";
 export default withAuth(
     async function middleware(req) {
         const token = await localStorage.getItem("token");
-        //console.log("これはミドルウェアのトークンです" + token)
-        const isAuth = !!token /* !!二個はトークンがあるか否かの強制二択に絞る*/
         const isAuthPage =
             req.nextUrl.pathname.startsWith("/topppage") ||
             req.nextUrl.pathname.startsWith("/login")
@@ -32,9 +30,6 @@ export default withAuth(
     }
 )
 
-// See "Matching Paths" below to learn more
 export const config = {
     matcher: ['/toppage', "/confirmUser/:path", "/login", "/user"]
 }
-//説明。これはトークンを持っているユーザー（ログインしたユーザー）のIDが:path*として扱われています。
-//　つまり最終的には/toppage/ログインしたユーザーというリンクになります。

@@ -12,9 +12,8 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
     try {
         const searchProduct: ProductType | null =await Product.findById(newProduct._id);
         const searchProductCategory : UserType[] = await User.find({productCategoryLikeList: category}).select("username email productCategory");
-        //console.log(searchProductCategory)
+
         if (searchProduct == null){
-            //console.log("商品が追加されていない可能性があります。")
             return null
         }
 
@@ -27,7 +26,6 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
             }
         })
 
-        //     カテゴリーが追加されたの通知
         for (const user of searchProductCategory) {
             const product = searchProduct
             const toUserMailData = {
@@ -46,14 +44,13 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
                 <p>送料負担者: ${product.postageBurden}</p>
                 `
             }
-            //console.log("送信完了")
             await transporter.sendMail(toUserMailData)
         }
 
 
     } catch (err) {
         console.error(err)
-        //console.log("メールの送信に失敗しました。")
+        return  null
     }
 }
 export default addUserProductCategoryToMail

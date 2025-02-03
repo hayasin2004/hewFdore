@@ -2,8 +2,6 @@ import { Configure, QRCodeCreate } from '@paypayopa/paypayopa-sdk-node';
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
-import {NextApiRequest, NextApiResponse} from "next";
-
 Configure({
     clientId: process.env.PAYPAY_API_KEY || '',
     clientSecret: process.env.PAYPAY_SECRET || '',
@@ -22,7 +20,6 @@ const PayPaySuccessResponse = z.object({
 
 export async function POST(req :Request ) {
     const productId = await req.json()
-    //console.log("受け取った" + (JSON.stringify(productId)))
     const merchantPaymentId = uuidv4();
     const payload = {
         merchantPaymentId,

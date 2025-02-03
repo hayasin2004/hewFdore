@@ -16,30 +16,25 @@ export interface createProductType {
 
 }
 
-// export  const editProduct = async (token : string ,　productName : string , productPrice :number , productDesc : string , shippingArea : string): Promise<createProductType | null> => {
 export const editProduct = async (productId: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,): Promise<{
-    result: string
-} | null> => {
-    // //console.log(productName, productDesc, productPrice, productCategory, deliveryTime, productSize, productCondition, postageBurden, shippingArea)
+    result: string } | null> => {
     await connectDB();
-    //console.log("商品関連データベースと接続中")
     try {
-        const updateProduct = await  Product.findByIdAndUpdate(productId , {
-            $set : {
-                productName: productName,
-                productPrice: productPrice,
-                productDesc: productDesc,
-                productCategory: productCategory,
-                productSize: productSize,
-                productCondition: productCondition,
-                postageBurden: postageBurden,
-                shippingArea: shippingArea,
-                deliveryTime: deliveryTime,
-            }
-        },{new : true , upsert: true}
+        const updateProduct = await Product.findByIdAndUpdate(productId, {
+                $set: {
+                    productName: productName,
+                    productPrice: productPrice,
+                    productDesc: productDesc,
+                    productCategory: productCategory,
+                    productSize: productSize,
+                    productCondition: productCondition,
+                    postageBurden: postageBurden,
+                    shippingArea: shippingArea,
+                    deliveryTime: deliveryTime,
+                }
+            }, {new: true, upsert: true}
         )
-        //console.log(updateProduct)
-        return {result: updateProduct};
+         return {result: updateProduct};
 
     } catch (err) {
         console.log(err)

@@ -4,11 +4,6 @@ import GoogleProvider from "next-auth/providers/google"
 import InstagramProvider from "next-auth/providers/instagram"
 import FacebookProvider from "next-auth/providers/facebook"
 import type {NextAuthOptions} from "next-auth"
-import {connectDB} from "@/lib/mongodb"
-import CredentialsProvider from "next-auth/providers/credentials";
-// allowDangerousEmailAccountLinking: true, →これは複数のプロバイダーで同じメールアドレスでログインしたときに衝突が起きないようにするもの。これをfalseにすると同じメールアドレスでログインはできなくなります。
-
-
 
 
 export const authOptions: NextAuthOptions = {
@@ -44,11 +39,9 @@ export const authOptions: NextAuthOptions = {
                 session.user.name = token.name;
                 session.user.email = token.email;
                 session.user.image = token.picture;
-            //     上記の型定義はtypes/next-auth.d.ts/
 
             }
-            // //console.log(session)　/*→　これでユーザー情報の一覧がコンソールに出ます。*/
-            return session
+             return session
         },
 
     },

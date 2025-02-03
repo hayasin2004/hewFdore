@@ -342,7 +342,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     //console.log(response)
                     setMessage("")
                 } catch (err) {
-                    //console.log(err)
+                    console.log(err)
                     return null
                 }
             }

@@ -10,8 +10,7 @@ export async function POST(req: Request) {
 
     const body = await req.json();
     const response = await confirmPassword(body.email,body.password)
-    //console.log(response)
-    if (response?.ok == true){
+     if (response?.ok == true){
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -22,10 +21,9 @@ export async function POST(req: Request) {
         },
     });
 
-    // Email to admin
-    const toHostMailData = {
+     const toHostMailData = {
         from: body.emailDecodedComponent,
-        to: "masataka1kousuke1@gmail.com.com", //後で変える
+        to: "masataka1kousuke1@gmail.com.com",
         subject: `メールアドレス認証`,
         text: `Send from ${body.emailDecodedComponent}`,
         html: `
@@ -35,8 +33,7 @@ export async function POST(req: Request) {
         `,
     };
 
-    // Email to user
-    const toUserMailData = {
+      const toUserMailData = {
         from: process.env.GMAILUSER,
         to: body.email,
         subject: "確認コードのお知らせ",
@@ -49,8 +46,7 @@ export async function POST(req: Request) {
     };
 
         try {
-            // メールを送信
-            await transporter.sendMail(toHostMailData);
+             await transporter.sendMail(toHostMailData);
             await transporter.sendMail(toUserMailData);
 
             return new Response(
@@ -66,8 +62,7 @@ export async function POST(req: Request) {
             );
         }
     }else {
-        //console.log("メールアドレス又はパスワードが一致しませんでした")
-        return new Response(
+          return new Response(
             JSON.stringify({ status: "Error", message: "メール送信に失敗しました。" }),
             { status: 500, headers: { "Content-Type": "application/json" } }
         );
