@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from 'react';
-import Image from "next/image";
 import "./listingcomplete_itiosikinou.css"
 import Header from "@/app/_components/header/Header";
 import Images from "next/image";

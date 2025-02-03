@@ -1,18 +1,14 @@
 "use client"
-
-import Image from "next/image";
+　
 import {useEffect, useState} from "react";
-import './AuthGmail.css'
-import {redirect} from "next/navigation";
-import {useRouter} from "next/navigation";
-import jwt from "jsonwebtoken";
+import './AuthGmail.css'　
+import {useRouter} from "next/navigation";　
 import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
     const router = useRouter();
     const [email, setEmail] = useState(params);
-    const [password, setPassword] = useState<string | null>(null);
-    const [message, setMessage] = useState("");
+    const [password, setPassword] = useState<string | null>(null);　
     const [status, setStatus] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
     const [userInputCode, setUserInputCode] = useState("");

@@ -7,13 +7,8 @@ import 'react-slideshow-image/dist/styles.css'
 import {redirect} from "next/navigation";
 
 import {loginUser} from "@/app/utils/user/loginUser";
-import {useRouter} from "next/navigation";
-import Toppage from "@/app/toppage/page";
-import Link from "next/link";
-import {User} from "@/models/User";
-import {string} from "prop-types";
-import {Form} from "react-router-dom";
-import {UserType} from "@/app/api/user/catchUser/route";
+import {useRouter} from "next/navigation";　
+import Link from "next/link";　
 import confirmToken from "@/app/utils/user/confirmToken";
 
 interface User {
@@ -49,14 +44,6 @@ const Login = () => {
     }, [])
 
 
-    const [userToken, setUserToken] = useState<string | null>()
-    const [email, setEmail] = useState<string | null>(null)
-    const [username, setUsername] = useState<string | null>(null)
-    const [password, setPassword] = useState<string | null>(null)/*正しくはログには[object object]が出ます*/
-    console.log("これはログイン成功したときにメールアドレスが出ます:" + email);
-    console.log("これはログインに成功した時にユーザー名が出ます:" + username);
-    console.log("これはログインに成功した時にパスワードが出ます。:" + password);
-
 
     const [formValue, setFormValue]
         = useState({Email: "", Password: "", ConfirmPassword: ""})
@@ -67,12 +54,7 @@ const Login = () => {
         setFormValue({...formValue, [name]: value});
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-    }
-
-    const allFieldsFilled = formValue.Email && formValue.Password && formValue.ConfirmPassword;
-    return (
+　    return (
 
         <div className={"allScreen"}>
             <div className={"flower_img"}>
@@ -80,7 +62,7 @@ const Login = () => {
             </div>
             <header className={"loginHeader"}>
                 <Link href={'/'}>
-                    <h1 className={"loginHeaderH1"}>F'dore</h1>
+                    <h1 className={"loginHeaderH1"}>F&apos;dore</h1>
                 </Link>
             </header>
 
@@ -107,10 +89,6 @@ const Login = () => {
                                                 console.log("ログイン情報が違う可能性があります。")
                                             } else {
                                                 localStorage.setItem("token", token)
-                                                setUserToken(token)
-                                                setEmail(user.email)
-                                                setUsername(user.username)
-                                                setPassword(user.password)
                                                 alert("ログインに成功しました。おかえりなさい" + user.username)
                                                 console.log("トークンが発行されました。" + user?.token);
                                                 redirect("toppage")

@@ -50,7 +50,7 @@ const Register = () => {
                 </ul>
             ))}
             <header>
-                <h1>F'dore</h1>
+                <h1>F&apos;dore</h1>
             </header>
             {/*<button onClick={handleGithubLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
             {/*    githubでログイン*/}

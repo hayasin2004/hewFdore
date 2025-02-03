@@ -11,7 +11,6 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import useUser from "@/hooks/useUser";
 
 const ConfirmUserProfile = () => {
-    const [purchaseData, setPurchaseData] = useState([])
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
@@ -32,9 +31,6 @@ const ConfirmUserProfile = () => {
             console.log(response)
             if (response == null) {
                 console.log("購入した商品はありません。")
-            }
-            if (response?.purchaseProduct !== undefined) {
-                setPurchaseData(JSON.parse(response?.purchaseProduct))
             }
             if (response?.product !== undefined) {
                 setProductData(JSON.parse(response?.product))

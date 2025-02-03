@@ -14,7 +14,7 @@ const Footer = () =>{
                     <span>資金決済法に関する表記に基づく表示</span>
                 </p>
             </div>
-            <p id="c">&copy; 2024-2025 F'dore</p>
+            <p id="c">&copy; 2024-2025 F&apos;dore</p>
         </div>
     );
 

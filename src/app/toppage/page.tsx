@@ -78,7 +78,7 @@ const Toppage = () => {
                     <div className={"introduction"}>
                         <div className={"introductionMain"}>
 
-                            <h1>F'doreとは</h1>
+                            <h1>F&apos;doreとは</h1>
                             <p>大人の女性の向けファッション</p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ const Toppage = () => {
                         </li>
                         <li className={"toppageBottomLi"}>
 
-                            <h2>F'dore</h2>
+                            <h2>F&apos;dore</h2>
                         </li>
                     </ul>
                 </div>

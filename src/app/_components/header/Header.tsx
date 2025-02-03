@@ -132,7 +132,7 @@ const Header = () => {
                     <div className="title">
                         <Link href={"/"}>
                             <h1>
-                                F'dore
+                                F&apos;dore
                             </h1>
                         </Link>
                     </div>

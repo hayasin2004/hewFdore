@@ -1,27 +1,21 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
-import useUser from "@/hooks/useUser";
 import DirectMessageserver from "@/app/utils/user/DirectMessageserver";
 import io from "socket.io-client";
 import {ChatType} from "@/models/Chat";
-import {UserType} from "@/app/api/user/catchUser/route";
-import saveMessageStauts1 from "@/app/utils/message/saveMessageStauts1";
 import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2" ;
 import saveMessageStauts2Update from "@/app/utils/message/saveMessageStauts2Update";
 import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Update";
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
 import confirmUser from "@/app/utils/user/confirmUser";
-import {JsConfigPathsPlugin} from "next/dist/build/webpack/plugins/jsconfig-paths-plugin";
 
 
 const DirectMessage = ({params}: { params: { id?: string } }) => {
-    // console.log(JSON.stringify(params));
+
     const detailUser = params?.id as string;
     const token = localStorage.getItem("token")
     const [chatData, setChatData] = useState<ChatType | null>(null)
-    const [currentUser, setCurrentUser] = useState<ChatType | null>(null)
     console.log(JSON.stringify(chatData))
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
@@ -31,7 +25,6 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const [partnerUserChat, setPartnerChat] = useState([])
 
     console.log(JSON.stringify(chatList))
-    const [dateBasechatList, setDateBaseChatList] = useState<ChatType | null>(null)
     // console.log("保存したいデータ" + JSON.stringify(dateBasechatList))
 
     const socket = io("http://localhost:8080");
@@ -80,7 +73,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             // setCurrentUser(setUsersData?.currentUser?._id)
         }
         response()
-    }, [currentUser, detailUser, token]);
+    }, [ detailUser, token]);
 
 
     // socket.ioに送信
@@ -139,7 +132,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 </p>
                 <div>
                     対象ユーザーチャット : {partnerUserChat?.map((item) => (
-                    <ul key={item.id}>
+                    <ul key={item._id}>
                         <li>{item}</li>
                     </ul>
                 ))}
@@ -150,7 +143,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 </p>
                 <div>
                     ログインしているチャット : {currentUserChat?.map((item) => (
-                    <ul key={item.id}>
+                    <ul key={item._id}>
                         <li>{item}</li>
                     </ul>
                 ))}

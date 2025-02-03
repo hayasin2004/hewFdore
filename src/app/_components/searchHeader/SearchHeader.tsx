@@ -15,7 +15,7 @@ const SearchHeader = () => {
                         <Link href={"toppage"}>
 
                         <h1>
-                            F'dore
+                            F&apos;dore
                         </h1>
                         </Link>
                     </div>

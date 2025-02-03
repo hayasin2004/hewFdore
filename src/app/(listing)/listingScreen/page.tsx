@@ -8,8 +8,6 @@ import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";　
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
-import testvideoSave from "@/app/utils/product/testvideoSave";
-import videoSave from "@/app/_components/video/videoSave";
 import VideoSave from "@/app/_components/video/videoSave";　　
 
 export interface productStatusType {
@@ -35,8 +33,8 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
-    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
-    const [compressedVideo, setCompressedVideo] = useState(null)
+    // const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
+    // const [compressedVideo, setCompressedVideo] = useState(null)
 
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
@@ -62,6 +60,7 @@ const ListingScreen: React.FC = () => {
     // const deliveryTime = deliveryTime
     // const shippingArea = shippingArea
     const socket = io("http://localhost:8080");
+    console.log(socket)
 
     // const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     const files = e.target.files
@@ -97,7 +96,6 @@ const ListingScreen: React.FC = () => {
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
-                        const shippingArea = data.get("shippingArea") as string;
                         const token = localStorage.getItem("token") as string;
                         console.log("来てる" + shippingAreaText)
                         await createProduct(
