@@ -2,32 +2,17 @@
 import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "./searchResult.css"
-import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
-import Sidebar from "@/app/_components/sidebar/Sidebar";
 import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
 import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
-import {products as data} from "../api/dummyData/data"
-import {productsProps} from "../api/dummyData/data";
-import CompleteStripe from "@/app/_components/stripe/Stripe";
 import {loadStripe} from "@stripe/stripe-js";
-import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
-import Stripe from "@/app/_components/stripe/Stripe";
 import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
 // ページネーション
 import ReactPaginate from "react-paginate";
-import propsToClassKey from "@mui/system/propsToClassKey";
-import {
-    fillLazyItemsTillLeafWithHead
-} from "next/dist/client/components/router-reducer/fill-lazy-items-till-leaf-with-head";
-import {color} from "@mui/system";
-import {dividerClasses} from "@mui/material";
-import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
-
-
 const stripePromise = loadStripe(
     process.env.STRIPE_SECRET_KEY!
 )
+console.log(stripePromise);
 
 const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])

@@ -14,14 +14,6 @@ import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 import {ToastType} from "@/models/Toast";
 import {UserType} from "@/app/api/user/catchUser/route";
 
-interface User {
-    userId: string
-    username: string
-    email: string
-    password: string
-    profilePicture: string
-    coverProfilePicture: string
-}
 
 
 const Header = () => {
@@ -103,17 +95,6 @@ const Header = () => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     }
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '37%',
-        left: '80%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        height: 400,
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

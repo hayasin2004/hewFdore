@@ -3,7 +3,6 @@
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import {UserType} from "@/app/api/user/catchUser/route";
-import {Purchase} from "@/models/Purchase";
 import {Product} from "@/models/Product";
 
 const getFavoriteProductFunc =async (userId : string | null) => {

@@ -1,7 +1,5 @@
 import React from 'react';
 import "./Footer.css"
-import Image from "next/image";
-import Chat from "@/app/_components/chat/Chat";
 
 const Footer = () =>{
     return(

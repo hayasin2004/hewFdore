@@ -1,9 +1,6 @@
 import React from 'react';
 import "./SearchResultProducts.css"
-import Image from "next/image"
 import Link from "next/link";
-import SearchHeader from "@/app/_components/searchHeader/SearchHeader";
-import {productsProps} from "@/app/api/dummyData/data";
 
 
 const SearchResultProducts  = ( ) => {

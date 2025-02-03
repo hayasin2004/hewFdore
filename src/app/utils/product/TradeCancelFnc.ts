@@ -6,11 +6,11 @@ import {Purchase} from "@/models/Purchase";
 const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string | null) => {
     await connectDB()
     try {
-         const tradeStripe = await Product.findOne({stripeCode: paymentMethod})
+        const tradeStripe = await Product.findOne({stripeCode: paymentMethod})
         const tradePayPay = await Product.findOne({payPayCode: paymentMethod})
         const purchase = await Purchase.findById(purchaseId)
         if (tradeStripe !== null) {
-              if (tradeStripe.stripeCode !== "") {
+            if (tradeStripe.stripeCode !== "") {
 
                 const cancelPush = await tradeStripe.updateOne({
                     $set: {
@@ -20,10 +20,11 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
                     }
                 }, {new: true})
                 const purchaseStatus = await purchase.updateOne({$set: {tradeStatus: "取引キャンセル"}}, {new: true})
+                console.log(cancelPush, purchaseStatus)
                 return "取引をキャンセルしました。"
+
             }
-        }
-        else if (tradePayPay !== null) {
+        } else if (tradePayPay !== null) {
             const cancelPush = await tradePayPay.updateOne({
                 $set: {
                     sellStatus: "selling",
@@ -33,7 +34,7 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
             }, {new: true})
             const purchaseStatus = await purchase.updateOne({$set: {tradeStatus: "取引キャンセル"}}, {new: true})
 
-
+            console.log(cancelPush, purchaseStatus)
             return "取引をキャンセルしました。"
         }
 

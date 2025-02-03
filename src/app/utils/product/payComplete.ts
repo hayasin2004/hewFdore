@@ -39,6 +39,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                         sellStatus: "trading"
                     }
                 }, {new: true, upsert: true});
+                console.log(product)
             }
             else if (paymentStatus == "payPay") {
 
@@ -49,6 +50,8 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                         sellStatus: "trading"
                     }
                 }, {new: true, upsert: true});
+                console.log(product)
+
             }
 
             const user = User.findByIdAndUpdate({id: userId}, {
@@ -57,7 +60,9 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                 }
             }, {new: true, upsert: true});
 
+
             const sendPurchaseComplete = await toastGmailForPurchase(productId, CheckProduct.sellerId, userId)
+             console.log(user , sendPurchaseComplete)
              return JSON.stringify(purchase._id)
 
         }

@@ -5,20 +5,19 @@ import "./chat.css"
 import Images from "next/image";
 import useUser from "@/hooks/useUser";
  import getProductChatMessage from "@/app/utils/product/getChatMessage";
-import {productCommentType} from "@/models/ProductComment";
+import {ProductCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
 import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
     const [loginUserData, setLoginUserData] = useState()
     const [icon, setIcon] = useState("")
-    const [ChatMessageList, setChatMessageList] = useState<productCommentType[] | null>([])
+    const [ChatMessageList, setChatMessageList] = useState<ProductCommentType[] | null>([])
     console.log("渡ってきた" + JSON.stringify(ChatMessageList?.map((item) => console.log(item?.chatUserRole == "購入者"))))
 
-    console.log(chatMessage)
+    console.log(icon,chatMessage)
     const user = useUser()
     const productId = props.paramsProductData
     const currentUser = loginUserData?._id
@@ -37,12 +36,8 @@ const Chat = (props: { paramsProductData: string }) => {
                     const responseParse = JSON.parse(JSON.stringify(response))
                     console.log(responseParse?.listingChatMessage)
                     setChatMessageList(JSON.parse(response.listingChatMessage))
-                }
-                if (response?.buyerChatMessage) {
-                    setBuyerChatMessageList(JSON.parse(response.buyerChatMessage))
-                } else {
+                }  else {
                     console.log("この商品にコメントはありません")
-                    setBuyerChatMessageList(null)
                     setChatMessageList(null)
                 }　
         }
@@ -68,12 +63,6 @@ const Chat = (props: { paramsProductData: string }) => {
         // if (CheckChatRoomResponse !== null){
         //     console.log(CheckChatRoomResponse)
         // }
-    }
-
-    const testCommentLike = async (item: string | null, icon: string | null) => {
-        console.log(item)
-        const response = await productChatLike(currentUser, productId, item, icon)
-        console.log(response)
     }
 
     return (

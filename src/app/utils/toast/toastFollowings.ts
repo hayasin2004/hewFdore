@@ -18,6 +18,7 @@ const toastFollowings = async (followingsUserId : string | null , followerUserId
             alreadyRead : "未読",
         }
         const toastFollow = await  Toast.create(purchase)
+         console.log(followingsUser , toastFollow)
         }catch (err){
         console.log(err)
         return null

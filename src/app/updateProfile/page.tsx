@@ -4,11 +4,8 @@ import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
 import userInfoChange from "@/app/utils/user/userInfoChange";
-import useUser from "@/hooks/useUser";
 import deleteAccount from "@/app/utils/user/deleteAccount";
-import userDetail from "@/app/utils/user/userDetail";
 import confirmUser from "@/app/utils/user/confirmUser";
-import {string} from "prop-types";
 
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")

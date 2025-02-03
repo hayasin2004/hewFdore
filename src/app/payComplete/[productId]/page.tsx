@@ -3,11 +3,8 @@ import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "../payComplete.css"
 import Link from "next/link";
-import {useSearchParams} from 'next/navigation'
-import io from "socket.io-client";
 import useUser from "@/hooks/useUser";
 import payComplete from "@/app/utils/product/payComplete";
-import UpdateProductLikeList from "@/app/utils/setting/update/UpdateProductLikeList";
 
 const PayComplete = () => {
     const [productId, setProductId] = useState<string | null>("")
@@ -18,7 +15,6 @@ const PayComplete = () => {
     console.log(params?.sessionId)
     const user = useUser()
     const userParse = JSON.parse(user)
-    const currentUser = loginUserData?._id
     useEffect(() => {
         setLoginUserData(userParse)
         const query = new URLSearchParams(window.location.search);

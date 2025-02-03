@@ -6,17 +6,17 @@ import Images from "next/image";
 import useUser from "@/hooks/useUser";
 import productSendComment from "@/app/utils/product/productSendComment";
 import getProductChatMessage from "@/app/utils/product/getChatMessage";
-import {productCommentType} from "@/models/ProductComment";
+import {ProductCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
 import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
+    const [buyerChatMessageList, setBuyerChatMessageList] = useState<ProductCommentType[] | null>([])
     const [loginUserData, setLoginUserData] = useState()
     const [icon, setIcon] = useState("")
-    const [ChatMessageList, setChatMessageList] = useState<productCommentType[] | null>([])
+    const [ChatMessageList, setChatMessageList] = useState<ProductCommentType[] | null>([])
     console.log("渡ってきた" + JSON.stringify(ChatMessageList?.map((item) => console.log(item?.chatUserRole == "購入者"))))
 
     console.log(chatMessage)

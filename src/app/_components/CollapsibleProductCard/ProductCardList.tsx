@@ -1,8 +1,6 @@
 // ProductCardList.tsx
-import { useState } from 'react';
 import CollapsibleProductCard from './CollapsibleProductCard';
 import './CollapsibleProductCard.css';
-import { DBProductType } from '@/app/api/product/route';
 import {ProductType} from "@/app/utils/product/productDetail";
 
 interface ProductCardListProps {

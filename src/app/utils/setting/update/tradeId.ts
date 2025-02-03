@@ -1,7 +1,6 @@
 "use server"
 
 import {connectDB} from "@/lib/mongodb";
-import {User} from "@/models/User";
 import {Product} from "@/models/Product";
 
 const tradeId = async () => {

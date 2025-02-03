@@ -18,7 +18,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
         console.log("正しく来てるのかな")
 
         const fCHatRoomId = await Purchase.findById({_id: purchaseId})
-
+        console.log(fCHatRoomId)
         const fChangeMessage = await Purchase.findByIdAndUpdate(
             {_id:purchaseId},
             {

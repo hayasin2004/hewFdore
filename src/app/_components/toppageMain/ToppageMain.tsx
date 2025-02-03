@@ -1,8 +1,5 @@
 import React from 'react';
 import "./toppageMain.css"
-// import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
-import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
-
 const ToppageMain = () => {
 
     return (

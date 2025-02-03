@@ -1,7 +1,5 @@
 "use client"
-import React, {useEffect, useState} from 'react';
-import productSearch from "@/app/utils/search/productSearch";
-import {ProductType} from "@/app/utils/product/productDetail";
+import React, {useState} from 'react';
 import {useRouter} from "next/navigation";
 
 const Searchuser = () => {

@@ -1,5 +1,5 @@
 import mongoose from "mongoose"; 
-export interface productCommentType {
+export interface ProductCommentType {
     _id?: string;
     listingUserId?: string;
     buyerUserIdList?: string[];

@@ -1,12 +1,12 @@
 "use server"
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
-import {UserType} from "@/app/api/user/catchUser/route";
-import jwt from "jsonwebtoken";
 import toastFollowings from "@/app/utils/toast/toastFollowings";
 
 const updateFollowings = async (userFollowings?: string | null, loginNowUserId?: string | null): Promise<{
     followers: string | null
+} | {
+    toastFollow: string | null
 } | string | null> => {
     await connectDB()
     try {
@@ -16,7 +16,7 @@ const updateFollowings = async (userFollowings?: string | null, loginNowUserId?:
             const following: string | null = await currentUser.updateOne({$pull: {followings: user._id}})
 
             const followers: string | null = await user.updateOne({$pull: {followers: currentUser._id}})
-
+            console.log(followers, following)
             return null
         } else {
 
@@ -26,9 +26,9 @@ const updateFollowings = async (userFollowings?: string | null, loginNowUserId?:
             if (!following) {
                 return null
             }
-            const toastFollow = await  toastFollowings(user?._id ,currentUser?._id)
+            const toastFollow = await toastFollowings(user?._id, currentUser?._id)
 
-            return {followers: followers}
+            return {followers: followers, toastFollow: toastFollow}
         }
     } catch (err) {
         console.log(err)

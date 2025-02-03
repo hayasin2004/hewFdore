@@ -1,22 +1,19 @@
 "use client"
-import React, {useEffect, useState} from 'react';
-import {useRouter} from "next/navigation";
 import {FormControl, FormControlLabel, FormLabel, Radio, RadioGroup} from "@mui/material";
 import Box from "@mui/material/Box";
 import searchProductCategoryServerAction from "@/app/utils/search/(product)/searchProductCategory";
 import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
 import confirmUser from "@/app/utils/user/confirmUser";
+import {useEffect, useState} from "react";
 
-const searchProductCategory = () => {
+const SearchProductCategory = () => {
     const token = localStorage.getItem("token")
-    const router = useRouter();
     const [loginNowUser, setLoginNowUser] = useState<string | null>(null)
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
     const [productCategory, setProductCategory] = useState<string[] | null>(null)
     console.log(productCategory)
 
     useEffect(() => {
-
         const loginUser = async () => {
             const response = await confirmUser(token)
             const responseParse = JSON.parse(response)
@@ -30,7 +27,7 @@ const searchProductCategory = () => {
         console.log(searchProductCategory)
     }
     const handleSaveProductSearch = async () => {
-        const searchProductCategory = await likeListProductCategory(userId , productCategory);
+        const searchProductCategory = await likeListProductCategory(loginNowUser._id , productCategory);
         console.log(searchProductCategory)
     }
 
@@ -106,4 +103,4 @@ const searchProductCategory = () => {
     );
 };
 
-export default searchProductCategory;
+export default SearchProductCategory;

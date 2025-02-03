@@ -11,7 +11,7 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
     await connectDB()
     try {
         const searchProduct: ProductType | null =await Product.findById(newProduct._id);
-        const searchProductCategory : UserType[] = await User.find({productCategoryLikeList: category}).select("username email productCategory");
+        const UserAddSearchProductCategory : UserType[] = await User.find({productCategoryLikeList: category}).select("username email productCategory");
 
         if (searchProduct == null){
             return null
@@ -26,7 +26,8 @@ const addUserProductCategoryToMail = async (category : string , newProduct : str
             }
         })
 
-        for (const user of searchProductCategory) {
+        for (const user of UserAddSearchProductCategory) {
+            console.log(user)
             const product = searchProduct
             const toUserMailData = {
                 from: process.env.GMAILUSER,

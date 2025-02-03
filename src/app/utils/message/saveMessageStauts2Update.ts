@@ -1,7 +1,6 @@
 "use server"
 
 import {Chat} from "@/models/Chat";
-import {string} from "prop-types";
 
 export interface ChatType {
     currentUser?: string

@@ -19,7 +19,6 @@ const PayPaySuccessResponse = z.object({
 })
 
 export async function POST(req :Request ) {
-    const productId = await req.json()
     const merchantPaymentId = uuidv4();
     const payload = {
         merchantPaymentId,

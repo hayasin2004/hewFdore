@@ -7,7 +7,7 @@ const soldOutProduct = async () => {
     await connectDB()
     try {
         const soldOutProductUpdate = await User.updateMany({soldOutProduct: {$exists: false}}, {$set: {soldOutProduct: []}})
-        //console.log(soldOutProductUpdate)
+        console.log(soldOutProductUpdate)
     } catch (err) {
         console.log(err)
         return null

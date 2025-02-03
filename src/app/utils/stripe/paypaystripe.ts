@@ -1,18 +1,14 @@
 "use server";
-
-import {NextApiRequest} from "next";
-import {NextResponse} from "next/server";
 import {Product} from "@/models/Product";
 import {connectDB} from "@/lib/mongodb";
 import {Stripe} from "stripe";
-import {redirect} from "next/navigation";
 import PAYPAY, {QRCodeCreate} from "@paypayopa/paypayopa-sdk-node";
 import {v4 as uuidv4} from 'uuid';
 import {z} from "zod";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-
+console.log(stripe)
 const PayPaySuccessResponse = z.object({
     STATUS: z.literal(201),
     BODY: z.object({
@@ -38,7 +34,6 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
             throw new Error("Product not found");
         }
 
-        const productObjectId = product._id;
         const productPrice = product.productPrice;
         const productName = product.productName;
         const productDesc = product.productDesc;
@@ -88,7 +83,7 @@ export async function stripePaymentPayPay(productId: string, paymentMethod: stri
                     success_url: `http://localhost:3000/payComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
                     cancel_url: "http://localhost:3000",
                 });
-
+                console.log(session)
                 return {url: url};
 
             } catch (error) {

@@ -1,7 +1,6 @@
 "use server"
 import {GridFSBucket, GridFSBucketWriteStream} from 'mongodb';
 import {connectDB} from "@/lib/mongodb";
-import {User} from "@/models/User";
 
 const testvideoSave = async (video: FormData | null) => {
     const mongoScheme = await connectDB()

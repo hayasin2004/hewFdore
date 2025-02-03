@@ -6,8 +6,7 @@ import {Product} from "@/models/Product";
 
 const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null, icon: string | null) => {
     await connectDB()
-    try {
-        const checkListingUser = await Product.findOne({_id: productId}).select("sellerId")
+    try {　
         const searchListingProductAndComment = await ProductComment.findOne({"productChat.listingChatMessage._id": commentId}, {"productChat.$": 1})
         const searchBuyerProductAndComment = await ProductComment.findOne({"productChat.buyerChatMessage._id": commentId}, {"productChat.$": 1})
         console.log(currentUserId, productId, commentId, icon)
@@ -63,6 +62,7 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                             ]
                         }
                     );
+                    console.log(updateMessageLike , updateMessageStamp)
                 } else {
                     console.log("デバック用コメント4")
 
@@ -101,6 +101,7 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                         }
                     );
 
+                    console.log(updateMessageLike , updateMessageStamp)
 
                 }
             }
@@ -143,6 +144,7 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                             ]
                         }
                     );
+                    console.log(updateMessageLike , updateMessageStamp)
 
                 } else {
                     console.log("購入者コメント コメントをいいねしていない。")
@@ -179,6 +181,8 @@ const productChatLike = async (currentUserId: string | null, productId: string |
                             ]
                         }
                     );
+                    console.log(updateMessageLike , updateMessageStamp)
+
                 }
             }
 

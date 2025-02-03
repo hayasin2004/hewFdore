@@ -6,8 +6,7 @@ import {Purchase} from "@/models/Purchase";
 const purchaseChatLike = async (currentUserId: string | null, purchaseId: string | null, commentId: string | null, icon: string | null) => {
     await connectDB()
     try {
-        const checkSellerUser = await Purchase.findOne({_id: purchaseId}).select("sellerId")
-        const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
+         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
         const searchBuyerPurchaseAndComment = await Purchase.findOne({"tradeChat.buyerChatMessage._id": commentId}, {"tradeChat.$": 1})
         console.log("判定" + commentId)
 

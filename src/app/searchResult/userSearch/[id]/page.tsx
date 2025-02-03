@@ -1,11 +1,8 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import {useRouter} from "next/navigation";
 import userSearch from "@/app/utils/search/(user)/userSearch";
 
 const SearchResultParamsId = ({params}: { params: { id: string } }) => {
-    const [urlDDecoded, setUrlDDecoded] = useState<string>("")
-    console.log(urlDDecoded)
     const [searchUserResult, setSearchUserResult] = useState<string[] | null>(null)
     const searchWord = params.id;
     const searchWordDecoded = decodeURI(searchWord);

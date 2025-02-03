@@ -3,13 +3,8 @@ import './userNavigation.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import Header from "@/app/_components/header/Header";
-import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import Images from "next/image"
-import {borderRadius, color, fontWeight} from "@mui/system";
-import {createTheme} from "@mui/material/styles";
-import {main} from "@popperjs/core";
 import {useEffect, useState} from "react";
 import confirmUser from "@/app/utils/user/confirmUser";
 

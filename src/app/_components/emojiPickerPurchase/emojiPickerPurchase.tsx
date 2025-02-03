@@ -2,7 +2,6 @@
 import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPickerPurchase.css"
-import productChatLike from "@/app/utils/product/productChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 
 const EmojiPickerPurchase = (props) => {
@@ -23,7 +22,7 @@ const EmojiPickerPurchase = (props) => {
         console.log(e)
         if (e.unified !== "") {
             const emojiCode = e.unified.split("-");
-            let codesArray: string[] = []
+            const codesArray: number[] = []
             emojiCode.forEach((el: any) => codesArray.push("0x" + el));
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);

@@ -11,7 +11,6 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import {ProductType} from "@/app/utils/product/productDetail";
 
 const PaidNote = () => {
-    const [purchaseData, setPurchaseData] = useState([])
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
@@ -33,9 +32,6 @@ const PaidNote = () => {
             if (response == null){
                 console.log("購入した商品はありません。")
                 window.alert("購入した商品はありません。")
-            }
-            if (response?.purchaseProduct !== undefined) {
-                setPurchaseData(JSON.parse(response?.purchaseProduct))
             }
             if (response?.product !== undefined) {
                 setProductData(JSON.parse(response?.product))

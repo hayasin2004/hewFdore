@@ -7,7 +7,8 @@ const cancelTradeStripe = async (stripeCode: string | null) => {
     try {
         if (stripeCode !== null) {
             const cancelStripe = await stripe.paymentIntents.cancel("pi_3QkBB3FGZsY8WLqm14Z3xAKy");
- }
+            console.log(cancelStripe)
+        }
     } catch (err) {
         console.log(err)
         return null

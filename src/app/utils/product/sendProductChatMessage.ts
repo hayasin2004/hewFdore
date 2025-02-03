@@ -3,7 +3,7 @@
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import {User} from "@/models/User";
-import {ProductComment, productCommentType} from "@/models/ProductComment";
+import {ProductComment, ProductCommentType} from "@/models/ProductComment";
 
 const sendProductChatMessage = async (productId: string | null, currentUser: string | null, sendChatMessage: string | null) => {
 
@@ -11,8 +11,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
     try {
          const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
-         const ExistChatMessage: productCommentType | null = await ProductComment.findOne({productId: productId})
-        const ExistUserId: productCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
+         const ExistChatMessage: ProductCommentType | null = await ProductComment.findOne({productId: productId})
+        const ExistUserId: ProductCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
 
 
           if (productListingUser == null) {
@@ -84,6 +84,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                     }
                                 }
                             );
+                            console.log(updateChatResponse)
                         }
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
@@ -107,6 +108,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
+                        console.log(updateChatResponse)
+
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     }
@@ -131,6 +134,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
+                        console.log(updateChatResponse)
+
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     } else {
@@ -154,6 +159,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
+                        console.log(updateChatResponse)
+
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     }

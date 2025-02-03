@@ -1,4 +1,4 @@
-    // CollapsibleProductCard.tsx
+ 
     import React, { useState, useRef, useEffect } from 'react';
     import {
         Card,
@@ -7,10 +7,8 @@
         Collapse,
         Box
     } from '@mui/material';
-    import './CollapsibleProductCard.css';
-    import { DBProductType } from '@/app/api/product/route';
+    import './CollapsibleProductCard.css'; 
     import Link from 'next/link';
-    import {Stripe} from "stripe";
     import {ProductType} from "@/app/utils/product/productDetail";
     import Image from "next/image";
 

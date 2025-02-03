@@ -1,15 +1,15 @@
 "use server"
 
 import {connectDB} from "@/lib/mongodb";
-import {ProductComment, productCommentType} from "@/models/ProductComment";
+import {ProductComment, ProductCommentType} from "@/models/ProductComment";
 import {Product} from "@/models/Product";
 
 const getProductChatMessage = async ( productId: string | null) => {
     await connectDB()
     console.log("そもそも動いてんのかって話")
     try {
-        const searchProductChat: productCommentType | null = await ProductComment.findOne({productId: productId}).select(" listingUserId buyerUserIdList  productChat")
-        const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
+        const searchProductChat: ProductCommentType | null = await ProductComment.findOne({productId: productId}).select(" listingUserId buyerUserIdList  productChat")
+
         if (searchProductChat == null) {
             console.log("売り切れか削除されました。")
             return null

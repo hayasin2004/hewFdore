@@ -5,7 +5,6 @@ import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Link from 'next/link';
 import Sidebar from "@/app/_components/sidebar/Sidebar";
-import Chat from "@/app/_components/chat/Chat";
 
 
 

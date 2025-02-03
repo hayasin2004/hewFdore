@@ -2,9 +2,6 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
-import {User} from "@/models/User";
-import {ObjectId} from "mongodb";
-import {GridFSBucket} from "mongodb";
 
 export interface ProductType {
     product?: string;
@@ -34,7 +31,7 @@ export interface ProductType {
 
 
 const productDetail = async (id: string): Promise<{ product: string | null } | { video: string | null } | null> => {
-    const mongoScheme = await connectDB()
+     await connectDB()
     try {
         console.log("まずここまで来たかの確認" + id)
         const product: ProductType | null = await Product.findById(id)

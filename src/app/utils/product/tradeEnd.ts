@@ -63,12 +63,6 @@ const tradeEnd = async (purchaseId: string | null, status: string | null, curren
                         }, {new: true}
                     )
 
-                    const lastChatReview = {
-                        sellerUserLastChat: tradeStatusUpdate.sellerUserLastChat,
-                        sellerUserLastReview: tradeStatusUpdate.sellerUserLastReview,
-                        buyerUserLastChat: tradeStatusUpdate.buyerUserLastChat,
-                        buyerUserLastReview: tradeStatusUpdate.buyerUserLastReview
-                    }
                     const sellerUserLastChat = sellerPurchaseLastUpdate.sellerUserLastChat
 
                      tradeStatus = 2;

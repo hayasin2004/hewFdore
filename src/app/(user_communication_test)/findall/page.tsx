@@ -1,8 +1,6 @@
 "use client"
 import React, {useEffect, useMemo, useState} from 'react';
-import CatchingUser from "@/app/_components/catchingUser/CatchingUser";
 import {UserType} from "@/app/api/user/catchUser/route";
-import {DBProductType} from "@/app/api/product/route";
 import Link from "next/link";
 
 

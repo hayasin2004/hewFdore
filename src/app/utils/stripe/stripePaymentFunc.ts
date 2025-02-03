@@ -1,15 +1,13 @@
 "use server"
-import {NextApiRequest} from "next";
-import {NextResponse} from "next/server";
 import {Product} from "@/models/Product";
 import {connectDB} from "@/lib/mongodb";
 import {Stripe} from "stripe";
-import {redirect} from "next/navigation";
 
 const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
+console.log(stripePayment)
 export async function stripePaymentFunc(productId: string, paymentMethod: string, userId: string | null) {
-    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
     await connectDB()
 
     if (paymentMethod === "card") {

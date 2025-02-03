@@ -1,33 +1,34 @@
 "use client"
-import
-    React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Image from "next/image";
 import "./listingNote.css"
 import Link from "next/link";
-import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
 import listingNote from "@/app/utils/product/listingNote";
 
 const PaidNote = () => {
     const [productData, setProductData] = useState([])
     const [loginUserData, setLoginUserData] = useState()
-    const {user} = useUser()
+    const user = useUser()
     const userParse = JSON.parse(user)
-    const currentUser = loginUserData._id
+    const currentUser = loginUserData?._id
 
     console.log(productData)
     useEffect(() => {
         setLoginUserData(JSON.parse(userParse))
-        
+
         const fetchPurchaseProduct = async () => {
-            const response = await listingNote(userId)
-            console.log(response)
-            if (response  !== undefined) {
-                setProductData(JSON.parse(response))
+            if (currentUser !== undefined) {
+
+                const response = await listingNote(currentUser)
+                console.log(response)
+                if (response !== undefined) {
+                    setProductData(JSON.parse(response))
+                }
+                console.log(response)
             }
-            console.log(response)
         }
         fetchPurchaseProduct()
     }, [user]);

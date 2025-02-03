@@ -1,12 +1,11 @@
 "use server"
 import nodemailer from "nodemailer";
-import {User} from "@/models/User";
 import {Product} from "@/models/Product";
 
 const toastProduct = async (productId: string, sellerId: string) => {
     const toastProduct = await Product.findById({_id: productId}).select(" productName productPrice productDesc productCategory productSize productCondition postageBurden")
 
-
+    console.log(sellerId)
     {
 
         const transporter = nodemailer.createTransport({

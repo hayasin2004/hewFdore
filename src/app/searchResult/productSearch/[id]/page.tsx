@@ -1,6 +1,5 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import {useRouter} from "next/navigation";
 import productSearch from "@/app/utils/search/(product)/productSearch";
 
 const SearchResultParamsId = ({params}: { params: { id: string } }) => {　

@@ -1,8 +1,5 @@
 import React from 'react';
 import "./searchHeader.css"
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";　
 import Link from "next/link";
 
 const SearchHeader = () => {

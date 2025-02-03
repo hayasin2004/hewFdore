@@ -1,11 +1,6 @@
 "use server"
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
-import jwt from "jsonwebtoken";
-import {string} from "prop-types";
-import {v4 as uuidv4} from 'uuid';
-import toastProduct from "@/app/utils/product/toastProduct";
-import addUserProductCategoryToMail from "@/app/utils/search/(product)/AddUserProductCategoryToMail";
 
 
 export interface createProductType {

@@ -3,7 +3,6 @@
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 import {UserType} from "@/app/api/user/catchUser/route";
-import {NextResponse} from "next/server";
 import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 

@@ -19,7 +19,7 @@ const tradeProductCatchMessageStatus2 = async (purchaseId?: string) => {
 
         const    currentUserChat =  fChangeMessage?.tradeChat[0]?.buyerChatMessage
         const    partnerUserChat =  fChangeMessage?.tradeChat[0]?.sellerChatMessage
-
+        console.log(currentUserChat , partnerUserChat)
         return { buyerChatMessage : JSON.stringify(fChangeMessage?.tradeChat) , partnerUserChat :  JSON.stringify(fChangeMessage?.tradeChat)}
     }catch (err){
         console.log(err)

@@ -47,6 +47,7 @@ const Product = ({params}: { params: { id: string } }) => {
     const id = params?.id
     const productId = product?._id
     const likeButton = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault()
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {

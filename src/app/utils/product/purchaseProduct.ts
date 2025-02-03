@@ -2,11 +2,9 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
-import {Purchase} from "@/models/Purchase";
-import {Stripe} from "stripe";
+import {Purchase} from "@/models/Purchase"; 
 import {Product} from "@/models/Product";
 import {UserType} from "@/app/api/user/catchUser/route";
-import {ProductType} from "@/app/utils/product/productDetail";
 
 const purchaseProduct = async (userData: UserType | null) => {
     await connectDB()

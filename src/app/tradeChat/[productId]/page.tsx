@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import "./trade.css"
 import Header from "@/app/_components/header/Header";
-import Chat from "@/app/_components/chat/Chat";
 import {Rating, Typography} from "@mui/material";
 import tradeProduct from "@/app/utils/product/tradeProduct";
 import io from "socket.io-client";
@@ -11,19 +10,13 @@ import {ChatType} from "@/models/Chat";
 import TradeProductMessageServer from "@/app/utils/user/TradeProductMessageServer";
 import tradeProductCatchMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import tradeProductCatchMessageStatus1 from "@/app/utils/message/tradeProductCatchMessageStatus1";
-import savePurchaseProductMessageStauts2 from "@/app/utils/message/savePurchaseProductMessageStauts2";
 import savePurchaseProductMessageStatus1 from "@/app/utils/message/savePurchaseProductMessageStauts1";
 import useUser from "@/hooks/useUser";
-import {Purchase} from "@/models/Purchase";
-import PurchaseChat from "@/app/_components/purchaseChat/PurchaseChat";
 import Images from "next/image";
 import userProfile from "@/app/utils/user/userProfile";
-import savePurchaseProductMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import savePurchaseProductMessageStatus2Update from "@/app/utils/message/savePurchaseProductMessageStatus2Update";
 import tradeEnd from "@/app/utils/product/tradeEnd";
 import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
-import productChatLike from "@/app/utils/product/productChatLike";
-import tradeChatLike from "@/app/utils/product/purchaseChatLike";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 import {ProductType} from "@/app/utils/product/productDetail";
@@ -33,22 +26,16 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import confirmUser from "@/app/utils/user/confirmUser";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
-    const [tradeChatLike, setTradeChatLike] = useState(0)
-    const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
+ 
     const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
     const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
-        //console.log(item)
         const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
-        //console.log(response)
+        console.log(response)
     }
-    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
-    const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
-    //console.log(partnerUserIdChat)
-    //
-    partnerUserIdChatParse?.map((item) => {
-        //console.log("撮れてない？？" + JSON.parse(JSON.stringify(item)))
-    })
+    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat)) 
+ 
+ 
 
     return (
         <div>
@@ -102,14 +89,12 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
     const [icon, setIcon] = useState("")
 
     const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
-        //console.log(item)
+ 
         const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
-        //console.log(response)
+        console.log(response)
     }
 
-    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
-    const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
-
+    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat)) 
     return (
 
         <div>
@@ -187,14 +172,12 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
     const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
-    //console.log("出品者の最終評価" + sellerUserLastReview)
     const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
-    const [currentUserId, setCurrentUserId] = useState<string | null>("")
     const [currentUserData, setCurrentUserData] = useState()
     const [partnerUserData, setPartnerUserData] = useState()
+    console.log("出品者の最終評価" + buyerUserReview , buyerLastChat , partnerUserData)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
-    console.log(loginUserData)
-    const router = useRouter()
+    console.log(loginUserData )
     const user = useUser()
     const token = localStorage.getItem("token")
     if (!token){
@@ -271,8 +254,6 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         const response = async () => {
             try {
 
-                const userParse = JSON.parse(user)
-                const currentUser_Id = loginUserData?._id
                 const sellerId = productData?.sellerId
                 const buyerId = productData?.buyerId
                 //console.log(sellerId)
@@ -310,7 +291,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 }
 
             } catch (err) {
-                //console.log("fetch failed")
+                console.log(err)
+                return null
             }
         }
         response()
@@ -339,7 +321,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
 
                     const response = await savePurchaseProductMessageStatus1(purchaseId, chatData?.currentUser, message, currentUserData)
                     // const update = await savePurchaseProductMessageStatus1Update(purchaseId, chatData?.currentUser, message)
-                    //console.log(response)
+                    console.log(response)
                     setMessage("")
                 } catch (err) {
                     console.log(err)
@@ -362,7 +344,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 // const response = await savePurchaseProductMessageStatus2(purchaseId, chatData?.currentUser, message)
                 const update = await savePurchaseProductMessageStatus2Update(purchaseId, chatData?.buyerId, message, currentUserData)
 
-                //console.log(update)
+                console.log(update)
                 setMessage("")
             }
             SavedPurchaseProductMessageStatus2()

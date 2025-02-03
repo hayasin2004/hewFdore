@@ -7,7 +7,7 @@ const searchProductCategoryServerAction = async  (category : string[] | null) =>
     await connectDB()
     try {
         const categoryResult = await Product.findOne({productCategory : category});
-
+        console.log(categoryResult)
     }catch (err){
         console.log(err)
         return null

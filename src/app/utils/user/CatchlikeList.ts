@@ -3,7 +3,6 @@
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 import {UserType} from "@/app/api/user/catchUser/route";
-import toastGmailForPurchase from "@/app/utils/product/toastGmailForPurchase";
 
 const CatchLikeList = async (loginNowUserId: UserType | null):Promise<{ likeList: string } | null> => {
     await connectDB()

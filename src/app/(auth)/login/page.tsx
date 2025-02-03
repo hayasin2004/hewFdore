@@ -11,14 +11,7 @@ import {useRouter} from "next/navigation";　
 import Link from "next/link";　
 import confirmToken from "@/app/utils/user/confirmToken";
 
-interface User {
-    userId: string
-    username: string
-    email: string
-    password: string
-    profilePicture: string
-    coverProfilePicture: string
-}
+
 
 
 const Login = () => {

@@ -40,6 +40,7 @@ const userSearch = async (userSearchWord: string | null): Promise<string | null>
         }
         return null
     } catch (err) {
+        console.log(err)
         return null
     }
 }
