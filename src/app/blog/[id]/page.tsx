@@ -1,5 +1,5 @@
 //[id].js
-import{client} from "@/lib/client";
+import client from "@/lib/client";
 
 
 //SSG
@@ -15,7 +15,7 @@ export const getStaticProps = async () => {
 };
 
 export const getStaticPaths = async () => {
-    const data await client.get ({endpoint:"blog"});
+    const data =  await client.get ({endpoint:"blog"});
 
     const paths = data.contents.map((content) => `/blog/${content.id}`);
     return{

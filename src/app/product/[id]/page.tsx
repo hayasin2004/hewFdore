@@ -17,6 +17,7 @@ import Chat from "@/app/_components/chat/Chat";
 import Stripe from "@/app/_components/stripe/Stripe";
 import {useRouter} from "next/navigation";
 import sellerCheck from "@/app/utils/product/sellerCheck";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 
 const Product = ({params}: { params: { id: string } }) => {

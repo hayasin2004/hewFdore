@@ -22,11 +22,8 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
         const NormalizationWordHiragana = HiraganaHenkan(productSearchWord);
         const NormalizationWordUpper = productSearchWord?.toUpperCase();
         const NormalizationWordLower = productSearchWord?.toLowerCase();
-        //console.log(NormalizationWordHiragana,
-        NormalizationWordKatakana,
-        NormalizationWordUpper,
-        NormalizationWordLower,
-    )
+
+
 
         if (productSearchWord === null) {
             //console.log("文字を入力してください")

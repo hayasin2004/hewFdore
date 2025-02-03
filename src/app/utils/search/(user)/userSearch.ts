@@ -29,9 +29,6 @@ const userSearch = async (userSearchWord: string | null): Promise<string | null>
             return null
         }
 
-        await //console.log("個々のログ出てる？" + userSearchWord)
-        //console.log(NormalizationWordKatakana)
-
         // 検索対象のモノを表示
         if (NormalizationWordKatakana !== undefined && NormalizationWordHiragana !== undefined) {
 
