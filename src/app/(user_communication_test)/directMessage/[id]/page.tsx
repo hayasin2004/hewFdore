@@ -45,7 +45,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                     setPartnerChat(catchUser?.chatCatchData.partnerUserChat)
                 }
             }
-                chatresponse()
+            chatresponse()
         }
     }, [chatData]);
 
@@ -73,7 +73,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             // setCurrentUser(setUsersData?.currentUser?._id)
         }
         response()
-    }, [ detailUser, token]);
+    }, [detailUser, token]);
 
 
     // socket.ioに送信
@@ -131,11 +131,13 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                     対象ユーザー : {chatData?.partnerUser}
                 </p>
                 <div>
+
                     対象ユーザーチャット : {partnerUserChat?.map((item) => (
                     <ul key={item._id}>
                         <li>{item}</li>
                     </ul>
                 ))}
+
                 </div>
                 <br/>
                 <p>

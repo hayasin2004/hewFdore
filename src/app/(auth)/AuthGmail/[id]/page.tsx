@@ -7,7 +7,7 @@ import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
     const router = useRouter();
-    const [email, setEmail] = useState<string>(params);
+    const [email, setEmail] = useState<string>(params.id);
     const [password, setPassword] = useState<string | null>(null);　
     const [status, setStatus] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
