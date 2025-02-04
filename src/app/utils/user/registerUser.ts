@@ -18,7 +18,7 @@ export default async function createUser(username: string, email: string, passwo
          const userId = uuidv4()
         const newUser = await User.create({userId, username, email, password})
         await newUser.save()
-        const TenMinToken = await jwt.sign({email : newUser?.email}, process.env.SECRET_KEY , {expiresIn: "2 day"})
+        const TenMinToken : string = await jwt.sign({email : newUser?.email}, process.env.SECRET_KEY , {expiresIn: "2 day"})
 
         return {newUser : JSON.stringify(newUser) ,TenMinToken : JSON.stringify(TenMinToken) }
     } catch (err) {

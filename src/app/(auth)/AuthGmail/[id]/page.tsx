@@ -7,7 +7,7 @@ import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
     const router = useRouter();
-    const [email, setEmail] = useState(params);
+    const [email, setEmail] = useState<string>(params);
     const [password, setPassword] = useState<string | null>(null);　
     const [status, setStatus] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
@@ -20,11 +20,10 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
             const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
             if (TenMinToken !== null) {
                 try {
-                    const decoded = await confirmToken(TenMinToken);
+                    const decoded : string | null= await confirmToken(TenMinToken);
                     console.log(decoded)
                     if (decoded !== null ) {
-                        console.log(typeof decoded)
-                        setEmail(decoded.email)
+                        setEmail(decoded)
                     }
                 } catch (err) {
                     console.log(err)
