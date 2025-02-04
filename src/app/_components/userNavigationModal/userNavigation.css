@@ -1,0 +1,30 @@
+/*アイコンクリック時*/
+
+h2#parent-modal-title{
+    margin: 5px 0 20px 0;
+}
+
+h2#child-modal-title{
+    margin: 5px 0 30px 0;
+}
+
+p#parent-modal-description {
+    margin: 0 0 5px 0;
+}
+
+p#child-modal-description a{
+    margin: 10px 0 10px 1rem;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+p#child-modal-description a:hover{
+    background-color: #60525288;
+    color: #fff;
+}
+
+.cursor{
+    cursor: pointer;
+}
+

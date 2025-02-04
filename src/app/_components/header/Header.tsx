@@ -1,25 +1,65 @@
 "use client"
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+ import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
-
-interface User{
-    userId : string
-    username : string
-    email :string
-    password :string
-    profilePicture : string
-    coverProfilePicture : string
-}
+import useUser from "@/hooks/useUser";
+import Link from "next/link";
+import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
+import confirmUser from "@/app/utils/user/confirmUser";
+ import catchToastProduct from "@/app/utils/toast/catchToastProduct";
+import catchOtherToast from "@/app/utils/toast/catchOtherToast";
+import {ToastType} from "@/models/Toast";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 
 
 const Header = () => {
+    const user = useUser()
+    const [userData, setUserData] = useState<UserType | null>(null)
+    const [toastPurchase, setToastPurchase] = useState<ToastType[] | null>([])
+    const [otherToast, setOtherToast] = useState<ToastType[] | null>([])
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token) {
 
+            const confirmUserData = async () => {
+                const response = await confirmUser(token)
+                // console.log("バグったかも"+response)
+                if (response !== undefined) {
+                    const responseParse = JSON.parse(response)
+                    setUserData(responseParse)
+                }
+            }
+            confirmUserData()
+        }
+
+    }, [user]);
+
+
+    useEffect(() => {
+        const toastPurchase = async () => {
+            const response = await catchToastProduct(userData?._id)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setToastPurchase(responseParse)
+            }
+        }
+        const OtherToast = async () => {
+            const response = await catchOtherToast(userData?._id)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setOtherToast(responseParse)
+            }
+        }
+        toastPurchase()
+        OtherToast()
+    }, [userData]);
+
+
+    // 通知用モーダル
     interface TabPanelProps {
         children?: React.ReactNode;
         index: number;
@@ -55,19 +95,6 @@ const Header = () => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     }
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '37%',
-        left: '80%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        height: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
-
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -76,112 +103,169 @@ const Header = () => {
 
     return (
         <>
-
             <header>
+                <h1>
+                </h1>
                 <div className="nav">
                     <div className="title">
-                        <h1>
-                            F'dore
-                        </h1>
+                        <Link href={"/"}>
+                            <h1>
+                                F&apos;dore
+                            </h1>
+                        </Link>
                     </div>
                     <div className="bar">
                         <ul>
                             <li>
-                                Category
+                                <Link href={"/searchResult"}>
+                                    <p id={"category"}>
+                                        Category
+                                    </p>
+                                </Link>
                             </li>
                             <span id="short_line"><br/>
                     <p id="short_text">
                         探す
                     </p>
                     </span>
-                            <li>
-                                Search 〇
-                            </li>
+                            <Link href={"/searchResult"}>
+
+                                <li className={"Headersearch"}>
+                                    Search <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                                                strokeLinecap="round" strokeLinejoin="round"
+                                                className="lucide lucide-search">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="m21 21-4.3-4.3"/>
+                                </svg>
+                                </li>
+                            </Link>
                             <span className="long_line"></span>
-                            <li id="uru_ul">
-                                Sell
-                                <span id="uru"></span>
-                                <br/>売る
 
-                            </li>
+                            <Link href={"/listingScreen"}>
+
+                                <li id="uru_ul">
+                                    Sell
+                                    <span id="uru">売る</span>
+
+                                </li>
+                            </Link>
                             <span className="long_line"></span>
 
+
                             <li>
-                                ○
+                                {userData ?
+                                    <UserNavigationModal src={userData?.profilePicture}/>
+                                    : <UserNavigationModal src=""/>}
+
                             </li>
-                            <li>
-                                {/*{user?.email}*/}
+                            <li id={"UserName"}>
+                                {userData ? <p id={"usernameGet"}>{userData?.username}</p> :
+                                    <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
+                                {/*確認用　ネーム上限15*/}
+                                {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
-                            <li>
-                                <div>
-                                    <Button className={"bell"} onClick={handleOpen}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             className="lucide lucide-bell">
-                                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                        </svg>
-                                    </Button>
-                                    <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
+                            <li id={"list_bell"}>
+                                {userData ?
+                                    <div>
+                                        <Button className={"bell"} onClick={handleOpen}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                                                 strokeLinecap="round" strokeLinejoin="round"
+                                                 className="lucide lucide-bell">
+                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                            </svg>
+                                        </Button>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
 
-                                    >
-                                        <Box className={"modal-content"}>
-                                            <Box sx={{width: '100%'}}>
+                                        >
+                                            <Box className={"modal-content"}>
+                                                <Box sx={{width: '100%'}}>
 
-                                                    <Box className={"modal-title"} sx={{borderBottom: 1, borderColor: 'error'}}>
+                                                    <Box className={"modal-title"}
+                                                         sx={{borderBottom: 1, borderColor: 'error'}}>
 
-                                                            <div className={"modal-title-tab"}>
-                                                        <Tabs value={value} onChange={handleChange}>
-                                                                <Tab className={"modal-title-tab-text modalborder"}   label="お知らせ" {...a11yProps(0)} />
-                                                                <Tab  className={"modal-title-tab-text"} label="出品評価" {...a11yProps(1)} />
-                                                        </Tabs>
-                                                            </div>
+                                                        <div className={"modal-title-tab"}>
+                                                            <Tabs value={value} onChange={handleChange}>
+                                                                <Tab style={{color: "#000"}}
+                                                                     className={"modal-title-tab-text modalborder"}
+                                                                     label="お知らせ" {...a11yProps(0)} />
+                                                                <Tab style={{color: "#000"}}
+                                                                     className={"modal-title-tab-text"}
+                                                                     label="出品評価" {...a11yProps(1)} />
+                                                            </Tabs>
+                                                        </div>
                                                     </Box>
 
-                                                <CustomTabPanel  value={value} index={0}>
-                                                    <Box className={"alert"}>
+                                                    <CustomTabPanel value={value} index={0}>
+                                                        <Box className={"alert"}>
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                             stroke-linecap="round" stroke-linejoin="round"
-                                                             className="lucide lucide-bell">
-                                                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                        </svg>
-                                                        <p>
-                                                            新しい商品が出品されました！
-                                                        </p>
-                                                        <hr/>
-                                                    </Box>
-                                                </CustomTabPanel>
-                                                <CustomTabPanel value={value} index={1}>
-                                                    <Box className={"alert"}>
+                                                            {otherToast?.map((item) => (
+                                                                <div key={item._id} className={"alertDisplay"}>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                         height="40"
+                                                                         viewBox="0 0 24 24" fill="none"
+                                                                         stroke="currentColor"
+                                                                         strokeWidth="2"
+                                                                         strokeLinecap="round" strokeLinejoin="round"
+                                                                         className="lucide lucide-bell">
+                                                                        <path
+                                                                            d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                                    </svg>
+                                                                    {item.followerUserId !== "" ?
+                                                                        <Link href={`/userDetail/${item.followerUserId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>
+                                                                        :
+                                                                             <p>{item.message}</p>
+                                                                         }
+                                                                    <hr/>
+                                                                </div>
+                                                            ))}
+                                                        </Box>
+                                                    </CustomTabPanel>
+                                                    <CustomTabPanel value={value} index={1}>
+                                                        <Box className={"alert"}>
 
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                             stroke-linecap="round" stroke-linejoin="round"
-                                                             className="lucide lucide-bell">
-                                                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                        </svg>
-                                                        <p>
-                                                            取引評価されました！
-                                                        </p>
-                                                        <hr/>
-                                                    </Box>
+                                                            {toastPurchase?.map((item) => (
+                                                                <div key={item._id} className={"alertDisplay"}>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                         height="40"
+                                                                         viewBox="0 0 24 24" fill="none"
+                                                                         stroke="currentColor"
+                                                                         strokeWidth="2"
+                                                                         strokeLinecap="round" strokeLinejoin="round"
+                                                                         className="lucide lucide-bell">
+                                                                        <path
+                                                                            d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                                    </svg>
+                                                                    {item.tradeId !== "" ?
+                                                                        <Link href={`/tradeChat/${item.tradeId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>
+                                                                        :
+                                                                        <Link href={`/product/${item.productId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>}
+                                                                </div>
+                                                            ))}
+                                                        </Box>
 
-                                                </CustomTabPanel>
+                                                    </CustomTabPanel>
+
+                                                </Box>
 
                                             </Box>
-
-                                        </Box>
-                                    </Modal>
-                                </div>
+                                        </Modal>
+                                    </div>
+                                    : ""}
                             </li>
                         </ul>
                     </div>

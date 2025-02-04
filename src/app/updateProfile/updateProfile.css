@@ -1,21 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+
 body {
+    font-family: "zen+KakuGothic+Antique", system-ui;
+    background-color: #D0C7B2;
     margin: 0;
     padding: 0;
 }
+div.updateProfile_Text{
+    background-color: #A58473;
+    margin: 5% 0 5% 0;
+    padding: 15px 0 15px 0;
+}
 div.updateProfile_Text h1 {
-    margin-top: 70px;
-    margin-bottom: 70px;
-    font-size: 3rem;
+    font-weight: bold;
+    font-size: 2rem;
     text-align: center;
 }
 
 div.enterUpdateUserProfile{
-    width: 500px;
+    width: 80%;
     margin: 0 auto;
-    flex-direction: column;
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #fff;
 }
 
 div.updateProfile_img{
+    margin: 5%;
 }
 
 div.profile_img{
@@ -23,28 +36,57 @@ div.profile_img{
     align-items: center;
 
 }
+div.profile_img img{
+    border-radius: 50%;
+}
 
 div.profile_img svg {
     margin-left: 20px;
     margin-right: 20px;
 }
+button#btn_imgUpdate{
+    margin: 5px 0 0 0;
+    padding: 5px 10px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 99px;
 
-div#form{
-    margin-top: 80px;
-    margin-bottom: 120px;
+    font-weight: bold;
 }
+div#form{
+    margin: 80px 5% 120px 5%;
 
+}
+div#form form label{
+    /*margin: 0 0 25px 1rem;*/
+}
+label#Name{
+    font-size: 1.5rem;
+}
 div#form input{
 
     width: 500px;
-    margin: 15px auto ;
+    margin: 5px 0 20px 0;
     padding: 10px 20px 10px 40px;
+    border: black solid 2px;
+    border-radius: 5px;
 }
 
 div#form button {
     display: flex;
     justify-content: center;
     padding: 10px 40px;
+    border: black solid 2px;
     border-radius: 30px;
     margin:  30px auto;
+    color: #fff;
+    background-color: #605252;
+}
+
+@media(max-width: 1500px) {
+    div.enterUpdateUserProfile{
+        flex-direction: column;
+        justify-content: center;
+    }
+    
 }

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
+
         userId: {
             type: String,
             unique: true,
@@ -53,6 +54,22 @@ const UserSchema = new mongoose.Schema({
         },
         followers: {
             // フォローされている。フォローされている人は増えたり減ったりするので、配列の型にしてます。
+            type: Array,
+            default: []
+        },
+        productLikeList: {
+            type: Array,
+            default: []
+        },
+        productCategoryLikeList: {
+            type: Array,
+            default: []
+        },
+        purchaseProduct: {
+            type: Array,
+            default: []
+        },
+        soldOutProduct: {
             type: Array,
             default: []
         }

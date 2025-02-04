@@ -4,26 +4,34 @@ body {
 }
 
 /*チャット*/
-div#chat{
+div.Productchat{
     display: flex;
     flex-direction: row;
-    margin: auto;
-    margin-bottom: 50px;
-    width: 70%;
-    height: 150px;
+    /*margin: 50px auto 50px 50px;*/
+    width: 100%;
     background: #D9D9D9;
-    border: #AAA solid 2px;
+    border-radius: 3px;
+    border-top: #AAA solid 2px;
     overflow-y: auto;
 }
-input[type=text]#msg{
+textarea#msg{
     margin: 10px;
     width: 80%;
     height: 50px;
+    padding: 5px;
+    border-radius: 4px;
     border-style: none none solid none;
+    overflow-wrap: break-word;
+    overflow: hidden;
 }
 
 /* アイコン*/
-div#chat img{
+
+div.Productchat #usericon{
+    margin: 10px 0 10px 10px;
+}
+
+div.Productchat img{
     margin: 10px;
     height: 50px;
     width: 50px;
@@ -31,3 +39,105 @@ div#chat img{
     border-radius: 100%;
 }
 
+
+/* 送信ボタン仮設　作るにしてもアイコンにした方がいいかも */
+input[type=submit]{
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    color: white;
+    font-weight: bold ;
+    background-color:#aaa;
+    border: #555 2.5px solid;
+    border-radius: 10px;
+}
+
+
+/*画像にしてみた*/
+button{
+    height: 50px;
+    margin: 10px;
+    border: #555 2px solid;
+    border-radius: 10%;
+}
+button img#sendMsg{
+    height: 30px;
+    width: 30px;
+    background-color: #fff0;
+    border-radius: 0;
+}
+
+.comment-areaFrame{
+    /*padding: 10px;*/
+    margin: 0 50px;
+    border-radius: 5px;
+    border: #000 2px solid;
+    background-color: #bbb;
+}
+
+.comment-sec-lef{
+    padding-top: 15px;
+}
+
+.comment-user-lef{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    font-size: 1.1rem;
+}
+.comment-user-lef img{
+    margin-right: 8px;
+}
+
+.comment-area-lef{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding: 0 10px;
+    margin-left: 10px;
+    overflow-wrap: break-word;
+    border-radius: 3px;
+    border: #000 1px solid;
+    background-color: #ddd;
+}
+
+#good{
+    width: 10%;
+    height: auto;
+    border:none ;
+    background-color: #ddd;
+}
+
+
+
+.comment-sec-rig{
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-user-rig{
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    justify-content: flex-end;
+}
+.comment-user-rig img{
+    margin-right: 8px;
+}
+
+.comment-area-rig{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    padding: 0 10px;
+    margin-right: 10px;
+    overflow-wrap: break-word;
+    border-radius: 3px;
+    border: #000 1px solid;
+    background-color: #ddd;
+    justify-content: flex-end;
+}

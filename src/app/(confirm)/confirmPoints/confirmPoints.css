@@ -1,0 +1,192 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+div#conPoint_All{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #EBE8DB;
+
+}
+div.leftbarPoint{
+    margin: 0 0 0 0;
+}
+
+div#point_main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+div.confirmPointMain{
+    width: 100%;
+    align-items: center;
+    margin: 17% 0 8% 3%;
+    padding-bottom: 90px;
+}
+
+button#returnUtop{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 99px;
+    border: 2px solid #333;
+    width: 6rem;
+    box-shadow: 2px 2px 0 #605252;
+}
+button#returnUtop:hover{
+    opacity: 0.8;
+    box-shadow: none;
+}
+
+div.confirmPoint{
+    display:flex;
+    align-items:center;
+    margin-bottom: 20px;
+    padding: 5% 10% 5% 5%;
+    border-radius: 50px;
+    /*border: 2px solid #605252;*/
+    box-shadow:10px 10px 0  #605252;
+    background-color: #fefeed;
+
+}
+
+div.confirm svg{
+    margin-right: 20px;
+}
+
+
+div.confirm p {
+    font-size: 2rem;
+}
+
+
+
+
+div.recommend_products{
+    width: 700px;
+    /*margin-left: -23px;*/
+}
+div.recommend_products img{
+    width: 170px;
+    height: 170px;
+    object-fit: fill;
+}
+
+div.recommend_products h2 {
+    margin-top: 50px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+div.recommend_product{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+}
+
+
+div.product{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    margin-left: 2%;
+    padding: 1.7% ;
+}
+
+div.rightbar_product_text{
+    margin-left: 20px;
+}
+
+div.rightbar_product_text p{
+    color: #000;
+    font-size: 1.2rem;
+}
+
+
+div.rightbarPoint{
+    padding: 5% 0;
+    width: 45%;
+    height: 40%;
+    display: flex;
+}
+
+div.rightbarPoint h2{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 7%;
+    border: 2px solid #000;
+    border-style: none none solid none;
+
+}
+
+
+div.confirm_text{
+    margin-left: 10%;
+    font-size: 1.8rem;
+}
+
+div.rightbar_note {
+    width: 70%;
+    height: 60%;
+    padding-left: 2%;
+    margin-left: 10%;
+    /*background-color: aqua;*/
+    border-left: 2px solid #000;
+}
+
+
+div ul.rightbar_collectpoint{
+    width: 80%;
+    text-align: center;
+    display: flex;
+    list-style: none;
+    margin-left: 10%;
+}
+
+div ul.rightbar_collectpoint li{
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 20px;
+    padding-left: 0;
+    opacity: 0.9;
+}
+
+div ul.rightbar_point{
+    width: 80%;
+    text-align: center;
+    display: flex;
+    list-style: none;
+    margin-left: 10%;
+}
+
+div ul.rightbar_point li{
+    width: 500px;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 20px;
+    padding-left: 0;
+    word-break: break-all;
+}
+
+div.rightbar h2{
+    margin-top: -70px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1300px) {
+    div#conPoint_All{
+        flex-direction: column;
+    }
+
+
+}

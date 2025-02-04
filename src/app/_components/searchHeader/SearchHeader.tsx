@@ -1,35 +1,38 @@
 import React from 'react';
 import "./searchHeader.css"
+import Link from "next/link";
 
 const SearchHeader = () => {
 
     return (
         <>
-            <header>
-                <div className="nav">
-                    <div className="title">
+            <header className="Sheader">
+                <div className="Snav">
+                    <div className="Stitle">
+                        <Link href={"toppage"}>
+
                         <h1>
-                            F'dore
+                            F&apos;dore
                         </h1>
+                        </Link>
                     </div>
-                    <div className="bar">
+                    <div className="Sbar">
 
 
-                        <p>Search○</p>
+                        <p className="Sp">Search○</p>
+
+                        <span className="searchInput">
+                            <input  placeholder="お探しの商品を検索…" type="text"/>
+                        </span>
 
 
-                        <input className="search" placeholder="お探しの商品を検索…" type="text"/>
-
-                        <span className="long_line"></span>
-
-                        <p>Category</p>
-
+                        <p className="Sp">Category</p>
 
                     </div>
                 </div>
 
             </header>
-            <span className="under_bar"></span>
+            <span className="Sunder_bar"></span>
         </>
     );
 }

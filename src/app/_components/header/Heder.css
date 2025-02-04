@@ -1,64 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 body {
+
     margin: 0;
     padding: 0;
+    /*overflow-x: hidden;*/
+
+    position: relative;
+    z-index: 2 ;
 }
 header {
-    display: -webkit-flex;
+    /*display: -webkit-flex;*/
     display: inline-block;
     width: 100%;
-}
 
+    background-color: #EBE8DB;
+}
 header div.nav {
     margin-top: 30px;
+    width: 100%;
     display: flex;
     align-items: center;
-    width: 100%;
-
+    justify-content: space-between;
 }
+
 
 header div.title h1 {
-    font-size: 3rem;
-    width: 200px;
-    margin-left: 100px;
+    font-family: "Italiana", sans-serif;
+    font-size: 3.2rem;
+    font-weight: normal;
+    letter-spacing: 5px;
+    width: 100%;
+    margin-left: 20%;
+    text-decoration: none;
+    transition: text-decoration 0.5s;
 }
+header div.title h1:hover{
+    text-decoration: underline 1px solid;
+}
+
+
 div.bar{
-    width: 400px;
-    margin-left: 200px;
+    /*width: 400px;*/
+    margin-left: 20%;
 }
 
 header div.bar ul {
-    display: -webkit-flex;
+    /*display: -webkit-flex;*/
     display: flex;
-    width: 900px;
+    width: 100%;
     list-style: none;
-    margin-right: 260px;
+    /*margin-right: 320px;*/
     font-size: 1rem;
 }
 
-
+/* <uniquifier>: Use a unique and descriptive class name
+   <weight>: Use a value from 100 to 800*/
 div.bar ul li {
     position: relative;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400;
     font-size: 1.5rem;
     margin-left: 30px;
+    border: none;
+}
+/*オンマウスで色変わる*/
+div.bar ul li:hover{
+    color: #fff;
+    text-shadow: 0 0 30px #BF9E80 ,0 0 20px #BF9E80,0 0 15px #D0C7B2;
 }
 
+div.bar ul li p#category{
+    position: relative;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-left: 30px;
+    margin-top: 3px;
+}
+
+li.Headersearch{
+    text-align: center;
+}
+li.Headersearch svg{
+    margin:5px 0 0 0;
+}
+
+
+
+/* ユーザーネーム:ログイン遷移 */
+li#UserName{
+    display: flex;
+    width: 8rem;
+    align-items: center;
+    overflow-wrap: break-word;
+}
+p#usernameGet{
+}
+
+
+p#name{
+    width: 8rem;
+    /*margin-left: 74px;*/
+}
+
+li#list_bell{
+    margin: 0 25px 0 0;
+}
 .bell{
-    position: absolute;
-    top: 0%;
-    left: 20px;
-    width: 40px;
+    /*position:relative;*/
+    margin: 0 0 0 25px;
+    /*top: 0;*/
+    /*right: 80px;*/
+    /*width: 40px;*/
     border: none;color: #000000;
+}
+.bell svg{
+    color: #8e7560;
 }
 .modal-content{
     width: 500px;
     height: 500px;
     background-color: #e5e5e5;
     border: 5px solid #fff;
+    border-radius: 10px;
     position: absolute;
     top: 14%;
     right: 4%;
     overflow-y: auto;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 }
 
 /*デフォルトで下線部がついていたのでそれを消す設定*/
@@ -80,12 +149,21 @@ div.bar ul li {
 
 }
 /*選択されたものの背景色と文字の色設定*/
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected{
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
     color: black;
     background-color: #D0C7B2;
 }
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected label{
+    color: #D9D9D9;
+}
 
-/*タブの項目自体の幅の設定今回はモーダル全体で500px指定で項目は二つなので一つの項目の幅を250pxにして半分になるようにしました。*/
+.MuiTabs-indicator{
+}
+.css-1aquho2-MuiTabs-indicator{
+    display: none;
+}
+
+    /*タブの項目自体の幅の設定今回はモーダル全体で500px指定で項目は二つなので一つの項目の幅を250pxにして半分になるようにしました。*/
 .modal-title-tab-text{
     width: 250px;
 }
@@ -97,15 +175,28 @@ div.bar ul li {
 /*お知らせ内容についてのＣＳＳ*/
 .alert{
     margin-top: 10px;
-    display: flex;
     align-items: center;
     margin-left: 10px;
     margin-bottom: 20px;
     border-bottom: 1px solid #aaa;
 }
 
+.alertDisplay{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 3px;
+}
+
+.alertDisplay p{
+    font-size: 14px;
+}
+
 .alert svg{
-    margin-right: 30px;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-right: 20px;
     padding-bottom: 10px;
 }
 
@@ -122,7 +213,10 @@ div.bar ul span#short_line {
 }
 
 div.bar ul span p#short_text {
-    font-size: 1.5rem;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3rem;
     margin-top: 10px;
     margin-left: -20px;
     width:50px;
@@ -144,11 +238,15 @@ div.bar ul span.long_line {
     width :100px;
     align-items: center;
     padding-left: 45px;
+
 }
 #uru{
-    display: flex;
-    margin-top: -20px;
-    width: 90px;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.3rem;
+    margin: 20px 0 0 10px;
+    text-align: center;
 }
 
 
@@ -159,4 +257,10 @@ span.under_bar {
     margin-top: -1px;
     height: 11px;
     border-bottom: 1px solid #000000;
+}
+
+/* 1250より小さい場合は要素を畳まないとだめかも */
+@media screen and (max-width: 1250px) {
+
+
 }

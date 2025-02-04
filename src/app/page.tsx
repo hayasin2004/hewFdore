@@ -1,15 +1,13 @@
-import Register from "@/app/(auth)/register/page";
-import Login from "@/app/(auth)/login/page";
-import Toppage from "./toppage/page";
+import Toppage from "@/app/toppage/page";
 
 export default function Home() {
   return (
     <main >
       <div>
-          {/*<Toppage />*/}
+          <Toppage />
           {/*<Register/>*/}
-      <Login />
-
+      {/*<Login />*/}
+      {/**/}
       </div>
     </main>
   );
