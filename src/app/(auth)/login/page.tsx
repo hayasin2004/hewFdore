@@ -22,11 +22,11 @@ const Login = () => {
             const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
             if (TenMinToken !== null) {
                 try {
-                    const decoded = await confirmToken(TenMinToken);
+                    const decoded  = await confirmToken(TenMinToken);
                     console.log(decoded)
                     if (decoded !== null) {
                         window.alert("メール認証が終わっていない可能性があります。先に終わらしてください")
-                        router.push(`/AuthGmail/${decoded.email}`)
+                        router.push(`/AuthGmail/${decoded?.email}`)
                     }
                 } catch (err) {
                     console.log(err)
