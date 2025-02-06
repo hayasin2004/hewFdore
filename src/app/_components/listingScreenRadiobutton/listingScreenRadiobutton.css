@@ -91,3 +91,7 @@ body {
     margin-left: 10%;
     display: flex;
 }
+#outlined-basic{
+    border: 3px solid #8e7560;
+    background-color: #EBE8DB;
+}
