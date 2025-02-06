@@ -1,14 +1,13 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from 'next/link';
-import createProduct from "@/app/utils/product/createProduct";　
+import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
-import VideoSave from "@/app/_components/video/videoSave";　　
 
 export interface productStatusType {
     productCategory?: string[],
@@ -36,6 +35,7 @@ const ListingScreen: React.FC = () => {
     // const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
     // const [compressedVideo, setCompressedVideo] = useState(null)
 
+
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
     console.log(shippingArea)
@@ -51,6 +51,14 @@ const ListingScreen: React.FC = () => {
             render.readAsDataURL(file)
         }
     };
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            window.alert("ログインしていないので出品できません。ログインページに移ります")
+            window.location.href = ("/login")
+        }
+    }, []);
 
 
     // const productCategory = productCategory
@@ -82,9 +90,6 @@ const ListingScreen: React.FC = () => {
     return (
         <>
             <Header/>
-            <div>
-                <VideoSave />
-            </div>
             <div className={"content"}>
                 <div className={"listingScreenBackground"}>
                     <form action={async (data: FormData) => {
