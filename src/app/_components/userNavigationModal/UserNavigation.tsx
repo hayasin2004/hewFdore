@@ -112,7 +112,7 @@ const UserNavigation = () => {
 
     return (
         <div>
-            <Button onClick={handleOpen}>
+            <Button className={"iconButton"} onClick={handleOpen}>
                 <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
                         alt={"サンプルユーザーアイコン"}/>
             </Button>
