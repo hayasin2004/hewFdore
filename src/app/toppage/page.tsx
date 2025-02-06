@@ -93,7 +93,6 @@ const Toppage = () => {
                 {/*<Slideshow/>*/}
             </div>
             <ToppageProducts/>
-
             <Footer/>
         </>
     );

@@ -10,7 +10,7 @@ import createUser from "@/app/utils/user/registerUser";
 
 
 const Register = () => {
-    const [responseUserData, setResponseUserData] = useState<string | null>(null)
+    const [responseUserData, setResponseUserData] = useState<string | null | undefined>(null)
     const {data: session, status} = useSession();
     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
     console.log(responseUserData)
@@ -74,9 +74,9 @@ const Register = () => {
                                                 window.alert("そのユーザー名は既に作成されています。")
                                             } else {
 
-                                                if (data !== undefined && data !== null) {
-                                                    const UserDataParse = JSON.parse(data.newUser)
-                                                    const TokenDataParse = JSON.parse(data.TenMinToken)
+                                                if (data !== undefined ) {
+                                                    const UserDataParse  = JSON.parse(data?.newUser)
+                                                    const TokenDataParse = JSON.parse(data?.TenMinToken)
                                                     console.log(UserDataParse)
                                                     setResponseUserData(UserDataParse)
                                                     localStorage.setItem("TenMinToken", TokenDataParse)
