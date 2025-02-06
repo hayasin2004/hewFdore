@@ -53,7 +53,7 @@ const EmojiPickerPurchase = (props) => {
             {props.stamp == undefined ? (
                 existIcon ?
                     <div key={props.item}>
-                        <div className={"comment-emoji-rig"} onClick={deleteStamp}>
+                        <div className={"comment-emoji-lef"} onClick={deleteStamp}>
                             {icon}
                         </div>
                     </div>

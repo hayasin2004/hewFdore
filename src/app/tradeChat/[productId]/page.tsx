@@ -92,8 +92,10 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                 <div className={"comment-area-lef"}>
                                     {item.buyerChatMessage[0]?.buyerMessage}
                                     {/*絵文字*/}
-                                    <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
-                                                         stamp={item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike} item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                                    <div className={"emojiButtonPosition"}>
+                                        <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
+                                                             stamp={item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike} item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                                    </div>
                                 </div>
 
 
@@ -142,11 +144,6 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                         className={"comment-user-name-lef"}>{item.sellerChatMessage[0]?.sellerUsername} さん
                                     </div>
                                 </div>
-                                <div className={"comment-area-lef"}><Images
-                                    src={item?.sellerChatMessage[0]?.sellerProfilePicture}
-                                    alt={"ユーザープロフィール画像"} width={50}
-                                    height={50}/></div>
-                                <div className={"comment-area-lef"}>{item.sellerChatMessage[0]?.sellerMessage}</div>
 
                                 <div className={"comment-user-lef"}>
 
@@ -154,15 +151,13 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                     <div className={"comment-area-lef"}>
                                         {item.sellerChatMessage[0]?.sellerMessage}
                                         {/*絵文字*/}
-                                        {item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike ? (
-                                            <div
-                                                className={"comment-emoji-lef"}>{item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}</div>
-                                        ) : ("")}
-
+                                        <div className={"emojiButtonPosition"}>
+                                        <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
+                                                             item={item?.sellerChatMessage[0]?._id} setIcon={setIcon} stamp={item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}/>
+                                        </div>
                                     </div>
                                     {/*絵文字選択*/}
-                                    <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
-                                                         item={item?.sellerChatMessage[0]?._id} setIcon={setIcon} stamp={item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}/>
+
 
 
 
