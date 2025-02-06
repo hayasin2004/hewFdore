@@ -223,7 +223,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
 
                     <TextField fullWidth
                                onChange={handleProductExplainShippingSourceSet}
-                               id="outlined-basic" label="発送日時"
+                               id="outlined-basic" label="発送地域"
                                variant="outlined"/>
 
                 </Box>

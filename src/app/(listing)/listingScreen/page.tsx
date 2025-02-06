@@ -10,6 +10,7 @@ import {string} from "prop-types";
 import {redirect} from "next/navigation";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
+import Footer from "@/app/_components/footer/Footer";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -92,28 +93,28 @@ const ListingScreen: React.FC = () => {
                         </div>
 
 
-                        <h3 id="s_name">
+                        <h3 className={"formTitle"} id="s_name" >
                             商品名
                         </h3>
 
 
                         <input type="text" name={"productName"} className="txtInput"/>
 
-                        <h3 className="kakaku">
+                        <h3 className={"formTitle"} id="kakaku">
                             価格
                         </h3>
 
 
                         <input type="text" name={"productPrice"} className="txtInput" placeholder={"¥"}/>
 
-                        <h3 id="s_name">
+                        <h3 className={"formTitle"} id="explain">
                             商品詳細
                         </h3>
 
                         <input type="text" name={"productDesc"} className="txtInput"/>
 
 
-                        <h3 className="cat">
+                        <h3  className="formTitle" id={"cat"}>
                             カテゴリ
                         </h3>
                         {/*視認性が悪いのでここも色変えたい*/}
@@ -148,6 +149,7 @@ const ListingScreen: React.FC = () => {
                     </form>
                 </div>
             </div>
+            <Footer/>
 
         </>
     );

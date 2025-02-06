@@ -22,10 +22,13 @@ div.content{
     /*flex-direction: column;*/
     /*align-content: center;*/
     width: 50%;
-    margin: 100px auto 100px auto;
+    margin: 0 auto 0 auto;
+    border: 5px solid #605252;
+    background: #FFF;
 }
 
 div.content h2{
+    margin: 50px 0 0 0;
     text-align: center;
     /*font-family: "JetBrains Mono";*/
     font-size: 40px;
@@ -95,6 +98,8 @@ div.ListingBtn{
 div.ListingBtn button{
     margin-left: 30px;
     border-radius: 50px;
+
+    border: 1px solid #000;
     box-shadow: 2px 2px 0 #605252;
     transition: box-shadow 0.2s;
 }
@@ -110,7 +115,6 @@ div.ListingBtn p{
 div.ListingBtn button.listingCancelbtn{
     background-color: #EBE8DB;
     color: #605252;
-    border: 2px solid #605252;
     padding: 10px 10px;
 
 }
