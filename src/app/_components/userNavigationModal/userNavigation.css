@@ -13,8 +13,8 @@ p#parent-modal-description {
 }
 
 p#child-modal-description a{
-    margin: 10px 0 10px 1rem;
-    padding: 5px;
+    margin: 10px 0 15px 1rem;
+    padding: 5px 10px;
     border-radius: 5px;
     font-size: 1.2rem;
 }
@@ -23,9 +23,48 @@ p#child-modal-description a:hover{
     background-color: #60525288;
     color: #fff;
 }
+div#Close_Logout{
+    margin: 20px 0 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
+}
+
+/* 閉じるボタン */
+#closeButton{
+    padding: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #605252;
+    background-color: #D0C7B2;
+    border: 2px solid #605252;
+    box-shadow: 2px 2px 0 #0008;
+}
+
+/* ログアウト */
 .cursor{
+    /*margin: 16px 0 0 0;*/
+    padding: 5px;
+    display: inline;
     cursor: pointer;
+    font-size:0.9rem;
+    font-weight: bold;
+    vertical-align: bottom;
+
+    color: #EBE8DB;
+    background-color: #605252;
+    border: black solid 2px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 0 #0008;
+    transition: 0.2s;
+
+}
+#closeButton:hover,.cursor:hover{
+    box-shadow: none;
+    opacity: 0.8;
 }
 
 /*　アイコンホバー　*/

@@ -58,7 +58,7 @@ function ChildModal() {
                     ...style
                 }
                 }>
-                    <h2 id="child-modal-title">ユーザーナビゲーション</h2>
+                    <h2 id="child-modal-title">プロフィールナビゲーション</h2>
                     <p id="child-modal-description">
                         <Link href={"confirmUser"}>
                             プロフィール
@@ -128,15 +128,35 @@ const UserNavigation = () => {
                     {/*<p id="parent-modal-description">*/}
                     {/*    保有ポイント 10pt*/}
                     {/*</p>*/}
-                    <p>
-                        <Link href={"listingcomplete_Itiosikinou"}>
-                            イチオシ機能
+                    {/*<p>*/}
+                    {/*    <Link href={"listingcomplete_Itiosikinou"}>*/}
+                    {/*        イチオシ機能*/}
+                    {/*    </Link>*/}
+                    {/*</p>*/}
+                    <p id="child-modal-description">
+                        <Link href={"confirmUser"}>
+                            プロフィール
                         </Link>
                     </p>
-                    <p class={"cursor"} onClick={Logout}>
+                    <p id="child-modal-description">
+                        <Link href={"favorite"}>
+                            お気に入り登録ページ
+                        </Link>
+                    </p>
+                    <p id="child-modal-description">
+                        <Link href={"paidNote"}>
+                            購入履歴
+                        </Link>
+                    </p>
+
+
+                    {/*<ChildModal/>*/}
+                    <div id={"Close_Logout"}>
+                    <Button id={"closeButton"}onClick={handleClose}>閉じる</Button>
+                    <p className={"cursor"} onClick={Logout}>
                         ログアウト
                     </p>
-                    <ChildModal/>
+                    </div>
                 </Box>
             </Modal>
         </div>
