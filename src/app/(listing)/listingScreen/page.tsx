@@ -52,7 +52,6 @@ const ListingScreen: React.FC = () => {
         <>
             <Header/>
             <div className={"content"}>
-                <div className={"listingScreenBackground"}>
                     <form action={async (data: FormData) => {
                         console.log("asfasdfdafffdfdfdfffffffdddfffff")
                         const productName = data.get("productName") as string;
@@ -93,7 +92,7 @@ const ListingScreen: React.FC = () => {
                         </div>
 
 
-                        <h3 className={"formTitle"} id="s_name" >
+                        <h3 className={"formTitle"} id="product_name" >
                             商品名
                         </h3>
 
@@ -111,7 +110,7 @@ const ListingScreen: React.FC = () => {
                             商品詳細
                         </h3>
 
-                        <input type="text" name={"productDesc"} className="txtInput"/>
+                        <textarea name={"productDesc"} className="areaInput" maxLength={800} rows={4} />
 
 
                         <h3  className="formTitle" id={"cat"}>
@@ -148,7 +147,6 @@ const ListingScreen: React.FC = () => {
 
                     </form>
                 </div>
-            </div>
             <Footer/>
 
         </>

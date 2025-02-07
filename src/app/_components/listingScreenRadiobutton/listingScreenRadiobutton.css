@@ -10,14 +10,29 @@ body {
     height: 300px;
     padding: 30px;
     border-radius: 20px;
-    margin:  25px auto;
+    margin:  5px auto 25px auto;
     display: flex;
     justify-content: center;
-    background-color: #D0C7B2;
+    background-color: #f2f2e6;
+    border: 2px solid #605252;
+    box-shadow: 2px 2px 0 #605252;
+    transition:0.3s;
+
+}
+.radio:hover{
+    background-color: #fff;
 }
 
 .radio_button{
     width: 300px;
+}
+
+.radioBtn{
+    width: 15rem;
+}
+.radioBtn:hover{
+    text-decoration: underline;
+    text-shadow:#D0C7B2 1px 0 8px,#D0C7B2 1px 0 10px,#D0C7B2 1px 0 12px;
 }
 
 /*選択されたボタンの色設定*/
@@ -92,6 +107,10 @@ body {
     display: flex;
 }
 #outlined-basic{
-    border: 3px solid #8e7560;
-    background-color: #EBE8DB;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #fff;
+}
+#outlined-basic:hover{
+    box-shadow: 0 0 0 #8e7560;
 }

@@ -5,8 +5,7 @@ body {
 }
 
 div #wrap{
-    width: 1440px;
-    height: 3365px;
+
 }
 
 main{
@@ -16,20 +15,24 @@ div.content{
     /*display: flex;*/
     /*flex-direction: column;*/
     /*align-content: center;*/
-    width: 50%;
-    margin: 0 auto 0 auto;
-    border: 5px solid #605252;
-    background: #FFF;
+    width: 75%;
+    /*height: 100%;*/
+    margin: 10px auto 10px auto;
+    border: 5px #605252;
+    border-style: none solid none solid;
+    /*box-shadow: 0 -5px 0 #605252;*/
+
 }
 
 div.content h2{
-    margin: 50px 0 0 0;
+    padding: 25px 0 0 0;
     text-align: center;
     /*font-family: "JetBrains Mono";*/
     font-size: 40px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
 }
 
 div#kamera{
@@ -49,15 +52,33 @@ div#kamera img{
 div.content div#drop{
 }
 
-div.content h3{
-    margin: 10px 0 0 50px;
+
+div.content h3.formTitle{
+    width: 450px;
+    margin:25px auto 5px auto;
+
+
+
 }
 div.content .txtInput{
     display: block;
     margin: 0 auto;
     width: 350px;
-    height: 30px;
     border-radius: 20px;
+}
+div.content .areaInput{
+    resize:vertical;
+    padding: 15px;
+    font-size: 1rem;
+    display: block;
+    margin: 10px auto;
+    width: 350px;
+    height: 150px;
+    border: black solid 2px;
+    border-radius: 5px;
+}
+::-webkit-scrollbar{
+    display: none;
 }
 
 div.content h3.cat {
@@ -65,7 +86,7 @@ div.content h3.cat {
 
 
 input{
-    padding: 30px 30px;
+    padding: 15px 30px;
 }
 
 
@@ -81,10 +102,11 @@ table#kategory{
 }
 
 div.ListingBtn{
-    width: 500px;
+    width: 70%;
     display: flex;
     justify-content: space-between;
-    margin: 10% auto 120px auto;
+    margin: 10% auto 0 auto;
+    padding: 0 0 50px 0;
 }
 
 div.ListingBtn button{
@@ -101,6 +123,7 @@ div.ListingBtn button:hover{
 }
 div.ListingBtn p{
     font-weight: 600;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -117,5 +140,5 @@ div.ListingBtn button.listingcompletebtn{
     color: #fff;
     text-indent: 1rem;
     letter-spacing: 1rem;
-    padding: 10px 25px;
+    padding: 10px 15px;
 }
