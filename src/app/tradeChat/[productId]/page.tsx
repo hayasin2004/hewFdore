@@ -7,7 +7,7 @@ import {Rating, Typography} from "@mui/material";
 import tradeProduct from "@/app/utils/product/tradeProduct";
 import io from "socket.io-client";
 import {ChatType} from "@/models/Chat";
-import TradeProductMessageServer from "@/app/utils/user/TradeProductMessageServer";
+import TradeProductMessageServer, {tradeChatStatusType} from "@/app/utils/user/TradeProductMessageServer";
 import tradeProductCatchMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import tradeProductCatchMessageStatus1 from "@/app/utils/message/tradeProductCatchMessageStatus1";
 import savePurchaseProductMessageStatus1 from "@/app/utils/message/savePurchaseProductMessageStauts1";
@@ -20,27 +20,20 @@ import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 import {ProductType} from "@/app/utils/product/productDetail";
-import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
-import {redirect, useRouter} from 'next/navigation';
+import {redirect} from 'next/navigation';
 import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
+import {useRouter} from "next/navigation"
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
 
-    const [tradeChatLike, setTradeChatLike] = useState(0)
-    const [tradeChatLikeStatus, setTradeChatLikeStatus] = useState("")
     const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
+    console.log(icon)
 
     const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
-    const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
     console.log(partnerUserIdChat)
 
-
-    const testCommentLike = async (item : string) => {
-        const response = await purchaseChatLike(currentUserId ,purchaseId, item, icon)
-        console.log(response)
-    }
 
     return (
         <div>
@@ -94,10 +87,10 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                     {/*絵文字*/}
                                     <div className={"emojiButtonPosition"}>
                                         <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
-                                                             stamp={item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike} item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                                                             stamp={item.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}
+                                                             item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
                                     </div>
                                 </div>
-
 
 
                             </div>
@@ -112,15 +105,10 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
     // status2の時はログインしているユ―ザーが購入者だった時。
     const [icon, setIcon] = useState("")
+    console.log(icon)
 
-    const testCommentLike = async (currentUserId, purchaseId, item, icon) => {
-        console.log(item)
-        const response = await purchaseChatLike(currentUserId, purchaseId, item, icon)
-        console.log(response)
-    }
 
     const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
-    const partnerUserIdChatParse = JSON.parse(JSON.stringify(partnerUserIdChat))
 
     return (
 
@@ -152,13 +140,12 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                                         {item.sellerChatMessage[0]?.sellerMessage}
                                         {/*絵文字*/}
                                         <div className={"emojiButtonPosition"}>
-                                        <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
-                                                             item={item?.sellerChatMessage[0]?._id} setIcon={setIcon} stamp={item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}/>
+                                            <EmojiPickerPurchase currentUser={currentUserId} purchaseId={purchaseId}
+                                                                 item={item?.sellerChatMessage[0]?._id} setIcon={setIcon}
+                                                                 stamp={item.sellerChatMessage[0]?.sellerMessageStamp[0]?.sellerMessageStampLike}/>
                                         </div>
                                     </div>
                                     {/*絵文字選択*/}
-
-
 
 
                                     {/*<button id={"good"}*/}
@@ -205,10 +192,11 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
 }
 
 
-const ListingComplete = ({params}: {params: { id: string | null } }) => {
+const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [reviewValue, setReviewValue] = React.useState<number | null>(1);
     const [productData, setProductData] = useState<ProductType | null>(null)
     const [chatData, setChatData] = useState<ChatType | null>(null)
+    console.log(chatData)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
@@ -216,19 +204,19 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
     console.log(tradeStatus)
     const [tradeCancel, setTradeCancel] = useState<string | null>(null)
     const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
-    console.log(JSON.stringify(partnerUserIdChat))
     const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
     console.log("取得完了" + currentUserIdChat)
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
     const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
-    console.log("出品者の最終評価" + sellerUserLastReview)
     const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
     const [currentUserId, setCurrentUserId] = useState<string | null>("")
+    console.log("出品者の最終評価" + sellerUserLastReview)
     const [currentUserData, setCurrentUserData] = useState()
     const [partnerUserData, setPartnerUserData] = useState()
     const [loginUserData, setLoginUserData] = useState()
+    const router = useRouter()
 
     console.log(partnerUserData)
     const user = useUser()
@@ -239,11 +227,9 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
     }
     useEffect(() => {
         const confirmUserData = async () => {
-            const response = await confirmUser(token!)
-            if (response !== undefined) {
-                const responseParse = JSON.parse(response)
-                setLoginUserData(responseParse?._id)
-            }
+            const response = await confirmUser(token)
+            const responseParse = JSON.parse(response)
+            setLoginUserData(responseParse?._id)
         }
         confirmUserData()
     }, [token]);
@@ -314,14 +300,15 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
                 //console.log(sellerId)
                 if (loginUserData !== undefined) {
 
-                    const setUsersData = await TradeProductMessageServer(loginUserData, productData?.sellerId)
+                    const setUsersData: tradeChatStatusType | null = await TradeProductMessageServer(loginUserData, productData?.sellerId)
+                        // if (setUsersData == null) {
+                        //     console.log("取引では見つからないユーザーでログインしています。アカウントをお確かめの上再度アクセスしてください。")
+                        //     router.push("/")
+                        // }
 
-                    if (setUsersData == null) {
-                        //console.log("取引では見つからないユーザーでログインしています。アカウントをお確かめの上再度アクセスしてください。")
-                        // router.push("/")
-                    }
                     if (setUsersData?.chatExists) {
-                        const currentUser = await userProfile(currentUserId)
+                        const currentUser = await userProfile(currentUser_Id)
+                        console.log("currentUserId", currentUser)
                         const partnerUser = await userProfile(buyerId)
                         if (buyerId !== undefined && currentUser?.searchUser !== undefined && partnerUser?.searchUser !== undefined) {
                             setCurrentUserData(JSON.parse(currentUser?.searchUser))
@@ -346,7 +333,8 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
                 }
 
             } catch (err) {
-                //console.log("fetch failed")
+                console.log(err)
+                return null
             }
         }
         response()
@@ -374,11 +362,10 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
                 try {
 
                     const response = await savePurchaseProductMessageStatus1(purchaseId, chatData?.currentUser, message, currentUserData)
-                    // const update = await savePurchaseProductMessageStatus1Update(purchaseId, chatData?.currentUser, message)
-                    //console.log(response)
+                    console.log(response)
                     setMessage("")
                 } catch (err) {
-                    //console.log(err)
+                    console.log(err)
                     return null
                 }
             }
@@ -398,7 +385,7 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
                 // const response = await savePurchaseProductMessageStatus2(purchaseId, chatData?.currentUser, message)
                 const update = await savePurchaseProductMessageStatus2Update(purchaseId, chatData?.buyerId, message, currentUserData)
 
-                //console.log(update)
+                console.log(update)
                 setMessage("")
             }
             SavedPurchaseProductMessageStatus2()
@@ -569,6 +556,10 @@ const ListingComplete = ({params}: {params: { id: string | null } }) => {
 
                 <div>
                     出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
+                </div>
+
+                <div>
+                    購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}
                 </div>
 
                 <div id="control">
