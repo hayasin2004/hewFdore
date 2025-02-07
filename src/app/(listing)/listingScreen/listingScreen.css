@@ -66,6 +66,13 @@ div.content .txtInput{
     width: 350px;
     border-radius: 20px;
 }
+div.content .txtInput:hover,.areaInput:hover{
+    border: 2px solid #000;
+    background: #fffa;
+    box-shadow: 2px 2px 0 #0008;
+    transition: 0.2s;
+}
+
 div.content .areaInput{
     resize:vertical;
     padding: 15px;
@@ -76,6 +83,7 @@ div.content .areaInput{
     height: 150px;
     border: black solid 2px;
     border-radius: 5px;
+    transition: 0.2s;
 }
 ::-webkit-scrollbar{
     display: none;

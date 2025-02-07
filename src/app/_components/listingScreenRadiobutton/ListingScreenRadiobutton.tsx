@@ -87,35 +87,35 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
 
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
+                                            value="tops" className={"radioBtn"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="denim" control={<Radio/>} label="デニム"/>
+                                            value="denim" className={"radioBtn"} control={<Radio/>} label="デニム"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="outer" control={<Radio/>} label="アウター"/>
+                                            value="outer" className={"radioBtn"} control={<Radio/>} label="アウター"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="shirt" control={<Radio/>} label="シャツ"/>
+                                            value="shirt" className={"radioBtn"} control={<Radio/>} label="シャツ"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="longShirt" control={<Radio/>} label="長袖"/>
+                                            value="longShirt" className={"radioBtn"} control={<Radio/>} label="長袖"/>
                                     </Box>
 
                                     <Box className={"radio_button_low2"}>
 
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="T-shirt" control={<Radio/>} label="Tシャツ"/>
+                                            value="T-shirt" className={"radioBtn"} control={<Radio/>} label="Tシャツ"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="perfume" control={<Radio/>} label="香水"/>
+                                            value="perfume" className={"radioBtn"} control={<Radio/>} label="香水"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="hat" control={<Radio/>} label="帽子"/>
+                                            value="hat" className={"radioBtn"} control={<Radio/>} label="帽子"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="shose" control={<Radio/>} label="靴"/>
+                                            value="shose" className={"radioBtn"} control={<Radio/>} label="靴"/>
                                     </Box>
 
                                 </Box>
