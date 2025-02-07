@@ -11,7 +11,7 @@ const client = createClient({
 
 export const GetBlog = async () => {
     try {
-        const data = await client.get({ endpoint: 'blogs' });
+        const data = await client.get({ endpoint: 'blogs',queries: { limit: 100 }, });
         return data.contents;
     } catch (err) {
         console.error("APIエラー:", err);
