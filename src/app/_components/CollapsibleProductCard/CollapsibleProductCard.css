@@ -50,7 +50,7 @@
 .expanded-Size{
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 0;
     width: 50px;
     text-align: center;
     font-size: 2rem;
@@ -142,6 +142,44 @@
     border: 2px solid #bbb;
     box-shadow: 2px 2px 2px #bbb;
     background-color: #eee;
+}
+#closeButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 8vh;
+    margin-top: 10px;
+    border-radius: 50%;
+    text-align: center;
+}
+#closeButton:hover{
+    cursor: pointer;
+    background-color: #eee8;
+}
+
+.expanded-image{
+    display: flex;
+    align-items: center;
+}
+.expanded-image img{
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    object-fit: cover;
+    box-shadow: 0 10px 10px -5px gray;
+}
+
+.collapsed-image{
+    display: flex;
+    align-items: center;
+}
+.collapsed-image img{
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    object-fit: cover;
+    box-shadow: 0 10px 10px -5px gray;
 }
 
 .comment-account{
