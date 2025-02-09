@@ -24,6 +24,7 @@ import {redirect} from 'next/navigation';
 import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 import {useRouter} from "next/navigation"
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
 
@@ -210,12 +211,11 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
     const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
-    const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
-    const [currentUserId, setCurrentUserId] = useState<string | null>("")
+    const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")　
     console.log("出品者の最終評価" + sellerUserLastReview)
     const [currentUserData, setCurrentUserData] = useState()
     const [partnerUserData, setPartnerUserData] = useState()
-    const [loginUserData, setLoginUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     const router = useRouter()
 
     console.log(partnerUserData)
@@ -228,8 +228,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const confirmUserData = async () => {
             const response = await confirmUser(token)
+            if(response !== undefined){
             const responseParse = JSON.parse(response)
             setLoginUserData(responseParse?._id)
+            }
         }
         confirmUserData()
     }, [token]);
@@ -292,9 +294,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const response = async () => {
             try {
-
-                const userParse = JSON.parse(user)
-                const currentUser_Id = loginUserData?._id
+　
+                const currentUser_Id = loginUserData
                 const sellerId = productData?.sellerId
                 const buyerId = productData?.buyerId
                 //console.log(sellerId)
@@ -318,7 +319,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                         //console.log("ステータス1")
                         setStatus("1")
                     } else {
-                        const currentUser = await userProfile(currentUserId)
+                        const currentUser = await userProfile(currentUser_Id)
                         const partnerUser = await userProfile(sellerId)
                         if (currentUser?.searchUser !== undefined && partnerUser?.searchUser !== undefined) {
                             setCurrentUserData(JSON.parse(currentUser?.searchUser))
@@ -396,7 +397,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     //console.log(Rating)
 
     const tradeEndFunc = async () => {
-        const response = await tradeEnd(purchaseId, status, currentUserId, lastChat, reviewValue)
+        const response = await tradeEnd(purchaseId, status, loginUserData , lastChat, reviewValue)
         //console.log(response)
         if (response?.tradeStatus == 0 || response?.tradeStatus == 2 || response?.tradeStatus == 4) {
             setTradeStatus(1)
@@ -437,7 +438,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             {tradeStatus == 1 ? <p>取引終了しました。</p> : <p>取引中</p>}
             {/*{currentUserIdChat}*/}
             <p>
-                ログインユーザー : {chatData?.currentUserId}
+                ログインユーザー : {loginUserData}
             </p>
 
             {chatList.map((item, index) => (
