@@ -119,6 +119,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                                 <li>商品価格 : {item.productPrice}</li>
                                 <li>送料負担 : {item.postageBurden}</li>
                                 <li>商品カテゴリー : {item.productCategory}</li>
+                                <Images src={item?.productImage ? item?.productImage : "/"} alt={"商品画像"} width={500} height={500} />
                                 <Link href={`/product/${item._id}`}>
                                     <li>詳細を見る</li>
                                 </Link>
