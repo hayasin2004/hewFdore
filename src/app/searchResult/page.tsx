@@ -1,27 +1,34 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import Header from "@/app/_components/header/Header";
 import "./searchResult.css"
-import SearchResultProducts from "@/app/_components/SearchResultProducts/SearchResultProducts";
+// コンポーネント読み込み
+import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
+import Sidebar from "@/app/_components/sidebar/Sidebar";
 import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
+import {products as data} from "../api/dummyData/data"
+import {productsProps} from "../api/dummyData/data";
+import CompleteStripe from "@/app/_components/stripe/Stripe";
 import {loadStripe} from "@stripe/stripe-js";
+import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
+import Stripe from "@/app/_components/stripe/Stripe";
 import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
+import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 // ページネーション
 import ReactPaginate from "react-paginate";
+
+
+
+
 const stripePromise = loadStripe(
     process.env.STRIPE_SECRET_KEY!
 )
-console.log(stripePromise);
 
 const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
     console.log(JSON.stringify(productList) + "取得")
 
-    const [openCardId, setOpenCardId] = useState<string | null>(null);
-    const handleCardToggle = (itemId: string) => {
-        setOpenCardId(openCardId === itemId ? null : itemId);
-    };
 
     // 商品一覧の取得
     // searchResultにアクセスしたときのみ限りuseEffectでデータを取得してくる。
@@ -45,7 +52,7 @@ const SearchPageProducts = () => {
                     }
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
-                    const productData: DBProductType[] = await items.json()
+                    const productData : DBProductType[] = await items.json()
 
                     console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
@@ -59,10 +66,10 @@ const SearchPageProducts = () => {
             // console.log(JSON.stringify(productData))
 
             const query = new URLSearchParams(window.location.search)
-            if (query.get("success")) {
+            if (query.get("success")){
                 console.log("登録されたメールアドレスに支払い情報が送られました。")
             }
-            if (query.get("canceled")) {
+            if (query.get("canceled")){
                 console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
             }
 
@@ -74,11 +81,8 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
-    // const product : DBProductType[]   = productList.map((item) => {
-    //     return {...item ,id : item._id}
-    //     }
-    // )
-
+    var page = 0;
+    const product: DBProductType[] = productList;
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
@@ -87,99 +91,106 @@ const SearchPageProducts = () => {
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
-    const t_item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-
-    function T_items({currentProduct}) {
-        return (
+    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+    function T_items({currentProduct}){
+        return(
+            // ここで表示html設定
             <>
-                {currentProduct.map((item) => (
-                    // <ProductCardList key={item._id} items={item} />
+               {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
+                <ProductCardList items={currentProduct} />
 
-                    <CollapsibleProductCard
-                        key={item._id}
-                        item={item}
-                        isOpen={openCardId === item._id}
-                        onToggle={() => handleCardToggle(item._id)}
-                    />
 
-                    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>
-                    //     {/*<p>商品番号 : {item._id}</p>*/}
-                    //     {/*<p>ユーザーネーム : {item.userId}</p>*/}
-                    //     <p className={"listImage"}>item.いめーじ</p>
-                    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>
-                    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>
-                    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
-                    //     {/*<Stripe productId={item?._id} />*/}
-                    // </div>
-                ))}
             </>
         )
     }
-
-    const ProductPerPage = 4;
-    const [ProductOffset, setProductOffset] = useState(0); 
-    const currentProduct = productList.slice(ProductOffset, ProductOffset + ProductPerPage);
-    const pageCount = Math.ceil(t_item.length / ProductPerPage);
-    const handlePageClick = (e: { selected: number }) => {
-        const newOffset = (e.selected * ProductPerPage) % productList.length;
-        setProductOffset(newOffset);
+    // 1ページごとに表示する数はProductPerPageで変えられます
+    var ProductPerPage = 2;
+    const [ProductOffset,setProductoffset] = useState(0);
+    const endOffset = ProductOffset +ProductPerPage;
+    const currentProduct = productList.slice(ProductOffset,endOffset);
+    const pageCount = product.length/ProductPerPage;
+    const handlePageClick = (e:{selected:number}) =>{
+        const newOfffset = (e.selected * ProductPerPage)%product.length;
+        setProductoffset(newOfffset);
 
     };
 
-    // 練習コーナー2
-    // ProductListを基に表示する分のデータを切り出す
-    // sliceだとA以上B未満になる
-    const sliceProduct = productList.slice(0, 10)
-    console.log(sliceProduct);
-    //
-    // function pageChange(page: number) {
-    //     let pMax = 10 * (page + 1) - 1;
-    //     let pMin = page * 10;
-    //     const filterProduct = productList.filter((productList, index) => {
-    //         if (index <= pMax) {
-    //             return index >= pMin
-    //         }
-    //     })
-    //     console.log(page, filterProduct);
-    // }
-
-
-    // react-paginate公式Usage参考 なんかProduct数が2つになってるんですけど！？
 
     return (
         <div>
-            {/*<SearchHeader/>*/}
             <Header/>
-            <div style={{width: "1200px", justifyContent: "space-between", display: "flex"}}>
-                <div style={{"marginTop": "60px", width: "600px"}}>
-                    {/*<Sidebar/>*/}
-                </div>
-                <div>
-                </div>
-                <SearchResultProducts/>
+            <div id={"SearchBar"}>
+            {/* このdivに検索バー、オプションを入れる */}
+                <form id={"WordSearch"} action="#">
+                    {/*　文字入力　*/}
+                    <input placeholder="お探しの商品を検索…" type="text"/>
+                    {/*　カテゴリ絞り込み　*/}
+                    {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
+                    <select id={"SearchCat"}>
+                        <option value="カテゴリー">カテゴリー</option>
+                        <option value="トップス">トップス</option>
+                        <option value="ボトムス">ボトムス</option>
+                        <option value="アウター">アウター</option>
+                        <option value="帽子">帽子</option>
+                        <option value="靴">靴</option>
+                        <option value="アクセサリー">アクセサリー</option>
+                        <option value="香水">香水</option>
+                    </select>
+                    {/*　サイズ絞り込み　*/}
+                    <select id={"SearchSize"}>
+                        <option value="サイズ">サイズ</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="LL">LL</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    <button id={"SearchSubmit"} type={"submit"}>検索</button>
+                </form>
             </div>
-            <div>
+
+            <div id={"NumView"}>
+                <h2 id={"SRTotal"}>{product.length}件の検索結果</h2>
+                <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
+                <div id={"ChangeSetting"}>
+                    {/*<p>ここに並び替えとProductPerPage変更を置く</p>*/}
+                    <select name="ChangeSort" id="ChangeSort" onChange={(event) => console.log(event.target.value)}>
+                        <option value="新着順">新着順</option>
+                        <option value="人気順">人気順</option>
+                        <option value="値段昇順">値段昇順</option>
+                        <option value="値段降順">値段降順</option>
+                    </select>
+                    <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
             </div>
 
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
+                {/*<ProductCardList items={product} />*/}
                 <T_items currentProduct={currentProduct}/>
                 <ReactPaginate pageCount={pageCount}
-                               marginPagesDisplayed={0}
                                pageRangeDisplayed={2}
+                               marginPagesDisplayed={1}
                                onPageChange={handlePageClick}
                                breakLabel={"..."}
                                nextLabel={">"}
                                nextLinkClassName="RPnext"
                                previousLabel={"<"}
-                               previousClassName="RPprev"
+                               previousLinkClassName="RPprev"
                                containerClassName="PaginateFlame"
                                pageClassName="PagiClassName"
                                pageLinkClassName="PagiClassLink"
                                activeClassName="activeClassLink"
                                disabledClassName="disable"
                                renderOnZeroPageCount={null}
-                />
+                               />
 
                 <div className={"filterTest"}>
                     {/*{sliceProduct.map((item)=>(*/}
@@ -190,11 +201,25 @@ const SearchPageProducts = () => {
 
 
                 </div>
+                {/*{product.map((item) => (*/}
 
+                {/*    <CollapsibleProductCard key={item._id} item={item} />*/}
+
+                {/*    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>*/}
+                {/*    //     /!*<p>商品番号 : {item._id}</p>*!/*/}
+                {/*    //     /!*<p>ユーザーネーム : {item.userId}</p>*!/*/}
+                {/*    //     <p className={"listImage"}>item.いめーじ</p>*/}
+                {/*    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>*/}
+                {/*    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>*/}
+                {/*    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>*/}
+                {/*    //     /!*<Stripe productId={item?._id} />*!/*/}
+                {/*    // </div>*/}
+                {/*))}*/}
                 {/*<SearchResultProducts/>*/}
 
             </div>
 
+        <Footer/>
 
         </div>
     );

@@ -1,5 +1,5 @@
- 
-    import React, { useState, useRef, useEffect } from 'react';
+    // CollapsibleProductCard.tsx
+    import { useState, useRef, useEffect } from 'react';
     import {
         Card,
         CardContent,
@@ -7,13 +7,11 @@
         Collapse,
         Box
     } from '@mui/material';
-    import './CollapsibleProductCard.css'; 
-    import Link from 'next/link';
-    import {ProductType} from "@/app/utils/product/productDetail";
-    import Image from "next/image";
+    import './CollapsibleProductCard.css';
+    import { DBProductType } from '@/app/api/product/route';
 
     interface CollapsibleProductCardProps {
-        item: ProductType;
+        item: DBProductType;
         isOpen: boolean;
         onToggle: () => void;
     }
@@ -79,11 +77,8 @@
                 <Collapse in={!isOpen} timeout="auto">
                     <CardContent>
                         <div className="testttt">
-                            <p className="collapsed-image">
-                                <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"} width={400} height={310}
-                                       alt="サンプル" id="sum"/>
-                            </p>
-                            <p className="product-Size">{item.productSize}</p>
+                            <p className="collapsed-image">item.いめーじ</p>
+                            <p className="product-Size">L</p>
                         </div>
                         <p className="explanation">商品説明 : {item.productDesc}</p>
                         <p className="explanation">出品者名 : {item.productName}</p>
@@ -105,11 +100,8 @@
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
                                 <Box className="expanded-box" sx={{ height: '100%' }}>
-                                    <p className="expanded-image">
-                                        <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"} width={420} height={550}
-                                               alt="サンプル" id="sum"/>
-                                    </p>
-                                    <p className="expanded-Size">{item.productSize}</p>
+                                    <p className="expanded-image">item.いめーじい</p>
+                                    <p className="expanded-Size">L</p>
                                 </Box>
                             </Grid>
 
@@ -122,23 +114,19 @@
                                         borderRadius: 1
                                     }}
                                 >
-                                    <p className="expanded-Name">商品名 : {item.productName}</p>
-                                    <p className="expanded-Genre">カテゴリー : {item.productCategory}</p>
-                                    <p className="expanded-Price">商品価格 : {item.productPrice}円</p>
-                                    <p className="expanded-Situation">状態 : {item.productCondition} </p>
+                                    <p className="expanded-Name">商品名</p>
+                                    <p className="expanded-Genre">ジャンル：</p>
+                                    <p className="expanded-Material">素材　　：</p>
+                                    <p className="expanded-Price">商品価格：{Number(item.productPrice).toLocaleString()}円</p>
+                                    <p className="expanded-Situation">状態　　：</p>
                                     <p className="expanded-Cart">Add to Cart</p>
-                                    <p className="expanded-Cart">
-                                        <Link href={`product/${item?._id}`}>
-                                            もっと見る
-                                        </Link>
-                                    </p>
                                 </Box>
                             </Grid>
 
                             <Grid item xs={3}>
                                 <Box className={"expanded-comment"}>
                                     <div className="expanded-comment-fream">
-                                    <div className="comment-account">
+                                        <div className="comment-account">
                                             <p id={"ac_img"}>wa!</p>
                                             <p id={"ac_name"}>エマワトソン</p>
                                         </div>
