@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import "./searchResult.css"
 // コンポーネント読み込み
 import Header from "@/app/_components/header/Header";
@@ -17,8 +17,7 @@ import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/Col
 import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 // ページネーション
 import ReactPaginate from "react-paginate";
-
-
+import Link from "next/link";
 
 
 const stripePromise = loadStripe(
@@ -27,7 +26,9 @@ const stripePromise = loadStripe(
 
 const SearchPageProducts = () => {
     const [productList, setProductList] = useState<DBProductType[]>([])
-    console.log(JSON.stringify(productList) + "取得")
+    const [searchCategory, setSearchCategory] = useState<string>("")
+    console.log(searchCategory)
+    // console.log(JSON.stringify(productList) + "取得")
 
 
     // 商品一覧の取得
@@ -52,7 +53,7 @@ const SearchPageProducts = () => {
                     }
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
-                    const productData : DBProductType[] = await items.json()
+                    const productData: DBProductType[] = await items.json()
 
                     console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
@@ -66,10 +67,10 @@ const SearchPageProducts = () => {
             // console.log(JSON.stringify(productData))
 
             const query = new URLSearchParams(window.location.search)
-            if (query.get("success")){
+            if (query.get("success")) {
                 console.log("登録されたメールアドレスに支払い情報が送られました。")
             }
-            if (query.get("canceled")){
+            if (query.get("canceled")) {
                 console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
             }
 
@@ -91,50 +92,59 @@ const SearchPageProducts = () => {
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
-    const t_item = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-    function T_items({currentProduct}){
-        return(
+    const t_item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+
+    function T_items({currentProduct}) {
+        return (
             // ここで表示html設定
             <>
-               {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
-                <ProductCardList items={currentProduct} />
+                {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
+                <ProductCardList items={currentProduct}/>
 
 
             </>
         )
     }
+
     // 1ページごとに表示する数はProductPerPageで変えられます
     var ProductPerPage = 2;
-    const [ProductOffset,setProductoffset] = useState(0);
-    const endOffset = ProductOffset +ProductPerPage;
-    const currentProduct = productList.slice(ProductOffset,endOffset);
-    const pageCount = product.length/ProductPerPage;
-    const handlePageClick = (e:{selected:number}) =>{
-        const newOfffset = (e.selected * ProductPerPage)%product.length;
+    const [ProductOffset, setProductoffset] = useState(0);
+    const endOffset = ProductOffset + ProductPerPage;
+    const currentProduct = productList.slice(ProductOffset, endOffset);
+    const pageCount = product.length / ProductPerPage;
+    const handlePageClick = (e: { selected: number }) => {
+        const newOfffset = (e.selected * ProductPerPage) % product.length;
         setProductoffset(newOfffset);
 
     };
+
+    const handleCategoryChange = (e : ChangeEvent<HTMLSelectElement>) =>{
+            setSearchCategory(e.target.value)
+            console.log(e.target.value)
+    }
+
 
 
     return (
         <div>
             <Header/>
             <div id={"SearchBar"}>
-            {/* このdivに検索バー、オプションを入れる */}
+                {/* このdivに検索バー、オプションを入れる */}
                 <form id={"WordSearch"} action="#">
                     {/*　文字入力　*/}
                     <input placeholder="お探しの商品を検索…" type="text"/>
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
-                    <select id={"SearchCat"}>
+                    <select id={"SearchCat"} onChange={handleCategoryChange}>
                         <option value="カテゴリー">カテゴリー</option>
-                        <option value="トップス">トップス</option>
-                        <option value="ボトムス">ボトムス</option>
-                        <option value="アウター">アウター</option>
-                        <option value="帽子">帽子</option>
-                        <option value="靴">靴</option>
-                        <option value="アクセサリー">アクセサリー</option>
-                        <option value="香水">香水</option>
+                        <option value="tops">トップス</option>
+                        <option value="bottom">ボトム</option>
+                        <option value="outer" >アウター
+                        </option>
+                        <option value="hat">帽子</option>
+                        <option value="shose">靴</option>
+                        {/*<option value="アクセサリー">アクセサリー</option>*/}
+                        <option value="perfume">香水</option>
                     </select>
                     {/*　サイズ絞り込み　*/}
                     <select id={"SearchSize"}>
@@ -146,7 +156,11 @@ const SearchPageProducts = () => {
                         <option value="LL">LL</option>
                         <option value="XL">XL</option>
                     </select>
-                    <button id={"SearchSubmit"} type={"submit"}>検索</button>
+                    <button id={"SearchSubmit"} type={"submit"}>
+                        <Link href={`/searchResult/productSearch/${searchCategory}`}>
+                            検索
+                        </Link>
+                    </button>
                 </form>
             </div>
 
@@ -190,7 +204,7 @@ const SearchPageProducts = () => {
                                activeClassName="activeClassLink"
                                disabledClassName="disable"
                                renderOnZeroPageCount={null}
-                               />
+                />
 
                 <div className={"filterTest"}>
                     {/*{sliceProduct.map((item)=>(*/}
@@ -219,7 +233,7 @@ const SearchPageProducts = () => {
 
             </div>
 
-        <Footer/>
+            <Footer/>
 
         </div>
     );

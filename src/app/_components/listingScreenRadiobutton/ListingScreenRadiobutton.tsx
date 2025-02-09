@@ -49,7 +49,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
         setProductCondition(ConditionEvent)
         onProductConditionChange(ConditionEvent)
     }
-    const handleProductExplainPostageBurdenSet = (PostageBurdenEvent: React.FC<HTMLButtonElement>) => {
+    const handleProductExplainPostageBurdenSet = (PostageBurdenEvent:string) => {
         console.log(PostageBurdenEvent)
         setPostageBurden(PostageBurdenEvent)
         onPostageBurdenChange(PostageBurdenEvent)
@@ -90,7 +90,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                             value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="denim" control={<Radio/>} label="デニム"/>
+                                            value="bottom" control={<Radio/>} label="ボトム"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
                                             value="outer" control={<Radio/>} label="アウター"/>
