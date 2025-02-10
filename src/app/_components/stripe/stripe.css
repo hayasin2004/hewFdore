@@ -4,11 +4,11 @@ body{
 }
 
 div.StripePurchaseButtonMain{
-    width:100%;
+    width:80%;
 }
 
 button.StripePurchaseButton{
-    width: 150px;
+    width: 100px;
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;

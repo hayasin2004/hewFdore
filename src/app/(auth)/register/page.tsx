@@ -73,9 +73,8 @@ const Register = () => {
                                                 console.log("ここに登録ログ北")
                                                 window.alert("そのユーザー名は既に作成されています。")
                                             } else {
-
-                                                if (data !== undefined ) {
-                                                    const UserDataParse  = JSON.parse(data?.newUser)
+                                                if (data) {
+                                                    const UserDataParse = JSON.parse(data?.newUser)
                                                     const TokenDataParse = JSON.parse(data?.TenMinToken)
                                                     console.log(UserDataParse)
                                                     setResponseUserData(UserDataParse)

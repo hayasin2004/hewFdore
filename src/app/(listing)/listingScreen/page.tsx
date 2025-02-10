@@ -32,7 +32,7 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
-    // const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
+    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
     // const [compressedVideo, setCompressedVideo] = useState(null)
 
 
@@ -210,7 +210,7 @@ const ListingScreen: React.FC = () => {
                                         <p>確認ページ</p>
                                     </Link>
                                     : <p>出品</p>}
-                            </button>
+                            </button>　
                         </div>
 
                     </form>

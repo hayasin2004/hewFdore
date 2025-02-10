@@ -20,10 +20,10 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
             const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
             if (TenMinToken !== null) {
                 try {
-                    const decoded : string | null= await confirmToken(TenMinToken);
+                    const decoded= await confirmToken(TenMinToken);
                     console.log(decoded)
                     if (decoded !== null ) {
-                        setEmail(decoded)
+                        setEmail(decoded.email)
                     }
                 } catch (err) {
                     console.log(err)

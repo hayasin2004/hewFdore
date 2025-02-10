@@ -18,6 +18,7 @@ import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCar
 // ページネーション
 import ReactPaginate from "react-paginate";
 import Link from "next/link";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 
 const stripePromise = loadStripe(
@@ -25,8 +26,14 @@ const stripePromise = loadStripe(
 )
 
 const SearchPageProducts = () => {
-    const [productList, setProductList] = useState<DBProductType[]>([])
+
+    const [productList, setProductList] = useState<ProductType[]>([])
+    const [categoryProductList, setCategoryProductList] = useState<ProductType[]>([])
+    const [productListLength, setProductListLength] = useState<number>(0)
+    console.log(productList.length)
     const [searchCategory, setSearchCategory] = useState<string>("")
+    const [searchSize, setSearchSize] = useState<string>("")
+    const [searchWord, setSearchWord] = useState<string>("")
     console.log(searchCategory)
     // console.log(JSON.stringify(productList) + "取得")
 
@@ -58,6 +65,8 @@ const SearchPageProducts = () => {
                     console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
                     setProductList(productData)
+                    setProductListLength(productData.length)
+
                     console.log("success")
                 } catch (err) {
                     console.log("Error" + err)
@@ -83,7 +92,7 @@ const SearchPageProducts = () => {
     //
     // // 商品を展開
     var page = 0;
-    const product: DBProductType[] = productList;
+    const product: ProductType[] = productList;
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
 //     ...itemはオブジェクト型を取り出すのに特化したものと考えてもいいかもです。
@@ -94,14 +103,22 @@ const SearchPageProducts = () => {
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
     const t_item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
-    function T_items({currentProduct}) {
+    function T_items({category,currentProduct, categoryProductList}) {
         return (
             // ここで表示html設定
             <>
                 {/*<div style={{"margin":50,"color":"red"}}> {currentProduct}</div>*/}
-                <ProductCardList items={currentProduct}/>
+                {
+                    category == ""  ?
+                        <>
+                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                        </>
+                        :
+                        <>
+                            <ProductCardList items={categoryProductList} category={searchCategory} size={searchSize}/>
+                        </>
 
-
+                }
             </>
         )
     }
@@ -111,6 +128,7 @@ const SearchPageProducts = () => {
     const [ProductOffset, setProductoffset] = useState(0);
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = productList.slice(ProductOffset, endOffset);
+    const categoryProductListData = categoryProductList.slice(ProductOffset, endOffset);
     const pageCount = product.length / ProductPerPage;
     const handlePageClick = (e: { selected: number }) => {
         const newOfffset = (e.selected * ProductPerPage) % product.length;
@@ -118,11 +136,25 @@ const SearchPageProducts = () => {
 
     };
 
-    const handleCategoryChange = (e : ChangeEvent<HTMLSelectElement>) =>{
-            setSearchCategory(e.target.value)
-            console.log(e.target.value)
+    const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setSearchWord(e.target.value)
+        console.log(e.target.value)
     }
 
+    useEffect(() => {
+        setSearchWord("")
+    }, []);
+
+    const filterProductByCategory = (items: ProductType[], category: string) => {
+        console.log("ここまで来た" + items.length)
+        return items.filter(product => product?.productCategory?.includes(category));
+    }
+    useEffect(() => {
+            const searchCategoryResult = filterProductByCategory(productList, searchCategory)
+            console.log(searchCategoryResult)
+            setCategoryProductList(searchCategoryResult)
+            setProductListLength(searchCategoryResult.length)
+    }, [searchCategory]);
 
 
     return (
@@ -132,14 +164,16 @@ const SearchPageProducts = () => {
                 {/* このdivに検索バー、オプションを入れる */}
                 <form id={"WordSearch"} action="#">
                     {/*　文字入力　*/}
-                    <input placeholder="お探しの商品を検索…" type="text"/>
+                    <input onChange={handleCategoryChange} placeholder="お探しの商品を検索…" type="text"/>
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
-                    <select id={"SearchCat"} onChange={handleCategoryChange}>
-                        <option value="カテゴリー">カテゴリー</option>
-                        <option value="tops">トップス</option>
+                    <select id={"SearchCat"} onChange={(e) => {
+                        setSearchCategory(e.target.value)
+                    }}>
+                        <option value="">カテゴリー</option>
+                        <option value="T-shirt">トップス</option>
                         <option value="bottom">ボトム</option>
-                        <option value="outer" >アウター
+                        <option value="outer">アウター
                         </option>
                         <option value="hat">帽子</option>
                         <option value="shose">靴</option>
@@ -147,8 +181,10 @@ const SearchPageProducts = () => {
                         <option value="perfume">香水</option>
                     </select>
                     {/*　サイズ絞り込み　*/}
-                    <select id={"SearchSize"}>
-                        <option value="サイズ">サイズ</option>
+                    <select id={"SearchSize"} onChange={(e) => {
+                        setSearchSize(e.target.value)
+                    }}>
+                        <option value="">サイズ</option>
                         <option value="XS">XS</option>
                         <option value="S">S</option>
                         <option value="M">M</option>
@@ -157,7 +193,7 @@ const SearchPageProducts = () => {
                         <option value="XL">XL</option>
                     </select>
                     <button id={"SearchSubmit"} type={"submit"}>
-                        <Link href={`/searchResult/productSearch/${searchCategory}`}>
+                        <Link href={`/searchResult/productSearch/${searchWord}`}>
                             検索
                         </Link>
                     </button>
@@ -165,7 +201,7 @@ const SearchPageProducts = () => {
             </div>
 
             <div id={"NumView"}>
-                <h2 id={"SRTotal"}>{product.length}件の検索結果</h2>
+                <h2 id={"SRTotal"}>{searchCategory == ""  ?productList.length : productListLength}件の検索結果</h2>
                 <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
                 <div id={"ChangeSetting"}>
                     {/*<p>ここに並び替えとProductPerPage変更を置く</p>*/}
@@ -188,7 +224,7 @@ const SearchPageProducts = () => {
             {/* 取り出せる内容はコンソールに表示してます。*/}
             <div className={"productListFrame"}>
                 {/*<ProductCardList items={product} />*/}
-                <T_items currentProduct={currentProduct}/>
+                <T_items category={searchCategory} currentProduct={currentProduct} categoryProductList={categoryProductListData}/>
                 <ReactPaginate pageCount={pageCount}
                                pageRangeDisplayed={2}
                                marginPagesDisplayed={1}

@@ -14,9 +14,10 @@
         item: DBProductType;
         isOpen: boolean;
         onToggle: () => void;
+        category : string
     }
 
-    const CollapsibleProductCard = ({ item, isOpen, onToggle }: CollapsibleProductCardProps) => {
+    const CollapsibleProductCard = ({ item, isOpen, onToggle ,category}: CollapsibleProductCardProps) => {
         const [isAnimating, setIsAnimating] = useState(false);
         const [isContentVisible, setIsContentVisible] = useState(false);
         const cardRef = useRef<HTMLDivElement>(null);
@@ -55,6 +56,7 @@
         };
 
         return (
+            <>
             <Card
                 ref={cardRef}
                 className={`collapsible-product-card ${isOpen ? 'expanded' : 'collapsed'}`}
@@ -145,6 +147,7 @@
                     </CardContent>
                 </Collapse>
             </Card>
+            </>
         );
     };
 
