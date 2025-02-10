@@ -59,9 +59,9 @@ const Blogintroduction = () => {
     return (
         <div>
             <Header/>
-            <h1>ブログ一覧</h1>
+            <h1 className={"title-h1"}>ブログ一覧</h1>
 
-            {/* 年と月の選択 */}
+
             <div style={{ marginBottom: "20px" }}>
                 <label>
                     年:
