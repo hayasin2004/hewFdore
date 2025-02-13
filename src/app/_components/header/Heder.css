@@ -106,10 +106,15 @@ p#usernameGet{
 
 
 p#name{
+    padding: 5px;
     width: 8rem;
     overflow-wrap: break-word;
-
+    transition: 0.3s;
     /*margin-left: 74px;*/
+}
+p#name:hover{
+    color: #fff;
+    text-shadow: 0 0 10px #BF9E80 ,0 0 5px #BF9E80,0 0 2px #D0C7B2;
 }
 
 li#list_bell{

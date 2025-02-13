@@ -51,6 +51,7 @@ const ListingScreen: React.FC = () => {
     return (
         <>
             <Header/>
+            <div id={"bgsell"}>
             <div className={"content"}>
                     <form action={async (data: FormData) => {
                         console.log("asfasdfdafffdfdfdfffffffdddfffff")
@@ -147,6 +148,7 @@ const ListingScreen: React.FC = () => {
 
                     </form>
                 </div>
+            </div>
             <Footer/>
 
         </>
