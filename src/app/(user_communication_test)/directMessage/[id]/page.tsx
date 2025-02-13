@@ -13,7 +13,9 @@ import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Upda
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
 import confirmUser from "@/app/utils/user/confirmUser";
+import './DMpage.css'
 import {JsConfigPathsPlugin} from "next/dist/build/webpack/plugins/jsconfig-paths-plugin";
+import Images from "next/image";
 
 
 const DirectMessage = ({params}: { params: { id?: string } }) => {
@@ -136,41 +138,47 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     return (
         <>
-            <div style={{width: "100%", display: "flex", justifyContent: "space-between"}}>
+            <div className={"dmFreme"}>
 
-                <p>
-                    対象ユーザー : {partnerChatData?._id}
-                    ユーザー名 :  {partnerChatData?.username}
-                </p>
-                <div>
-                {/*    対象ユーザーチャット : {partnerUserChat?.map((item) => (*/}
-                {/*    <ul key={item.id}>*/}
-                {/*        <li>{item}</li>*/}
-                {/*    </ul>*/}
-                {/*))}*/}
+                <div className={"PUser-top"}>
+                    {/*対象ユーザー : {partnerChatData?._id}*/}
+                    {partnerChatData?.username} さん
                 </div>
-                <br/>
-                <p>
-                    ログインユーザー :  {currentChatData?._id}
-                    ユーザー名 :  {currentChatData?.username}
-                </p>
-                <div>
-                {/*    ログインしているチャット : {currentUserChat?.map((item) => (*/}
-                {/*    <ul key={item._id}>*/}
-                {/*        <li>{item.username}</li>*/}
-                {/*    </ul>*/}
-                {/*))}*/}
-                    {chatList.map((item, index) => (
-                        <ul key={index}>
-                            <li>{item?.message}</li>
-                        </ul>
-                    ))}
+
+                {/*<div>*/}
+                {/*    ログインユーザー : {currentChatData?._id}*/}
+                {/*    ユーザー名 : {currentChatData?.username}*/}
+                {/*</div>*/}
+
+                <div className={"userChatFrame"}>
+                    <div className={"userChat"}>
+                        {/*    ログインしているチャット : {currentUserChat?.map((item) => (*/}
+                        {/*    <ul key={item._id}>*/}
+                        {/*        <li>{item.username}</li>*/}
+                        {/*    </ul>*/}
+                        {/*))}*/}
+
+                        {chatList.map((item, index) => (
+                            <div className={"chatFrame"} key={index}>
+                                <div className={"chatRightFrame"}>
+                                    {/*<div className={"PIcon"}>*/}
+                                    {/*    IC*/}
+                                    {/*    /!*<Images src={userData?.profilePicture} alt={"ユーザーのプロフィール画像"} width={100} height={100}/>*!/*/}
+                                    {/*</div>*/}
+                                </div>
+                                <div className={"chatRight-"}>
+                                    <div className={"chatRight"}>{item?.message}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
+                <form className={"chatBox"}>
+                    <input className={"chatBox-area"} type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
+                    <button className={"chatBox-button"} onClick={(e) => handleSendMessage(e)}>送信</button>
+                </form>
+
             </div>
-            <form>
-                <input type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
-                <button onClick={(e) => handleSendMessage(e)}>送信</button>
-            </form>
 
         </>
     );

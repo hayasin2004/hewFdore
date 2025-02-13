@@ -81,7 +81,8 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                         <div>
                             <div className={"comment-user-lef"}>
                                 {/*ユーザーアイコン*/}
-                                <div className={"chaticon"}><Images
+                                <div className={"chaticon"}>
+                                    <Images
                                     src={item?.buyerChatMessage[0]?.buyerProfilePicture}
                                     alt={"ユーザープロフィール画像"} width={30} height={30}/>
                                 </div>
