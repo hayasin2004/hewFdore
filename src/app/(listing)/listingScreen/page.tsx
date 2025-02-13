@@ -52,7 +52,8 @@ const ListingScreen: React.FC = () => {
         <>
             <Header/>
             <div id={"bgsell"}>
-            <div className={"content"}>
+
+                <div className={"content"}>
                     <form action={async (data: FormData) => {
                         console.log("asfasdfdafffdfdfdfffffffdddfffff")
                         const productName = data.get("productName") as string;
@@ -84,7 +85,7 @@ const ListingScreen: React.FC = () => {
                         )
                         ;
                     }}>
-                        <h2>
+                        <h2 id={"LStitle"}>
                             出品情報
                         </h2>
 
@@ -93,7 +94,7 @@ const ListingScreen: React.FC = () => {
                         </div>
 
 
-                        <h3 className={"formTitle"} id="product_name" >
+                        <h3 className={"formTitle"} id="product_name">
                             商品名
                         </h3>
 
@@ -111,10 +112,10 @@ const ListingScreen: React.FC = () => {
                             商品詳細
                         </h3>
 
-                        <textarea name={"productDesc"} className="areaInput" maxLength={800} rows={4} />
+                        <textarea name={"productDesc"} className="areaInput" maxLength={800} rows={4}/>
 
 
-                        <h3  className="formTitle" id={"cat"}>
+                        <h3 className="formTitle" id={"cat"}>
                             カテゴリ
                         </h3>
                         {/*視認性が悪いのでここも色変えたい*/}

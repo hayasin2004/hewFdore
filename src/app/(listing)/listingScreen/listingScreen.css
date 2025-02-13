@@ -21,14 +21,19 @@ div.content{
 
 }
 
-div.content h2{
-    padding: 25px 0 0 0;
+h2#LStitle{
+    padding: 10px 0;
+    width: 90%;
+    margin: 10px auto 10px auto;
     text-align: center;
     /*font-family: "JetBrains Mono";*/
     font-size: 40px;
     font-style: normal;
-    font-weight: 400;
+    font-weight:bold;
     line-height: normal;
+    color: #fff;
+    letter-spacing: 1rem;
+    background-color: #8e756098;
 
 }
 
@@ -52,14 +57,14 @@ div.content div#drop{
 
 div.content h3.formTitle{
     width: 450px;
-    margin:25px auto 5px auto;
+    margin:10px auto 5px auto;
 
 
 
 }
 div.content .txtInput{
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 50px auto;
     height: 2.5rem;
     padding: 5px 10px;
     width: 350px;
@@ -78,7 +83,7 @@ div.content .areaInput{
     padding: 15px;
     font-size: 1rem;
     display: block;
-    margin: 10px auto;
+    margin: 10px auto 50px auto;
     width: 350px;
     height: 150px;
     border: black solid 2px;
