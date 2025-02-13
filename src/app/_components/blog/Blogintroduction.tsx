@@ -29,7 +29,7 @@ const Blogintroduction = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             const data = await GetBlog();
-            console.log("取得したデータ:", data);
+            console.log("取得したブログデータ:", data);
             setBlogs(data);
         };
         fetchBlogs();
@@ -61,7 +61,7 @@ const Blogintroduction = () => {
             <Header/>
             <h1 className={"title-h1"}>ブログ一覧</h1>
 
-
+            {/*絞り込み機能*/}
             <div style={{ marginBottom: "20px" }}>
                 <label>
                     年:
@@ -125,7 +125,7 @@ export default Blogintroduction;
 
 
 
-
+//変更前↓
 
 // "use client";
 //

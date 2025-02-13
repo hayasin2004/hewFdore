@@ -1,3 +1,4 @@
+//client.ts
 "use server";
 
 import { createClient } from "microcms-js-sdk";
