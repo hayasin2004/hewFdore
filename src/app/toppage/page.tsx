@@ -12,15 +12,16 @@ import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import axios from "axios";
+import setupfollowerUserId from "@/app/utils/setting/update/setupfollowerUserId";
 
 const Toppage = () => {
 
     const [productList, setProductList] = useState([])
     console.log(productList)
 
-    // const updateButton = async () => {
-    //     await toastTradeId()
-    // }
+    const updateButton = async () => {
+        await setupfollowerUserId()
+    }
 
 
 
@@ -54,6 +55,7 @@ const Toppage = () => {
 
     return (
         <>
+            <button onClick={updateButton}>更新</button>
             <Blogintroduction/>
             <Header/>
             {/*<button onClick={updateButton}>更新</button>*/}

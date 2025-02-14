@@ -55,6 +55,18 @@ const ProductSchema = new mongoose.Schema({
             default: '',
             required : true
         },
+        productImage2: {
+            type: String,
+            default: '',
+        },
+        productImage3: {
+            type: String,
+            default: '',
+        },
+        productImage4: {
+            type: String,
+            default: '',
+        },
         productVideo: {
             type: String,
             default: '',
