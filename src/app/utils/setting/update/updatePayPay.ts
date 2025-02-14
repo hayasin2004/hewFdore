@@ -6,9 +6,9 @@ const updatePayPay = async () => {
     await connectDB()
     try {
         const updatePayPayResult  = await Product.updateMany({payPayCode : {$exists : false}},{$set : {payPayCode : ""}})
-        //console.log(updatePayPayResult)
+        console.log(updatePayPayResult)
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 

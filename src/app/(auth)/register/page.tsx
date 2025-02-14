@@ -3,21 +3,14 @@ import React, {useState} from 'react';
 import "./register.css"
 import Image from "next/image"
 import Link from "next/link";
-import Script from 'next/script';
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import {useSession, signIn, signOut} from "next-auth/react"
-import axios from "axios";
-import {useRouter} from "next/navigation";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import {useSession} from "next-auth/react"
 import createUser from "@/app/utils/user/registerUser";
-import Login from '../login/page';
-import jwt from "jsonwebtoken";
 
 
 const Register = () => {
-    const [responseUserData, setResponseUserData] = useState<string | null>(null)
+    const [responseUserData, setResponseUserData] = useState<string | null | undefined>(null)
     const {data: session, status} = useSession();
     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
     console.log(responseUserData)
@@ -50,7 +43,7 @@ const Register = () => {
                 </ul>
             ))}
             <header>
-                <h1>F'dore</h1>
+                <h1>F&apos;dore</h1>
             </header>
             {/*<button onClick={handleGithubLogin}> /!*ボタンを押したらトップページに飛ぶ関数を使ってます*!/*/}
             {/*    githubでログイン*/}
@@ -80,10 +73,9 @@ const Register = () => {
                                                 console.log("ここに登録ログ北")
                                                 window.alert("そのユーザー名は既に作成されています。")
                                             } else {
-
-                                                if (data !== undefined && data !== null) {
-                                                    const UserDataParse = JSON.parse(data.newUser)
-                                                    const TokenDataParse = JSON.parse(data.TenMinToken)
+                                                if (data) {
+                                                    const UserDataParse = JSON.parse(data?.newUser)
+                                                    const TokenDataParse = JSON.parse(data?.TenMinToken)
                                                     console.log(UserDataParse)
                                                     setResponseUserData(UserDataParse)
                                                     localStorage.setItem("TenMinToken", TokenDataParse)
@@ -116,8 +108,11 @@ const Register = () => {
                                             <button type="submit">
                                                 ユ―ザーを作成
                                             </button>
-                                            <Link href={"login"}>
+                                            <Link href={"/login"}>
                                                 <p style={{marginTop: "10px"}}>ユ―ザー作成済ですか？</p>
+                                            </Link>
+                                            <Link href={"/"}>
+                                                <p style={{marginTop: "10px"}}>トップページへ</p>
                                             </Link>
                                         </>
                                     )

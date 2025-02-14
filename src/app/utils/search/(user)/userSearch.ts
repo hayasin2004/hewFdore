@@ -18,21 +18,15 @@ const userSearch = async (userSearchWord: string | null): Promise<string | null>
     }
     try {
         if (userSearchWord === null) {
-            //console.log("文字を入力してください")
             return null
         }
         const NormalizationWordKatakana = KatakanaHenkan(userSearchWord)
         const NormalizationWordHiragana = HiraganaHenkan(userSearchWord)
 
         if (userSearchWord === null) {
-            //console.log("文字を入力してください")
             return null
         }
 
-        await //console.log("個々のログ出てる？" + userSearchWord)
-        //console.log(NormalizationWordKatakana)
-
-        // 検索対象のモノを表示
         if (NormalizationWordKatakana !== undefined && NormalizationWordHiragana !== undefined) {
 
             const searching: UserType[] | null = await User.find({
@@ -42,11 +36,11 @@ const userSearch = async (userSearchWord: string | null): Promise<string | null>
                     ]
                 }
             ).exec()
-            //console.log(searching)
             return JSON.stringify(searching)
         }
         return null
     } catch (err) {
+        console.log(err)
         return null
     }
 }

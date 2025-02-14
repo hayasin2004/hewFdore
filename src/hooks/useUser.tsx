@@ -1,7 +1,6 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import  {useEffect, useState} from 'react';
 import confirmUser from "@/app/utils/user/confirmUser";
-import {UserType} from "@/app/api/user/catchUser/route";
 
 // ユーザー情報を取得するカスタムフックです
 export interface useUser {

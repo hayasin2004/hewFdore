@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from "@/app/_components/header/Header";
 import "./Cart.css"
 import Image from "next/image";
 const Cart = () => {

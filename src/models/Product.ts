@@ -1,21 +1,20 @@
 import mongoose from 'mongoose';
-import {Binary} from "mongodb";
 
 // as constを使用することで、この配列の要素はリテラル型（特定の文字列型）として扱われ、変更できないことを示しています。
 const postageBurden = ["seller", "buyer"] as const;
-type postageBurdenType = (typeof postageBurden)[number];
+// type postageBurdenType = (typeof postageBurden)[number];
 
 const productCondition = ["new", "nearNew", "littleScar", "scar"]
-type productConditionType = (typeof productCondition)[number];
+// type productConditionType = (typeof productCondition)[number];
 
 const productSize = ["XS", "S", "M", "L","LL","XL"]
-type productSizeType = (typeof productSize)[number];
+// type productSizeType = (typeof productSize)[number];
 
 const deliveryTime = ["1to3day" , "3to5day" , "5to7day"]
-type deliveryTimeType = (typeof deliveryTime)[number];
+// type deliveryTimeType = (typeof deliveryTime)[number];
 
 const sellStatus = ["selling" , "trading" , "soldOut"]
-type sellStatusTimeType = (typeof deliveryTime)[number];
+// type sellStatusTimeType = (typeof deliveryTime)[number];
 
 const ProductSchema = new mongoose.Schema({
 
@@ -55,6 +54,10 @@ const ProductSchema = new mongoose.Schema({
             type: String,
             default: '',
             required : true
+        },
+        productVideo: {
+            type: String,
+            default: '',
         },
         createdAt: {
             type: Date,
@@ -100,6 +103,10 @@ const ProductSchema = new mongoose.Schema({
         comment: {
             type: Array,
             default: [],
+        },
+        tradeId: {
+            type: String,
+            default: "",
         },
         stripeCode: {
             type: String,

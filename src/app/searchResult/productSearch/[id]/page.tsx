@@ -1,10 +1,15 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import {useRouter} from "next/navigation";
 import productSearch from "@/app/utils/search/(product)/productSearch";
 
-const SearchResultParamsId = ({params}: { params: { id: string } }) => {　
+const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     const [searchProductResult, setSearchProductResult] = useState<string[] | null>(null)
+    useEffect(() => {
+
+        const query = new URLSearchParams(window.location.search);
+        const category = query.get("category")
+        console.log(category)
+    }, []);
     const searchWord = params.id;
     const searchWordDecoded = decodeURI(searchWord);
     useEffect(() => {

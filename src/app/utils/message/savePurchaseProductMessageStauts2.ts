@@ -14,23 +14,16 @@ const savePurchaseProductMessageStauts2 = async (purchaseId: string, pushedUser:
 
     await connectDB()
     try {
-        // チャットルーム検索
-        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-        // //console.log(fCHatRoomId)
 
-        //console.log(message)
-
-//     チャットルームにmessageを新しく挿入
         const fChangeMessage = await Purchase.findByIdAndUpdate(
             purchaseId,
             {$push: {buyerUserChat: message}},
             {new: true, useFindAndModify: false}
         )
-        //console.log(fChangeMessage)
         return {fChangeMessage: fChangeMessage}
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

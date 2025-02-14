@@ -1,7 +1,5 @@
-import mongoose from "mongoose";
-import {UserType} from "@/app/api/user/catchUser/route";
-
-export interface productCommentType {
+import mongoose from "mongoose"; 
+export interface ProductCommentType {
     _id?: string;
     listingUserId?: string;
     buyerUserIdList?: string[];

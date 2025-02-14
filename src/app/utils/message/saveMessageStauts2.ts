@@ -44,7 +44,7 @@ const saveMessageStauts1 = async (chatId: string, pushedUser: string, message: s
 
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

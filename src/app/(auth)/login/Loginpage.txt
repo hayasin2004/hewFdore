@@ -99,7 +99,7 @@ const Login = () => {
             </div>
             <header className={"loginHeader"}>
                 <Link href={'/'}>
-                    <h1 className={"loginHeaderH1"}>F'dore</h1>
+                    <h1 className={"loginHeaderH1"}>F&apos;dore</h1>
                 </Link>
             </header>
 

@@ -1,11 +1,9 @@
 "use client"
 import {useEffect, useState} from "react";
-import {data} from "@remix-run/router/utils";
 import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
 import updateFollowings from "@/app/utils/user/ApdateFollowings";
-import useUser from "@/hooks/useUser";
 import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";

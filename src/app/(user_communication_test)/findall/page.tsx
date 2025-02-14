@@ -1,10 +1,13 @@
 "use client"
-import React, {useEffect, useMemo, useState} from 'react';
-import CatchingUser from "@/app/_components/catchingUser/CatchingUser";
+import React, {useEffect , useState} from 'react';
 import {UserType} from "@/app/api/user/catchUser/route";
-import {DBProductType} from "@/app/api/product/route";
 import Link from "next/link";
+import "./findall.css"
+import Header from "@/app/_components/header/Header";
+import Footer from "@/app/_components/footer/Footer";
 
+// 必要があればページネーションの導入も考えた方がいいかも　
+// import ReactPaginate from "react-paginate";
 
 const Findall = () => {
     const [userList, setUserList] = useState<UserType[]>([])
@@ -26,25 +29,41 @@ const Findall = () => {
     }, []);
 
 
-
     return (
-        <div>
-            <div>
-                ここに表示
+        <div id={"wrap"}>
+            <Header/>
+            <div id={"UserList"}>
+                <h1>ユーザーリスト</h1>
+                <div id={"ListDirction"}>
                 {userList.map((item , index) => (
-                    <ul key={index}>
-                        <li>これはMongodbのobjectId :
-                            <Link href={`/userDetail/${item.id}`}>
-                            {item.id}
-                            </Link>
-                        </li>
-                        <li>これはユーザー名 : {item.username}</li>
-                        <li>これはメールアドレス : {item.email}</li>
-                        <br/>
-                    </ul>
+                    <table　className={"ListUser"} key={index}>
+                        <tr>
+                            <td className={"ListIcon"} rowSpan={3}>ここに<br/>アイコン</td>
+                            <th>
+                                object-id
+                            </th>
+                            <td className={"idLink"}>
+                                <Link href={`/userDetail/${item.id}`}>{item.id}</Link>
+                            </td>
+                            <td className={"mailLink"} rowSpan={3}>
+                                <img className={"toDM"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                            </td>
+                        </tr>
+                        <tr>
+                        <th>ユーザー名</th>
+                            <td>{item.username}</td>
+                        </tr>
+                        <tr>
+                            <th>メールアドレス</th>
+                            <td>{item.email}</td>
+                        </tr>
+                    </table>
                 ))}
+                </div>
             </div>
+            <Footer/>
         </div>
+
     );
 }
 

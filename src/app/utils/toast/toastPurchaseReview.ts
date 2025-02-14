@@ -7,12 +7,10 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 
-// 通知を追加する機能
 const toastPurchaseReview = async  (currentUserId : string | null ,partnerUserId : string | null ,productId : string | null ,lastMessage : string | null , reviewValue : number | null ) => {
-// const toastPurchaseReview = async  () => {
+
     await connectDB()
-    //console.log("currentUserId" + currentUserId , "productId" + productId , "lastMessage" + lastMessage , "reviewValue" + reviewValue )
-    try {
+      try {
         const user : UserType | null = await User.findOne({_id : currentUserId})
         const partnerUser : UserType | null = await User.findOne({_id : partnerUserId})
         const product : ProductType | null = await Product.findById({_id : productId})
@@ -30,7 +28,7 @@ const toastPurchaseReview = async  (currentUserId : string | null ,partnerUserId
 
 
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

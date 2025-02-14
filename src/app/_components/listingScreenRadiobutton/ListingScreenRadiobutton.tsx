@@ -10,7 +10,7 @@ import {
     Radio,
     RadioGroup,
     Select,
-    SelectChangeEvent, TextField
+   TextField
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import {productStatusType} from "@/app/(listing)/listingScreen/page";
@@ -32,7 +32,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     const [postageBurden, setPostageBurden] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
     const [shippingAreaText, setShippingAreaText] = useState("")
-    // console.log(postageBurden)
+    console.log(shippingAreaText)
 
 
     const handleProductExplainCategorySet = (Categoryevent: React.FC<HTMLButtonElement>) => {
@@ -49,7 +49,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
         setProductCondition(ConditionEvent)
         onProductConditionChange(ConditionEvent)
     }
-    const handleProductExplainPostageBurdenSet = (PostageBurdenEvent: React.FC<HTMLButtonElement>) => {
+    const handleProductExplainPostageBurdenSet = (PostageBurdenEvent:string) => {
         console.log(PostageBurdenEvent)
         setPostageBurden(PostageBurdenEvent)
         onPostageBurdenChange(PostageBurdenEvent)
@@ -90,7 +90,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                             value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="denim" control={<Radio/>} label="デニム"/>
+                                            value="bottom" control={<Radio/>} label="ボトム"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
                                             value="outer" control={<Radio/>} label="アウター"/>
@@ -208,7 +208,6 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                     <Select
                         labelId="demo-simple-select-label"
                         id="outlined-basic"
-
                         value={deliveryTime}
                         label="delivery"
                         onChange={(DeliveryTimeEvent) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)}

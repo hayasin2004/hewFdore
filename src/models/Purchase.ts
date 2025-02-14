@@ -10,11 +10,11 @@ export interface PurchaseType {
 }
 
 const tradeStatus = ["取引中", "取引完了", "取引終了", "取引キャンセル"] as const;
-type tradeStatusType = (typeof tradeStatus)[number];
+// type tradeStatusType = (typeof tradeStatus)[number];
 
 
 const review = ["", "1", "2", "3", "4", "5"]
-type reviewType = (typeof review)[number];
+// type reviewType = (typeof review)[number];
 
 const PurchaseSchema = new mongoose.Schema({
         purchaseId: {

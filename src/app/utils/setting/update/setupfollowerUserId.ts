@@ -1,7 +1,6 @@
 "use server"
 
 import {connectDB} from "@/lib/mongodb";
-import {User} from "@/models/User";
 import {Toast} from "@/models/Toast";
 
 const setupfollowerUserId = async () => {
@@ -12,9 +11,9 @@ const setupfollowerUserId = async () => {
             {likedUserId: {$exists: false}},
             {$set: {likedUserId: ""}}
         )
-        //console.log(update)
+        console.log(update)
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 

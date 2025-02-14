@@ -22,18 +22,13 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
         const NormalizationWordHiragana = HiraganaHenkan(productSearchWord);
         const NormalizationWordUpper = productSearchWord?.toUpperCase();
         const NormalizationWordLower = productSearchWord?.toLowerCase();
-        //console.log(NormalizationWordHiragana,
-        NormalizationWordKatakana,
-        NormalizationWordUpper,
-        NormalizationWordLower,
-    )
+
+
 
         if (productSearchWord === null) {
-            //console.log("文字を入力してください")
             return null
         }
 
-        // 検索対象のモノを表示
         if (NormalizationWordKatakana !== undefined && NormalizationWordHiragana !== undefined && NormalizationWordUpper !== undefined && NormalizationWordLower !== undefined) {
             const searching: ProductType[] | null = await Product.find({
                     $or: [
@@ -45,11 +40,12 @@ const productSearch = async (productSearchWord: string | null): Promise<string |
                 }
             ).exec()
 
-            //console.log("あと三パーセント" + searching)
+            console.log("あと三パーセント" + searching)
             return JSON.stringify(searching)
         }
         return null
     } catch (err) {
+        console.log(err)
         return null
     }
 }

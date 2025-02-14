@@ -1,24 +1,37 @@
 // ProductCardList.tsx
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import CollapsibleProductCard from './CollapsibleProductCard';
 import './CollapsibleProductCard.css';
-import { DBProductType } from '@/app/api/product/route';
+import {DBProductType} from '@/app/api/product/route';
 import {ProductType} from "@/app/utils/product/productDetail";
 
 interface ProductCardListProps {
     items: ProductType[];
+    category: string;
+    size: string
 }
 
-const ProductCardList = ({ items }: ProductCardListProps) => {
+const ProductCardList = ({items, category, size}: ProductCardListProps) => {
 
-    return (
+    const [openCardId, setOpenCardId] = useState<string | null>(null);
+    const handleCardToggle = (itemId: string) => {
+        setOpenCardId(openCardId === itemId ? null : itemId);
+    };
+
+
+    console.log("item" + JSON.stringify(items), "category" + category, "size" + size);
+     return (
         <div className="product-card-list">
-                <CollapsibleProductCard
-                    key={items._id}
-                    item={items}
-                    isOpen={openCardId === items._id}
-                    onToggle={() => handleCardToggle(items._id)}
-                />
+            {items.map((item) => (
+                    <CollapsibleProductCard
+                        key={item._id}
+                        item={item}
+                        category={category}
+                        isOpen={openCardId === item._id}
+                        onToggle={() => handleCardToggle(item._id)}
+                    />
+                ))}
+
         </div>
     );
 };

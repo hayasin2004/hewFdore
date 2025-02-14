@@ -10,6 +10,69 @@ width: 1200px;
     display: flex;
 }
 
+/* div#SearchBar 検索バー、オプションここで設定できるようにしたい */
+div#SearchBar{
+    margin: 25px 0 50px 50px;
+    width: 90%;
+}
+form#WordSearch{
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: baseline;
+
+}
+form#WordSearch input[type='text']{
+    margin: 0 1rem 0 0;
+    width: 50rem ;
+    padding: 1.5% 1% ;
+    border-radius: 10px;
+    font-size: 1.5rem ;
+    border: solid 2px #D0C7B2;
+    box-shadow: #D0C7B2 2px 2px 0 ;
+
+    background-color: #fff ;
+}
+form#WordSearch input[type='text']:hover{
+    border: #8e7560 3px solid;
+}
+
+form#WordSearch select{
+    font-size: 1.1rem;
+    background-color: #fffa;
+    border: 1.5px #D0C7B2 solid;
+    border-radius: 10px;
+    box-shadow: #8e7560 2px 2px 0 ;
+    margin: 0 10px 0 0;
+}
+form#WordSearch select:hover{
+    border: 3px #8e7560 solid;
+    box-shadow: none;
+}
+select#SearchCat{
+    width: 10rem;
+
+}
+select#SearchSize{
+    width: 6rem;
+}
+
+form#WordSearch button#SearchSubmit[type="submit"]{
+    margin: 0 0 0 0 ;
+    width: 5rem;
+    font-size: 1.2rem ;
+    box-shadow: #8e7560  2px 2px 0 ;
+
+    border-radius: 10%;
+    color: #EBE8DB;
+    background-color: #605252;
+}
+form#WordSearch button[type="submit"]:hover{
+    border: 3px #8e7560 solid;
+    box-shadow: #8e7560  1px 1px 0 ;
+
+}
 
 
 .searchresult{
@@ -53,14 +116,64 @@ width: 1200px;
 
 }
 
+/*件数表示*/
+div#NumView{
+    margin: 0 10% 0 5%;
+}
+h2#SRTotal{
+    font-size: 1.8rem;
+    text-indent: 3.8rem;
+    margin: 0 0 15px 0;
+    border: #605252 2px;
+    border-style: none none solid none;
+}
+p#SRNn{
+    text-indent: 4.8rem;
+    font-size: 1.2rem;
+}
+
+/* 変更 */
+div#ChangeSetting{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+div#ChangeSetting select{
+    font-size: 1.1rem;
+    font-weight: lighter;
+    text-align: right;
+    margin: 0 1rem 0 0;
+    padding: 5px 10px;
+    background-color: #EBE8DB;
+    border-style: none none solid none;
+}
+
+select#ChangeSort{
+    width: 8rem;
+}
+select#ChangePPP{
+    width: 5rem;
+}
 
 /* ページネーションのCSS */
 .PaginateFlame{
     /*background-color: #660000;*/
     display: flex;
     flex-direction: row;
-    margin: 10px 10px 0 10px;
+    margin: 10px 10px 50px 10px;
     list-style: none;
+}
+
+/* ページ数関係 */
+a.PagiClassLink{
+    margin: 0 25px;
+    width: 2rem;
+    font-size: 1.5rem;
+}
+a.PagiClassLink:hover{
+    text-decoration: underline;
+
+
 }
 .activeClassLink{
     text-decoration: underline;
@@ -70,6 +183,9 @@ width: 1200px;
 /*前後のリンク*/
 a.RPnext,a.RPprev{
     margin: 0 30px;
+    font-size: 1.5rem;
 
 }
-
+a.RPnext:hover,a.RPprev:hover{
+    font-weight: bold;
+}

@@ -1,12 +1,23 @@
 import mongoose from 'mongoose';
 
-
+export  interface ToastType{
+    _id? : string
+    userId? : string,
+    followerUserId? : string,
+    likedUserId? :string,
+    tradeId? :string
+    productId? : string
+    message?: string,
+    productName?: string,
+    toastCategory? :string
+    alreadyRead?:string
+}
 
 const ToastCategory = ["商品関連", "いいね、フォローなど"]
-type ToastCategoryType = (typeof ToastCategory)[number];
+// type ToastCategoryType = (typeof ToastCategory)[number];
 
 const AlreadyRead = ["既読", "未読", "削除"]
-type AlreadyReadType = (typeof AlreadyRead)[number];
+// type AlreadyReadType = (typeof AlreadyRead)[number];
 
 const ToastSchema = new mongoose.Schema({
 
@@ -19,6 +30,10 @@ const ToastSchema = new mongoose.Schema({
             default : ""
         },
         likedUserId : {
+            type : String,
+            default : ""
+        },
+        tradeId : {
             type : String,
             default : ""
         },

@@ -2,11 +2,9 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
-import {Purchase} from "@/models/Purchase";
-import {Stripe} from "stripe";
+import {Purchase} from "@/models/Purchase"; 
 import {Product} from "@/models/Product";
 import {UserType} from "@/app/api/user/catchUser/route";
-import {ProductType} from "@/app/utils/product/productDetail";
 
 const purchaseProduct = async (userData: UserType | null) => {
     await connectDB()
@@ -17,8 +15,7 @@ const purchaseProduct = async (userData: UserType | null) => {
         if (userId) {
 
             const purchase: UserType[] = await User.find({_id: userId}).select("purchaseProduct")
-            //console.log(purchase)
-            if (purchase == null) {
+              if (purchase == null) {
                 console.log("購入した商品はありません")
                 return null
             }
@@ -42,7 +39,7 @@ const purchaseProduct = async (userData: UserType | null) => {
         }
         }
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

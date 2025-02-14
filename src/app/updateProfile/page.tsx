@@ -4,11 +4,8 @@ import Header from "@/app/_components/header/Header";
 import Image from "next/image"
 import "./updateProfile.css"
 import userInfoChange from "@/app/utils/user/userInfoChange";
-import useUser from "@/hooks/useUser";
 import deleteAccount from "@/app/utils/user/deleteAccount";
-import userDetail from "@/app/utils/user/userDetail";
 import confirmUser from "@/app/utils/user/confirmUser";
-import {string} from "prop-types";
 
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")
@@ -71,18 +68,18 @@ const UpdateProfile = () => {
             console.log("token" + response)
             if (response?.status == "existUsername") {
                 if (existToken !== null) {
-                    const setToken =  localStorage.setItem("token", existToken)
-                    console.log("既存のトークン"+setToken)
+                    const setToken = localStorage.setItem("token", existToken)
+                    console.log("既存のトークン" + setToken)
                     window.alert("そのユーザー名は既に使われています。")
-                    return ;
+                    return;
 
                 }
             }
             if (response?.status == "successChangingData") {
                 console.log(response.NewToken)
-                const setNewToken =  localStorage.setItem("token", JSON.parse(JSON.stringify(response.NewToken)))
-                console.log("新しいトークン"+setNewToken)
-                return ;
+                const setNewToken = localStorage.setItem("token", JSON.parse(JSON.stringify(response.NewToken)))
+                console.log("新しいトークン" + setNewToken)
+                return;
             }
         } else {
             const response = await userInfoChange(
@@ -97,15 +94,15 @@ const UpdateProfile = () => {
             console.log("token" + response)
             if (response?.status == "existEmailOrPassword") {
                 if (existToken !== null) {
-                    const setToken =  localStorage.setItem("token", existToken)
-                    console.log("既存のトークン"+setToken)
-                    return ;
+                    const setToken = localStorage.setItem("token", existToken)
+                    console.log("既存のトークン" + setToken)
+                    return;
                 }
             }
             if (response?.status == "successChangingData") {
-                const setNewToken =  localStorage.setItem("token", JSON.parse(JSON.stringify(response.token)))
-                console.log("新しいトークン"+setNewToken)
-                return ;
+                const setNewToken = localStorage.setItem("token", JSON.parse(JSON.stringify(response.token)))
+                console.log("新しいトークン" + setNewToken)
+                return;
             }
         }
 
@@ -113,7 +110,11 @@ const UpdateProfile = () => {
 
     const deleteUser = async () => {
         const response = await deleteAccount(userId)
-        console.log(response)
+        if (response?.status == "delete") {
+            window.alert("削除が完了しました。")
+            localStorage.removeItem("token")
+            window.location.href = ("/")
+        }
     }
 
 

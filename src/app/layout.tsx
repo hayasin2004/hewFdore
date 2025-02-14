@@ -6,22 +6,11 @@ import React, {ReactNode} from "react";
 import NextAuthProvider from "../providers/NextAuth";
 
 const inter = Inter({subsets: ["latin"]});
+console.log(inter)
 
-// Userインターフェースは、ユーザー情報の型を定義
-interface User {
-    userId: string
-    username: string
-    email: string
-    password: string
-    profilePicture: string
-    coverProfilePicture: string
-}
 
-// UserContextPropsインターフェースは、コンテキストで共有する値の型を定義しています。userとsetUserの2つのプロパティを持っています。
-interface UserContextProps {
-    user: User | null;
-    setUser: React.Dispatch<React.SetStateAction<User | null>>
-}
+
+
 //
 // const UserContext = createContext<UserContextProps | undefined>(undefined)
 

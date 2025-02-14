@@ -1,18 +1,14 @@
 "use client"
-
-import Image from "next/image";
+　
 import {useEffect, useState} from "react";
-import './AuthGmail.css'
-import {redirect} from "next/navigation";
-import {useRouter} from "next/navigation";
-import jwt from "jsonwebtoken";
+import './AuthGmail.css'　
+import {useRouter} from "next/navigation";　
 import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
     const router = useRouter();
-    const [email, setEmail] = useState(params);
-    const [password, setPassword] = useState<string | null>(null);
-    const [message, setMessage] = useState("");
+    const [email, setEmail] = useState<string>(params.id);
+    const [password, setPassword] = useState<string>("");　
     const [status, setStatus] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
     const [userInputCode, setUserInputCode] = useState("");
@@ -24,19 +20,15 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
             const TenMinToken: string | null = await localStorage.getItem("TenMinToken");
             if (TenMinToken !== null) {
                 try {
-                    const decoded = await confirmToken(TenMinToken);
+                    const decoded= await confirmToken(TenMinToken);
                     console.log(decoded)
                     if (decoded !== null ) {
-                        console.log(typeof decoded)
                         setEmail(decoded.email)
                     }
                 } catch (err) {
                     console.log(err)
                 }
             }
-            // if (!secretKey){
-            //     console.log("secretKey not set");
-            // }
 
         }
         verifyTenMinToken()

@@ -1,13 +1,13 @@
 "use client"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "@/app/_components/header/Header";
 import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from 'next/link';
-import createProduct from "@/app/utils/product/createProduct";　
+import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
-import io from "socket.io-client";　　
+import io from "socket.io-client";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -32,8 +32,9 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
-    const [productVideoFiles, setProductVideoFiles] = useState<string | null>(null)
-    const [compressedVideo, setCompressedVideo] = useState(null)
+    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
+    // const [compressedVideo, setCompressedVideo] = useState(null)
+
 
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
@@ -51,6 +52,14 @@ const ListingScreen: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            window.alert("ログインしていないので出品できません。ログインページに移ります")
+            window.location.href = ("/login")
+        }
+    }, []);
+
 
     // const productCategory = productCategory
     // const productSize = productSize
@@ -59,6 +68,7 @@ const ListingScreen: React.FC = () => {
     // const deliveryTime = deliveryTime
     // const shippingArea = shippingArea
     const socket = io("http://localhost:8080");
+    console.log(socket)
 
     // const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     const files = e.target.files
@@ -67,29 +77,19 @@ const ListingScreen: React.FC = () => {
     //     }
     // }
 
-    const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
+    // const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('video', productVideoFiles);　
+    //     formData.append('name', productVideoFiles?.name);　
+    //     await  testvideoSave(formData)
+    // };
 
-        const formData = new FormData();
-        formData.append('video', productVideoFiles);　
-    };
 
-
-    console.log(socket)
+    // console.log(socket)
     return (
         <>
             <Header/>
-            <div>
-                <h1>動画アップロード</h1>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="file"
-                        accept="video/*"
-                        onChange={(e) => setProductVideoFiles(e.target.files[0])}
-                    />
-                    <button type="submit">アップロード</button>
-                </form>
-            </div>
             <div className={"content"}>
                 <div className={"listingScreenBackground"}>
                     <form action={async (data: FormData) => {
@@ -97,12 +97,10 @@ const ListingScreen: React.FC = () => {
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
                         const productDesc = data.get("productDesc") as string;
-                        const productVideo = new FormData();
-                        productVideo.append('video', productVideoFiles);
+                        // const productVideo = data.get("productVideo");
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
-                        const shippingArea = data.get("shippingArea") as string;
                         const token = localStorage.getItem("token") as string;
                         console.log("来てる" + shippingAreaText)
                         await createProduct(
@@ -117,8 +115,12 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText,
                             productImage,
+                            data
                         ).then(
                             (product => {
+                                if (product?.result == null) {
+                                    window.alert("ログインしてから出品してください。")
+                                }
                                 if (product?.result !== undefined) {
                                     const productParse = JSON.parse(product?.result as string)
                                     setProductId(productParse)
@@ -138,12 +140,24 @@ const ListingScreen: React.FC = () => {
                             <input type="file" onChange={productImageFile}/>
                         </div>
 
+                        {/*<div id="kamera">*/}
+                        {/*    {productImage &&*/}
+                        {/*        <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}*/}
+                        {/*    /!*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*!/*/}
+                        {/*    <input type="file" accept={"video/*"}*/}
+                        {/*           onChange={(e) => setProductVideoFiles(e?.target?.files[0])}/>*/}
+                        {/*</div>*/}
+
+
                         <div id="kamera">
                             {productImage &&
                                 <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" accept={"video/*"}
-                                   onChange={(e) => setProductVideoFiles(e?.target?.files[0])}/>
+                            <input
+                                type="file"
+                                accept="video/*"
+                                name={"productVideo"}
+                            />
                         </div>
 
 
@@ -196,7 +210,7 @@ const ListingScreen: React.FC = () => {
                                         <p>確認ページ</p>
                                     </Link>
                                     : <p>出品</p>}
-                            </button>
+                            </button>　
                         </div>
 
                     </form>

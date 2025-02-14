@@ -3,27 +3,22 @@
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import {User} from "@/models/User";
-import {ProductComment, productCommentType} from "@/models/ProductComment";
+import {ProductComment, ProductCommentType} from "@/models/ProductComment";
 
 const sendProductChatMessage = async (productId: string | null, currentUser: string | null, sendChatMessage: string | null) => {
 
     await connectDB()
     try {
-        //console.log("今ログインしているユーザー" + currentUser)
-        const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
+         const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
-        //console.log(user)
-        const ExistChatMessage: productCommentType | null = await ProductComment.findOne({productId: productId})
-        const ExistUserId: productCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
+         const ExistChatMessage: ProductCommentType | null = await ProductComment.findOne({productId: productId})
+        const ExistUserId: ProductCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
 
 
-        // 出品者だった場合の処理。
-        if (productListingUser == null) {
-            //console.log("売り切れもしくは削除")
-            return null
+          if (productListingUser == null) {
+             return null
         } else {
-            // チャット部屋がヌルだった場合の処理
-            if (ExistChatMessage == null) {
+              if (ExistChatMessage == null) {
                 if (productListingUser.sellerId == currentUser) {
                     const createChatResponse = await ProductComment.create({
                         productId: productId,
@@ -89,6 +84,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                     }
                                 }
                             );
+                            console.log(updateChatResponse)
                         }
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
@@ -112,15 +108,14 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
-                        //console.log(updateChatResponse)
+                        console.log(updateChatResponse)
+
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     }
                 } else {
 
                     if (ExistUserId?.buyerUserIdList?.includes(currentUser)) {
-                        //console.log(ExistChatMessage?._id + "範囲接地")
-                        //console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
                         const updateChatResponse = await ProductComment.updateOne(
                             {_id: ExistChatMessage?._id, "productChat.buyerChatMessage.senderUserId": currentUser},
                             {
@@ -139,11 +134,11 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
-                        //console.log(updateChatResponse)
+                        console.log(updateChatResponse)
+
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     } else {
-                        //console.log(ExistUserId?.buyerUserIdList?.includes(currentUser))
                         const updateChatResponse = await ProductComment.updateOne(
                             {_id: ExistChatMessage?._id},
                             {
@@ -164,7 +159,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 }
                             }
                         );
-                        //console.log(updateChatResponse)
+                        console.log(updateChatResponse)
+
                         return {listingChatResponse: JSON.stringify(ExistChatMessage)}
 
                     }

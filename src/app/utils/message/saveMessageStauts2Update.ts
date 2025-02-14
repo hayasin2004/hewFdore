@@ -1,7 +1,6 @@
 "use server"
 
 import {Chat} from "@/models/Chat";
-import {string} from "prop-types";
 
 export interface ChatType {
     currentUser?: string
@@ -11,21 +10,15 @@ export interface ChatType {
 }
 
 const saveMessageStauts2Update = async (chatId: string, pushedUser: string, message: string) => {
-    //console.log(chatId, pushedUser, message)
-    // チャットルーム検索
-    // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
-    // //console.log(fCHatRoomId)
 
-//     チャットルームにmessageを新しく挿入
-//     console.log("chatIDDDDDDDDDDDDD" + chatId)
 
     const fChangeMessage = await Chat.findByIdAndUpdate(
         chatId,
-        {$push: {"chatMessage.$.message": message}},
+        {$push: {partnerUserChat: message}},
         {new: true, useFindAndModify: false}
     )
     const currentUserChat = await fChangeMessage.partnerUserChat
-    //console.log(fChangeMessage)
+
     return {fChangeMessage : {fChangeMessage :fChangeMessage , currentUserChat:currentUserChat }}
 
 }

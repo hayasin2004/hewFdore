@@ -10,7 +10,7 @@ const InsertProductCategoryLikeList = async () => {
         const result = await User.updateMany(
             {$push : {productCategoryLikeList:"outer"}},  // このフィールドが存在しないユーザーのみ
         );
-        //console.log(JSON.stringify(result));
+        console.log(JSON.stringify(result));
     } catch (err) {
         console.error('Error updating users: ', err);
     }

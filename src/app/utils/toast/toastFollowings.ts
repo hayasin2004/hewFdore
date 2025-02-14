@@ -7,8 +7,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 
 const toastFollowings = async (followingsUserId : string | null , followerUserId : string | null  ) => {
     await connectDB()
-    // followingsUserId →　フォロー対象ユーザー　、　followerUserId　→　フォローするユーザー
-    try {
+     try {
         const followingsUser : UserType | null = await User.findById(followingsUserId);
         const followerUser : UserType | null = await User.findById(followerUserId);
         const purchase = {
@@ -19,10 +18,9 @@ const toastFollowings = async (followingsUserId : string | null , followerUserId
             alreadyRead : "未読",
         }
         const toastFollow = await  Toast.create(purchase)
-        //console.log(toastFollow)
-        //console.log("followingsUserId" + followingsUserId , "followerUserId" + followerUserId);
-    }catch (err){
-        //console.log(err)
+         console.log(followingsUser , toastFollow)
+        }catch (err){
+        console.log(err)
         return null
     }
 

@@ -1,25 +1,22 @@
 "use client"
 import React, {useEffect, useState} from 'react';
-import Image from "next/image";
+
 import "./chat.css"
 import Images from "next/image";
 import useUser from "@/hooks/useUser";
-import productSendComment from "@/app/utils/product/productSendComment";
-import getProductChatMessage from "@/app/utils/product/getChatMessage";
-import {productCommentType} from "@/models/ProductComment";
-import productChatLike from "@/app/utils/product/productChatLike";
-import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
+ import getProductChatMessage from "@/app/utils/product/getChatMessage";
+import {ProductCommentType} from "@/models/ProductComment";
+ import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [buyerChatMessageList, setBuyerChatMessageList] = useState<productCommentType[] | null>([])
     const [loginUserData, setLoginUserData] = useState()
     const [icon, setIcon] = useState("")
-    const [ChatMessageList, setChatMessageList] = useState<productCommentType[] | null>([])
+    const [ChatMessageList, setChatMessageList] = useState<ProductCommentType[] | null>([])
     console.log("渡ってきた" + JSON.stringify(ChatMessageList?.map((item) => console.log(item?.chatUserRole == "購入者"))))
 
-    console.log(chatMessage)
+    console.log(icon,chatMessage)
     const user = useUser()
     const productId = props.paramsProductData
     const currentUser = loginUserData?._id
@@ -38,12 +35,8 @@ const Chat = (props: { paramsProductData: string }) => {
                     const responseParse = JSON.parse(JSON.stringify(response))
                     console.log(responseParse?.listingChatMessage)
                     setChatMessageList(JSON.parse(response.listingChatMessage))
-                }
-                if (response?.buyerChatMessage) {
-                    setBuyerChatMessageList(JSON.parse(response.buyerChatMessage))
-                } else {
+                }  else {
                     console.log("この商品にコメントはありません")
-                    setBuyerChatMessageList(null)
                     setChatMessageList(null)
                 }　
         }
@@ -52,7 +45,15 @@ const Chat = (props: { paramsProductData: string }) => {
 
 
     const submitChatMessage = async () => {
-
+        if (chatMessage == ""){
+            console.log("空白のままでは送れません")
+            window.alert("空白のままでは送れません")
+            return null
+        }
+        if (currentUser == undefined || currentUser == null ) {
+            window.alert("メッセージはログインしてから送信できます。")
+            return null
+        }
         // const CheckChatRoomResponse : string | null =await CreateChatMessageRoom(productId, currentUser)
         if (chatMessage !== null && chatMessage !== undefined) {
             const sendChatResponse = await sendProductChatMessage(productId, currentUser, chatMessage)
@@ -61,12 +62,6 @@ const Chat = (props: { paramsProductData: string }) => {
         // if (CheckChatRoomResponse !== null){
         //     console.log(CheckChatRoomResponse)
         // }
-    }
-
-    const testCommentLike = async (item: string | null, icon: string | null) => {
-        console.log(item)
-        const response = await productChatLike(currentUser, productId, item, icon)
-        console.log(response)
     }
 
     return (
@@ -83,12 +78,8 @@ const Chat = (props: { paramsProductData: string }) => {
                         </div>
                         <div className="comment-area-lef">
                             メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
-                            メッセージ内容: {item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike ? item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike : "無理―"}
-                            <br/>
-                            <EmojiPicker item={item} setIcon={setIcon}/>
-                            <button id="good" onClick={() => testCommentLike(item?.listingChatMessage[0]?._id, icon)}>
-                                ♡{item?.listingChatMessage[0]?.listingMessageStamp?.length}
-                            </button>
+                              <br/>
+                            <EmojiPicker stamp={item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.listingChatMessage[0]?._id} setIcon={setIcon}/>
                         </div>
                     </div>
                 ) : (
@@ -101,13 +92,8 @@ const Chat = (props: { paramsProductData: string }) => {
                         </div>
                         <div className="comment-area-rig">
                             メッセージ内容: {item?.buyerChatMessage[0]?.buyerMessage} <br/>
-                            スタンプ: {item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike ? item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike : "無理―"}
-
-                            <EmojiPicker setIcon={setIcon}/>
-                            <button id="good" onClick={() => testCommentLike(item?.buyerChatMessage[0]?._id, icon)}>
-                                ♡{item?.buyerChatMessage[0]?.buyerMessageStamp?.length}
-                            </button>
-                        </div>
+                             <EmojiPicker stamp={item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                              </div>
                     </div>
                 )
             ))}
@@ -147,7 +133,7 @@ const Chat = (props: { paramsProductData: string }) => {
     //                         {/*質問者Id : {item.senderUserId} <br/>*/}
     //
     //                         メッセージ内容 : {item?.listingChatMessage[0]?.listingMessage} <br/>
-    //                         <EmojiPicker setIcon={setIcon}/>
+    //                         <EmojiPickerPurchase setIcon={setIcon}/>
     //                         <button id={"good"} onClick={() => testCommentLike(item?._id, icon)}>
     //                             ♡{item?.listingMessageLike?.length}
     //                         </button>
@@ -165,7 +151,7 @@ const Chat = (props: { paramsProductData: string }) => {
     //                         {/*{item.senderUserId} <br/>*/}
     //
     //                         メッセージ内容 : {item?.buyerChatMessage[0]?.buyerMessage} <br/>
-    //                         <EmojiPicker setIcon={setIcon}/>
+    //                         <EmojiPickerPurchase setIcon={setIcon}/>
     //                         <button id={"good"} onClick={() => testCommentLike(item?._id, icon)}>
     //                             送信{item?.buyerMessageLike?.length}
     //                         </button>

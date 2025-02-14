@@ -15,12 +15,13 @@
     import Image from "next/image";
 
     interface CollapsibleProductCardProps {
-        item: ProductType;
+        item: DBProductType;
         isOpen: boolean;
         onToggle: () => void;
+        category : string
     }
 
-    const CollapsibleProductCard = ({ item, isOpen, onToggle }: CollapsibleProductCardProps) => {
+    const CollapsibleProductCard = ({ item, isOpen, onToggle ,category}: CollapsibleProductCardProps) => {
         const [isAnimating, setIsAnimating] = useState(false);
         const [isContentVisible, setIsContentVisible] = useState(false);
         const cardRef = useRef<HTMLDivElement>(null);
@@ -59,6 +60,7 @@
         };
 
         return (
+            <>
             <Card
                 ref={cardRef}
                 className={`collapsible-product-card ${isOpen ? 'expanded' : 'collapsed'}`}
@@ -81,10 +83,10 @@
                 <Collapse in={!isOpen} timeout="auto">
                     <CardContent>
                         <div className="testttt">
-                            <div className="collapsed-image">
+                            <p className="collapsed-image">
                                 <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"} width={400} height={310}
                                        alt="サンプル" id="sum"/>
-                            </div>
+                            </p>
                             <p className="product-Size">{item.productSize}</p>
                         </div>
                         <p className="explanation">商品説明 : {item.productDesc}</p>
@@ -152,13 +154,14 @@
                             </Grid>
                             <Grid item xs={1}>
                                 <Box className={"expanded-reverse"}>
-                                    <p id={"closeButton"}>×</p>
+                                    <p>×</p>
                                 </Box>
                             </Grid>
                         </Grid>
                     </CardContent>
                 </Collapse>
             </Card>
+            </>
         );
     };
 

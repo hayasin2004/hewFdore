@@ -7,12 +7,11 @@ import "./paidNote.css"
 import Link from "next/link";
 import purchaseProduct from "@/app/utils/product/purchaseProduct";
 import useUser from "@/hooks/useUser";
-import {productCommentType} from "@/models/ProductComment";
 import {UserType} from "@/app/api/user/catchUser/route";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 const PaidNote = () => {
-    const [purchaseData, setPurchaseData] = useState([])
-    const [productData, setProductData] = useState([])
+    const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
     const user = useUser()
@@ -30,8 +29,9 @@ const PaidNote = () => {
         const fetchPurchaseProduct = async () => {
             const response = await purchaseProduct(loginUserData)
             console.log(response)
-            if (response?.purchaseProduct !== undefined) {
-                setPurchaseData(JSON.parse(response?.purchaseProduct))
+            if (response == null){
+                console.log("購入した商品はありません。")
+                window.alert("購入した商品はありません。")
             }
             if (response?.product !== undefined) {
                 setProductData(JSON.parse(response?.product))
@@ -62,36 +62,23 @@ const PaidNote = () => {
             </div>
             <div className={"listing"}>
                 <div className={"listing_product"}>
-                    {purchaseData?.map((purchaseItem) => (
 
-                        <ul key={purchaseItem?._id}>
-                            <li>
-                                <Link href={`/tradeChat/${purchaseItem?._id}`}>
-                                    {purchaseItem?._id}
+                    {productData !== null ? productData?.map((productItem) => (
+                        <div key={productItem?._id} className={"product"}>
+                            <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                            <div className={"product_text"}>
+                                <p>
+                                    商品名 :<br/> {productItem?.productName}
+                                </p>
+                                <p>出品者 : <br/>{productItem?.sellerUserName}さん</p>
+                                <p>価格 : {productItem?.productPrice}</p>
+                                <Link href={`/tradeChat/${productItem?.tradeId}`}>
+                                    <p>詳細</p>
                                 </Link>
-                            </li>
-                        </ul>
-                    ))}
-
-                    {productData?.map((productItem) => (
-                        <div key={productItem?._id}>
-                            <div className={"product"}>
-                                <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                                <div className={"product_text"}>
-                                    <p>
-                                        商品名 : {productItem?.productName}
-                                    </p>
-                                    <p>出品者 : {productItem?.sellerId}</p>
-                                    <p>価格 : {productItem?.productPrice}</p>
-
-                                </div>
-                                <div className={"listingText"}>
-                                    <h3>評価</h3>
-                                </div>
 
                             </div>
                         </div>
-                    ))}
+                    )) : <p>購入した商品はありません。</p>}
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>

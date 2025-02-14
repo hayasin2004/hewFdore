@@ -13,11 +13,7 @@ import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Upda
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
 import confirmUser from "@/app/utils/user/confirmUser";
-import './DMpage.css'
 import {JsConfigPathsPlugin} from "next/dist/build/webpack/plugins/jsconfig-paths-plugin";
-import Images from "next/image";
-import DirectMessageStatus1 from "@/app/_components/directMessageStaus/DirectMessageStatus1/DirectMessageStatus1";
-import DirectMessageStatus3 from "@/app/_components/directMessageStaus/DirectMessageStatus3/DirectMessageStatus3";
 
 
 const DirectMessage = ({params}: { params: { id?: string } }) => {
@@ -98,24 +94,24 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const handleSendMessage = (e: React.FormEvent<HTMLButtonElement>) => {
 
         // ステータス1
-        if (status === "1"|| status === "2") {
+        if (status === "1" || status === "2") {
             e.preventDefault()
             socket.emit("send_message", {message: message})
             setMessage("")
 
             socket.on("received_message", (data) => {
                 console.log("socketかラ受け取った奴" + JSON.stringify(data));
-                    setChatList([...chatList, data])
+                setChatList([...chatList, data])
             })
             const SavedMessage = async () => {
-                const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
-                // const update = await saveMessageStauts1Update(chatData?.chatId, chatData?.currentUser, message)
-                console.log(response)
+                // const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
+                const update = await saveMessageStauts1Update(chatData?.chatId, chatData?.currentUser, message)
+
+                console.log(update)
                 setMessage("")
             }
             SavedMessage()
         }
-
         // ステータス3
         else if (status === "3") {
             e.preventDefault()
@@ -138,6 +134,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     //     サーバーアクションでチャットを保存する
 
     // socket.ioから受信
+
 
     return (
         <>

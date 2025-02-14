@@ -89,6 +89,7 @@ const Toppage = () => {
                         </div>
                     </div>
                 </div>
+
                 <h2 style={{color: "red", fontSize: "6rem"}}></h2>
                 <Toppage_2nd/>
                 <ToppageSite3/>
@@ -105,7 +106,7 @@ const Toppage = () => {
                         </li>
                         <li className={"toppageBottomLi"}>
 
-                            <h2>F'dore</h2>
+                            <h2>F&apos;dore</h2>
                         </li>
                     </ul>
                 </div>

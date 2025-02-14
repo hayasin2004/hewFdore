@@ -15,18 +15,15 @@ import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
 import Chat from "@/app/_components/chat/Chat";
 import Stripe from "@/app/_components/stripe/Stripe";
-import UpdateProductCategoryLikeList from "@/app/utils/setting/update/InsertProductSellStatus";
-import updateProductCategoryLikeList from "@/app/utils/setting/update/InsertProductSellStatus";
-import inserteProductSellStatus from "@/app/utils/setting/update/InsertProductSellStatus";
 import {useRouter} from "next/navigation";
 import sellerCheck from "@/app/utils/product/sellerCheck";
-import InsertProductSellStatus from "@/app/utils/user/InserteUserPurchase";
-import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 
 const Product = ({params}: { params: { id: string } }) => {
-    const [loginUserData, setLoginUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
+    const [productVideo, setProductVideo] = useState<string>()
     const user = useUser()
     const router = useRouter()
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
@@ -41,6 +38,8 @@ const Product = ({params}: { params: { id: string } }) => {
         },
     });
     const [product, setProduct] = useState<ProductType | null>(null)
+    console.log(product)
+
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
     console.log(status)
@@ -48,10 +47,18 @@ const Product = ({params}: { params: { id: string } }) => {
     const id = params?.id
     const productId = product?._id
     const likeButton = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault()
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {
             const result = await productLikeDate(id, loginUserData?._id)
+            if (result == "mineProduct"){
+                window.alert("自分の商品にはいいねできないです。")
+            }
+            if (result == "notLogin"){
+                window.alert("ログインしていないといいねはできないです。")
+                setProductLike(false)
+            }
         }
         productLikeData()
     }
@@ -77,10 +84,20 @@ const Product = ({params}: { params: { id: string } }) => {
                 setSameSellerStatus(sellerCheckCatch)
                 console.log(sellerCheckCatch)
             }
-            if (productCatch?.product !== undefined) {
-                const productParse = JSON.parse(productCatch?.product)
-                // console.log( await  productParse?.productLike == currentUser)
-                setProduct(productParse)
+            if (productCatch == null){
+                console.log("商品が消された可能性があります。")
+                window.alert("商品が消された可能性があるので商品の詳細を表示することができませんでした。トップページに戻ります。");
+                router.push("/")
+            }
+            const productCatchParse = JSON.parse(JSON.stringify(productCatch))
+            if (productCatchParse?.product !== undefined) {
+                setProduct(JSON.parse(productCatchParse?.product))
+            }
+            if (productCatchParse?.video !== undefined && productCatchParse?.video !== null){
+                const video = productCatchParse?.video
+                // const blob = await video?.blob()
+                // const url = URL.createObjectURL(blob)
+                setProductVideo(video)
             }
         }
 
@@ -94,6 +111,7 @@ const Product = ({params}: { params: { id: string } }) => {
             setProductLike(true);
         }
     }, [product]);
+
     return (
         <>
             <Header/>
@@ -144,18 +162,24 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
+                                {/*<video src={productVideo !== undefined && productVideo !== null ? `/${productVideo}` : ""}*/}
+                                {/*       loop autoPlay controls></video>*/}
                             </div>
                         </div>
                         <div>
                             <Chat paramsProductData={id}/>
                         </div>
                         <div id="controlProduct">
-                            <ThemeProvider theme={theme}>
-                                <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
-                                          size={"large"} checked={productLike} {...label}
-                                          icon={<FavoriteBorder/>}
-                                          checkedIcon={<Favorite/>}/>
-                            </ThemeProvider>
+                            {product?.sellStatus == "trading" ?
+                                <></>
+                                :
+                                <ThemeProvider theme={theme}>
+                                    <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
+                                              size={"large"} checked={productLike} {...label}
+                                              icon={<FavoriteBorder/>}
+                                              checkedIcon={<Favorite/>}/>
+                                </ThemeProvider>
+                            }
                             <p>いいね</p>
                             <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
 
@@ -163,7 +187,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             {/*<button id={"buy"}*/}
                             {/*        type="button" className={"productPurchase"}>*/}
                             {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
-                                <Stripe productId={product?._id}/>}
+                                <Stripe productId={product?._id} sellingOrSoldOut={product?.sellStatus == "trading" ? true : false}/>}
 
 
                             {/*</button>*/}

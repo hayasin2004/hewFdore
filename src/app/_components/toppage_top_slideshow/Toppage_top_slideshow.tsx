@@ -4,9 +4,6 @@ import "./common.css"
 import dummyData from "@/app/dummydata/slide_dummy";
 import {DummyDataType} from "@/app/dummydata/slide_dummy";
 
-interface SlideShowProps {
-    images: string[];
-}
 
 interface dummy {
     image?: string,
@@ -14,7 +11,7 @@ interface dummy {
 }
 
 
-const dummyData_slide_map_item: dummy[] = dummyData.map((item: DummyDataType, index) => {
+const dummyData_slide_map_item: dummy[] = dummyData.map((item: DummyDataType) => {
     const image = item.url
     const text = item.randomString
     return {image, text}
@@ -28,7 +25,6 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // これが次のスライド
     const [nextSlide, setNextSlide] = useState(0);
     // これがテキストのスライド
-    const [textSlide, setTextSlide] = useState(0);
 
 
     // 次のスライド

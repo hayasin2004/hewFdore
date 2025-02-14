@@ -2,7 +2,7 @@
 
 import { connectDB } from "@/lib/mongodb";
 import { Product } from "@/models/Product";
-import { ProductComment, ProductCommentType } from "@/models/ProductComment";
+import { ProductComment} from "@/models/ProductComment";
 import { User } from "@/models/User";
 
 const productSendComment = async (productId : string | null, currentUser : string | null, chatMessage: string | null) => {
@@ -13,14 +13,12 @@ const productSendComment = async (productId : string | null, currentUser : strin
 
         const ExistChatMessage = await ProductComment.find({ productId: productId }).select("_id listingUserId buyerUserId productId ChatMessage");
 
-        // Promise.allで非同期処理をまとめて処理
-        await Promise.all(ExistChatMessage.map(async (item) => {
+         await Promise.all(ExistChatMessage.map(async (item) => {
             const chatExists = item.ChatMessage.some(msg => msg.senderUserId === currentUser);
             const status = chatExists ? "UPDATE" : "CREATE";
 
             switch (status) {
                 case "UPDATE":
-                    //console.log("既に作成されたチャットです。");
                     const updateChatMessage = {
                         senderUserId: currentUser,
                         buyerMessage: chatMessage,
@@ -33,13 +31,11 @@ const productSendComment = async (productId : string | null, currentUser : strin
                             { _id: item._id, "listingChatMessage.senderUserId": currentUser },
                             { $push: { listingChatMessage: updateChatMessage } }
                         );
-                        //console.log("出品者のコメントを更新しました。");
-                    } else {
+                      } else {
                         await ProductComment.updateOne(
                             { _id: item._id, "ChatMessage.senderUserId": currentUser },
                             { $push: { ChatMessage: updateChatMessage } }
                         );
-                        //console.log("購入者のコメントを更新しました。");
                     }
                     break;
                 case "CREATE":
@@ -57,16 +53,14 @@ const productSendComment = async (productId : string | null, currentUser : strin
                     };
                     const createChatResponse = new ProductComment(newComment);
                     await createChatResponse.save();
-                    //console.log("新しいチャットを作成しました。");
-                    break;
+                     break;
                 default:
-                    //console.log("不明なステータスです。");
-                    break;
+                     break;
             }
         }));
 
     } catch (err) {
-        //console.log(err);
+        console.log(err);
         return null;
     }
 };

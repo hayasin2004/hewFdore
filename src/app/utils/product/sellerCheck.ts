@@ -8,13 +8,12 @@ const sellerCheck = async (productId : string | null , currentUser : string | nu
     try {
         const product =await Product.findById(productId).select("sellerId")
         if (product.sellerId == currentUser){
-            //console.log("出品者とログインしている人が同じです")
-            return true
+             return true
         }else {
             return  null
         }
     }catch (err){
-        //console.log(err)
+        console.log(err)
         return null
     }
 

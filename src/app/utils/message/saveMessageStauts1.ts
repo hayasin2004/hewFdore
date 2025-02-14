@@ -3,7 +3,6 @@
 import {Chat} from "@/models/Chat";
 import {string} from "prop-types";
 import {connectDB} from "@/lib/mongodb";
-import {User} from "@/models/User";
 
 export interface ChatType {
     currentUser?: string
@@ -43,7 +42,7 @@ const saveMessageStauts1 = async (chatId: string, pushedUser: string, message: s
         return {fChangeMessage: JSON.stringify(fChangeMessage)}
 
     } catch (err) {
-        //console.log(err)
+        console.log(err)
         return null
     }
 }

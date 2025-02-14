@@ -5,9 +5,6 @@ import "./listingScreen.css"
 import Image from "next/image"
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from 'next/link';
-import createProduct from "@/app/utils/product/createProduct";
-import {string} from "prop-types";
-import {redirect} from "next/navigation";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import editProduct from "@/app/utils/product/editProduct";
@@ -67,9 +64,9 @@ const ListingScreen = ({params} : {params : {productId : string | null}}) => {
 
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
-                        // 尚最初からnumber型で指定するとエラーが出てしまう。
-                        const shippingArea = data.get("shippingArea") as string;
-                        const token = localStorage.getItem("token") as string;
+                        // // 尚最初からnumber型で指定するとエラーが出てしまう。
+                        // const shippingArea = data.get("shippingArea") as string;
+                        // const token = localStorage.getItem("token") as string;
                         console.log("来てる" + shippingAreaText)
                         await editProduct(
                             EditProduct,

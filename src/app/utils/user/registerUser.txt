@@ -5,8 +5,6 @@ import {v4 as uuidv4} from 'uuid';
 import {redirect} from 'next/navigation'
 import jwt from "jsonwebtoken";
 import {UserType} from "@/app/api/user/catchUser/route";
-
-// ユーザー新規登録
 export default async function createUser(username: string, email: string, password: string , PWCheck :string) {
     await connectDB();
     console.log("データベース接続" + await connectDB())
@@ -30,7 +28,6 @@ export default async function createUser(username: string, email: string, passwo
     } catch (err) {
 
         console.log("ｓｓｓ" + err)
-        //     ユーザーが正常に新規登録できなかったとき
     }
 
 }

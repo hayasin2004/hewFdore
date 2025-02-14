@@ -57,6 +57,7 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
         } else {
             const newChatId = uuidv4()
             if (tokenUser && detailUser) {
+
                 const newChatRoom = await Chat.create({
                     ChatroomId: newChatId,
                     currentUser: tokenUser,

@@ -2,9 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
-import {NextResponse} from "next/server";
-import {NextApiRequest} from "next";
-import {UserData} from "next-auth/providers/42-school";
+import {NextRequest, NextResponse} from "next/server";
 
 export interface UserType {
     id? : string
@@ -22,6 +20,7 @@ export interface UserType {
     likeList? : string[]
     userData? : UserType,
     purchaseProduct? : string[]
+    productLikeList? : string[]
 }
 
 export  interface UserFollow {
@@ -32,7 +31,7 @@ export  interface UserFollow {
 
 
 
-export async function GET(req: NextApiRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
     await connectDB()
     if (req.method === "GET") {
         try {
@@ -48,7 +47,6 @@ export async function GET(req: NextApiRequest, res: NextResponse) {
         }
 
     }else {
-        //console.log("ユーザーリスト表示失敗")
     }
 
 }

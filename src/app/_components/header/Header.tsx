@@ -3,41 +3,31 @@ import React, {useEffect, useState} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+ import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import confirmUser from "@/app/utils/user/confirmUser";
-import Images from "next/image";
-import toastPurchase from "@/app/utils/toast/toastPurchase";
-import catchToastProduct from "@/app/utils/toast/catchToastProduct";
+ import catchToastProduct from "@/app/utils/toast/catchToastProduct";
 import catchOtherToast from "@/app/utils/toast/catchOtherToast";
+import {ToastType} from "@/models/Toast";
+import {UserType} from "@/app/api/user/catchUser/route";
 
-interface User {
-    userId: string
-    username: string
-    email: string
-    password: string
-    profilePicture: string
-    coverProfilePicture: string
-}
 
 
 const Header = () => {
     const user = useUser()
-    const [userData, setUserData] = useState(null)
-    const [toastPurchase, setToastPurchase] = useState<string | null>(null)
-    const [otherToast, setOtherToast] = useState<string | null>(null)
-    // console.log("商品" + toastPurchase , "その他" + otherToast)
+    const [userData, setUserData] = useState<UserType | null>(null)
+    const [toastPurchase, setToastPurchase] = useState<ToastType[] | null>([])
+    const [otherToast, setOtherToast] = useState<ToastType[] | null>([])
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token) {
 
             const confirmUserData = async () => {
                 const response = await confirmUser(token)
-                    // console.log("バグったかも"+response)
+                // console.log("バグったかも"+response)
                 if (response !== undefined) {
                     const responseParse = JSON.parse(response)
                     setUserData(responseParse)
@@ -52,11 +42,17 @@ const Header = () => {
     useEffect(() => {
         const toastPurchase = async () => {
             const response = await catchToastProduct(userData?._id)
-            setToastPurchase(response)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setToastPurchase(responseParse)
+            }
         }
         const OtherToast = async () => {
             const response = await catchOtherToast(userData?._id)
-            setOtherToast(response)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setOtherToast(responseParse)
+            }
         }
         toastPurchase()
         OtherToast()
@@ -99,17 +95,6 @@ const Header = () => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     }
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '37%',
-        left: '80%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        height: 400,
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -125,7 +110,7 @@ const Header = () => {
                     <div className="title">
                         <Link href={"/"}>
                             <h1>
-                                F'dore
+                                F&apos;dore
                             </h1>
                         </Link>
                     </div>
@@ -171,7 +156,7 @@ const Header = () => {
                             <li>
                                 {userData ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
-                                    : <UserNavigationModal/>}
+                                    : <UserNavigationModal src=""/>}
 
                             </li>
                             <li id={"UserName"}>
@@ -220,37 +205,57 @@ const Header = () => {
                                                     <CustomTabPanel value={value} index={0}>
                                                         <Box className={"alert"}>
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40"
-                                                                 height="40"
-                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 strokeWidth="2"
-                                                                 strokeLinecap="round" strokeLinejoin="round"
-                                                                 className="lucide lucide-bell">
-                                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                            </svg>
-                                                            <p>
-                                                                新しい商品が出品されました！
-                                                            </p>
-                                                            <hr/>
+                                                            {otherToast?.map((item) => (
+                                                                <div key={item._id} className={"alertDisplay"}>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                         height="40"
+                                                                         viewBox="0 0 24 24" fill="none"
+                                                                         stroke="currentColor"
+                                                                         strokeWidth="2"
+                                                                         strokeLinecap="round" strokeLinejoin="round"
+                                                                         className="lucide lucide-bell">
+                                                                        <path
+                                                                            d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                                    </svg>
+                                                                    {item.followerUserId !== "" ?
+                                                                        <Link href={`/userDetail/${item.followerUserId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>
+                                                                        :
+                                                                             <p>{item.message}</p>
+                                                                         }
+                                                                    <hr/>
+                                                                </div>
+                                                            ))}
                                                         </Box>
                                                     </CustomTabPanel>
                                                     <CustomTabPanel value={value} index={1}>
                                                         <Box className={"alert"}>
 
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="40"
-                                                                 height="40"
-                                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                                 strokeWidth="2"
-                                                                 strokeLinecap="round" strokeLinejoin="round"
-                                                                 className="lucide lucide-bell">
-                                                                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
-                                                                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                                                            </svg>
-                                                            <p>
-                                                                取引評価されました！
-                                                            </p>
-                                                            <hr/>
+                                                            {toastPurchase?.map((item) => (
+                                                                <div key={item._id} className={"alertDisplay"}>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40"
+                                                                         height="40"
+                                                                         viewBox="0 0 24 24" fill="none"
+                                                                         stroke="currentColor"
+                                                                         strokeWidth="2"
+                                                                         strokeLinecap="round" strokeLinejoin="round"
+                                                                         className="lucide lucide-bell">
+                                                                        <path
+                                                                            d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                                                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                                                                    </svg>
+                                                                    {item.tradeId !== "" ?
+                                                                        <Link href={`/tradeChat/${item.tradeId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>
+                                                                        :
+                                                                        <Link href={`/product/${item.productId}`}>
+                                                                            <p>{item.message}</p>
+                                                                        </Link>}
+                                                                </div>
+                                                            ))}
                                                         </Box>
 
                                                     </CustomTabPanel>
