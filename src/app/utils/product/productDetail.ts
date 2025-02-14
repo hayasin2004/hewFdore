@@ -24,6 +24,9 @@ export interface ProductType {
     postageBurden?: string,
     productCondition?: string,
     productImage?: string,
+    productImage2?: string,
+    productImage3?: string,
+    productImage4?: string,
     stripeCode?: string
     payPayCode?: string
     tradeId?: string

@@ -19,7 +19,7 @@ export interface createProductType {
 }
 
 
- export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null, productImage: string | null, data: FormData | null): Promise<{
+ export const createProduct = async (token: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null, productImage: string | null, data: FormData | null,productImage2 : string | null, productImage3 : string | null, productImage4 : string | null,): Promise<{
     result: string
 } | null> => {
      await connectDB();
@@ -49,6 +49,9 @@ export interface createProductType {
                 shippingArea,
                 deliveryTime,
                 productImage,
+                productImage2,
+                productImage3,
+                productImage4,
                 productVideo : saveVideo,
                 sellStatus: "selling"
             })
@@ -80,6 +83,9 @@ export interface createProductType {
                 shippingArea,
                 deliveryTime,
                 productImage,
+                productImage2,
+                productImage3,
+                productImage4,
                 sellStatus: "selling"
             })
             await newProduct.save()

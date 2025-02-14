@@ -1,7 +1,7 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import Image from "next/image";
-import "./listingcomplete.css"
+import "./listingcomplete.css";
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Images from "next/image";
@@ -9,30 +9,42 @@ import Link from "next/link";
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 const ListingComplete = ({params}: { params: { id: string } }) => {
+    const [data, setData] = useState<ProductType | null>(null);
+    const [productVideo, setProductVideo] = useState<ProductType | null>(null);
+    const id = params.id;
 
-    const [data, setData] = useState<ProductType | null>(null)
-    const [productVideo, setProductVideo] = useState<ProductType | null>(null)
-    console.log(productVideo)
-    console.log(data)
-    const id = params.id
-    console.log(id)
+    const [mainImage, setMainImage] = useState<string>("");
+    const [images, setImages] = useState<string[]>([]);
+
     useEffect(() => {
         if (id) {
             const productData = async () => {
-                const result = await productDetail(id)
-                console.log(result)
+                const result = await productDetail(id);
                 if (result?.product !== undefined && result?.product !== null) {
-                    const resultParse = JSON.parse(result?.product)
-                    setData(resultParse)
+                    const resultParse: ProductType = JSON.parse(result?.product);
+                    setData(resultParse);
+                    setMainImage(resultParse.productImage);  // メイン画像を初期化
+                    setImages([
+                        resultParse.productImage,
+                        resultParse.productImage2,
+                        resultParse.productImage3,
+                        resultParse.productImage4
+                    ]);
                 }
-                if (result?.video !== undefined && result?.video !== null){
-                    const resultParse = JSON.parse(result?.video)
-                    setProductVideo(resultParse)
+                if (result?.video !== undefined && result?.video !== null) {
+                    const resultParse: ProductType = JSON.parse(result?.video);
+                    setProductVideo(resultParse);
                 }
-            }
-            productData()
+            };
+            productData();
         }
-    }, [])
+    }, [id]);
+
+    const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+        e.preventDefault();
+        setMainImage(images[index]);  // クリックされた画像をメイン画像に設定
+    };
+
     return (
         <>
             <Header/>
@@ -40,27 +52,29 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                 <h1 className={"liscomph2"}>出品が完了しました。</h1>
                 <div id="info">
                     <div id="photo">
-                        <Image className={"proimg"} src={data?.productImage !== undefined ? data?.productImage : "/images/clothes/product.jpg"} width={400} height={400}
+                        <Image className={"proimg"}
+                               src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                               width={400} height={400}
                                alt="サンプル" id="sum"/>
                         <ul className="piclist">
-                            <li className="picts"><a href="/images/clothes/product.jpg">
-                                <Image className="pictS" src={data?.productImage} width={50} height={50}
-                                       alt="画像1"/></a>
-                            </li>
-
+                            {images.slice().map((image, index) => (
+                                <li key={index} className="picts">
+                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                        <Image className="pictS" src={image} width={50} height={50} alt={`画像${index + 1}`} />
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div id="text">
                         <h1 className={"liscomph2"}>{data?.productName}</h1>
                         <span className="under_bar"></span>
-                        <a href="#" id="seller"><h2>出品者:{data?.sellerUserName}</h2>
+                        <a href="#" id="seller">
+                            <h2>出品者:{data?.sellerUserName}</h2>
                             <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
                                     alt={"サンプルユーザーアイコン"}/>
                         </a>
-                        <p>
-                            {data?.productDesc}
-                        </p>
-
+                        <p>{data?.productDesc}</p>
                         <p id="size">サイズ:{data?.productSize}</p>
                         <p id="used">商品状態:{data?.productCondition}</p>
                         <p id="postage">送料:{data?.postageBurden}</p>
@@ -84,11 +98,8 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
 
             </div>
             <Footer/>
-
         </>
-
     );
-}
-
+};
 
 export default ListingComplete;

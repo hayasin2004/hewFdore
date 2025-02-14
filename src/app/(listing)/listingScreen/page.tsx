@@ -32,6 +32,9 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
+    const [productImage2, setProductImage2] = useState<string | null>(null)
+    const [productImage3, setProductImage3] = useState<string | null>(null)
+    const [productImage4, setProductImage4] = useState<string | null>(null)
     const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
     // const [compressedVideo, setCompressedVideo] = useState(null)
 
@@ -47,6 +50,39 @@ const ListingScreen: React.FC = () => {
             const render = new FileReader()
             render.onloadend = () => {
                 setProductImage(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+    const productImageFile2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage2(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+    const productImageFile3 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage3(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+    const productImageFile4 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage4(render.result as string)
             }
             render.readAsDataURL(file)
         }
@@ -115,7 +151,10 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText,
                             productImage,
-                            data
+                            data,
+                            productImage2,
+                            productImage3,
+                            productImage4,
                         ).then(
                             (product => {
                                 if (product?.result == null) {
@@ -138,6 +177,24 @@ const ListingScreen: React.FC = () => {
                                 <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                             <input type="file" onChange={productImageFile}/>
+                        </div>
+                        <div id="kamera">
+                            {productImage2 &&
+                                <Image src={productImage2} width={377} height={377} alt={"選択した商品画像"}/>}
+                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            <input type="file" onChange={productImageFile2}/>
+                        </div>
+                        <div id="kamera">
+                            {productImage3 &&
+                                <Image src={productImage3} width={377} height={377} alt={"選択した商品画像"}/>}
+                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            <input type="file" onChange={productImageFile3}/>
+                        </div>
+                        <div id="kamera">
+                            {productImage4 &&
+                                <Image src={productImage4} width={377} height={377} alt={"選択した商品画像"}/>}
+                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            <input type="file" onChange={productImageFile4}/>
                         </div>
 
                         {/*<div id="kamera">*/}
