@@ -82,12 +82,13 @@ const Toppage = () => {
                     <div className={"introduction"}>
                         <div className={"introductionMain"}>
 
-                            <h1>F'doreとは</h1>
-                            <p>大人の女性の向けファッション</p>
+                            <h1>F'dore<span id={"smallFont"}> とは</span></h1>
+                            <h3>F'doreとは、女性向けに作られたファッション系フリマサイトです。主に衣服や香水。アクセサリーなどが数多く出品されています。</h3>
+                            <h3>"Female"<span className={"smallFonth3"}> (女性) </span>、"Door"<span className={"smallFonth3"}> (扉) </span>、"Store"<span className={"smallFonth3"}> (お店) </span>の 3つの言葉から生まれた F'dore<span className={"smallFonth3"}>（フィードア）</span>には、特別な想いが込められています。新しい服との出会い、新しい自分との出会いになる。扉を開けて街へ出かけていく、そんな瞬間をサポートしたいという願いを込めて名付けられました。</h3>
+                            <h3>新しい服との出会いは、新しい自分との出会い。 F'doreで、あなたらしいファッションとの素敵な出会いを見つけてください。</h3>
                         </div>
                     </div>
                 </div>
-
                 <h2 style={{color: "red", fontSize: "6rem"}}></h2>
                 <Toppage_2nd/>
                 <ToppageSite3/>

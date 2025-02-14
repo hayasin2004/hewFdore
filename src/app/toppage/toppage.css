@@ -42,20 +42,32 @@ div.introduction {
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #CFC8A9;
     text-align: center;
 }
 
 div.introductionMain {
-    width: 1440px;
+    font-family: "Italiana", sans-serif;
+    width: 1450px;
+    color: #444;
 }
 
 div.introduction h1 {
     font-size: 4rem;
     padding-top: 80px;
 }
-
+div.introduction h3 {
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    padding-top: 20px;
+}
+#smallFont{
+    font-size: 1.5rem;
+}
+.smallFonth3{
+    font-size: 1rem;
+}
 div.introduction p {
     font-size: 2rem;
     padding-top: 80px;
