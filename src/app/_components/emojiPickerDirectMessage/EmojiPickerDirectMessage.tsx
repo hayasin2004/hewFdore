@@ -1,19 +1,21 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
-import "./emojiPicker.css"
-import productChatLike from "@/app/utils/product/productChatLike";
-import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
+import "./emojiPickerDirectMessage.css"
+import directMessageLike from "@/app/utils/message/directMessageLike";
 
-const EmojiPickerPurchase = (props) => {
+const EmojiPickerDirectMessage = (props) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
     const [icon, setIcon] = useState<string>("")
     const [existIcon, setExistIcon] = useState<boolean>(false)
     console.log(existIcon , !existIcon)
     useEffect(() => {
+        console.log("props.stamp" + props.stamp)
+
         if (props.stamp !== undefined && props.stamp !== null) {
             setExistIcon(!existIcon)
             setIcon(props.stamp)
+            console.log("props.stamp" + props.stamp)
             console.log(existIcon)
         }
     }, [props]);
@@ -29,7 +31,7 @@ const EmojiPickerPurchase = (props) => {
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {
                 console.log(props.currentUser)
-                const response = await productChatLike(props.currentUser, props.productId, props.item, emoji)
+                const response = await directMessageLike(props.currentUser, props.commentId, emoji)
                 console.log(response)
                 console.log("そうにゅう処理")
             }
@@ -42,7 +44,8 @@ const EmojiPickerPurchase = (props) => {
 
 
     const deleteStamp = async () => {
-        const response = await productChatLike(props.currentUser, props.productId, props.item, icon)
+        const response = await directMessageLike(props.currentUser, props.commentId, icon)
+
         console.log("消す処理")
         console.log(response)
         setIcon("")
@@ -101,4 +104,4 @@ const EmojiPickerPurchase = (props) => {
 }
 
 
-export default EmojiPickerPurchase;
+export default EmojiPickerDirectMessage;

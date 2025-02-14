@@ -1,14 +1,14 @@
 "use client"
-import React, {useEffect, useState} from 'react';　　
+import React, {useEffect, useState} from 'react';
 import DirectMessageserver from "@/app/utils/user/DirectMessageserver";
 import io from "socket.io-client";
 import {ChatType} from "@/models/Chat";
-import {UserType} from "@/app/api/user/catchUser/route";　
-import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2" ;　
+import {UserType} from "@/app/api/user/catchUser/route";
+import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2" ;
 import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Update";
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
-import confirmUser from "@/app/utils/user/confirmUser";　
+import confirmUser from "@/app/utils/user/confirmUser";
 import DirectMessageStatus1 from "@/app/_components/directMessageStaus/DirectMessageStatus1/DirectMessageStatus1";
 import DirectMessageStatus3 from "@/app/_components/directMessageStaus/DirectMessageStatus3/DirectMessageStatus3";
 import "./DMpage.css"
@@ -22,7 +22,6 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const [partnerChatData, setPartnerChatData] = useState<ChatType|UserType | null>([])
     console.log("currentChatData" + currentChatData , "partnerChatData" + partnerChatData )
     const [currentUser, setCurrentUser] = useState<ChatType|UserType | null>(null)
-    console.log(JSON.stringify(chatData))
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
@@ -52,7 +51,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                     setPartnerChat(catchUser?.chatCatchData.partnerUserChat)
                 }
             }
-                chatresponse()
+            chatresponse()
         }
     }, [chatData]);
 
@@ -139,7 +138,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
                 <div className={"PUser-top"}>
                     {/*対象ユーザー : {partnerChatData?._id}*/}
-                    {partnerChatData?.username} さん{status}
+                    {partnerChatData?.username} さん　→削除ok{status}
                 </div>
                 {/*<div>*/}
                 {/*    ログインユーザー : {currentChatData?._id}*/}
@@ -154,7 +153,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                         {/*    </ul>*/}
                         {/*))}*/}
 
-                        {status == 1 || status ==2 ? <DirectMessageStatus1 chatData={chatData?.chatMessage} /> : <DirectMessageStatus3 chatData={chatData?.chatMessage}/> }
+                        {status == 1 || status ==2 ? <DirectMessageStatus1 chatData={chatData?.chatMessage} currentUserId={chatData?.currentUser} /> : <DirectMessageStatus3 chatData={chatData?.chatMessage} currentUserId={chatData?.partnerUser}/> }
 
                         {chatList.map((item, index) => (
                             <div className={"chatFrame"} key={index}>
