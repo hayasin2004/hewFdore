@@ -1,20 +1,17 @@
 "use client"
-import React, {useEffect, useState} from 'react';
-import {useRouter} from 'next/router';
-import useUser from "@/hooks/useUser";
+import React, {useEffect, useState} from 'react';　　
 import DirectMessageserver from "@/app/utils/user/DirectMessageserver";
 import io from "socket.io-client";
 import {ChatType} from "@/models/Chat";
-import {UserType} from "@/app/api/user/catchUser/route";
-import saveMessageStauts1 from "@/app/utils/message/saveMessageStauts1";
-import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2" ;
-import saveMessageStauts2Update from "@/app/utils/message/saveMessageStauts2Update";
+import {UserType} from "@/app/api/user/catchUser/route";　
+import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2" ;　
 import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Update";
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
-import confirmUser from "@/app/utils/user/confirmUser";
-import {JsConfigPathsPlugin} from "next/dist/build/webpack/plugins/jsconfig-paths-plugin";
-
+import confirmUser from "@/app/utils/user/confirmUser";　
+import DirectMessageStatus1 from "@/app/_components/directMessageStaus/DirectMessageStatus1/DirectMessageStatus1";
+import DirectMessageStatus3 from "@/app/_components/directMessageStaus/DirectMessageStatus3/DirectMessageStatus3";
+import "./DMpage.css"
 
 const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
