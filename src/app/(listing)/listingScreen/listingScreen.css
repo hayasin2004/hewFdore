@@ -33,7 +33,8 @@ h2#LStitle{
     line-height: normal;
     color: #fff;
     letter-spacing: 1rem;
-    background-color: #8e756098;
+    background-color: #8e7560;
+    border-radius: 5px;
 
 }
 

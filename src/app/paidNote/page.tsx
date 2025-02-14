@@ -9,7 +9,7 @@ const PaidNote = () => {
 
     return (
         <>
-            <Header/>
+            <Header/>]
             <div id={"bread"}>
                 <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
                 <p className={"breadArrow"}>＞</p>
@@ -22,6 +22,7 @@ const PaidNote = () => {
                     購入履歴
                 </h2>
             </div>
+            {/* ココ表示の情報変えて横長にした方がいいかも～ */}
             <div className={"listing"}>
                 <div className={"listing_product"}>
                     <div className={"product"}>
