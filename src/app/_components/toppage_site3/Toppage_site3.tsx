@@ -8,7 +8,6 @@ import "./common.css";
 export interface BlogType {
     id: string;
     title: string;
-    sabtitle?: string;
     createdAt: string;
     image?: {
         url: string;

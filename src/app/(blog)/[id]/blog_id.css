@@ -15,7 +15,7 @@ div{
     margin: 10px 0 0 0 ;
 }
 
-.blog-title{
+.blog-titles{
     padding-bottom: 5px;
     margin-bottom: 50px;
     border: 2px black ;
@@ -31,12 +31,14 @@ div{
     padding: 5px 10px;
 
     border: 1px solid #000;
+    background-color: black;
+    color: white;
     border-radius: 10px;
 }
 
 .linkbtn:hover{
     text-decoration: none;
-    background-color: silver;
+    opacity: 0.5;
 }
 
 

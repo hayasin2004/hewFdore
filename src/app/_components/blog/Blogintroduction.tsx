@@ -105,7 +105,6 @@ const Blogintroduction = () => {
                         ))}
                     </ul>
 
-                    {/* "もっと見る" ボタン */}
                     {filteredBlogs.length > visibleCount && (
                         <div className="more-button-container">
                             <button onClick={() => setVisibleCount(filteredBlogs.length)} className="more-button">

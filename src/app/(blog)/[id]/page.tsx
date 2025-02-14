@@ -35,7 +35,7 @@ async function BlogIdPage({ params }: { params: { id: string } }) {
 
         return (
             <main className={"blog-id"}>
-                <div className={"blog-title"}>
+                <div className={"blog-titles"}>
                     <h1>{blog.title}</h1>
                     <p>{formatDate(blog.createdAt)}</p>
                 </div>
