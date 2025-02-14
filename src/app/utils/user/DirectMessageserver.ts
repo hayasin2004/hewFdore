@@ -42,7 +42,7 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
                 const partnerUserData : UserType | null= await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture").exec();
             // //console.log("うけとり" + currentUserData)
             // return {currentUser: currentUserData?._id, partnerUser: partnerUserData?._id}
-            return {status:"chatExists" , chatId : chatId , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
+            return {status:"chatExists" , chatId : JSON.stringify(chatExists) , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
 
         } else if (chatExistsPart2) {
             const chatId = chatExistsPart2._id
@@ -53,11 +53,10 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
             const partnerUserData: UserType | null = await User.findById({_id: partnerUser}).select(" username email profilePicture coverProfilePicture").exec();
 
 
-            return { status:"chatExistsPart2", chatId : chatId , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
+            return { status:"chatExistsPart2", chatId : JSON.stringify(chatExistsPart2) , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
         } else {
             const newChatId = uuidv4()
             if (tokenUser && detailUser) {
-
                 const newChatRoom = await Chat.create({
                     ChatroomId: newChatId,
                     currentUser: tokenUser,

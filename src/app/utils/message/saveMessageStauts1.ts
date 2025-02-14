@@ -3,6 +3,7 @@
 import {Chat} from "@/models/Chat";
 import {string} from "prop-types";
 import {connectDB} from "@/lib/mongodb";
+import {User} from "@/models/User";
 
 export interface ChatType {
     currentUser?: string
@@ -23,13 +24,23 @@ const saveMessageStauts1 = async (chatId: string, pushedUser: string, message: s
         // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
+        console.log("chatIDDDDDDDDDDDDD" + chatId , pushedUser , message)
+
+        const sendUserData = await  User.findById(pushedUser)
+
         const fChangeMessage = await Chat.findByIdAndUpdate(
             chatId,
-            {$push: {currentUserChat: message}},
+            {$push: {chatMessage : [{
+                        senderUserId : pushedUser,
+                        username : sendUserData.username,
+                        profilePicture : sendUserData.profilePicture,
+                        message : message,
+                        chatUserRole : "チャットルーム制作者"
+                    }]}},
             {new: true, useFindAndModify: false}
         )
         //console.log(fChangeMessage)
-        return {fChangeMessage: fChangeMessage}
+        return {fChangeMessage: JSON.stringify(fChangeMessage)}
 
     } catch (err) {
         //console.log(err)

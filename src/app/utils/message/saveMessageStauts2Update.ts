@@ -17,9 +17,11 @@ const saveMessageStauts2Update = async (chatId: string, pushedUser: string, mess
     // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
+//     console.log("chatIDDDDDDDDDDDDD" + chatId)
+
     const fChangeMessage = await Chat.findByIdAndUpdate(
         chatId,
-        {$push: {partnerUserChat: message}},
+        {$push: {"chatMessage.$.message": message}},
         {new: true, useFindAndModify: false}
     )
     const currentUserChat = await fChangeMessage.partnerUserChat
