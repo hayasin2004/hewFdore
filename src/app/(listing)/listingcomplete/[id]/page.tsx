@@ -13,7 +13,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
     const [productVideo, setProductVideo] = useState<ProductType | null>(null);
     const id = params.id;
 
-    const [mainImage, setMainImage] = useState<string>("");
+        const [mainImage, setMainImage] = useState<string>("");
     const [images, setImages] = useState<string[]>([]);
 
     useEffect(() => {
@@ -26,9 +26,9 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                     setMainImage(resultParse.productImage);  // メイン画像を初期化
                     setImages([
                         resultParse.productImage,
-                        resultParse.productImage2,
-                        resultParse.productImage3,
-                        resultParse.productImage4
+                        resultParse.productImage2 || "",
+                        resultParse.productImage3 || "",
+                        resultParse.productImage4 || ""
                     ]);
                 }
                 if (result?.video !== undefined && result?.video !== null) {
@@ -57,11 +57,13 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                                width={400} height={400}
                                alt="サンプル" id="sum"/>
                         <ul className="piclist">
-                            {images.slice().map((image, index) => (
+                            {images.map((image, index) => (
                                 <li key={index} className="picts">
-                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                        <Image className="pictS" src={image} width={50} height={50} alt={`画像${index + 1}`} />
-                                    </a>
+                                    {image ? (
+                                        <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                            <Image className="pictS" src={image} width={50} height={50} alt={`画像${index + 1}`} />
+                                        </a>
+                                    ) : null}
                                 </li>
                             ))}
                         </ul>

@@ -116,6 +116,7 @@ ul.piclist{
 }
 li.picts{
     list-style: none;
+    display: flex;
     margin: 0 10px 0 0 ;
 }
 li.picts a{

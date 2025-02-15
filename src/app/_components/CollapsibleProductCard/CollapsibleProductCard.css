@@ -121,6 +121,28 @@
     border-bottom: 2px solid;
     border-image: linear-gradient(to left, #cccccc, #000000) 1;
 }
+
+/* 画像リスト */
+ul.piclist{
+    display: flex;
+    justify-content: left;
+    margin: 10px 0 10px 0;
+    padding: 0;
+}
+li.picts{
+    list-style: none;
+    display: flex;
+    margin: 0 10px 0 0 ;
+}
+li.picts a{
+    display: block;
+    outline: none;
+}
+li.picts a img.pictS{
+    height: 50px;
+    width: 50px;
+}
+
 .expanded-Cart{
     padding: 15px;
     margin-top: 40px;
