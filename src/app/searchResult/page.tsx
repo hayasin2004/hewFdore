@@ -141,10 +141,6 @@ const SearchPageProducts = () => {
         console.log(e.target.value)
     }
 
-    useEffect(() => {
-        setSearchWord("")
-    }, []);
-
     const filterProductByCategory = (items: ProductType[], category: string) => {
         console.log("ここまで来た" + items.length)
         return items.filter(product => product?.productCategory?.includes(category));
@@ -192,10 +188,10 @@ const SearchPageProducts = () => {
                         <option value="LL">LL</option>
                         <option value="XL">XL</option>
                     </select>
-                    <button id={"SearchSubmit"}className={"searchButton"}>
-                        <Link href={`/searchResult/productSearch/${searchWord}`}>
+                    <button id={"SearchSubmit"} type={"submit"} >
+                        <a href={`/searchResult/productSearch/${searchWord}`} target={"_blank"}>
                             検索
-                        </Link>
+                        </a>
                     </button>
                 </form>
             </div>
