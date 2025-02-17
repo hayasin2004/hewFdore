@@ -11,6 +11,7 @@ body {
     padding: 6px 14px;
     margin: 14px 8px 0 0;
     max-width: 60%;
+    overflow-wrap: break-word;
     border-radius: 8px;
     font-size: 1.05rem;
     background-color: #fff;
@@ -22,9 +23,10 @@ body {
 }
 .chatLeft{
     padding: 6px 14px;
-    margin: 14px 8px 0 0;
+    margin: 14px 8px 0 10px;
     max-width: 60%;
+    overflow-wrap: break-word;
     border-radius: 8px;
     font-size: 1.05rem;
-    background-color: #fff;
+    background-color: #eee;
 }
