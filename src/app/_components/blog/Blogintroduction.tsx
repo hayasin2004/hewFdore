@@ -29,7 +29,7 @@ const Blogintroduction = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             const data = await GetBlog();
-            console.log("取得したデータ:", data);
+            console.log("取得したブログデータ:", data);
             setBlogs(data);
         };
         fetchBlogs();
@@ -59,9 +59,9 @@ const Blogintroduction = () => {
     return (
         <div>
             <Header/>
-            <h1>ブログ一覧</h1>
+            <h1 className={"title-h1"}>ブログ一覧</h1>
 
-            {/* 年と月の選択 */}
+            {/*絞り込み機能*/}
             <div style={{ marginBottom: "20px" }}>
                 <label>
                     年:
@@ -105,7 +105,6 @@ const Blogintroduction = () => {
                         ))}
                     </ul>
 
-                    {/* "もっと見る" ボタン */}
                     {filteredBlogs.length > visibleCount && (
                         <div className="more-button-container">
                             <button onClick={() => setVisibleCount(filteredBlogs.length)} className="more-button">
@@ -125,7 +124,7 @@ export default Blogintroduction;
 
 
 
-
+//変更前↓
 
 // "use client";
 //

@@ -19,16 +19,11 @@ const formatDate = (dateString: string | undefined): string => {
 };
 
 
-
-// サブタイトルの省略処理
-const truncateText = (text: string, maxLength: number) => {
-    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
-};
-
 export async function generateStaticParams() {
     const data = await client.get({ endpoint: "blogs" });
     return data.contents.map((content: { id: string }) => ({
         id: content.id,
+
     }));
 }
 
@@ -40,13 +35,12 @@ async function BlogIdPage({ params }: { params: { id: string } }) {
 
         return (
             <main className={"blog-id"}>
-                <div className={"blog-title"}>
+                <div className={"blog-titles"}>
                     <h1>{blog.title}</h1>
                     <p>{formatDate(blog.createdAt)}</p>
                 </div>
 
 
-                {/*<p className="subtitle">{truncateText(blog.subtitle || "", 50)}</p>*/}
                 <div className={"black-body"}>
                     <div className={"body-content"}>
                         <div className={"blog-body"} dangerouslySetInnerHTML={{__html: blog.body}}></div>
