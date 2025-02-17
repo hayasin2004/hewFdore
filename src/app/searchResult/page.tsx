@@ -76,10 +76,10 @@ const SearchPageProducts = () => {
             // console.log(JSON.stringify(productData))
 
             const query = new URLSearchParams(window.location.search)
-            if (query.get("success")) {
+            if (query.get("success")){
                 console.log("登録されたメールアドレスに支払い情報が送られました。")
             }
-            if (query.get("canceled")) {
+            if (query.get("canceled")){
                 console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
             }
 
@@ -118,11 +118,10 @@ const SearchPageProducts = () => {
                             <ProductCardList items={categoryProductList} category={searchCategory} size={searchSize}/>
                         </>
 
-                }
+
             </>
         )
     }
-
     // 1ページごとに表示する数はProductPerPageで変えられます
     var ProductPerPage = 2;
     const [ProductOffset, setProductoffset] = useState(0);
@@ -161,24 +160,21 @@ const SearchPageProducts = () => {
         <div>
             <Header/>
             <div id={"SearchBar"}>
-                {/* このdivに検索バー、オプションを入れる */}
+            {/* このdivに検索バー、オプションを入れる */}
                 <form id={"WordSearch"} action="#">
                     {/*　文字入力　*/}
-                    <input onChange={handleCategoryChange} placeholder="お探しの商品を検索…" type="text"/>
+                    <input placeholder="お探しの商品を検索…" type="text"/>
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
-                    <select id={"SearchCat"} onChange={(e) => {
-                        setSearchCategory(e.target.value)
-                    }}>
-                        <option value="">カテゴリー</option>
-                        <option value="T-shirt">トップス</option>
-                        <option value="bottom">ボトム</option>
-                        <option value="outer">アウター
-                        </option>
-                        <option value="hat">帽子</option>
-                        <option value="shose">靴</option>
-                        {/*<option value="アクセサリー">アクセサリー</option>*/}
-                        <option value="perfume">香水</option>
+                    <select id={"SearchCat"}>
+                        <option value=" ">カテゴリー</option>
+                        <option value="トップス">トップス</option>
+                        <option value="ボトムス">ボトムス</option>
+                        <option value="アウター">アウター</option>
+                        <option value="帽子">帽子</option>
+                        <option value="靴">靴</option>
+                        <option value="アクセサリー">アクセサリー</option>
+                        <option value="香水">香水</option>
                     </select>
                     {/*　サイズ絞り込み　*/}
                     <select id={"SearchSize"} onChange={(e) => {
@@ -269,7 +265,7 @@ const SearchPageProducts = () => {
 
             </div>
 
-            <Footer/>
+        <Footer/>
 
         </div>
     );

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
+import Footer from "@/app/_components/footer/Footer";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -126,8 +127,9 @@ const ListingScreen: React.FC = () => {
     return (
         <>
             <Header/>
-            <div className={"content"}>
-                <div className={"listingScreenBackground"}>
+            <div id={"bgsell"}>
+
+                <div className={"content"}>
                     <form action={async (data: FormData) => {
                         console.log("asfasdfdafffdfdfdfffffffdddfffff")
                         const productName = data.get("productName") as string;
@@ -168,7 +170,7 @@ const ListingScreen: React.FC = () => {
                         )
                         ;
                     }}>
-                        <h2>
+                        <h2 id={"LStitle"}>
                             出品情報
                         </h2>
                         <div>
@@ -259,30 +261,31 @@ const ListingScreen: React.FC = () => {
                         </div>
 
 
-                        <h3 id="s_name">
+                        <h3 className={"formTitle"} id="product_name">
                             商品名
                         </h3>
 
 
                         <input type="text" name={"productName"} className="txtInput"/>
 
-                        <h3 className="kakaku">
+                        <h3 className={"formTitle"} id="kakaku">
                             価格
                         </h3>
 
 
                         <input type="text" name={"productPrice"} className="txtInput" placeholder={"¥"}/>
 
-                        <h3 id="s_name">
+                        <h3 className={"formTitle"} id="explain">
                             商品詳細
                         </h3>
 
-                        <input type="text" name={"productDesc"} className="txtInput"/>
+                        <textarea name={"productDesc"} className="areaInput" maxLength={800} rows={4}/>
 
 
-                        <h3 className="cat">
+                        <h3 className="formTitle" id={"cat"}>
                             カテゴリ
                         </h3>
+                        {/*視認性が悪いのでここも色変えたい*/}
                         <ListingScreenRadiobutton
                             onCategoryChange={setProductCategory}
                             onProductSizeChange={setProductSize}
@@ -314,6 +317,7 @@ const ListingScreen: React.FC = () => {
                     </form>
                 </div>
             </div>
+            <Footer/>
 
         </>
     );

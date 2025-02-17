@@ -66,6 +66,7 @@ const Header = () => {
         value: number;
     }
 
+
     function CustomTabPanel(props: TabPanelProps) {
         const {children, value, index, ...other} = props;
 
@@ -104,8 +105,6 @@ const Header = () => {
     return (
         <>
             <header>
-                <h1>
-                </h1>
                 <div className="nav">
                     <div className="title">
                         <Link href={"/"}>

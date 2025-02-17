@@ -3,6 +3,8 @@ import './userNavigation.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
+import Header from "@/app/_components/header/Header";
+import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import Images from "next/image"
 import {useEffect, useState} from "react";
@@ -55,18 +57,18 @@ function ChildModal() {
                     ...style
                 }
                 }>
-                    <h2 id="child-modal-title">ユーザーナビゲーション</h2>
+                    <h2 id="child-modal-title">プロフィールナビゲーション</h2>
                     <p id="child-modal-description">
                         <Link href={"/confirmUser"}>
                             プロフィール
                         </Link>
 
                     </p>
-                    <p id="child-modal-description">
-                        <Link href={"/confirmPoints"}>
-                            獲得ポイント履歴
-                        </Link>
-                    </p>
+                    {/*<p id="child-modal-description">*/}
+                    {/*    <Link href={"confirmPoints"}>*/}
+                    {/*        獲得ポイント履歴*/}
+                    {/*    </Link>*/}
+                    {/*</p>*/}
                     <p id="child-modal-description">
                         <Link href={"/favorite"}>
                             お気に入り登録ページ
@@ -119,6 +121,10 @@ const UserNavigation = ({src}) => {
 
     return (
         <div>
+            <Button className={"iconButton"} onClick={handleOpen}>
+                <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
+                        alt={"サンプルユーザーアイコン"}/>
+            </Button>
             {src !== "/" ?
                 <Button onClick={handleOpen}>
                     <Images src={src} style={{borderRadius: "50px"}} width={50} height={50}
@@ -143,19 +149,40 @@ const UserNavigation = ({src}) => {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={{...style, width: 400}}>
-                    <h2 id="parent-modal-title">{userData?.username}様</h2>
-                    <p id="parent-modal-description">
-                        保有ポイント 10pt
-                    </p>
-                    <p>
-                        <Link href={"listingcomplete_Itiosikinou"}>
-                            イチオシ機能
+                    {/*　ここ入れ子構造辞めた方がいいかも～ */}
+                    <h2 id="parent-modal-title">{username}様</h2>
+                    {/*<p id="parent-modal-description">*/}
+                    {/*    保有ポイント 10pt*/}
+                    {/*</p>*/}
+                    {/*<p>*/}
+                    {/*    <Link href={"listingcomplete_Itiosikinou"}>*/}
+                    {/*        イチオシ機能*/}
+                    {/*    </Link>*/}
+                    {/*</p>*/}
+                    <p id="child-modal-description">
+                        <Link href={"confirmUser"}>
+                            プロフィール
                         </Link>
                     </p>
-                    <p class={"cursor"} onClick={Logout}>
+                    <p id="child-modal-description">
+                        <Link href={"favorite"}>
+                            お気に入り登録ページ
+                        </Link>
+                    </p>
+                    <p id="child-modal-description">
+                        <Link href={"paidNote"}>
+                            購入履歴
+                        </Link>
+                    </p>
+
+
+                    {/*<ChildModal/>*/}
+                    <div id={"Close_Logout"}>
+                    <Button id={"closeButton"}onClick={handleClose}>閉じる</Button>
+                    <p className={"cursor"} onClick={Logout}>
                         ログアウト
                     </p>
-                    <ChildModal/>
+                    </div>
                 </Box>
             </Modal>
         </div>
