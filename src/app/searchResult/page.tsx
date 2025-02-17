@@ -117,7 +117,7 @@ const SearchPageProducts = () => {
                         <>
                             <ProductCardList items={categoryProductList} category={searchCategory} size={searchSize}/>
                         </>
-
+                }
 
             </>
         )
@@ -247,21 +247,6 @@ const SearchPageProducts = () => {
 
 
                 </div>
-                {/*{product.map((item) => (*/}
-
-                {/*    <CollapsibleProductCard key={item._id} item={item} />*/}
-
-                {/*    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>*/}
-                {/*    //     /!*<p>商品番号 : {item._id}</p>*!/*/}
-                {/*    //     /!*<p>ユーザーネーム : {item.userId}</p>*!/*/}
-                {/*    //     <p className={"listImage"}>item.いめーじ</p>*/}
-                {/*    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>*/}
-                {/*    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>*/}
-                {/*    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>*/}
-                {/*    //     /!*<Stripe productId={item?._id} />*!/*/}
-                {/*    // </div>*/}
-                {/*))}*/}
-                {/*<SearchResultProducts/>*/}
 
             </div>
 

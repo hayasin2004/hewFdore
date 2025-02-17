@@ -121,10 +121,7 @@ const UserNavigation = ({src}) => {
 
     return (
         <div>
-            <Button className={"iconButton"} onClick={handleOpen}>
-                <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                        alt={"サンプルユーザーアイコン"}/>
-            </Button>
+
             {src !== "/" ?
                 <Button onClick={handleOpen}>
                     <Images src={src} style={{borderRadius: "50px"}} width={50} height={50}
@@ -150,7 +147,7 @@ const UserNavigation = ({src}) => {
             >
                 <Box sx={{...style, width: 400}}>
                     {/*　ここ入れ子構造辞めた方がいいかも～ */}
-                    <h2 id="parent-modal-title">{username}様</h2>
+                    <h2 id="parent-modal-title">{userData?.username}様</h2>
                     {/*<p id="parent-modal-description">*/}
                     {/*    保有ポイント 10pt*/}
                     {/*</p>*/}
