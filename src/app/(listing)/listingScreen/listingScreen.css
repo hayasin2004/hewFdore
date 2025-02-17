@@ -1,46 +1,50 @@
 body {
     margin: 0;
     padding: 0;
+    background: #EBE8DB;
 }
 
-div #wrap{
-    width: 1440px;
-    height: 3365px;
-}
 
 main{
-    /*margin: 0;*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-content: center;*/
-    /*background-color: #EBE8DB;*/
 }
 
 div.content{
     /*display: flex;*/
     /*flex-direction: column;*/
     /*align-content: center;*/
-    width: 50%;
-    margin: 100px auto 100px auto;
+    width: 75%;
+    /*height: 100%;*/
+    margin: 10px auto 10px auto;
+    border: 5px #605252;
+    border-style: none solid none solid;
+    /*box-shadow: 0 -5px 0 #605252;*/
+
 }
 
-div.content h2{
+h2#LStitle{
+    padding: 10px 0;
+    width: 90%;
+    margin: 10px auto 10px auto;
     text-align: center;
     /*font-family: "JetBrains Mono";*/
     font-size: 40px;
     font-style: normal;
-    font-weight: 400;
+    font-weight:bold;
     line-height: normal;
+    color: #fff;
+    letter-spacing: 1rem;
+    background-color: #8e7560;
+    border-radius: 5px;
+
 }
 
 div#kamera{
     position: relative;
-    margin: 20px auto;
+    margin: 20px auto 80px auto;
     width: 377px;
     height: 377px;
     flex-shrink: 0;
     background: #D9D9D9;
-    margin-bottom: 80px;
 }
 
 div#kamera img{
@@ -51,15 +55,44 @@ div#kamera img{
 div.content div#drop{
 }
 
-div.content h3{
-    margin: 10px 0 0 50px;
+
+div.content h3.formTitle{
+    width: 450px;
+    margin:10px auto 5px auto;
+
+
+
 }
 div.content .txtInput{
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 50px auto;
+    height: 2.5rem;
+    padding: 5px 10px;
     width: 350px;
-    height: 30px;
     border-radius: 20px;
+    background-color: #fff;
+}
+div.content .txtInput:hover,.areaInput:hover{
+    border: 2px solid #000;
+    background: #fffa;
+    box-shadow: 2px 2px 0 #0008;
+    transition: 0.2s;
+}
+
+div.content .areaInput{
+    resize:vertical;
+    padding: 15px;
+    font-size: 1rem;
+    display: block;
+    margin: 10px auto 50px auto;
+    width: 350px;
+    height: 150px;
+    border: black solid 2px;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+::-webkit-scrollbar{
+    display: none;
 }
 
 div.content h3.cat {
@@ -67,7 +100,7 @@ div.content h3.cat {
 
 
 input{
-    padding: 30px 30px;
+    padding: 15px 30px;
 }
 
 
@@ -83,30 +116,43 @@ table#kategory{
 }
 
 div.ListingBtn{
-    width: 500px;
+    width: 70%;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    margin-bottom: 120px;
-    margin-top: 10%;
+    margin: 10% auto 0 auto;
+    padding: 0 0 50px 0;
 }
 
 div.ListingBtn button{
-
-    padding: 10px 50px;
     margin-left: 30px;
     border-radius: 50px;
+
+    border: 1px solid #000;
+    box-shadow: 2px 2px 0 #605252;
+    transition: box-shadow 0.2s;
+}
+div.ListingBtn button:hover{
+    opacity: 0.7;
+    box-shadow: none;
 }
 div.ListingBtn p{
     font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
 }
 
 div.ListingBtn button.listingCancelbtn{
-    background-color: #D9D9D9;
-    color: #000;
+    background-color: #EBE8DB;
+    color: #605252;
+    letter-spacing: 0.1rem;
+    padding: 10px 15px;
+
 }
 
 div.ListingBtn button.listingcompletebtn{
-    background-color: #000000;
+    background-color: #605252;
     color: #fff;
+    text-indent: 1rem;
+    letter-spacing: 1rem;
+    padding: 10px 15px;
 }

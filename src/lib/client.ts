@@ -1,3 +1,4 @@
+//client.ts
 "use server";
 
 import { createClient } from "microcms-js-sdk";
@@ -11,7 +12,7 @@ const client = createClient({
 
 export const GetBlog = async () => {
     try {
-        const data = await client.get({ endpoint: 'blogs' });
+        const data = await client.get({ endpoint: 'blogs',queries: { limit: 100 }, });
         return data.contents;
     } catch (err) {
         console.error("APIエラー:", err);
@@ -23,9 +24,9 @@ export const GetBlog = async () => {
 client
     .get({
         endpoint: 'blogs',
-        contentId: 'zdsts74ym0',
     })
-    .then((res) => console.log(res))
+    //.then((res) => console.log(res));
+    .then((res) => console.log("res"+ JSON.parse(JSON.stringify(res.contents.map((item) => console.log(item.image))))))
     .catch((err) => console.error("取得エラー:", err));
 
 

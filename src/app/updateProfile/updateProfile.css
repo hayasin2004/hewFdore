@@ -2,19 +2,51 @@
 
 body {
     font-family: "zen+KakuGothic+Antique", system-ui;
-    background-color: #D0C7B2;
+    background-color: #EBE8DB;
     margin: 0;
     padding: 0;
 }
+
+/*　パンくずリスト　*/
+div#bread{
+    margin: 25px 0 0 15px;
+    display: flex;
+}
+div#bread p{
+    margin: 0 0 15px 0;
+    color: #605252;
+    font-weight: bold;
+}
+div#bread p.breadText{
+    margin: 0 1rem 0 1rem;
+    transition: 0.2s;
+}
+div#bread p.breadText:hover{
+    opacity: 0.7;
+    border-bottom: #605252 solid 1px;
+}
+div.enterUpdateUserProfile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 div.updateProfile_Text{
-    background-color: #A58473;
-    margin: 5% 0 5% 0;
-    padding: 15px 0 15px 0;
+    background-color: #fefeed;
+    border: #605252 5px;
+    border-style: solid none;
+    margin: 0 0 2% 0;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+}
+div.updateProfile_Text svg{
+    margin: 0 0 0 5%;
 }
 div.updateProfile_Text h1 {
     font-weight: bold;
     font-size: 2rem;
     text-align: center;
+    text-indent: 1.2rem;
 }
 
 div.enterUpdateUserProfile{
@@ -28,7 +60,7 @@ div.enterUpdateUserProfile{
 }
 
 div.updateProfile_img{
-    margin: 5%;
+    margin: 5% 0 0 0;
 }
 
 div.profile_img{
@@ -54,7 +86,7 @@ button#btn_imgUpdate{
     font-weight: bold;
 }
 div#form{
-    margin: 80px 5% 120px 5%;
+    margin: 80px 2% 120px 10%;
 
 }
 div#form form label{
@@ -76,12 +108,28 @@ div#form button {
     display: flex;
     justify-content: center;
     padding: 10px 40px;
-    border: black solid 2px;
+    border: #000 solid 2px;
     border-radius: 30px;
     margin:  30px auto;
-    color: #fff;
+    color: #EBE8DB;
+    font-weight: bold;
+    font-size: 1.2rem;
     background-color: #605252;
+    box-shadow:3px 3px 0 #605252;
+    transition: box-shadow 0.2s;
 }
+div#form button:hover{
+    box-shadow: 0 0 0 #605252 ;
+    opacity: 0.7;
+}
+
+div#form button#resetPF{
+    background-color: #EBE8DB;
+    color: #605252;
+    font-size: 1rem;
+    border: #8e7560 solid 2px;
+}
+
 
 @media(max-width: 1500px) {
     div.enterUpdateUserProfile{

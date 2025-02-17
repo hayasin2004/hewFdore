@@ -46,11 +46,12 @@ const Findall = () => {
                                 <Link href={`/userDetail/${item.id}`}>{item.id}</Link>
                             </td>
                             <td className={"mailLink"} rowSpan={3}>
-                                <img className={"toDM"} height={30} src={"/images/mail_1.svg"} width={30}/>
+
+                                <img src="/images/mail_1.svg" width={50} height={50} alt="DM"/>
                             </td>
                         </tr>
                         <tr>
-                        <th>ユーザー名</th>
+                            <th>ユーザー名</th>
                             <td>{item.username}</td>
                         </tr>
                         <tr>

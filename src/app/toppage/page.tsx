@@ -54,6 +54,7 @@ const Toppage = () => {
 
     return (
         <>
+            <button onClick={updateButton}>更新</button>
             <Blogintroduction/>
             <Header/>
             {/*<button onClick={updateButton}>更新</button>*/}
