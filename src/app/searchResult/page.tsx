@@ -76,10 +76,10 @@ const SearchPageProducts = () => {
             // console.log(JSON.stringify(productData))
 
             const query = new URLSearchParams(window.location.search)
-            if (query.get("success")){
+            if (query.get("success")) {
                 console.log("登録されたメールアドレスに支払い情報が送られました。")
             }
-            if (query.get("canceled")){
+            if (query.get("canceled")) {
                 console.log("お支払いがうまく行えませんでいた、再度入力内容をお確かめの上お支払いを行って下さい")
             }
 
@@ -117,11 +117,12 @@ const SearchPageProducts = () => {
                         <>
                             <ProductCardList items={categoryProductList} category={searchCategory} size={searchSize}/>
                         </>
-                }
 
+                }
             </>
         )
     }
+
     // 1ページごとに表示する数はProductPerPageで変えられます
     var ProductPerPage = 2;
     const [ProductOffset, setProductoffset] = useState(0);
@@ -149,10 +150,10 @@ const SearchPageProducts = () => {
         return items.filter(product => product?.productCategory?.includes(category));
     }
     useEffect(() => {
-            const searchCategoryResult = filterProductByCategory(productList, searchCategory)
-            console.log(searchCategoryResult)
-            setCategoryProductList(searchCategoryResult)
-            setProductListLength(searchCategoryResult.length)
+        const searchCategoryResult = filterProductByCategory(productList, searchCategory)
+        console.log(searchCategoryResult)
+        setCategoryProductList(searchCategoryResult)
+        setProductListLength(searchCategoryResult.length)
     }, [searchCategory]);
 
 
@@ -160,21 +161,24 @@ const SearchPageProducts = () => {
         <div>
             <Header/>
             <div id={"SearchBar"}>
-            {/* このdivに検索バー、オプションを入れる */}
+                {/* このdivに検索バー、オプションを入れる */}
                 <form id={"WordSearch"} action="#">
                     {/*　文字入力　*/}
-                    <input placeholder="お探しの商品を検索…" type="text"/>
+                    <input onChange={handleCategoryChange} placeholder="お探しの商品を検索…" type="text"/>
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
-                    <select id={"SearchCat"}>
-                        <option value=" ">カテゴリー</option>
-                        <option value="トップス">トップス</option>
-                        <option value="ボトムス">ボトムス</option>
-                        <option value="アウター">アウター</option>
-                        <option value="帽子">帽子</option>
-                        <option value="靴">靴</option>
-                        <option value="アクセサリー">アクセサリー</option>
-                        <option value="香水">香水</option>
+                    <select id={"SearchCat"} onChange={(e) => {
+                        setSearchCategory(e.target.value)
+                    }}>
+                        <option value="">カテゴリー</option>
+                        <option value="T-shirt">トップス</option>
+                        <option value="bottom">ボトム</option>
+                        <option value="outer">アウター
+                        </option>
+                        <option value="hat">帽子</option>
+                        <option value="shose">靴</option>
+                        {/*<option value="アクセサリー">アクセサリー</option>*/}
+                        <option value="perfume">香水</option>
                     </select>
                     {/*　サイズ絞り込み　*/}
                     <select id={"SearchSize"} onChange={(e) => {
@@ -188,7 +192,7 @@ const SearchPageProducts = () => {
                         <option value="LL">LL</option>
                         <option value="XL">XL</option>
                     </select>
-                    <button id={"SearchSubmit"} type={"submit"}>
+                    <button id={"SearchSubmit"}className={"searchButton"}>
                         <Link href={`/searchResult/productSearch/${searchWord}`}>
                             検索
                         </Link>
@@ -247,10 +251,25 @@ const SearchPageProducts = () => {
 
 
                 </div>
+                {/*{product.map((item) => (*/}
+
+                {/*    <CollapsibleProductCard key={item._id} item={item} />*/}
+
+                {/*    // <div className={"productList_"} key={item._id} style={{textAlign: "center"}}>*/}
+                {/*    //     /!*<p>商品番号 : {item._id}</p>*!/*/}
+                {/*    //     /!*<p>ユーザーネーム : {item.userId}</p>*!/*/}
+                {/*    //     <p className={"listImage"}>item.いめーじ</p>*/}
+                {/*    //     <p className={"productExplanation"}>商品説明 : {item.productDesc}</p>*/}
+                {/*    //     <p className={"productExplanation"}>出品者名 : {item.productName}</p>*/}
+                {/*    //     <p className={"productPrice"}>商品価格 : {Number(item.productPrice).toLocaleString()}円</p>*/}
+                {/*    //     /!*<Stripe productId={item?._id} />*!/*/}
+                {/*    // </div>*/}
+                {/*))}*/}
+                {/*<SearchResultProducts/>*/}
 
             </div>
 
-        <Footer/>
+            <Footer/>
 
         </div>
     );

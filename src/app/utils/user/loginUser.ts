@@ -15,6 +15,7 @@ interface User {
 export async function loginUser(email: string | null, password: string | null, confirmPassword: string | null) {
     await connectDB()
     if (password !== confirmPassword) {
+
          return null
     }
     try {
@@ -25,6 +26,7 @@ export async function loginUser(email: string | null, password: string | null, c
                 message: "ユ―ザーが見つかりませんでした。もう一度メールアドレスを確認の上ログインしてください。",
                 status: (404)
             })
+             return  null
         } else {
              if (password !== user.password) {
              } else {
