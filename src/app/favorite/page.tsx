@@ -4,12 +4,15 @@ import "./favorite.css"
 import Image from "next/image";
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
+import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import {ProductType} from "@/app/utils/product/productDetail";
 import useUser from "@/hooks/useUser";
 import getFavoriteProductFunc from "@/app/utils/product/getFavoriteProductFunc";
 import confirmUser from "@/app/utils/user/confirmUser";
 import {UserType} from "@/app/api/user/catchUser/route";
+
+
 
 const Favorite = () => {
     const [favoriteProductData, setFavoriteProductData] = useState<ProductType[] | null>(null)
@@ -55,14 +58,14 @@ const Favorite = () => {
     return (
         <>
             <Header/>
-            <span id={"btn"}>
+            <div id={"bread"}>
+                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <p className={"breadArrow"}>＞</p>
+                <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
+                <p className={"breadArrow"}>＞</p>
+                <Link href={"/"}><p className={"breadText"}>お気に入り</p></Link>
 
-                    <Link href={"toppage"}>
-                    <button>戻る</button>
-
-                    </Link>
-            </span>
-
+            </div>
             <div className={"favorite"}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -72,23 +75,23 @@ const Favorite = () => {
                 </svg>
                 <h1>お気に入りした商品一覧</h1>
             </div>
-                {favoriteProductData !== null ? favoriteProductData?.map((item) => (
-                    <div key={item._id} className={"favorite_products"}>
-                        <div className={"f_product"}>
-                            <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                            <div className={"product_text"}>
-                                <p>
-                                    商品名 : <br/>{item.productName}
-                                </p>
-                                <p>出品者 : <br/>{item.sellerUserName}</p>
-                                <p>価格 : <br/>{item.productPrice}円</p>
-                                <Link href={`/product/${item._id}`}>
-                                    <p>詳細</p>
-                                </Link>
-                            </div>
+            {favoriteProductData !== null ? favoriteProductData?.map((item) => (
+                <div key={item._id} className={"favorite_products"}>
+                    <div className={"f_product"}>
+                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
+                        <div className={"product_text"}>
+                            <p>
+                                商品名 : <br/>{item.productName}
+                            </p>
+                            <p>出品者 : <br/>{item.sellerUserName}</p>
+                            <p>価格 : <br/>{item.productPrice}円</p>
+                            <Link href={`/product/${item._id}`}>
+                                <p>詳細</p>
+                            </Link>
                         </div>
                     </div>
-                )) : <p>いいねした商品はありません。</p>}
+                </div>
+            )) : <p>いいねした商品はありません。</p>}
             {/*<div className={"f_product"}>*/}
             {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
             {/*    <div className={"product_text"}>*/}
@@ -101,8 +104,7 @@ const Favorite = () => {
             {/*</div>*/}
             <Footer/>
         </>
-    )
-        ;
+    );
 }
 
 

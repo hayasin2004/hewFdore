@@ -19,7 +19,6 @@ header div.nav {
     margin-top: 30px;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -32,24 +31,26 @@ header div.title h1 {
     width: 100%;
     margin-left: 20%;
     text-decoration: none;
-    transition: text-decoration 0.5s;
 }
 header div.title h1:hover{
     text-decoration: underline 1px solid;
+    transition: text-decoration 0.3s;
+
 }
 
 
+/* タイトルとの間 */
 div.bar{
     /*width: 400px;*/
-    margin-left: 20%;
+    margin-left: 10%;
 }
 
 header div.bar ul {
     /*display: -webkit-flex;*/
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
     list-style: none;
-    /*margin-right: 320px;*/
     font-size: 1rem;
 }
 
@@ -62,7 +63,9 @@ div.bar ul li {
     font-size: 1.5rem;
     margin-left: 30px;
     border: none;
+    transition: 0.3s;
 }
+
 /*オンマウスで色変わる*/
 div.bar ul li:hover{
     color: #fff;
@@ -89,18 +92,29 @@ li.Headersearch svg{
 
 /* ユーザーネーム:ログイン遷移 */
 li#UserName{
-    display: flex;
-    width: 8rem;
-    align-items: center;
-    overflow-wrap: break-word;
+    margin: 15px 0 0 0;
+    width: 16rem;
+    overflow:hidden;
+    vertical-align: bottom;
+}
+li#UserName:hover{
+    color: #000;
+    text-shadow: none;
 }
 p#usernameGet{
 }
 
 
 p#name{
+    padding: 5px;
     width: 8rem;
+    overflow-wrap: break-word;
+    transition: 0.3s;
     /*margin-left: 74px;*/
+}
+p#name:hover{
+    color: #fff;
+    text-shadow: 0 0 10px #BF9E80 ,0 0 5px #BF9E80,0 0 2px #D0C7B2;
 }
 
 li#list_bell{
@@ -112,11 +126,20 @@ li#list_bell{
     /*top: 0;*/
     /*right: 80px;*/
     /*width: 40px;*/
-    border: none;color: #000000;
+    border: none;
+    color: #000000;
 }
-.bell svg{
+.bell svg {
     color: #8e7560;
+    transition: 0.2s;
 }
+.bell svg:hover{
+    color: #fff;
+    filter: drop-shadow(0 0 10px #605252);
+
+}
+
+
 .modal-content{
     width: 500px;
     height: 500px;
@@ -260,7 +283,9 @@ span.under_bar {
 }
 
 /* 1250より小さい場合は要素を畳まないとだめかも */
-@media screen and (max-width: 1250px) {
-
+@media screen and (max-width: 1380px) {
+    li#UserName{
+        display: none;
+    }
 
 }

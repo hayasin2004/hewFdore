@@ -7,6 +7,7 @@ import userInfoChange from "@/app/utils/user/userInfoChange";
 import deleteAccount from "@/app/utils/user/deleteAccount";
 import confirmUser from "@/app/utils/user/confirmUser";
 
+import Link from "next/link";
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")
     const [username, setUsername] = useState<string | null>("")
@@ -121,7 +122,31 @@ const UpdateProfile = () => {
     return (
         <>
             <Header/>
+
+            <div id={"bread"}>
+                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <p className={"breadArrow"}>＞</p>
+                <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
+                <p className={"breadArrow"}>＞</p>
+                <Link href={"/"}><p className={"breadText"}>お気に入り</p></Link>
+
+            </div>
             <div className={"updateProfile_Text"}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                     className="lucide lucide-user-cog">
+                    <circle cx="18" cy="15" r="3"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M10 15H6a4 4 0 0 0-4 4v2"/>
+                    <path d="m21.7 16.4-.9-.3"/>
+                    <path d="m15.2 13.9-.9-.3"/>
+                    <path d="m16.6 18.7.3-.9"/>
+                    <path d="m19.1 12.2.3-.9"/>
+                    <path d="m19.6 18.7-.4-1"/>
+                    <path d="m16.8 12.3-.4-1"/>
+                    <path d="m14.3 16.6 1-.4"/>
+                    <path d="m20.7 13.8 1-.4"/>
+                </svg>
                 <h1>ユ―ザー情報更新</h1>
             </div>
             <div className={"enterUpdateUserProfile"}>

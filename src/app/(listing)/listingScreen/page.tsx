@@ -8,6 +8,7 @@ import Link from 'next/link';
 import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
+import Footer from "@/app/_components/footer/Footer";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -32,6 +33,9 @@ const ListingScreen: React.FC = () => {
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
     const [productId, setProductId] = useState<ProductType | null>(null)
     const [productImage, setProductImage] = useState<string | null>(null)
+    const [productImage2, setProductImage2] = useState<string | null>(null)
+    const [productImage3, setProductImage3] = useState<string | null>(null)
+    const [productImage4, setProductImage4] = useState<string | null>(null)
     const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
     // const [compressedVideo, setCompressedVideo] = useState(null)
 
@@ -47,6 +51,39 @@ const ListingScreen: React.FC = () => {
             const render = new FileReader()
             render.onloadend = () => {
                 setProductImage(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+    const productImageFile2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage2(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+    const productImageFile3 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage3(render.result as string)
+            }
+            render.readAsDataURL(file)
+        }
+    };
+    const productImageFile4 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files
+        if (files && files.length > 0) {
+            const file = files[0]
+            const render = new FileReader()
+            render.onloadend = () => {
+                setProductImage4(render.result as string)
             }
             render.readAsDataURL(file)
         }
@@ -90,8 +127,9 @@ const ListingScreen: React.FC = () => {
     return (
         <>
             <Header/>
-            <div className={"content"}>
-                <div className={"listingScreenBackground"}>
+            <div id={"bgsell"}>
+
+                <div className={"content"}>
                     <form action={async (data: FormData) => {
                         console.log("asfasdfdafffdfdfdfffffffdddfffff")
                         const productName = data.get("productName") as string;
@@ -115,7 +153,10 @@ const ListingScreen: React.FC = () => {
                             postageBurden,
                             shippingAreaText,
                             productImage,
-                            data
+                            data,
+                            productImage2,
+                            productImage3,
+                            productImage4,
                         ).then(
                             (product => {
                                 if (product?.result == null) {
@@ -129,17 +170,74 @@ const ListingScreen: React.FC = () => {
                         )
                         ;
                     }}>
-                        <h2>
+                        <h2 id={"LStitle"}>
                             出品情報
                         </h2>
+                        <div>
+                            <h3 className={"formTitle"} id="product_name">
+                                写真
+                            </h3>
 
-                        <div id="kamera">
-                            {productImage &&
-                                <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" onChange={productImageFile}/>
+                            <div id="kamera">
+                                {productImage &&
+                                    <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id={"clothes1"} style={{display: "none"}}
+                                       onChange={productImageFile}/>
+
+                            </div>
+                            <div id="kamera">
+                                {productImage2 &&
+                                    <Image src={productImage2} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+
+                                <input type="file" id={"clothes2"} style={{display: "none"}}
+                                       onChange={productImageFile2}/>
+                            </div>
+                            <div id="kamera">
+                                {productImage3 &&
+                                    <Image src={productImage3} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id={"clothes3"} style={{display: "none"}}
+                                       onChange={productImageFile3}/>
+                            </div>
+                            <div id="kamera">
+                                {productImage4 &&
+                                    <Image src={productImage4} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id={"clothes4"} style={{display: "none"}}
+                                       onChange={productImageFile4}/>
+                            </div>
+
                         </div>
-
                         {/*<div id="kamera">*/}
                         {/*    {productImage &&*/}
                         {/*        <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}*/}
@@ -149,42 +247,55 @@ const ListingScreen: React.FC = () => {
                         {/*</div>*/}
 
 
+                        <h3 className={"formTitle"} id="product_name">
+                            動画
+                        </h3>
                         <div id="kamera">
                             {productImage &&
                                 <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            <label htmlFor="video">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                     viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                          d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                </svg>
+                            </label>
                             <input
                                 type="file"
                                 accept="video/*"
+                                style={{display: "none"}}
+                                id={"video"}
                                 name={"productVideo"}
                             />
                         </div>
 
 
-                        <h3 id="s_name">
+                        <h3 className={"formTitle"} id="product_name">
                             商品名
                         </h3>
 
 
                         <input type="text" name={"productName"} className="txtInput"/>
 
-                        <h3 className="kakaku">
+                        <h3 className={"formTitle"} id="kakaku">
                             価格
                         </h3>
 
 
                         <input type="text" name={"productPrice"} className="txtInput" placeholder={"¥"}/>
 
-                        <h3 id="s_name">
+                        <h3 className={"formTitle"} id="explain">
                             商品詳細
                         </h3>
 
-                        <input type="text" name={"productDesc"} className="txtInput"/>
+                        <textarea name={"productDesc"} className="areaInput" maxLength={800} rows={4}/>
 
 
-                        <h3 className="cat">
+                        <h3 className="formTitle" id={"cat"}>
                             カテゴリ
                         </h3>
+                        {/*視認性が悪いのでここも色変えたい*/}
                         <ListingScreenRadiobutton
                             onCategoryChange={setProductCategory}
                             onProductSizeChange={setProductSize}
@@ -210,12 +321,13 @@ const ListingScreen: React.FC = () => {
                                         <p>確認ページ</p>
                                     </Link>
                                     : <p>出品</p>}
-                            </button>　
+                            </button>
                         </div>
 
                     </form>
                 </div>
             </div>
+            <Footer/>
 
         </>
     );

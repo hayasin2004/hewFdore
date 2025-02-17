@@ -7,7 +7,6 @@ import confirmUser from "@/app/utils/user/confirmUser";
 import Footer from "@/app/_components/footer/Footer";
 import {loginUser} from "@/app/utils/user/loginUser";
 import "./toppage.css"
-// import Slideshow from "@/app/_components/toppageslideshow/Slideshow";
 import ToppageProducts from "@/app/_components/toppageProduct/ToppageProducts";
 import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppage_top_slideshow";
 
@@ -34,13 +33,7 @@ const Toppage = () => {
         await updatePayPay()
     }
 
-    //
-    // useEffect(() => {
-    //     const insert = async () => {
-    //      await  InsertProductImage()
-    //     }
-    //     insert()
-    // }, []);
+
 
     useEffect(() => {　
         // エンコードしたtokenを検証する
@@ -74,7 +67,7 @@ const Toppage = () => {
         <>
             <Blogintroduction/>
             <Header/>
-            <button onClick={updateButton}>更新</button>
+            {/*<button onClick={updateButton}>更新</button>*/}
             <div className={"top"}>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}
@@ -113,7 +106,6 @@ const Toppage = () => {
                 {/*<Slideshow/>*/}
             </div>
             <ToppageProducts/>
-
             <Footer/>
         </>
     );
