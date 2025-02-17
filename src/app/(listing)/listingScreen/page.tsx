@@ -171,32 +171,64 @@ const ListingScreen: React.FC = () => {
                         <h2>
                             出品情報
                         </h2>
+                        <div>
 
-                        <div id="kamera">
-                            {productImage &&
-                                <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" onChange={productImageFile}/>
-                        </div>
-                        <div id="kamera">
-                            {productImage2 &&
-                                <Image src={productImage2} width={377} height={377} alt={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" onChange={productImageFile2}/>
-                        </div>
-                        <div id="kamera">
-                            {productImage3 &&
-                                <Image src={productImage3} width={377} height={377} alt={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" onChange={productImageFile3}/>
-                        </div>
-                        <div id="kamera">
-                            {productImage4 &&
-                                <Image src={productImage4} width={377} height={377} alt={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <input type="file" onChange={productImageFile4}/>
-                        </div>
+                            <div id="kamera">
+                                {productImage &&
+                                    <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id={"clothes1"} style={{display: "none"}} onChange={productImageFile}/>
 
+                            </div>
+                            <div id="kamera">
+                                {productImage2 &&
+                                    <Image src={productImage2} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+
+                                <input type="file" id={"clothes2"}style={{display: "none"}} onChange={productImageFile2}/>
+                            </div>
+                            <div id="kamera">
+                                {productImage3 &&
+                                    <Image src={productImage3} width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id={"clothes3"}style={{display: "none"}} onChange={productImageFile3}/>
+                            </div>
+                            <div id="kamera">
+                                {productImage4 &&
+                                    <Image src={productImage4}  width={377} height={377} alt={"選択した商品画像"}/>}
+                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                <label htmlFor="clothes4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                         viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                    </svg>
+                                </label>
+                                <input type="file" id={"clothes4"}style={{display: "none"}} onChange={productImageFile4}/>
+                            </div>
+
+                        </div>
                         {/*<div id="kamera">*/}
                         {/*    {productImage &&*/}
                         {/*        <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}*/}
@@ -210,9 +242,18 @@ const ListingScreen: React.FC = () => {
                             {productImage &&
                                 <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            <label htmlFor="video">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                     viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                          d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                </svg>
+                            </label>
                             <input
                                 type="file"
                                 accept="video/*"
+                                style={{display: "none"}}
+                                id={"video"}
                                 name={"productVideo"}
                             />
                         </div>
@@ -267,7 +308,7 @@ const ListingScreen: React.FC = () => {
                                         <p>確認ページ</p>
                                     </Link>
                                     : <p>出品</p>}
-                            </button>　
+                            </button>
                         </div>
 
                     </form>
