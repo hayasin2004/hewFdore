@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+
+
+main.blog-id {
+    background-color: #f8f4ef;
+}
+
+h1{
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
+    padding-top: 10px;
+    text-align: center;
+}
+
+div{
+    margin: 10px 0 0 0 ;
+}
+
+.blog-title{
+    padding-bottom: 5px;
+    margin-bottom: 50px;
+    border: 2px black ;
+    border-style:none none solid none;
+    background-color: #fff;
+}
+
+.linkbtn{
+    display: inline-block;
+    /*position: absolute;*/
+    font-family: HG明朝B, serif;
+    margin: 20px 0 50px 48%;
+    padding: 5px 10px;
+
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.linkbtn:hover{
+    text-decoration: none;
+    background-color: silver;
+}
+
+
+
+.body-content figure {
+    max-width: 100%;
+    margin: 0;
+
+}
+.body-content {
+    display: flex;
+    flex-direction: column; /* 縦並びに変更 */
+    align-items: center; /* 中央揃え */
+    gap: 20px; /* 画像とテキストの間隔 */
+    max-width: 800px; /* 幅を制限 */
+    margin: 0 auto; /* 中央配置 */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.blog-image {
+    width: 100%; /* 画像をコンテンツ幅いっぱいに */
+    max-width: 500px; /* 最大幅を制限 */
+}
+
+.blog-image img {
+    width: 100%; /* 幅いっぱいに */
+    height: auto; /* アスペクト比維持 */
+}
+
+.blog-text {
+    font-size: 1.2rem; /* 文字サイズ調整 */
+    line-height: 1.6;
+}
+
+
+
+/*.blog-body img {*/
+/*    width: 450px;*/
+/*    height: 300px;*/
+/*}*/
