@@ -54,8 +54,7 @@ const Toppage = () => {
 
     return (
         <>
-            <button onClick={updateButton}>更新</button>
-            <Blogintroduction/>
+            {/*<Blogintroduction/>*/}
             <Header/>
             {/*<button onClick={updateButton}>更新</button>*/}
             <div className={"top"}>

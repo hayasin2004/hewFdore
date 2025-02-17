@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import "./common.css"
 import dummyData from "@/app/dummydata/slide_dummy";
 import {DummyDataType} from "@/app/dummydata/slide_dummy";
-
+import {GetBlog} from "@/lib/client";
 
 interface dummy {
     image?: string,
@@ -11,7 +11,7 @@ interface dummy {
 }
 
 
-const dummyData_slide_map_item: dummy[] = dummyData.map((item: DummyDataType) => {
+const slideData: dummy[] = dummyData.map((item: DummyDataType) => {
     const image = item.url
     const text = item.randomString
     return {image, text}
@@ -19,7 +19,24 @@ const dummyData_slide_map_item: dummy[] = dummyData.map((item: DummyDataType) =>
 })
 
 const ToppageTopSlideshow: React.FC<dummy> = () => {
+    const [slideData, setSlideData] = useState<dummy[]>([]); // CMSデータ用のステート
 
+    useEffect(() => {
+        const fetchCMSData = async () => {
+            try {
+                const data = await GetBlog();
+                const formattedData = data.map((item: { id: string; image?: { url: string }; title?: string }) => ({
+                    id: item.id,
+                    image: item.image?.url || "",
+                    text: item.title || "",
+                }));
+                setSlideData(formattedData);
+            } catch (err) {
+                console.error("CMSデータ取得エラー:", err);
+            }
+        };
+        fetchCMSData();
+    }, []);
     // これが今のスライド
     const [currentSlide, setCurrentSlide] = useState(0);
     // これが次のスライド
@@ -43,10 +60,10 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
         if (!isChanging) {
             setIsChanging(true);
             setTimeout(() => {
-                setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                setCurrentSlide((prevSlide) => (prevSlide + 1) % slideData.length);
             }, 880); // 0.4秒の遅延
             setTimeout(() => {
-                setNextSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                setNextSlide((prevSlide) => (prevSlide + 1) % slideData.length);
             }, 920); // 0.4秒の遅延　
             setTimeout(() => {
                 setNextanimate(false);
@@ -60,17 +77,17 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     // ひとつ前の画像を取り出してcurrentSlideにセットしている , テキストも同じ仕組み
     // ひとつ前のスライドに戻るときの処理
     const goToPrevSlide = () => {
-            // setCurrentText((prevText) => (prevText - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+            // setCurrentText((prevText) => (prevText - 1 + slideData.length) % slideData.length);
 
 
             setPrevanimate(true);
             if (!isChanging) {
                 setIsChanging(true);
                 setTimeout(() => {
-                    setCurrentSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+                    setCurrentSlide((prevSlide) => (prevSlide - 1 + slideData.length) % slideData.length);
                 }, 810)
                 setTimeout(() => {
-                    setNextSlide((prevSlide) => (prevSlide - 1 + dummyData_slide_map_item.length) % dummyData_slide_map_item.length);
+                    setNextSlide((prevSlide) => (prevSlide - 1 + slideData.length) % slideData.length);
                 }, 820); // 0.4秒の遅延
                 setTimeout(() => {
                     setPrevanimate(false);
@@ -80,19 +97,19 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
         }
     ;
     // 長い計算の解説。
-    // prevSlide - 1 + dummyData_slide_map_item.length は、負のインデックスを防ぐための計算。配列の長さを足すことで、負の値にならないようにしている。
+    // prevSlide - 1 + slideData.length は、負のインデックスを防ぐための計算。配列の長さを足すことで、負の値にならないようにしている。
 
     // 次の画像をcurrentSlide + 1 として表示している
-    const nextSlideIndex = ((nextSlide + 1) % dummyData_slide_map_item.length);
+    const nextSlideIndex = ((nextSlide + 1) % slideData.length);
     useEffect(() => {
         setNextanimate(true);
         if (!isChanging) {
             setIsChanging(true);
             setTimeout(() => {
-                setCurrentSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                setCurrentSlide((prevSlide) => (prevSlide + 1) % slideData.length);
             }, 880); // 0.4秒の遅延
             setTimeout(() => {
-                setNextSlide((prevSlide) => (prevSlide + 1) % dummyData_slide_map_item.length);
+                setNextSlide((prevSlide) => (prevSlide + 1) % slideData.length);
             }, 920); // 0.4秒の遅延　
             setTimeout(() => {
                 setNextanimate(false);
@@ -115,7 +132,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
                         <div
                             className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''} bgextend slide_text `}>
-                            <h1 className={"bgappear bgRLextend bgLRextend "}>{dummyData_slide_map_item[currentSlide].text}</h1>
+                            <h1 className={"bgappear bgRLextend bgLRextend "}>{slideData[currentSlide].text}</h1>
                         </div>
                         <div className={"backgroundSlideColor"}>
 
@@ -123,7 +140,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
                                 className={`${nextanimate ? 'animate' : ''} ${prevanimate ? 'prevanimate' : ''}  bgextend slide`}>
 
                                 <div className={"bgappear bgRLextend bgLRextend slide"}
-                                     style={{backgroundImage: `url(${dummyData_slide_map_item[currentSlide].image})`}}/>
+                                     style={{backgroundImage: `url(${slideData[currentSlide].image})`}}/>
 
                             </div>
                         </div>
@@ -138,8 +155,8 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
 
                             <div
                                 className={"bgappear bgRLextend bgLRextend slide_next "}
-                                // style={{backgroundImage: `url(${dummyData_slide_map_item[0].image})`}}
-                                style={{backgroundImage: `url(${dummyData_slide_map_item[nextSlideIndex].image})`}}
+                                // style={{backgroundImage: `url(${slideData[0].image})`}}
+                                style={{backgroundImage: `url(${slideData[nextSlideIndex].image})`}}
                             />
                         </div>
                     </div>

@@ -130,13 +130,13 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
                                     </button>
 
                                 </div>
-                                {/*<label  style={{opacity: 10}}> 支払い方法を選択してください:*/}
-                                {/*    <select onChange={(e) => setPaymentMethod(e.target.value)}*/}
-                                {/*            value={paymentMethod}>*/}
-                                {/*        <option value="card">カード払い</option>*/}
-                                {/*        <option value="payPay">PayPay</option>*/}
-                                {/*    </select>*/}
-                                {/*</label>*/}
+                                <label  style={{opacity: 10}}> 支払い方法を選択してください:
+                                    <select onChange={(e) => setPaymentMethod(e.target.value)}
+                                            value={paymentMethod}>
+                                        <option value="card">カード払い</option>
+                                        <option value="payPay">PayPay</option>
+                                    </select>
+                                </label>
                             </div>
 
                         )
