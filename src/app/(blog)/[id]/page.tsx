@@ -39,7 +39,7 @@ async function BlogIdPage({ params }: { params: { id: string } }) {
                     <h1>{blog.title}</h1>
                     <p>{formatDate(blog.createdAt)}</p>
                 </div>
-
+                {/*brogintroductionの画像を大きく表示する予定*/}
 
                 <div className={"black-body"}>
                     <div className={"body-content"}>

@@ -1,3 +1,10 @@
+/**********************************************/
+.hednav{
+    position: fixed;
+    top: -3px;
+    width: 100%;
+    z-index: 1000;
+}
 
 .lender {
     text-align: center;
@@ -8,6 +15,113 @@
     margin-top: 200px;
     text-align: center;
 }
+
+/* 絞り込み機能全体のラッパー */
+.filter-wrapper {
+    margin: 30px auto;
+    width: 60%;
+    text-align: center;
+}
+
+/* トグルボタン */
+.filter-toggle {
+    background-color: #e3d5ca;
+    color: #4b3e2b;
+    border: 2px solid #c2b09b;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.filter-toggle:hover {
+    background-color: #d5c4b6;
+    color: #3a2e23;
+}
+
+/* 展開された絞り込みセクション */
+.filter-container {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #f6eee3;
+    border: 3px solid #c2b09b;
+    border-radius: 15px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transition: max-height 0.5s ease;
+}
+
+.filter-title {
+    font-size: 1.5em;
+    color: #4b3e2b;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 年・月の選択を横並びに */
+.filter-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-label {
+    font-size: 1.2em;
+    color: #4b3e2b;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 2px solid #a39482;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #4b3e2b;
+    background-color: #fffaf3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    text-align: center;
+    min-width: 100px;
+}
+
+.filter-select:hover {
+    border-color: #7a6a5d;
+    background-color: #ede3d7;
+}
+
+/* ブログ件数表示 */
+.blog-count {
+    margin: 20px auto;
+    text-align: center;
+    color: #4b3e2b;
+    font-size: 1.4em;
+    background-color: #f6eee3;
+    border: 2px solid #c2b09b;
+    border-radius: 10px;
+    padding: 15px 30px;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.blog-count .count-number {
+    font-weight: bold;
+    color: #7a5c45;
+    font-size: 1.6em;
+}
+
+
+
 
 
 .backmain {
@@ -35,11 +149,14 @@
     width: 280px;
     height: 380px;
     box-sizing: border-box;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
 .blog-item:hover {
     /*border: 2px black solid;*/
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    transform: translateY(-7px);
 }
 
 .blog-image {
@@ -109,6 +226,76 @@
 .more-button:hover {
     opacity: 0.5;
 }
+
+
+.page-top {
+    position: fixed;
+    right: 5px;
+    bottom: 20px;
+    height: 50px;
+    width: 60px;
+    text-decoration: none;
+    color: #737373;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl; /* 縦書き */
+    text-orientation: mixed;
+    border-right: 1px solid #737373;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 100;
+    transform: rotate(0deg);
+    transition: opacity 0.3s;
+}
+
+.page-top::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #737373;
+    border-right: 2px solid #737373;
+    transform: translateX(-50%) rotate(-45deg);
+    transform-origin: center;
+}
+
+/*********************************************/
+
+
+
+/*!* トップに戻るボタン *!*/
+/*.scroll-to-top {*/
+/*    position: fixed;*/
+/*    bottom: 40px;*/
+/*    right: 30px;*/
+/*    z-index: 100;*/
+/*    padding: 15px 20px;*/
+/*    border: none;*/
+/*    border-radius: 50px;*/
+/*    background-color: #007BFF;*/
+/*    color: #fff;*/
+/*    font-size: 16px;*/
+/*    cursor: pointer;*/
+/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);*/
+/*    transition: opacity 0.3s ease, transform 0.3s ease;*/
+/*}*/
+
+/*.scroll-to-top:hover {*/
+/*    background-color: #0056b3;*/
+/*    transform: translateY(-5px);*/
+/*}*/
+
+.scroll-to-top:active {
+    transform: translateY(2px);
+}
+
+
 
 
 /*.sub-text {*/
