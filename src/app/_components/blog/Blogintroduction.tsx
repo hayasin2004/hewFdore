@@ -86,71 +86,120 @@ const Blogintroduction = () => {
 
             {/* 絞り込み機能 */}
             <div className="filter-wrapper">
-                <button className="filter-toggle" onClick={() => setShowFilter(!showFilter)}>
-                    {showFilter ? "▲ 絞り込みを閉じる" : "▼ 絞り込みを表示"}
+                {/* 絞り込みボタン（ヘッダーから少し下に配置） */}
+                <button className="filter-toggle" onClick={() => setShowFilter(true)}>
+                    絞り込み
                 </button>
 
                 {showFilter && (
-                    <div className="filter-container">
-                        <h2 className="filter-title">🔍 絞り込み</h2>
-                        <div className="filter-content">
+                    <div className="modal-overlay" onClick={() => setShowFilter(false)}>
+                        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="close-button" onClick={() => setShowFilter(false)}>✖️</button>
+                            <h2 className="filter-title">絞り込み</h2>
+
+                            {/* 年選択ボタン */}
                             <div className="filter-group">
-                                <label className="filter-label">年:</label>
-                                <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)} className="filter-select">
-                                    <option value="all">全て</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                </select>
+                                <label className="filter-label">年</label>
+                                <div className="button-group">
+                                    {["2024", "2025"].map((year) => (
+                                        <button
+                                            key={year}
+                                            className={`filter-btn ${selectedYear === year ? "active" : ""}`}
+                                            onClick={() => setSelectedYear(year)}
+                                        >
+                                            {year}
+                                        </button>
+                                    ))}
+                                    <button
+                                        className={`filter-btn ${selectedYear === "all" ? "active" : ""}`}
+                                        onClick={() => setSelectedYear("all")}
+                                    >
+                                        ALL
+                                    </button>
+                                </div>
                             </div>
 
+                            {/* 月選択ボタン */}
                             <div className="filter-group">
-                                <label className="filter-label">月:</label>
-                                <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className="filter-select">
-                                    <option value="all">全て</option>
+                                <label className="filter-label">月</label>
+                                <div className="button-group">
                                     {[...Array(12)].map((_, i) => (
-                                        <option key={i + 1} value={i + 1}>{i + 1}月</option>
+                                        <button
+                                            key={i + 1}
+                                            className={`filter-btn ${selectedMonth === (i + 1).toString() ? "active" : ""}`}
+                                            onClick={() => setSelectedMonth((i + 1).toString())}
+                                        >
+                                            {i + 1}月
+                                        </button>
                                     ))}
-                                </select>
+                                    <button
+                                        className={`filter-btn ${selectedMonth === "all" ? "active" : ""}`}
+                                        onClick={() => setSelectedMonth("all")}
+                                    >
+                                        ALL
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* リセットボタン */}
+                            <div className="button-group">
+                                <button
+                                    className="reset-btn"
+                                    onClick={() => {
+                                        setSelectedYear("all");
+                                        setSelectedMonth("all");
+                                    }}
+                                >
+                                    リセット
+                                </button>
                             </div>
                         </div>
                     </div>
                 )}
             </div>
 
+
+
+
+
+            {/*/!* 絞り込み機能 *!/*/}
+            {/*<div className="filter-wrapper">*/}
+            {/*    <button className="filter-toggle" onClick={() => setShowFilter(!showFilter)}>*/}
+            {/*        {showFilter ? "▲ 絞り込みを閉じる" : "▼ 絞り込みを表示"}*/}
+            {/*    </button>*/}
+
+            {/*    {showFilter && (*/}
+            {/*        <div className="filter-container">*/}
+            {/*            <h2 className="filter-title">🔍 絞り込み</h2>*/}
+            {/*            <div className="filter-content">*/}
+            {/*                <div className="filter-group">*/}
+            {/*                    <label className="filter-label">年:</label>*/}
+            {/*                    <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)} className="filter-select">*/}
+            {/*                        <option value="all">全て</option>*/}
+            {/*                        <option value="2024">2024</option>*/}
+            {/*                        <option value="2025">2025</option>*/}
+            {/*                    </select>*/}
+            {/*                </div>*/}
+
+            {/*                <div className="filter-group">*/}
+            {/*                    <label className="filter-label">月:</label>*/}
+            {/*                    <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className="filter-select">*/}
+            {/*                        <option value="all">全て</option>*/}
+            {/*                        {[...Array(12)].map((_, i) => (*/}
+            {/*                            <option key={i + 1} value={i + 1}>{i + 1}月</option>*/}
+            {/*                        ))}*/}
+            {/*                    </select>*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )}*/}
+            {/*</div>*/}
+
             {/* ブログ件数 */}
             <div className="blog-count">
                 <p>ブログ件数: <span className="count-number">{filteredBlogs.length}</span> 件</p>
             </div>
 
-
-
-
-
-
-
-            {/* 絞り込み機能 */}
-
-            {/*<div style={{ marginBottom: "20px" }}>*/}
-            {/*    <label>*/}
-            {/*        年:*/}
-            {/*        <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>*/}
-            {/*            <option value="all">全て</option>*/}
-            {/*            <option value="2024">2024</option>*/}
-            {/*            <option value="2025">2025</option>*/}
-            {/*        </select>*/}
-            {/*    </label>*/}
-            {/*    <label style={{ marginLeft: "10px" }}>*/}
-            {/*        月:*/}
-            {/*        <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>*/}
-            {/*            <option value="all">全て</option>*/}
-            {/*            {[...Array(12)].map((_, i) => (*/}
-            {/*                <option key={i + 1} value={i + 1}>{i + 1}月</option>*/}
-            {/*            ))}*/}
-            {/*        </select>*/}
-            {/*    </label>*/}
-            {/*</div>*/}
-
-            {/*<p>ブログ件数: {filteredBlogs.length}件</p>*/}
 
             {filteredBlogs.length === 0 ? (
                 <div className={"lender"}><p>該当するブログがありません。</p></div>

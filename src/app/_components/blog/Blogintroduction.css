@@ -16,89 +16,120 @@
     text-align: center;
 }
 
-/* 絞り込み機能全体のラッパー */
-.filter-wrapper {
-    margin: 30px auto;
-    width: 60%;
-    text-align: center;
-}
-
-/* トグルボタン */
+/* 絞り込みボタン（ヘッダーから下にずらす） */
 .filter-toggle {
-    background-color: #e3d5ca;
-    color: #4b3e2b;
-    border: 2px solid #c2b09b;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 1.2em;
+    position: fixed;
+    left: 20px;
+    top: 150px; /* ヘッダーからの距離調整 */
+    padding: 15px 25px;
+    background-color: #4b3e2b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+    z-index: 100;
+    transition: background-color 0.3s;
 }
 
 .filter-toggle:hover {
-    background-color: #d5c4b6;
-    color: #3a2e23;
+    background-color: #7a6a5d;
 }
 
-/* 展開された絞り込みセクション */
-.filter-container {
-    margin-top: 15px;
-    padding: 20px;
-    background-color: #f6eee3;
-    border: 3px solid #c2b09b;
-    border-radius: 15px;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-    transition: max-height 0.5s ease;
-}
-
-.filter-title {
-    font-size: 1.5em;
-    color: #4b3e2b;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* 年・月の選択を横並びに */
-.filter-content {
+/* モーダル全体の背景 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
-    gap: 30px;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    z-index: 200;
 }
 
-.filter-label {
-    font-size: 1.2em;
+/* モーダルコンテンツ */
+.modal-content {
+    background: #fffaf3;
+    padding: 40px 30px;
+    border-radius: 15px;
+    position: relative;
+    width: 400px;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+/* 閉じるボタン */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
     color: #4b3e2b;
-    margin-bottom: 10px;
+}
+
+/* ラベル */
+.filter-label {
+    font-size: 1.4em;
+    color: #4b3e2b;
+    margin: 20px 0 10px;
     font-weight: bold;
 }
 
-.filter-select {
-    padding: 10px 15px;
-    border: 2px solid #a39482;
-    border-radius: 5px;
-    font-size: 1em;
+/* ボタン式選択 */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    padding: 12px 18px;
+    border: 3px solid #a39482;
+    border-radius: 7px;
+    font-size: 1.1em;
     color: #4b3e2b;
     background-color: #fffaf3;
     cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    text-align: center;
-    min-width: 100px;
+    transition: all 0.3s;
+    min-width: 60px;
 }
 
-.filter-select:hover {
-    border-color: #7a6a5d;
+.filter-btn:hover {
     background-color: #ede3d7;
 }
+
+.filter-btn.active {
+    background-color: #7a6a5d;
+    color: #fff;
+    border-color: #4b3e2b;
+}
+
+/* リセットボタン */
+.reset-btn {
+    padding: 15px 30px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.reset-btn:hover {
+    background-color: #c9302c;
+}
+
+
 
 /* ブログ件数表示 */
 .blog-count {
