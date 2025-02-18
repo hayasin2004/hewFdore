@@ -87,7 +87,10 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
         }
     };
     return (
-        <div className="container">
+        <div className="container" style={{
+            backgroundImage: 'url(/images/flower_a.png)'
+        }}>
+
             <div className="form-wrapper">
                 <h2 className="title">メール認証</h2>
 
