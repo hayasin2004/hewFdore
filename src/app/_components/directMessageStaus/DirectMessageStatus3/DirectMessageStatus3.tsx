@@ -21,7 +21,7 @@ const DirectMessageStatus3 = (params) => {
                     </div>
                     :
                     <div className={"chatRight-"} key={item._id}>
-                        <div className={"chatRight"}>{item?.senderUserId}</div>
+                        {/*<div className={"chatRight"}>{item?.senderUserId}</div>*/}
                         <div className={"chatRight"}>{item?.message}</div>
                     </div>
             ))}

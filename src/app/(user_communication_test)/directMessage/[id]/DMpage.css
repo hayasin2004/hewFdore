@@ -9,10 +9,12 @@
     padding: 20px 0;
     box-shadow: 0 0 10px  gray;
     background-color: #E0DDCE;
+    font-size: 1rem;
 }
 
 .userChatFrame{
     padding-top: 20px;
+    padding-bottom: 40px;
     margin: 0 auto;
     margin-top: 15px;
     width: 55%;
@@ -54,6 +56,7 @@
     padding: 6px 14px;
     margin: 14px 8px 0 0;
     max-width: 60%;
+    overflow-wrap: break-word;
     border-radius: 8px;
     font-size: 1.05rem;
     background-color: #fff;
