@@ -13,7 +13,7 @@ import catchToastProduct from "@/app/utils/toast/catchToastProduct";
 import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 import {ToastType} from "@/models/Toast";
 import {UserType} from "@/app/api/user/catchUser/route";
-
+import Image from  "next/image"
 
 const Header = () => {
     const user = useUser()
@@ -107,9 +107,7 @@ const Header = () => {
                 <div className="nav">
                     <div className="title">
                         <Link href={"/"}>
-                            <h1>
-                                F&apos;dore
-                            </h1>
+                            <Image src={"/AFdore1CF.png"} className={"logoImage"} width={640} height={480} alt={"logo"}/>
                         </Link>
                     </div>
                     <div className="bar">
