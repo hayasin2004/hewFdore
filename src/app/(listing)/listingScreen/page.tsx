@@ -9,6 +9,7 @@ import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import Footer from "@/app/_components/footer/Footer";
+import {display} from "@mui/system";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -290,6 +291,7 @@ const ListingScreen: React.FC = () => {
                                 <video  src={productVideoFiles} width={250} height={250} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                             <label htmlFor="video">
+                                {/*ここマージの時注意　名称はこっちでない方を優先してください*/}
                                 {productImage ?
                                     <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg" width="150"
                                          height="150" viewBox="0 0 24 24">
