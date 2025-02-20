@@ -37,12 +37,19 @@ h2#LStitle{
     border-radius: 5px;
 
 }
+div#Photos{
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 85%;
+    flex-direction: row;
+}
 
-div#kamera{
+div.kamera{
     position: relative;
     margin: 20px auto 80px auto;
-    width: 377px;
-    height: 377px;
+    width: 250px;
+    height: 250px;
     flex-shrink: 0;
     background: #D9D9D9;
 }
@@ -61,6 +68,7 @@ div.content div#drop{
 
 div.content h3.formTitle{
     width: 450px;
+    font-size: 2rem;
     margin:10px auto 5px auto;
 
 

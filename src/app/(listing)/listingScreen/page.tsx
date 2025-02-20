@@ -177,13 +177,13 @@ const ListingScreen: React.FC = () => {
                             <h3 className={"formTitle"} id="product_name">
                                 写真
                             </h3>
-
-                            <div id="kamera">
+                            <div id={"Photos"}>
+                                <div className={"kamera"} >
                                 {productImage &&
-                                    <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes1">
-                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="180" height="180"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
@@ -193,12 +193,12 @@ const ListingScreen: React.FC = () => {
                                        onChange={productImageFile}/>
 
                             </div>
-                            <div id="kamera">
+                                <div className={"kamera"}>
                                 {productImage2 &&
-                                    <Image src={productImage2} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage2} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes2">
-                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="180" height="180"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
@@ -208,12 +208,12 @@ const ListingScreen: React.FC = () => {
                                 <input type="file" id={"clothes2"} style={{display: "none"}}
                                        onChange={productImageFile2}/>
                             </div>
-                            <div id="kamera">
+                                <div className={"kamera"}>
                                 {productImage3 &&
-                                    <Image src={productImage3} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage3} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes3">
-                                    <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="180" height="180"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
@@ -222,12 +222,12 @@ const ListingScreen: React.FC = () => {
                                 <input type="file" id={"clothes3"} style={{display: "none"}}
                                        onChange={productImageFile3}/>
                             </div>
-                            <div id="kamera">
+                                <div className={"kamera"}>
                                 {productImage4 &&
-                                    <Image src={productImage4} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage4} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes4">
-                                    <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="180" height="180"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
@@ -236,9 +236,10 @@ const ListingScreen: React.FC = () => {
                                 <input type="file" id={"clothes4"} style={{display: "none"}}
                                        onChange={productImageFile4}/>
                             </div>
+                            </div>
 
                         </div>
-                        {/*<div id="kamera">*/}
+                        {/*<div className={"kamera"}>*/}
                         {/*    {productImage &&*/}
                         {/*        <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}*/}
                         {/*    /!*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*!/*/}
@@ -250,12 +251,12 @@ const ListingScreen: React.FC = () => {
                         <h3 className={"formTitle"} id="product_name">
                             動画
                         </h3>
-                        <div id="kamera">
+                        <div className={"kamera"}>
                             {productImage &&
-                                <video  src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}
+                                <video  src={productVideoFiles} width={250} height={250} alt={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                             <label htmlFor="video">
-                                <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                                <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                           d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>
                                 </svg>
