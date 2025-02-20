@@ -1,5 +1,5 @@
     // CollapsibleProductCard.tsx
-    import { useState, useRef, useEffect } from 'react';
+    import React, { useState, useRef, useEffect } from 'react';
     import {
         Card,
         CardContent,
@@ -9,19 +9,27 @@
     } from '@mui/material';
     import './CollapsibleProductCard.css';
     import { DBProductType } from '@/app/api/product/route';
+    import Link from 'next/link';
+    import {Stripe} from "stripe";
+    import {ProductType} from "@/app/utils/product/productDetail";
+    import Image from "next/image";
 
     interface CollapsibleProductCardProps {
         item: DBProductType;
         isOpen: boolean;
         onToggle: () => void;
         category : string
+        mainImage :string,
+        images : string[]
     }
 
     const CollapsibleProductCard = ({ item, isOpen, onToggle ,category}: CollapsibleProductCardProps) => {
         const [isAnimating, setIsAnimating] = useState(false);
+        const [images, setImages] = useState<string[]>([]);
+        const [mainImageChange, setMainImageChange] = useState<string>("");
+
         const [isContentVisible, setIsContentVisible] = useState(false);
         const cardRef = useRef<HTMLDivElement>(null);
-
         useEffect(() => {
             if (isOpen) {
                 setIsAnimating(true);
@@ -42,6 +50,16 @@
             }
         }, [isOpen]);
 
+        useEffect(() => {
+            setMainImageChange(item.productImage);  // メイン画像を初期化
+            setImages([
+                item.productImage,
+                item.productImage2 || "",
+                item.productImage3 || "",
+                item.productImage4 || ""
+            ]);
+        }, []);
+
         const handleCollapse = (event: React.MouseEvent) => {
             if (!event.target.closest('.expanded-reverse')) {
                 return;
@@ -54,7 +72,10 @@
             if (isAnimating || isOpen) return;
             onToggle();
         };
-
+        const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+            e.preventDefault();
+            setMainImageChange(images[index]);  // クリックされた画像をメイン画像に設定
+        };
         return (
             <>
             <Card
@@ -79,8 +100,11 @@
                 <Collapse in={!isOpen} timeout="auto">
                     <CardContent>
                         <div className="testttt">
-                            <p className="collapsed-image">item.いめーじ</p>
-                            <p className="product-Size">L</p>
+                            <p className="collapsed-image">
+                                <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage: "/images/clothes/product.jpg"} width={400} height={310}
+                                       alt="サンプル" id="sum"/>
+                            </p>
+                            <p className="product-Size">{item.productSize}</p>
                         </div>
                         <p className="explanation">商品説明 : {item.productDesc}</p>
                         <p className="explanation">出品者名 : {item.productName}</p>
@@ -102,8 +126,11 @@
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
                                 <Box className="expanded-box" sx={{ height: '100%' }}>
-                                    <p className="expanded-image">item.いめーじい</p>
-                                    <p className="expanded-Size">L</p>
+                                    <div className="expanded-image">
+                                        <Image className={"proimg"} src={mainImageChange!== undefined ? mainImageChange : "/images/clothes/product.jpg"} width={420} height={550}
+                                               alt="サンプル" id="sum"/>
+                                    </div>
+                                    <div className="expanded-Size">{item.productSize}</div>
                                 </Box>
                             </Grid>
 
@@ -116,12 +143,31 @@
                                         borderRadius: 1
                                     }}
                                 >
-                                    <p className="expanded-Name">商品名</p>
-                                    <p className="expanded-Genre">ジャンル：</p>
-                                    <p className="expanded-Material">素材　　：</p>
-                                    <p className="expanded-Price">商品価格：{Number(item.productPrice).toLocaleString()}円</p>
-                                    <p className="expanded-Situation">状態　　：</p>
+                                    <p className="expanded-Name">商品名 : {item.productName}</p>
+                                    <p className="expanded-Genre">カテゴリー : {item.productCategory}</p>
+                                    <p className="expanded-Price">商品価格 : {item.productPrice}円</p>
+                                    <p className="expanded-Situation">状態 : {item.productCondition} </p>
+
+                                    <ul className="piclist">
+                                        <li className="picts">
+                                            {images.map((image, index) => (
+                                                <li key={index} className="picts">
+                                                    {image ? (
+                                                        <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                            <Image className="pictS" src={image} width={50} height={50}
+                                                                   alt={`画像${index + 1}`}/>
+                                                        </a>
+                                                    ) : null}
+                                                </li>
+                                            ))}
+                                        </li>
+                                    </ul>
                                     <p className="expanded-Cart">Add to Cart</p>
+                                    <p className="expanded-Cart">
+                                        <Link href={`product/${item?._id}`}>
+                                            もっと見る
+                                        </Link>
+                                    </p>
                                 </Box>
                             </Grid>
 

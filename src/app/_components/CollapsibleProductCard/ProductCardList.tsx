@@ -22,7 +22,7 @@ const ProductCardList = ({items, category, size}: ProductCardListProps) => {
     console.log("item" + JSON.stringify(items), "category" + category, "size" + size);
      return (
         <div className="product-card-list">
-            {items.map((item) => (
+            {items?.map((item) => (
                     <CollapsibleProductCard
                         key={item._id}
                         item={item}

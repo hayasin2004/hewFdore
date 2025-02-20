@@ -9,6 +9,7 @@ import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import Footer from "@/app/_components/footer/Footer";
+import {display} from "@mui/system";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -186,64 +187,99 @@ const ListingScreen: React.FC = () => {
                             <h3 className={"formTitle"} id="product_name">
                                 写真
                             </h3>
-
-                            <div id="kamera">
+                            <div id={"Photos"}>
+                                <div className={"kamera"} >
                                 {productImage &&
-                                    <Image src={productImage} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image className={"photo_preview"} src={productImage} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
-                                         viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
-                                    </svg>
+                                    {productImage ?
+                                        <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg"
+                                             width="180" height="180"
+                                             viewBox="0 0 24 24">
+                                        </svg>
+                                        :
+                                        <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg"
+                                             width="180" height="180"
+                                             viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                  d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                        </svg>
+                                    }
                                 </label>
                                 <input type="file" id={"clothes1"} style={{display: "none"}}
                                        onChange={productImageFile}/>
 
                             </div>
-                            <div id="kamera">
+                                <div className={"kamera"}>
                                 {productImage2 &&
-                                    <Image src={productImage2} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image className={"photo_preview"} src={productImage2} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                                <label htmlFor="clothes2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
-                                         viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
-                                    </svg>
-                                </label>
+                                    <label htmlFor="clothes2">
 
-                                <input type="file" id={"clothes2"} style={{display: "none"}}
-                                       onChange={productImageFile2}/>
-                            </div>
-                            <div id="kamera">
-                                {productImage3 &&
-                                    <Image src={productImage3} width={377} height={377} alt={"選択した商品画像"}/>}
-                                {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                                <label htmlFor="clothes3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
-                                         viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
-                                    </svg>
+                                    {productImage2 ?
+                                            <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg"
+                                                 width="180" height="180"
+                                                 viewBox="0 0 24 24">
+                                            </svg>
+                                        :
+                                            <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg"
+                                                 width="180" height="180"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                            </svg>
+                                    }
+                                    </label>
+
+                                    <input type="file" id={"clothes2"} style={{display: "none"}}
+                                           onChange={productImageFile2}/>
+                                </div>
+                                <div className={"kamera"}>
+                                    {productImage3 &&
+                                        <Image className={"photo_preview"} src={productImage3} width={250} height={250}
+                                               alt={"選択した商品画像"}/>}
+                                    {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                                    <label htmlFor="clothes3">
+                                        {productImage3 ?
+                                            <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg"
+                                                 width="180" height="180"
+                                                 viewBox="0 0 24 24">
+                                            </svg>
+                                            :
+                                            <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg"
+                                                 width="180" height="180"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                      d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                            </svg>
+                                        }
                                 </label>
                                 <input type="file" id={"clothes3"} style={{display: "none"}}
                                        onChange={productImageFile3}/>
                             </div>
-                            <div id="kamera">
+                                <div className={"kamera"}>
                                 {productImage4 &&
-                                    <Image src={productImage4} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image　className={"photo_preview"} src={productImage4} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
-                                         viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
-                                    </svg>
+                                    {productImage4 ?
+                                        <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg"
+                                             width="180" height="180"
+                                             viewBox="0 0 24 24">
+                                        </svg>
+                                        :
+                                        <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg"
+                                             width="180" height="180"
+                                             viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                  d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
+                                        </svg>
+                                    }
                                 </label>
                                 <input type="file" id={"clothes4"} style={{display: "none"}}
                                        onChange={productImageFile4}/>
+                            </div>
                             </div>
 
                         </div>

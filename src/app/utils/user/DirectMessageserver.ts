@@ -1,19 +1,28 @@
 "use server"
 
+import {string} from "prop-types";
+import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
+import {MongoClient} from "mongodb";
 
-import {Chat } from "@/models/Chat";
+import {Server} from "socket.io";
+import mongoose from "mongoose";
+import {Chat, ChatType} from "@/models/Chat";
+import {UserType} from "@/app/api/user/catchUser/route";
 import {v4 as uuidv4} from 'uuid';
 
 
 const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
-
+    //console.log(detailUser+ "詳細")
     await connectDB()
     try {
+        // 同じObjectIdだったときの処理
         if (tokenUser === detailUser) {
-             return {tokenUser};
+            //console.log("currentUserとdetailUserが同じであるためチャットをさくせいすることができません")
+            return {tokenUser};
         }
-          const chatExists = await Chat.findOne({
+        // 既にチャットがあるかどうかの処理
+        const chatExists = await Chat.findOne({
             currentUser: tokenUser,
             partnerUser: detailUser
         })
@@ -21,17 +30,30 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
             currentUser: detailUser,
             partnerUser: tokenUser
         })
-         if (chatExists) {
+        //console.log(chatExists?._id)
+        if (chatExists) {
             const chatId = chatExists._id
-            const currentUser = tokenUser
-            const partnerUser = detailUser
-               return {chatExists: {chatId : chatId , currentUser : currentUser  , partnerUser : partnerUser}}
+            //console.log("ここがアンディファインド"+chatId)　
+            // const currentUser = tokenUser
+            // const partnerUser = detailUser
+            //console.log("既にcurrentUser , detailUserのチャットルームが作られています")
+            // const returnUserData = async () => {
+                const currentUserData : UserType | null = await User.findById({_id: tokenUser}).select("username email profilePicture coverProfilePicture").exec();
+                const partnerUserData : UserType | null= await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture").exec();
+            // //console.log("うけとり" + currentUserData)
+            // return {currentUser: currentUserData?._id, partnerUser: partnerUserData?._id}
+            return {status:"chatExists" , chatId : JSON.stringify(chatExists) , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
 
         } else if (chatExistsPart2) {
             const chatId = chatExistsPart2._id
-            const currentUser = tokenUser
-            const partnerUser = detailUser
-            return {chatExistsPart2: {chatId : chatId , currentUser : currentUser  , partnerUser : partnerUser}}
+            //console.log(chatId)
+            const currentUser = detailUser
+            const partnerUser = currentUser
+            const currentUserData: UserType | null = await User.findById({_id: currentUser}).select("username email profilePicture coverProfilePicture").exec();
+            const partnerUserData: UserType | null = await User.findById({_id: partnerUser}).select(" username email profilePicture coverProfilePicture").exec();
+
+
+            return { status:"chatExistsPart2", chatId : JSON.stringify(chatExistsPart2) , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
         } else {
             const newChatId = uuidv4()
             if (tokenUser && detailUser) {
@@ -42,7 +64,7 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
                     partnerUser: detailUser
                 })
                 newChatRoom.save()
-                return {newChatRoom}
+                return {status : "newChatRoom" , newChatRoom}
             }
         }
     } catch

@@ -72,7 +72,7 @@ const Login = () => {
                                 if (email.includes("@")) {
 
                                     await loginUser(email, password, confirmPassword).then(user => {
-                                        if (user === undefined) {
+                                        if (user == undefined || user == null) {
                                             /*もしユーザー情報が間違えたいたらuserにundefinedが返って来る。*/
                                             alert("メールアドレスもしくはパスワードが違う可能性があります。")
                                         }

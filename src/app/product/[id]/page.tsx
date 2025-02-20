@@ -22,7 +22,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 
 const Product = ({params}: { params: { id: string } }) => {
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
-
+    console.log(loginUserData)
     const [productVideo, setProductVideo] = useState<string>()
     const user = useUser()
     const router = useRouter()
@@ -38,12 +38,16 @@ const Product = ({params}: { params: { id: string } }) => {
         },
     });
     const [product, setProduct] = useState<ProductType | null>(null)
-    console.log(product)
+    console.log(JSON.stringify(product))
 
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
     console.log(status)
     const [productLike, setProductLike] = useState<boolean>(false)
+    const [images, setImages] = useState<string[]>([]);
+    const [mainImage, setMainImage] = useState<string>("");
+    console.log(images , mainImage)
+
     const id = params?.id
     const productId = product?._id
     const likeButton = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,12 +66,15 @@ const Product = ({params}: { params: { id: string } }) => {
         }
         productLikeData()
     }
-
     useEffect(() => {
+
         if (user !== undefined) {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
+    }, [user]);
+
+    useEffect(() => {
 
         const query = new URLSearchParams(window.location.search);
         const sessionId = query.get('session_id');
@@ -91,7 +98,17 @@ const Product = ({params}: { params: { id: string } }) => {
             }
             const productCatchParse = JSON.parse(JSON.stringify(productCatch))
             if (productCatchParse?.product !== undefined) {
-                setProduct(JSON.parse(productCatchParse?.product))
+                const instanceProductParse = JSON.parse(productCatchParse.product)
+                console.log("instanceProductParse" + instanceProductParse)
+                setProduct(instanceProductParse)
+
+                setMainImage(instanceProductParse.productImage);  // メイン画像を初期化
+                setImages([
+                    instanceProductParse.productImage,
+                    instanceProductParse.productImage2 || "",
+                    instanceProductParse.productImage3 || "",
+                    instanceProductParse.productImage4 || ""
+                ]);
             }
             if (productCatchParse?.video !== undefined && productCatchParse?.video !== null){
                 const video = productCatchParse?.video
@@ -102,7 +119,7 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [user]);
+    }, [loginUserData]);
 
 
     useEffect(() => {
@@ -112,6 +129,10 @@ const Product = ({params}: { params: { id: string } }) => {
         }
     }, [product]);
 
+    const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+        e.preventDefault();
+        setMainImage(images[index]);  // クリックされた画像をメイン画像に設定
+    };
     return (
         <>
             <Header/>
@@ -127,17 +148,20 @@ const Product = ({params}: { params: { id: string } }) => {
                         <div id="info">
                             <div id="photo">
                                 <figure>
-                                    <Image src={product?.productImage} width={200} height={200}
+                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"} width={200} height={200}
                                            alt="商品の写真"/>
                                 </figure>
                                 <ul className="piclist">
                                     <li className="picts">
-                                        <figure>
-                                            <Image
-                                                src={product?.productImage !== undefined ? product?.productImage : "/images/clothes/product.jpg"}
-                                                width={50} height={50}
-                                                alt="商品の写真"/>
-                                        </figure>
+                                        {images.map((image, index) => (
+                                            <li key={index} className="picts">
+                                                {image ? (
+                                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                        <Image className="pictS" src={image} width={50} height={50} alt={`画像${index + 1}`} />
+                                                    </a>
+                                                ) : null}
+                                            </li>
+                                        ))}
                                     </li>
                                 </ul>
                             </div>

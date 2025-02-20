@@ -1,0 +1,82 @@
+.dmFreme{
+    background-color: #EBE8DB;
+    height: 100vh;
+}
+
+.PUser-top{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    box-shadow: 0 0 10px  gray;
+    background-color: #E0DDCE;
+}
+
+.userChatFrame{
+    padding-top: 20px;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 55%;
+    height: 80%;
+    overflow-y: auto;
+    border-radius: 7px;
+    background-color: #F1EEE2;
+    position: relative;
+    box-shadow:
+            12px 0 8px -8px rgba(0, 0, 0, 0.2),
+            -12px 0 8px -8px rgba(0, 0, 0, 0.2);
+}
+
+.chatFrame{
+    width: 100%;
+}
+
+.chatRightFrame{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.PIcon{
+    display: flex;
+    justify-content: flex-end;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #555555;
+}
+
+
+.chatRight-{
+    display: flex;
+    justify-content: flex-end;
+}
+.chatRight{
+    padding: 6px 14px;
+    margin: 14px 8px 0 0;
+    max-width: 60%;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    background-color: #fff;
+}
+
+
+.chatBox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.chatBox-area{
+    width: 50%;
+    padding: 15px 8px;
+    border-radius: 8px ;
+}
+.chatBox-button{
+    width: 5%;
+    border-radius: 8px;
+    background-color: #605252;
+    font-size: 1rem;
+    color: #fff;
+}
+.chatBox-button:hover{
+    opacity: 0.7;
+}

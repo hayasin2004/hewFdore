@@ -69,9 +69,10 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
                         <div>
                             <div className={"comment-user-lef"}>
                                 {/*ユーザーアイコン*/}
-                                <div className={"chaticon"}><Images
-                                    src={item?.buyerChatMessage[0]?.buyerProfilePicture}
-                                    alt={"ユーザープロフィール画像"} width={30} height={30}/>
+                                <div className={"chaticon"}>
+                                    <Images
+                                        src={item?.buyerChatMessage[0]?.buyerProfilePicture}
+                                        alt={"ユーザープロフィール画像"} width={30} height={30}/>
                                 </div>
 
                                 {/*ユーザー名*/}
@@ -211,13 +212,15 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
     const [buyerUserReview, setBuyerUserReview] = useState<string | null>(null)
-    const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")　
+    const [buyerLastChat, setBuyerLastChat] = useState<string | null>("")
     console.log("出品者の最終評価" + sellerUserLastReview)
     const [currentUserData, setCurrentUserData] = useState()
     const [partnerUserData, setPartnerUserData] = useState()
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     const router = useRouter()
 
+    const [images, setImages] = useState<string[]>([]);
+    const [mainImage, setMainImage] = useState<string>("");
     console.log(partnerUserData)
     const user = useUser()
     const token = localStorage.getItem("token")
@@ -228,9 +231,9 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const confirmUserData = async () => {
             const response = await confirmUser(token)
-            if(response !== undefined){
-            const responseParse = JSON.parse(response)
-            setLoginUserData(responseParse?._id)
+            if (response !== undefined) {
+                const responseParse = JSON.parse(response)
+                setLoginUserData(responseParse?._id)
             }
         }
         confirmUserData()
@@ -252,7 +255,15 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     setSellerUserReview(JSON.parse(tradeStatusParse?.sellerUserLastReview))
                     setBuyerUserReview(tradeStatusParse?.buyerUserReview)
                 }
-                setProductData(JSON.parse(response));
+                const responseParse = JSON.parse(response)
+                setProductData(responseParse);
+                setMainImage(responseParse.productImage);  // メイン画像を初期化
+                setImages([
+                    responseParse.productImage,
+                    responseParse.productImage2 || "",
+                    responseParse.productImage3 || "",
+                    responseParse.productImage4 || ""
+                ]);
             }
             //console.log(response)
         }
@@ -294,7 +305,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     useEffect(() => {
         const response = async () => {
             try {
-　
+
                 const currentUser_Id = loginUserData
                 const sellerId = productData?.sellerId
                 const buyerId = productData?.buyerId
@@ -302,10 +313,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 if (loginUserData !== undefined) {
 
                     const setUsersData: tradeChatStatusType | null = await TradeProductMessageServer(loginUserData, productData?.sellerId)
-                        // if (setUsersData == null) {
-                        //     console.log("取引では見つからないユーザーでログインしています。アカウントをお確かめの上再度アクセスしてください。")
-                        //     router.push("/")
-                        // }
+                    // if (setUsersData == null) {
+                    //     console.log("取引では見つからないユーザーでログインしています。アカウントをお確かめの上再度アクセスしてください。")
+                    //     router.push("/")
+                    // }
 
                     if (setUsersData?.chatExists) {
                         const currentUser = await userProfile(currentUser_Id)
@@ -397,7 +408,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     //console.log(Rating)
 
     const tradeEndFunc = async () => {
-        const response = await tradeEnd(purchaseId, status, loginUserData , lastChat, reviewValue)
+        const response = await tradeEnd(purchaseId, status, loginUserData, lastChat, reviewValue)
         //console.log(response)
         if (response?.tradeStatus == 0 || response?.tradeStatus == 2 || response?.tradeStatus == 4) {
             setTradeStatus(1)
@@ -428,7 +439,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
 
     }
 
-
+    const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+        e.preventDefault();
+        setMainImage(images[index]);  // クリックされた画像をメイン画像に設定
+    };
     return (
         <>
             <Header/>
@@ -452,16 +466,26 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             {/*</form>*/}
             <div id="product">
                 <div id="info">
+
                     <div id="photo">
-                        <Image src="/images/clothes/product9.jpg" width={400} height={400} alt="商品の写真"/>
-
+                        <figure>
+                            <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"} width={200}
+                                   height={200}
+                                   alt="商品の写真"/>
+                        </figure>
                         <ul className="piclist">
-                            <li className="picts"><a href="/images/clothes/product9.jpg">
-                                <Image src="/images/clothes/product9.jpg" width={50} height={50} alt="商品の写真"/>
-                            </a>
-
+                            <li className="picts">
+                                {images.map((image, index) => (
+                                    <li key={index} className="picts">
+                                        {image ? (
+                                            <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                <Image className="pictS" src={image} width={50} height={50}
+                                                       alt={`画像${index + 1}`}/>
+                                            </a>
+                                        ) : null}
+                                    </li>
+                                ))}
                             </li>
-
                         </ul>
                     </div>
                     <div id="text">

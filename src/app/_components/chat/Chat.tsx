@@ -77,7 +77,6 @@ const Chat = (props: { paramsProductData: string }) => {
                             {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.senderUserId : ""} さん<br/>
                         </div>
                         <div className="comment-area-lef">
-
                             メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
                               <br/>
                             <EmojiPicker stamp={item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.listingChatMessage[0]?._id} setIcon={setIcon}/>

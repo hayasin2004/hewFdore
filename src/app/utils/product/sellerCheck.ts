@@ -7,6 +7,8 @@ const sellerCheck = async (productId : string | null , currentUser : string | nu
     await connectDB()
     try {
         const product =await Product.findById(productId).select("sellerId")
+        console.log(product)
+        console.log(currentUser)
         if (product.sellerId == currentUser){
              return true
         }else {
