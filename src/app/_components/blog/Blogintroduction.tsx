@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { useEffect, useState } from "react";
 import Header from "@/app/_components/header/Header";
@@ -24,8 +24,12 @@ const Blogintroduction = () => {
     const [filteredBlogs, setFilteredBlogs] = useState<BlogType[]>([]);
     const [selectedYear, setSelectedYear] = useState("all");
     const [selectedMonth, setSelectedMonth] = useState("all");
-    const [visibleCount, setVisibleCount] = useState(12); // 最初に表示するブログの件数
+    const [visibleCount, setVisibleCount] = useState(12);
+    const [showScrollButton, setShowScrollButton] = useState(false); // ← 追加
+    const [showFilter, setShowFilter] = useState(false);
 
+
+    // ブログデータ取得
     useEffect(() => {
         const fetchBlogs = async () => {
             const data = await GetBlog();
@@ -35,18 +39,29 @@ const Blogintroduction = () => {
         fetchBlogs();
     }, []);
 
+    // ブログデータをフィルタリング
     useEffect(() => {
-        const filterBlogsByDate = blogs.filter((blog) => {
+        const filtered = blogs.filter((blog) => {
             if (!blog.createdAt) return false;
             const date = new Date(blog.createdAt);
             const isYearMatch = selectedYear === "all" || date.getFullYear() === Number(selectedYear);
             const isMonthMatch = selectedMonth === "all" || date.getMonth() + 1 === Number(selectedMonth);
             return isYearMatch && isMonthMatch;
         });
-        setFilteredBlogs(filterBlogsByDate);
+        setFilteredBlogs(filtered);
         setVisibleCount(12);
     }, [blogs, selectedYear, selectedMonth]);
 
+    // スクロールイベントでボタン表示を制御
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowScrollButton(window.scrollY > 300);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // 日付フォーマット関数
     const formatDate = (dateString: string | undefined): string => {
         if (!dateString) return "";
         const date = new Date(dateString);
@@ -56,33 +71,135 @@ const Blogintroduction = () => {
             .padStart(2, "0")}`;
     };
 
+    // トップにスクロールする関数
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
         <div>
-            <Header/>
-            <h1 className={"title-h1"}>ブログ一覧</h1>
-
-            {/*絞り込み機能*/}
-            <div style={{ marginBottom: "20px" }}>
-                <label>
-                    年:
-                    <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-                        <option value="all">全て</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                    </select>
-                </label>
-                <label style={{ marginLeft: "10px" }}>
-                    月:
-                    <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
-                        <option value="all">全て</option>
-                        {[...Array(12)].map((_, i) => (
-                            <option key={i + 1} value={i + 1}>{i + 1}月</option>
-                        ))}
-                    </select>
-                </label>
+            <div className={"hednav"}>
+                <Header/>
             </div>
 
-            <p>ブログ件数: {filteredBlogs.length}件</p>
+            <h1 className={"title-h1"}>ブログ一覧</h1>
+
+            {/* 絞り込み機能 */}
+            <div className="filter-wrapper">
+                {/* 絞り込みボタン（ヘッダーから少し下に配置） */}
+                <button className="filter-toggle" onClick={() => setShowFilter(true)}>
+                    絞り込み
+                </button>
+
+                {showFilter && (
+                    <div className="modal-overlay" onClick={() => setShowFilter(false)}>
+                        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                            <button className="close-button" onClick={() => setShowFilter(false)}>✖️</button>
+                            <h2 className="filter-title">絞り込み</h2>
+
+                            {/* 年選択ボタン */}
+                            <div className="filter-group">
+                                <label className="filter-label">年</label>
+                                <div className="button-group">
+                                    {["2024", "2025"].map((year) => (
+                                        <button
+                                            key={year}
+                                            className={`filter-btn ${selectedYear === year ? "active" : ""}`}
+                                            onClick={() => setSelectedYear(year)}
+                                        >
+                                            {year}
+                                        </button>
+                                    ))}
+                                    <button
+                                        className={`filter-btn ${selectedYear === "all" ? "active" : ""}`}
+                                        onClick={() => setSelectedYear("all")}
+                                    >
+                                        ALL
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* 月選択ボタン */}
+                            <div className="filter-group">
+                                <label className="filter-label">月</label>
+                                <div className="button-group">
+                                    {[...Array(12)].map((_, i) => (
+                                        <button
+                                            key={i + 1}
+                                            className={`filter-btn ${selectedMonth === (i + 1).toString() ? "active" : ""}`}
+                                            onClick={() => setSelectedMonth((i + 1).toString())}
+                                        >
+                                            {i + 1}月
+                                        </button>
+                                    ))}
+                                    <button
+                                        className={`filter-btn ${selectedMonth === "all" ? "active" : ""}`}
+                                        onClick={() => setSelectedMonth("all")}
+                                    >
+                                        ALL
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* リセットボタン */}
+                            <div className="button-group">
+                                <button
+                                    className="reset-btn"
+                                    onClick={() => {
+                                        setSelectedYear("all");
+                                        setSelectedMonth("all");
+                                    }}
+                                >
+                                    リセット
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+
+
+
+
+            {/*/!* 絞り込み機能 *!/*/}
+            {/*<div className="filter-wrapper">*/}
+            {/*    <button className="filter-toggle" onClick={() => setShowFilter(!showFilter)}>*/}
+            {/*        {showFilter ? "▲ 絞り込みを閉じる" : "▼ 絞り込みを表示"}*/}
+            {/*    </button>*/}
+
+            {/*    {showFilter && (*/}
+            {/*        <div className="filter-container">*/}
+            {/*            <h2 className="filter-title">🔍 絞り込み</h2>*/}
+            {/*            <div className="filter-content">*/}
+            {/*                <div className="filter-group">*/}
+            {/*                    <label className="filter-label">年:</label>*/}
+            {/*                    <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)} className="filter-select">*/}
+            {/*                        <option value="all">全て</option>*/}
+            {/*                        <option value="2024">2024</option>*/}
+            {/*                        <option value="2025">2025</option>*/}
+            {/*                    </select>*/}
+            {/*                </div>*/}
+
+            {/*                <div className="filter-group">*/}
+            {/*                    <label className="filter-label">月:</label>*/}
+            {/*                    <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} className="filter-select">*/}
+            {/*                        <option value="all">全て</option>*/}
+            {/*                        {[...Array(12)].map((_, i) => (*/}
+            {/*                            <option key={i + 1} value={i + 1}>{i + 1}月</option>*/}
+            {/*                        ))}*/}
+            {/*                    </select>*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    )}*/}
+            {/*</div>*/}
+
+            {/* ブログ件数 */}
+            <div className="blog-count">
+                <p>ブログ件数: <span className="count-number">{filteredBlogs.length}</span> 件</p>
+            </div>
+
 
             {filteredBlogs.length === 0 ? (
                 <div className={"lender"}><p>該当するブログがありません。</p></div>
@@ -93,7 +210,7 @@ const Blogintroduction = () => {
                             <li key={blog.id} className="blog-item">
                                 <Link href={`/${blog.id}`} className="blog-link">
                                     {blog.image && (
-                                        <img src={blog.image.url} alt={blog.title} className="blog-image" />
+                                        <img src={blog.image.url} alt={blog.title} className="blog-image"/>
                                     )}
                                     <div className="text-container">
                                         <div className="blog-date">{formatDate(blog.createdAt)}</div>
@@ -114,14 +231,21 @@ const Blogintroduction = () => {
                     )}
                 </>
             )}
+
+            {/* トップに戻るボタン */}
+            {showScrollButton && (
+                <button
+                    className="page-top"
+                    onClick={() => window.scrollTo({top: 0, behavior: "smooth"})}>
+                    TOP
+                </button>
+
+            )}
         </div>
     );
 };
 
 export default Blogintroduction;
-
-
-
 
 
 //変更前↓

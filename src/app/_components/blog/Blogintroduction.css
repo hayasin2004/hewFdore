@@ -1,3 +1,10 @@
+/**********************************************/
+.hednav{
+    position: fixed;
+    top: -3px;
+    width: 100%;
+    z-index: 1000;
+}
 
 .lender {
     text-align: center;
@@ -8,6 +15,144 @@
     margin-top: 200px;
     text-align: center;
 }
+
+/* 絞り込みボタン（ヘッダーから下にずらす） */
+.filter-toggle {
+    position: fixed;
+    left: 20px;
+    top: 150px; /* ヘッダーからの距離調整 */
+    padding: 15px 25px;
+    background-color: #4b3e2b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    z-index: 100;
+    transition: background-color 0.3s;
+}
+
+.filter-toggle:hover {
+    background-color: #7a6a5d;
+}
+
+/* モーダル全体の背景 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+/* モーダルコンテンツ */
+.modal-content {
+    background: #fffaf3;
+    padding: 40px 30px;
+    border-radius: 15px;
+    position: relative;
+    width: 400px;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+/* 閉じるボタン */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #4b3e2b;
+}
+
+/* ラベル */
+.filter-label {
+    font-size: 1.4em;
+    color: #4b3e2b;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+
+/* ボタン式選択 */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    padding: 12px 18px;
+    border: 3px solid #a39482;
+    border-radius: 7px;
+    font-size: 1.1em;
+    color: #4b3e2b;
+    background-color: #fffaf3;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 60px;
+}
+
+.filter-btn:hover {
+    background-color: #ede3d7;
+}
+
+.filter-btn.active {
+    background-color: #7a6a5d;
+    color: #fff;
+    border-color: #4b3e2b;
+}
+
+/* リセットボタン */
+.reset-btn {
+    padding: 15px 30px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.reset-btn:hover {
+    background-color: #c9302c;
+}
+
+
+
+/* ブログ件数表示 */
+.blog-count {
+    margin: 20px auto;
+    text-align: center;
+    color: #4b3e2b;
+    font-size: 1.4em;
+    background-color: #f6eee3;
+    border: 2px solid #c2b09b;
+    border-radius: 10px;
+    padding: 15px 30px;
+    width: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.blog-count .count-number {
+    font-weight: bold;
+    color: #7a5c45;
+    font-size: 1.6em;
+}
+
+
+
 
 
 .backmain {
@@ -35,11 +180,14 @@
     width: 280px;
     height: 380px;
     box-sizing: border-box;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
 .blog-item:hover {
     /*border: 2px black solid;*/
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    transform: translateY(-7px);
 }
 
 .blog-image {
@@ -109,6 +257,76 @@
 .more-button:hover {
     opacity: 0.5;
 }
+
+
+.page-top {
+    position: fixed;
+    right: 5px;
+    bottom: 20px;
+    height: 50px;
+    width: 60px;
+    text-decoration: none;
+    color: #737373;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl; /* 縦書き */
+    text-orientation: mixed;
+    border-right: 1px solid #737373;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 100;
+    transform: rotate(0deg);
+    transition: opacity 0.3s;
+}
+
+.page-top::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    border-top: 2px solid #737373;
+    border-right: 2px solid #737373;
+    transform: translateX(-50%) rotate(-45deg);
+    transform-origin: center;
+}
+
+/*********************************************/
+
+
+
+/*!* トップに戻るボタン *!*/
+/*.scroll-to-top {*/
+/*    position: fixed;*/
+/*    bottom: 40px;*/
+/*    right: 30px;*/
+/*    z-index: 100;*/
+/*    padding: 15px 20px;*/
+/*    border: none;*/
+/*    border-radius: 50px;*/
+/*    background-color: #007BFF;*/
+/*    color: #fff;*/
+/*    font-size: 16px;*/
+/*    cursor: pointer;*/
+/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);*/
+/*    transition: opacity 0.3s ease, transform 0.3s ease;*/
+/*}*/
+
+/*.scroll-to-top:hover {*/
+/*    background-color: #0056b3;*/
+/*    transform: translateY(-5px);*/
+/*}*/
+
+.scroll-to-top:active {
+    transform: translateY(2px);
+}
+
+
 
 
 /*.sub-text {*/

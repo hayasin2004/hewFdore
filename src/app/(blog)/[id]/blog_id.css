@@ -75,6 +75,39 @@ div{
     line-height: 1.6;
 }
 
+.blog-body {
+    white-space: normal; /* 改行やリストを通常のHTML仕様で表示 */
+    line-height: 1.6;    /* 行間を見やすく調整 */
+    word-break: break-word;
+}
+
+/* 見出しやリストを見やすく */
+.blog-body h3 {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.blog-body p {
+    margin: 1em 0;
+}
+
+.blog-body ol {
+    margin: 1em 0;
+    padding-left: 1.5em;
+}
+
+.blog-body li {
+    margin: 0.5em 0;
+}
+
+.blog-body hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 2em 0;
+}
+
 
 
 /*.blog-body img {*/

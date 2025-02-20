@@ -85,12 +85,39 @@ div.siteunbermain{
     color: #666;
 }
 
+
+/* ブログタイトル（2行目禁止・高さ統一） */
+/* タイトル表示を1行に制限し、高さを統一 */
+.linkid {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    height: 60px; /* 高さを固定して統一 */
+    line-height: 60px; /* 高さに合わせて中央揃え */
+    text-align: center;
+    white-space: nowrap; /* 1行に制限 */
+    overflow: hidden; /* はみ出した部分を非表示 */
+    text-overflow: ellipsis; /* 末尾に...を表示 */
+    margin-top: 5px;
+}
+
+
+
 .blog-title {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 5px;
-    white-space: nowrap;
+    color: #333;
+    height: 60px; /* 2行分の高さで統一 */
+    line-height: 30px;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* 1行で省略 */
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 280px;
+    margin-top: 5px;
 }
+
+
+
+
