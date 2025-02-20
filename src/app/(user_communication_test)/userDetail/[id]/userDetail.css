@@ -1,0 +1,120 @@
+/* インスタグラム風のプロフィールページデザイン（PCレイアウト） */
+
+:root {
+    --main-bg-color: #EBE8DB; /* ベージュ系の背景色 */
+    --accent-color: #EBE8DB; /* メインのアクセントカラー */
+    --text-color: #5C3D2E; /* 文字色 */
+}
+
+body {
+    background-color: var(--main-bg-color);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.partnerProfile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    text-align: left;
+}
+
+.partnerProfile img {
+    border-radius: 50%; /* 丸いプロフィール画像 */
+    border: 3px solid var(--accent-color);
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.selfIntroduction {
+    font-size: 16px;
+    color: var(--text-color);
+    margin:  0 0 30px 0;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab_container {
+    padding-bottom: 1em;
+    background-color: white;
+    border:1px solid var(--accent-color);
+    margin: 0 auto;
+/*border-radius: 10px;*/
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    /*padding-bottom: 1em;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+}
+
+.tab_item {
+    width: calc(100%/3);
+    padding: 15px 0;
+    border-bottom: 3px solid var(--accent-color);
+    background-color: #E0DDCE;
+    text-align: center;
+    color: var(--text-color);
+    display: block;
+    float: left;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.tab_item:hover {
+    background-color: #C9A177;
+    /*opacity: 1.6;*/
+}
+
+input[name="tab_item"] {
+    display: none;
+}
+
+.tab_content {
+    display: none;
+    padding: 1em 1em 0;
+    clear: both;
+    overflow: hidden;
+}
+
+#tab1:checked ~ #tab1_content,
+#tab2:checked ~ #tab2_content,
+#tab3:checked ~ #tab3_content {
+    display: block;
+}
+
+.tab_container input:checked + .tab_item {
+    background-color: #D0C7B2;
+    color: white;
+}
+
+button {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #E0DDCE; /*変える*/
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 3px grey;
+}
+
+button:hover {
+    background-color: #C9A177;
+}
