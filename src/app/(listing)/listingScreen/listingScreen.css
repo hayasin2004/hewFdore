@@ -61,9 +61,14 @@ div.kamera{
     transform: translateY(-50%) translateX(-50%);
     -webkit-transform: translateY(-50%) translateX(-50%);
 }
+.initCameraIcon_none{
+    display: none;
+}
+
 
 img.photo_preview{
     object-fit: contain;
+    background-color: #EBE8DB;
 }
 
 div.content div#drop{
