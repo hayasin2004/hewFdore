@@ -110,7 +110,7 @@ form#WordSearch button#SearchSubmit[type="submit"]:hover{
 }
 .productList_{
     width: 20%;
-    height: 400px;
+    height: auto;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 6px 7px #aaa;

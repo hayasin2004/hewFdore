@@ -15,13 +15,13 @@ const DirectMessageStatus3 = (params) => {
                 item.chatUserRole == "チャットルーム制作者" ?
                     <div className={"chatLeft-"} key={item._id}>
                         <div className={"chatLeft"}>{item?.message}</div>
-                        <div className={"chatLeft"}>{item?.senderUserId}</div>
+                        <div className={"chatLeft"}>{item?.username}</div>
                         <EmojiPickerDirectMessage stamp={item?.messageStamp[0]?.messageStampLike}　currentUser={params?.currentUserId} commentId={item._id} setIcon={setIcon}/>
 
                     </div>
                     :
                     <div className={"chatRight-"} key={item._id}>
-                        <div className={"chatRight"}>{item?.senderUserId}</div>
+                        <div className={"chatRight"}>{item?.username}</div>
                         <div className={"chatRight"}>{item?.message}</div>
                     </div>
             ))}
