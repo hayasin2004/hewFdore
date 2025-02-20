@@ -4,7 +4,6 @@ import "./favorite.css"
 import Image from "next/image";
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
-import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import {ProductType} from "@/app/utils/product/productDetail";
 import useUser from "@/hooks/useUser";
