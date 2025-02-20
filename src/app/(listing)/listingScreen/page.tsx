@@ -180,7 +180,7 @@ const ListingScreen: React.FC = () => {
                             <div id={"Photos"}>
                                 <div className={"kamera"} >
                                 {productImage &&
-                                    <Image src={productImage} width={250} height={250} alt={"選択した商品画像"}/>}
+                                    <Image className={"photo_preview"} src={productImage} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes1">
                                     <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="180" height="180"
@@ -195,7 +195,7 @@ const ListingScreen: React.FC = () => {
                             </div>
                                 <div className={"kamera"}>
                                 {productImage2 &&
-                                    <Image src={productImage2} width={250} height={250} alt={"選択した商品画像"}/>}
+                                    <Image className={"photo_preview"} src={productImage2} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes2">
                                     <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="180" height="180"
@@ -210,7 +210,7 @@ const ListingScreen: React.FC = () => {
                             </div>
                                 <div className={"kamera"}>
                                 {productImage3 &&
-                                    <Image src={productImage3} width={250} height={250} alt={"選択した商品画像"}/>}
+                                    <Image className={"photo_preview"} src={productImage3} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes3">
                                     <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="180" height="180"
@@ -224,7 +224,7 @@ const ListingScreen: React.FC = () => {
                             </div>
                                 <div className={"kamera"}>
                                 {productImage4 &&
-                                    <Image src={productImage4} width={250} height={250} alt={"選択した商品画像"}/>}
+                                    <Image　className={"photo_preview"} src={productImage4} width={250} height={250} alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes4">
                                     <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="180" height="180"

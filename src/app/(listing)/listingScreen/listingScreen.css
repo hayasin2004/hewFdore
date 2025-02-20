@@ -62,6 +62,10 @@ div.kamera{
     -webkit-transform: translateY(-50%) translateX(-50%);
 }
 
+img.photo_preview{
+    object-fit: contain;
+}
+
 div.content div#drop{
 }
 
