@@ -15,7 +15,7 @@ const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushe
     await connectDB()
 
     try {
-        console.log("正しく来てるのかな")
+        console.log(purchaseId ,currentUserData._id , message)
 
         const fCHatRoomId = await Purchase.findById({_id: purchaseId})
         console.log(fCHatRoomId)
