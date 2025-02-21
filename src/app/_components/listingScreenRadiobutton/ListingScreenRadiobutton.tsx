@@ -90,7 +90,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                             value="tops" className={"radioBtn"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="denim" className={"radioBtn"} control={<Radio/>} label="デニム"/>
+                                            value="bottom" className={"radioBtn"} control={<Radio/>} label="ボトム"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
                                             value="outer" className={"radioBtn"} control={<Radio/>} label="アウター"/>
