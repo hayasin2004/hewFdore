@@ -76,6 +76,8 @@ const Blogintroduction = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
+    console.log(scrollToTop)
+
     return (
         <div>
             <div className={"hednav"}>

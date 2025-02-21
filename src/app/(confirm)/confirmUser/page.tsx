@@ -13,7 +13,7 @@ import useUser from "@/hooks/useUser";
 const ConfirmUserProfile = () => {
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
-
+    console.log(productData)
     const token = localStorage.getItem("token");
     const user = useUser(token)
     console.log(loginUserData)

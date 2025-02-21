@@ -30,7 +30,7 @@ const Header = () => {
                 const response = await confirmUser(token)
                 // console.log("バグったかも"+response)
                 if (response !== undefined) {
-                    const responseParse = JSON.parse(response)
+                    const responseParse = JSON.parse(response!)
                     setUserData(responseParse)
                 }
             }
@@ -41,18 +41,25 @@ const Header = () => {
 
 
     useEffect(() => {
+
         const toastPurchase = async () => {
-            const response = await catchToastProduct(userData?._id)
-            if (response !== undefined) {
-                const responseParse = JSON.parse(response)
-                setToastPurchase(responseParse)
+
+            if (userData?._id !== undefined) {
+                const response = await catchToastProduct(userData?._id)
+                if (response !== undefined) {
+                    const responseParse = JSON.parse(response!)
+                    setToastPurchase(responseParse)
+                }
             }
         }
         const OtherToast = async () => {
-            const response = await catchOtherToast(userData?._id)
-            if (response !== undefined) {
-                const responseParse = JSON.parse(response)
-                setOtherToast(responseParse)
+
+            if (userData?._id !== undefined) {
+                const response = await catchOtherToast(userData?._id)
+                if (response !== undefined) {
+                    const responseParse = JSON.parse(response!)
+                    setOtherToast(responseParse)
+                }
             }
         }
         toastPurchase()

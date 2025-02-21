@@ -34,11 +34,11 @@ export interface ProductType {
 }
 
 
-const productDetail = async (id: string): Promise<{ product: string | null } | { video: string | null } | null> => {
+const productDetail = async (id: string)=> {
      await connectDB()
     try {
         console.log("まずここまで来たかの確認" + id)
-        const product: ProductType | null = await Product.findById(id)
+        const product = await Product.findById(id)
         console.log(product)
         return {product: JSON.stringify(product)}
     } catch (err) {

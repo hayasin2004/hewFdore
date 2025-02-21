@@ -10,7 +10,7 @@ import {
     Radio,
     RadioGroup,
     Select,
-   TextField
+    SelectChangeEvent, TextField
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import {productStatusType} from "@/app/(listing)/listingScreen/page";
@@ -87,35 +87,35 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
 
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="tops" className={"radioBtn"} control={<Radio/>} label="トップス"/>
+                                            value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="bottom" className={"radioBtn"} control={<Radio/>} label="ボトム"/>
+                                            value="denim" control={<Radio/>} label="デニム"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="outer" className={"radioBtn"} control={<Radio/>} label="アウター"/>
+                                            value="outer" control={<Radio/>} label="アウター"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="shirt" className={"radioBtn"} control={<Radio/>} label="シャツ"/>
+                                            value="shirt" control={<Radio/>} label="シャツ"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="longShirt" className={"radioBtn"} control={<Radio/>} label="長袖"/>
+                                            value="longShirt" control={<Radio/>} label="長袖"/>
                                     </Box>
 
                                     <Box className={"radio_button_low2"}>
 
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="T-shirt" className={"radioBtn"} control={<Radio/>} label="Tシャツ"/>
+                                            value="T-shirt" control={<Radio/>} label="Tシャツ"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="perfume" className={"radioBtn"} control={<Radio/>} label="香水"/>
+                                            value="perfume" control={<Radio/>} label="香水"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="hat" className={"radioBtn"} control={<Radio/>} label="帽子"/>
+                                            value="hat" control={<Radio/>} label="帽子"/>
                                         <FormControlLabel
                                             onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
-                                            value="shose" className={"radioBtn"} control={<Radio/>} label="靴"/>
+                                            value="shose" control={<Radio/>} label="靴"/>
                                     </Box>
 
                                 </Box>
@@ -223,7 +223,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
 
                     <TextField fullWidth
                                onChange={handleProductExplainShippingSourceSet}
-                               id="outlined-basic" label="発送地域"
+                               id="outlined-basic" label="発送日時"
                                variant="outlined"/>
 
                 </Box>
