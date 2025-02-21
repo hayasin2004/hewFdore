@@ -5,6 +5,7 @@ import {User} from "@/models/User";
 import {Purchase} from "@/models/Purchase"; 
 import {Product} from "@/models/Product";
 import {UserType} from "@/app/api/user/catchUser/route";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 const purchaseProduct = async (userData: UserType | null) => {
     await connectDB()
@@ -21,7 +22,7 @@ const purchaseProduct = async (userData: UserType | null) => {
             }
         else {
 
-            const purchaseProducts: UserType[] = await Promise.all(
+            const purchaseProducts: ProductType[] = await Promise.all(
                 purchase.map(async (item) => {
                     console.log("購入履歴検索" + item.purchaseProduct)
                     const test = await Purchase.findById(item.purchaseProduct);

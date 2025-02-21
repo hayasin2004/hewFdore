@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 export interface ProductCommentType {
     _id?: string;
     listingUserId?: string;
-    buyerUserIdList?: string[];
+    buyerUserIdList?: string[] | null;
     productId?: string;
     ChatMessage?: string[];
+    senderUserId?: string;
     productChat: [{
         listingMessage?: string[];
         productChat?: string[];

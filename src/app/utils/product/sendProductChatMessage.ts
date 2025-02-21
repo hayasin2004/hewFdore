@@ -11,7 +11,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
     try {
          const productListingUser = await Product.findOne({_id: productId}).select("sellerId")
         const user = await User.findOne({_id: currentUser}).select("_id username profilePicture")
-         const ExistChatMessage: ProductCommentType | null = await ProductComment.findOne({productId: productId})
+         const ExistChatMessage = await ProductComment.findOne({productId: productId})
         const ExistUserId: ProductCommentType | null = await ProductComment.findOne({buyerUserIdList: currentUser})
 
 
@@ -115,7 +115,7 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                     }
                 } else {
 
-                    if (ExistUserId?.buyerUserIdList?.includes(currentUser)) {
+                    if (ExistUserId?.buyerUserIdList?.includes(currentUser!)) {
                         const updateChatResponse = await ProductComment.updateOne(
                             {_id: ExistChatMessage?._id, "productChat.buyerChatMessage.senderUserId": currentUser},
                             {

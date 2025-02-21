@@ -2,10 +2,10 @@
 import {GridFSBucket, GridFSBucketWriteStream} from 'mongodb';
 import {connectDB} from "@/lib/mongodb";
 
-const testvideoSave = async (video: FormData | null) => {
-    const mongoScheme = await connectDB()
-    try {
 
+const testvideoSave = async (video: FormData | null) => {
+    const  mongoScheme: typeof import("mongoose") = await connectDB()
+    try {
         console.log(video)
         const productVideo = video?.get("productVideo")
         if (productVideo instanceof File) {
