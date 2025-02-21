@@ -9,7 +9,7 @@ const confirmPassword = async (email: string | null, password: string | null) =>
     await connectDB()
     try {
         if (email !== null && password !== null) {
-            const emailUserCheck: UserType | null = await User.findOne({email: email}).select("email password");
+            const emailUserCheck　= await User.findOne({email: email}).select("email password");
               if (emailUserCheck?.email !== email || emailUserCheck?.password !== password) {
              } else {
                 return NextResponse.json({success: true})

@@ -220,7 +220,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const router = useRouter()
 
     const [images, setImages] = useState<string[]>([]);
-    const [mainImage, setMainImage] = useState<string>("");
+    const [mainImage, setMai    nImage] = useState<string>("");
     console.log(partnerUserData)
 　
     const token = localStorage.getItem("token")

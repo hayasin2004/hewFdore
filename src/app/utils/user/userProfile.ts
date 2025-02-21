@@ -12,12 +12,12 @@ const userProfile = async (id: UserType | null) => {
     console.log("ユーザー特定したい" + id)
     try {
         if (id !== undefined && id !== null) {
-            const searchUser: UserType | null = await User.findOne({_id: id})
+            const searchUser = await User.findOne({_id: id})
             const searchProduct: ProductType[] | null = await Product.find({sellerId: id})
             const followData = await getFollowUser(searchUser?.followings, searchUser?.followers)
             const followersData = followData?.followers
             const followingsData = followData?.followings
-            console.log(searchUser,followersData,followingsData)
+            console.log(searchUser, followersData, followingsData)
             return {
                 searchUser: JSON.stringify(searchUser),
                 searchProduct: JSON.stringify(searchProduct),
