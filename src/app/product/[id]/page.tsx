@@ -46,7 +46,6 @@ const Product = ({params}: { params: { id: string } }) => {
     const [productLike, setProductLike] = useState<boolean>(false)
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
-    console.log(images , mainImage)
 
     const id = params?.id
     const productId = product?._id
@@ -166,7 +165,7 @@ const Product = ({params}: { params: { id: string } }) => {
                                 </ul>
                             </div>
                             <div id="text">
-                                <h1>ニット</h1>
+                                <h1>{product?.productName}</h1>
                                 <span className="under_bar"></span>
                                 <Link href="/" id="seller">
                                     <h2>出品者:{product?.sellerUserName}
@@ -186,7 +185,7 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
-                                {/*<video src={productVideo !== undefined && productVideo !== null ? `/${productVideo}` : ""}*/}
+                                {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
                                 {/*       loop autoPlay controls></video>*/}
                             </div>
                         </div>
@@ -204,17 +203,16 @@ const Product = ({params}: { params: { id: string } }) => {
                                               checkedIcon={<Favorite/>}/>
                                 </ThemeProvider>
                             }
-                            <p>いいね</p>
-                            <Image width={30} height={30} src="/images/Cart_icon.png" alt="カート"/> <br/>
 
 
                             {/*<button id={"buy"}*/}
                             {/*        type="button" className={"productPurchase"}>*/}
-                            {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
-                                <Stripe productId={product?._id} sellingOrSoldOut={product?.sellStatus == "trading" ? true : false}/>}
 
 
                             {/*</button>*/}
+                            {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
+                                <Stripe productId={product?._id}
+                                        sellingOrSoldOut={product?.sellStatus == "trading" ? true : false}/>}
                         </div>
 
 

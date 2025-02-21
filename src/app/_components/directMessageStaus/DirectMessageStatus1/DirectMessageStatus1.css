@@ -17,6 +17,12 @@ body {
     background-color: #fff;
 }
 
+
+.chatRightText{
+    margin-top: 10px;
+
+}
+
 .chatLeft-{
     display: flex;
     justify-content: flex-start;

@@ -71,38 +71,66 @@ const Chat = (props: { paramsProductData: string }) => {
                 item?.chatUserRole === "出品者" ? (
                     <div className="comment-sec-lef" key={index}>
                         <div className="comment-user-lef">
-                            <Images
-                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                                alt={"サンプルユーザーアイコン"}/>
-                            {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.senderUserId : ""} さん<br/>
+
+                            <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg"
+                                 width={50} height={50}
+                                 viewBox="0 0 24 24">
+                                <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                                    <path
+                                        d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                                </g>
+                            </svg>
+                            {item?.listingChatMessage !== undefined ? "Dgroupe" : ""} さん<br/>
+                            {/*{item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.senderUserName : ""} さん<br/>*/}
                         </div>
                         <div className="comment-area-lef">
                             メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
-                              <br/>
-                            <EmojiPicker stamp={item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.listingChatMessage[0]?._id} setIcon={setIcon}/>
+                            {/*メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}*/}
+                            <br/>
+                            <EmojiPicker
+                                stamp={item?.listingChatMessage[0]?.listingMessageStamp[0]?.listingMessageStampLike}
+                                currentUser={currentUser} productId={productId} item={item?.listingChatMessage[0]?._id}
+                                setIcon={setIcon}/>
                         </div>
                     </div>
                 ) : (
                     <div className="comment-sec-rig" key={index}>
                         <div className="comment-user-rig">
-                            <Images
-                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                                alt={"サンプルユーザーアイコン"}/>
-                            {item?.buyerChatMessage[0]?.senderUserId} さん<br/>
+                            <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg"
+                                 width={50} height={50}
+                                 viewBox="0 0 24 24">
+                                <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                                    <path
+                                        d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                                </g>
+                            </svg>
+                            userHew1 さん<br/>
+                            {/*{item?.buyerChatMessage[0]?.senderUserName} さん<br/>*/}
                         </div>
                         <div className="comment-area-rig">
-                            メッセージ内容: {item?.buyerChatMessage[0]?.buyerMessage} <br/>
-                             <EmojiPicker stamp={item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}　currentUser={currentUser} productId={productId}  item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
-                              </div>
+                            メッセージ内容:{item?.buyerChatMessage[0]?.buyerMessage} <br/>
+                            <EmojiPicker stamp={item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}
+                                         currentUser={currentUser} productId={productId}
+                                         item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
+                        </div>
                     </div>
                 )
             ))}
 
             {/* 送信フォーム */}
             <div className="Productchat">
-                <Images id={"usericon"}
-                        src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                        alt={"サンプルユーザーアイコン"}/>
+
+                <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg" width={50}
+                     height={50}
+                     viewBox="0 0 24 24">
+                    <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                        <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                        <path
+                            d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                    </g>
+                </svg>
 
                 <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
 

@@ -38,7 +38,7 @@ const ListingScreen: React.FC = () => {
     const [productImage4, setProductImage4] = useState<string | null>(null)
     const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
     // const [compressedVideo, setCompressedVideo] = useState(null)
-
+    const [videoUrl, setVideoUrl] = useState<string | null>(null)
 
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
@@ -89,6 +89,16 @@ const ListingScreen: React.FC = () => {
         }
     };
 
+    const productVideoFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files && files.length > 0) {
+            const file = files[0];
+            setProductVideoFiles(file);
+            setVideoUrl(URL.createObjectURL(file)); // 動画ファイルのURLを生成
+        }
+    };
+
+
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (!token) {
@@ -135,7 +145,6 @@ const ListingScreen: React.FC = () => {
                         const productName = data.get("productName") as string;
                         const productPrice = parseFloat(data.get("productPrice") as string);
                         const productDesc = data.get("productDesc") as string;
-                        // const productVideo = data.get("productVideo");
                         console.log(productName);
                         // Formdateでは基本文字列を入力するためstring型である。そこでparseFloatを用いることでstring型をnumber型でア渡してあげることで円滑に型変更できる
                         // 尚最初からnumber型で指定するとエラーが出てしまう。
@@ -180,60 +189,72 @@ const ListingScreen: React.FC = () => {
 
                             <div id="kamera">
                                 {productImage &&
-                                    <Image src={productImage} className={"setImage"} width={377} height={377} alt={"選択した商品画像"}/> }
+                                    <Image src={productImage} className={"setImage"} width={377} height={377}
+                                           alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes1">
-                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200"
+                                         height="200"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
                                     </svg>
                                 </label>
-                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp"  type="file" id={"clothes1"} style={{display: "none"}}
+                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes1"}
+                                       style={{display: "none"}}
                                        onChange={productImageFile}/>
 
                             </div>
                             <div id="kamera">
                                 {productImage2 &&
-                                    <Image src={productImage2}className={"setImage"} width={377} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage2} className={"setImage"} width={377} height={377}
+                                           alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes2">
-                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200"
+                                         height="200"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
                                     </svg>
                                 </label>
 
-                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes2"} style={{display: "none"}}
+                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes2"}
+                                       style={{display: "none"}}
                                        onChange={productImageFile2}/>
                             </div>
                             <div id="kamera">
                                 {productImage3 &&
-                                    <Image src={productImage3} width={377}className={"setImage"} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage3} width={377} className={"setImage"} height={377}
+                                           alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes3">
-                                    <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200"
+                                         height="200"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
                                     </svg>
                                 </label>
-                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes3"} style={{display: "none"}}
+                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes3"}
+                                       style={{display: "none"}}
                                        onChange={productImageFile3}/>
                             </div>
                             <div id="kamera">
                                 {productImage4 &&
-                                    <Image src={productImage4} width={377}className={"setImage"} height={377} alt={"選択した商品画像"}/>}
+                                    <Image src={productImage4} width={377} className={"setImage"} height={377}
+                                           alt={"選択した商品画像"}/>}
                                 {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                 <label htmlFor="clothes4">
-                                    <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                                    <svg className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="200"
+                                         height="200"
                                          viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M19 6.5h-1.28l-.32-1a3 3 0 0 0-2.84-2H9.44A3 3 0 0 0 6.6 5.55l-.32 1H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3.05Zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h2a1 1 0 0 0 1-.68l.54-1.64a1 1 0 0 1 .95-.68h5.12a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .9.68h2a1 1 0 0 1 1 1Zm-8-9a4 4 0 1 0 4 4a4 4 0 0 0-4-4Zm0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2Z"/>
                                     </svg>
                                 </label>
-                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes4"} style={{display: "none"}}
+                                <input accept=".jpg,.jpeg,.gif,.bmp,.tiff,.webp" type="file" id={"clothes4"}
+                                       style={{display: "none"}}
                                        onChange={productImageFile4}/>
                             </div>
 
@@ -251,21 +272,26 @@ const ListingScreen: React.FC = () => {
                             動画
                         </h3>
                         <div id="kamera">
-                            {productImage &&
-                                <video  src={productVideoFiles} width={377}className={"setImage"} height={377} alt={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
+                            {productVideoFiles ? (
+                                <video src={videoUrl} width={377} className={"setImage"} height={377} controls
+                                       alt={"選択した商品動画"}/>
+                            ) : (
+                                ""
+                            )}
                             <label htmlFor="video">
-                                <svg className={"initCameraIcon"}  xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                                <svg style={{pointerEvents: "auto"}} className={"initCameraIcon"}
+                                     xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                           d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>
                                 </svg>
                             </label>
                             <input
                                 type="file"
+                                id="video"
                                 accept="video/*"
                                 style={{display: "none"}}
-                                id={"video"}
-                                name={"productVideo"}
+                                name="productVideo"
+                                onChange={productVideoFile}
                             />
                         </div>
 

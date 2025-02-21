@@ -118,32 +118,39 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
         return (
             <>
 
-                    {!sellingOrSoldOutStatus ?
+                {!sellingOrSoldOutStatus ?
 
-                        (
 
-                            <div className={"jus"} style={{display: "flex"}}>
-                                <div className={"StripePurchaseButtonMain"}>
-                                    {/*<button onClick={StripeUrl} disabled={isButtonDisabled} type={"submit"} role={"link"}>*/}
-                                    <button onClick={StripeUrl} className={"StripePurchaseButton"} type={"submit"}
-                                            role={"link"}>
-                                        {!isButtonDisabled ? <p>購入</p> : <p>取引中</p>}
-                                    </button>
+                    (
+                        <div className={"jus"} style={{display: "flex"}}>
+                            <div className={"StripePurchaseButtonMain"}>
+                                {/*<button onClick={StripeUrl} disabled={isButtonDisabled} type={"submit"} role={"link"}>*/}
+                                <button onClick={StripeUrl} className={"StripePurchaseButton"} type={"submit"}
+                                        role={"link"}>
+                                    {!isButtonDisabled ? <p>購入</p> : <p>取引中</p>}
+                                </button>
 
-                                </div>
-                                <div className={"selectProduct"}>
-                                    <Image src={"/img.png"} width={100} height={100} alt={"card"}/>
-                                    <Image src={"/paypay.png"} width={100} height={100} alt={"paypay"}/>
-                                </div>
                             </div>
-                        )
-                        : <p>売り切れ</p>}
+                            <div className={"selectProduct"}>
+
+                                <label style={{opacity: 10}}> 支払い方法を選択してください:
+                                    <select onChange={(e) => setPaymentMethod(e.target.value)}
+                                            value={paymentMethod}>
+                                        <option value="card">Card</option>
+                                        <option value="payPay">PayPay</option>
+                                    </select>
+                                </label>
+                                <Image src={"/img.png"} width={100} height={100} alt={"card"}/>
+                                <Image src={"/paypay.png"} width={100} height={100} alt={"paypay"}/>
+                            </div>
+                        </div>
+                    )
+                    : <p>売り切れ</p>}
 
                 {/*<button onClick={handlePayPayPayment}>*/}
                 {/*    支払う*/}
                 {/*</button>*/}
             </>
-
         );
     }
 ;

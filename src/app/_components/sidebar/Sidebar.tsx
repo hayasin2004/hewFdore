@@ -18,21 +18,21 @@ const Sidebar = () => {
                 </div>
                 <hr id="side_line"/>
 
-                <div className="Scart_inProduct">
-                    <figure>
-                        <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>
-                    </figure>
-                    <ul>
-                        <li>ニット</li>
-                        <li>出品者:Yuuna</li>
-                        <li>価格:2800</li>
-                    </ul>
+                {/*<div className="Scart_inProduct">*/}
+                {/*    <figure>*/}
+                {/*        <Image src="/images/clothes/product9.jpg" width={200} height={200} alt="商品の写真"/>*/}
+                {/*    </figure>*/}
+                {/*    <ul>*/}
+                {/*        <li>ニット</li>*/}
+                {/*        <li>出品者:Yuuna</li>*/}
+                {/*        <li>価格:2800</li>*/}
+                {/*    </ul>*/}
 
 
-                </div>
-                <Link href={"product"} id="side_product_detail">
-                    商品ページ
-                </Link>
+                {/*</div>*/}
+                {/*<Link href={"product"} id="side_product_detail">*/}
+                {/*    商品ページ*/}
+                {/*</Link>*/}
 
 
 

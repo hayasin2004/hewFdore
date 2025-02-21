@@ -12,6 +12,8 @@ import confirmUser from "@/app/utils/user/confirmUser";
 import DirectMessageStatus1 from "@/app/_components/directMessageStaus/DirectMessageStatus1/DirectMessageStatus1";
 import DirectMessageStatus3 from "@/app/_components/directMessageStaus/DirectMessageStatus3/DirectMessageStatus3";
 import "./DMpage.css"
+import saveMessageStauts1 from "@/app/utils/message/saveMessageStauts1";
+import Header from "@/app/_components/header/Header";
 
 const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
@@ -19,8 +21,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const token = localStorage.getItem("token")
     const [chatData, setChatData] = useState<ChatType|UserType | null>(null)
     const [currentChatData, setCurrentChatData] = useState<ChatType|UserType | null>([])
-    const [partnerChatData, setPartnerChatData] = useState<ChatType|UserType | null>([])
-    console.log("currentChatData" + currentChatData , "partnerChatData" + partnerChatData )
+    const [partnerChatData, setPartnerChatData] = useState<ChatType|UserType | null>([])　
     const [currentUser, setCurrentUser] = useState<ChatType|UserType | null>(null)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
@@ -88,9 +89,9 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     // socket.ioに送信
     const handleSendMessage = (e: React.FormEvent<HTMLButtonElement>) => {
-
         // ステータス1
         if (status === "1" || status === "2") {
+        console.log("そもそもどこまで来てる")
             e.preventDefault()
             socket.emit("send_message", {message: message})
             setMessage("")
@@ -100,10 +101,10 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 setChatList([...chatList, data])
             })
             const SavedMessage = async () => {
-                // const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
-                const update = await saveMessageStauts1Update(chatData?.chatId, chatData?.currentUser, message)
+                const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
+                // const update = await saveMessageStauts1Update(chatData?.chatId, chatData?.currentUser, message)
 
-                console.log(update)
+                console.log(response)
                 setMessage("")
             }
             SavedMessage()
@@ -134,11 +135,12 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     return (
         <>
+                <Header/>
             <div className={"dmFreme"}>
 
                 <div className={"PUser-top"}>
                     {/*対象ユーザー : {partnerChatData?._id}*/}
-                    {partnerChatData?.username} さん　→削除ok{status}
+                    {partnerChatData?.username} さん
                 </div>
                 {/*<div>*/}
                 {/*    ログインユーザー : {currentChatData?._id}*/}

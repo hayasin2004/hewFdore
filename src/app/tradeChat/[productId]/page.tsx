@@ -117,7 +117,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
         <div>
 
             <div>
-                ログインしているチャット（購入者） : {currentUserIdChatParse?.map((item) => (
+               {currentUserIdChatParse?.map((item) => (
                 item?.chatUserRole == "出品者" ? (
                         <div key={item._id}>
 
@@ -446,13 +446,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     return (
         <>
             <Header/>
-            {tradeStatus == 404 ? "取引をキャンセルしました。" : ""}
-            {status}
-            {tradeCancel !== null ? "取引をキャンセルしました。" : ""}
-            {tradeStatus == 1 ? <p>取引終了しました。</p> : <p>取引中</p>}
             {/*{currentUserIdChat}*/}
             <p>
-                ログインユーザー : {loginUserData}
             </p>
 
             {chatList.map((item, index) => (
@@ -498,10 +493,10 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             {productData?.productDesc}<br/>
 
                         </p>
-                        <p id="size">サイズ:S</p>
-                        <p id="used">商品状態:多少使用感がある</p>
-                        <p id="postage">送料:出品者負担</p>
-                        <p id="category">カテゴリ: ワンピース Sサイズ 春物 色</p>
+                        <p id="size">サイズ:{productData?.productSize}</p>
+                        <p id="used">商品状態:多少使用感があります。</p>
+                        <p id="postage">送料:{productData?.postageBurden == "seller" ? <>出品者</>:<>購入者</>}</p>
+                        <p id="category">カテゴリ:帽子 </p>
                     </div>
 
                 </div>
@@ -511,14 +506,12 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                         <div>
                             {status == 1 ?
                                 <div>
-                                    <p>取引ステータスは１</p>
                                     <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
 
                                                       partnerUserIdChat={partnerUserIdChat}/>
 
                                 </div> : <div>
-                                    <p>取引ステータスは２</p>
                                     <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
                                                       partnerUserIdChat={partnerUserIdChat}/>
@@ -534,9 +527,14 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                     <div className={"messageBox"}>
 
-                        <Images id={"chatimg"}
-                                src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                                alt={"サンプルユーザーアイコン"}/>
+                        <svg style={{color: "#000" , marginTop:"10px"}} xmlns="http://www.w3.org/2000/svg" width={50} height={50}
+                             viewBox="0 0 24 24">
+                            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                                <path
+                                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                            </g>
+                        </svg>
 
                         <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
                         <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
@@ -560,7 +558,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             {/*<button onClick={tradeEndFunc}>取引を終了する</button>*/}
                             <p>取引終了</p>
                         </div>
-                        : <button onClick={tradeEndFunc}>取引を終了する</button>
+                        : <button onClick={tradeEndFunc}>取引終了</button>
                     }
 
                     <div>
@@ -579,13 +577,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                 </div>
 
-                <div>
-                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
-                </div>
+                {/*<div>*/}
+                {/*    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}*/}
+                {/*</div>*/}
 
-                <div>
-                    購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}
-                </div>
+                {/*<div>*/}
+                {/*    購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}*/}
+                {/*</div>*/}
 
                 <div id="control">
                     <button

@@ -22,7 +22,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                 const result = await productDetail(id);
                 if (result?.product !== undefined && result?.product !== null) {
                     const resultParse: ProductType = JSON.parse(result?.product);
-                    setData(resultParse);
+                    setData(resultParse.product);
                     setMainImage(resultParse.productImage);  // メイン画像を初期化
                     setImages([
                         resultParse.productImage,
@@ -73,15 +73,23 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                         <span className="under_bar"></span>
                         <a href="#" id="seller">
                             <h2>出品者:{data?.sellerUserName}</h2>
-                            <Images src={"/images/sampleIcon.jpg"} style={{borderRadius: "50px"}} width={50} height={50}
-                                    alt={"サンプルユーザーアイコン"}/>
+
+                            <svg style={{color: "#000"}} xmlns="http://www.w3.org/2000/svg" width={50} height={50}
+                                 viewBox="0 0 24 24">
+                                <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                                    <path
+                                        d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                                </g>
+                            </svg>
                         </a>
                         <p>{data?.productDesc}</p>
                         <p id="size">サイズ:{data?.productSize}</p>
                         <p id="used">商品状態:{data?.productCondition}</p>
                         <p id="postage">送料:{data?.postageBurden}</p>
                         <p id="category">カテゴリ: {data?.productCategory}</p>
-                        <video src={productVideo !== undefined && productVideo !== null ? productVideo : ""} loop autoPlay></video>
+                        <video src={productVideo !== undefined && productVideo !== null ? productVideo : ""} loop
+                               autoPlay></video>
                     </div>
                 </div>
 

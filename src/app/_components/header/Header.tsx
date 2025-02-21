@@ -13,7 +13,7 @@ import catchToastProduct from "@/app/utils/toast/catchToastProduct";
 import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 import {ToastType} from "@/models/Toast";
 import {UserType} from "@/app/api/user/catchUser/route";
-import Image from  "next/image"
+import Image from "next/image"
 
 const Header = () => {
     const user = useUser()
@@ -107,7 +107,8 @@ const Header = () => {
                 <div className="nav">
                     <div className="title">
                         <Link href={"/"}>
-                            <Image src={"/AFdore1CF.png"} className={"logoImage"} width={640} height={480} alt={"logo"}/>
+                            <Image src={"/AFdore1CF.png"} className={"logoImage"} width={640} height={480}
+                                   alt={"logo"}/>
                         </Link>
                     </div>
                     <div className="bar">
@@ -148,16 +149,16 @@ const Header = () => {
                             </Link>
                             <span className="long_line"></span>
 
-                            <span style={{display:"flex" , alignItems:"center"}}>
+                            <span style={{display: "flex", alignItems: "center"}}>
 
                             <li>
-                                {userData ?
+                                {userData?.profilePicture !== "" ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
                                     : <UserNavigationModal src="/"/>}
 
                             </li>
                             <li id={"UserName"}>
-                                {userData ? <p id={"usernameGet"}>{userData?.username}</p> :
+                                {userData ? <p id={"name"}>{userData?.username}</p> :
                                     <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
