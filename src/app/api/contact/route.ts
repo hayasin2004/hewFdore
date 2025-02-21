@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
       const toUserMailData = {
         from: process.env.GMAILUSER,
-        to: body.email,
+        to: "hew.dgroupe@gmail.com",
         subject: "確認コードのお知らせ",
         html: `  
         <p>あなたの確認コードは：<strong>${randomCode}</strong></p>

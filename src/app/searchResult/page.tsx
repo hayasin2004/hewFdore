@@ -124,7 +124,7 @@ const SearchPageProducts = () => {
     }
 
     // 1ページごとに表示する数はProductPerPageで変えられます
-    var ProductPerPage = 2;
+    var ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = productList.slice(ProductOffset, endOffset);

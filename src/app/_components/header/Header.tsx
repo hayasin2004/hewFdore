@@ -3,18 +3,17 @@ import React, {useEffect, useState} from 'react';
 import "./Heder.css"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
- import Modal from '@mui/material/Modal';
+import Modal from '@mui/material/Modal';
 import {Tab, Tabs} from "@mui/material";
 import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import UserNavigationModal from "@/app/_components/userNavigationModal/UserNavigation";
 import confirmUser from "@/app/utils/user/confirmUser";
- import catchToastProduct from "@/app/utils/toast/catchToastProduct";
+import catchToastProduct from "@/app/utils/toast/catchToastProduct";
 import catchOtherToast from "@/app/utils/toast/catchOtherToast";
 import {ToastType} from "@/models/Toast";
 import {UserType} from "@/app/api/user/catchUser/route";
-
-
+import Image from "next/image"
 
 const Header = () => {
     const user = useUser()
@@ -108,9 +107,8 @@ const Header = () => {
                 <div className="nav">
                     <div className="title">
                         <Link href={"/"}>
-                            <h1>
-                                F&apos;dore
-                            </h1>
+                            <Image src={"/AFdore1CF.png"} className={"logoImage"} width={640} height={480}
+                                   alt={"logo"}/>
                         </Link>
                     </div>
                     <div className="bar">
@@ -151,19 +149,21 @@ const Header = () => {
                             </Link>
                             <span className="long_line"></span>
 
+                            <span style={{display: "flex", alignItems: "center"}}>
 
                             <li>
-                                {userData ?
+                                {userData?.profilePicture !== "" ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
                                     : <UserNavigationModal src="/"/>}
 
                             </li>
                             <li id={"UserName"}>
-                                {userData ? <p id={"usernameGet"}>{userData?.username}</p> :
+                                {userData ? <p id={"name"}>{userData?.username}</p> :
                                     <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
+                            </span>
                             <li id={"list_bell"}>
                                 {userData ?
                                     <div>
@@ -218,12 +218,13 @@ const Header = () => {
                                                                         <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
                                                                     </svg>
                                                                     {item.followerUserId !== "" ?
-                                                                        <Link href={`/userDetail/${item.followerUserId}`}>
+                                                                        <Link
+                                                                            href={`/userDetail/${item.followerUserId}`}>
                                                                             <p>{item.message}</p>
                                                                         </Link>
                                                                         :
-                                                                             <p>{item.message}</p>
-                                                                         }
+                                                                        <p>{item.message}</p>
+                                                                    }
                                                                     <hr/>
                                                                 </div>
                                                             ))}

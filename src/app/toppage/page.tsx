@@ -14,17 +14,43 @@ import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import axios from "axios";
 
 const Toppage = () => {
-
+    // useEffect(() => {
+    //
+    //     const handleSubmit = async ( ) => {
+    //
+    //         try {
+    //             const res = await fetch('/api/contact/', {
+    //                 method: "POST",
+    //                 headers: {
+    //                     Accept: "application/json, text/plain",
+    //                     "Content-Type": "application/json",
+    //                 },
+    //                 body: JSON.stringify({a:"a"}),
+    //             });
+    //
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     };
+    //     handleSubmit()
+    // }, []);
     const [productList, setProductList] = useState([])
     console.log(productList)
 
-    // const updateButton = async () => {
-    //     await toastTradeId()
-    // }
+    const clickButton = async () => {
+        const fetchVideo = await fetch("/api/fetchVideo", {
+            headers: {
+                method: "POST",
+                Accept: "application/json, text/plain",
+                "Content-Type": "application/json",
+                body: JSON.stringify("67b574f366cfba7cf26b6434"),
+            }
+        }).then((response) => console.log(response))
+        fetchVideo()
+    }
 
 
-
-    useEffect(() => {　
+    useEffect(() => {
         // エンコードしたtokenを検証する
         const token = localStorage.getItem("token") as string;
         confirmUser(token);
@@ -56,7 +82,6 @@ const Toppage = () => {
         <>
             {/*<Blogintroduction/>*/}
             <Header/>
-            {/*<button onClick={updateButton}>更新</button>*/}
             <div className={"top"}>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}
@@ -66,8 +91,13 @@ const Toppage = () => {
 
                             <h1>F'dore<span id={"smallFont"}> とは</span></h1>
                             <h3>F'doreとは、女性向けに作られたファッション系フリマサイトです。主に衣服や香水。アクセサリーなどが数多く出品されています。</h3>
-                            <h3>"Female"<span className={"smallFonth3"}> (女性) </span>、"Door"<span className={"smallFonth3"}> (扉) </span>、"Store"<span className={"smallFonth3"}> (お店) </span>の 3つの言葉から生まれた F'dore<span className={"smallFonth3"}>（フィードア）</span>には、特別な想いが込められています。新しい服との出会い、新しい自分との出会いになる。扉を開けて街へ出かけていく、そんな瞬間をサポートしたいという願いを込めて名付けられました。</h3>
-                            <h3>新しい服との出会いは、新しい自分との出会い。 F'doreで、あなたらしいファッションとの素敵な出会いを見つけてください。</h3>
+                            <h3>"Female"<span className={"smallFonth3"}> (女性) </span>、"Door"<span
+                                className={"smallFonth3"}> (扉) </span>、"Store"<span
+                                className={"smallFonth3"}> (お店) </span>の 3つの言葉から生まれた F'dore<span
+                                className={"smallFonth3"}>（フィードア）</span>には、特別な想いが込められています。新しい服との出会い、新しい自分との出会いになる。扉を開けて街へ出かけていく、そんな瞬間をサポートしたいという願いを込めて名付けられました。
+                            </h3>
+                            <h3>新しい服との出会いは、新しい自分との出会い。
+                                F'doreで、あなたらしいファッションとの素敵な出会いを見つけてください。</h3>
                         </div>
                     </div>
                 </div>

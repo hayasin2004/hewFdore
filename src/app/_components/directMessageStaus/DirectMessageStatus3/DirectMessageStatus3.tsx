@@ -10,7 +10,7 @@ const DirectMessageStatus3 = (params) => {
     console.log(icon)
     return (
         <div>
-            DirectMessageStatus3
+            {/*DirectMessageStatus3*/}
             {params?.chatData?.map((item) => (
                 item.chatUserRole == "チャットルーム制作者" ?
                     <div className={"chatLeft-"} key={item._id}>

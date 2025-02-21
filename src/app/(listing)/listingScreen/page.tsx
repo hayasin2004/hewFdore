@@ -283,7 +283,7 @@ const ListingScreen: React.FC = () => {
                             </div>
 
                         </div>
-                        {/*<div className={"kamera"}>*/}
+                        {/*<div id="kamera">*/}
                         {/*    {productImage &&*/}
                         {/*        <video src={productVideoFiles} width={377} height={377} alt={"選択した商品画像"}/>}*/}
                         {/*    /!*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*!/*/}

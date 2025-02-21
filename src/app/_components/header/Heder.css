@@ -23,12 +23,15 @@ header div.nav {
 }
 
 
-header div.title h1 {
-    font-family: "Italiana", sans-serif;
-    font-size: 3.2rem;
-    font-weight: normal;
-    letter-spacing: 5px;
-    width: 100%;
+header div.title{
+    width: 10%;
+    height: auto;
+    text-decoration: none;
+}
+.logoImage {
+    width: 90%;
+    height: auto;
+    margin-top: -5%;
     margin-left: 20%;
     text-decoration: none;
 }
@@ -92,7 +95,7 @@ li.Headersearch svg{
 
 /* ユーザーネーム:ログイン遷移 */
 li#UserName{
-    margin: 15px 0 0 0;
+    margin: 0 0 0 30px;
     width: 16rem;
     overflow:hidden;
     vertical-align: bottom;
@@ -277,7 +280,7 @@ span.under_bar {
     display: block;
     content: "";
     width: 99.5%;
-    margin-top: -1px;
+    margin-top: -7px;
     height: 11px;
     border-bottom: 1px solid #000000;
 }
