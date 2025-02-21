@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPicker.css"
 import productChatLike from "@/app/utils/product/productChatLike";
-import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 
 const EmojiPickerPurchase = (props) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)

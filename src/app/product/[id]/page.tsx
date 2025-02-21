@@ -24,7 +24,9 @@ const Product = ({params}: { params: { id: string } }) => {
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     console.log(loginUserData)
     const [productVideo, setProductVideo] = useState<string>()
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const router = useRouter()
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
     const theme = createTheme({

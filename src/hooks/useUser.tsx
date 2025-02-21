@@ -12,10 +12,10 @@ export interface useUser {
     profilePicture? : string;
 }
 
-const useUser = () => {
+const useUser = (token : string| null) => {
     const [user, setUser] = useState<string | null>(null)
     // console.log(user?.email)
-    const token = localStorage.getItem("token");
+
 
     useEffect(() => {
         if (token) {

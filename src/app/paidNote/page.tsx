@@ -14,7 +14,8 @@ const PaidNote = () => {
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
-    const user = useUser()
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     console.log(loginUserData)
     useEffect(() => {
 

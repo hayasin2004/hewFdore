@@ -17,7 +17,9 @@ const Favorite = () => {
     const [favoriteProductData, setFavoriteProductData] = useState<ProductType[] | null>(null)
     const [userData, setUserData] = useState<UserType | null>(null)
     console.log(userData)
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
 
     useEffect(() => {
 

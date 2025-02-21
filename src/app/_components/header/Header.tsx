@@ -16,7 +16,9 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import Image from "next/image"
 
 const Header = () => {
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const [userData, setUserData] = useState<UserType | null>(null)
     const [toastPurchase, setToastPurchase] = useState<ToastType[] | null>([])
     const [otherToast, setOtherToast] = useState<ToastType[] | null>([])

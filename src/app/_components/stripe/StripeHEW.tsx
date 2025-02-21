@@ -22,7 +22,9 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             return status === "true";
         })
         console.log(paymentMethod)
-        const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
 
         const socket = io("http://localhost:8080");
         //

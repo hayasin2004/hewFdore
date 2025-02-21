@@ -11,7 +11,9 @@ import listingNote from "@/app/utils/product/listingNote";
 const PaidNote = () => {
     const [productData, setProductData] = useState([])
     const [loginUserData, setLoginUserData] = useState()
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const userParse = JSON.parse(user)
     const currentUser = loginUserData?._id
 

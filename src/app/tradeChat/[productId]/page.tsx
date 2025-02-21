@@ -222,7 +222,9 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
     console.log(partnerUserData)
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const token = localStorage.getItem("token")
     if (!token) {
         window.alert("ログインしてください。")

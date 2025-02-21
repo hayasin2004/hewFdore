@@ -17,7 +17,11 @@ const Chat = (props: { paramsProductData: string }) => {
     console.log("渡ってきた" + JSON.stringify(ChatMessageList?.map((item) => console.log(item?.chatUserRole == "購入者"))))
 
     console.log(icon,chatMessage)
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const productId = props.paramsProductData
     const currentUser = loginUserData?._id
     useEffect(() => {
