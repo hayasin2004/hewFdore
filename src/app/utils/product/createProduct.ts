@@ -33,12 +33,12 @@ export interface createProductType {
         if (saveVideo !== null) {
             const decoded = await jwt.verify(token, process.env.SECRET_KEY);
             const sellerId = decoded.userId
-            const sellerUserData: UserType = await User.findById(sellerId);
+            const sellerUserData: UserType | null = await User.findById(sellerId);
             const productId = uuidv4()
             const newProduct = await Product.create({
                 productId,
                 sellerId,
-                sellerUserName: sellerUserData.username,
+                sellerUserName: sellerUserData?.username,
                 productName,
                 productPrice,
                 productDesc,
@@ -67,12 +67,12 @@ export interface createProductType {
         if (saveVideo  == null) {
             const decoded = await jwt.verify(token, process.env.SECRET_KEY);
             const sellerId = decoded.userId
-            const sellerUserData: UserType = await User.findById(sellerId);
+            const sellerUserData: UserType | null = await User.findById(sellerId);
             const productId = uuidv4()
             const newProduct = await Product.create({
                 productId,
                 sellerId,
-                sellerUserName: sellerUserData.username,
+                sellerUserName: sellerUserData?.username,
                 productName,
                 productPrice,
                 productDesc,
