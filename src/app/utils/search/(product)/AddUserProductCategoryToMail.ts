@@ -7,7 +7,7 @@ import nodemailer from "nodemailer";
 import {ProductType} from "@/app/utils/product/productDetail";
 import {UserType} from "@/app/api/user/catchUser/route";
 
-const addUserProductCategoryToMail = async (category : string , newProduct : string) => {
+const addUserProductCategoryToMail = async (category : string , newProduct : ProductType) => {
     await connectDB()
     try {
         const searchProduct: ProductType | null =await Product.findById(newProduct._id);
