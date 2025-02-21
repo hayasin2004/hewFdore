@@ -4,20 +4,25 @@ import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
 import updateFollowings from "@/app/utils/user/ApdateFollowings";
-import useUser from "@/hooks/useUser";
+import "./userDetail.css"
 import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";
 import Images from "next/image";
+import getFollowUser from "@/app/utils/user/getFollowUser";
 
 
 const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
+    const [followerData, setFollowerData] = useState<UserType[] | null>(null)
+    const [followingsData, setFollowingsData] = useState<UserType[] | null>(null)
+    console.log(followerData )
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [likeList, setLikeList] = useState<string[] | null>(null)
-    const [loginUserData , setLoginUserData] = useState<string | null>(null)
+    const [loginUserData, setLoginUserData] = useState<string | null>(null)
     const [mainImages, setMainImages] = useState<{ [key: string]: string }>({});
     const [images, setImages] = useState<{ [key: string]: string[] }>({});
+    const [selectedTab, setSelectedTab] = useState("tab1");
 
     console.log(images, mainImages);
 
@@ -43,6 +48,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
             console.log(err)
         }
     }
+
     useEffect(() => {
         const response = async () => {
             try {
@@ -53,8 +59,12 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 console.log(id);
                 const response = await userProfile(id);
                 const responesUserData = JSON.parse(response?.searchUser);
+                const responceFollowerData = JSON.parse((response?.followers));
+                const responesFollowingsData = JSON.parse(response?.followings);
                 const responesProductData: ProductType[] = JSON.parse(response?.searchProduct);
                 setUserData(responesUserData);
+                setFollowerData(JSON.parse(responceFollowerData));
+                setFollowingsData(JSON.parse(responesFollowingsData));
                 setProductData(responesProductData);
                 const newMainImages: { [key: string]: string } = {};
                 const newImages: { [key: string]: string[] } = {};
@@ -81,8 +91,6 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
         }
         response()
     }, [token]);
-
-
     return (
         <div>
             <h1>
@@ -90,8 +98,9 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
             </h1>
             <div>
                 <div className={"partnerProfile"}>
-                    <div className={"partnerProfile img"}><Images src={userData?.profilePicture} alt={"ユーザーのプロフィール画像"} width={100}
-                                           height={100}/></div>
+                    <div className={"partnerProfile img"}><Images src={userData?.profilePicture}
+                                                                  alt={"ユーザーのプロフィール画像"} width={100}
+                                                                  height={100}/></div>
                     {/*<li>オブジェクトID: {userData?._id}</li>*/}
                     <div className={"user"}>
                         <div>ユーザー名: {userData?.username}</div>
@@ -127,7 +136,6 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 </div>
 
 
-
                 <div className={"selfIntroduction"}>
                     自己紹介: {userData?.desc}
                 </div>
@@ -155,21 +163,34 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                                 <div>商品価格 : {item.productPrice}</div>
                                 <div>送料負担 : {item.postageBurden}</div>
                                 <div>商品カテゴリー : {item.productCategory}</div>
-                                <Images src={item?.productImage ? item?.productImage : "/"} alt={"商品画像"} width={500} height={500} />
+                                <Images src={item?.productImage ? item?.productImage : "/"} alt={"商品画像"}
+                                        width={500} height={500}/>
                                 <Link href={`/product/${item._id}`}>
                                     <div>詳細を見る</div>
                                 </Link>
                                 <br/>
-                            </div>
+                            </ul>
                         ))}
                     </div>
 
                     <div className="tab_content" id="tab2_content">
-                        フォロー中のユーザーとってくる
+                        フォロー一覧
+                        {followingsData?.map((item : UserType) => (
+                            <ul key={item._id}>
+                                <li>{item.username}</li>
+                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"} width={100} height={100} alt={"ユーザープロフィール画像"} />
+                            </ul>
+                        ))}
                     </div>
 
                     <div className="tab_content" id="tab3_content">
                         フォロワー一覧
+                        {followerData?.map((item : UserType) => (
+                            <ul key={item._id}>
+                                <li>{item.username}</li>
+                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"} width={100} height={100} alt={"ユーザープロフィール画像"} />
+                            </ul>
+                        ))}
                     </div>
                 </div>
 
