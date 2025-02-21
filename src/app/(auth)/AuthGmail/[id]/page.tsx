@@ -152,6 +152,7 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                     </div>
                 )}
 
+
                 {status && (
                     <p className="status">
                         {status}
