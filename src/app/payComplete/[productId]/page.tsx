@@ -42,7 +42,7 @@ const PayComplete = () => {
                 console.log("ゾンビ")
             }
         }
-    }, []);
+    }, [userParse]);
     // const productId = decodeURI(params.productId);
     // console.log(productId);
 

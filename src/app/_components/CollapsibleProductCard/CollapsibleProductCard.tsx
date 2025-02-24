@@ -52,7 +52,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
             item.productImage3 || "",
             item.productImage4 || ""
         ]);
-    }, []);
+    }, [item]);
 
     const handleCollapse = (event: React.MouseEvent) => {
         if (!event.target.closest('.expanded-reverse')) {

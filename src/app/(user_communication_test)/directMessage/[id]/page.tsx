@@ -44,7 +44,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
             }
             chatresponse()
         }
-    }, [chatData]);
+    }, [chatData , status]);
 
 
     useEffect(() => {

@@ -5,18 +5,18 @@ import "./emojiPicker.css"
 import {ProductCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
 
-const EmojiPicker = ({props} : {props : { currentUser: string , productId :string ,stamp : string , item :string}}) => {
+const EmojiPicker = ({props}: { props: { currentUser: string, productId: string, stamp: string, item: string } }) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
     const [icon, setIcon] = useState<ProductCommentType | null>(null)
     const [existIcon, setExistIcon] = useState<boolean>(false)
-    console.log(existIcon , !existIcon)
+    console.log(existIcon, !existIcon)
     useEffect(() => {
         if (props.stamp !== undefined && props.stamp !== null) {
             setExistIcon(!existIcon)
             setIcon(props.stamp)
             console.log(existIcon)
         }
-    }, [props]);
+    }, [props ,existIcon]);
 
     const showPicker = () => setIsShowPicker(!isShowPicker)
     const selectEmoji = (e: any) => {
@@ -28,7 +28,7 @@ const EmojiPicker = ({props} : {props : { currentUser: string , productId :strin
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {
-                 console.log(props.currentUser)
+                console.log(props.currentUser)
                 const response = await productChatLike(props.currentUser, props.productId, props.item, emoji)
                 console.log(response)
                 console.log("そうにゅう処理")

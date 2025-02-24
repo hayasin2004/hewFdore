@@ -41,12 +41,11 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
         // }, []);
 
         useEffect(() => {
-
             if (user !== undefined) {
                 const userParse = JSON.parse(user)
                 setLoginNowUserData(JSON.parse(userParse));
             }
-        }, [user]);
+        }, [user ,sellingOrSoldOutStatus]);
 
         useEffect(() => {
             if (sellingOrSoldOut == true) {

@@ -18,7 +18,7 @@ const EmojiPickerDirectMessage = (props) => {
             console.log("props.stamp" + props.stamp)
             console.log(existIcon)
         }
-    }, [props]);
+    }, [props , existIcon]);
 
     const showPicker = () => setIsShowPicker(!isShowPicker)
     const selectEmoji = (e: any) => {

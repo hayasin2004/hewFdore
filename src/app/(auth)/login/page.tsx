@@ -31,7 +31,7 @@ const Login = () => {
             }
         }
         existTenMinToken();
-    }, [])
+    }, [router])
 
 
 

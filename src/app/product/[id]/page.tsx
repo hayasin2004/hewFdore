@@ -76,7 +76,7 @@ const Product = ({params}: { params: { id: ProductType } }) => {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
-    }, [user]);
+    }, [user, id,router]);
 
     useEffect(() => {
 
@@ -123,7 +123,7 @@ const Product = ({params}: { params: { id: ProductType } }) => {
         }
 
         response()
-    }, [loginUserData]);
+    }, [loginUserData?._id]);
 
 
     useEffect(() => {

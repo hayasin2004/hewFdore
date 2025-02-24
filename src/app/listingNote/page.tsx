@@ -33,7 +33,7 @@ const PaidNote = () => {
             }
         }
         fetchPurchaseProduct()
-    }, [user]);
+    }, [user ,currentUser,userParse]);
 
 
     return (

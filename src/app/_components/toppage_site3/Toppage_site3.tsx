@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GetBlog } from "@/lib/client";
 import "./common.css";
+import Images from "next/image";
 
 export interface BlogType {
     id: string;
@@ -63,7 +64,7 @@ const ToppageSite3 = () => {
                             <li key={blog.id}>
                                 <Link href={`/${blog.id}`} className="blog-link">
                                     {blog.image && (
-                                        <img
+                                        <Images
                                             src={blog.image.url}
                                             alt={blog.title}
                                             className="blog-image"
@@ -158,7 +159,7 @@ export default ToppageSite3;
 //                             <li key={blog.id}>
 //                                 <Link href={`/${blog.id}`} className="blog-link">
 //                                     {blog.image && (
-//                                         <img
+//                                         <Images
 //                                             src={blog.image.url}
 //                                             alt={blog.title}
 //                                             className="blog-image"
@@ -244,7 +245,7 @@ export default ToppageSite3;
 //                         blogs.slice(0, 3).map((blog) => ( // 3件に制限
 //                             <li key={blog.id}>
 //                                 {blog.image ? (
-//                                     <img
+//                                     <Images
 //                                         className="image"
 //                                         src={blog.image.url}
 //                                         width="380"

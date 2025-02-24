@@ -94,7 +94,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
             }
         }
         response()
-    }, [token]);
+    }, [token ,loginUserData]);
     return (
         <div>
             <h1>

@@ -8,6 +8,7 @@ import {ProductCommentType} from "@/models/ProductComment";
  import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 import {UserType} from "@/app/api/user/catchUser/route";
+import Images from "next/image";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
@@ -44,7 +45,7 @@ const Chat = (props: { paramsProductData: string }) => {
                 }　
         }
         getProductChatFunction()
-    }, [])
+    }, [productId])
 
 
     const submitChatMessage = async () => {
@@ -140,7 +141,7 @@ const Chat = (props: { paramsProductData: string }) => {
                     setChatMessage(e.target.value)
                 }} placeholder="出品者へのお問い合わせはこちらから"/>
                 <button onClick={submitChatMessage} type={"submit"}>
-                    <img id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                    <Images id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
                 </button>
             </div>
         </div>

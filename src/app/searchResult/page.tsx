@@ -133,7 +133,7 @@ const SearchPageProducts = () => {
         console.log(searchCategoryResult)
         setCategoryProductList(searchCategoryResult)
         setProductListLength(searchCategoryResult.length)
-    }, [searchCategory]);
+    }, [productList ,searchCategory]);
 
 
     return (

@@ -33,7 +33,7 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
             console.log(response)
         }
         handleProductSearch()
-    }, [])
+    }, [searchWordDecoded])
 
     // 検索結果ネーション
     const ProductPerPage = 4;
