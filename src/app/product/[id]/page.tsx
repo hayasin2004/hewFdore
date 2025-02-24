@@ -20,7 +20,7 @@ import sellerCheck from "@/app/utils/product/sellerCheck";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 
-const Product = ({params}: { params: { id: string } }) => {
+const Product = ({params}: { params: { id: ProductType } }) => {
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     const [productVideo, setProductVideo] = useState<string>()
     console.log(productVideo)
@@ -56,13 +56,16 @@ const Product = ({params}: { params: { id: string } }) => {
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {
-            const result = await productLikeDate(id, loginUserData?._id)
-            if (result == "mineProduct"){
-                window.alert("自分の商品にはいいねできないです。")
-            }
-            if (result == "notLogin"){
-                window.alert("ログインしていないといいねはできないです。")
-                setProductLike(false)
+            if (id !== undefined || loginUserData !== undefined) {
+
+                const result = await productLikeDate(id, loginUserData?._id)
+                if (result == "mineProduct") {
+                    window.alert("自分の商品にはいいねできないです。")
+                }
+                if (result == "notLogin") {
+                    window.alert("ログインしていないといいねはできないです。")
+                    setProductLike(false)
+                }
             }
         }
         productLikeData()
@@ -92,7 +95,7 @@ const Product = ({params}: { params: { id: string } }) => {
                 setSameSellerStatus(sellerCheckCatch)
                 console.log(sellerCheckCatch)
             }
-            if (productCatch == null){
+            if (productCatch == null) {
                 console.log("商品が消された可能性があります。")
                 window.alert("商品が消された可能性があるので商品の詳細を表示することができませんでした。トップページに戻ります。");
                 router.push("/")
@@ -111,7 +114,7 @@ const Product = ({params}: { params: { id: string } }) => {
                     instanceProductParse.productImage4 || ""
                 ]);
             }
-            if (productCatchParse?.video !== undefined && productCatchParse?.video !== null){
+            if (productCatchParse?.video !== undefined && productCatchParse?.video !== null) {
                 const video = productCatchParse?.video
                 // const blob = await video?.blob()
                 // const url = URL.createObjectURL(blob)
@@ -149,7 +152,8 @@ const Product = ({params}: { params: { id: string } }) => {
                         <div id="info">
                             <div id="photo">
                                 <figure>
-                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"} width={200} height={200}
+                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                           width={200} height={200}
                                            alt="商品の写真"/>
                                 </figure>
                                 <ul className="piclist">
@@ -158,7 +162,8 @@ const Product = ({params}: { params: { id: string } }) => {
                                             <li key={index} className="picts">
                                                 {image ? (
                                                     <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                        <Image className="pictS" src={image} width={50} height={50} alt={`画像${index + 1}`} />
+                                                        <Image className="pictS" src={image} width={50} height={50}
+                                                               alt={`画像${index + 1}`}/>
                                                     </a>
                                                 ) : null}
                                             </li>

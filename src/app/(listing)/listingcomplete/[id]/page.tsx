@@ -8,9 +8,9 @@ import Link from "next/link";
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
 const ListingComplete = ({params}: { params: { id: string } }) => {
-    const [data, setData] = useState<ProductType| undefined | null>(null);
+    const [data, setData] = useState<ProductType | undefined | null>(null);
     const id = params.id;
-
+    console.log(data)
     const [mainImage, setMainImage] = useState<string | undefined | null>(null);
     const [images, setImages] = useState<string[]>([]);
 
@@ -19,8 +19,8 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
             const productData = async () => {
                 const result = await productDetail(id);
                 if (result?.product !== undefined) {
-                    const resultParse = JSON.parse(result?.product);
-                    setData(resultParse?.product);
+                    const resultParse = JSON.parse(result.product);
+                    setData(resultParse);
                     setMainImage(resultParse.productImage);  // メイン画像を初期化
                     setImages([
                         resultParse.productImage || "",
@@ -72,9 +72,9 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                     <div id="text">
                         <h1 className={"liscomph2"}>{data?.productName}</h1>
                         <span className="under_bar"></span>
-                        <a href="#" id="seller">
-                            <h2>出品者:{data?.sellerUserName}</h2>
+                        <div id="seller">
 
+                            出品者:
                             <svg style={{color: "#000"}} xmlns="http://www.w3.org/2000/svg" width={50} height={50}
                                  viewBox="0 0 24 24">
                                 <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
@@ -83,7 +83,9 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                                         d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
                                 </g>
                             </svg>
-                        </a>
+                            <h2>
+                                {data?.sellerUserName}</h2>
+                        </div>
                         <p>{data?.productDesc}</p>
                         <p id="size">サイズ:{data?.productSize}</p>
                         <p id="used">商品状態:{data?.productCondition}</p>

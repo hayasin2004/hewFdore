@@ -60,7 +60,7 @@ div#text{
 div#text h1{
     font-size: 3rem;
 }
-div#text a#seller{
+div#text div#seller{
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -69,7 +69,7 @@ div#text a#seller{
     text-decoration: none;
 }
 
-div#text a#seller h2{
+div#text div#seller h2{
     margin-right: 20px;
 }
 

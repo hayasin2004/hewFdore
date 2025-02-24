@@ -48,8 +48,13 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     const handlePageClick = (e: { selected: number }) => {
         const newOfffset = (e.selected * ProductPerPage) % searchProductResult?.length;
         setProductoffset(newOfffset);
-
     };
+
+    useEffect(() => {
+        setSearchCategory("")
+        setCategoryProductList([])
+    }, []);
+
     function T_items({category, currentProduct, categoryProductList}) {
         console.log(categoryProductList)
         return (

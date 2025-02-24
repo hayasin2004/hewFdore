@@ -4,9 +4,7 @@ import "./searchResult.css"
 // コンポーネント読み込み
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
-import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
-import {loadStripe} from "@stripe/stripe-js";
 import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 // ページネーション
 import ReactPaginate from "react-paginate";

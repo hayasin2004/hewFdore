@@ -3,8 +3,6 @@ import './userNavigation.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import Header from "@/app/_components/header/Header";
-import useUser from "@/hooks/useUser";
 import Link from "next/link";
 import Images from "next/image"
 import {useEffect, useState} from "react";
@@ -28,70 +26,6 @@ const style = {
     lineHeight: 2,
 };
 
-
-function ChildModal() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    return (
-        <React.Fragment>
-            <Button sx={{
-                marginTop: 2,
-                fontWeight: "bold",
-                bgcolor: "#D0C7B2",
-                color: "#605252",
-                border: '2px solid #605252'
-            }} onClick={handleOpen}>プロフィールナビゲーション</Button>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="child-modal-title"
-                aria-describedby="child-modal-description"
-            >
-
-                <Box sx={{
-                    ...style
-                }
-                }>
-                    <h2 id="child-modal-title">プロフィールナビゲーション</h2>
-                    <p id="child-modal-description">
-                        <Link href={"/confirmUser"}>
-                            プロフィール
-                        </Link>
-
-                    </p>
-                    {/*<p id="child-modal-description">*/}
-                    {/*    <Link href={"confirmPoints"}>*/}
-                    {/*        獲得ポイント履歴*/}
-                    {/*    </Link>*/}
-                    {/*</p>*/}
-                    <p id="child-modal-description">
-                        <Link href={"/favorite"}>
-                            お気に入り登録ページ
-                        </Link>
-                    </p>
-                    <p id="child-modal-description">
-                        <Link href={"/paidNote"}>
-                            購入履歴
-                        </Link>
-                    </p>
-                    <Button sx={{
-                        marginTop: 2,
-                        fontWeight: "bold",
-                        bgcolor: "#D0C7B2",
-                        color: "#605252",
-                        border: '2px solid #605252'
-                    }} onClick={handleClose}>閉じる</Button>
-                </Box>
-            </Modal>
-        </React.Fragment>
-    );
-}
 
 const UserNavigation = ({src}) => {
     const [userData, setUserData] = useState<UserType | null>(null)

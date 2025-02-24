@@ -12,7 +12,7 @@ import Image from "next/image"
 const CompleteStripe = ({productId, sellingOrSoldOut}) => {
         const router = useRouter();
 
-        const [paymentMethod, setPaymentMethod] = useState<string>('card');
+        // const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [loginNowUserData, setLoginNowUserData] = useState<UserType | null>(null)
         const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<boolean>(false)
         console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)

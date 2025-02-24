@@ -48,7 +48,7 @@ const PaidNote = () => {
         <>
             <Header/>]
             <div id={"bread"}>
-                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <Link href={"/"}><p className={"breadText"}>F&apos;dore</p></Link>
                 <p className={"breadArrow"}>＞</p>
                 <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
                 <p className={"breadArrow"}>＞</p>

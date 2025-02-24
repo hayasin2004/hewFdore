@@ -28,7 +28,7 @@ const EmojiPicker = ({props} : {props : { currentUser: string , productId :strin
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {
-                console.log(props.currentUser)
+                 console.log(props.currentUser)
                 const response = await productChatLike(props.currentUser, props.productId, props.item, emoji)
                 console.log(response)
                 console.log("そうにゅう処理")
