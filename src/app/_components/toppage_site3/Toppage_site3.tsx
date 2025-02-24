@@ -67,14 +67,14 @@ const ToppageSite3 = () => {
                                         <Images
                                             src={blog.image.url}
                                             alt={blog.title}
-                                            className="blog-image"
+                                            className="blog-images"
                                             width="380"
                                             height="265"
                                         />
                                     )}
                                     <div className="text-container">
                                         <div className="blog-date">{formatDate(blog.createdAt)}</div>
-                                        <div className="linkid">
+                                        <div className="linkids">
                                             {blog.title.length > 20 ? `${blog.title.substring(0, 20)}...` : blog.title}
                                         </div>
                                     </div>

@@ -65,7 +65,7 @@ div.siteunbermain{
 }
 
 /* 画像デザイン */
-.blog-image {
+.blog-images {
     width: 100%;
     height: 200px; /* 画像の高さを統一 */
     object-fit: cover; /* 画像の比率を維持しつつサイズ調整 */
@@ -88,7 +88,7 @@ div.siteunbermain{
 
 /* ブログタイトル（2行目禁止・高さ統一） */
 /* タイトル表示を1行に制限し、高さを統一 */
-.linkid {
+.linkids {
     font-size: 18px;
     font-weight: bold;
     color: #333;
