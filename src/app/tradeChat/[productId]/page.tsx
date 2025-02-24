@@ -11,19 +11,17 @@ import TradeProductMessageServer, {tradeChatStatusType} from "@/app/utils/user/T
 import tradeProductCatchMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import tradeProductCatchMessageStatus1 from "@/app/utils/message/tradeProductCatchMessageStatus1";
 import savePurchaseProductMessageStatus1 from "@/app/utils/message/savePurchaseProductMessageStauts1";
-import useUser from "@/hooks/useUser";
+
 import Images from "next/image";
 import userProfile from "@/app/utils/user/userProfile";
 import savePurchaseProductMessageStatus2Update from "@/app/utils/message/savePurchaseProductMessageStatus2Update";
 import tradeEnd from "@/app/utils/product/tradeEnd";
 import confirmTradeStatus from "@/app/utils/product/confirmTradeStatus";
-import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
 import TradeCancelFnc from "@/app/utils/product/TradeCancelFnc";
 import {ProductType} from "@/app/utils/product/productDetail";
 import {redirect} from 'next/navigation';
 import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
-import {useRouter} from "next/navigation"
 import {UserType} from "@/app/api/user/catchUser/route";
 
 const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {

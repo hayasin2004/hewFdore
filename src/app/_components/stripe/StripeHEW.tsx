@@ -55,7 +55,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             } else {
                 console.log("販売中です")
             }
-        }, [sellingOrSoldOut]);
+        }, [sellingOrSoldOut , sellingOrSoldOutStatus]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             if (loginNowUserData?._id == undefined || loginNowUserData == null || loginNowUserData == undefined) {
                 console.log("ログインしてください。")

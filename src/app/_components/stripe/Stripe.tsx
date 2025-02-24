@@ -12,7 +12,7 @@ import Image from "next/image"
 const CompleteStripe = ({productId, sellingOrSoldOut}) => {
         const router = useRouter();
 
-        // const [paymentMethod, setPaymentMethod] = useState<string>('card');
+        const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [loginNowUserData, setLoginNowUserData] = useState<UserType | null>(null)
         const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<boolean>(false)
         console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)
@@ -22,6 +22,10 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             return status === "true";
         })
         console.log(paymentMethod)
+
+    useEffect(() => {
+        setPaymentMethod("card")
+    }, []);
 
     const token = localStorage.getItem("token");
     const user = useUser(token)
@@ -45,7 +49,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
                 const userParse = JSON.parse(user)
                 setLoginNowUserData(JSON.parse(userParse));
             }
-        }, [user ,sellingOrSoldOutStatus]);
+        }, [user ,sellingOrSoldOutStatus , ]);
 
         useEffect(() => {
             if (sellingOrSoldOut == true) {
@@ -54,7 +58,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             } else {
                 console.log("販売中です")
             }
-        }, [sellingOrSoldOut]);
+        }, [sellingOrSoldOut,sellingOrSoldOutStatus]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             if (loginNowUserData?._id == undefined || loginNowUserData == null || loginNowUserData == undefined) {
                 console.log("ログインしてください。")

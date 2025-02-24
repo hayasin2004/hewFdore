@@ -123,7 +123,7 @@ const Product = ({params}: { params: { id: ProductType } }) => {
         }
 
         response()
-    }, [loginUserData?._id]);
+    }, [loginUserData?._id ,id ,router]);
 
 
     useEffect(() => {
@@ -131,7 +131,7 @@ const Product = ({params}: { params: { id: ProductType } }) => {
             console.log(product?.productLike.includes(loginUserData?._id));
             setProductLike(true);
         }
-    }, [product]);
+    }, [product ,loginUserData?._id]);
 
     const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
         e.preventDefault();
