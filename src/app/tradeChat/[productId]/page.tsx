@@ -500,7 +500,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 <div className={"purchaseMessage"}>
                     <div className="Productchat">
                         <div>
-                            {status == 1 ?
+                            {status == "1" ?
                                 <div>
                                     <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
@@ -538,7 +538,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                                placeholder="出品者へのお問い合わせはこちらから"/>
                         {/*<input type="submit" formTarget={"msg"}/>*/}
                         <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
-                            <img id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                            <Images alt={"メール送信"} id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
                         </button>
                     </div>
                 </div>
