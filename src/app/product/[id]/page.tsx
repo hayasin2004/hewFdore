@@ -10,7 +10,7 @@ import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 import Favorite from '@mui/icons-material/Favorite';
 import {Checkbox} from "@mui/material";
 import {FavoriteBorder} from "@mui/icons-material";
-import {ThemeProvider, createTheme} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
 import Chat from "@/app/_components/chat/Chat";
@@ -22,8 +22,8 @@ import {UserType} from "@/app/api/user/catchUser/route";
 
 const Product = ({params}: { params: { id: string } }) => {
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
-    console.log(loginUserData)
     const [productVideo, setProductVideo] = useState<string>()
+    console.log(productVideo)
 
     const token = localStorage.getItem("token");
     const user = useUser(token)
@@ -195,7 +195,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             <Chat paramsProductData={id}/>
                         </div>
                         <div id="controlProduct">
-                            {product?.sellStatus == "trading" ?
+                            {product?.sellStatus == "販売中" ?
                                 <></>
                                 :
                                 <ThemeProvider theme={theme}>
@@ -214,7 +214,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             {/*</button>*/}
                             {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
                                 <Stripe productId={product?._id}
-                                        sellingOrSoldOut={product?.sellStatus == "trading" ? true : false}/>}
+                                        sellingOrSoldOut={product?.sellStatus == "販売中" ? true : false}/>}
                         </div>
 
 

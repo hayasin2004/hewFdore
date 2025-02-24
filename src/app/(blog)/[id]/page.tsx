@@ -1,5 +1,5 @@
-import { createClient } from "microcms-js-sdk";
-import { notFound } from "next/navigation";
+import {createClient} from "microcms-js-sdk";
+import {notFound} from "next/navigation";
 import Link from "next/link";
 import "./blog_id.css";
 

@@ -1,7 +1,6 @@
 "use server"
 
 import {Chat} from "@/models/Chat";
-import {string} from "prop-types";
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 

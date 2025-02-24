@@ -36,7 +36,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                     $set: {
                         buyerId: userId,
                         stripeCode: stripeCode,
-                        sellStatus: "trading"
+                        sellStatus: "販売中"
                     }
                 }, {new: true, upsert: true});
                 console.log(product)
@@ -47,7 +47,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                     $set: {
                         buyerId: userId,
                         payPayCode: stripeCode,
-                        sellStatus: "trading"
+                        sellStatus: "販売中"
                     }
                 }, {new: true, upsert: true});
                 console.log(product)

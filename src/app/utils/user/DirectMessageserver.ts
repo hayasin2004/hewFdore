@@ -1,13 +1,8 @@
 "use server"
 
-import {string} from "prop-types";
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
-import {MongoClient} from "mongodb";
-
-import {Server} from "socket.io";
-import mongoose from "mongoose";
-import {Chat, ChatType} from "@/models/Chat";
+import {Chat} from "@/models/Chat";
 import {UserType} from "@/app/api/user/catchUser/route";
 import {v4 as uuidv4} from 'uuid';
 
@@ -32,7 +27,6 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
         })
         //console.log(chatExists?._id)
         if (chatExists) {
-            const chatId = chatExists._id
             //console.log("ここがアンディファインド"+chatId)　
             // const currentUser = tokenUser
             // const partnerUser = detailUser
@@ -45,7 +39,6 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
             return {status:"chatExists" , chatId : JSON.stringify(chatExists) , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
 
         } else if (chatExistsPart2) {
-            const chatId = chatExistsPart2._id
             //console.log(chatId)
             const currentUser = detailUser
             const partnerUser = currentUser
@@ -64,7 +57,7 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
                     partnerUser: detailUser
                 })
                 newChatRoom.save()
-                return {status : "newChatRoom" , newChatRoom}
+                return {status : "newChatRoom" , newChatRoom : JSON.stringify(newChatRoom)}
             }
         }
     } catch

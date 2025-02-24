@@ -1,7 +1,10 @@
-import React from 'react';
+"use client"
+import React, {useState} from 'react';
 import "./DirectMessageStatus1.css"
+import EmojiPickerDirectMessage from "@/app/_components/emojiPickerDirectMessage/EmojiPickerDirectMessage";
+import {ChatType} from "@/models/Chat";
 
-const DirectMessageStatus1 = (params) => {
+const DirectMessageStatus1 = ({params} : {params : {chatData : ChatType[] , currentUserId : string}} ) => {
     console.log(params?.chatData);
     const [icon, setIcon] = useState("")
     console.log(icon)

@@ -8,6 +8,7 @@ import deleteAccount from "@/app/utils/user/deleteAccount";
 import confirmUser from "@/app/utils/user/confirmUser";
 
 import Link from "next/link";
+
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")
     const [username, setUsername] = useState<string | null>("")

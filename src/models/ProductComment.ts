@@ -7,24 +7,56 @@ export interface ProductCommentType {
     productId?: string;
     ChatMessage?: string[];
     senderUserId?: string;
+    listingUsername :string;
+    listingChatMessage: [{
+        _id :string;
+        listingMessageLike?: string[];
+        listingMessageStampLike?: string
+        listingChatMessage?: string;
+        listingUsername?: string;
+        listingMessage:string;
+        listingProfilePicture?: string;
+        listingMessageStamp: [{
+            listingMessageStampLike?: string;
+            userId : string;
+        }]
+    }];
+    buyerChatMessage: [{
+        _id :string;
+        buyerMessageLike?: string[];
+        buyerMessageStampLike?: string
+        buyerChatMessage?: string;
+        buyerUsername?: string;
+        buyerMessage:string;
+        buyerProfilePicture?: string;
+        buyerMessageStamp: [{
+            buyerMessageStampLike?: string;
+            userId : string;
+        }]
+    }];
     productChat: [{
         listingMessage?: string[];
         productChat?: string[];
         buyerMessageLike?: string[];
-        listingMessageLike?: string[];
         buyerMessageStampLike?: string
-        listingMessageStampLike?: string
-        listingMessageStamp?: string[]
-        listingChatMessage?: string;
         senderUserId?: string;
         userId?: string;
         buyerUsername?: string;
         buyerProfilePicture?: string;
         buyerChatMessage?: string;
+        listingMessageLike?: string[];
+        listingMessageStampLike?: string
+        listingMessageStamp?: string[]
+        listingChatMessage?: string;
         listingUsername?: string;
         listingProfilePicture?: string;
-        chatUserRole?: string
+        chatUserRole?: string;
+        buyerMessageStamp: [{
+            buyerMessageStampLike?: string;
+            userId : string;
+        }]
     }]
+    chatUserRole :string
 }
 
 const ProductCommentSchema = new mongoose.Schema({

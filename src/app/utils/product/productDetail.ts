@@ -24,7 +24,7 @@ export interface ProductType {
     productLike?: string,
     postageBurden?: string,
     productCondition?: string,
-    productImage?: string,
+    productImage: string,
     productImage2?: string,
     productImage3?: string,
     productImage4?: string,

@@ -4,9 +4,13 @@ import {useRouter} from "next/navigation";
 
 const SearchProduct = () => {
     const router = useRouter();
-    const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
+    const [searchKeyWord, setSearchKeyWord] = useState< string | number | readonly string[] | undefined>("")
 
     const handleProductSearch = async () => {
+        if (searchKeyWord !== undefined || searchKeyWord !== null) {
+            window.alert("空白で検索はできないです。")
+            return;
+        }
         router.push(`/searchResult/productSearch/${searchKeyWord}`)
 
     }

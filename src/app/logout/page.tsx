@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "@/app/_components/header/Header";
 import "./logout.css"
+
 const Logout = () => {
 
     return (

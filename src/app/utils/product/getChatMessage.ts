@@ -1,7 +1,8 @@
 "use server"
 
 import {connectDB} from "@/lib/mongodb";
-import {ProductComment, ProductCommentType} from "@/models/ProductComment";
+import {ProductComment} from "@/models/ProductComment";
+
 const getProductChatMessage = async ( productId: string | null) => {
     await connectDB()
     console.log("そもそも動いてんのかって話")

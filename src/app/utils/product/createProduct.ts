@@ -53,7 +53,7 @@ export interface createProductType {
                 productImage3,
                 productImage4,
                 productVideo : saveVideo,
-                sellStatus: "selling"
+                sellStatus: "販売中"
             })
             await newProduct.save()
             const CompleteproductId = newProduct._id
@@ -86,7 +86,7 @@ export interface createProductType {
                 productImage2,
                 productImage3,
                 productImage4,
-                sellStatus: "selling"
+                sellStatus: "販売中"
             })
             await newProduct.save()
             const CompleteproductId = newProduct._id

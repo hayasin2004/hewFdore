@@ -9,7 +9,6 @@ import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";
 import Images from "next/image";
-import getFollowUser from "@/app/utils/user/getFollowUser";
 
 
 const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
@@ -34,7 +33,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
         }));
     };
 
-    console.log(likeList);
+    console.log(handleImageClick);
     const id: UserType | null = params.id;
     const token = localStorage.getItem("token");
 

@@ -9,7 +9,6 @@ import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import Footer from "@/app/_components/footer/Footer";
-import {display} from "@mui/system";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -44,7 +43,7 @@ const ListingScreen: React.FC = () => {
 
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
-    console.log(shippingArea)
+    console.log(shippingArea ,productVideoFiles)
 
     const productImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files

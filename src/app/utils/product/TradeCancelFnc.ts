@@ -14,7 +14,7 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
 
                 const cancelPush = await tradeStripe.updateOne({
                     $set: {
-                        sellStatus: "selling",
+                        sellStatus: "販売中",
                         stripeCode: "",
                         buyerId: ""
                     }
@@ -27,7 +27,7 @@ const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string |
         } else if (tradePayPay !== null) {
             const cancelPush = await tradePayPay.updateOne({
                 $set: {
-                    sellStatus: "selling",
+                    sellStatus: "販売中",
                     payPayCode: "",
                     buyerId: ""
                 }

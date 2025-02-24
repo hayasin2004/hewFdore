@@ -1,7 +1,8 @@
-import { Configure, QRCodeCreate } from '@paypayopa/paypayopa-sdk-node';
-import { NextResponse } from 'next/server';
-import { v4 as uuidv4 } from 'uuid';
-import { z } from 'zod';
+import {Configure, QRCodeCreate} from '@paypayopa/paypayopa-sdk-node';
+import {NextResponse} from 'next/server';
+import {v4 as uuidv4} from 'uuid';
+import {z} from 'zod';
+
 Configure({
     clientId: process.env.PAYPAY_API_KEY || '',
     clientSecret: process.env.PAYPAY_SECRET || '',

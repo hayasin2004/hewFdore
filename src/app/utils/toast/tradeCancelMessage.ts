@@ -1,5 +1,5 @@
 "use server"
-import {connectDB} from "@/lib/mongodb";　
+import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import nodemailer from "nodemailer";

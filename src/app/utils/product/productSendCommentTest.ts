@@ -1,9 +1,9 @@
 "use server"
 
-import { connectDB } from "@/lib/mongodb";
-import { Product } from "@/models/Product";
-import { ProductComment} from "@/models/ProductComment";
-import { User } from "@/models/User";
+import {connectDB} from "@/lib/mongodb";
+import {Product} from "@/models/Product";
+import {ProductComment} from "@/models/ProductComment";
+import {User} from "@/models/User";
 
 const productSendComment = async (productId : string | null, currentUser : string | null, chatMessage: string | null) => {
     await connectDB();

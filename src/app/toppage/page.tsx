@@ -10,7 +10,6 @@ import Toppage_top_slideshow from "@/app/_components/toppage_top_slideshow/Toppa
 import Image from "next/image"
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
-import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import axios from "axios";
 
 const Toppage = () => {
@@ -48,6 +47,8 @@ const Toppage = () => {
         }).then((response) => console.log(response))
         fetchVideo()
     }
+
+    console.log(clickButton)
 
 
     useEffect(() => {
@@ -89,15 +90,15 @@ const Toppage = () => {
                     <div className={"introduction"}>
                         <div className={"introductionMain"}>
 
-                            <h1>F'dore<span id={"smallFont"}> とは</span></h1>
-                            <h3>F'doreとは、女性向けに作られたファッション系フリマサイトです。主に衣服や香水。アクセサリーなどが数多く出品されています。</h3>
-                            <h3>"Female"<span className={"smallFonth3"}> (女性) </span>、"Door"<span
-                                className={"smallFonth3"}> (扉) </span>、"Store"<span
-                                className={"smallFonth3"}> (お店) </span>の 3つの言葉から生まれた F'dore<span
+                            <h1>F&apos;dore<span id={"smallFont"}> とは</span></h1>
+                            <h3>F&apos;doreとは、女性向けに作られたファッション系フリマサイトです。主に衣服や香水。アクセサリーなどが数多く出品されています。</h3>
+                            <h3>&quot;Female&quot;<span className={"smallFonth3"}> (女性) </span>、&quot;Door&quot;<span
+                                className={"smallFonth3"}> (扉) </span>、&quot;Store&quot;<span
+                                className={"smallFonth3"}> (お店) </span>の 3つの言葉から生まれた F&apos;dore<span
                                 className={"smallFonth3"}>（フィードア）</span>には、特別な想いが込められています。新しい服との出会い、新しい自分との出会いになる。扉を開けて街へ出かけていく、そんな瞬間をサポートしたいという願いを込めて名付けられました。
                             </h3>
                             <h3>新しい服との出会いは、新しい自分との出会い。
-                                F'doreで、あなたらしいファッションとの素敵な出会いを見つけてください。</h3>
+                                F&apos;doreで、あなたらしいファッションとの素敵な出会いを見つけてください。</h3>
                         </div>
                     </div>
                 </div>

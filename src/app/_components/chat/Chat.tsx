@@ -2,16 +2,16 @@
 import React, {useEffect, useState} from 'react';
 
 import "./chat.css"
-import Images from "next/image";
 import useUser from "@/hooks/useUser";
  import getProductChatMessage from "@/app/utils/product/getChatMessage";
 import {ProductCommentType} from "@/models/ProductComment";
  import sendProductChatMessage from "@/app/utils/product/sendProductChatMessage";
 import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const Chat = (props: { paramsProductData: string }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
-    const [loginUserData, setLoginUserData] = useState()
+    const [loginUserData, setLoginUserData] = useState<UserType | null>()
     const [icon, setIcon] = useState("")
     const [ChatMessageList, setChatMessageList] = useState<ProductCommentType[] | null>([])
     console.log("渡ってきた" + JSON.stringify(ChatMessageList?.map((item) => console.log(item?.chatUserRole == "購入者"))))
@@ -84,7 +84,7 @@ const Chat = (props: { paramsProductData: string }) => {
                                         d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
                                 </g>
                             </svg>
-                            {item?.listingChatMessage !== undefined ? "Dgroupe" : ""} さん<br/>
+                            {item?.listingChatMessage[0]?.listingUsername} さん<br/>
                             {/*{item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.senderUserName : ""} さん<br/>*/}
                         </div>
                         <div className="comment-area-lef">
@@ -109,8 +109,7 @@ const Chat = (props: { paramsProductData: string }) => {
                                         d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
                                 </g>
                             </svg>
-                            userHew1 さん<br/>
-                            {/*{item?.buyerChatMessage[0]?.senderUserName} さん<br/>*/}
+                            {item?.buyerChatMessage[0]?.buyerUsername} さん<br/>
                         </div>
                         <div className="comment-area-rig">
                             メッセージ内容:{item?.buyerChatMessage[0]?.buyerMessage} <br/>

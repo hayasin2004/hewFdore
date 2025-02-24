@@ -26,10 +26,10 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                         productChat: [{
                             listingChatMessage: [{
                                 senderUserId: currentUser,
+                                listingUsername : user.username ,
                                 listingMessage: sendChatMessage,
                                 listingMessageLike: [],
-                                listingMessageUsername: user.username,
-                                listingMessageProfilePicture: user.profilePicture,
+                                listingProfilePicture: user.profilePicture,
                                 timeStamp: new Date()
                             }],
                             chatUserRole: "出品者",
@@ -48,8 +48,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                 senderUserId: currentUser,
                                 buyerMessage: sendChatMessage,
                                 buyerMessageLike: [],
-                                buyerMessageUsername: user.username,
-                                buyerMessageProfilePicture: user.profilePicture,
+                                buyerUsername: user.username,
+                                buyerProfilePicture: user.profilePicture,
                                 timeStamp: new Date()
                             }],
                             chatUserRole: "購入者"
@@ -75,8 +75,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                                 senderUserId: currentUser,
                                                 listingMessage: sendChatMessage,
                                                 listingMessageLike: [],
-                                                listingMessageUsername: user.username,
-                                                listingMessageProfilePicture: user.profilePicture,
+                                                listingUsername: user.username,
+                                                listingProfilePicture: user.profilePicture,
                                                 timeStamp: new Date()
                                             }],
                                             chatUserRole: "出品者",
@@ -99,8 +99,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                             senderUserId: currentUser,
                                             listingMessage: sendChatMessage,
                                             listingMessageLike: [],
-                                            listingMessageUsername: user.username,
-                                            listingMessageProfilePicture: user.profilePicture,
+                                            listingUsername: user.username,
+                                            listingProfilePicture: user.profilePicture,
                                             timeStamp: new Date()
                                         }],
                                         chatUserRole: "出品者",
@@ -125,8 +125,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                             senderUserId: currentUser,
                                             buyerMessage: sendChatMessage,
                                             buyerMessageLike: [],
-                                            buyerMessageUsername: user?.username,
-                                            buyerMessageProfilePicture: user.profilePicture,
+                                            buyerUsername: user?.username,
+                                            buyerProfilePicture: user.profilePicture,
                                             timeStamp: new Date(),
                                         }],
                                         chatUserRole: "購入者"
@@ -150,8 +150,8 @@ const sendProductChatMessage = async (productId: string | null, currentUser: str
                                             senderUserId: currentUser,
                                             buyerMessage: sendChatMessage,
                                             buyerMessageLike: [],
-                                            buyerMessageUsername: user.username,
-                                            buyerMessageProfilePicture: user.profilePicture,
+                                            buyerUsername: user.username,
+                                            buyerProfilePicture: user.profilePicture,
                                             timeStamp: new Date(),
                                         }],
                                         chatUserRole: "購入者"

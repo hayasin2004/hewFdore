@@ -1,6 +1,5 @@
 import React from 'react';
 import Image from  "next/image"
-import Link from "next/link";
 import "./Sidebar.css"
 const Sidebar = () => {
 
@@ -13,7 +12,7 @@ const Sidebar = () => {
                         Cart
                     </h1>
                     <p>
-                        <Image src={"/images/Cart_icon.png"} width={50}  height={50}/>
+                        <Image src={"/images/Cart_icon.png"} width={50}  height={50} alt={"Cart"}/>
                     </p>
                 </div>
                 <hr id="side_line"/>

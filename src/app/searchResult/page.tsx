@@ -4,26 +4,13 @@ import "./searchResult.css"
 // コンポーネント読み込み
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
-import Sidebar from "@/app/_components/sidebar/Sidebar";
 import {DBProductType} from "@/app/api/product/route";
 // ダミーデータ取得
-import {products as data} from "../api/dummyData/data"
-import {productsProps} from "../api/dummyData/data";
-import CompleteStripe from "@/app/_components/stripe/Stripe";
 import {loadStripe} from "@stripe/stripe-js";
-import Test_PaypayStripe from "@/app/_components/stripe/Test_PaypayStripe";
-import Stripe from "@/app/_components/stripe/Stripe";
-import CollapsibleProductCard from "@/app/_components/CollapsibleProductCard/CollapsibleProductCard";
 import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 // ページネーション
 import ReactPaginate from "react-paginate";
-import Link from "next/link";
 import {ProductType} from "@/app/utils/product/productDetail";
-
-
-const stripePromise = loadStripe(
-    process.env.STRIPE_SECRET_KEY!
-)
 
 const SearchPageProducts = () => {
 
@@ -91,7 +78,6 @@ const SearchPageProducts = () => {
 
     //
     // // 商品を展開
-    var page = 0;
     const product: ProductType[] = productList;
     // HTMLでmap関数で展開するためにこの書き方してます。
 //     ...item　→　スプレッド構文です。オブジェクトの中身を上から取り出します。mapは配列ですが、
@@ -101,7 +87,6 @@ const SearchPageProducts = () => {
 //     このidがHTML内で使われているmap関数のkey={item.id}になります。
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
-    const t_item = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
 
     function T_items({category,currentProduct, categoryProductList}) {
         return (
@@ -124,7 +109,7 @@ const SearchPageProducts = () => {
     }
 
     // 1ページごとに表示する数はProductPerPageで変えられます
-    var ProductPerPage = 4;
+    const ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = productList.slice(ProductOffset, endOffset);

@@ -2,11 +2,12 @@
 import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPicker.css"
+import {ProductCommentType} from "@/models/ProductComment";
 import productChatLike from "@/app/utils/product/productChatLike";
 
-const EmojiPickerPurchase = (props) => {
+const EmojiPicker = ({props} : {props : { currentUser: string , productId :string ,stamp : string , item :string}}) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
-    const [icon, setIcon] = useState<string>("")
+    const [icon, setIcon] = useState<ProductCommentType | null>(null)
     const [existIcon, setExistIcon] = useState<boolean>(false)
     console.log(existIcon , !existIcon)
     useEffect(() => {
@@ -22,7 +23,7 @@ const EmojiPickerPurchase = (props) => {
         console.log(e)
         if (e.unified !== "") {
             const emojiCode = e.unified.split("-");
-            let codesArray: string[] = []
+            const codesArray: string[] = []
             emojiCode.forEach((el: any) => codesArray.push("0x" + el));
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);
@@ -100,4 +101,4 @@ const EmojiPickerPurchase = (props) => {
 }
 
 
-export default EmojiPickerPurchase;
+export default EmojiPicker;

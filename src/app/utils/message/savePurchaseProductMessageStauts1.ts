@@ -3,6 +3,7 @@
 import {Purchase} from "@/models/Purchase";
 import {connectDB} from "@/lib/mongodb";
 import {UserType} from "@/app/api/user/catchUser/route";
+
 export interface ChatType {
     currentUser?: string
     partnerUser?: string

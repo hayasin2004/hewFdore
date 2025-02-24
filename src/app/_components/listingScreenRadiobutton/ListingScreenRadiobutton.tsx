@@ -10,7 +10,7 @@ import {
     Radio,
     RadioGroup,
     Select,
-    SelectChangeEvent, TextField
+    TextField
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import {productStatusType} from "@/app/(listing)/listingScreen/page";
@@ -32,7 +32,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     const [postageBurden, setPostageBurden] = useState("")
     const [deliveryTime, setDeliveryTime] = useState("")
     const [shippingAreaText, setShippingAreaText] = useState("")
-    // console.log(postageBurden)
+    console.log(shippingAreaText)
 
 
     const handleProductExplainCategorySet = (Categoryevent: React.FC<HTMLButtonElement>) => {
@@ -134,6 +134,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                     <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">サイズ</InputLabel>
                         <Select
+                            variant={'outlined'}
                             labelId="demo-simple-select-label"
                             id="outlined-basic"
                             value={productSize}
@@ -165,15 +166,16 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                         <InputLabel id="demo-simple-select-label">商品状態</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
+                            variant={'outlined'}
                             id="outlined-basic"
                             value={productCondition}
                             label="Condition"
                             onChange={(ConditionEvent) => handleProductExplainConditionSet(ConditionEvent.target.value)}
                         >
-                            <MenuItem value={"new"}>新品未使用</MenuItem>
-                            <MenuItem value={"nearNew"}>未使用に近い</MenuItem>
-                            <MenuItem value={"littleScar"}>多少の使用感がある</MenuItem>
-                            <MenuItem value={"scar"}>使用感がある</MenuItem>
+                            <MenuItem value={"新品未使用"}>新品未使用</MenuItem>
+                            <MenuItem value={"未使用に近い"}>未使用に近い</MenuItem>
+                            <MenuItem value={"多少の使用感がある"}>多少の使用感がある</MenuItem>
+                            <MenuItem value={"使用感がある"}>使用感がある</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
@@ -188,13 +190,14 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                     <Select
                         labelId="demo-simple-select-label"
                         id="outlined-basic"
+                        variant={'outlined'}
 
                         value={postageBurden}
                         label="postage"
                         onChange={(PostageBurdenEvent) => handleProductExplainPostageBurdenSet(PostageBurdenEvent.target.value)}
                     >
-                        <MenuItem value={"seller"}>出品者負担</MenuItem>
-                        <MenuItem value={"buyer"}>購入者負担</MenuItem>
+                        <MenuItem value={"出品者"}>出品者負担</MenuItem>
+                        <MenuItem value={"購入者"}>購入者負担</MenuItem>
 
                     </Select>
                 </FormControl>
@@ -208,14 +211,14 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                     <Select
                         labelId="demo-simple-select-label"
                         id="outlined-basic"
-
+                        variant={'outlined'}
                         value={deliveryTime}
                         label="delivery"
                         onChange={(DeliveryTimeEvent) => handleProductExplainDeliveryTimeSet(DeliveryTimeEvent.target.value)}
                     >
-                        <MenuItem value={"1to3day"}>1~3日で発送</MenuItem>
-                        <MenuItem value={"3to5day"}>3~5日で発送</MenuItem>
-                        <MenuItem value={"5to7day"}>5~7日で発送</MenuItem>
+                        <MenuItem value={"1日から3日"}>1~3日で発送</MenuItem>
+                        <MenuItem value={"3日から5日"}>3~5日で発送</MenuItem>
+                        <MenuItem value={"5日から7日"}>5~7日で発送</MenuItem>
 
                     </Select>
                 </FormControl>

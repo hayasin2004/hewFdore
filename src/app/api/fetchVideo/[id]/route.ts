@@ -2,10 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
-import {GridFSBucketReadStream, ObjectId} from "mongodb";
-import {GridFSBucket} from "mongodb";
-import {PassThrough} from "node:stream";
-import {NextResponse} from "next/server";
+import {GridFSBucket, GridFSBucketReadStream, ObjectId} from "mongodb";
 
 export interface ProductType {
     product?: string;

@@ -1,15 +1,15 @@
 "use client"
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Header from "@/app/_components/header/Header";
 import "./listingScreen.css";
 import Image from "next/image";
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from "next/link";
-import productDetail, { ProductType } from "@/app/utils/product/productDetail";
+import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import editProduct from "@/app/utils/product/editProduct";
 import deleteProduct from "@/app/utils/product/deleteProduct";
-import { useRouter } from "next/navigation";
+import {useRouter} from "next/navigation";
 
 export interface productStatusType {
     productCategory?: string;
@@ -31,7 +31,7 @@ const ListingScreen = ({ params }: { params: { productId: string | null } }) => 
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
     const router = useRouter();
-
+    console.log(product , images)
     const EditProduct = params.productId;
 
     const socket = io("http://localhost:8080");
@@ -58,6 +58,7 @@ const ListingScreen = ({ params }: { params: { productId: string | null } }) => 
             ]);
         };
         productResult();
+        socket()
     }, []);
 
     const deleteProductFunc = async () => {
