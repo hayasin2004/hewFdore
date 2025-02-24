@@ -29,7 +29,7 @@ const EmojiPickerPurchase = (props) => {
             const testCommentLike = async () => {
                 //console.log(props.currentUser)
                 const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, emoji)
-                //console.log(response)
+                console.log(response)
                 //console.log("そうにゅう処理")
             }
             testCommentLike()
@@ -42,7 +42,7 @@ const EmojiPickerPurchase = (props) => {
     const deleteStamp = async () => {
         const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, icon)
         //console.log("消す処理")
-        //console.log(response)
+        console.log(response)
         setIcon("")
         setExistIcon(!existIcon)
     }

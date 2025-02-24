@@ -104,8 +104,8 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
         </div>
     )
 }
-const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
-    // status2の時はログインしているユ―ザーが購入者だった時。
+const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat}) => {
+    // status2の時はログインしているユ―ザーが購入者だった時。K
     const [icon, setIcon] = useState("")
     console.log(icon)
 
@@ -217,14 +217,11 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [currentUserData, setCurrentUserData] = useState()
     const [partnerUserData, setPartnerUserData] = useState()
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
-    const router = useRouter()
-
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
     console.log(partnerUserData)
 　
     const token = localStorage.getItem("token")
-    const user = useUser(token)
     if (!token) {
         window.alert("ログインしてください。")
         redirect("/login")
@@ -515,7 +512,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                                 </div> : <div>
                                     <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
                                                       currentUserIdChat={currentUserIdChat}
-                                                      partnerUserIdChat={partnerUserIdChat}/>
+                                                     />
                                 </div>}
                             {chatList.map((item, index) => (
                                 <ul key={index}>
@@ -556,7 +553,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                     {tradeStatus == 1 || tradeStatus == 404 ?
                         <div>
-                            {/*<button onClick={tradeEndFunc}>取引を終了する</button>*/}
+                            <button onClick={tradeEndFunc}>取引を終了する</button>
                             <p>取引終了</p>
                         </div>
                         : <button onClick={tradeEndFunc}>取引終了</button>
@@ -578,13 +575,13 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     </div>
                 </div>
 
-                {/*<div>*/}
-                {/*    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}*/}
-                {/*</div>*/}
+                <div>
+                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
+                </div>
 
-                {/*<div>*/}
-                {/*    購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}*/}
-                {/*</div>*/}
+                <div>
+                    購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}
+                </div>
 
                 <div id="control">
                     <button
@@ -593,7 +590,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 </div>
 
                 {tradeStatus == 1 || tradeStatus == 404 ?
-                    ""
+                    {tradeCancel}
                     :
                     <div id="control">
                         <button onClick={TradeCancel}
