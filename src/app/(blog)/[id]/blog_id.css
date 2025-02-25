@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
-
+body{
+    margin: 0;
+    padding: 0;
+}
 
 main.blog-id {
     background-color: #f8f4ef;
 }
 
-h1{
+h1.blogTitle{
     font-family: "Zen Kaku Gothic Antique", sans-serif;
     padding-top: 10px;
     text-align: center;
 }
 
-div{
-    margin: 10px 0 0 0 ;
-}
 
 .blog-titles{
     padding-bottom: 5px;
@@ -89,7 +89,7 @@ div{
     color: #333;
 }
 
-.blog-body p {
+.blog-body p.blogCreatedAt {
     margin: 1em 0;
 }
 

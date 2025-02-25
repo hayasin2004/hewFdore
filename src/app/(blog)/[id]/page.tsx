@@ -36,8 +36,8 @@ async function BlogIdPage({ params }: { params: { id: string } }) {
         return (
             <main className={"blog-id"}>
                 <div className={"blog-titles"}>
-                    <h1>{blog.title}</h1>
-                    <p>{formatDate(blog.createdAt)}</p>
+                    <h1 className={"blogTitle"}>{blog.title}</h1>
+                    <p className={"blogCreatedAt"}>{formatDate(blog.createdAt)}</p>
                 </div>
                 {/*brogintroductionの画像を大きく表示する予定*/}
 

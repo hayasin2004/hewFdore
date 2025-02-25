@@ -69,7 +69,6 @@ const Toppage = () => {
 
     return (
         <>
-            {/*<Blogintroduction/>*/}
             <Header/>
             <div className={"top"}>
                 <Toppage_top_slideshow/>

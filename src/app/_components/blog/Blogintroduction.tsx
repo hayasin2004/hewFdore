@@ -5,7 +5,6 @@ import Header from "@/app/_components/header/Header";
 import { GetBlog } from "@/lib/client";
 import Link from "next/link";
 import "./Blogintroduction.css";
-import Images from "next/image";
 
 export interface BlogType {
     id?: string;
