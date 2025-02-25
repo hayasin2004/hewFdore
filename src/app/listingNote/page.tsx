@@ -7,10 +7,12 @@ import "./listingNote.css"
 import Link from "next/link";
 import useUser from "@/hooks/useUser";
 import listingNote from "@/app/utils/product/listingNote";
+import {ProductType} from "@/app/utils/product/productDetail";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const PaidNote = () => {
-    const [productData, setProductData] = useState([])
-    const [loginUserData, setLoginUserData] = useState()
+    const [productData, setProductData] = useState<ProductType[] | null>([])
+    const [loginUserData, setLoginUserData] = useState<UserType | undefined>(undefined)
 
     const token = localStorage.getItem("token");
     const user = useUser(token)
@@ -26,7 +28,7 @@ const PaidNote = () => {
 
                 const response = await listingNote(currentUser)
                 console.log(response)
-                if (response !== undefined) {
+                if (response !== null) {
                     setProductData(JSON.parse(response))
                 }
                 console.log(response)
@@ -55,7 +57,7 @@ const PaidNote = () => {
             </div>
             <div className={"listing"}>
                 <div className={"listing_product"}>
-                    {productData?.map((productItem) => (
+                    {productData?.map((productItem :ProductType) => (
                         <div key={productItem?._id}>
                             <div className={"product"}>
                                 <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>

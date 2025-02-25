@@ -27,19 +27,20 @@ const style = {
 };
 
 
-const UserNavigation = ({src}) => {
+const UserNavigation = (src :string) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const token = localStorage.getItem("token")
     useEffect(() => {
         const userData = async () => {
-            const response = await confirmUser(token)
+            const response = await confirmUser(token!)
             if (response !== undefined) {
-                const responseParse = JSON.parse(response)
+                const responseParse = JSON.parse(response!)
                 setUserData(responseParse)
             }
         }
         userData()
     }, [token]);
+
     const Logout = async () => {
         await localStorage.removeItem("token");
         window.location.reload()

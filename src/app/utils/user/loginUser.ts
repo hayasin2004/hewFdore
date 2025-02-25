@@ -40,7 +40,7 @@ export async function loginUser(email: string | null, password: string | null, c
 
                 const token: string | null = await jwt.sign({
                     userId: userId, /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
-                }, process.env.SECRET_KEY, {expiresIn: "2 day"})
+                }, process.env.SECRET_KEY!, {expiresIn: "2 day"})
 
 
                 return {

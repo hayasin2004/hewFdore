@@ -4,9 +4,9 @@ import './CollapsibleProductCard.css';
 import {ProductType} from "@/app/utils/product/productDetail";
 
 interface ProductCardListProps {
-    items: ProductType[];
-    category: string;
-    size: string
+    items?: ProductType[];
+    category?: string;
+    size?: string
 }
 
 const ProductCardList = ({items, category, size}: ProductCardListProps) => {

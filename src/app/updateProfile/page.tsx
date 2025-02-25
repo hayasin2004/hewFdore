@@ -35,7 +35,7 @@ const UpdateProfile = () => {
 
     useEffect(() => {
         const userData = async () => {
-            const response = await confirmUser(token)
+            const response = await confirmUser(token!)
             if (response) {
                 const responseParse = JSON.parse(response)
                 console.log(responseParse)

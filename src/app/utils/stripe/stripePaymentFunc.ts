@@ -5,7 +5,7 @@ import {Stripe} from "stripe";
 
 const stripePayment = new Stripe(process.env.STRIPE_SECRET_KEY!);
 console.log(stripePayment)
-export async function stripePaymentFunc(productId: string, paymentMethod: string, userId: string | null) {
+export async function stripePaymentFunc(productId: string, paymentMethod: string, userId: string | undefined) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
     await connectDB()

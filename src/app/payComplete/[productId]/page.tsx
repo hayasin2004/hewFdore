@@ -9,7 +9,7 @@ import payComplete from "@/app/utils/product/payComplete";
 const PayComplete = () => {
     const [productId, setProductId] = useState<string | null>("")
     console.log(productId)
-    const [params, setParams] = useState({});
+    const [params, setParams] = useState<string | null>(null);
     const [loginUserData, setLoginUserData] = useState()
 
     console.log(loginUserData,params?.sessionId)

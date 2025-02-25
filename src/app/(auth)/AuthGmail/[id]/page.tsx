@@ -22,8 +22,8 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                 try {
                     const decoded= await confirmToken(TenMinToken);
                     console.log(decoded)
-                    if (decoded !== null ) {
-                        setEmail(decoded.email)
+                    if (typeof decoded !== "string") {
+                        setEmail(decoded?.email)
                     }
                 } catch (err) {
                     console.log(err)

@@ -1,18 +1,22 @@
 "use server"
-import jwt from "jsonwebtoken";
+import jwt, {JwtPayload} from "jsonwebtoken";
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 
-export default async function confirmUser(token: string)  {
+
+export default async function confirmUser(token: string) {
     await connectDB()
     if (!token) {
         return null;
     }
     try {
-        const decoded  = await jwt.verify(token, process.env.SECRET_KEY);
-        const userData = await User.findById(decoded?.userId)
+        const decoded: string | JwtPayload = await jwt.verify(token, process.env.SECRET_KEY!);
+        if (typeof decoded !== "string") {
+            const userData: string | null = await User.findById(decoded?.userId)
+            return JSON.stringify(userData)
+        }
 
-         return JSON.stringify(userData)
+
     } catch (err) {
         console.log(err)
         return null

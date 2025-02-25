@@ -3,10 +3,11 @@
 import {connectDB} from "@/lib/mongodb";
 import {Purchase} from "@/models/Purchase";
 
-const purchaseChatLike = async (currentUserId: string | null, purchaseId: string | null, commentId: string | null, icon: string | null) => {
+
+export const purchaseChatLike = async (currentUserId: string | undefined, purchaseId: string | undefined, commentId: string | undefined, icon: string | null) => {
     await connectDB()
     try {
-         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
+        const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
         const searchBuyerPurchaseAndComment = await Purchase.findOne({"tradeChat.buyerChatMessage._id": commentId}, {"tradeChat.$": 1})
         console.log("判定" + commentId)
 
@@ -22,9 +23,9 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
                 console.log("コメントが削除されている可能性があります")
                 return null
             } else {
-                  if (searchBuyerPurchaseAndComment == null && searchSellerPurchaseAndComment !== null) {
+                if (searchBuyerPurchaseAndComment == null && searchSellerPurchaseAndComment !== null) {
                     const includesCurrentUserId = searchSellerPurchaseAndComment?.tradeChat[0]?.sellerChatMessage[0]?.sellerMessageLike.includes(currentUserId);
-                      if (includesCurrentUserId) {
+                    if (includesCurrentUserId) {
                         console.log("既にログインしているアカウントで出品者のコメントをいいねしている。")
                         console.log("出品者のコメントに対するいいねを削除します。")
                         const updateDeleteSearchMessage = await Purchase.updateOne(
@@ -68,7 +69,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
 
                     } else {
                         console.log("ログインしているアカウントで出品者のコメントをいいねしていないので新規いいね。")
-                         const updateInsertSearchMessage = await Purchase.updateOne(
+                        const updateInsertSearchMessage = await Purchase.updateOne(
                             {_id: searchSellerPurchaseAndComment?._id, "tradeChat.sellerChatMessage._id": commentId},
                             {
                                 $push: {
@@ -105,7 +106,7 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
 
                     }
                 } else if (searchBuyerPurchaseAndComment !== null && searchSellerPurchaseAndComment == null) {
-                     console.log("購入者コメントに対するいいね")
+                    console.log("購入者コメントに対するいいね")
 
                     const includesCurrentUserId = searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerMessageLike.includes(currentUserId);
 
@@ -204,5 +205,3 @@ const purchaseChatLike = async (currentUserId: string | null, purchaseId: string
         return null
     }
 }
-
-export default purchaseChatLike;

@@ -21,7 +21,7 @@ const Login = () => {
                 try {
                     const decoded  = await confirmToken(TenMinToken);
                     console.log(decoded)
-                    if (decoded !== null) {
+                    if (typeof decoded !== "string") {
                         window.alert("メール認証が終わっていない可能性があります。先に終わらしてください")
                         router.push(`/AuthGmail/${decoded?.email}`)
                     }

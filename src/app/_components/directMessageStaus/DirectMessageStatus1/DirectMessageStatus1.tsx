@@ -4,7 +4,12 @@ import "./DirectMessageStatus1.css"
 import EmojiPickerDirectMessage from "@/app/_components/emojiPickerDirectMessage/EmojiPickerDirectMessage";
 import {ChatType} from "@/models/Chat";
 
-const DirectMessageStatus1 = ({params} : {params : {chatData : ChatType[] , currentUserId : string}} ) => {
+export interface DirectMessageType {
+    chatData? :ChatType[]
+    currentUserId? :string
+}
+
+const DirectMessageStatus1 = (params: DirectMessageType ) => {
     console.log(params?.chatData);
     const [icon, setIcon] = useState("")
     console.log(icon)

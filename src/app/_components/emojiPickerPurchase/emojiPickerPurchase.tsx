@@ -2,10 +2,10 @@
 import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPickerPurchase.css"
-import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
-import {EmojiSelectEventType} from "@/app/_components/emojiPicker/EmojiPicker";
+import {purchaseChatLike} from "@/app/utils/product/purchaseChatLike";
+import {EmojiPickerProps, EmojiSelectEventType} from "@/app/_components/emojiPicker/EmojiPicker";
 
-const EmojiPickerPurchase = (props) => {
+const EmojiPickerPurchase = (props :EmojiPickerProps) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
     const [icon, setIcon] = useState<string>("")
     const [existIcon, setExistIcon] = useState<boolean>(false)
@@ -23,8 +23,10 @@ const EmojiPickerPurchase = (props) => {
         //console.log(e)
         if (e.unified !== "") {
             const emojiCode = e.unified.split("-");
-            const codesArray: number[] = []
+            const codesArray: string[] = []
             emojiCode.forEach((el:string) => codesArray.push("0x" + el));
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const emoji: string = String.fromCodePoint(...codesArray);
             //console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {

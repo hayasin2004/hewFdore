@@ -1,14 +1,44 @@
 import mongoose from "mongoose";
-import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface PurchaseType {
-    currentUser?: UserType;
-    partnerUser?: UserType;
-    message?: string
-    partnerUserMessage?: string
-    newChatRoom?: string
+    _id: string;
+    purchaseId: string;
+    productId: string;
+    sellerId: string;
+    buyerId: string;
+    tradeChat?: {
+        buyerChatMessage?: {
+            buyerUserId: string;
+            buyerUsername?: string;
+            buyerProfilePicture?: string;
+            buyerMessage?: string;
+            buyerMessageLike?: string[];
+            buyerMessageStamp?: {
+                buyerMessageStampLike?: string;
+                userId?: string;
+            }[];
+            timeStamp?: Date;
+        }[];
+        sellerChatMessage?: {
+            sellerUserId: string;
+            sellerUsername?: string;
+            sellerProfilePicture?: string;
+            sellerMessage?: string;
+            sellerMessageLike?: string[];
+            sellerMessageStamp?: {
+                sellerMessageStampLike?: string;
+                userId?: string;
+            }[];
+            timeStamp?: Date;
+        }[];
+        chatUserRole?: string;
+    }[];
+    sellerUserLastChat?: string;
+    buyerUserLastChat?: string;
+    sellerUserLastReview?: (typeof review)[number];
+    buyerUserLastReview?: (typeof review)[number];
+    tradeStatus: (typeof tradeStatus)[number];
 }
-
 const tradeStatus = ["取引中", "取引完了", "取引終了", "取引キャンセル"] as const;
 // type tradeStatusType = (typeof tradeStatus)[number];
 

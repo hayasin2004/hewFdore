@@ -3,19 +3,18 @@
 import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import jwt from "jsonwebtoken";
-import {UserType} from "@/app/api/user/catchUser/route";
 
 const userInfoChange = async (userId: string | null, username: string | null, password: string | null, address: string | null, description: string | null, profilePicture: string | null, existToken: string | null) => {
     await connectDB()
     try {
         console.log(existToken!)
-          const validationCheckUserData: UserType | null = await User.findOne({username: username}).select("username email")
+          const validationCheckUserData = await User.findOne({username: username}).select("username email")
            if (validationCheckUserData?.username == username) {
 
 
             const token: string | null = await jwt.sign({
                 userId: userId, /*MongoDBからidを取得してきたのでmodels/User.tsには乗ってないです*/
-            }, process.env.SECRET_KEY, {expiresIn: "2 day"})
+            }, process.env.SECRET_KEY!, {expiresIn: "2 day"})
             return {status: "existUsername", token: token}
         } else {
 
@@ -31,7 +30,7 @@ const userInfoChange = async (userId: string | null, username: string | null, pa
             }, {new: true, upsert: true})
 
             if (changeUser) {
-                const token = await jwt.sign({userId: userId}, process.env.SECRET_KEY, {expiresIn: "2 day"})
+                const token = await jwt.sign({userId: userId}, process.env.SECRET_KEY!, {expiresIn: "2 day"})
 
                 return {status: "successChangingData", NewToken: token}
 

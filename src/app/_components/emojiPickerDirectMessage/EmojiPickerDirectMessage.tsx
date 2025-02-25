@@ -3,9 +3,9 @@ import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPickerDirectMessage.css"
 import directMessageLike from "@/app/utils/message/directMessageLike";
-import {EmojiSelectEventType} from "@/app/_components/emojiPicker/EmojiPicker";
+import {EmojiPickerProps, EmojiSelectEventType} from "@/app/_components/emojiPicker/EmojiPicker";
 
-const EmojiPickerDirectMessage = (props) => {
+const EmojiPickerDirectMessage = (props :EmojiPickerProps) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
     const [icon, setIcon] = useState<string>("")
     const [existIcon, setExistIcon] = useState<boolean>(false)
@@ -38,6 +38,8 @@ const EmojiPickerDirectMessage = (props) => {
             const emojiCode = e.unified.split("-");
             const codesArray: string[] = []
             emojiCode.forEach((el: string) => codesArray.push("0x" + el));
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {

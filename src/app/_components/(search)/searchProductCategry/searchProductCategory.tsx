@@ -5,18 +5,19 @@ import searchProductCategoryServerAction from "@/app/utils/search/(product)/sear
 import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
 import confirmUser from "@/app/utils/user/confirmUser";
 import {ChangeEvent, useEffect, useState} from "react";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const SearchProductCategory = () => {
     const token = localStorage.getItem("token")
-    const [loginNowUser, setLoginNowUser] = useState<string | null>(null)
+    const [loginNowUser, setLoginNowUser] = useState<UserType | null>(null)
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
     const [productCategory, setProductCategory] = useState<string[] | null>(null)
     console.log(productCategory)
 
     useEffect(() => {
         const loginUser = async () => {
-            const response = await confirmUser(token)
-            const responseParse = JSON.parse(response)
+            const response = await confirmUser(token!)
+            const responseParse = JSON.parse(response!)
             setLoginNowUser(responseParse)
         }
         loginUser()

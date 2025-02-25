@@ -3,15 +3,16 @@ import React, {useState} from 'react';
 import "./DirectMessageStatus3.css"
 import EmojiPickerDirectMessage from "@/app/_components/emojiPickerDirectMessage/EmojiPickerDirectMessage";
 import {ChatType} from "@/models/Chat";
+import {DirectMessageType} from "@/app/_components/directMessageStaus/DirectMessageStatus1/DirectMessageStatus1";
 
-const DirectMessageStatus3 = ({params} : {params : {chatData : ChatType[] , currentUserId : string}}) => {
+const DirectMessageStatus3 = (params :DirectMessageType) => {
     console.log(params?.chatData);
     const [icon, setIcon] = useState("")
     console.log(icon)
     return (
         <div>
             {/*DirectMessageStatus3*/}
-            {params?.chatData?.map((item) => (
+            {params?.chatData?.map((item :ChatType) => (
                 item.chatUserRole == "チャットルーム制作者" ?
                     <div className={"chatLeft-"} key={item._id}>
                         <div className={"chatLeft"}>{item?.message}</div>

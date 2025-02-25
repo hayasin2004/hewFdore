@@ -13,14 +13,14 @@ export interface useUser {
 }
 
 const useUser = (token : string| null) => {
-    const [user, setUser] = useState<string | null>(null)
+    const [user, setUser] = useState<string | null | undefined>(null)
     // console.log(user?.email)
 
 
     useEffect(() => {
         if (token) {
             (async () => {
-                const userData : string | null  = await confirmUser(token);
+                const userData   = await confirmUser(token);
                 // console.log(userData)
                     setUser(userData)
                     console.log("ト?ークンが確認できませんでした。")

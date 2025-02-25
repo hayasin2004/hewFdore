@@ -9,11 +9,16 @@ import io from "socket.io-client";
 import "./stripe.css"
 import Image from "next/image"
 
-const CompleteStripe = ({productId, sellingOrSoldOut}) => {
+export interface CompleteStripeType {
+    productId: string;
+    sellingOrSoldOut: boolean;
+}
+
+const CompleteStripe = ({productId, sellingOrSoldOut} :CompleteStripeType) => {
         const router = useRouter();
 
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
-        const [loginNowUserData, setLoginNowUserData] = useState<UserType | null>(null)
+        const [loginNowUserData, setLoginNowUserData] = useState<UserType | undefined>(undefined)
         const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<boolean>(false)
         console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)
         console.log(loginNowUserData?._id)

@@ -7,7 +7,7 @@ import Footer from "@/app/_components/footer/Footer";
 import Link from "next/link";
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 
-const ListingComplete = ({params}: { params: { id: string } }) => {
+const ListingComplete = ({params}: { params: { id: ProductType } }) => {
     const [data, setData] = useState<ProductType | undefined | null>(null);
     const id = params.id;
     console.log(data)

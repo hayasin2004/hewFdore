@@ -11,6 +11,7 @@ const deleteAccount = async (userId : string |null)=> {
         console.log(deleteProduct)
         const deleteUser =await User.findByIdAndDelete(userId)
         console.log(deleteUser)
+        return {status : "delete"}
     }catch (err){
         console.log(err)
         return null

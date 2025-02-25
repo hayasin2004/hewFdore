@@ -2,7 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
-import {ProductComment} from "@/models/ProductComment";
+import {ProductComment, ProductCommentType} from "@/models/ProductComment";
 import {User} from "@/models/User";
 
 const productSendComment = async (productId : string | null, currentUser : string | null, chatMessage: string | null) => {
@@ -14,7 +14,7 @@ const productSendComment = async (productId : string | null, currentUser : strin
         const ExistChatMessage = await ProductComment.find({ productId: productId }).select("_id listingUserId buyerUserId productId ChatMessage");
 
          await Promise.all(ExistChatMessage.map(async (item) => {
-            const chatExists = item.ChatMessage.some(msg => msg.senderUserId === currentUser);
+            const chatExists = item.ChatMessage.some((msg :ProductCommentType) => msg.senderUserId === currentUser);
             const status = chatExists ? "UPDATE" : "CREATE";
 
             switch (status) {

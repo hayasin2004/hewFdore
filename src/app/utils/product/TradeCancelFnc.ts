@@ -3,7 +3,7 @@ import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
 import {Purchase} from "@/models/Purchase";
 
-const TradeCancelFnc = async (paymentMethod: string | null, purchaseId: string | null) => {
+const TradeCancelFnc = async (paymentMethod: string | undefined, purchaseId: string | undefined) => {
     await connectDB()
     try {
         const tradeStripe = await Product.findOne({stripeCode: paymentMethod})

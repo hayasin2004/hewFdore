@@ -3,7 +3,7 @@
 import {connectDB} from "@/lib/mongodb";
 import {Chat} from "@/models/Chat";
 
-const directMessageLike = async (currentUserId: string | null, commentId: string | null, icon: string | null) => {
+const directMessageLike = async (currentUserId: string | undefined, commentId: string | undefined, icon: string | null) => {
     await connectDB();
     console.log(currentUserId, commentId, icon);
 

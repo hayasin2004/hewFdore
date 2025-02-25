@@ -9,11 +9,13 @@ export interface EmojiSelectEventType {
     // 他の必要なプロパティがあれば追加
 }
 
-interface EmojiPickerProps {
+export interface EmojiPickerProps {
     currentUser?: string;
     productId?: string;
     stamp?: string; // ここで stamp を optional にします
     item?: string;
+    commentId?: string
+    purchaseId? :string
     setIcon: Dispatch<SetStateAction<string>>;
 }
 
@@ -42,6 +44,8 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
             const emojiCode = e.unified.split("-");
             const codesArray: string[] = [];
             emojiCode.forEach((el: string) => codesArray.push("0x" + el));
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const emoji: string = String.fromCodePoint(...codesArray);
 
             const testCommentLike = async () => {

@@ -23,22 +23,28 @@ import {redirect} from 'next/navigation';
 import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 import {UserType} from "@/app/api/user/catchUser/route";
+import {PurchaseType} from "@/models/Purchase";
 
-const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partnerUserIdChat}) => {
+interface tradeChatTypes {
+    purchaseId? :string,
+    currentUserId? : string,
+    tradeChat ?: PurchaseType,
+
+}
+
+const Status1TradeChat = ({purchaseId, currentUserId, tradeChat} : tradeChatTypes ) => {
 
     const [icon, setIcon] = useState("")
     // status1の時はログインしているユ―ザーが購入者だった時。
     console.log(icon)
 
-    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
-    console.log(partnerUserIdChat)
-
+    const tradeChatParse : PurchaseType[] = JSON.parse(JSON.stringify(tradeChat))
 
     return (
         <div>
             <br/>
             {/*ログインしているユーザー（出品者のコメント！！）*/}
-            {currentUserIdChatParse?.map((item) => (
+            {tradeChatParse?.map((item ) => (
                 item?.chatUserRole == "出品者" ? (
                     <div key={item._id}>
                         {/*<div className={"comment-user-rig"}>{item.sellerUsername} さん </div>*/}
@@ -102,20 +108,20 @@ const Status1TradeChat = ({purchaseId, currentUserId, currentUserIdChat, partner
         </div>
     )
 }
-const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat}) => {
+const Status2TradeChat = ({purchaseId, currentUserId, tradeChat}:tradeChatTypes) => {
     // status2の時はログインしているユ―ザーが購入者だった時。K
     const [icon, setIcon] = useState("")
     console.log(icon)
 
 
-    const currentUserIdChatParse = JSON.parse(JSON.stringify(currentUserIdChat))
+    const tradeChatParse = JSON.parse(JSON.stringify(tradeChat))
 
     return (
 
         <div>
 
             <div>
-               {currentUserIdChatParse?.map((item) => (
+               {tradeChatParse?.map((item) => (
                 item?.chatUserRole == "出品者" ? (
                         <div key={item._id}>
 
@@ -192,10 +198,10 @@ const Status2TradeChat = ({purchaseId, currentUserId, currentUserIdChat}) => {
 }
 
 
-const ListingComplete = ({params}: { params: { id: string | null } }) => {
+const ListingComplete = ({params}: { params: { id: string | null  , proudctId : string} }) => {
     const [reviewValue, setReviewValue] = React.useState<number | null>(1);
     const [productData, setProductData] = useState<ProductType | null>(null)
-    const [chatData, setChatData] = useState<ChatType | null>(null)
+    const [chatData, setChatData] = useState<ChatType | undefined>(undefined)
     console.log(chatData)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
@@ -203,9 +209,8 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     const [tradeStatus, setTradeStatus] = useState<number | null>(0)
     console.log(tradeStatus)
     const [tradeCancel, setTradeCancel] = useState<string | null>(null)
-    const [partnerUserIdChat, setPartnerUserIdChat] = useState<[] | null>([])
-    const [currentUserIdChat, setCurrentUserIdChat] = useState<[] | null>([])
-    console.log("取得完了" + currentUserIdChat)
+    const [tradeChat, setCurrentUserIdChat] = useState<[] | null>([])
+    console.log("取得完了" + tradeChat)
     const [lastChat, setLastChat] = useState<string | null>("")
     const [sellerLastChat, setSellerLastChat] = useState<string | null>("")
     const [sellerUserLastReview, setSellerUserReview] = useState<string | null>(null)
@@ -228,7 +233,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
         const confirmUserData = async () => {
             const response = await confirmUser(token)
             if (response !== undefined) {
-                const responseParse = JSON.parse(response)
+                const responseParse = JSON.parse(response!)
                 setLoginUserData(responseParse?._id)
             }
         }
@@ -276,8 +281,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     if (catchUser !== undefined) {
                         if (catchUser?.currentUserChat !== undefined && catchUser?.partnerUserChat !== undefined) {
                             setCurrentUserIdChat(JSON.parse(catchUser?.currentUserChat))
-                            setPartnerUserIdChat(JSON.parse(catchUser?.partnerUserChat))
-                        }
+                               }
                     }
                 } else if (status == "2") {
                     const catchUser = await tradeProductCatchMessageStatus2(purchaseId)
@@ -286,8 +290,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     }
                     if (catchUser !== undefined) {
                         if (catchUser?.buyerChatMessage !== undefined && catchUser?.partnerUserChat !== undefined) {
-                            setPartnerUserIdChat(JSON.parse(catchUser?.buyerChatMessage))
-                            setCurrentUserIdChat(JSON.parse(catchUser?.partnerUserChat))
+                             setCurrentUserIdChat(JSON.parse(catchUser?.partnerUserChat))
                             console.log(catchUser)
                         }
                     }
@@ -308,7 +311,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                 //console.log(sellerId)
                 if (loginUserData !== undefined) {
 
-                    const setUsersData: tradeChatStatusType | null = await TradeProductMessageServer(loginUserData, productData?.sellerId)
+                    const setUsersData = await TradeProductMessageServer(loginUserData, productData?.sellerId)
                     // if (setUsersData == null) {
                     //     console.log("取引では見つからないユーザーでログインしています。アカウントをお確かめの上再度アクセスしてください。")
                     //     router.push("/")
@@ -317,12 +320,12 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                     if (setUsersData?.chatExists) {
                         const currentUser = await userProfile(currentUser_Id)
                         console.log("currentUserId", currentUser)
-                        const partnerUser = await userProfile(buyerId)
+                        const partnerUser = await userProfile(buyerId!)
                         if (buyerId !== undefined && currentUser?.searchUser !== undefined && partnerUser?.searchUser !== undefined) {
                             setCurrentUserData(JSON.parse(currentUser?.searchUser))
                             setPartnerUserData(JSON.parse(partnerUser?.searchUser))
                         }
-                        setChatData(setUsersData?.chatExists)
+                        setChatData(setUsersData?.chatExists!)
                         //console.log("ステータス1")
                         setStatus("1")
                     } else {
@@ -442,7 +445,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
     return (
         <>
             <Header/>
-            {/*{currentUserIdChat}*/}
+            {/*{tradeChat}*/}
             <p>
             </p>
 
@@ -503,13 +506,11 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
                             {status == "1" ?
                                 <div>
                                     <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
-                                                      currentUserIdChat={currentUserIdChat}
-
-                                                      partnerUserIdChat={partnerUserIdChat}/>
+                                                      tradeChat={tradeChat}/>
 
                                 </div> : <div>
                                     <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
-                                                      currentUserIdChat={currentUserIdChat}
+                                                      tradeChat={tradeChat}
                                                      />
                                 </div>}
                             {chatList.map((item, index) => (

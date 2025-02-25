@@ -28,7 +28,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null);
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null);
     console.log(productCategory , shippingAreaText)
-    const handleProductExplainCategorySet = (Categoryevent: string) => {
+    const handleProductExplainCategorySet = (Categoryevent: React.SyntheticEvent<Element , Event> ) => {
         setProductCategory([Categoryevent]);
         if (onCategoryChange) onCategoryChange([Categoryevent]);
     }
@@ -69,12 +69,15 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                             <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="tops"
+                                    defaultValue="tops"
                                 name="radio-buttons-group">
                                 <Box className={"radio_button_flex"}>
                                     <Box className={"radio_button_low1"}>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e  :React.SyntheticEvent<Element , Event> ) => {
+                                                const target = e.target as HTMLInputElement
+                                                handleProductExplainCategorySet(target.value)
+                                            }}
                                             value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(e) => handleProductExplainCategorySet(e.target.value)}

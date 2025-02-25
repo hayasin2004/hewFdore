@@ -5,8 +5,10 @@ export interface ChatType {
     username?: string
     ChatroomId?: string;
     currentUser?: string;
+    buyerId : string
     partnerUser?: string;
     message?: string;
+    chatMessage : string[];
     partnerUserMessage?: string;
     newChatRoom?: string;
     senderUserId?: string;

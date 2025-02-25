@@ -55,7 +55,14 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
         setCategoryProductList([])
     }, []);
 
-    function T_items({category, currentProduct, categoryProductList}) {
+    interface T_itemsProps {
+        category: string;
+        currentProduct: ProductType[] | undefined;
+        categoryProductList: ProductType[];
+    }
+
+    const T_items:React.FC<T_itemsProps> = ({category, currentProduct, categoryProductList})=> {
+
         console.log(categoryProductList)
         return (
             <>
@@ -72,6 +79,7 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                 }
             </>
         );
+
     }
 
 

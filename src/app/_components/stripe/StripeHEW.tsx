@@ -8,8 +8,9 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import io from "socket.io-client";
 import "./stripe.css"
 import Image from "next/image"
+import {CompleteStripeType} from "@/app/_components/stripe/Stripe";
 
-const CompleteStripe = ({productId, sellingOrSoldOut}) => {
+const CompleteStripe = ({productId, sellingOrSoldOut}:CompleteStripeType) => {
         const router = useRouter();
 
         const [paymentMethod, setPaymentMethod] = useState<string>('card');

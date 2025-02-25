@@ -28,7 +28,7 @@ const Favorite = () => {
                 const response = await confirmUser(token)
                 // console.log("バグったかも"+response)
                 if (response !== undefined) {
-                    const responseParse = JSON.parse(response)
+                    const responseParse = JSON.parse(response!)
                     setUserData(responseParse)
                 }
             }
