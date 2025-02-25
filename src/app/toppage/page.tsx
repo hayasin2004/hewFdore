@@ -69,10 +69,10 @@ const Toppage = () => {
 
     return (
         <>
-            <Blogintroduction/>
+            {/*<Blogintroduction/>*/}
             <Header/>
             <div className={"top"}>
-                {/*<Toppage_top_slideshow/>*/}
+                <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}
                 <div className={"siteIntroduction"}>
                     <div className={"introduction"}>
@@ -92,7 +92,7 @@ const Toppage = () => {
                 </div>
 
                  <h2 style={{color: "red", fontSize: "6rem"}}></h2>
-                <Toppage_2nd/>
+                {/*<Toppage_2nd/>*/}
                 <ToppageSite3/>
 
 
