@@ -213,7 +213,7 @@ const Blogintroduction = () => {
                             <li key={blog.id} className="blog-item">
                                 <Link href={`/${blog.id}`} className="blog-link">
                                     {blog.image && (
-                                        <Images src={blog.image.url} width={400} height={400} alt={`${blog.title}`} className="blog-image"/>
+                                        <img src={blog.image.url} width={400} height={400} alt={`${blog.title}`} className="blog-image"/>
                                     )}
                                     <div className="text-container">
                                         <div className="blog-date">{formatDate(blog.createdAt)}</div>
