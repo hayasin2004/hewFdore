@@ -31,7 +31,7 @@ async function BlogIdPage({ params }: { params: { id: string } }) {
     const { id } = params;
 
     try {
-        const blog = await client.get({ endpoint: "blogs", contentId: id,queries: { t: new Date().getTime() } });
+        const blog = await client.get({ endpoint: "blogs", contentId: id });
 
         return (
             <main className={"blog-id"}>

@@ -6,7 +6,9 @@ const nextConfig = {
         SECRET_KEY: process.env.SECRET_KEY,
         distDir: 'build',
     },
-
+    images: {
+        domains: ['images.microcms-assets.io'],//ここを追加
+    },
 
 };
 

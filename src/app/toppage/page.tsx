@@ -11,7 +11,6 @@ import Image from "next/image"
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import axios from "axios";
-import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 
 const Toppage = () => {
     // useEffect(() => {
@@ -91,7 +90,7 @@ const Toppage = () => {
                 </div>
 
                  <h2 style={{color: "red", fontSize: "6rem"}}></h2>
-                {/*<Toppage_2nd/>*/}
+                <Toppage_2nd/>
                 <ToppageSite3/>
 
 

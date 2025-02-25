@@ -264,7 +264,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             //console.log(response)
         }
         purchase()
-    }, [purchaseId])
+    }, [purchaseId , status])
     const socket = io("http://localhost:8080");
 
     useEffect(() => {
@@ -295,7 +295,7 @@ const ListingComplete = ({params}: { params: { id: string | null } }) => {
             }
             chatresponse()
         }
-    }, [chatData]);
+    }, [chatData ,purchaseId ,status]);
 
 
     useEffect(() => {
