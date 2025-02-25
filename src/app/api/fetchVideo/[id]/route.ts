@@ -27,7 +27,7 @@ export interface ProductType {
     payPayCode?: string
 }
 
-export async function GET({params}: { params: { id: string } }) {
+export async function GET(request: Request,{params}: { params: { id: string } }) {
     const mongoScheme = await connectDB()
     try {
         const db = mongoScheme.connection.db

@@ -11,6 +11,7 @@ import Image from "next/image"
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import axios from "axios";
+import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 
 const Toppage = () => {
     // useEffect(() => {
@@ -36,19 +37,6 @@ const Toppage = () => {
     const [productList, setProductList] = useState([])
     console.log(productList)
 
-    const clickButton = async () => {
-        const fetchVideo = await fetch("/api/fetchVideo", {
-            headers: {
-                method: "POST",
-                Accept: "application/json, text/plain",
-                "Content-Type": "application/json",
-                body: JSON.stringify("67b574f366cfba7cf26b6434"),
-            }
-        }).then((response) => console.log(response))
-        fetchVideo()
-    }
-
-    console.log(clickButton)
 
 
     useEffect(() => {
@@ -81,10 +69,10 @@ const Toppage = () => {
 
     return (
         <>
-            {/*<Blogintroduction/>*/}
+            <Blogintroduction/>
             <Header/>
             <div className={"top"}>
-                <Toppage_top_slideshow/>
+                {/*<Toppage_top_slideshow/>*/}
                 {/*<Sidebar/>*/}
                 <div className={"siteIntroduction"}>
                     <div className={"introduction"}>

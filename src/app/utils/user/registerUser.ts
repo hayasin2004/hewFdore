@@ -5,7 +5,7 @@ import {v4 as uuidv4} from 'uuid';
 import jwt from "jsonwebtoken";
 import {UserType} from "@/app/api/user/catchUser/route";
 
-export default async function createUser(username: string, email: string, password: string, PWCheck: string):Promise<{status : string} |{newUser  :string | null }|{TenMinToken : string } |null> {
+export default async function createUser(username: string, email: string, password: string, PWCheck: string){
     await connectDB();
     try {
         const checkUserName: UserType | null = await User.findOne({username: username});
