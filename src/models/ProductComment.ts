@@ -1,26 +1,62 @@
-import mongoose from "mongoose"; 
+import mongoose from "mongoose";
+
 export interface ProductCommentType {
     _id?: string;
     listingUserId?: string;
-    buyerUserIdList?: string[];
+    buyerUserIdList?: string[] | null;
     productId?: string;
     ChatMessage?: string[];
-    listingMessage?: string[];
-    productChat?: string[];
-    buyerMessageLike?: string[];
-    listingMessageLike?: string[];
-    buyerMessageStampLike?: string
-    listingMessageStampLike?: string
-    listingMessageStamp?: string[]
-    listingChatMessage?: string;
     senderUserId?: string;
-    userId?: string;
-    buyerUsername?: string;
-    buyerProfilePicture?: string;
-    buyerMessage?: string;
-    listingUsername?: string;
-    listingProfilePicture?: string;
-    chatUserRole?: string
+    listingUsername :string;
+    listingChatMessage: [{
+        _id :string;
+        listingMessageLike?: string[];
+        listingMessageStampLike?: string
+        listingChatMessage?: string;
+        listingUsername?: string;
+        listingMessage:string;
+        listingProfilePicture?: string;
+        listingMessageStamp: [{
+            listingMessageStampLike?: string;
+            userId : string;
+        }]
+    }];
+    buyerChatMessage: [{
+        _id :string;
+        buyerMessageLike?: string[];
+        buyerMessageStampLike?: string
+        buyerChatMessage?: string;
+        buyerUsername?: string;
+        buyerMessage:string;
+        buyerProfilePicture?: string;
+        buyerMessageStamp: [{
+            buyerMessageStampLike?: string;
+            userId : string;
+        }]
+    }];
+    productChat: [{
+        listingMessage?: string[];
+        productChat?: string[];
+        buyerMessageLike?: string[];
+        buyerMessageStampLike?: string
+        senderUserId?: string;
+        userId?: string;
+        buyerUsername?: string;
+        buyerProfilePicture?: string;
+        buyerChatMessage?: string;
+        listingMessageLike?: string[];
+        listingMessageStampLike?: string
+        listingMessageStamp?: string[]
+        listingChatMessage?: string;
+        listingUsername?: string;
+        listingProfilePicture?: string;
+        chatUserRole?: string;
+        buyerMessageStamp: [{
+            buyerMessageStampLike?: string;
+            userId : string;
+        }]
+    }]
+    chatUserRole :string
 }
 
 const ProductCommentSchema = new mongoose.Schema({

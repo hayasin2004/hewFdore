@@ -1,12 +1,23 @@
-import mongoose from "mongoose";
-import {UserType} from "@/app/api/user/catchUser/route";
+import mongoose from "mongoose";　
 
 export interface ChatType {
-    currentUser?: UserType;
-    partnerUser?: UserType;
-    message?: string
-    partnerUserMessage?: string
-    newChatRoom?: string
+    _id: string;
+    username?: string
+    ChatroomId?: string;
+    currentUser?: string;
+    partnerUser?: string;
+    message?: string;
+    partnerUserMessage?: string;
+    newChatRoom?: string;
+    senderUserId?: string;
+    profilePicture?: string;
+    messageLike?: string[];
+    messageStamp: [{
+        messageStampLike: string;
+        userId: string;
+    }]
+    chatUserRole: string;
+
 }
 
 const ChatSchema = new mongoose.Schema({

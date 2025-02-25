@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPickerPurchase.css"
 import purchaseChatLike from "@/app/utils/product/purchaseChatLike";
+import {EmojiSelectEventType} from "@/app/_components/emojiPicker/EmojiPicker";
 
 const EmojiPickerPurchase = (props) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
@@ -15,10 +16,10 @@ const EmojiPickerPurchase = (props) => {
             setIcon(props.stamp)
             //console.log(existIcon)
         }
-    }, [props]);
+    }, [props,existIcon]);
 
     const showPicker = () => setIsShowPicker(!isShowPicker)
-    const selectEmoji = (e: React.FormEvent<HTMLButtonElement>) => {
+    const selectEmoji = (e: EmojiSelectEventType) => {
         //console.log(e)
         if (e.unified !== "") {
             const emojiCode = e.unified.split("-");
@@ -29,7 +30,7 @@ const EmojiPickerPurchase = (props) => {
             const testCommentLike = async () => {
                 //console.log(props.currentUser)
                 const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, emoji)
-                //console.log(response)
+                console.log(response)
                 //console.log("そうにゅう処理")
             }
             testCommentLike()
@@ -42,7 +43,7 @@ const EmojiPickerPurchase = (props) => {
     const deleteStamp = async () => {
         const response = await purchaseChatLike(props.currentUser, props.purchaseId, props.item, icon)
         //console.log("消す処理")
-        //console.log(response)
+        console.log(response)
         setIcon("")
         setExistIcon(!existIcon)
     }

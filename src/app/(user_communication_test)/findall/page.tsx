@@ -1,10 +1,11 @@
 "use client"
-import React, {useEffect , useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
 import "./findall.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
+import Images from "next/image";
 
 // 必要があればページネーションの導入も考えた方がいいかも　
 // import ReactPaginate from "react-paginate";
@@ -26,7 +27,7 @@ const Findall = () => {
 
         catchingUser()
 
-    }, []);
+    }, [userList]);
 
 
     return (
@@ -47,7 +48,7 @@ const Findall = () => {
                             </td>
                             <td className={"mailLink"} rowSpan={3}>
 
-                                <img src="/images/mail_1.svg" width={50} height={50} alt="DM"/>
+                                <Images src="/images/mail_1.svg" width={50} height={50} alt="DM"/>
                             </td>
                         </tr>
                         <tr>

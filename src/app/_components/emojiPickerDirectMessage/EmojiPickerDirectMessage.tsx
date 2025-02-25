@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react'
 import "./emojiPickerDirectMessage.css"
 import directMessageLike from "@/app/utils/message/directMessageLike";
+import {EmojiSelectEventType} from "@/app/_components/emojiPicker/EmojiPicker";
 
 const EmojiPickerDirectMessage = (props) => {
     const [isShowPicker, setIsShowPicker] = useState<boolean>(false)
@@ -18,15 +19,25 @@ const EmojiPickerDirectMessage = (props) => {
             console.log("props.stamp" + props.stamp)
             console.log(existIcon)
         }
-    }, [props]);
+    }, [props , existIcon]);
 
     const showPicker = () => setIsShowPicker(!isShowPicker)
-    const selectEmoji = (e: any) => {
+    const deleteStamp = async () => {
+        const response = await directMessageLike(props.currentUser, props.commentId, icon)
+
+        console.log("消す処理")
+        console.log(response)
+        setIcon("")
+        setExistIcon(!existIcon)
+    }
+
+
+    const selectEmoji = (e: EmojiSelectEventType) => {
         console.log(e)
         if (e.unified !== "") {
             const emojiCode = e.unified.split("-");
-            let codesArray: string[] = []
-            emojiCode.forEach((el: any) => codesArray.push("0x" + el));
+            const codesArray: string[] = []
+            emojiCode.forEach((el: string) => codesArray.push("0x" + el));
             const emoji: string = String.fromCodePoint(...codesArray);
             console.log("空白の出力のemoji" + emoji);
             const testCommentLike = async () => {
@@ -40,16 +51,6 @@ const EmojiPickerDirectMessage = (props) => {
             setExistIcon(!existIcon)
             setIcon(emoji);
         }
-    }
-
-
-    const deleteStamp = async () => {
-        const response = await directMessageLike(props.currentUser, props.commentId, icon)
-
-        console.log("消す処理")
-        console.log(response)
-        setIcon("")
-        setExistIcon(!existIcon)
     }
 
 

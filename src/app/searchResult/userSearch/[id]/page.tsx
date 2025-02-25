@@ -18,7 +18,7 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
             console.log(response)
         }
         handleProductSearch()
-    }, [])
+    }, [searchWordDecoded])
     return (
         <>
             <h3>{searchWordDecoded}の検索結果</h3>

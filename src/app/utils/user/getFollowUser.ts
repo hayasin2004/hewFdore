@@ -11,12 +11,12 @@ const getFollowUser = async (followings: string | null, followers: string | null
         const followersData: UserType[] = [];
         const followingsData: UserType[] = [];
         if (followers !== null || followings !== null) {
-            for (const item of followers) {
+            for (const item of followers!) {
                 const test = await User.findById(item);
                 console.log("フォロワー検索" + test);
                 followersData.push(test);
             }
-            for (const item of followings) {
+            for (const item of followings!) {
                 const test = await User.findById(item);
                 console.log("フォロー検索" + test);
                 followingsData.push(test);

@@ -1,83 +1,77 @@
-    // CollapsibleProductCard.tsx
-    import React, { useState, useRef, useEffect } from 'react';
-    import {
-        Card,
-        CardContent,
-        Grid,
-        Collapse,
-        Box
-    } from '@mui/material';
-    import './CollapsibleProductCard.css';
-    import { DBProductType } from '@/app/api/product/route';
-    import Link from 'next/link';
-    import {Stripe} from "stripe";
-    import {ProductType} from "@/app/utils/product/productDetail";
-    import Image from "next/image";
+import React, {useState, useRef, useEffect} from 'react';
+import {
+    Card,
+    CardContent,
+    Grid,
+    Collapse,
+    Box
+} from '@mui/material';
+import './CollapsibleProductCard.css';
+import Link from 'next/link';
+import Image from "next/image";
+import { ProductType } from '@/app/utils/product/productDetail';
 
-    interface CollapsibleProductCardProps {
-        item: DBProductType;
-        isOpen: boolean;
-        onToggle: () => void;
-        category : string
-        mainImage :string,
-        images : string[]
-    }
+interface CollapsibleProductCardProps {
+    item: ProductType;
+    isOpen: boolean;
+    onToggle: () => void;
+}
 
-    const CollapsibleProductCard = ({ item, isOpen, onToggle ,category}: CollapsibleProductCardProps) => {
-        const [isAnimating, setIsAnimating] = useState(false);
-        const [images, setImages] = useState<string[]>([]);
-        const [mainImageChange, setMainImageChange] = useState<string>("");
+const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCardProps) => {
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [images, setImages] = useState<string[]>([]);
+    const [mainImageChange, setMainImageChange] = useState<string>("");
 
-        const [isContentVisible, setIsContentVisible] = useState(false);
-        const cardRef = useRef<HTMLDivElement>(null);
-        useEffect(() => {
-            if (isOpen) {
-                setIsAnimating(true);
+    const [isContentVisible, setIsContentVisible] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (isOpen) {
+            setIsAnimating(true);
+            setTimeout(() => {
+                setIsContentVisible(true);
                 setTimeout(() => {
-                    setIsContentVisible(true);
-                    setTimeout(() => {
-                        setIsAnimating(false);
-                    }, 50);
-                }, 300);
-            } else {
-                setIsAnimating(true);
-                setIsContentVisible(false);
+                    setIsAnimating(false);
+                }, 50);
+            }, 300);
+        } else {
+            setIsAnimating(true);
+            setIsContentVisible(false);
+            setTimeout(() => {
                 setTimeout(() => {
-                    setTimeout(() => {
-                        setIsAnimating(false);
-                    }, 50);
-                }, 300);
-            }
-        }, [isOpen]);
+                    setIsAnimating(false);
+                }, 50);
+            }, 300);
+        }
+    }, [isOpen]);
 
-        useEffect(() => {
-            setMainImageChange(item.productImage);  // メイン画像を初期化
-            setImages([
-                item.productImage,
-                item.productImage2 || "",
-                item.productImage3 || "",
-                item.productImage4 || ""
-            ]);
-        }, []);
+    useEffect(() => {
+        setMainImageChange(item.productImage);  // メイン画像を初期化
+        setImages([
+            item.productImage ,
+            item.productImage2 || "",
+            item.productImage3 || "",
+            item.productImage4 || ""
+        ]);
+    }, [item]);
 
-        const handleCollapse = (event: React.MouseEvent) => {
-            if (!event.target.closest('.expanded-reverse')) {
-                return;
-            }
-            if (isAnimating) return;
-            onToggle();
-        };
+    const handleCollapse = (event: React.MouseEvent) => {
+        if (!event.target.closest('.expanded-reverse')) {
+            return;
+        }
+        if (isAnimating) return;
+        onToggle();
+    };
 
-        const handleExpand = () => {
-            if (isAnimating || isOpen) return;
-            onToggle();
-        };
-        const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
-            e.preventDefault();
-            setMainImageChange(images[index]);  // クリックされた画像をメイン画像に設定
-        };
-        return (
-            <>
+    const handleExpand = () => {
+        if (isAnimating || isOpen) return;
+        onToggle();
+    };
+    const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
+        e.preventDefault();
+        setMainImageChange(images[index]);  // クリックされた画像をメイン画像に設定
+    };
+    return (
+        <>
             <Card
                 ref={cardRef}
                 className={`collapsible-product-card ${isOpen ? 'expanded' : 'collapsed'}`}
@@ -101,7 +95,9 @@
                     <CardContent>
                         <div className="testttt">
                             <p className="collapsed-image">
-                                <Image className={"proimg"} src={item?.productImage !== undefined ? item?.productImage: "/images/clothes/product.jpg"} width={400} height={310}
+                                <Image className={"proimg"}
+                                       src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"}
+                                       width={400} height={310}
                                        alt="サンプル" id="sum"/>
                             </p>
                             <p className="product-Size">{item.productSize}</p>
@@ -125,9 +121,11 @@
                     <CardContent>
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
-                                <Box className="expanded-box" sx={{ height: '100%' }}>
+                                <Box className="expanded-box" sx={{height: '100%'}}>
                                     <div className="expanded-image">
-                                        <Image className={"proimg"} src={mainImageChange!== undefined ? mainImageChange : "/images/clothes/product.jpg"} width={420} height={550}
+                                        <Image className={"proimg"}
+                                               src={mainImageChange !== undefined ? mainImageChange : "/images/clothes/product.jpg"}
+                                               width={420} height={550}
                                                alt="サンプル" id="sum"/>
                                     </div>
                                     <div className="expanded-Size">{item.productSize}</div>
@@ -193,8 +191,8 @@
                     </CardContent>
                 </Collapse>
             </Card>
-            </>
-        );
-    };
+        </>
+    );
+};
 
-    export default CollapsibleProductCard;
+export default CollapsibleProductCard;

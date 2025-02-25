@@ -7,10 +7,11 @@ import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import {useSession} from "next-auth/react"
 import createUser from "@/app/utils/user/registerUser";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 
 const Register = () => {
-    const [responseUserData, setResponseUserData] = useState<string | null | undefined>(null)
+    const [responseUserData, setResponseUserData] = useState<UserType | null | undefined>(null)
     const {data: session, status} = useSession();
     const dateAll = [session?.user.name, session?.user.email, session?.user.image]
     console.log(responseUserData)
@@ -74,8 +75,8 @@ const Register = () => {
                                                 window.alert("そのユーザー名は既に作成されています。")
                                             } else {
                                                 if (data) {
-                                                    const UserDataParse = JSON.parse(data?.newUser)
-                                                    const TokenDataParse = JSON.parse(data?.TenMinToken)
+                                                    const UserDataParse = JSON.parse(data?.newUser as string)
+                                                    const TokenDataParse = JSON.parse(data?.TenMinToken as  string)
                                                     console.log(UserDataParse)
                                                     setResponseUserData(UserDataParse)
                                                     localStorage.setItem("TenMinToken", TokenDataParse)

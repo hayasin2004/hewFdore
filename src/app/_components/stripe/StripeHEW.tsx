@@ -22,7 +22,9 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             return status === "true";
         })
         console.log(paymentMethod)
-        const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
 
         const socket = io("http://localhost:8080");
         //
@@ -44,7 +46,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
                 const userParse = JSON.parse(user)
                 setLoginNowUserData(JSON.parse(userParse));
             }
-        }, [user]);
+        }, [user ,sellingOrSoldOutStatus]);
 
         useEffect(() => {
             if (sellingOrSoldOut == true) {
@@ -53,7 +55,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}) => {
             } else {
                 console.log("販売中です")
             }
-        }, [sellingOrSoldOut]);
+        }, [sellingOrSoldOut , sellingOrSoldOutStatus]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             if (loginNowUserData?._id == undefined || loginNowUserData == null || loginNowUserData == undefined) {
                 console.log("ログインしてください。")

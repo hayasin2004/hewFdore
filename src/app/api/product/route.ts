@@ -2,14 +2,6 @@ import {Product} from "@/models/Product";
 import {connectDB} from "@/lib/mongodb";
 import {NextRequest, NextResponse} from "next/server";
 
-export interface DBProductType {
-    _id?: string;
-    userId?: string;
-    productName?: string;
-    productDesc?: string;
-    productPrice?: number;
-}
-
 
 export async function GET(req: NextRequest ) {
     await connectDB()

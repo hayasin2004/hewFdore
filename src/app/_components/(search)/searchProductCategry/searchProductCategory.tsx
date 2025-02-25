@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import searchProductCategoryServerAction from "@/app/utils/search/(product)/searchProductCategory";
 import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
 import confirmUser from "@/app/utils/user/confirmUser";
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 
 const SearchProductCategory = () => {
     const token = localStorage.getItem("token")
@@ -31,7 +31,7 @@ const SearchProductCategory = () => {
         console.log(searchProductCategory)
     }
 
-    const handleProductExplainCategorySet = (Categoryevent: React.FC<HTMLButtonElement>) => {
+    const handleProductExplainCategorySet = (Categoryevent: string) => {
         setProductCategory(Categoryevent)
     }
 
@@ -50,7 +50,7 @@ const SearchProductCategory = () => {
                         <Box className={"radio_button_low1"}>
 
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => handleProductExplainCategorySet(event.target.value)}
                                 value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                             <FormControlLabel
                                 onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}

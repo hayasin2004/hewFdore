@@ -3,9 +3,7 @@ import React, {useEffect, useState} from 'react';
 import DirectMessageserver from "@/app/utils/user/DirectMessageserver";
 import io from "socket.io-client";
 import {ChatType} from "@/models/Chat";
-import {UserType} from "@/app/api/user/catchUser/route";
-import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2" ;
-import saveMessageStauts1Update from "@/app/utils/message/saveMessageStauts1Update";
+import saveMessageStauts2 from "@/app/utils/message/saveMessageStauts2";
 import catchMessageStatus3 from "@/app/utils/message/catchMessageStatus2";
 import catchMessageStatus1Status2 from "@/app/utils/message/catchMessageStaus1Status3";
 import confirmUser from "@/app/utils/user/confirmUser";
@@ -19,19 +17,14 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     // console.log(JSON.stringify(params));
     const detailUser = params?.id as string;
     const token = localStorage.getItem("token")
-    const [chatData, setChatData] = useState<ChatType|UserType | null>(null)
-    const [currentChatData, setCurrentChatData] = useState<ChatType|UserType | null>([])
-    const [partnerChatData, setPartnerChatData] = useState<ChatType|UserType | null>([])　
-    const [currentUser, setCurrentUser] = useState<ChatType|UserType | null>(null)
+    const [partnerChatData, setPartnerChatData] = useState<ChatType | null>(null)
+    const [chatData, setChatData] = useState<ChatType | undefined >(undefined)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
-    const [status, setStatus] = useState("")
+    const [status, setStatus] = useState<string>("")
 
-    const [currentUserChat, setCurrentUserChat] = useState([])
-    const [partnerUserChat, setPartnerChat] = useState([])
 
     console.log(JSON.stringify(chatList))
-    const [dateBasechatList, setDateBaseChatList] = useState<ChatType | null>(null)
     // console.log("保存したいデータ" + JSON.stringify(dateBasechatList))
 
     const socket = io("http://localhost:8080");
@@ -41,57 +34,52 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
         if (status) {
             const chatresponse = async () => {
                 if (status == "1" || status == "2") {
-                    const catchUser = await catchMessageStatus1Status2(chatData?.chatId)
+                    const catchUser = await catchMessageStatus1Status2(chatData?.ChatroomId)
                     console.log(catchUser?.chatCatchData?.currentChat)
-                    setCurrentUserChat(catchUser?.chatCatchData.currentChat)
-                    setPartnerChat(catchUser?.chatCatchData.partnerUserChat)
+                    setPartnerChatData(catchUser?.chatCatchData.partnerUserChat)
                 } else if (status == "3") {
-                    const catchUser = await catchMessageStatus3(chatData?.chatId)
+                    const catchUser = await catchMessageStatus3(chatData?.ChatroomId)
                     console.log(catchUser?.chatCatchData?.currentChat)
-                    setCurrentUserChat(catchUser?.chatCatchData.currentChat)
-                    setPartnerChat(catchUser?.chatCatchData.partnerUserChat)
                 }
             }
             chatresponse()
         }
-    }, [chatData]);
+    }, [chatData , status]);
 
 
     useEffect(() => {
         const response = async () => {
-            const confirmToken = await confirmUser(token)
-            const confirmTokenParse = JSON.parse(confirmToken)
+            const confirmToken = await confirmUser(token!)
+            const confirmTokenParse = JSON.parse(confirmToken!)
             const tokenUser = confirmTokenParse._id
             const setUsersData = await DirectMessageserver(tokenUser, detailUser)
             if (setUsersData?.status == "newChatRoom") {
-                setChatData(setUsersData)
+                setChatData(JSON.parse(setUsersData.newChatRoom!))
                 setStatus("1")
                 console.log("ステータス1")
             } else if (setUsersData?.status == "chatExists") {
-                setChatData(JSON.parse(setUsersData?.chatId))
-                setCurrentChatData(JSON.parse(setUsersData?.currentUser))
-                setPartnerChatData(JSON.parse(setUsersData?.partnerUser))
+                setChatData(JSON.parse(setUsersData.chatId!))
+                setPartnerChatData(JSON.parse(setUsersData.partnerUser!))
                 console.log("ステータス2")
                 setStatus("2")
             } else if (setUsersData?.status == "chatExistsPart2") {
                 console.log(setUsersData)
-                setChatData(JSON.parse(setUsersData?.chatId))
-                setCurrentChatData(JSON.parse(setUsersData?.currentUser))
-                setPartnerChatData(JSON.parse(setUsersData?.partnerUser))
+                setChatData(JSON.parse(setUsersData.chatId!))
+                setPartnerChatData(JSON.parse(setUsersData.partnerUser!))
                 setStatus("3")
                 console.log("ステータス3")
             }
             // setCurrentUser(setUsersData?.currentUser?._id)
         }
         response()
-    }, [currentUser, detailUser, token]);
+    }, [detailUser, token]);
 
 
     // socket.ioに送信
     const handleSendMessage = (e: React.FormEvent<HTMLButtonElement>) => {
         // ステータス1
         if (status === "1" || status === "2") {
-        console.log("そもそもどこまで来てる")
+            console.log("そもそもどこまで来てる")
             e.preventDefault()
             socket.emit("send_message", {message: message})
             setMessage("")
@@ -101,11 +89,11 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 setChatList([...chatList, data])
             })
             const SavedMessage = async () => {
-                const response = await saveMessageStauts1(chatData?._id, chatData?.currentUser, message)
-                // const update = await saveMessageStauts1Update(chatData?.chatId, chatData?.currentUser, message)
-
-                console.log(response)
-                setMessage("")
+                if (chatData !== undefined) {
+                    const response = await saveMessageStauts1(chatData._id, chatData.currentUser!, message)
+                    console.log(response)
+                    setMessage("")
+                }
             }
             SavedMessage()
         }
@@ -120,10 +108,12 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                 setChatList([...chatList, data])
             })
             const SavedMessageStatus2 = async () => {
-                const response = await saveMessageStauts2(chatData?._id, chatData?.partnerUser, message)
-                // const update = await saveMessageStauts2Update(chatData?.chatId, chatData?.currentUser, message)
-                console.log(response)
-                setMessage("")
+                if (chatData !== undefined) {
+                    const response = await saveMessageStauts2(chatData._id, chatData.partnerUser!, message)
+                    // const update = await saveMessageStauts2Update(chatData?.chatId, chatData?.currentUser, message)
+                    console.log(response)
+                    setMessage("")
+                }
             }
             SavedMessageStatus2()
         }
@@ -135,7 +125,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
 
     return (
         <>
-                <Header/>
+            <Header/>
             <div className={"dmFreme"}>
 
                 <div className={"PUser-top"}>
@@ -155,7 +145,10 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                         {/*    </ul>*/}
                         {/*))}*/}
 
-                        {status == 1 || status ==2 ? <DirectMessageStatus1 chatData={chatData?.chatMessage} currentUserId={chatData?.currentUser} /> : <DirectMessageStatus3 chatData={chatData?.chatMessage} currentUserId={chatData?.partnerUser}/> }
+                        {status == "1" || status == "2" ? <DirectMessageStatus1 chatData={chatData?.chatMessage}
+                                                                                currentUserId={chatData?.currentUser}/> :
+                            <DirectMessageStatus3 chatData={chatData?.chatMessage}
+                                                  currentUserId={chatData?.partnerUser}/>}
 
                         {chatList.map((item, index) => (
                             <div className={"chatFrame"} key={index}>
@@ -173,7 +166,8 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                     </div>
                 </div>
                 <form className={"chatBox"}>
-                    <input className={"chatBox-area"} type="text" onChange={(e) => setMessage(e.target.value)} value={message}/>
+                    <input className={"chatBox-area"} type="text" onChange={(e) => setMessage(e.target.value)}
+                           value={message}/>
                     <button className={"chatBox-button"} onClick={(e) => handleSendMessage(e)}>送信</button>
                 </form>
 

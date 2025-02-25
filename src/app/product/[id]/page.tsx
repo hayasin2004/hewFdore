@@ -10,7 +10,7 @@ import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 import Favorite from '@mui/icons-material/Favorite';
 import {Checkbox} from "@mui/material";
 import {FavoriteBorder} from "@mui/icons-material";
-import {ThemeProvider, createTheme} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import productLikeDate from "@/app/utils/product/productLikeDate";
 import useUser from "@/hooks/useUser";
 import Chat from "@/app/_components/chat/Chat";
@@ -20,11 +20,13 @@ import sellerCheck from "@/app/utils/product/sellerCheck";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 
-const Product = ({params}: { params: { id: string } }) => {
+const Product = ({params}: { params: { id: ProductType } }) => {
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
-    console.log(loginUserData)
     const [productVideo, setProductVideo] = useState<string>()
-    const user = useUser()
+    console.log(productVideo)
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const router = useRouter()
     const label = {inputProps: {'aria-label': 'Checkbox demo'}};
     const theme = createTheme({
@@ -54,13 +56,16 @@ const Product = ({params}: { params: { id: string } }) => {
         setProductLike(!productLike)
         console.log(productLike)
         const productLikeData = async () => {
-            const result = await productLikeDate(id, loginUserData?._id)
-            if (result == "mineProduct"){
-                window.alert("自分の商品にはいいねできないです。")
-            }
-            if (result == "notLogin"){
-                window.alert("ログインしていないといいねはできないです。")
-                setProductLike(false)
+            if (id !== undefined || loginUserData !== undefined) {
+
+                const result = await productLikeDate(id, loginUserData?._id)
+                if (result == "mineProduct") {
+                    window.alert("自分の商品にはいいねできないです。")
+                }
+                if (result == "notLogin") {
+                    window.alert("ログインしていないといいねはできないです。")
+                    setProductLike(false)
+                }
             }
         }
         productLikeData()
@@ -71,7 +76,7 @@ const Product = ({params}: { params: { id: string } }) => {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
-    }, [user]);
+    }, [user, id,router]);
 
     useEffect(() => {
 
@@ -90,7 +95,7 @@ const Product = ({params}: { params: { id: string } }) => {
                 setSameSellerStatus(sellerCheckCatch)
                 console.log(sellerCheckCatch)
             }
-            if (productCatch == null){
+            if (productCatch == null) {
                 console.log("商品が消された可能性があります。")
                 window.alert("商品が消された可能性があるので商品の詳細を表示することができませんでした。トップページに戻ります。");
                 router.push("/")
@@ -109,7 +114,7 @@ const Product = ({params}: { params: { id: string } }) => {
                     instanceProductParse.productImage4 || ""
                 ]);
             }
-            if (productCatchParse?.video !== undefined && productCatchParse?.video !== null){
+            if (productCatchParse?.video !== undefined && productCatchParse?.video !== null) {
                 const video = productCatchParse?.video
                 // const blob = await video?.blob()
                 // const url = URL.createObjectURL(blob)
@@ -118,7 +123,7 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [loginUserData]);
+    }, [loginUserData?._id ,id ,router]);
 
 
     useEffect(() => {
@@ -126,7 +131,7 @@ const Product = ({params}: { params: { id: string } }) => {
             console.log(product?.productLike.includes(loginUserData?._id));
             setProductLike(true);
         }
-    }, [product]);
+    }, [product ,loginUserData?._id]);
 
     const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
         e.preventDefault();
@@ -147,7 +152,8 @@ const Product = ({params}: { params: { id: string } }) => {
                         <div id="info">
                             <div id="photo">
                                 <figure>
-                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"} width={200} height={200}
+                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                           width={200} height={200}
                                            alt="商品の写真"/>
                                 </figure>
                                 <ul className="piclist">
@@ -156,7 +162,8 @@ const Product = ({params}: { params: { id: string } }) => {
                                             <li key={index} className="picts">
                                                 {image ? (
                                                     <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                        <Image className="pictS" src={image} width={50} height={50} alt={`画像${index + 1}`} />
+                                                        <Image className="pictS" src={image} width={50} height={50}
+                                                               alt={`画像${index + 1}`}/>
                                                     </a>
                                                 ) : null}
                                             </li>
@@ -193,7 +200,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             <Chat paramsProductData={id}/>
                         </div>
                         <div id="controlProduct">
-                            {product?.sellStatus == "trading" ?
+                            {product?.sellStatus == "販売中" ?
                                 <></>
                                 :
                                 <ThemeProvider theme={theme}>
@@ -212,7 +219,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             {/*</button>*/}
                             {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
                                 <Stripe productId={product?._id}
-                                        sellingOrSoldOut={product?.sellStatus == "trading" ? true : false}/>}
+                                        sellingOrSoldOut={product?.sellStatus == "販売中" ? true : false}/>}
                         </div>
 
 

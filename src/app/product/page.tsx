@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Sidebar from "@/app/_components/sidebar/Sidebar";
 
 
-
 const Product = () => {
 
     return (

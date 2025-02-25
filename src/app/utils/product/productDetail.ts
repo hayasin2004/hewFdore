@@ -5,6 +5,7 @@ import {Product} from "@/models/Product";
 
 export interface ProductType {
     product?: string;
+    productId?: string;
     id?: string
     _id?: string,
     sellerId?: string,
@@ -23,7 +24,7 @@ export interface ProductType {
     productLike?: string,
     postageBurden?: string,
     productCondition?: string,
-    productImage?: string,
+    productImage: string,
     productImage2?: string,
     productImage3?: string,
     productImage4?: string,
@@ -33,11 +34,11 @@ export interface ProductType {
 }
 
 
-const productDetail = async (id: string): Promise<{ product: string | null } | { video: string | null } | null> => {
+const productDetail = async (id: string)=> {
      await connectDB()
     try {
         console.log("まずここまで来たかの確認" + id)
-        const product: ProductType | null = await Product.findById(id)
+        const product = await Product.findById(id)
         console.log(product)
         return {product: JSON.stringify(product)}
     } catch (err) {

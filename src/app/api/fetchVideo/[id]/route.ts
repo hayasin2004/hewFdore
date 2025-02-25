@@ -2,10 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
-import {GridFSBucketReadStream, ObjectId} from "mongodb";
-import {GridFSBucket} from "mongodb";
-import {PassThrough} from "node:stream";
-import {NextResponse} from "next/server";
+import {GridFSBucket, GridFSBucketReadStream, ObjectId} from "mongodb";
 
 export interface ProductType {
     product?: string;
@@ -30,7 +27,7 @@ export interface ProductType {
     payPayCode?: string
 }
 
-export async function GET({params}: { params: { id: string } }) {
+export async function GET(request: Request,{params}: { params: { id: string } }) {
     const mongoScheme = await connectDB()
     try {
         const db = mongoScheme.connection.db

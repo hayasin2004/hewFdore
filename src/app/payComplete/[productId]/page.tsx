@@ -13,7 +13,9 @@ const PayComplete = () => {
     const [loginUserData, setLoginUserData] = useState()
 
     console.log(loginUserData,params?.sessionId)
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     const userParse = JSON.parse(user)
     useEffect(() => {
         setLoginUserData(userParse)
@@ -40,7 +42,7 @@ const PayComplete = () => {
                 console.log("ゾンビ")
             }
         }
-    }, []);
+    }, [userParse]);
     // const productId = decodeURI(params.productId);
     // console.log(productId);
 

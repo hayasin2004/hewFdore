@@ -12,12 +12,13 @@ import confirmUser from "@/app/utils/user/confirmUser";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 
-
 const Favorite = () => {
     const [favoriteProductData, setFavoriteProductData] = useState<ProductType[] | null>(null)
     const [userData, setUserData] = useState<UserType | null>(null)
     console.log(userData)
-    const user = useUser()
+
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
 
     useEffect(() => {
 
@@ -58,7 +59,7 @@ const Favorite = () => {
         <>
             <Header/>
             <div id={"bread"}>
-                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <Link href={"/"}><p className={"breadText"}>F&apos;dore</p></Link>
                 <p className={"breadArrow"}>＞</p>
                 <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
                 <p className={"breadArrow"}>＞</p>

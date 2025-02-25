@@ -8,6 +8,7 @@ import Footer from "@/app/_components/footer/Footer";
 import {ProductType} from "@/app/utils/product/productDetail";
 import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
 import "../../searchResult.css"
+
 const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     const [searchProductResult, setSearchProductResult] = useState<ProductType[] | null>(null)
     console.log(searchProductResult)
@@ -32,15 +33,14 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
             console.log(response)
         }
         handleProductSearch()
-    }, [])
+    }, [searchWordDecoded])
 
     // 検索結果ネーション
-    let ProductPerPage = 4;
+    const ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
     const [searchSize, setSearchSize] = useState<string>("")
     const [searchCategory, setSearchCategory] = useState<string>("")
     const [categoryProductList, setCategoryProductList] = useState<ProductType[]>([])
-
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = searchProductResult?.slice(ProductOffset, endOffset);
     const categoryProductListData = categoryProductList.slice(ProductOffset, endOffset);
@@ -48,9 +48,15 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     const handlePageClick = (e: { selected: number }) => {
         const newOfffset = (e.selected * ProductPerPage) % searchProductResult?.length;
         setProductoffset(newOfffset);
-
     };
+
+    useEffect(() => {
+        setSearchCategory("")
+        setCategoryProductList([])
+    }, []);
+
     function T_items({category, currentProduct, categoryProductList}) {
+        console.log(categoryProductList)
         return (
             <>
                 {

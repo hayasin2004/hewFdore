@@ -5,6 +5,7 @@ import Header from "@/app/_components/header/Header";
 import { GetBlog } from "@/lib/client";
 import Link from "next/link";
 import "./Blogintroduction.css";
+import Images from "next/image";
 
 export interface BlogType {
     id?: string;
@@ -75,6 +76,8 @@ const Blogintroduction = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    console.log(scrollToTop)
 
     return (
         <div>
@@ -210,7 +213,7 @@ const Blogintroduction = () => {
                             <li key={blog.id} className="blog-item">
                                 <Link href={`/${blog.id}`} className="blog-link">
                                     {blog.image && (
-                                        <img src={blog.image.url} alt={blog.title} className="blog-image"/>
+                                        <Images src={blog.image.url} width={400} height={400} alt={`${blog.title}`} className="blog-image"/>
                                     )}
                                     <div className="text-container">
                                         <div className="blog-date">{formatDate(blog.createdAt)}</div>

@@ -8,6 +8,7 @@ import deleteAccount from "@/app/utils/user/deleteAccount";
 import confirmUser from "@/app/utils/user/confirmUser";
 
 import Link from "next/link";
+
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")
     const [username, setUsername] = useState<string | null>("")
@@ -124,7 +125,7 @@ const UpdateProfile = () => {
             <Header/>
 
             <div id={"bread"}>
-                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <Link href={"/"}><p className={"breadText"}>F&apos;dore</p></Link>
                 <p className={"breadArrow"}>＞</p>
                 <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
                 <p className={"breadArrow"}>＞</p>

@@ -14,7 +14,8 @@ const PaidNote = () => {
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
 
-    const user = useUser()
+    const token = localStorage.getItem("token");
+    const user = useUser(token)
     console.log(loginUserData)
     useEffect(() => {
 
@@ -47,7 +48,7 @@ const PaidNote = () => {
         <>
             <Header/>]
             <div id={"bread"}>
-                <Link href={"/"}><p className={"breadText"}>F'dore</p></Link>
+                <Link href={"/"}><p className={"breadText"}>F&apos;dore</p></Link>
                 <p className={"breadArrow"}>＞</p>
                 <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
                 <p className={"breadArrow"}>＞</p>

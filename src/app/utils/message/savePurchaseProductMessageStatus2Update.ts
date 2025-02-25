@@ -2,6 +2,7 @@
 
 import {Purchase} from "@/models/Purchase";
 import {connectDB} from "@/lib/mongodb";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface ChatType {
     currentUser?: string
@@ -10,7 +11,7 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string, currentUserData: string) => {
+const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string, currentUserData: UserType) => {
 
     await connectDB()
 

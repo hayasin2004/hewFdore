@@ -33,12 +33,12 @@ export interface createProductType {
         if (saveVideo !== null) {
             const decoded = await jwt.verify(token, process.env.SECRET_KEY);
             const sellerId = decoded.userId
-            const sellerUserData: UserType = await User.findById(sellerId);
+            const sellerUserData: UserType | null = await User.findById(sellerId);
             const productId = uuidv4()
             const newProduct = await Product.create({
                 productId,
                 sellerId,
-                sellerUserName: sellerUserData.username,
+                sellerUserName: sellerUserData?.username,
                 productName,
                 productPrice,
                 productDesc,
@@ -53,7 +53,7 @@ export interface createProductType {
                 productImage3,
                 productImage4,
                 productVideo : saveVideo,
-                sellStatus: "selling"
+                sellStatus: "販売中"
             })
             await newProduct.save()
             const CompleteproductId = newProduct._id
@@ -67,12 +67,12 @@ export interface createProductType {
         if (saveVideo  == null) {
             const decoded = await jwt.verify(token, process.env.SECRET_KEY);
             const sellerId = decoded.userId
-            const sellerUserData: UserType = await User.findById(sellerId);
+            const sellerUserData: UserType | null = await User.findById(sellerId);
             const productId = uuidv4()
             const newProduct = await Product.create({
                 productId,
                 sellerId,
-                sellerUserName: sellerUserData.username,
+                sellerUserName: sellerUserData?.username,
                 productName,
                 productPrice,
                 productDesc,
@@ -86,7 +86,7 @@ export interface createProductType {
                 productImage2,
                 productImage3,
                 productImage4,
-                sellStatus: "selling"
+                sellStatus: "販売中"
             })
             await newProduct.save()
             const CompleteproductId = newProduct._id

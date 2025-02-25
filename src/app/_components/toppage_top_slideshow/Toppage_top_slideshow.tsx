@@ -5,9 +5,6 @@ import "./common.css";
 import {GetBlog} from "@/lib/client";
 import Link from "next/link";
 
-interface SlideShowProps {
-    images: string[];
-}
 
 interface dummy {
     image?: string;
@@ -22,7 +19,7 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     const [nextanimate, setNextanimate] = useState(false); // 次スライドアニメーション
     const [prevanimate, setPrevanimate] = useState(false); // 前スライドアニメーション
     const [isChanging, setIsChanging] = useState(false); // スライド切り替え中かどうか
-
+    console.log(nextSlide)
 
     useEffect(() => {
         const fetchCMSData = async () => {

@@ -9,7 +9,6 @@ import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import Footer from "@/app/_components/footer/Footer";
-import {display} from "@mui/system";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -44,7 +43,7 @@ const ListingScreen: React.FC = () => {
 
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
-    console.log(shippingArea)
+    console.log(shippingArea ,productVideoFiles)
 
     const productImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
@@ -308,7 +307,7 @@ const ListingScreen: React.FC = () => {
                                               d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>
                                     </svg> :
                                     <svg  style={{pointerEvents: "auto"}} className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="150"
-                                         height="150" viewBox="0 0 24 24">
+                                          height="150" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                               d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>
                                     </svg>}

@@ -1,8 +1,8 @@
 "use client"
-　
+
 import {useEffect, useState} from "react";
-import './AuthGmail.css'　
-import {useRouter} from "next/navigation";　
+import './AuthGmail.css'
+import {useRouter} from "next/navigation";
 import confirmToken from "@/app/utils/user/confirmToken";
 
 const AuthGmail = ({params}: { params: { id: string } }) => {
@@ -151,6 +151,7 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                         認証が完了しました！
                     </div>
                 )}
+
 
                 {status && (
                     <p className="status">

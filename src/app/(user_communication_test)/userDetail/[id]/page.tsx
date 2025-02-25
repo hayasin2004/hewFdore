@@ -9,22 +9,21 @@ import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";
 import Images from "next/image";
-import getFollowUser from "@/app/utils/user/getFollowUser";
 
 
-const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
+const UserDetailPage = ({params}: { params: { id: string } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [followerData, setFollowerData] = useState<UserType[] | null>(null)
     const [followingsData, setFollowingsData] = useState<UserType[] | null>(null)
-    console.log(followerData )
+    console.log(followerData)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [likeList, setLikeList] = useState<string[] | null>(null)
-    const [loginUserData, setLoginUserData] = useState<string | null>(null)
+    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     const [mainImages, setMainImages] = useState<{ [key: string]: string }>({});
     const [images, setImages] = useState<{ [key: string]: string[] }>({});
     const [selectedTab, setSelectedTab] = useState("tab1");
 
-    console.log(images, mainImages);
+    console.log(images, mainImages, likeList);
 
     const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, productId: string, index: number) => {
         e.preventDefault();
@@ -34,7 +33,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
         }));
     };
 
-    console.log(likeList);
+    console.log(handleImageClick);
     const id: UserType | null = params.id;
     const token = localStorage.getItem("token");
 
@@ -58,39 +57,44 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
 
                 console.log(id);
                 const response = await userProfile(id);
-                const responesUserData = JSON.parse(response?.searchUser);
-                const responceFollowerData = JSON.parse((response?.followers));
-                const responesFollowingsData = JSON.parse(response?.followings);
-                const responesProductData: ProductType[] = JSON.parse(response?.searchProduct);
-                setUserData(responesUserData);
-                setFollowerData(JSON.parse(responceFollowerData));
-                setFollowingsData(JSON.parse(responesFollowingsData));
-                setProductData(responesProductData);
-                const newMainImages: { [key: string]: string } = {};
-                const newImages: { [key: string]: string[] } = {};
-                responesProductData.forEach(product => {
-                    newMainImages[product._id] = product.productImage;
-                    newImages[product._id] = [
-                        product.productImage,
-                        product.productImage2 || "",
-                        product.productImage3 || "",
-                        product.productImage4 || ""
-                    ];
-                });
-                setMainImages(newMainImages);
-                setImages(newImages);
-                if (loginUserData) {
-                    const likeData = CatchLikeList(loginUserData?._id);
-                    const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList);
-                    setLikeList(likeDataParse);
-                }
+                if (response !== undefined) {
 
+                    const responesUserData = JSON.parse(response?.searchUser);
+                    const responceFollowerData = JSON.parse((response?.followers));
+                    const responesFollowingsData = JSON.parse(response?.followings);
+                    const responesProductData: ProductType[] = JSON.parse(response?.searchProduct);
+                    setUserData(responesUserData);
+                    setFollowerData(JSON.parse(responceFollowerData));
+                    setFollowingsData(JSON.parse(responesFollowingsData));
+                    setProductData(responesProductData);
+                    const newMainImages: { [key: string]: string } = {};
+                    const newImages: { [key: string]: string[] } = {};
+                    responesProductData.forEach(product => {
+                        if (product._id !== undefined) {
+                            newMainImages[product._id] = product.productImage;
+                            newImages[product._id] = [
+                                product.productImage,
+                                product.productImage2 || "",
+                                product.productImage3 || "",
+                                product.productImage4 || ""
+                            ];
+                        }
+                    });
+                    setMainImages(newMainImages);
+                    setImages(newImages);
+                    if (loginUserData) {
+                        const likeData = CatchLikeList(loginUserData?._id);
+                        const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList);
+                        setLikeList(likeDataParse);
+                    }
+
+                }
             } catch (err) {
                 console.log(err)
             }
         }
         response()
-    }, [token]);
+    }, [token ,loginUserData ,id]);
     return (
         <div>
             <h1>
@@ -175,20 +179,22 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
 
                     <div className="tab_content" id="tab2_content">
                         フォロー一覧
-                        {followingsData?.map((item : UserType) => (
+                        {followingsData?.map((item: UserType) => (
                             <ul key={item._id}>
                                 <li>{item.username}</li>
-                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"} width={100} height={100} alt={"ユーザープロフィール画像"} />
+                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"}
+                                        width={100} height={100} alt={"ユーザープロフィール画像"}/>
                             </ul>
                         ))}
                     </div>
 
                     <div className="tab_content" id="tab3_content">
                         フォロワー一覧
-                        {followerData?.map((item : UserType) => (
+                        {followerData?.map((item: UserType) => (
                             <ul key={item._id}>
                                 <li>{item.username}</li>
-                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"} width={100} height={100} alt={"ユーザープロフィール画像"} />
+                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"}
+                                        width={100} height={100} alt={"ユーザープロフィール画像"}/>
                             </ul>
                         ))}
                     </div>
