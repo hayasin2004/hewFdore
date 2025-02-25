@@ -91,7 +91,7 @@ const Toppage = () => {
                     </div>
                 </div>
 
-                <h2 style={{color: "red", fontSize: "6rem"}}></h2>
+                 <h2 style={{color: "red", fontSize: "6rem"}}></h2>
                 <Toppage_2nd/>
                 <ToppageSite3/>
 
