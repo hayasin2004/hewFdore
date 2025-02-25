@@ -141,7 +141,7 @@ const Chat = (props: { paramsProductData: string }) => {
                     setChatMessage(e.target.value)
                 }} placeholder="出品者へのお問い合わせはこちらから"/>
                 <button onClick={submitChatMessage} type={"submit"}>
-                    <Images id={"sendMsg"} height={30} src={"/images/mail_1.svg"} width={30}/>
+                    <Images id={"sendMsg"} height={30} src={"/images/mail_1.svg"} alt={"コメント送信ボタン"} width={30}/>
                 </button>
             </div>
         </div>

@@ -12,32 +12,31 @@ import Footer from "@/app/_components/footer/Footer";
 
 export interface productStatusType {
     productCategory?: string[],
-    productCondition?: string,
-    postageBurden?: string,
-    shippingArea?: string,
-    deliveryTime?: string,
-    onCategoryChange?: string,
-    onProductSizeChange?: string,
-    onProductConditionChange?: string,
-    onPostageBurdenChange?: string,
-    onDeliveryTimeChange?: string,
-    onShippingSource?: string,
+    productCondition?: string | null, // 修正
+    postageBurden?: string | null, // 修正
+    shippingArea?: string | null, // 修正
+    deliveryTime?: string | null, // 修正
+    onCategoryChange?: (categories: string[]) => void,
+    onProductSizeChange?: (size: string | null) => void, // 修正
+    onProductConditionChange?: (condition: string | null) => void, // 修正
+    onPostageBurdenChange?: (burden: string | null) => void, // 修正
+    onDeliveryTimeChange?: (time: string | null) => void, // 修正
+    onShippingSource?: (source: string | null) => void // 修正
 }
 
 const ListingScreen: React.FC = () => {
-    const [productCategory, setProductCategory] = useState([])
-    const [productSize, setProductSize] = useState<string | null>("")
-    const [productCondition, setProductCondition] = useState<string | null>(null)
-    const [postageBurden, setPostageBurden] = useState<string | null>(null)
-    const [shippingAreaText, setShippingAreaText] = useState<string | null>(null)
-    const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
-    const [productId, setProductId] = useState<ProductType | null>(null)
-    const [productImage, setProductImage] = useState<string | null>(null)
-    const [productImage2, setProductImage2] = useState<string | null>(null)
-    const [productImage3, setProductImage3] = useState<string | null>(null)
-    const [productImage4, setProductImage4] = useState<string | null>(null)
-    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null)
-    // const [compressedVideo, setCompressedVideo] = useState(null)
+    const [productCategory, setProductCategory] = useState<string[]>([])
+    const [productSize, setProductSize] = useState<string | null>("");
+    const [productCondition, setProductCondition] = useState<string | null>(null);
+    const [postageBurden, setPostageBurden] = useState<string | null>(null);
+    const [shippingAreaText, setShippingAreaText] = useState<string | null>(null);
+    const [deliveryTime, setDeliveryTime] = useState<string | null>(null);
+    const [productId, setProductId] = useState<ProductType | null>(null);
+    const [productImage, setProductImage] = useState<string | null>(null);
+    const [productImage2, setProductImage2] = useState<string | null>(null);
+    const [productImage3, setProductImage3] = useState<string | null>(null);
+    const [productImage4, setProductImage4] = useState<string | null>(null);
+    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
 
@@ -296,7 +295,7 @@ const ListingScreen: React.FC = () => {
                         </h3>
                         <div className={"kamera"}>
                             {videoUrl &&
-                                <video  src={videoUrl} width={250} height={250} alt={"選択した商品画像"}/>}
+                                <video  src={videoUrl} width={250} height={250} aria-label={"選択した商品画像"}/>}
                             {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                             <label htmlFor="video">
                                 {/*ここマージの時注意　名称はこっちでない方を優先してください*/}

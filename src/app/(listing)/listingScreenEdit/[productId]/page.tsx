@@ -58,7 +58,6 @@ const ListingScreen = ({ params }: { params: { productId: string | null } }) => 
             ]);
         };
         productResult();
-        socket()
     }, [productId ,router, socket]);
 
     const deleteProductFunc = async () => {

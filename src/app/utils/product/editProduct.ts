@@ -1,6 +1,7 @@
 "use server"
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
+import {ProductType} from "@/app/utils/product/productDetail";
 
 
 export interface createProductType {
@@ -12,7 +13,7 @@ export interface createProductType {
 }
 
 export const editProduct = async (productId: string | null, productName: string | null, productDesc: string | null, productPrice: number | null, productCategory: string[] | null, deliveryTime: string | null, productSize: string | null, productCondition: string | null, postageBurden: string | null, shippingArea: string | null,): Promise<{
-    result: string } | null> => {
+    result: ProductType } | null> => {
     await connectDB();
     try {
         const updateProduct = await Product.findByIdAndUpdate(productId, {

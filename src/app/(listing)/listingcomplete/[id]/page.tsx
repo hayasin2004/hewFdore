@@ -46,7 +46,7 @@ const ListingComplete = ({params}: { params: { id: string } }) => {
                 <h1 className={"liscomph2"}>出品が完了しました。</h1>
                 <div id="info">
                     <div id="photo">
-                        {mainImage !== null ?
+                        {mainImage !== null && mainImage !== undefined ?
                             <Image className={"proimg"}
                                    src={mainImage}
                                    width={400} height={400}

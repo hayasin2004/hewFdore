@@ -3,7 +3,7 @@
 import {connectDB} from "@/lib/mongodb";
 import {ProductComment} from "@/models/ProductComment";
 
-const productChatLike = async (currentUserId: string | null, productId: string | null, commentId: string | null, icon: string | null) => {
+const productChatLike = async (currentUserId: string | undefined, productId:string | undefined, commentId:string | undefined, icon: string | null) => {
     await connectDB()
     try {　
         const searchListingProductAndComment = await ProductComment.findOne({"productChat.listingChatMessage._id": commentId}, {"productChat.$": 1})

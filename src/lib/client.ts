@@ -26,7 +26,7 @@ client
         endpoint: 'blogs',
     })
     //.then((res) => console.log(res));
-    .then((res) => console.log("res"+ JSON.parse(JSON.stringify(res.contents.map((item) => console.log(item.image))))))
+    .then((res) => console.log("res"+ JSON.parse(JSON.stringify(res.contents.map((item: { image: string; }) => console.log(item.image))))))
     .catch((err) => console.error("取得エラー:", err));
 
 

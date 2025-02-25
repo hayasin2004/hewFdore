@@ -55,7 +55,8 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
     }, [item]);
 
     const handleCollapse = (event: React.MouseEvent) => {
-        if (!event.target.closest('.expanded-reverse')) {
+        const target = event.target as HTMLElement;
+        if (!target.closest('.expanded-reverse')) {
             return;
         }
         if (isAnimating) return;
