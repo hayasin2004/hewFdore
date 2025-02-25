@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GetBlog } from "@/lib/client";
 import "./common.css";
-import Images from "next/image";
 
 export interface BlogType {
     id: string;
@@ -64,8 +63,8 @@ const ToppageSite3 = () => {
                             <li key={blog.id}>
                                 <Link href={`/${blog.id}`} className="blog-link">
                                     {blog.image && (
-                                        <Images
-                                            src={blog.image.url}
+                                        <img
+                                            src={`${blog.image.url}`}
                                             alt={blog.title}
                                             className="blog-images"
                                             width="380"
