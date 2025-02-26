@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import searchProductCategoryServerAction from "@/app/utils/search/(product)/searchProductCategory";
 import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
 import confirmUser from "@/app/utils/user/confirmUser";
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 const SearchProductCategory = () => {

@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import "./DirectMessageStatus3.css"
 import EmojiPickerDirectMessage from "@/app/_components/emojiPickerDirectMessage/EmojiPickerDirectMessage";
-import {ChatType} from "@/models/Chat";
+
 import {DirectMessageType} from "@/app/_components/directMessageStaus/DirectMessageStatus1/DirectMessageStatus1";
 
 const DirectMessageStatus3 = (params :DirectMessageType) => {

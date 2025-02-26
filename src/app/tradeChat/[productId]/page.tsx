@@ -7,7 +7,7 @@ import {Rating, Typography} from "@mui/material";
 import tradeProduct from "@/app/utils/product/tradeProduct";
 import io from "socket.io-client";
 import {ChatType} from "@/models/Chat";
-import TradeProductMessageServer, {tradeChatStatusType} from "@/app/utils/user/TradeProductMessageServer";
+import TradeProductMessageServer from "@/app/utils/user/TradeProductMessageServer";
 import tradeProductCatchMessageStatus2 from "@/app/utils/message/tradeProductCatchMessageStatus2";
 import tradeProductCatchMessageStatus1 from "@/app/utils/message/tradeProductCatchMessageStatus1";
 import savePurchaseProductMessageStatus1 from "@/app/utils/message/savePurchaseProductMessageStauts1";

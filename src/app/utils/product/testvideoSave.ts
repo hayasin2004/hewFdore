@@ -10,6 +10,8 @@ const testvideoSave = async (video: FormData | null) => {
         const productVideo = video?.get("productVideo")
         if (productVideo instanceof File) {
             if (mongoScheme.connection.db !== undefined) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
                 const bucket = new GridFSBucket(mongoScheme.connection.db)
                 const uploadStream = bucket.openUploadStream(productVideo?.name)
                 const writableStream = GridFSBucketWriteStream?.toWeb(uploadStream);

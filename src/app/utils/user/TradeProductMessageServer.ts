@@ -1,8 +1,8 @@
 "use server"
 
-import {connectDB} from "@/lib/mongodb";
+import
+{connectDB} from "@/lib/mongodb";
 import {Purchase} from "@/models/Purchase";
-import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface tradeChatStatusType {
     chatExists?: string,
