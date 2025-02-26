@@ -14,8 +14,17 @@ const ConfirmUserProfile = () => {
     const [productData, setProductData] = useState<ProductType[] | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     console.log(productData)
-    const token = localStorage.getItem("token");
+    const [token, setToken] = useState<string | null>(null)
+
     const user = useUser(token)
+    useEffect(() => {
+
+        if (typeof window !== "undefined") {
+            // Your code that accesses localStorage
+            const data = localStorage.getItem("token");
+            setToken(data)
+        }
+    }, []);
     console.log(loginUserData)
     useEffect(() => {
 
@@ -24,7 +33,7 @@ const ConfirmUserProfile = () => {
         setLoginUserData(JSON.parse(userParse))
         if (userParse) {
         }
-    }, [user]);
+    }, [ user,token]);
 
     useEffect(() => {
         const fetchPurchaseProduct = async () => {

@@ -19,8 +19,15 @@ const UpdateProfile = () => {
     const [profilePicture, setProfilePicture] = useState<string | null>("")
     const [newProfilePicture, setNewProfilePicture] = useState<string | null>("")
     console.log(username, email, password, address)
-    const token = localStorage.getItem("token")
+    const [token, setToken] = useState<string | null>(null)
+    useEffect(() => {
 
+        if (typeof window !== "undefined") {
+            // Your code that accesses localStorage
+            const data = localStorage.getItem("token");
+            setToken(data)
+        }
+    }, []);
     const profilePictureFunc = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
         if (files && files.length > 0) {

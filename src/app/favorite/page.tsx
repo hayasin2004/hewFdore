@@ -17,8 +17,17 @@ const Favorite = () => {
     const [userData, setUserData] = useState<UserType | null>(null)
     console.log(userData)
 
-    const token = localStorage.getItem("token");
+    const [token, setToken] = useState<string | null>(null)
+
     const user = useUser(token)
+    useEffect(() => {
+
+        if (typeof window !== "undefined") {
+            // Your code that accesses localStorage
+            const data = localStorage.getItem("token");
+            setToken(data)
+        }
+    }, []);
 
     useEffect(() => {
 
@@ -34,7 +43,7 @@ const Favorite = () => {
             }
             confirmUserData()
         }
-    }, [user])
+    }, [user,token])
 
     useEffect(() => {
 

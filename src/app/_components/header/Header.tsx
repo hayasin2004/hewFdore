@@ -17,13 +17,22 @@ import Image from "next/image"
 
 const Header = () => {
 
-    const token = localStorage.getItem("token");
-    const user = useUser(token)
     const [userData, setUserData] = useState<UserType | null>(null)
     const [toastPurchase, setToastPurchase] = useState<ToastType[] | null>([])
     const [otherToast, setOtherToast] = useState<ToastType[] | null>([])
+    const [token, setToken] = useState<string | null>(null)
+
+    const user = useUser(token)
     useEffect(() => {
-        const token = localStorage.getItem("token")
+
+        if (typeof window !== "undefined") {
+            // Your code that accesses localStorage
+            const data = localStorage.getItem("token");
+            setToken(data)
+        }
+    }, []);
+
+    useEffect(() => {
         if (token) {
 
             const confirmUserData = async () => {
@@ -37,7 +46,7 @@ const Header = () => {
             confirmUserData()
         }
 
-    }, [user]);
+    }, [user, token]);
 
 
     useEffect(() => {

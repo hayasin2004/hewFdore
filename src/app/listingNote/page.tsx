@@ -14,8 +14,17 @@ const PaidNote = () => {
     const [productData, setProductData] = useState<ProductType[] | null>([])
     const [loginUserData, setLoginUserData] = useState<UserType | undefined>(undefined)
 
-    const token = localStorage.getItem("token");
+    const [token, setToken] = useState<string | null>(null)
+
     const user = useUser(token)
+    useEffect(() => {
+
+        if (typeof window !== "undefined") {
+            // Your code that accesses localStorage
+            const data = localStorage.getItem("token");
+            setToken(data)
+        }
+    }, []);
     const userParse = JSON.parse(user)
     const currentUser = loginUserData?._id
 
@@ -35,7 +44,7 @@ const PaidNote = () => {
             }
         }
         fetchPurchaseProduct()
-    }, [user ,currentUser,userParse]);
+    }, [user ,currentUser,userParse ,token]);
 
 
     return (
