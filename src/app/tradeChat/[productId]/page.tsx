@@ -103,7 +103,7 @@ const Status1TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
         </div>
     )
 }
-const Status2TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes) => {
+const  Status2TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes) => {
     // status2の時はログインしているユ―ザーが購入者だった時。K
     const [icon, setIcon] = useState("")
     console.log(icon)
