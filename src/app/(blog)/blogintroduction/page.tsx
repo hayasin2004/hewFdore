@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 

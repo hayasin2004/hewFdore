@@ -28,9 +28,14 @@ const style = {
 };
 
 
-const UserNavigation = (props : {src : string | undefined }) => {
+const UserNavigation = (props: { src: string | undefined }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
-    const token = localStorage.getItem("token")
+    const [token, setToken] = useState<string | null>(null)
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setToken(localStorage.getItem("token"));
+        }
+    }, []);
     useEffect(() => {
         const userData = async () => {
             const response = await confirmUser(token!)
@@ -61,7 +66,7 @@ const UserNavigation = (props : {src : string | undefined }) => {
 
             {userData?.profilePicture !== "" ?
                 <Button onClick={handleOpen}>
-                    <Images src={props.src ? props.src: "/"} style={{borderRadius: "50px"}} width={50} height={50}
+                    <Images src={props.src ? props.src : "/"} style={{borderRadius: "50px"}} width={50} height={50}
                             alt={"サンプルユーザーアイコン"}/>
                 </Button>
                 :
@@ -75,7 +80,7 @@ const UserNavigation = (props : {src : string | undefined }) => {
                         </g>
                     </svg>
                 </Button>
-                    
+
             }
             <Modal
                 open={open}
