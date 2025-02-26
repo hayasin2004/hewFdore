@@ -25,7 +25,7 @@ export interface productStatusType {
 }
 
 const ListingScreen: React.FC = () => {
-    const [productCategory, setProductCategory] = useState<string[]>([])
+    const [productCategory, setProductCategory] = useState<string | null>(null)
     const [productSize, setProductSize] = useState<string | null>("");
     const [productCondition, setProductCondition] = useState<string | null>(null);
     const [postageBurden, setPostageBurden] = useState<string | null>(null);

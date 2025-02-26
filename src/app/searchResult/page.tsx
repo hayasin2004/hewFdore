@@ -120,7 +120,7 @@ const SearchPageProducts = () => {
 
     };
 
-    const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const handleCategoryChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchWord(e.target.value)
         console.log(e.target.value)
     }
@@ -144,7 +144,9 @@ const SearchPageProducts = () => {
                 {/* このdivに検索バー、オプションを入れる */}
                 <form id={"WordSearch"} action="#">
                     {/*　文字入力　*/}
-                    <input onChange={handleCategoryChange} placeholder="お探しの商品を検索…" type="text"/>
+                    <input onChange={(e) => {
+                        handleCategoryChange(e)
+                    }} placeholder="お探しの商品を検索…" type="text"/>
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
                     <select id={"SearchCat"} onChange={(e) => {

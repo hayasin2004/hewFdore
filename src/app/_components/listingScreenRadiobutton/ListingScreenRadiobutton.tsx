@@ -30,6 +30,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
     console.log(productCategory , shippingAreaText)
     const handleProductExplainCategorySet = (Categoryevent:string ) => {
         setProductCategory(Categoryevent);
+
         if (onCategoryChange) onCategoryChange(Categoryevent);
     }
 
@@ -80,30 +81,30 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                             }}
                                             value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="denim" control={<Radio/>} label="デニム"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="outer" control={<Radio/>} label="アウター"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="shirt" control={<Radio/>} label="シャツ"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="longShirt" control={<Radio/>} label="長袖"/>
                                     </Box>
                                     <Box className={"radio_button_low2"}>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="T-shirt" control={<Radio/>} label="Tシャツ"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="perfume" control={<Radio/>} label="香水"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="hat" control={<Radio/>} label="帽子"/>
                                         <FormControlLabel
-                                            onChange={(e) => handleProductExplainCategorySet(e.target.value)}
+                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                             value="shose" control={<Radio/>} label="靴"/>
                                     </Box>
                                 </Box>

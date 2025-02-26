@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import searchProductCategoryServerAction from "@/app/utils/search/(product)/searchProductCategory";
 import likeListProductCategory from "@/app/utils/search/(product)/likeListProductCategory";
 import confirmUser from "@/app/utils/user/confirmUser";
-import {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 const SearchProductCategory = () => {
@@ -51,35 +51,35 @@ const SearchProductCategory = () => {
                         <Box className={"radio_button_low1"}>
 
                             <FormControlLabel
-                                onChange={(event: ChangeEvent<HTMLInputElement>) => handleProductExplainCategorySet(event.target.value)}
+                                 onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="bottom" control={<Radio/>} label="ボトム"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="outer" control={<Radio/>} label="アウター"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="shirt" control={<Radio/>} label="シャツ"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="longShirt" control={<Radio/>} label="長袖"/>
                         </Box>
 
                         <Box className={"radio_button_low2"}>
 
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="T-shirt" control={<Radio/>} label="Tシャツ"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="perfume" control={<Radio/>} label="香水"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="hat" control={<Radio/>} label="帽子"/>
                             <FormControlLabel
-                                onChange={(Categoryevent) => handleProductExplainCategorySet(Categoryevent.target.value)}
+                                onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="shose" control={<Radio/>} label="靴"/>
                         </Box>
 
@@ -88,7 +88,7 @@ const SearchProductCategory = () => {
             </FormControl>
 
             <label htmlFor="searchKeyWord">
-                <input type="text" onChange={(e) => setSearchKeyWord(e.target.value)} value={searchKeyWord}/>
+                <input type="text" onChange={(e :React.ChangeEvent<HTMLInputElement>) => setSearchKeyWord(e.target.value)} value={searchKeyWord!}/>
                 <button type={"submit"} onClick={handleProductSearch}>カテゴリー検索</button>
                 <button type={"submit"} onClick={handleSaveProductSearch}>このカテゴリー保存する</button>
             </label>

@@ -125,7 +125,12 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                 </div>
 
                 <div id={"NumView"}>
-                    <h2 id={"SRTotal"}>{searchProductResult == undefined ? searchProductResult?._id : searchProductResult?.length}件の検索結果</h2>
+                    <h2 id={"SRTotal"}>
+                        {searchProductResult === undefined
+                            ? "0件の検索結果"
+                            : searchProductResult.length === 0
+                                ? "0件の検索結果"
+                                : `${searchProductResult[0]._id}件の検索結果`}</h2>
                     <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
                     <div id={"ChangeSetting"}>
                         {/*<p>ここに並び替えとProductPerPage変更を置く</p>*/}
