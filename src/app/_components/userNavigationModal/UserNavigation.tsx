@@ -27,7 +27,7 @@ const style = {
 };
 
 
-const UserNavigation = (src :string) => {
+const UserNavigation = (props : {src : string | undefined }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const token = localStorage.getItem("token")
     useEffect(() => {
@@ -60,7 +60,7 @@ const UserNavigation = (src :string) => {
 
             {userData?.profilePicture !== "" ?
                 <Button onClick={handleOpen}>
-                    <Images src={src} style={{borderRadius: "50px"}} width={50} height={50}
+                    <Images src={props.src ? props.src: "/"} style={{borderRadius: "50px"}} width={50} height={50}
                             alt={"サンプルユーザーアイコン"}/>
                 </Button>
                 :

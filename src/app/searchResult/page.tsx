@@ -5,10 +5,11 @@ import "./searchResult.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 // ダミーデータ取得
-import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCardList";
+import ProductCardList, {ProductCardListProps} from "@/app/_components/CollapsibleProductCard/ProductCardList";
 // ページネーション
 import ReactPaginate from "react-paginate";
 import {ProductType} from "@/app/utils/product/productDetail";
+
 
 const SearchPageProducts = () => {
 
@@ -45,7 +46,7 @@ const SearchPageProducts = () => {
                     }
                     // データのやり取りは文字列形式つまりjson形式を使う。　これを非同期で行う。
                     //    {key : value }
-                    const productData: DBProductType[] = await items.json()
+                    const productData: ProductType[] = await items.json()
 
                     console.log(productData)
                     //    取得してきたitemsをproductDataとしてsetProductListに代入。後はmap関数で一個一個取り出せばおっけーい
@@ -86,7 +87,7 @@ const SearchPageProducts = () => {
 
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
 
-    function T_items({category,currentProduct, categoryProductList}) {
+    function T_items({category,currentProduct, categoryProductList} : ProductCardListProps) {
         return (
             // ここで表示html設定
             <>

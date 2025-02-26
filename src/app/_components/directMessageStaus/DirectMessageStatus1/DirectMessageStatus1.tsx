@@ -5,7 +5,7 @@ import EmojiPickerDirectMessage from "@/app/_components/emojiPickerDirectMessage
 import {ChatType} from "@/models/Chat";
 
 export interface DirectMessageType {
-    chatData? :ChatType[]
+    chatData? :ChatType
     currentUserId? :string
 }
 
@@ -16,7 +16,7 @@ const DirectMessageStatus1 = (params: DirectMessageType ) => {
     return (
         <div>
             {/*DirectMessageStatus1*/}
-            {params?.chatData?.map((item) => (
+            {params?.chatData?.chatMessage?.map((item) => (
                 item.chatUserRole == "チャットルームを作成された側" ?
                     <div className={"chatLeft-"} key={item._id}>
                         <div className={"chatLeft"}>{item?.message}</div>

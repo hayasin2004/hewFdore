@@ -2,9 +2,8 @@
 
 import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
-import {UserType} from "@/app/api/user/catchUser/route";
 
-const CatchLikeList = async (loginNowUserId: UserType | null):Promise<{ likeList: string } | null> => {
+const CatchLikeList = async (loginNowUserId: string | null | undefined) => {
     await connectDB()
     try {
          const likeList 　= await User.findOne({_id: loginNowUserId}).select("likeList")

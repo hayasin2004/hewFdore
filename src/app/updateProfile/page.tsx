@@ -155,7 +155,7 @@ const UpdateProfile = () => {
                 <div className={"updateProfile_img"}>
 
                     <div className={"profile_img"}>
-                        <Image src={profilePicture !== "" ? profilePictureFunc : "/images/clothes/product.jpg"}
+                        <Image src={profilePicture !== null ? profilePicture : "/images/clothes/product.jpg"}
                                width={200} height={200}
                                alt={"ユーザーのプロフィール"}/>
 
@@ -183,7 +183,7 @@ const UpdateProfile = () => {
                             <form>
                                 <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder={username !== "" ? username : "新しいユーザー名"} onChange={(e) => {
+                                       placeholder={username !== null ? username : "新しいユーザー名"} onChange={(e) => {
                                     setUsername(e.target.value)
                                 }}/><br/>
 
@@ -201,13 +201,13 @@ const UpdateProfile = () => {
                                        placeholder="パスワードを再入力 "/><br/>
                                 <label htmlFor="Address">住所入力</label><br/>
                                 <input type="text" name="UserName" id="Address"
-                                       placeholder={address !== "" ? address : "住所を入力して下さい。"}
+                                       placeholder={address !== null ? address : "住所を入力して下さい。"}
                                        onChange={(e) => {
                                            setAddress(e.target.value)
                                        }}/><br/>
                                 <label htmlFor="UserName">自己紹介</label><br/>
                                 <input type="text" name="UserName" id="UserName"
-                                       placeholder={description !== "" ? description : "自己紹介文を入力してください。"}
+                                       placeholder={description !== null ? description : "自己紹介文を入力してください。"}
                                        onChange={(e) => {
                                            setDescription(e.target.value)
                                        }}/><br/>

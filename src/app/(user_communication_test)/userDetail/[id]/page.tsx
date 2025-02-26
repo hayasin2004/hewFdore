@@ -17,7 +17,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
     const [followingsData, setFollowingsData] = useState<UserType[] | null>(null)
     console.log(followerData)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
-    const [likeList, setLikeList] = useState<string[] | null>(null)
+    const [likeList, setLikeList] = useState<UserType | null>(null)
     const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
     const [mainImages, setMainImages] = useState<{ [key: string]: string }>({});
     const [images, setImages] = useState<{ [key: string]: string[] }>({});
@@ -34,14 +34,14 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
     };
 
     console.log(handleImageClick);
-    const id: UserType | null = params.id;
+    const id = params.id;
     const token = localStorage.getItem("token");
 
     const followings = async () => {
         try {
-            const userFollowings: string | null = await userData?._id;
+            const userFollowings: string | undefined = await userData?._id;
             console.log(userFollowings);
-            const response: string | null = await updateFollowings(userFollowings, loginUserData?._id);
+            const response = await updateFollowings(userFollowings, loginUserData?._id);
             console.log(response);
         } catch (err) {
             console.log(err)
@@ -51,14 +51,13 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
     useEffect(() => {
         const response = async () => {
             try {
-                const confirmToken = await confirmUser(token);
-                const confirmTokenParse = JSON.parse(confirmToken);
+                const confirmToken = await confirmUser(token!);
+                const confirmTokenParse = JSON.parse(confirmToken!);
                 setLoginUserData(confirmTokenParse);
 
                 console.log(id);
                 const response = await userProfile(id);
-                if (response !== undefined) {
-
+                if (response !== undefined && response !== null) {
                     const responesUserData = JSON.parse(response?.searchUser);
                     const responceFollowerData = JSON.parse((response?.followers));
                     const responesFollowingsData = JSON.parse(response?.followings);
@@ -83,9 +82,11 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                     setMainImages(newMainImages);
                     setImages(newImages);
                     if (loginUserData) {
-                        const likeData = CatchLikeList(loginUserData?._id);
-                        const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList);
-                        setLikeList(likeDataParse);
+                        const likeData = await CatchLikeList(loginUserData?._id);
+                        if (likeData) {
+                            const likeDataParse = JSON.parse(likeData.likeList);
+                            setLikeList(likeDataParse);
+                        }
                     }
 
                 }
@@ -94,7 +95,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
             }
         }
         response()
-    }, [token ,loginUserData ,id]);
+    }, [token, loginUserData, id]);
     return (
         <div>
             <h1>
@@ -102,9 +103,10 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
             </h1>
             <div>
                 <div className={"partnerProfile"}>
-                    <div className={"partnerProfile img"}><Images src={userData?.profilePicture}
-                                                                  alt={"ユーザーのプロフィール画像"} width={100}
-                                                                  height={100}/></div>
+                    <div className={"partnerProfile img"}><Images
+                        src={userData?.profilePicture !== undefined ? userData?.profilePicture : "/profile.png"}
+                        alt={"ユーザーのプロフィール画像"} width={100}
+                        height={100}/></div>
                     {/*<li>オブジェクトID: {userData?._id}</li>*/}
                     <div className={"user"}>
                         <div>ユーザー名: {userData?.username}</div>
@@ -182,7 +184,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                         {followingsData?.map((item: UserType) => (
                             <ul key={item._id}>
                                 <li>{item.username}</li>
-                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"}
+                                <Images src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
                                         width={100} height={100} alt={"ユーザープロフィール画像"}/>
                             </ul>
                         ))}
@@ -193,7 +195,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                         {followerData?.map((item: UserType) => (
                             <ul key={item._id}>
                                 <li>{item.username}</li>
-                                <Images src={item.profilePicture !== "" ? item.profilePicture : "/profile.png"}
+                                <Images src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
                                         width={100} height={100} alt={"ユーザープロフィール画像"}/>
                             </ul>
                         ))}

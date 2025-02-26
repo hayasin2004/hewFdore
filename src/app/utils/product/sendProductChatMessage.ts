@@ -5,7 +5,7 @@ import {Product} from "@/models/Product";
 import {User} from "@/models/User";
 import {ProductComment, ProductCommentType} from "@/models/ProductComment";
 
-const sendProductChatMessage = async (productId: string | null, currentUser: string | null, sendChatMessage: string | null) => {
+const sendProductChatMessage = async (productId: string | undefined, currentUser: string | null, sendChatMessage: string | null) => {
 
     await connectDB()
     try {

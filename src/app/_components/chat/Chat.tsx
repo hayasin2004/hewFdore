@@ -10,7 +10,7 @@ import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 import {UserType} from "@/app/api/user/catchUser/route";
 import Images from "next/image";
 
-const Chat = (props: { paramsProductData: string }) => {
+const Chat = (props: { paramsProductData: string | undefined }) => {
     const [chatMessage, setChatMessage] = useState<string>("")
     const [loginUserData, setLoginUserData] = useState<UserType | null>()
     const [icon, setIcon] = useState("")

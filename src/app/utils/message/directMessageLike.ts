@@ -2,8 +2,9 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Chat} from "@/models/Chat";
+import {UserType} from "@/app/api/user/catchUser/route";
 
-const directMessageLike = async (currentUserId: string | undefined, commentId: string | undefined, icon: string | null) => {
+const directMessageLike = async (currentUserId: string | UserType | null | undefined, commentId: string | undefined, icon: string | null) => {
     await connectDB();
     console.log(currentUserId, commentId, icon);
 

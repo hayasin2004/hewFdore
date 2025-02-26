@@ -34,7 +34,7 @@ export interface ProductType {
 }
 
 
-const productDetail = async (id: ProductType |null)=> {
+const productDetail = async (id: ProductType | string |null)=> {
      await connectDB()
     try {
         console.log("まずここまで来たかの確認" + id)

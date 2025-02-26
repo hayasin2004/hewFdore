@@ -1,9 +1,10 @@
 "use client"
 import React, {useEffect, useState} from 'react';
 import userSearch from "@/app/utils/search/(user)/userSearch";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 const SearchResultParamsId = ({params}: { params: { id: string } }) => {
-    const [searchUserResult, setSearchUserResult] = useState<string[] | null>(null)
+    const [searchUserResult, setSearchUserResult] = useState<UserType[] | null>(null)
     const searchWord = params.id;
     const searchWordDecoded = decodeURI(searchWord);
     useEffect(() => {

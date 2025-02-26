@@ -6,13 +6,20 @@ import Link from "next/link";
 import useUser from "@/hooks/useUser";
 import payComplete from "@/app/utils/product/payComplete";
 
+interface ParamsType {
+    sessionId: string | null;
+    productId: string | null;
+}
+
+
 const PayComplete = () => {
     const [productId, setProductId] = useState<string | null>("")
     console.log(productId)
-    const [params, setParams] = useState<string | null>(null);
+    const [params, setParams] = useState<ParamsType | null>(null);
     const [loginUserData, setLoginUserData] = useState()
 
-    console.log(loginUserData,params?.sessionId)
+    console.log(loginUserData, params?.sessionId);
+    console.log(loginUserData, params?.sessionId)
 
     const token = localStorage.getItem("token");
     const user = useUser(token)
@@ -29,11 +36,11 @@ const PayComplete = () => {
         setParams({sessionId, productId});
         if (userId) {
             if (sessionId || productId || userId) {
-                console.log(productId,sessionId, userId)
+                console.log(productId, sessionId, userId)
 
-                const insertPurchaseDate = async  () => {
-                    const response = await payComplete(productId,sessionId, userId, paymentStatus)
-                    if (response !== undefined || response !== null){
+                const insertPurchaseDate = async () => {
+                    const response = await payComplete(productId, sessionId, userId, paymentStatus)
+                    if (response !== null) {
                         setProductId(JSON.parse(response))
                     }
                 }

@@ -5,7 +5,7 @@ import {User} from "@/models/User";
 import {connectDB} from "@/lib/mongodb";
 import toastProductLike from "@/app/utils/toast/toastProductLike";
 
-const productLikeDate = async (productId: ProductType | null, currentUser: string | null):Promise<string |{productLike : string | null} | null> => {
+const productLikeDate = async (productId: ProductType |string| null, currentUser: string | undefined):Promise<string |{productLike : string | null} | null> => {
 
     await connectDB()
     try {

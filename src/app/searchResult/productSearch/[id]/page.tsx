@@ -10,7 +10,7 @@ import ProductCardList from "@/app/_components/CollapsibleProductCard/ProductCar
 import "../../searchResult.css"
 
 const SearchResultParamsId = ({params}: { params: { id: string } }) => {
-    const [searchProductResult, setSearchProductResult] = useState<ProductType[] | null>(null)
+    const [searchProductResult, setSearchProductResult] = useState<ProductType[] | undefined>([])
     console.log(searchProductResult)
     useEffect(() => {
 
@@ -44,9 +44,9 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     const endOffset = ProductOffset + ProductPerPage;
     const currentProduct = searchProductResult?.slice(ProductOffset, endOffset);
     const categoryProductListData = categoryProductList.slice(ProductOffset, endOffset);
-    const pageCount = searchProductResult?.length / ProductPerPage;
+    const pageCount = searchProductResult!.length / ProductPerPage;
     const handlePageClick = (e: { selected: number }) => {
-        const newOfffset = (e.selected * ProductPerPage) % searchProductResult?.length;
+        const newOfffset = (e.selected * ProductPerPage) % searchProductResult!.length;
         setProductoffset(newOfffset);
     };
 
@@ -61,13 +61,13 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
         categoryProductList: ProductType[];
     }
 
-    const T_items:React.FC<T_itemsProps> = ({category, currentProduct, categoryProductList})=> {
+    const T_items: React.FC<T_itemsProps> = ({category, currentProduct, categoryProductList}) => {
 
         console.log(categoryProductList)
         return (
             <>
                 {
-                    category == ""  ?
+                    category == "" ?
                         <>
                             <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
                         </>
@@ -125,7 +125,7 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                 </div>
 
                 <div id={"NumView"}>
-                    <h2 id={"SRTotal"}>{searchProductResult == "" ? searchProductResult?._id : searchProductResult?.length}件の検索結果</h2>
+                    <h2 id={"SRTotal"}>{searchProductResult == undefined ? searchProductResult?._id : searchProductResult?.length}件の検索結果</h2>
                     <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
                     <div id={"ChangeSetting"}>
                         {/*<p>ここに並び替えとProductPerPage変更を置く</p>*/}

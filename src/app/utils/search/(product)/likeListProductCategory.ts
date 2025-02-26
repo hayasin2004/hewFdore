@@ -4,7 +4,7 @@ import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import {UserType} from "@/app/api/user/catchUser/route";
 
-const likeListProductCategory = async (userId: string | null, category: string []| null) => {
+const likeListProductCategory = async (userId: string | undefined, category: string | null) => {
     await connectDB()
     try {
         const userSearch = await User.findById(userId);

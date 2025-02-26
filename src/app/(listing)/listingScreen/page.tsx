@@ -16,7 +16,7 @@ export interface productStatusType {
     postageBurden?: string | null, // 修正
     shippingArea?: string | null, // 修正
     deliveryTime?: string | null, // 修正
-    onCategoryChange?: (categories: string[]) => void,
+    onCategoryChange?: (categories: string) => void,
     onProductSizeChange?: (size: string | null) => void, // 修正
     onProductConditionChange?: (condition: string | null) => void, // 修正
     onPostageBurdenChange?: (burden: string | null) => void, // 修正

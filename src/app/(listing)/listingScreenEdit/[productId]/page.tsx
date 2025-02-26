@@ -20,7 +20,7 @@ export interface productStatusType {
 }
 
 const ListingScreen = ({ params }: { params: { productId: string | null } }) => {
-    const [productCategory, setProductCategory] = useState<string[] | null>(null);
+    const [productCategory, setProductCategory] = useState<string | null>(null);
     const [productSize, setProductSize] = useState<string | null>(null);
     const [productCondition, setProductCondition] = useState<string | null>(null);
     const [postageBurden, setPostageBurden] = useState<string | null>(null);

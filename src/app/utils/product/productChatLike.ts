@@ -2,8 +2,9 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {ProductComment} from "@/models/ProductComment";
+import {UserType} from "@/app/api/user/catchUser/route";
 
-const productChatLike = async (currentUserId: string | undefined, productId:string | undefined, commentId:string | undefined, icon: string | null) => {
+const productChatLike = async (currentUserId:string | UserType | null | undefined, productId:string | undefined, commentId:string | undefined, icon: string | null) => {
     await connectDB()
     try {　
         const searchListingProductAndComment = await ProductComment.findOne({"productChat.listingChatMessage._id": commentId}, {"productChat.$": 1})

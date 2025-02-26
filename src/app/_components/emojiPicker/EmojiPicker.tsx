@@ -3,6 +3,8 @@ import React, {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import Picker from '@emoji-mart/react';
 import "./emojiPicker.css";
 import productChatLike from "@/app/utils/product/productChatLike";
+import {ProductType} from "@/app/utils/product/productDetail";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface EmojiSelectEventType {
     unified: string;
@@ -10,8 +12,8 @@ export interface EmojiSelectEventType {
 }
 
 export interface EmojiPickerProps {
-    currentUser?: string;
-    productId?: string;
+    productId?: string ;
+    currentUser?:  string | UserType | null;
     stamp?: string; // ここで stamp を optional にします
     item?: string;
     commentId?: string

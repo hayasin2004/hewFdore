@@ -2,6 +2,7 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Purchase} from "@/models/Purchase";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface tradeChatStatusType {
     chatExists?: string,
@@ -13,7 +14,7 @@ export interface tradeChatStatusType {
 }
 
 
-const TradeProductMessageServer = async (currentUserId: string | null, sellerId?: string | null): Promise<{chatExists :tradeChatStatusType} |{chatExistsPart2 :tradeChatStatusType} | null> => {
+const TradeProductMessageServer = async (currentUserId: string  | undefined, sellerId?: string | null) => {
     await connectDB()
     try {
         console.log("アイスクリーム" + currentUserId, sellerId)
@@ -42,12 +43,12 @@ const TradeProductMessageServer = async (currentUserId: string | null, sellerId?
                     sellerId: sellerId
                 })
                 if (chatExistsPart2) {
-                    const chatId = chatExistsPart2._id
+                    const chatId :string = chatExistsPart2._id
                     return {
                         chatExistsPart2: {
                             chatId: chatId,
                             currentUserId: currentUserId,
-                            partnerUserId: chatExistsPart2.sellerId
+                            partnerUserId: chatExistsPart2.sellerId as string
                         }
                     }
                 }

@@ -12,7 +12,7 @@ const DirectMessageStatus3 = (params :DirectMessageType) => {
     return (
         <div>
             {/*DirectMessageStatus3*/}
-            {params?.chatData?.map((item :ChatType) => (
+            {params?.chatData?.chatMessage?.map((item) => (
                 item.chatUserRole == "チャットルーム制作者" ?
                     <div className={"chatLeft-"} key={item._id}>
                         <div className={"chatLeft"}>{item?.message}</div>

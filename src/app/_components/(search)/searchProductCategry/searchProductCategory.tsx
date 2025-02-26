@@ -11,7 +11,7 @@ const SearchProductCategory = () => {
     const token = localStorage.getItem("token")
     const [loginNowUser, setLoginNowUser] = useState<UserType | null>(null)
     const [searchKeyWord, setSearchKeyWord] = useState<string | null>("")
-    const [productCategory, setProductCategory] = useState<string[] | null>(null)
+    const [productCategory, setProductCategory] = useState<string| null>(null)
     console.log(productCategory)
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const SearchProductCategory = () => {
         console.log(searchProductCategory)
     }
     const handleSaveProductSearch = async () => {
-        const searchProductCategory = await likeListProductCategory(loginNowUser._id , productCategory);
+        const searchProductCategory = await likeListProductCategory(loginNowUser?._id , productCategory);
         console.log(searchProductCategory)
     }
 

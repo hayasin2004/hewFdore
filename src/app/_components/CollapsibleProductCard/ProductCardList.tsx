@@ -3,10 +3,12 @@ import CollapsibleProductCard from './CollapsibleProductCard';
 import './CollapsibleProductCard.css';
 import {ProductType} from "@/app/utils/product/productDetail";
 
-interface ProductCardListProps {
+export interface ProductCardListProps {
     items?: ProductType[];
     category?: string;
     size?: string
+    currentProduct? : ProductType[];
+    categoryProductList? : ProductType[]
 }
 
 const ProductCardList = ({items, category, size}: ProductCardListProps) => {

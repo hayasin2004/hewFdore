@@ -7,7 +7,7 @@ import {UserType} from "@/app/api/user/catchUser/route";
 import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 
-const toastFollowings = async (productId: ProductType | null , sellerId: string | null , likedUserId : string | null  ) => {
+const toastFollowings = async (productId:string | ProductType | null , sellerId: string | null , likedUserId : string | null  ) => {
     await connectDB()
     try {
         const product : ProductType | null = await Product.findById(productId);

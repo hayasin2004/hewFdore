@@ -4,7 +4,7 @@ import {connectDB} from "@/lib/mongodb";
 import {User} from "@/models/User";
 import jwt from "jsonwebtoken";
 
-const userInfoChange = async (userId: string | null, username: string | null, password: string | null, address: string | null, description: string | null, profilePicture: string | null, existToken: string | null) => {
+const userInfoChange = async (userId: string | null, username: string |null, password: string | null, address: string | null, description: string | null, profilePicture: string | null, existToken: string | null) => {
     await connectDB()
     try {
         console.log(existToken!)

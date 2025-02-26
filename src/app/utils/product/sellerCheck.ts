@@ -2,8 +2,9 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Product} from "@/models/Product";
+import {ProductType} from "@/app/utils/product/productDetail";
 
-const sellerCheck = async (productId : string | null , currentUser : string | null) => {
+const sellerCheck = async (productId : ProductType | null | string, currentUser : string | undefined) => {
     await connectDB()
     try {
         const product =await Product.findById(productId).select("sellerId")

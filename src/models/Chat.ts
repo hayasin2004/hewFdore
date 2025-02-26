@@ -1,24 +1,31 @@
-import mongoose from "mongoose";　
+import mongoose from "mongoose";
 
 export interface ChatType {
-    _id: string;
+    _id?: string;
     username?: string
     ChatroomId?: string;
     currentUser?: string;
-    buyerId : string
+    buyerId?: string
+    chatId?: string;
+    currentUserId: string;
+    partnerUserId: string;
     partnerUser?: string;
     message?: string;
-    chatMessage : string[];
+    chatMessage? : [{
+        _id :string;
+        senderUserId?: string;
+        profilePicture?: string;
+        messageLike?: string[];
+        message : string;
+        username  :string;
+        messageStamp: [{
+            messageStampLike: string;
+            userId: string;
+        }]
+        chatUserRole: string;
+    }];
     partnerUserMessage?: string;
     newChatRoom?: string;
-    senderUserId?: string;
-    profilePicture?: string;
-    messageLike?: string[];
-    messageStamp: [{
-        messageStampLike: string;
-        userId: string;
-    }]
-    chatUserRole: string;
 
 }
 

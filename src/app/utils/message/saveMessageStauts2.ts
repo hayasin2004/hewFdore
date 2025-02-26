@@ -11,7 +11,7 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const saveMessageStauts1 = async (chatId: string, pushedUser: string, message: string) => {
+const saveMessageStauts1 = async (chatId: string | undefined, pushedUser: string, message: string) => {
 
     await connectDB()
     console.log(chatId , pushedUser, message)

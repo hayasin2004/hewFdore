@@ -10,7 +10,7 @@ import "./stripe.css"
 import Image from "next/image"
 
 export interface CompleteStripeType {
-    productId: string;
+    productId?: string;
     sellingOrSoldOut: boolean;
 }
 

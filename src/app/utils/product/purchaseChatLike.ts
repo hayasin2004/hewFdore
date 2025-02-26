@@ -2,9 +2,10 @@
 
 import {connectDB} from "@/lib/mongodb";
 import {Purchase} from "@/models/Purchase";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 
-export const purchaseChatLike = async (currentUserId: string | undefined, purchaseId: string | undefined, commentId: string | undefined, icon: string | null) => {
+export const purchaseChatLike = async (currentUserId: string | UserType | null | undefined, purchaseId: string | undefined, commentId: string | undefined, icon: string | null) => {
     await connectDB()
     try {
         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})

@@ -21,16 +21,16 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                                                    onDeliveryTimeChange,
                                                                    onShippingSource
                                                                }) => {
-    const [productCategory, setProductCategory] = useState<string[]>([]);
+    const [productCategory, setProductCategory] = useState<string>("");
     const [productSize, setProductSize] = useState<string | null>("");
     const [productCondition, setProductCondition] = useState<string | null>(null);
     const [postageBurden, setPostageBurden] = useState<string | null>(null);
     const [deliveryTime, setDeliveryTime] = useState<string | null>(null);
     const [shippingAreaText, setShippingAreaText] = useState<string | null>(null);
     console.log(productCategory , shippingAreaText)
-    const handleProductExplainCategorySet = (Categoryevent: React.SyntheticEvent<Element , Event> ) => {
-        setProductCategory([Categoryevent]);
-        if (onCategoryChange) onCategoryChange([Categoryevent]);
+    const handleProductExplainCategorySet = (Categoryevent:string ) => {
+        setProductCategory(Categoryevent);
+        if (onCategoryChange) onCategoryChange(Categoryevent);
     }
 
     const handleProductExplainSizeSet = (SizeEvent: string) => {

@@ -6,7 +6,7 @@ import toastPurchaseReview from "@/app/utils/toast/toastPurchaseReview";
 import toastGmailForSellerReview from "@/app/utils/product/toastGmailForSellerReview";
 import toastGmailForBuyerReview from "@/app/utils/product/toastGmailForBuyerReview";
 
-const tradeEnd = async (purchaseId: string | null, status: string | null, currentUserId: string | null, lastMessage: string | null, reviewValue: number | null) => {
+const tradeEnd = async (purchaseId: string | null, status: string | null, lastMessage: string | null, reviewValue: number | null) => {
     await connectDB()
     try {
         let tradeStatus = 0;

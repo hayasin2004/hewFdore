@@ -7,7 +7,7 @@ import {Product} from "@/models/Product";
 import {ProductType} from "@/app/utils/product/productDetail";
 import getFollowUser from "@/app/utils/user/getFollowUser";
 
-const userProfile = async (id: UserType | null) => {
+const userProfile = async (id: UserType| string | null | undefined) => {
     await connectDB()
     console.log("ユーザー特定したい" + id)
     try {

@@ -11,12 +11,11 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const savePurchaseProductMessageStatus2Update = async (purchaseId: string, pushedUser: string, message: string, currentUserData: UserType) => {
+const savePurchaseProductMessageStatus2Update = async (purchaseId: string, message: string, currentUserData: UserType | undefined) => {
 
     await connectDB()
 
     try {
-        console.log(purchaseId ,currentUserData._id , message)
 
         const fCHatRoomId = await Purchase.findById({_id: purchaseId})
         console.log(fCHatRoomId)

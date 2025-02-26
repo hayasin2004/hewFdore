@@ -11,7 +11,7 @@ export interface ChatType {
     partnerUserChat?: string[]
 }
 
-const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser: string | undefined, message: string, currentUserData: UserType) => {
+const savePurchaseProductMessageStatus1 = async (purchaseId: string, pushedUser: string | undefined, message: string, currentUserData: UserType | undefined) => {
 
     await connectDB()
 

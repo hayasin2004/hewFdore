@@ -1,44 +1,56 @@
 import mongoose from "mongoose";
 
+interface SellerMessageStamp {
+    sellerMessageStampLike?: string;
+    userId?: string;
+}
+
+interface SellerChatMessage {
+    _id : string
+    sellerUserId?: string;
+    sellerUsername?: string;
+    sellerProfilePicture?: string;
+    sellerMessage?: string;
+    sellerMessageLike?: string[];
+    sellerMessageStamp?: SellerMessageStamp[]; // ここを配列として定義
+    timeStamp?: Date;
+}
+
+interface BuyerChatMessage {
+    _id : string
+    buyerUserId: string;
+    buyerUsername?: string;
+    buyerProfilePicture?: string;
+    buyerMessage?: string;
+    buyerMessageLike?: string[];
+    buyerMessageStamp?: {
+        buyerMessageStampLike?: string;
+        userId?: string;
+    }[];
+    timeStamp?: Date;
+}
+
+interface TradeChat {
+    _id: string;
+    buyerChatMessage?: BuyerChatMessage[];
+    sellerChatMessage?: SellerChatMessage[];
+    chatUserRole?: string;
+}
+
 export interface PurchaseType {
     _id: string;
     purchaseId: string;
     productId: string;
     sellerId: string;
     buyerId: string;
-    tradeChat?: {
-        buyerChatMessage?: {
-            buyerUserId: string;
-            buyerUsername?: string;
-            buyerProfilePicture?: string;
-            buyerMessage?: string;
-            buyerMessageLike?: string[];
-            buyerMessageStamp?: {
-                buyerMessageStampLike?: string;
-                userId?: string;
-            }[];
-            timeStamp?: Date;
-        }[];
-        sellerChatMessage?: {
-            sellerUserId: string;
-            sellerUsername?: string;
-            sellerProfilePicture?: string;
-            sellerMessage?: string;
-            sellerMessageLike?: string[];
-            sellerMessageStamp?: {
-                sellerMessageStampLike?: string;
-                userId?: string;
-            }[];
-            timeStamp?: Date;
-        }[];
-        chatUserRole?: string;
-    }[];
+    tradeChat?: TradeChat[];
     sellerUserLastChat?: string;
     buyerUserLastChat?: string;
     sellerUserLastReview?: (typeof review)[number];
     buyerUserLastReview?: (typeof review)[number];
     tradeStatus: (typeof tradeStatus)[number];
 }
+
 const tradeStatus = ["取引中", "取引完了", "取引終了", "取引キャンセル"] as const;
 // type tradeStatusType = (typeof tradeStatus)[number];
 

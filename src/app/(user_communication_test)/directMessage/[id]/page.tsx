@@ -18,7 +18,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const detailUser = params?.id as string;
     const token = localStorage.getItem("token")
     const [partnerChatData, setPartnerChatData] = useState<ChatType | null>(null)
-    const [chatData, setChatData] = useState<ChatType | undefined >(undefined)
+    const [chatData, setChatData] = useState<ChatType | undefined>(undefined)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState<string>("")
@@ -145,9 +145,9 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
                         {/*    </ul>*/}
                         {/*))}*/}
 
-                        {status == "1" || status == "2" ? <DirectMessageStatus1 chatData={chatData?.chatMessage}
+                        {status == "1" || status == "2" ? <DirectMessageStatus1 chatData={chatData}
                                                                                 currentUserId={chatData?.currentUser}/> :
-                            <DirectMessageStatus3 chatData={chatData?.chatMessage}
+                            <DirectMessageStatus3 chatData={chatData}
                                                   currentUserId={chatData?.partnerUser}/>}
 
                         {chatList.map((item, index) => (

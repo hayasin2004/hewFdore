@@ -3,7 +3,7 @@
 import {connectDB} from "@/lib/mongodb";
 import {ProductComment} from "@/models/ProductComment";
 
-const getProductChatMessage = async ( productId: string | null) => {
+const getProductChatMessage = async ( productId : string| undefined) => {
     await connectDB()
     console.log("そもそも動いてんのかって話")
     try {

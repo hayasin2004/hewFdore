@@ -20,8 +20,8 @@ import sellerCheck from "@/app/utils/product/sellerCheck";
 import {UserType} from "@/app/api/user/catchUser/route";
 
 
-const Product = ({params}: { params: { id: ProductType } }) => {
-    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
+const Product = ({params}: { params: { id: string } }) => {
+    const [loginUserData, setLoginUserData] = useState<UserType | undefined>(undefined)
     const [productVideo, setProductVideo] = useState<string>()
     console.log(productVideo)
 
@@ -43,7 +43,7 @@ const Product = ({params}: { params: { id: ProductType } }) => {
     console.log(JSON.stringify(product))
 
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
-    const [sameSellerStatus, setSameSellerStatus] = useState<boolean>(false)
+    const [sameSellerStatus, setSameSellerStatus] = useState<boolean | null>(false)
     console.log(status)
     const [productLike, setProductLike] = useState<boolean>(false)
     const [images, setImages] = useState<string[]>([]);
@@ -127,8 +127,8 @@ const Product = ({params}: { params: { id: ProductType } }) => {
 
 
     useEffect(() => {
-        if (product?.productLike?.includes(loginUserData?._id)) {
-            console.log(product?.productLike.includes(loginUserData?._id));
+        const userId : string | undefined = loginUserData?._id
+        if (product?.productLike?.includes(userId!)) {
             setProductLike(true);
         }
     }, [product ,loginUserData?._id]);
