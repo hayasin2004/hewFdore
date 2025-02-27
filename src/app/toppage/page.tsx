@@ -11,7 +11,6 @@ import Image from "next/image"
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import axios from "axios";
-import InsertProductSellStatus from "@/app/utils/setting/update/InsertProductSellStatusPart2";
 
 const Toppage = () => {
     // useEffect(() => {
