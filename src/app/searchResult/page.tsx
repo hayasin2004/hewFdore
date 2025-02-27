@@ -88,6 +88,7 @@ const SearchPageProducts = () => {
     // t_itemsをProductListに置き換えてhtml分をCollapsible~にやればいけるはず
 
     function T_items({category,currentProduct, categoryProductList} : ProductCardListProps) {
+        console.log("category" + category,"currentProduct" + currentProduct, "categoryProductList"+ categoryProductList)
         return (
             // ここで表示html設定
             <>

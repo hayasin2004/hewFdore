@@ -8,7 +8,7 @@ export async function GET(req: NextRequest ) {
 
     if (req.method === "GET") {
         try {
-            const product = await Product.find({sellStatus : "selling"});
+            const product = await Product.find({sellStatus : "販売中"});
             return NextResponse.json(product)
         } catch (err) {
             console.log(err)
