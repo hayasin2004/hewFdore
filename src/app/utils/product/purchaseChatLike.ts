@@ -10,10 +10,10 @@ export const purchaseChatLike = async (currentUserId: string | UserType | null |
     try {
         const searchSellerPurchaseAndComment = await Purchase.findOne({"tradeChat.sellerChatMessage._id": commentId}, {"tradeChat.$": 1})
         const searchBuyerPurchaseAndComment = await Purchase.findOne({"tradeChat.buyerChatMessage._id": commentId}, {"tradeChat.$": 1})
-        console.log("判定" + commentId)
+        console.log("判定" + commentId , currentUserId)
 
         if (searchBuyerPurchaseAndComment?.tradeChat[0]?.buyerChatMessage[0]?.buyerUserId == currentUserId) {
-
+            console.log("[購入者]自分のコメントにはいいねで来ません。")
             return null
         } else if (searchSellerPurchaseAndComment?.tradeChat[0]?.sellerChatMessage[0]?.sellerUserId == currentUserId) {
             console.log("[出品者]自分のコメントにはいいねで来ません。")

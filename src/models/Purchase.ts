@@ -6,7 +6,7 @@ interface SellerMessageStamp {
 }
 
 interface SellerChatMessage {
-    _id : string
+    _id?: string
     sellerUserId?: string;
     sellerUsername?: string;
     sellerProfilePicture?: string;
@@ -30,7 +30,7 @@ interface BuyerChatMessage {
     timeStamp?: Date;
 }
 
-interface TradeChat {
+export interface TradeChat {
     _id: string;
     buyerChatMessage?: BuyerChatMessage[];
     sellerChatMessage?: SellerChatMessage[];
@@ -40,7 +40,10 @@ interface TradeChat {
 export interface PurchaseType {
     _id: string;
     purchaseId: string;
+    chatUserRole:string;
     productId: string;
+    sellerChatMessage?: SellerChatMessage[];
+    buyerChatMessage?: BuyerChatMessage[];
     sellerId: string;
     buyerId: string;
     tradeChat?: TradeChat[];

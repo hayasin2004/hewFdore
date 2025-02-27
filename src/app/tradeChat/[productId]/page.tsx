@@ -24,6 +24,7 @@ import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 import {UserType} from "@/app/api/user/catchUser/route";
 import {PurchaseType} from "@/models/Purchase";
+import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 interface tradeChatTypes {
     purchaseId?: string,
@@ -53,11 +54,16 @@ const Status1TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
                             <div className={"comment-area-rig"}>
                                 {sellerMessage.sellerMessage}
                                 {/* 絵文字 */}
-                                {sellerMessage?.sellerMessageStamp?.[0]?.sellerMessageStampLike && (
-                                    <div className={"comment-emoji-rig"}>
-                                        {sellerMessage.sellerMessageStamp[0].sellerMessageStampLike}
-                                    </div>
-                                )}
+                                <div className={"emojiButtonPosition"}>
+
+                                    <EmojiPickerPurchase
+                                        stamp={item?.sellerChatMessage?.[0]?.sellerMessageStamp?.[0]?.sellerMessageStampLike}
+                                        currentUser={currentUserId}
+                                        productId={purchaseId}
+                                        item={item._id} // ここでアイテムのIDを渡す
+                                        setIcon={setIcon}
+                                    />
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -97,7 +103,8 @@ const Status1TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
                         </div>
                     ))}
                 </div>
-            ))}        </div>
+            ))}
+        </div>
     )
 }
 const Status2TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes) => {
@@ -106,61 +113,72 @@ const Status2TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
     console.log(icon)
 
 
-    const tradeChatParse = JSON.parse(JSON.stringify(tradeChat))
+    const tradeChatParse : PurchaseType[] | undefined= JSON.parse(JSON.stringify(tradeChat))
     console.log(tradeChatParse)
     return (
 
         <div>
 
             <div>
-                {tradeChatParse?.map((chatItem) => (
-                    <div key={chatItem._id}>
-                        {chatItem.chatUserRole === "出品者" ? (
-                            // 出品者側のメッセージ表示（現在のデータには出品者のメッセージがないため表示されない）
-                            chatItem?.sellerChatMessage?.map((sellerMessage) => (
-                                <div key={sellerMessage._id} className={"comment-user-lef"}>
+                {tradeChatParse?.map((item) => (
+                    <div key={item._id}>
+                        {/* 出品者のメッセージ */}
+                        {item.chatUserRole === "出品者" && item?.sellerChatMessage?.map((sellerMessage) => (
+                            <div key={sellerMessage._id} className={"comment-user-lef"}>
+                                {/* ユーザーチャット */}
+                                <div className={"comment-area-lef"}>
+                                    {sellerMessage.sellerMessage}
+                                    {/* 絵文字 */}
+                                    <div className={"emojiButtonPosition"}>
+
+                                        <EmojiPickerPurchase
+                                            stamp={item?.sellerChatMessage?.[0]?.sellerMessageStamp?.[0]?.sellerMessageStampLike}
+                                            currentUser={currentUserId}
+                                            productId={purchaseId}
+                                            item={item._id} // ここでアイテムのIDを渡す
+                                            setIcon={setIcon}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                        {/* 購入者のメッセージ */}
+                        {item.chatUserRole === "購入者" && item?.buyerChatMessage?.map((buyerMessage) => (
+                            <div key={buyerMessage._id}>
+                                <div className={"comment-user-rig"}>
                                     {/* ユーザーアイコン */}
                                     <div className={"chaticon"}>
                                         <Images
-                                            src={sellerMessage.sellerProfilePicture || "/profile.png"}
+                                            src={buyerMessage.buyerProfilePicture || "/profile.png"}
                                             alt={"ユーザープロフィール画像"} width={30} height={30}
                                         />
                                     </div>
                                     {/* ユーザー名 */}
-                                    <div className={"comment-user-name-lef"}>
-                                        {sellerMessage.sellerUsername} さん
-                                    </div>
-                                    {/* ユーザーチャット */}
-                                    <div className={"comment-area-lef"}>
-                                        {sellerMessage.sellerMessage}
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            // 購入者側のメッセージ表示
-                            chatItem?.buyerChatMessage?.map((buyerMessage) => (
-                                <div key={buyerMessage._id} className={"comment-user-rig"}>
-                                    {/* ユーザー名 */}
                                     <div className={"comment-user-name-rig"}>
                                         {buyerMessage.buyerUsername} さん
                                     </div>
+                                </div>
+                                <div className={"comment-user-rig"}>
                                     {/* ユーザーチャット */}
                                     <div className={"comment-area-rig"}>
                                         {buyerMessage.buyerMessage}
                                         {/* 絵文字 */}
-                                        {buyerMessage.buyerMessageStamp?.[0]?.buyerMessageStampLike && (
-                                            <div className={"comment-emoji-rig"}>
-                                                {buyerMessage.buyerMessageStamp?.[0]?.buyerMessageStampLike}
-                                            </div>
-                                        )}
+                                        <div className={"emojiButtonPosition"}>
+                                            <EmojiPickerPurchase
+                                                currentUser={currentUserId}
+                                                purchaseId={purchaseId}
+                                                stamp={buyerMessage?.buyerMessageStamp?.[0]?.buyerMessageStampLike}
+                                                item={buyerMessage._id}
+                                                setIcon={setIcon}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
-                            ))
-                        )}
+                            </div>
+                        ))}
                     </div>
                 ))}
-
-
 
             </div>
         </div>
@@ -294,7 +312,6 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
                     //     console.log("取引では見つからないユーザーでログインしています。アカウントをお確かめの上再度アクセスしてください。")
                     //     router.push("/")
                     // }
-
                     if (setUsersData?.chatExists) {
                         const currentUser = await userProfile(currentUser_Id)
                         console.log("currentUserId", currentUser)
