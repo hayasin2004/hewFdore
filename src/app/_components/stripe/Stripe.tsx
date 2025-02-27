@@ -11,7 +11,7 @@ import Image from "next/image"
 
 export interface CompleteStripeType {
     productId?: string;
-    sellingOrSoldOut: string;
+    sellingOrSoldOut?: string;
 }
 
 const CompleteStripe = ({productId, sellingOrSoldOut} :CompleteStripeType) => {
@@ -19,7 +19,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut} :CompleteStripeType) => {
 
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [loginNowUserData, setLoginNowUserData] = useState<UserType | undefined>(undefined)
-        const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<boolean>(false)
+        const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<string>("")
         console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)
         console.log(loginNowUserData?._id)
         const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
@@ -59,9 +59,10 @@ const CompleteStripe = ({productId, sellingOrSoldOut} :CompleteStripeType) => {
         useEffect(() => {
             if (sellingOrSoldOut == "取引中" || sellingOrSoldOut == "売り切れ" ) {
                 console.log("売り切れです。")
-                setSellingOrSoldOutStatus(!sellingOrSoldOutStatus)
+                setSellingOrSoldOutStatus("売り切れ")
             } else {
                 console.log("販売中です")
+                setSellingOrSoldOutStatus("")
             }
         }, [sellingOrSoldOut,sellingOrSoldOutStatus]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -128,7 +129,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut} :CompleteStripeType) => {
         return (
             <>
 
-                    {!sellingOrSoldOutStatus ?
+                    {sellingOrSoldOutStatus == "" ?
 
                         (
 
