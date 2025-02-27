@@ -12,9 +12,8 @@ const productChatLike = async (currentUserId:string | UserType | null | undefine
         console.log(currentUserId, productId, commentId, icon)
 
         console.log("ここにいる" + searchBuyerProductAndComment !== null && searchListingProductAndComment == undefined && searchListingProductAndComment == null);
-        console.log("ここにいる");
         if (searchBuyerProductAndComment?.productChat[0]?.buyerChatMessage[0]?.senderUserId == currentUserId) {
-            console.log("自分のコメントにはいいねで来ません。")
+            console.log("自分のコメントにはいいねで来ません!!!!")
             return null
         } else if (searchListingProductAndComment?.productChat[0]?.listingChatMessage[0]?.senderUserId == currentUserId) {
             console.log("自分のコメントにはいいねで来ません。")
