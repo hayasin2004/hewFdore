@@ -24,7 +24,6 @@ import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 import {UserType} from "@/app/api/user/catchUser/route";
 import {PurchaseType} from "@/models/Purchase";
-import EmojiPicker from "@/app/_components/emojiPicker/EmojiPicker";
 
 interface tradeChatTypes {
     purchaseId?: string,
@@ -54,16 +53,6 @@ const Status1TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
                             <div className={"comment-area-rig"}>
                                 {sellerMessage.sellerMessage}
                                 {/* 絵文字 */}
-                                <div className={"emojiButtonPosition"}>
-
-                                    <EmojiPickerPurchase
-                                        stamp={item?.sellerChatMessage?.[0]?.sellerMessageStamp?.[0]?.sellerMessageStampLike}
-                                        currentUser={currentUserId}
-                                        productId={purchaseId}
-                                        item={item._id} // ここでアイテムのIDを渡す
-                                        setIcon={setIcon}
-                                    />
-                                </div>
                             </div>
                         </div>
                     ))}
@@ -164,15 +153,6 @@ const Status2TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
                                     <div className={"comment-area-rig"}>
                                         {buyerMessage.buyerMessage}
                                         {/* 絵文字 */}
-                                        <div className={"emojiButtonPosition"}>
-                                            <EmojiPickerPurchase
-                                                currentUser={currentUserId}
-                                                purchaseId={purchaseId}
-                                                stamp={buyerMessage?.buyerMessageStamp?.[0]?.buyerMessageStampLike}
-                                                item={buyerMessage._id}
-                                                setIcon={setIcon}
-                                            />
-                                        </div>
                                     </div>
                                 </div>
                             </div>
