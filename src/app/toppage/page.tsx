@@ -37,10 +37,7 @@ const Toppage = () => {
     const [productList, setProductList] = useState([])
     console.log(productList)
 
-    const handle =async () => {
-        await InsertProductSellStatus()
-    }
-
+   　
 
 
     useEffect(() => {
@@ -75,7 +72,6 @@ const Toppage = () => {
         <>
             <Header/>
             <div className={"top"}>
-                <button onClick={handle}>更新</button>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}
                 <div className={"siteIntroduction"}>
