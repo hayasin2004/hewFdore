@@ -15,6 +15,7 @@ import Blogintroduction from "@/app/_components/blog/Blogintroduction";
 import {useEffect} from "react";
 import ChatMessageLike from "@/app/utils/setting/update/buyerChatMessageLike";
 import inserteProductSellStatus from "@/app/utils/setting/update/InsertProductSellStatus";
+import Findall from "@/app/(user_communication_test)/findall/page";
 
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <main>
       <div>
+          <Findall/>
           <Toppage />
       {/*<Login />*/}
       {/**/}

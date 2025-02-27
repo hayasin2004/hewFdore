@@ -145,7 +145,12 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                     </div>
 
                     <div className="tab_content" id="tab2_content">
-                        フォロー中のユーザーとってくる
+                        {/*フォロー中*/}
+                        {userData?.followers?.map((item) => (
+                            <span key={item?._id}>
+                            <Link href={`/${item?._id}`}><p>{item?._id}</p></Link>
+                            </span>
+                        ))}
                     </div>
 
                     <div className="tab_content" id="tab3_content">
