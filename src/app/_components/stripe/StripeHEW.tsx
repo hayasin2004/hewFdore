@@ -50,7 +50,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}:CompleteStripeType) => {
         }, [user ,sellingOrSoldOutStatus]);
 
         useEffect(() => {
-            if (sellingOrSoldOut == true) {
+            if (sellingOrSoldOut == "取引中" || sellingOrSoldOut == "売り切れ" ) {
                 console.log("売り切れです。")
                 setSellingOrSoldOutStatus(!sellingOrSoldOutStatus)
             } else {
