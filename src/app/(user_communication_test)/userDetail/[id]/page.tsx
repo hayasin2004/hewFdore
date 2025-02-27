@@ -1,77 +1,112 @@
 "use client"
 import React, {useEffect, useState} from "react";
-import {data} from "@remix-run/router/utils";
 import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
 import updateFollowings from "@/app/utils/user/ApdateFollowings";
-import useUser from "@/hooks/useUser";
+import "./userDetail.css"
 import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";
 import Images from "next/image";
-import "./userDetail.css"
 
 
-const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
+const UserDetailPage = ({params}: { params: { id: string } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
+    const [followerData, setFollowerData] = useState<UserType[] | null>(null)
+    const [followingsData, setFollowingsData] = useState<UserType[] | null>(null)
+    console.log(followerData)
     const [productData, setProductData] = useState<ProductType[] | null>(null)
-    const [likeList, setLikeList] = useState<string[] | null>(null)
-    const [loginUserData , setLoginUserData] = useState<string | null>(null)
-    console.log(likeList)
-    const id: UserType | null = params.id;
-    const token = localStorage.getItem("token")
+    const [likeList, setLikeList] = useState<UserType | null>(null)
+    const [loginUserData, setLoginUserData] = useState<UserType | null>(null)
+    const [mainImages, setMainImages] = useState<{ [key: string]: string }>({});
+    const [images, setImages] = useState<{ [key: string]: string[] }>({});
+    const [selectedTab, setSelectedTab] = useState("tab1");
 
+    console.log(images, mainImages, likeList);
 
+    const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, productId: string, index: number) => {
+        e.preventDefault();
+        setMainImages(prevState => ({
+            ...prevState,
+            [productId]: images[productId][index]
+        }));
+    };
+
+    console.log(handleImageClick);
+    const id = params.id;
+    const token = localStorage.getItem("token");
 
     const followings = async () => {
         try {
-            const userFollowings: string | null = await userData?._id
-            console.log(userFollowings)
-            const response: string | null = await updateFollowings(userFollowings, loginUserData?._id)
-            console.log(response)
+            const userFollowings: string | undefined = await userData?._id;
+            console.log(userFollowings);
+            const response = await updateFollowings(userFollowings, loginUserData?._id);
+            console.log(response);
         } catch (err) {
             console.log(err)
         }
     }
+
     useEffect(() => {
         const response = async () => {
             try {
+                const confirmToken = await confirmUser(token!);
+                const confirmTokenParse = JSON.parse(confirmToken!);
+                setLoginUserData(confirmTokenParse);
 
-                const confirmToken = await confirmUser(token)
-                const confirmTokenParse = JSON.parse(confirmToken)
-                setLoginUserData(confirmTokenParse)
+                console.log(id);
+                const response = await userProfile(id);
+                if (response !== undefined && response !== null) {
+                    const responesUserData = JSON.parse(response?.searchUser);
+                    const responceFollowerData = JSON.parse((response?.followers));
+                    const responesFollowingsData = JSON.parse(response?.followings);
+                    const responesProductData: ProductType[] = JSON.parse(response?.searchProduct);
+                    setUserData(responesUserData);
+                    setFollowerData(JSON.parse(responceFollowerData));
+                    setFollowingsData(JSON.parse(responesFollowingsData));
+                    setProductData(responesProductData);
+                    const newMainImages: { [key: string]: string } = {};
+                    const newImages: { [key: string]: string[] } = {};
+                    responesProductData.forEach(product => {
+                        if (product._id !== undefined) {
+                            newMainImages[product._id] = product.productImage;
+                            newImages[product._id] = [
+                                product.productImage,
+                                product.productImage2 || "",
+                                product.productImage3 || "",
+                                product.productImage4 || ""
+                            ];
+                        }
+                    });
+                    setMainImages(newMainImages);
+                    setImages(newImages);
+                    if (loginUserData) {
+                        const likeData = await CatchLikeList(loginUserData?._id);
+                        if (likeData) {
+                            const likeDataParse = JSON.parse(likeData.likeList);
+                            setLikeList(likeDataParse);
+                        }
+                    }
 
-                console.log(id)
-                const response = await userProfile(id)
-                const responesUserData = JSON.parse(response?.searchUser)
-                const responesProductData = JSON.parse(response?.searchProduct)
-                setUserData(responesUserData)
-                setProductData(responesProductData)
-                if (loginUserData){
-                    const likeData = CatchLikeList(loginUserData?._id)
-                    const likeDataParse: UserType | null = JSON.parse(likeData?.productLikeList)
-                    setLikeList(likeDataParse)
                 }
-
             } catch (err) {
                 console.log(err)
             }
         }
         response()
-    }, [token]);
-
-    const [selectedTab, setSelectedTab] = useState("tab1");
-
+    }, [token, loginUserData, id]);
     return (
         <div>
-            {/*<h1>*/}
-            {/*    ObjectId: {params?.id}*/}
-            {/*</h1>*/}
+            <h1>
+                ObjectId: {params?.id}
+            </h1>
             <div>
                 <div className={"partnerProfile"}>
-                    <div className={"partnerProfile img"}><Images src={userData?.profilePicture} alt={"ユーザーのプロフィール画像"} width={100}
-                                           height={100}/></div>
+                    <div className={"partnerProfile img"}><Images
+                        src={userData?.profilePicture !== undefined ? userData?.profilePicture : "/profile.png"}
+                        alt={"ユーザーのプロフィール画像"} width={100}
+                        height={100}/></div>
                     {/*<li>オブジェクトID: {userData?._id}</li>*/}
                     <div className={"user"}>
                         <div>ユーザー名: {userData?.username}</div>
@@ -107,7 +142,6 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                 </div>
 
 
-
                 <div className={"selfIntroduction"}>
                     自己紹介: {userData?.desc}
                 </div>
@@ -129,45 +163,44 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
 
                     <div className="tab_content" id="tab1_content">
                         {productData?.map((item: ProductType) => (
-                            <div key={item?._id}>
+                            <ul key={item?._id}>
                                 <br/>
                                 <div>商品名 : {item.productName}</div>
                                 <div>商品価格 : {item.productPrice}</div>
                                 <div>送料負担 : {item.postageBurden}</div>
                                 <div>商品カテゴリー : {item.productCategory}</div>
-                                <Images src={item?.productImage ? item?.productImage : "/"} alt={"商品画像"} width={500} height={500} />
+                                <Images src={item?.productImage ? item?.productImage : "/"} alt={"商品画像"}
+                                        width={500} height={500}/>
                                 <Link href={`/product/${item._id}`}>
                                     <div>詳細を見る</div>
                                 </Link>
                                 <br/>
-                            </div>
+                            </ul>
                         ))}
                     </div>
 
                     <div className="tab_content" id="tab2_content">
-                        {/*フォロー中*/}
-                        {userData?.followers?.map((item) => (
-                            <span key={item?._id}>
-                            <Link href={`/${item?._id}`}><p>{item?._id}</p></Link>
-                            </span>
+                        フォロー一覧
+                        {followingsData?.map((item: UserType) => (
+                            <ul key={item._id}>
+                                <li>{item.username}</li>
+                                <Images src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
+                                        width={100} height={100} alt={"ユーザープロフィール画像"}/>
+                            </ul>
                         ))}
                     </div>
 
                     <div className="tab_content" id="tab3_content">
-                        {/*フォロワー一覧*/}
-                        {userData?.followers?.map((item) => (
-                            <span key={item?._id}>
-                            <p>{item?._id}</p>
-                            </span>
+                        フォロワー一覧
+                        {followerData?.map((item: UserType) => (
+                            <ul key={item._id}>
+                                <li>{item.username}</li>
+                                <Images src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
+                                        width={100} height={100} alt={"ユーザープロフィール画像"}/>
+                            </ul>
                         ))}
                     </div>
                 </div>
-
-                {/*<div>*/}
-                {/*    <p>ログインしている人</p>*/}
-                {/*    id : {loginUserData?._id} <br/>*/}
-                {/*    username : {loginUserData?.username}*/}
-                {/*</div>*/}
 
             </div>
 
