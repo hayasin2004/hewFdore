@@ -11,6 +11,7 @@ import Image from "next/image"
 import Toppage_2nd from "@/app/_components/Toppage_2nd/Toppage_2nd";
 import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import axios from "axios";
+import InsertProductSellStatus from "@/app/utils/setting/update/InsertProductSellStatusPart2";
 
 const Toppage = () => {
     // useEffect(() => {
@@ -35,6 +36,10 @@ const Toppage = () => {
     // }, []);
     const [productList, setProductList] = useState([])
     console.log(productList)
+
+    const handle =async () => {
+        await InsertProductSellStatus()
+    }
 
 
 
@@ -70,6 +75,7 @@ const Toppage = () => {
         <>
             <Header/>
             <div className={"top"}>
+                <button onClick={handle}>更新</button>
                 <Toppage_top_slideshow/>
                 {/*<Sidebar/>*/}
                 <div className={"siteIntroduction"}>

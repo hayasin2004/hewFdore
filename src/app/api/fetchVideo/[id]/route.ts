@@ -18,6 +18,7 @@ export interface ProductType {
     productVideo?: string;
     productSize?: string;
     productCategory?: string;
+    sellerUserDesc? : string
     shippingArea?: string;
     productLike?: string;
     postageBurden?: string;

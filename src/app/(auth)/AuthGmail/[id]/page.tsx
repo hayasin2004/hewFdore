@@ -151,8 +151,6 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                         認証が完了しました！
                     </div>
                 )}
-
-
                 {status && (
                     <p className="status">
                         {status}

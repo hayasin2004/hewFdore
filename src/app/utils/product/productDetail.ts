@@ -11,6 +11,8 @@ export interface ProductType {
     sellerId?: string,
     buyerId?: string,
     sellerUserName?: string,
+    sellerUserProfilePicture: string
+    sellerUserDesc :string,
     username?: string,
     productName?: string,
     productDesc?: string,
@@ -34,8 +36,8 @@ export interface ProductType {
 }
 
 
-const productDetail = async (id: ProductType | string |null)=> {
-     await connectDB()
+const productDetail = async (id: ProductType | string | null) => {
+    await connectDB()
     try {
         console.log("まずここまで来たかの確認" + id)
         const product = await Product.findById(id)

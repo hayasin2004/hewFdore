@@ -31,6 +31,14 @@ const ProductSchema = new mongoose.Schema({
             type: String,
             required: true,
         },
+        sellerUserProfilePicture: {
+            type: String,
+            default: '',
+        },
+        sellerUserDesc: {
+            type: String,
+            default: '',
+        },
         buyerId: {
             type: String,
             default : "",
