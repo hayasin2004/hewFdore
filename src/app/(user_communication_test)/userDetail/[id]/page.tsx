@@ -1,5 +1,5 @@
 "use client"
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {data} from "@remix-run/router/utils";
 import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
@@ -149,7 +149,12 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
                     </div>
 
                     <div className="tab_content" id="tab3_content">
-                        フォロワー一覧
+                        {/*フォロワー一覧*/}
+                        {userData?.followers?.map((item) => (
+                            <span key={item?._id}>
+                            <p>{item?._id}</p>
+                            </span>
+                        ))}
                     </div>
                 </div>
 
