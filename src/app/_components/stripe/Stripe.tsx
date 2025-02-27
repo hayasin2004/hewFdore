@@ -4,10 +4,14 @@ import {useRouter} from "next/navigation";
 import {stripePaymentFunc} from '@/app/utils/stripe/stripePaymentFunc';
 import {stripePaymentPayPay} from "@/app/utils/stripe/paypaystripe";
 import useUser from "@/hooks/useUser";
-import {UserType} from "@/app/api/user/catchUser/route';
 import io from "socket.io-client";
 import "./stripe.css"
 import Image from "next/image"
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import {Typography} from "@mui/material";
+import {UserType} from "@/app/api/user/catchUser/route";
 
 export interface CompleteStripeType {
     productId?: string;
@@ -20,6 +24,10 @@ const CompleteStripe = ({productId, sellingOrSoldOut}: CompleteStripeType) => {
     const [paymentMethod, setPaymentMethod] = useState<string>('card');
     const [loginNowUserData, setLoginNowUserData] = useState<UserType | undefined>(undefined)
     const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<string>("")
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)
     console.log(loginNowUserData?._id)
     const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
@@ -36,6 +44,17 @@ const CompleteStripe = ({productId, sellingOrSoldOut}: CompleteStripeType) => {
     const user = useUser(token)
 
     const socket = io("http://localhost:8080");
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
 
     useEffect(() => {
         if (user !== undefined) {
@@ -100,16 +119,32 @@ const CompleteStripe = ({productId, sellingOrSoldOut}: CompleteStripeType) => {
         <>
             {sellingOrSoldOutStatus == "" ?
                 (
+
                     <div className={"jus"} style={{display: "flex"}}>
+
                         <div className={"StripePurchaseButtonMain"}>
-                            <button onClick={StripeUrl} className={"StripePurchaseButton"} type={"submit"}
-                                    role={"link"}>
-                                {!isButtonDisabled ? <p>購入</p> : <p>取引中</p>}
-                            </button>
+                            <Button className={"StripePurchaseButton"} onClick={handleOpen}>購入</Button>
                         </div>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description"
+                        >
+                            <Box sx={style}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    お支払い方法の選択
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{mt: 2}}>
+
+                                    <Image src="/img.png" alt="card " width={100} height={100}
+                                           onClick={() => handlePayment("card")}/>
+                                    <Image src="/paypay.png" alt="payPay" width={100} height={100}
+                                           onClick={() => handlePayment("payPay")}/>
+                                </Typography>
+                            </Box>
+                        </Modal>
                         <div className={"selectProduct"}>
-                            <img src="/img.png" alt="card" onClick={() => handlePayment("card")}/>
-                            <img src="/paypay.png" alt="payPay" onClick={() => handlePayment("payPay")}/>
                         </div>
                     </div>
                 )
