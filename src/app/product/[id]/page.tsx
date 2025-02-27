@@ -219,7 +219,7 @@ const Product = ({params}: { params: { id: string } }) => {
                             {/*</button>*/}
                             {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
                                 <Stripe productId={product?._id}
-                                        sellingOrSoldOut={product?.sellStatus == "販売中" ? true : false}/>}
+                                        sellingOrSoldOut={product?.sellStatus}/>}
                         </div>
 
 
