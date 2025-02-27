@@ -146,14 +146,14 @@ const Product = ({params}: { params: { id: string } }) => {
             {/*    <div id="cart">*/}
             <main className={"productMainDisplay"}>
                 <div className={"productFlex"}>
-                    <Sidebar/>
+                    {/*<Sidebar/>*/}
 
                     <div className="productMain">
                         <div id="info">
                             <div id="photo">
                                 <figure>
                                     <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
-                                           width={200} height={200}
+                                           width={350} height={350}
                                            alt="商品の写真"/>
                                 </figure>
                                 <ul className="piclist">

@@ -26,6 +26,8 @@ p.s2tit{
     font-size: 2rem;
     text-align: center;
     vertical-align: bottom;
+    text-shadow: #fff 0 0 20px, #fff 0 0 15px, #fff 0 0 10px;
+
     /*overflow: hidden;*/
 }
 /*Swiper設定上書き*/

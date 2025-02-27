@@ -83,8 +83,7 @@ div.productMain{
     display: flex;
     flex-direction: column;
     width: 75%;
-    margin-left: -28%;
-    margin-top: 5%;
+    margin: 5% auto 0 auto;
 }
 /*商品情報全体*/
 div#info{
@@ -133,7 +132,7 @@ li.picts a img.pictS{
 div#text{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 70%;
 }
 div#text h1{
     font-size: 3rem;
@@ -169,9 +168,9 @@ div#text a#seller img{
 /* 購入ボタン・アイコン #control*/
 div#controlProduct{
     display: flex;
-    width: 100%;
-    margin-left: 30%;
-    margin-bottom: 20px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+    justify-content: space-between;
     align-items: center;
 }
 div#controlProduct img{
