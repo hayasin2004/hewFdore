@@ -75,24 +75,39 @@ const Favorite = () => {
                 </svg>
                 <h1>お気に入りした商品一覧</h1>
             </div>
-            {favoriteProductData !== null ? favoriteProductData?.map((item) => (
-                <div key={item._id} className={"favorite_products"}>
+            <div className={"favorite_products"}>
+                {favoriteProductData !== null ? favoriteProductData?.map((item) => (
+                    <div key={item._id} className={"favorite_products"}>
                     <div className={"f_product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>
                             <p>
-                                商品名 : <br/>{item.productName}
+                                商品名 :{item.productName}
                             </p>
-                            <p>出品者 : <br/>{item.sellerUserName}</p>
-                            <p>価格 : <br/>{item.productPrice}円</p>
+                            <p>出品者 : {item.sellerUserName}</p>
+                            <p>価格 :　{item.productPrice}円</p>
                             <Link href={`/product/${item._id}`}>
-                                <p>詳細</p>
+                                <p id={"Plink"}>詳細</p>
                             </Link>
                         </div>
                     </div>
                 </div>
-            )) : <p>いいねした商品はありません。</p>}
-            {/*<div className={"f_product"}>*/}
+                )) : <p id={"msg_noData"}>いいねした商品はありません。</p>}
+                {/*テスト表示用*/}
+            {/*    <div className={"f_product"}>*/}
+            {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
+            {/*    <div className={"product_text"}>*/}
+            {/*        <p>*/}
+            {/*            商品名*/}
+            {/*        </p>*/}
+            {/*        <p>出品者 : xxxx</p>*/}
+            {/*        <p>価格 : xxxx</p>*/}
+            {/*        <Link href={`/`}>*/}
+            {/*            <p className={"Plink"}>詳細</p>*/}
+            {/*        </Link>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*    <div className={"f_product"}>*/}
             {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
             {/*    <div className={"product_text"}>*/}
             {/*        <p>*/}
@@ -102,6 +117,17 @@ const Favorite = () => {
             {/*        <p>価格 : xxxx</p>*/}
             {/*    </div>*/}
             {/*</div>*/}
+            {/*    <div className={"f_product"}>*/}
+            {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
+            {/*    <div className={"product_text"}>*/}
+            {/*        <p>*/}
+            {/*            商品名*/}
+            {/*        </p>*/}
+            {/*        <p>出品者 : xxxx</p>*/}
+            {/*        <p>価格 : xxxx</p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            </div>
             <Footer/>
         </>
     );
