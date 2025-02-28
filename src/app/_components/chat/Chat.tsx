@@ -70,7 +70,6 @@ const Chat = (props: { paramsProductData: string | undefined }) => {
 
     return (
         <div className={"comment-areaFrame"}>
-            <p>チャットメッセージ</p>
             {ChatMessageList?.map((item, index) => (
                 item?.chatUserRole === "出品者" ? (
                     <div className="comment-sec-lef" key={index}>

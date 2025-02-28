@@ -11,6 +11,7 @@ import toastPurchase from "@/app/utils/toast/toastPurchase";
 const payComplete = async (productId: string | null, stripeCode: string | null, userId: string | null, paymentStatus: string | null) => {
     await connectDB()
     try {
+        console.log("productId"+productId , "stripeCode"+stripeCode , "userId" + userId, "paymentStatus" + paymentStatus)
         const CheckProduct = await Product.findById({_id: productId})
          const purchaseId = uuidv4();
          if (CheckProduct.buyerId !== "" || CheckProduct.stripeCode !== "") {
@@ -36,7 +37,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                     $set: {
                         buyerId: userId,
                         stripeCode: stripeCode,
-                        sellStatus: "販売中"
+                        sellStatus: "取引中"
                     }
                 }, {new: true, upsert: true});
                 console.log(product)
@@ -47,7 +48,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                     $set: {
                         buyerId: userId,
                         payPayCode: stripeCode,
-                        sellStatus: "販売中"
+                        sellStatus: "取引中"
                     }
                 }, {new: true, upsert: true});
                 console.log(product)

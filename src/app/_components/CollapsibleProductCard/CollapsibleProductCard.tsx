@@ -174,11 +174,11 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                 <Box className={"expanded-comment"}>
                                     <div className="expanded-comment-fream">
                                         <div className="comment-account">
-                                            <p id={"ac_img"}>wa!</p>
-                                            <p id={"ac_name"}>エマワトソン</p>
+                                            <Image src={item.sellerUserProfilePicture !== undefined ? item.sellerUserProfilePicture: "/profile.png"} alt={"出品者プロフィール画像"} width={50} height={50} id={"ac_img"}/>
+                                            <p id={"ac_name"}>{item.sellerUserName}</p>
                                         </div>
                                         <div className="pu_comment">
-                                            <p>ここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入りますここにコメントが入ります</p>
+                                            <p>{item.sellerUserDesc}</p>
                                         </div>
                                     </div>
                                 </Box>

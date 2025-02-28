@@ -15,7 +15,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}:CompleteStripeType) => {
 
         const [paymentMethod, setPaymentMethod] = useState<string>('card');
         const [loginNowUserData, setLoginNowUserData] = useState<UserType | null>(null)
-        const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<boolean>(false)
+        const [sellingOrSoldOutStatus, setSellingOrSoldOutStatus] = useState<string>("")
         console.log("sellingOrSoldOutStatus" + sellingOrSoldOutStatus, "sellingOrSoldOut" + sellingOrSoldOut)
         console.log(loginNowUserData?._id)
         const [isButtonDisabled, setIsButtonDisabled] = useState(() => {
@@ -49,14 +49,15 @@ const CompleteStripe = ({productId, sellingOrSoldOut}:CompleteStripeType) => {
             }
         }, [user ,sellingOrSoldOutStatus]);
 
-        useEffect(() => {
-            if (sellingOrSoldOut == true) {
-                console.log("売り切れです。")
-                setSellingOrSoldOutStatus(!sellingOrSoldOutStatus)
-            } else {
-                console.log("販売中です")
-            }
-        }, [sellingOrSoldOut , sellingOrSoldOutStatus]);
+    useEffect(() => {
+        if (sellingOrSoldOut == "取引中" || sellingOrSoldOut == "売り切れ" ) {
+            console.log("売り切れです。")
+            setSellingOrSoldOutStatus("売り切れ")
+        } else {
+            console.log("販売中です")
+            setSellingOrSoldOutStatus("")
+        }
+    }, [sellingOrSoldOut,sellingOrSoldOutStatus]);
         const StripeUrl = async (e: React.MouseEvent<HTMLButtonElement>) => {
             if (loginNowUserData?._id == undefined || loginNowUserData == null || loginNowUserData == undefined) {
                 console.log("ログインしてください。")
@@ -121,7 +122,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}:CompleteStripeType) => {
         return (
             <>
 
-                {!sellingOrSoldOutStatus ?
+                {sellingOrSoldOutStatus == "" ?
 
 
                     (

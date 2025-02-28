@@ -22,7 +22,7 @@ const DirectMessage = ({params}: { params: { id?: string } }) => {
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState<string>("")
-
+    console.log(status)
 
     console.log(JSON.stringify(chatList))
     // console.log("保存したいデータ" + JSON.stringify(dateBasechatList))

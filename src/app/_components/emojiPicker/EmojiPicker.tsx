@@ -13,7 +13,7 @@ export interface EmojiSelectEventType {
 export interface EmojiPickerProps {
     productId?: string ;
     currentUser?:  string | UserType | null;
-    stamp?: string; // ここで stamp を optional にします
+    stamp?: string;
     item?: string;
     commentId?: string
     purchaseId? :string
