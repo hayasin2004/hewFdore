@@ -309,6 +309,7 @@ li.picts a img.pictS{
         position: fixed; /* 固定位置に */
         top: 0;
         left: 0;
+        display: none;
         width: 100vw !important; /* ビューポート幅いっぱい */
         height: 100vh !important; /* ビューポート高さいっぱい */
         margin: 0 !important;
