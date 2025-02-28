@@ -4,6 +4,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import React, {ReactNode} from "react";
 import NextAuthProvider from "../providers/NextAuth";
+import Head from "next/head";
 
 const inter = Inter({subsets: ["latin"]});
 console.log(inter)
@@ -22,6 +23,9 @@ export default function RootLayout({children}: { children: ReactNode }) {
     // const [user, setUser] = useState<User | null>(null)
     return (
         <html lang="ja">
+        <Head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        </Head>
         <body>
         <NextAuthProvider>
             {/*<UserContext.Provider value={{user, setUser}}>*/}

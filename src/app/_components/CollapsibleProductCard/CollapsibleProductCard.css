@@ -231,6 +231,7 @@ li.picts a img.pictS{
     font-size: 3rem;
 }
 
+/*商品縦並び用のモノ*/
 .product-card-list {
     display: flex;
     width: 100%;
@@ -252,4 +253,97 @@ li.picts a img.pictS{
     width: 90% !important;
     margin: 0;
     order: -1;  /* 展開したカードを最上部に移動 */
+}
+
+
+@media (max-width: 768px) {
+
+        /* 修正したCSSスタイル */
+    .collapsible-product-card {
+        display: block !important;
+        margin: 0 auto !important;
+        max-width: 100% !important;
+        width: 100% !important; /* 全幅に表示するために追加 */
+    }
+
+    .collapsible-product-card.collapsed {
+        margin: 0 auto !important;
+    }
+
+    /* 通常時の画像スタイル */
+    .collapsed-image {
+        width: 100%;
+        height: auto; /* 画像の縦横比を維持 */
+        border-radius: 10px 10px 0 0;
+        background-color: #ccc;
+        margin: 0;
+        /* 通常時特有のスタイルをここに追加 */
+    }
+
+    .collapsed-image img {
+        width: 100%;
+        height: auto;
+        max-height: 80vh; /* 画面の80%の高さに制限 */
+        object-fit: contain; /* 画像が切れないように表示 */
+    }
+
+    /* 展開時の画像スタイル - 画面いっぱいに表示 */
+    .expanded-image {
+        width: 100%;
+        height: auto;
+        margin: 0; /* マージンを削除して画面いっぱいに */
+        border-radius: 0; /* 画面いっぱいの場合は角丸を無くす */
+        background-color: #ccc;
+        object-fit: contain;
+    }
+
+    .expanded-image img {
+        width: 100%;
+        height: auto;
+        max-height: 90vh; /* 画面の90%の高さに制限 */
+        object-fit: contain; /* 画像が切れないように表示 */
+    }
+
+    /* 展開時のカードスタイル */
+    .collapsible-product-card.expanded {
+        position: fixed; /* 固定位置に */
+        top: 0;
+        left: 0;
+        width: 100vw !important; /* ビューポート幅いっぱい */
+        height: 100vh !important; /* ビューポート高さいっぱい */
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important; /* 角丸を削除 */
+        z-index: 1000 !important; /* 最前面に表示 */
+        overflow-y: auto; /* スクロール可能に */
+        background-color: white; /* 背景色 */
+    }
+
+    /* 閉じるボタンのスタイル調整 */
+    .expanded-reverse {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 40px !important;
+        height: 40px !important;
+        background-color: rgba(200, 200, 200, 0.7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .expanded-reverse p {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .responsiveSmartPhone{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
 }
