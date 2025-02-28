@@ -25,6 +25,7 @@ import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPick
 import {UserType} from "@/app/api/user/catchUser/route";
 import {PurchaseType} from "@/models/Purchase";
 import Footer from "@/app/_components/footer/Footer";
+import Link from "next/link";
 
 interface tradeChatTypes {
     purchaseId?: string,
@@ -725,9 +726,11 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
                         <div id="responsiveControl">
 
                             <div id="control">
-                                <button
-                                    type="button">トップに戻る
-                                </button>
+                                <Link href={"/"}>
+                                    <button
+                                        type="button">トップに戻る
+                                    </button>
+                                </Link>
                             </div>
 
                             {tradeStatus == 1 || tradeStatus == 404 ? (
@@ -749,7 +752,7 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
                 )
                 }
             </div>
-            <Footer />
+            <Footer/>
         </>
 
     )
