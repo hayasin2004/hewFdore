@@ -231,7 +231,6 @@ li.picts a img.pictS{
     font-size: 3rem;
 }
 
-/*商品縦並び用のモノ*/
 .product-card-list {
     display: flex;
     width: 100%;
@@ -254,7 +253,6 @@ li.picts a img.pictS{
     margin: 0;
     order: -1;  /* 展開したカードを最上部に移動 */
 }
-
 
 @media (max-width: 768px) {
 
