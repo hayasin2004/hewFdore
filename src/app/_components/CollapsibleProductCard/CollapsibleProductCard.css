@@ -333,6 +333,12 @@ li.picts a img.pictS{
         cursor: pointer;
         z-index: 1001;
     }
+    .product-card-list .collapsible-product-card.expanded {
+        width: 100% !important;
+        margin: 0;
+        order: -1;  /* 展開したカードを最上部に移動 */
+    }
+
 
     .expanded-reverse p {
         margin: 0;
