@@ -100,6 +100,13 @@ div.listingText p {
         background-color: white;
     }
 }
+
+p#msg_noData{
+    margin: 0 auto;
+    font-size: 2rem;
+    color: #605252;
+    padding: 12%;
+}
 /*1列*/
 @media screen and (max-width: 1000px){
     div.listing{

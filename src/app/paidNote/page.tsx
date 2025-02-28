@@ -78,55 +78,54 @@ const PaidNote = () => {
 
                             </div>
                         </div>
-                    )) : <p ></p>}
-                    {/*購入した商品はありません。のメッセージのみが出る仕様*/}
-                    {/*表示テスト用　後で消す*/}
-                    <div className={"product"}>
-                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                        <div className={"product_text"}>
-                            <p>
-                                商品名
-                            </p>
-                            <p>出品者 : xxxx</p>
-                            <p>価格 : xxxx</p>
-                        </div>
-                        <div className={"listingText"}>
-                            <h3>評価</h3>
-                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
-                        </div>
+                    )) : <p id={"msg_noData"}>購入した商品はありません。</p>}
 
-                    </div>
+                    {/*並んだ時の表示テスト用　後で消す*/}
+                    {/*<div className={"product"}>*/}
+                    {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
+                    {/*    <div className={"product_text"}>*/}
+                    {/*        <p>*/}
+                    {/*            商品名*/}
+                    {/*        </p>*/}
+                    {/*        <p>出品者 : xxxx</p>*/}
+                    {/*        <p>価格 : xxxx</p>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={"listingText"}>*/}
+                    {/*        <h3>評価</h3>*/}
+                    {/*        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>*/}
+                    {/*    </div>*/}
 
-                    <div className={"product"}>
-                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                        <div className={"product_text"}>
-                            <p>
-                                商品名
-                            </p>
-                            <p>出品者 : xxxx</p>
-                            <p>価格 : xxxx</p>
-                        </div>
-                        <div className={"listingText"}>
-                            <h3>評価</h3>
-                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
-                        </div>
+                    {/*</div>*/}
+                    {/*<div className={"product"}>*/}
+                    {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
+                    {/*    <div className={"product_text"}>*/}
+                    {/*        <p>*/}
+                    {/*            商品名*/}
+                    {/*        </p>*/}
+                    {/*        <p>出品者 : xxxx</p>*/}
+                    {/*        <p>価格 : xxxx</p>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={"listingText"}>*/}
+                    {/*        <h3>評価</h3>*/}
+                    {/*        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>*/}
+                    {/*    </div>*/}
 
-                    </div>
-                    <div className={"product"}>
-                        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
-                        <div className={"product_text"}>
-                            <p>
-                                商品名
-                            </p>
-                            <p>出品者 : xxxx</p>
-                            <p>価格 : xxxx</p>
-                        </div>
-                        <div className={"listingText"}>
-                            <h3>評価</h3>
-                            <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>
-                        </div>
+                    {/*</div>*/}
+                    {/*<div className={"product"}>*/}
+                    {/*    <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}
+                    {/*    <div className={"product_text"}>*/}
+                    {/*        <p>*/}
+                    {/*            商品名*/}
+                    {/*        </p>*/}
+                    {/*        <p>出品者 : xxxx</p>*/}
+                    {/*        <p>価格 : xxxx</p>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={"listingText"}>*/}
+                    {/*        <h3>評価</h3>*/}
+                    {/*        <p>adfjdafjapdofjadjfpoadjfpoajdfpoadjfpasd;lfaslfjads;lfjasdlkfjadsjf;</p>*/}
+                    {/*    </div>*/}
 
-                    </div>
+                    {/*</div>*/}
                 </div>
             </div>
 
