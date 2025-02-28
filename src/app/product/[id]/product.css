@@ -83,18 +83,13 @@ div.productMain{
     display: flex;
     flex-direction: column;
     width: 75%;
-    margin: 0 auto;
-    margin-top: 5%;
+    margin: 5% auto 0 auto;
 }
 /*商品情報全体*/
 div#info{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-top:  100px;
-    padding: 100px;
-    margin-bottom: 100px;
-    background-color: rgba(168, 153, 129, 0.61);
+    margin: 40px 0 50px 0;
 }
 
 /*商品画像 #photo*/
@@ -137,7 +132,7 @@ li.picts a img.pictS{
 div#text{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 70%;
 }
 div#text h1{
     font-size: 3rem;
@@ -181,9 +176,9 @@ div#text a#seller img{
 /* 購入ボタン・アイコン #control*/
 div#controlProduct{
     display: flex;
-    width: 100%;
-    margin-left: 30%;
-    margin-bottom: 20px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+    justify-content: space-between;
     align-items: center;
 }
 div#controlProduct img{
@@ -213,20 +208,8 @@ div#footer{
 }
 
 @media screen and (max-width: 1060px) {
-    main{
-        flex-direction: column-reverse;
+    div#info{
+        flex-direction: column;
+        margin: 0 auto 0 auto;
     }
-    div#cart{
-        margin-top: 70px;
-        margin-right: 50px;
-        width: 100%;
-        position: static;
-        left: 50px;
-        top: 10px;
-
-    }
-}
-
-@media (max-width: 768px) {
-
 }

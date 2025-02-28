@@ -37,18 +37,21 @@ div.favorite svg{
     margin: 0 5% 0 10%;
 }
 
+/* 全体 */
 div.favorite_products{
     width: 100%;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
     padding: 30px;
-    margin-top: 50px;
-    margin-bottom: 40px;
+    margin: 50px auto 40px auto;
+
 }
 
 
 div.f_product{
-    width: 30%;
+    width: 550px;
     margin: 20px;
     padding: 30px;
     border-radius: 5px;
@@ -68,9 +71,47 @@ div.product_text{
 div.product_text p{
     font-size: 1.5em;
 }
-
-@media screen and (max-width: 1500px){
+/*リンク用*/
+p.Plink{
+    margin: 15px 20px 0 20px;
+    padding: 10px 10px;
+    background-color: #8e7560;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 50px;
+    box-shadow: 3px 3px 0 #605252;
+    transition: 0.2s;
+}
+p.Plink:hover{
+    opacity: 0.7;
+    box-shadow: 0 0 0 #605252;
+}
+/*　データなし表示　*/
+p#msg_noData{
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    font-size: 2rem;
+    color: #605252;
+    padding: 12%;
+    background-color: #fff;
+}
+/*2列*/
+@media screen and (max-width: 1830px){
+    div.favorite_products{
+        margin: 0 auto 0 auto;
+    }
     div.f_product{
-        width: 40%;
+        width: 550px;
+    }
+}
+/*1列*/
+@media screen and (max-width: 1240px){
+    div.favorite_products{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
     }
 }

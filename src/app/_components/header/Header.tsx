@@ -172,7 +172,9 @@ const Header = () => {
                             <li>
                                 {userData?.profilePicture !== "" ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
-                                    : <UserNavigationModal src="/"/>}
+                                    :
+                                    <UserNavigationModal src="/"/>
+                                }
 
                             </li>
                             <li id={"UserName"}>

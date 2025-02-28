@@ -5,6 +5,7 @@ import "./product.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
 import Link from 'next/link';
+import Sidebar from "@/app/_components/sidebar/Sidebar";
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 import Favorite from '@mui/icons-material/Favorite';
 import {Checkbox} from "@mui/material";
@@ -75,7 +76,7 @@ const Product = ({params}: { params: { id: string } }) => {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
-    }, [user, id, router]);
+    }, [user, id,router]);
 
     useEffect(() => {
 
@@ -122,15 +123,15 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [loginUserData?._id, id, router]);
+    }, [loginUserData?._id ,id ,router]);
 
 
     useEffect(() => {
-        const userId: string | undefined = loginUserData?._id
+        const userId : string | undefined = loginUserData?._id
         if (product?.productLike?.includes(userId!)) {
             setProductLike(true);
         }
-    }, [product, loginUserData?._id]);
+    }, [product ,loginUserData?._id]);
 
     const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
         e.preventDefault();
@@ -145,55 +146,57 @@ const Product = ({params}: { params: { id: string } }) => {
             {/*<div className={"productMain"}>*/}
 
             {/*    <div id="cart">*/}
-            <main>
-                <div className="productMain">
-                    <div id="info">
-                        <div id="photo">
-                            <figure>
-                                <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
-                                       width={200} height={200}
-                                       alt="商品の写真"/>
-                            </figure>
-                            <ul className="piclist">
-                                <li className="picts">
-                                    {images.map((image, index) => (
-                                        <li key={index} className="picts">
-                                            {image ? (
-                                                <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                    <Image className="pictS" src={image} width={50} height={50}
-                                                           alt={`画像${index + 1}`}/>
-                                                </a>
-                                            ) : null}
-                                        </li>
-                                    ))}
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="text">
-                            <h1>{product?.productName}</h1>
-                            <span className="under_bar"></span>
-                            <Link href="/" id="seller">
-                                <h2>出品者:{product?.sellerUserName}
-                                </h2>
+            <main className={"productMainDisplay"}>
+                <div className={"productFlex"}>
+                    {/*<Sidebar/>*/}
 
-                                <h2>{product?.username}</h2>
-                            </Link>
-                            <p>
-                                商品詳細<br/>
-                                {product?.productDesc}<br/>
-                            </p>
-                            <p>
-                                商品価格<br/>
-                                {product?.productPrice}円<br/>
-                            </p>
-                            <p id="size">サイズ:S</p>
-                            <p id="used">商品状態:多少使用感がある</p>
-                            <p id="postage">送料:出品者負担</p>
-                            <span className={"StripeButtonDisplay"}>
+                    <div className="productMain">
+                        <div id="info">
+                            <div id="photo">
+                                <figure>
+                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                           width={350} height={350}
+                                           alt="商品の写真"/>
+                                </figure>
+                                <ul className="piclist">
+                                    <li className="picts">
+                                        {images.map((image, index) => (
+                                            <li key={index} className="picts">
+                                                {image ? (
+                                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                        <Image className="pictS" src={image} width={50} height={50}
+                                                               alt={`画像${index + 1}`}/>
+                                                    </a>
+                                                ) : null}
+                                            </li>
+                                        ))}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="text">
+                                <h1>{product?.productName}</h1>
+                                <span className="under_bar"></span>
+                                <Link href="/" id="seller">
+                                    <h2>出品者:{product?.sellerUserName}
+                                    </h2>
 
+                                    <h2>{product?.username}</h2>
+                                </Link>
+                                <p>
+                                    商品詳細<br/>
+                                    {product?.productDesc}<br/>
+                                </p>
+                                <p>
+                                    商品価格<br/>
+                                    {product?.productPrice}円<br/>
+                                </p>
+                                <p id="size">サイズ:S</p>
+                                <p id="used">商品状態:多少使用感がある</p>
+                                <p id="postage">送料:出品者負担</p>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
                                 {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
                                 {/*       loop autoPlay controls></video>*/}
+                                <span>
                                 <div className={"ProductInStripe"}>
 
                                 {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
@@ -219,8 +222,8 @@ const Product = ({params}: { params: { id: string } }) => {
                         }
 
 
-                        {/*<button id={"buy"}*/}
-                        {/*        type="button" className={"productPurchase"}>*/}
+                            {/*<button id={"buy"}*/}
+                            {/*        type="button" className={"productPurchase"}>*/}
 
 
                         {/*</button>*/}
@@ -228,6 +231,7 @@ const Product = ({params}: { params: { id: string } }) => {
 
 
                 </div>
+
 
             </main>
             <Footer/>

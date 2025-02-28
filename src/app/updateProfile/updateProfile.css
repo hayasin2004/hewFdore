@@ -70,12 +70,19 @@ div.profile_img{
 }
 div.profile_img img{
     border-radius: 50%;
+    margin: 30px;
+    /*background-color: lightpink;*/
 }
 
 div.profile_img svg {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+div.profile_img input[type="file"]{
+    margin: 100px auto 50px auto;
+}
+
 button#btn_imgUpdate{
     margin: 5px 0 0 0;
     padding: 5px 10px;
@@ -85,17 +92,17 @@ button#btn_imgUpdate{
 
     font-weight: bold;
 }
-div#form{
+div.updateProfile_user{
     margin: 80px 2% 120px 10%;
 
 }
-div#form form label{
+div.updateProfile_user form label{
     /*margin: 0 0 25px 1rem;*/
 }
 label#Name{
     font-size: 1.5rem;
 }
-div#form input{
+div.updateProfile_user input{
 
     width: 500px;
     margin: 5px 0 20px 0;
@@ -104,7 +111,7 @@ div#form input{
     border-radius: 5px;
 }
 
-div#form button {
+div.updateProfile_user button.UPbtn {
     display: flex;
     justify-content: center;
     padding: 10px 40px;
@@ -118,12 +125,12 @@ div#form button {
     box-shadow:3px 3px 0 #605252;
     transition: box-shadow 0.2s;
 }
-div#form button:hover{
+div.updateProfile_user button.UPbtn:hover{
     box-shadow: 0 0 0 #605252 ;
     opacity: 0.7;
 }
 
-div#form button#resetPF{
+div.updateProfile_user button.UPbtn#delete{
     background-color: #EBE8DB;
     color: #605252;
     font-size: 1rem;
@@ -135,6 +142,37 @@ div#form button#resetPF{
     div.enterUpdateUserProfile{
         flex-direction: column;
         justify-content: center;
+    }
+    div.profile_img{
+        display: flex;
+        flex-direction: column;
+    }
+    div.profile_img svg{
+        margin: 0 0 0 0;
+        transform: rotate(0.25turn);
+    }
+    div.updateProfile_user{
+        width: 100%;
+        margin: 0 auto;
+    }
+    div.updateProfile_user form{
+        height: 700px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    div.updateProfile_user label{
+        margin: 20px 0 0 0;
+    }
+    div.updateProfile_user input{
+        width: 70%;
+        margin: 0;
+    }
+    div.updateProfile_user button#delete{
+        margin-top: 50px;
+        margin-bottom: 100px;
     }
     
 }
