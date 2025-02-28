@@ -330,22 +330,98 @@ body{
     transform: translateY(2px);
 }
 
+/*HeaderのCSS*/
+
+/* ハンバーガーメニューのボタン */
+.hamburger-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #4b3e2b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+/* ヘッダーのスライドアニメーション */
+.hednav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* スライドイン */
+.slide-in {
+    transform: translateY(0);
+}
+
+/* スライドアウト */
+.slide-out {
+    transform: translateY(-100%);
+}
 
 
 
-/*.sub-text {*/
-/*    font-size: 14px;*/
-/*    color: #333;*/
-/*    text-align: center;*/
-/*    margin-top: 5px;*/
-/*    min-height: 40px; !* サブタイトルの高さを統一 *!*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
+/*スマホ画面*/
 
+@media screen and (max-width: 1024px) {
+    .backmain {
+        grid-template-columns: repeat(2, 1fr); /* タブレットでは2列 */
+        gap: 15px;
+        padding: 30px 15px;
+    }
 
+    .blog-item {
+        width: 90%;
+        height: auto;
+        margin-top: 40px;
+    }
+}
 
+@media screen and (max-width: 768px) {
+    .backmain {
+        grid-template-columns: repeat(1, 1fr); /* スマホでは1列 */
+        gap: 10px;
+        padding: 20px 10px;
+    }
+
+    .title-h1 {
+        margin-top: 150px;
+        font-size: 1.8em;
+    }
+
+    /* フィルターボタンの位置調整 */
+    .filter-toggle {
+        left: 10px;
+        top: 100px; /* さらに下に配置 */
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+
+    /* モーダルを小さめに */
+    .modal-content {
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 30px 20px;
+    }
+
+    /* トップに戻るボタンを小さく */
+    .page-top {
+        right: 10px;
+        bottom: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 12px;
+    }
+}
 
 
 
