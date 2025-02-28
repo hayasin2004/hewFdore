@@ -76,7 +76,7 @@ const Product = ({params}: { params: { id: string } }) => {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
-    }, [user, id,router]);
+    }, [user, id, router]);
 
     useEffect(() => {
 
@@ -123,15 +123,15 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [loginUserData?._id ,id ,router]);
+    }, [loginUserData?._id, id, router]);
 
 
     useEffect(() => {
-        const userId : string | undefined = loginUserData?._id
+        const userId: string | undefined = loginUserData?._id
         if (product?.productLike?.includes(userId!)) {
             setProductLike(true);
         }
-    }, [product ,loginUserData?._id]);
+    }, [product, loginUserData?._id]);
 
     const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number) => {
         e.preventDefault();
@@ -193,43 +193,50 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <p id="size">サイズ:S</p>
                                 <p id="used">商品状態:多少使用感がある</p>
                                 <p id="postage">送料:出品者負担</p>
+                                <span className={"StripeButtonDisplay"}>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
-                                {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
-                                {/*       loop autoPlay controls></video>*/}
-                                <span>
-                                <div className={"ProductInStripe"}>
+                                    {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
+                                    {/*       loop autoPlay controls></video>*/}
+                                    <div className={"ProductInStripe"}>
 
-                                {sameSellerStatus ? <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
-                                    <Stripe productId={product?._id}
-                                            sellingOrSoldOut={product?.sellStatus}/>}
+                            {product?.sellStatus == "販売中" ?
+                                <>
+                                    <div className={"ProductInHeart"}>
+                                        <ThemeProvider theme={theme}>
+                                            <Checkbox
+                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
+                                                size={"large"} checked={productLike} {...label}
+                                                icon={<FavoriteBorder/>}
+                                                checkedIcon={<Favorite/>}/>
+                                        </ThemeProvider>
+                                    </div>
+                                </>
+                                :
+                                <></>
+                            }
+                                        {sameSellerStatus ?
+                                            <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
+                                            <Stripe productId={product?._id}
+                                                    sellingOrSoldOut={product?.sellStatus}/>}
                                 </div>
                             </span>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <Chat paramsProductData={id}/>
-                    </div>
-                    <div id="controlProduct">
-                        {product?.sellStatus == "販売中" ?
-                            <></>
-                            :
-                            <ThemeProvider theme={theme}>
-                                <Checkbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
-                                          size={"large"} checked={productLike} {...label}
-                                          icon={<FavoriteBorder/>}
-                                          checkedIcon={<Favorite/>}/>
-                            </ThemeProvider>
-                        }
+                        <div>
+                            <Chat paramsProductData={id}/>
+                        </div>
+                        <div id="controlProduct">
 
 
                             {/*<button id={"buy"}*/}
                             {/*        type="button" className={"productPurchase"}>*/}
 
 
-                        {/*</button>*/}
+                            {/*</button>*/}
+                        </div>
+
+
                     </div>
-
-
                 </div>
 
 
