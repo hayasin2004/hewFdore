@@ -152,7 +152,7 @@ const Product = ({params}: { params: { id: string } }) => {
 
                     <div className="productMain">
                         <div id="info">
-                            <div id="photo">
+                            <div id={isDesktop ? "photo" : "responsiveProductMainImage"}>
                                 <figure>
                                     <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
                                            width={350} height={350}

@@ -216,4 +216,9 @@ div#footer{
         flex-direction: column;
         margin: 0 auto 0 auto;
     }
+
+    #responsiveProductMainImage{
+        margin-top: 100px;
+        margin-left: -10px;
+    }
 }
