@@ -132,11 +132,41 @@ li.toppageBottomLi h2 {
 
 @media (max-width: 768px) {
 
+    div.introduction {
+        width: 100%;
+        height: 880px;
+        margin: auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #CFC8A9;
+        text-align: center;
+    }
+
+    div.siteIntroduction {
+        height: 1000px;
+        background: #D9D0C7;
+        display: flex;
+    }
+
+
+
+    div.introductionMain {
+        font-family: "Italiana", sans-serif;
+        width: 400px;
+        color: #444;
+    }
+
     div.siteIntroduction{
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
     div.introductionMain h1{
-        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    div.introductionMain h3{
+        width: 380px;
+        margin: 0 auto;
+        font-size: 1rem;
     }
 }
