@@ -8,6 +8,7 @@ import deleteAccount from "@/app/utils/user/deleteAccount";
 import confirmUser from "@/app/utils/user/confirmUser";
 
 import Link from "next/link";
+import Footer from "@/app/_components/footer/Footer";
 
 const UpdateProfile = () => {
     const [userId, setUserId] = useState<string | null>("")
@@ -135,8 +136,8 @@ const UpdateProfile = () => {
             <div className={"updateProfile_Text"}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                     className="lucide lucide-user-cog">
-                    <circle cx="18" cy="15" r="3"/>
+                     className="lucide lucide-user-cog" id={"arrow"}>
+                    <circle cx="18" cy="15" r="3" />
                     <circle cx="9" cy="7" r="4"/>
                     <path d="M10 15H6a4 4 0 0 0-4 4v2"/>
                     <path d="m21.7 16.4-.9-.3"/>
@@ -178,9 +179,7 @@ const UpdateProfile = () => {
                 </div>
 
                 <div className={"updateProfile_user"}>
-                    <div>
-                        <div id="form">
-                            <form>
+                    <form>
                                 <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
                                        placeholder={username !== null ? username : "新しいユーザー名"} onChange={(e) => {
@@ -211,15 +210,16 @@ const UpdateProfile = () => {
                                        onChange={(e) => {
                                            setDescription(e.target.value)
                                        }}/><br/>
-                                <button type="submit"
+                                <button type="submit" className={"UPbtn"}
                                         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => changeUserInfo(e)}>更新する
                                 </button>
                             </form>
-                            <button type="submit" onClick={deleteUser}>ユーザーを削除する</button>
-                        </div>
-                    </div>
+                    <button type="submit" className={"UPbtn"} id={"delete"} onClick={deleteUser}>ユーザーを削除する</button>
+
                 </div>
             </div>
+            <Footer/>
+
         </>
     );
 }
