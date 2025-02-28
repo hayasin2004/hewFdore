@@ -211,8 +211,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                                         ) : null}
                                                     </li>
                                                 ))}
-                                            </ul>
-                                            <p className="expanded-Cart">Add to Cart</p>
+                                            </ul>　
                                             <p className="expanded-Cart">
                                                 <Link href={`product/${item?._id}`}>
                                                     もっと見る
@@ -295,8 +294,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                                 <p>{item.sellerUserDesc}</p>
                                                 </div>
                                             </div>
-
-                                            <p className="expanded-Cart">Add to Cart</p>
+　
                                             <p className="expanded-Cart">
                                                 <Link href={`product/${item?._id}`}>
                                                     もっと見る

@@ -83,14 +83,18 @@ div.productMain{
     display: flex;
     flex-direction: column;
     width: 75%;
-    margin-left: -28%;
+    margin: 0 auto;
     margin-top: 5%;
 }
 /*商品情報全体*/
 div#info{
     display: flex;
     flex-direction: row;
-    margin: 40px 0 50px 0;
+    justify-content: center;
+    margin-top:  100px;
+    padding: 100px;
+    margin-bottom: 100px;
+    background-color: rgba(168, 153, 129, 0.61);
 }
 
 /*商品画像 #photo*/
@@ -155,6 +159,14 @@ div#text a#seller h2{
 div#text p {
     margin-bottom: 40px;
 }
+.StripeButtonDisplay{
+    display: flex;
+    align-items: center;
+}
+.ProductInStripe{
+    margin-top:  -50px;
+    margin-left: 90px;
+}
 
 
 div#text a#seller h2{
@@ -213,4 +225,8 @@ div#footer{
         top: 10px;
 
     }
+}
+
+@media (max-width: 768px) {
+
 }
