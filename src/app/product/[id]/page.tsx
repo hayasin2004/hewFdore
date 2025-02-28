@@ -301,20 +301,11 @@ const Product = ({params}: { params: { id: string } }) => {
                             </div>
 
                         )}
+
+
                         <div>
                             <Chat paramsProductData={id}/>
                         </div>
-                        <div id="controlProduct">
-
-
-                            {/*<button id={"buy"}*/}
-                            {/*        type="button" className={"productPurchase"}>*/}
-
-
-                            {/*</button>*/}
-                        </div>
-
-
                     </div>
                 </div>
 

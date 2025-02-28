@@ -24,6 +24,7 @@ import confirmUser from "@/app/utils/user/confirmUser";
 import EmojiPickerPurchase from "@/app/_components/emojiPickerPurchase/emojiPickerPurchase";
 import {UserType} from "@/app/api/user/catchUser/route";
 import {PurchaseType} from "@/models/Purchase";
+import Footer from "@/app/_components/footer/Footer";
 
 interface tradeChatTypes {
     purchaseId?: string,
@@ -102,7 +103,7 @@ const Status2TradeChat = ({purchaseId, currentUserId, tradeChat}: tradeChatTypes
     console.log(icon)
 
 
-    const tradeChatParse : PurchaseType[] | undefined= JSON.parse(JSON.stringify(tradeChat))
+    const tradeChatParse: PurchaseType[] | undefined = JSON.parse(JSON.stringify(tradeChat))
     console.log(tradeChatParse)
     return (
 
@@ -177,13 +178,14 @@ interface ChatExists {
 const ListingComplete = ({params}: { params: { id: string | null, productId: string } }) => {
     const [reviewValue, setReviewValue] = React.useState<number | null>(1);
     const [productData, setProductData] = useState<ProductType | null>(null)
+    console.log(productData)
     const [chatData, setChatData] = useState<ChatType | ChatExists | undefined>(undefined)
     console.log(chatData)
     const [message, setMessage] = useState("")
     const [chatList, setChatList] = useState<ChatType[]>([]);
     const [status, setStatus] = useState("")
     const [tradeStatus, setTradeStatus] = useState<number | null>(0)
-    console.log(tradeStatus)
+    console.log(status)
     const [tradeCancelStatus, setTradeCancelStatus] = useState<string | null>(null)
     const [tradeChat, setCurrentUserIdChat] = useState<PurchaseType[] | undefined>([])
     console.log("取得完了" + tradeChat)
@@ -234,12 +236,12 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
                 }
                 const responseParse = JSON.parse(response)
                 setProductData(responseParse);
-                setMainImage(responseParse.productImage);  // メイン画像を初期化
+                setMainImage(responseParse?.productImage);  // メイン画像を初期化
                 setImages([
-                    responseParse.productImage,
-                    responseParse.productImage2 || "",
-                    responseParse.productImage3 || "",
-                    responseParse.productImage4 || ""
+                    responseParse?.productImage || "",
+                    responseParse?.productImage2 || "",
+                    responseParse?.productImage3 || "",
+                    responseParse?.productImage4 || ""
                 ]);
             }
             //console.log(response)
@@ -417,6 +419,8 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
         e.preventDefault();
         setMainImage(images[index]);  // クリックされた画像をメイン画像に設定
     };
+    const isDesktop = window.innerWidth >= 768;
+
     return (
         <>
             <Header/>
@@ -434,153 +438,318 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
             {/*    <button onClick={(e) => handleSendMessage(e)}>送信</button>*/}
             {/*</form>*/}
             <div id="product">
-                <div id="info">
+                {isDesktop ? (
+                    <>
+                        <div id="info">
 
-                    <div id="photo">
-                        <figure>
-                            <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"} width={200}
-                                   height={200}
-                                   alt="商品の写真"/>
-                        </figure>
-                        <ul className="piclist">
-                            <li className="picts">
-                                {images.map((image, index) => (
-                                    <li key={index} className="picts">
-                                        {image ? (
-                                            <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                <Image className="pictS" src={image} width={50} height={50}
-                                                       alt={`画像${index + 1}`}/>
-                                            </a>
-                                        ) : null}
+                            <div id="photo">
+                                <figure>
+                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                           width={200}
+                                           height={200}
+                                           alt="商品の写真"/>
+                                </figure>
+                                <ul className="piclist">
+                                    <li className="picts">
+                                        {images.map((image, index) => (
+                                            <li key={index} className="picts">
+                                                {image ? (
+                                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                        <Image className="pictS" src={image} width={50} height={50}
+                                                               alt={`画像${index + 1}`}/>
+                                                    </a>
+                                                ) : null}
+                                            </li>
+                                        ))}
                                     </li>
-                                ))}
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="text">
-                        <h1>{productData?.productName}</h1>
-                        <span className="under_bar"></span>
-                        <a href="#" id="seller"><h2>出品者:{productData?.sellerUserName}</h2>
-                        </a>
-                        <p>
-                            商品詳細<br/>
-                            {productData?.productDesc}<br/>
-
-                        </p>
-                        <p id="size">サイズ:{productData?.productSize}</p>
-                        <p id="used">商品状態:多少使用感があります。</p>
-                        <p id="postage">送料:{productData?.postageBurden == "seller" ? <>出品者</> : <>購入者</>}</p>
-                        <p id="category">カテゴリ:帽子 </p>
-                    </div>
-
-                </div>
-
-                <div className={"purchaseMessage"}>
-                    <div className="Productchat">
-                        <div>
-                            {status == "1" ?
-                                <div>
-                                    <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
-                                                      tradeChat={tradeChat}/>
-
-                                </div> : <div>
-                                    <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
-                                                      tradeChat={tradeChat}
-                                    />
-                                </div>}
-                            {chatList.map((item, index) => (
-                                <ul key={index}>
-                                    <li>{item?.message}</li>
                                 </ul>
-                            ))}
+                            </div>
+                            <div id="text">
+                                <h1>{productData?.productName}</h1>
+                                <span className="under_bar"></span>
+                                <a href="#" id="seller"><h2>出品者:{productData?.sellerUserName}</h2>
+                                </a>
+                                <p>
+                                    商品詳細<br/>
+                                    {productData?.productDesc}<br/>
+
+                                </p>
+                                <p id="size">サイズ:{productData?.productSize}</p>
+                                <p id="used">商品状態:多少使用感があります。</p>
+                                <p id="postage">送料:{productData?.postageBurden == "seller" ? <>出品者</> : <>購入者</>}</p>
+                                <p id="category">カテゴリ:帽子 </p>
+                            </div>
+
                         </div>
 
+                        <div className={"purchaseMessage"}>
+                            <div className="Productchat">
+                                <div>
+                                    {status == "1" ?
+                                        <div>
+                                            <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
+                                                              tradeChat={tradeChat}/>
 
-                    </div>
-                    <div className={"messageBox"}>
+                                        </div> : <div>
+                                            <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
+                                                              tradeChat={tradeChat}
+                                            />
+                                        </div>}
+                                    {chatList.map((item, index) => (
+                                        <ul key={index}>
+                                            <li>{item?.message}</li>
+                                        </ul>
+                                    ))}
+                                </div>
 
-                        <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg" width={50}
-                             height={50}
-                             viewBox="0 0 24 24">
-                            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
-                                <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
-                                <path
-                                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
-                            </g>
-                        </svg>
 
-                        <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
-                        <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
-                               value={message}
-                               placeholder="出品者へのお問い合わせはこちらから"/>
-                        {/*<input type="submit" formTarget={"msg"}/>*/}
-                        <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
-                            <Images alt={"メール送信"} id={"sendMsg"} height={30} src={"/images/mail_1.svg"}
-                                    width={30}/>
-                        </button>
-                    </div>
-                </div>
-                <div className={"evaluation"}>
-                    <div className={"evaluation_Chat"}>
-                        <h2>最終コメント</h2>
-                        <input onChange={(e) => {
-                            setLastChat(e.target.value)
-                        }} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
-                    </div>
-                    {tradeStatus == 1 || tradeStatus == 404 ?
+                            </div>
+                            <div className={"messageBox"}>
+
+                                <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg"
+                                     width={50}
+                                     height={50}
+                                     viewBox="0 0 24 24">
+                                    <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                        <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                                        <path
+                                            d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                                    </g>
+                                </svg>
+
+                                <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
+                                <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
+                                       value={message}
+                                       placeholder="出品者へのお問い合わせはこちらから"/>
+                                {/*<input type="submit" formTarget={"msg"}/>*/}
+                                <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
+                                    <Images alt={"メール送信"} id={"sendMsg"} height={30} src={"/images/mail_1.svg"}
+                                            width={30}/>
+                                </button>
+                            </div>
+                        </div>
+                        <div className={"evaluation"}>
+                            <div className={"evaluation_Chat"}>
+                                <h2>最終コメント</h2>
+                                <input onChange={(e) => {
+                                    setLastChat(e.target.value)
+                                }} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
+                            </div>
+                            {tradeStatus == 1 || tradeStatus == 404 ?
+                                <div>
+                                    <button onClick={tradeEndFunc}>取引を終了する</button>
+                                    <p>取引終了</p>
+                                </div>
+                                : <button onClick={tradeEndFunc}>取引終了</button>
+                            }
+
+                            <div>
+
+                                <Typography component="legend"
+                                            style={{marginBottom: "30px"}}>今回の取引の評価</Typography>
+                                <Rating
+                                    size={"large"}
+                                    name="simple-controlled"
+                                    value={reviewValue}
+                                    onChange={(event, newValue) => {
+                                        setReviewValue(newValue);
+                                    }}
+                                />
+
+
+                            </div>
+                        </div>
+
                         <div>
-                            <button onClick={tradeEndFunc}>取引を終了する</button>
-                            <p>取引終了</p>
+                            出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
                         </div>
-                        : <button onClick={tradeEndFunc}>取引終了</button>
-                    }
 
-                    <div>
+                        <div>
+                            購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}
+                        </div>
 
-                        <Typography component="legend" style={{marginBottom: "30px"}}>今回の取引の評価</Typography>
-                        <Rating
-                            size={"large"}
-                            name="simple-controlled"
-                            value={reviewValue}
-                            onChange={(event, newValue) => {
-                                setReviewValue(newValue);
-                            }}
-                        />
-
-
-                    </div>
-                </div>
-
-                <div>
-                    出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
-                </div>
-
-                <div>
-                    購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}
-                </div>
-
-                <div id="control">
-                    <button
-                        type="button">トップに戻る
-                    </button>
-                </div>
-
-                {tradeStatus == 1 || tradeStatus == 404 ? (
-                        <>
-                            {tradeCancelStatus!}
-                        </>
-                    )
-                    : (
                         <div id="control">
-                            <button onClick={TradeCancel}
-                                    type="button">取引をキャンセルする
+                            <button
+                                type="button">トップに戻る
                             </button>
                         </div>
-                    )
+
+                        {tradeStatus == 1 || tradeStatus == 404 ? (
+                                <>
+                                    {tradeCancelStatus!}
+                                </>
+                            )
+                            : (
+                                <div id="control">
+                                    <button onClick={TradeCancel}
+                                            type="button">取引キャンセル
+                                    </button>
+                                </div>
+                            )
+                        }
+
+                    </>
+                ) : (
+
+                    <>
+                        <div id="info">
+                            <div id="photo">
+                                <figure>
+                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                           width={200}
+                                           height={200}
+                                           className={"responsiveTradeChatSmartPhoneMainImage"}
+                                           alt="商品の写真"/>
+                                </figure>
+                                <ul className="piclist">
+                                    <li className="picts">
+                                        {images.map((image, index) => (
+                                            <li key={index} className="picts">
+                                                {image ? (
+                                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                        <Image className="pictS" src={image} width={50} height={50}
+                                                               alt={`画像${index + 1}`}/>
+                                                    </a>
+                                                ) : null}
+                                            </li>
+                                        ))}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="text">
+                                <h1>{productData?.productName}</h1>
+                                <span className="under_bar"></span>
+                                <a href="#" id="seller"><h2>出品者:{productData?.sellerUserName}</h2>
+                                </a>
+                                <p>
+                                    商品詳細<br/>
+                                    {productData?.productDesc}<br/>
+
+                                </p>
+                                <p id="size">サイズ:{productData?.productSize}</p>
+                                <p id="used">商品状態:多少使用感があります。</p>
+                                <p id="postage">送料:{productData?.postageBurden == "seller" ? <>出品者</> : <>購入者</>}</p>
+                                <p id="category">カテゴリ:帽子 </p>
+                            </div>
+
+                        </div>
+
+                        <div className={"purchaseMessage"}>
+                            <div className="Productchat">
+                                <div>
+                                    {status == "1" ?
+                                        <div>
+                                            <Status1TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
+                                                              tradeChat={tradeChat}/>
+
+                                        </div> : <div>
+                                            <Status2TradeChat purchaseId={purchaseId} currentUserId={loginUserData}
+                                                              tradeChat={tradeChat}
+                                            />
+                                        </div>}
+                                    {chatList.map((item, index) => (
+                                        <ul key={index}>
+                                            <li>{item?.message}</li>
+                                        </ul>
+                                    ))}
+                                </div>
+
+
+                            </div>
+                            <div className={"messageBox"}>
+
+                                <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg"
+                                     width={50}
+                                     height={50}
+                                     viewBox="0 0 24 24">
+                                    <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                        <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
+                                        <path
+                                            d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
+                                    </g>
+                                </svg>
+
+                                <label htmlFor="msg" style={{display: "none"}}>問い合わせフォーム</label>
+                                <input type="text" name="msg" id="msg" onChange={(e) => setMessage(e.target.value)}
+                                       value={message}
+                                       placeholder="出品者へのお問い合わせはこちらから"/>
+                                {/*<input type="submit" formTarget={"msg"}/>*/}
+                                <button onClick={(e) => handleSendMessage(e)} type={"submit"}>
+                                    <Images alt={"メール送信"} id={"sendMsg"} height={30} src={"/images/mail_1.svg"}
+                                            width={30}/>
+                                </button>
+                            </div>
+                        </div>
+                        <div className={"evaluation"}>
+                            <div className={"evaluation_Chat"}>
+                                <h2>最終コメント</h2>
+                                <input onChange={(e) => {
+                                    setLastChat(e.target.value)
+                                }} type="text" name="msg" placeholder="今回の取引はどうでしたか？"/>
+                            </div>
+                            <div className={"responsiveTradeLastReview"}>
+                                {tradeStatus == 1 || tradeStatus == 404 ?
+                                    <div>
+                                        <p>取引終了</p>
+                                    </div>
+                                    : <button className={"responsiveTradeLastReviewButton"}
+                                              onClick={tradeEndFunc}>取引終了</button>
+                                }
+
+
+                                <div>
+
+                                    <Typography component="legend"
+                                                style={{marginBottom: "30px"}}>今回の取引の評価</Typography>
+                                    <Rating
+                                        size={"large"}
+                                        name="simple-controlled"
+                                        value={reviewValue}
+                                        onChange={(event, newValue) => {
+                                            setReviewValue(newValue);
+                                        }}
+                                    />
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            出品者最終評価 :{sellerLastChat} , 評価 : {sellerUserLastReview}
+                        </div>
+
+                        <div>
+                            購入者最終評価 :{buyerLastChat} , 評価 : {buyerUserReview}
+                        </div>
+                        <div id="responsiveControl">
+
+                            <div id="control">
+                                <button
+                                    type="button">トップに戻る
+                                </button>
+                            </div>
+
+                            {tradeStatus == 1 || tradeStatus == 404 ? (
+                                    <>
+                                        {tradeCancelStatus!}
+                                    </>
+                                )
+                                : (
+                                    <div id="control">
+                                        <button onClick={TradeCancel}
+                                                type="button">取引キャンセル
+                                        </button>
+                                    </div>
+                                )
+                            }
+                        </div>
+
+                    </>
+                )
                 }
-
             </div>
-
+            <Footer />
         </>
 
     )

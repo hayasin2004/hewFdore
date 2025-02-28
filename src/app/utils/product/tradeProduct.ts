@@ -9,6 +9,7 @@ const tradeProduct = async (purchaseId : string | null) => {
     try {
         const tradeProduct = await Purchase.findById(purchaseId)
         const product = await Product.findById({_id : tradeProduct?.productId})
+        console.log("これ北の" +purchaseId , tradeProduct?.productId)
         return JSON.stringify(product)
     }catch (err){
         console.log(err)
