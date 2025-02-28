@@ -124,14 +124,14 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                         }}
                     >
                         <div className="testttt">
-                            <p className="collapsed-image">
+                            <div className="collapsed-image">
                                 <Image className={"proimg"}
                                        src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"}
                                        width={400} height={310}
                                        alt="サンプル" id="sum"
                                        style={{maxWidth: '100%', height: 'auto'}}
                                 />
-                            </p>
+                            </div>
                             <p className="product-Size">{item.productSize}</p>
                         </div>
                         <p className="explanation">商品説明 : {item.productDesc}</p>
@@ -171,7 +171,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                             <Grid item xs={12} md={5}>
                                 <Box className="expanded-box" sx={{height: '100%'}}>
                                     <div className="expanded-image">
-                                        <Image className={"proimg"}
+                                        <Image className={"proimg ResponsiveExpandedImage"}
                                                src={mainImageChange !== undefined ? mainImageChange : "/images/clothes/product.jpg"}
                                                width={420} height={550}
                                                alt="サンプル" id="sum"
@@ -222,6 +222,12 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                     </Grid>
 
                                     <Grid item xs={12} md={3}>
+
+                                        <div >
+                                            <Box className={"expanded-reverse"}>
+                                                <p>×</p>
+                                            </Box>
+                                        </div>
                                         <Box className={"expanded-comment"} sx={{width: '100%'}}>
                                             <div className="expanded-comment-fream">
                                                 <div className="comment-account">
@@ -238,15 +244,24 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                             </div>
                                         </Box>
                                     </Grid>
-                                    <Grid item xs={12} md={12} sx={{display: 'flex', justifyContent: 'flex-end'}}>
-                                        <Box className={"expanded-reverse"}>
-                                            <p>×</p>
-                                        </Box>
-                                    </Grid>
                                 </>
                             ) : (
                                 <>
                                     <Grid item xs={12} md={4}>
+                                        <ul className="piclist">
+                                            {images.map((image, index) => (
+                                                <li key={index} className="picts">
+                                                    {image ? (
+                                                        <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                            <Image className="pictS" src={image} width={50}
+                                                                   height={50}
+                                                                   alt={`画像${index + 1}`}
+                                                            />
+                                                        </a>
+                                                    ) : null}
+                                                </li>
+                                            ))}
+                                        </ul>
                                         <Box
                                             className={`expanded-content ${isContentVisible ? 'visible' : 'hidden'}`}
                                             sx={{
@@ -261,20 +276,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                             <p className="expanded-Price">商品価格 : {item.productPrice}円</p>
                                             <p className="expanded-Situation">状態 : {item.productCondition} </p>
 
-                                            <ul className="piclist">
-                                                {images.map((image, index) => (
-                                                    <li key={index} className="picts">
-                                                        {image ? (
-                                                            <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                                <Image className="pictS" src={image} width={50}
-                                                                       height={50}
-                                                                       alt={`画像${index + 1}`}
-                                                                />
-                                                            </a>
-                                                        ) : null}
-                                                    </li>
-                                                ))}
-                                            </ul>
+
                                         </Box>
                                     </Grid>
 
@@ -290,7 +292,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                                     <p id={"ac_name"}>{item.sellerUserName}</p>
                                                 </div>
                                                 <div className="pu_comment">
-                                                    <p>{item.sellerUserDesc}</p>
+                                                <p>{item.sellerUserDesc}</p>
                                                 </div>
                                             </div>
 
