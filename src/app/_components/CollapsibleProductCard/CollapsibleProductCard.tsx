@@ -87,6 +87,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                         md: isOpen ? '100%' : '30%'
                     },
                     margin: '0 auto', // 左右のマージンを自動に設定して中央揃え
+                    marginBottom: '10rem',
                     transition: 'width 0.3s ease-in-out',
                     bgcolor: '#ddd',
                     boxShadow: '3px 4px #aaa',
@@ -120,7 +121,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                         sx={{
                             width: '100%',
                             maxWidth: '100%',
-                            boxSizing: 'border-box'
+                            boxSizing: 'border-box',
                         }}
                     >
                         <div className="testttt">
@@ -171,7 +172,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                             <Grid item xs={12} md={5}>
                                 <Box className="expanded-box" sx={{height: '100%'}}>
                                     <div className="expanded-image">
-                                        <Image className={"proimg"}
+                                        <Image className={"ResponsiveExpandedImage"}
                                                src={mainImageChange !== undefined ? mainImageChange : "/images/clothes/product.jpg"}
                                                width={420} height={550}
                                                alt="サンプル" id="sum"
@@ -182,7 +183,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                 </Box>
                             </Grid>
                             {isDesktop ? (
-                                <>
+                                <Box className={"responsiveSmartPhoneDetailProduct"}>
                                     <Grid item xs={12} md={4}>
                                         <Box
                                             className={`expanded-content ${isContentVisible ? 'visible' : 'hidden'}`}
@@ -198,20 +199,6 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                             <p className="expanded-Price">商品価格 : {item.productPrice}円</p>
                                             <p className="expanded-Situation">状態 : {item.productCondition} </p>
 
-                                            <ul className="piclist">
-                                                {images.map((image, index) => (
-                                                    <li key={index} className="picts">
-                                                        {image ? (
-                                                            <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                                <Image className="pictS" src={image} width={50}
-                                                                       height={50}
-                                                                       alt={`画像${index + 1}`}
-                                                                />
-                                                            </a>
-                                                        ) : null}
-                                                    </li>
-                                                ))}
-                                            </ul>
                                             <p className="expanded-Cart">Add to Cart</p>
                                             <p className="expanded-Cart">
                                                 <Link href={`product/${item?._id}`}>
@@ -243,9 +230,10 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                             <p>×</p>
                                         </Box>
                                     </Grid>
-                                </>
+                                </Box>
                             ) : (
-                                <>
+                                <Box className={"responsiveSmartPhoneDetailProduct"}>
+
                                     <Grid item xs={12} md={4}>
                                         <Box
                                             className={`expanded-content ${isContentVisible ? 'visible' : 'hidden'}`}
@@ -294,21 +282,21 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                                 </div>
                                             </div>
 
-                                            <p className="expanded-Cart">Add to Cart</p>
-                                            <p className="expanded-Cart">
-                                                <Link href={`product/${item?._id}`}>
-                                                    もっと見る
-                                                </Link>
-                                            </p>
                                             <Grid item xs={12} md={12}
                                                   sx={{display: 'flex', justifyContent: 'flex-end'}}>
                                                 <Box className={"expanded-reverse"}>
                                                     <p>×</p>
                                                 </Box>
                                             </Grid>
+                                            <p className="expanded-Cart ResponsiveExpandedCart">
+                                                <Link href={`product/${item?._id}`}>
+                                                    もっと見る
+                                                </Link>
+                                            </p>
+                                            <span className={"responsiveSmartPhoneDetailProductSpan"}></span>
                                         </Box>
                                     </Grid>
-                                </>
+                                </Box>
                             )
                             }
                         </Grid>
