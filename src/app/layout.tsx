@@ -27,6 +27,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
         <body>
+
         <NextAuthProvider>
             {/*<UserContext.Provider value={{user, setUser}}>*/}
                 {children}
