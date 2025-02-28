@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
-import { GetBlog } from "@/lib/client";
+import {GetBlog} from "@/lib/client";
 import "./common.css";
 import Image from "next/image";
 
@@ -17,7 +17,7 @@ export interface BlogType {
 
 // 日付フォーマット関数
 const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+    const options: Intl.DateTimeFormatOptions = {year: "numeric", month: "long", day: "numeric"};
     return new Date(dateString).toLocaleDateString("ja-JP", options);
 };
 
@@ -29,6 +29,7 @@ const shuffleArray = (array: BlogType[]) => {
 const ToppageSite3 = () => {
     const [blogs, setBlogs] = useState<BlogType[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,55 +48,98 @@ const ToppageSite3 = () => {
         fetchData();
     }, []);
 
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsDesktop(window.innerWidth >= 768);
+        }
+    }, []);
+
+
     return (
-        <div className="siteunbermain">
-            <div>
-                <h2>Staff Blog</h2>
-                <ul className="site3">
-                    <ul>
-                        <li>
-                            <p className="tatemozi">Staff Blog</p>
-                        </li>
-                    </ul>
-                    {loading ? (
-                        <p>Loading...</p>
-                    ) : blogs.length > 0 ? (
-                        blogs.slice(0, 3).map((blog) => (
-                            <li key={blog.id}>
-                                <Link href={`/${blog.id}`} className="blog-link">
-                                    {blog.image && (
-                                        <Image
-                                            src={`${blog.image.url}`}
-                                            alt={blog.title}
-                                            className="blog-images"
-                                            width="380"
-                                            height="265"
-                                        />
-                                    )}
-                                    <div className="text-container">
-                                        <div className="blog-date">{formatDate(blog.createdAt)}</div>
-                                        <div className="linkids">
-                                            {blog.title.length > 20 ? `${blog.title.substring(0, 20)}...` : blog.title}
-                                        </div>
-                                    </div>
-                                </Link>
-                            </li>
-                        ))
-                    ) : (
-                        <p>ブログ記事がありません。</p>
-                    )}
-                </ul>
-            </div>
-        </div>
+        <>
+            {isDesktop ? (
+
+                <div className="siteunbermain">
+                    <div>
+                        <h2>Staff Blog</h2>
+                        <ul className="site3">
+                            <ul>
+                                <li>
+                                    <p className="tatemozi">Staff Blog</p>
+                                </li>
+                            </ul>
+                            {loading ? (
+                                <p>Loading...</p>
+                            ) : blogs.length > 0 ? (
+                                blogs.slice(0, 3).map((blog) => (
+                                    <li key={blog.id}>
+                                        <Link href={`/${blog.id}`} className="blog-link">
+                                            {blog.image && (
+                                                <Image
+                                                    src={`${blog.image.url}`}
+                                                    alt={blog.title}
+                                                    className="blog-images"
+                                                    width="380"
+                                                    height="265"
+                                                />
+                                            )}
+                                            <div className="text-container">
+                                                <div className="blog-date">{formatDate(blog.createdAt)}</div>
+                                                <div className="linkids">
+                                                    {blog.title.length > 20 ? `${blog.title.substring(0, 20)}...` : blog.title}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))
+                            ) : (
+                                <p>ブログ記事がありません。</p>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+            ) : (
+                <div className="siteunbermain">
+                    <div>
+                        <h1 className={"responsiveStaffBlogMidashi"}>Staff Recommend Blog</h1>
+                        <ul className="site3">
+                            {loading ? (
+                                <p>Loading...</p>
+                            ) : blogs.length > 0 ? (
+                                blogs.slice(0, 1).map((blog) => (
+                                    <li key={blog.id}>
+                                        <Link href={`/${blog.id}`} className="blog-link">
+                                            {blog.image && (
+                                                <Image
+                                                    src={`${blog.image.url}`}
+                                                    alt={blog.title}
+                                                    className="blog-images"
+                                                    width="380"
+                                                    height="265"
+                                                />
+                                            )}
+                                            <div className="text-container">
+                                                <div className="blog-date">{formatDate(blog.createdAt)}</div>
+                                                <div className="linkids">
+                                                    {blog.title.length > 20 ? `${blog.title.substring(0, 20)}...` : blog.title}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))
+                            ) : (
+                                <p>ブログ記事がありません。</p>
+                            )}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 
 export default ToppageSite3;
-
-
-
-
-
 
 
 // "use client";
@@ -189,11 +233,6 @@ export default ToppageSite3;
 // export default ToppageSite3;
 
 
-
-
-
-
-
 // "use client";
 //
 // import React, { useEffect, useState } from "react";
@@ -270,17 +309,6 @@ export default ToppageSite3;
 // };
 //
 // export default ToppageSite3;
-
-
-
-
-
-
-
-
-
-
-
 
 
 //更新前
