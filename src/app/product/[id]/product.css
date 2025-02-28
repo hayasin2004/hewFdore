@@ -200,16 +200,8 @@ div#footer{
 }
 
 @media screen and (max-width: 1060px) {
-    main{
-        flex-direction: column-reverse;
-    }
-    div#cart{
-        margin-top: 70px;
-        margin-right: 50px;
-        width: 100%;
-        position: static;
-        left: 50px;
-        top: 10px;
-
+    div#info{
+        flex-direction: column;
+        margin: 0 auto 0 auto;
     }
 }
