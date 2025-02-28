@@ -13,31 +13,8 @@ import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import axios from "axios";
 
 const Toppage = () => {
-    // useEffect(() => {
-    //
-    //     const handleSubmit = async ( ) => {
-    //
-    //         try {
-    //             const res = await fetch('/api/contact/', {
-    //                 method: "POST",
-    //                 headers: {
-    //                     Accept: "application/json, text/plain",
-    //                     "Content-Type": "application/json",
-    //                 },
-    //                 body: JSON.stringify({a:"a"}),
-    //             });
-    //
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     handleSubmit()
-    // }, []);
     const [productList, setProductList] = useState([])
     console.log(productList)
-
-   　
-
 
     useEffect(() => {
         // エンコードしたtokenを検証する

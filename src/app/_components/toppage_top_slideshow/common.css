@@ -205,6 +205,65 @@
 }
 
 .topButton {
-    padding: 0 10px;
+    padding: 5px 10px;
+    margin: 7px;
     border-radius: 10px;
+}
+
+
+@media (max-width: 768px) {
+
+    .responsiveStuffBlogTopSlideShow h1#responsiveStuffBlog{
+        display: inline-block;
+        padding-top: 40px;
+        margin-left: 30px;
+    }
+
+
+    .photo_list {
+        display: block;
+        align-items: center;
+        width: 400px;
+        margin:  0 auto;
+    }
+
+
+
+
+    .slide-show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 4%;
+        overflow: hidden;
+    }
+
+    .backgroundSlideColor{
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    .slide {
+        display: block;
+        width: 300px;
+        height: 200px;
+        /*margin: 20px;*/
+        background-size: cover;
+        background-position: center;
+        border: #fff 3px solid;
+        border-radius: 10px;
+        background-color: #EBE8DB;
+    }
+
+    .slide_text {
+        width: 300px;
+        margin: 30px auto;
+        text-align: center;
+        font-size: 0.5rem;
+    }
+
+
 }
