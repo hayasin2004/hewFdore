@@ -6,7 +6,8 @@ body.top {
     padding: 0;
     /*overflow-x: hidden;*/
 }
-div.top{
+
+div.top {
     background: #f3f3eb;
 }
 
@@ -56,18 +57,22 @@ div.introduction h1 {
     font-size: 4rem;
     padding-top: 80px;
 }
+
 div.introduction h3 {
     text-align: left;
     font-size: 1.5rem;
     line-height: 2.5rem;
     padding-top: 20px;
 }
-#smallFont{
+
+#smallFont {
     font-size: 1.5rem;
 }
-.smallFonth3{
+
+.smallFonth3 {
     font-size: 1rem;
 }
+
 div.introduction p {
     font-size: 2rem;
     padding-top: 80px;
@@ -124,3 +129,14 @@ li.toppageBottomLi h2 {
     text-align: center;
 }
 
+
+@media (max-width: 768px) {
+
+    div.siteIntroduction{
+        margin-top: 100px;
+    }
+
+    div.introductionMain h1{
+        font-size: 3rem;
+    }
+}

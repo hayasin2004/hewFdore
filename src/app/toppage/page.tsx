@@ -16,6 +16,9 @@ const Toppage = () => {
     const [productList, setProductList] = useState([])
     console.log(productList)
 
+   　
+
+
     useEffect(() => {
         // エンコードしたtokenを検証する
         const token = localStorage.getItem("token") as string;

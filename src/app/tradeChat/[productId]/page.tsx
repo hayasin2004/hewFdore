@@ -420,7 +420,13 @@ const ListingComplete = ({params}: { params: { id: string | null, productId: str
         e.preventDefault();
         setMainImage(images[index]);  // クリックされた画像をメイン画像に設定
     };
-    const isDesktop = window.innerWidth >= 768;
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsDesktop(window.innerWidth >= 768);
+        }
+    }, []);
 
     return (
         <>

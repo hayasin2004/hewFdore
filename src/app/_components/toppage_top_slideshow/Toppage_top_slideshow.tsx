@@ -75,7 +75,13 @@ const ToppageTopSlideshow: React.FC<dummy> = () => {
     };
 
     const nextSlideIndex = (currentSlide + 1) % slideData.length;
-    const isDesktop = window.innerWidth >= 768;
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsDesktop(window.innerWidth >= 768);
+        }
+    }, []);
 
     return (
         <>
