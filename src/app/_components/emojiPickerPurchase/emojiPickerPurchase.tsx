@@ -16,7 +16,7 @@ const EmojiPickerPurchase = (props :EmojiPickerProps) => {
             setIcon(props.stamp)
             //console.log(existIcon)
         }
-    }, [props]);
+    }, [props,existIcon]);
 
     const showPicker = () => setIsShowPicker(!isShowPicker)
     const selectEmoji = (e: EmojiSelectEventType) => {

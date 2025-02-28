@@ -4,8 +4,7 @@ import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
-import Link from 'next/link';
-import Sidebar from "@/app/_components/sidebar/Sidebar";
+import Link from 'next/link';　
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 import Favorite from '@mui/icons-material/Favorite';
 import {Checkbox} from "@mui/material";
