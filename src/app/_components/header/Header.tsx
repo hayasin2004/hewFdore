@@ -124,18 +124,25 @@ const Header = () => {
             <header>
                 <div className="nav">
                     <div className="title">
-                        <Link href={"/"}>
+                        <Link className={"logoFrame"} href={"/"}>
                             <Image src={"/AFdore1CF.png"} className={"logoImage"} width={640} height={480}
+                                   alt={"logo"}/>
+                            <Image src={"/AFdore2CF.png"} className={"logoImage2"} width={640} height={480}
                                    alt={"logo"}/>
                         </Link>
                     </div>
                     <div className="bar">
                         <ul>
-                            <li>
-                                <Link href={"/searchResult"}>
+                            <li className={"categoryFrame"}>
+                                <Link className={"caregoryLogoBase"} href={"/searchResult"}>
+                                    <div className={"categoryLogoFrame"}>
+                                        <Image src={"/Tシャツアイコン7.png"} className={"categoryImage"} width={256} height={256}
+                                               alt={"logo"}/>
+                                    </div>
                                     <p id={"category"}>
                                         Category
                                     </p>
+
                                 </Link>
                             </li>
                             <span id="short_line"><br/>
@@ -143,24 +150,38 @@ const Header = () => {
                         探す
                     </p>
                     </span>
-                            <Link href={"/searchResult"}>
+                            <Link className={"searchFrame"} href={"/searchResult"}>
 
                                 <li className={"Headersearch"}>
-                                    Search <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                                                strokeLinecap="round" strokeLinejoin="round"
-                                                className="lucide lucide-search">
-                                    <circle cx="11" cy="11" r="8"/>
-                                    <path d="m21 21-4.3-4.3"/>
-                                </svg>
+
+                                    <div className="lucidelucide-search2">
+                                        <Image src={"/虫眼鏡の無料アイコン10.png"} className={"searchImage"} width={256} height={256}
+                                               alt={"logo"}/>
+                                    </div>
+                                    <div id={"megane"}>
+                                        <p id={"search"}>Search</p>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                                             strokeLinecap="round" strokeLinejoin="round"
+                                             className="lucidelucide-search">
+                                            <circle cx="11" cy="11" r="8"/>
+                                            <path d="m21 21-4.3-4.3"/>
+                                        </svg>
+                                    </div>
+
                                 </li>
                             </Link>
                             <span className="long_line"></span>
 
-                            <Link href={"/listingScreen"}>
+                            <Link className={"seleFrame"} href={"/listingScreen"}>
 
                                 <li id="uru_ul">
-                                    Sell
+                                    <div className="sellImageFrame">
+                                        <Image src={"/段ボール箱　11.png"} className={"seleImage"} width={256}
+                                               height={256}
+                                               alt={"logo"}/>
+                                    </div>
+                                    <p id={"sell"}>Sell</p>
                                     <span id="uru">売る</span>
 
                                 </li>
