@@ -79,3 +79,38 @@ div.listingText h3{
 div.listingText p {
 }
 
+@media screen and (max-width: 1350px){
+    div.listing{
+        width: 95%;
+        margin: 0 auto 50px auto;
+
+    }
+    div.listing_product{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        background-color: #EBE8DB;
+    }
+    div.product{
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+    }
+}
+/*1列*/
+@media screen and (max-width: 1000px){
+    div.listing{
+
+    }
+    div.listing_product{
+        flex-direction: column;
+        justify-content: center;
+    }
+    div.product{
+        margin: 0 auto;
+
+    }
+}

@@ -78,7 +78,9 @@ const PaidNote = () => {
 
                             </div>
                         </div>
-                    )) : <p>購入した商品はありません。</p>}
+                    )) : <p ></p>}
+                    {/*購入した商品はありません。のメッセージのみが出る仕様*/}
+                    {/*表示テスト用　後で消す*/}
                     <div className={"product"}>
                         <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                         <div className={"product_text"}>

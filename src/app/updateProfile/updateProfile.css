@@ -71,7 +71,7 @@ div.profile_img{
 div.profile_img img{
     border-radius: 50%;
     margin: 30px;
-    background-color: lightpink;
+    /*background-color: lightpink;*/
 }
 
 div.profile_img svg {
