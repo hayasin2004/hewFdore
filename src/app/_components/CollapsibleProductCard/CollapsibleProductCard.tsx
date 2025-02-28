@@ -183,15 +183,14 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                 </Box>
                             </Grid>
                             {isDesktop ? (
-                                <Box className={"responsiveSmartPhoneDetailProduct"}>
-                                    <Grid item xs={12} md={4}>
+                                <>
+                                    <Grid item xs={4}>
                                         <Box
                                             className={`expanded-content ${isContentVisible ? 'visible' : 'hidden'}`}
                                             sx={{
                                                 height: '100%',
                                                 padding: 2,
-                                                borderRadius: 1,
-                                                width: '100%'
+                                                borderRadius: 1
                                             }}
                                         >
                                             <p className="expanded-Name">商品名 : {item.productName}</p>
@@ -199,6 +198,21 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                             <p className="expanded-Price">商品価格 : {item.productPrice}円</p>
                                             <p className="expanded-Situation">状態 : {item.productCondition} </p>
 
+                                            <ul className="piclist">
+                                                <li className="picts">
+                                                    {images.map((image, index) => (
+                                                        <li key={index} className="picts">
+                                                            {image ? (
+                                                                <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                                    <Image className="pictS" src={image} width={50}
+                                                                           height={50}
+                                                                           alt={`画像${index + 1}`}/>
+                                                                </a>
+                                                            ) : null}
+                                                        </li>
+                                                    ))}
+                                                </li>
+                                            </ul>
                                             <p className="expanded-Cart">Add to Cart</p>
                                             <p className="expanded-Cart">
                                                 <Link href={`product/${item?._id}`}>
@@ -208,15 +222,14 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                         </Box>
                                     </Grid>
 
-                                    <Grid item xs={12} md={3}>
-                                        <Box className={"expanded-comment"} sx={{width: '100%'}}>
+                                    <Grid item xs={3}>
+                                        <Box className={"expanded-comment"}>
                                             <div className="expanded-comment-fream">
                                                 <div className="comment-account">
                                                     <Image
                                                         src={item.sellerUserProfilePicture !== undefined ? item.sellerUserProfilePicture : "/profile.png"}
                                                         alt={"出品者プロフィール画像"} width={50} height={50}
-                                                        id={"ac_img"}
-                                                    />
+                                                        id={"ac_img"}/>
                                                     <p id={"ac_name"}>{item.sellerUserName}</p>
                                                 </div>
                                                 <div className="pu_comment">
@@ -224,13 +237,13 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                                 </div>
                                             </div>
                                         </Box>
+                                        <Grid item xs={13}>
+                                            <Box className={"expanded-reverse"}>
+                                                <p>×</p>
+                                            </Box>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={12} md={12} sx={{display: 'flex', justifyContent: 'flex-end'}}>
-                                        <Box className={"expanded-reverse"}>
-                                            <p>×</p>
-                                        </Box>
-                                    </Grid>
-                                </Box>
+                                </>
                             ) : (
                                 <Box className={"responsiveSmartPhoneDetailProduct"}>
 
