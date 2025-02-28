@@ -151,53 +151,54 @@ const Product = ({params}: { params: { id: string } }) => {
                     {/*<Sidebar/>*/}
 
                     <div className="productMain">
-                        <div id="info">
-                            <div id={isDesktop ? "photo" : "responsiveProductMainImage"}>
-                                <figure>
-                                    <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
-                                           width={350} height={350}
-                                           alt="商品の写真"/>
-                                </figure>
-                                <ul className="piclist">
-                                    <li className="picts">
-                                        {images.map((image, index) => (
-                                            <li key={index} className="picts">
-                                                {image ? (
-                                                    <a href="#" onClick={(e) => handleImageClick(e, index)}>
-                                                        <Image className="pictS" src={image} width={50} height={50}
-                                                               alt={`画像${index + 1}`}/>
-                                                    </a>
-                                                ) : null}
-                                            </li>
-                                        ))}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="text">
-                                <h1>{product?.productName}</h1>
-                                <span className="under_bar"></span>
-                                <Link href="/" id="seller">
-                                    <h2>出品者:{product?.sellerUserName}
-                                    </h2>
+                        {isDesktop ? (
 
-                                    <h2>{product?.username}</h2>
-                                </Link>
-                                <p>
-                                    商品詳細<br/>
-                                    {product?.productDesc}<br/>
-                                </p>
-                                <p>
-                                    商品価格<br/>
-                                    {product?.productPrice}円<br/>
-                                </p>
-                                <p id="size">サイズ:S</p>
-                                <p id="used">商品状態:多少使用感がある</p>
-                                <p id="postage">送料:出品者負担</p>
-                                <span className={"StripeButtonDisplay"}>
+                            <div id="info">
+                                <div id={isDesktop ? "photo" : "responsiveProductMainImage"}>
+                                    <figure>
+                                        <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                               width={350} height={350}
+                                               alt="商品の写真"/>
+                                    </figure>
+                                    <ul className="piclist">
+                                        <li className="picts">
+                                            {images.map((image, index) => (
+                                                <li key={index} className="picts">
+                                                    {image ? (
+                                                        <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                            <Image className="pictS" src={image} width={50} height={50}
+                                                                   alt={`画像${index + 1}`}/>
+                                                        </a>
+                                                    ) : null}
+                                                </li>
+                                            ))}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="text">
+                                    <h1>{product?.productName}</h1>
+                                    <span className="under_bar"></span>
+                                    <Link href="/" id="seller">
+                                        <h2>出品者:{product?.sellerUserName}</h2>
+
+                                        <h2>{product?.username}</h2>
+                                    </Link>
+                                    <p>
+                                        商品詳細<br/>
+                                        {product?.productDesc}<br/>
+                                    </p>
+                                    <p>
+                                        商品価格<br/>
+                                        {product?.productPrice}円<br/>
+                                    </p>
+                                    <p id="size">サイズ:S</p>
+                                    <p id="used">商品状態:多少使用感がある</p>
+                                    <p id="postage">送料:出品者負担</p>
+                                    <span className={"StripeButtonDisplay"}>
                                 <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
-                                    {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
-                                    {/*       loop autoPlay controls></video>*/}
-                                    <div className={"ProductInStripe"}>
+                                        {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
+                                        {/*       loop autoPlay controls></video>*/}
+                                        <div className={"ProductInStripe"}>
 
                             {product?.sellStatus == "販売中" ?
                                 <>
@@ -214,14 +215,92 @@ const Product = ({params}: { params: { id: string } }) => {
                                 :
                                 <></>
                             }
+                                            {sameSellerStatus ?
+                                                <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
+                                                <Stripe productId={product?._id}
+                                                        sellingOrSoldOut={product?.sellStatus}/>}
+                                </div>
+                            </span>
+                                </div>
+                            </div>
+                        ) : (
+                            <div id="info">
+                                <div id={isDesktop ? "photo" : "responsiveProductMainImage"}>
+                                    <figure>
+                                        <Image src={mainImage !== undefined ? mainImage : "/images/clothes/product.jpg"}
+                                               width={350} height={350}
+                                               alt="商品の写真"/>
+                                    </figure>
+                                    <ul className="piclist">
+                                        <li className="picts">
+                                            {images.map((image, index) => (
+                                                <li key={index} className="picts">
+                                                    {image ? (
+                                                        <a href="#" onClick={(e) => handleImageClick(e, index)}>
+                                                            <Image className="pictS" src={image} width={50} height={50}
+                                                                   alt={`画像${index + 1}`}/>
+                                                        </a>
+                                                    ) : null}
+                                                </li>
+                                            ))}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="text">
+                                    <h1>{product?.productName}</h1>
+                                    <span className="under_bar"></span>
+                                    <Link href="/" id="seller">
+                                        <h2>出品者<br/>{product?.sellerUserName}</h2>
+
+                                        <h2>{product?.username}</h2>
+                                    </Link>
+                                    <p>
+                                        商品詳細<br/>
+                                        {product?.productDesc}<br/>
+                                    </p>
+                                    <p>
+                                        商品価格<br/>
+                                        {product?.productPrice}円<br/>
+                                    </p>
+                                    <p id="size">サイズ:S</p>
+                                    <p id="used">商品状態:多少使用感がある</p>
+                                    <p id="postage">送料:出品者負担</p>
+                                    <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
+                                    {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
+                                    {/*       loop autoPlay controls></video>*/}
+                                    <div className={"ProductInStripe"}>
+
+                                        {product?.sellStatus == "販売中" ?
+                                            <>
+                                                <div className={"ProductInHeart"}>
+                                                    <ThemeProvider theme={theme}>
+                                                        <Checkbox
+                                                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => likeButton(e)}
+                                                            size={"large"} checked={productLike} {...label}
+                                                            icon={<FavoriteBorder/>}
+                                                            checkedIcon={<Favorite/>}/>
+                                                    </ThemeProvider>
+                                                </div>
+                                            </>
+                                            :
+                                            <>
+                                                <ThemeProvider theme={theme}>
+                                                    <Checkbox
+                                                        size={"large"} checked={productLike} {...label}
+                                                        icon={<FavoriteBorder/>}
+                                                        checkedIcon={<Favorite/>}/>
+                                                </ThemeProvider>
+                                            </>
+                                        }
                                         {sameSellerStatus ?
                                             <Link href={`/listingScreenEdit/${productId}`}>編集する</Link> :
                                             <Stripe productId={product?._id}
                                                     sellingOrSoldOut={product?.sellStatus}/>}
+                                    </div>
                                 </div>
-                            </span>
                             </div>
-                        </div>
+
+                        )}
                         <div>
                             <Chat paramsProductData={id}/>
                         </div>

@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #EBE8DB;
 }
+
 main.productMainDisplay {
     display: flex;
     align-items: center;
@@ -13,13 +14,13 @@ main.productMainDisplay {
     position: relative;
 }
 
-div.productFlex{
+div.productFlex {
     width: 100%;
     display: flex;
 }
 
 /*カート*/
-div.productCart{
+div.productCart {
     margin-top: 70px;
     margin-right: 50px;
     width: 25%;
@@ -29,13 +30,13 @@ div.productCart{
 
 }
 
-div#cartText{
+div#cartText {
     margin-left: 20px;
     width: 400px;
     display: flex;
 }
 
-div#cartText h2{
+div#cartText h2 {
 
     font-family: "JetBrains Mono", monospace;
     font-weight: 400;
@@ -44,155 +45,174 @@ div#cartText h2{
     margin-right: 30px;
 }
 
-div.cart h2{
+div.cart h2 {
     display: inline-block;
     font-size: 2rem;
 }
-div.cart img.icon{
+
+div.cart img.icon {
     width: 50px;
     height: 50px;
 }
 
 /*カート内商品.innerCart*/
-div.innerCart{
+div.innerCart {
     display: flex;
     flex-direction: row;
     margin: 20px 20px 20px 0;
 }
-div.innerCart img{
+
+div.innerCart img {
     height: 120px;
     width: 120px;
-    box-shadow: #000a 1px 1px  3px;
+    box-shadow: #000a 1px 1px 3px;
 }
-div.innerCart p{
+
+div.innerCart p {
     margin: 0 0 0 20px;
     font-size: 1.1rem;
     line-height: 1.5rem;
 }
-div.cart p span.title{
+
+div.cart p span.title {
     font-size: 1.2rem;
     line-height: 2rem;
 }
-p#total{
+
+p#total {
     text-align: right;
     margin-right: 20px;
 }
 
 /*全体 */
-div.productMain{
+div.productMain {
     display: flex;
     flex-direction: column;
     width: 75%;
     margin: 5% auto 0 auto;
 }
+
 /*商品情報全体*/
-div#info{
+div#info {
     display: flex;
     flex-direction: row;
     margin: 40px 0 50px 0;
 }
 
 /*商品画像 #photo*/
-div#photo{
+div#photo {
     margin: 20px 50px 0 50px;
 
 }
-figure img{
+
+figure img {
     box-shadow: #888 3px 3px 9px;
 
 }
-div#photo img#sum{
+
+div#photo img#sum {
     width: 400px;
     height: 400px;
 }
+
 /* 画像リスト */
-ul.piclist{
+ul.piclist {
     display: flex;
     justify-content: left;
     margin: 10px 0 10px 0;
     padding: 0;
 }
-li.picts{
+
+li.picts {
     list-style: none;
     display: flex;
-    margin: 0 10px 0 0 ;
+    margin: 0 10px 0 0;
 }
-li.picts a{
+
+li.picts a {
     display: block;
     outline: none;
 }
-li.picts a img.pictS{
+
+li.picts a img.pictS {
     height: 50px;
     width: 50px;
-    box-shadow: #aaa 1px 1px  1px;
+    box-shadow: #aaa 1px 1px 1px;
 }
 
 
 /*商品説明 #text*/
-div#text{
+div#text {
     display: flex;
     flex-direction: column;
     width: 70%;
 }
-div#text h1{
+
+div#text h1 {
     font-size: 3rem;
 }
-div#text a#seller{
+
+div#text a#seller {
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin: 10px 10px 10px 10px;
+    margin: 10px 0px 10px 0px;
     color: #000;
     text-decoration: none;
 }
-div#text a#seller h2{
-    margin-right: 20px;
-    margin-left: 20px;
 
+div#text a#seller h2 {
+    margin-right: 20px;
 }
 
 div#text p {
     margin-bottom: 40px;
 }
-.StripeButtonDisplay{
+
+.StripeButtonDisplay {
     display: flex;
     align-items: center;
 }
-.ProductInStripe{
+
+.ProductInStripe {
     display: flex;
-    margin-top:  -50px;
+    margin-top: -50px;
     margin-left: 90px;
 }
+
 .ProductInHeart {
     display: flex;
     align-items: center;
     margin-left: 20px;
 }
-div#text a#seller h2{
+
+div#text a#seller h2 {
     font-size: 1.2rem;
 }
-div#text a#seller img{
+
+div#text a#seller img {
     height: 50px;
     width: 50px;
     border-radius: 100%;
 }
 
 /* 購入ボタン・アイコン #control*/
-div#controlProduct{
+div#controlProduct {
     display: flex;
     width: 90%;
     margin: 20px auto 0 auto;
     justify-content: space-between;
     align-items: center;
 }
-div#controlProduct img{
+
+div#controlProduct img {
     display: inline-block;
     margin: 0 5px 20px 0;
     height: 50px;
     width: 50px;
 }
 
-button.productPurchase{
+button.productPurchase {
     background-color: #000;
     font-size: 1.2rem;
     color: #fff;
@@ -207,18 +227,54 @@ button.productPurchase{
     border-radius: 50px;
     padding: 10px 20px;
 }
-div#footer{
+
+div#footer {
     margin-top: 200px !important;
 }
 
 @media screen and (max-width: 1060px) {
-    div#info{
+    div#info {
         flex-direction: column;
         margin: 0 auto 0 auto;
     }
 
-    #responsiveProductMainImage{
+    #responsiveProductMainImage {
         margin-top: 100px;
         margin-left: -10px;
+    }
+
+    div#text {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+
+    #text h1 {
+        font-size: 0.5rem;
+        width: 130%;
+    }
+
+    #seller {
+        font-size: 0.5rem;
+        margin-left: -20px;
+    }
+
+    .StripeButtonDisplay {
+        display: block;
+    }
+
+    p#category {
+        margin-bottom: 100px;
+    }
+
+    .ProductInStripe {
+        display: flex;
+        margin-left: 60px;
+        margin-top: 20px;
+    }
+
+    .ProductInHeart {
+        display: flex;
+        margin-left: 90px;
     }
 }
