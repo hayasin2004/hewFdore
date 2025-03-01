@@ -78,8 +78,8 @@ const PayComplete = () => {
         <>
             <Header/>
             <main>
-                <h2 className={"Pcon"}>お支払いが完了しました</h2>
-                <p className={"Pcon"}>ご購入ありがとうございました。<br/>
+                <h2 className={"PconH2"}>お支払いが完了しました</h2>
+                <p className={"PconP"}>ご購入ありがとうございました。<br/>
                     お取引の連絡はご登録のメールアドレスに届きます。</p>
                 <Link id="return" href={`/tradeChat/${productId}`}>
                     取引画面
