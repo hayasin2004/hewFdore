@@ -454,10 +454,11 @@ span.under_bar {
         padding: 5px;
         width: 5rem;
         margin-top: 10px;
-        margin-left: 2px;
+        margin-left: -10px;
         font-size: 1rem;
         overflow-wrap: break-word;
         transition: 0.3s;
+        color: #4b5563;
         /*margin-left: 74px;*/
     }
 

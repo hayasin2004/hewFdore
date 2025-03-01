@@ -1,10 +1,10 @@
 /*アイコンクリック時*/
 
-h2#parent-modal-title{
+h2#parent-modal-title {
     margin: 5px 0 20px 0;
 }
 
-h2#child-modal-title{
+h2#child-modal-title {
     margin: 5px 0 30px 0;
 }
 
@@ -12,18 +12,19 @@ p#parent-modal-description {
     margin: 0 0 5px 0;
 }
 
-p#child-modal-description a{
+p#child-modal-description a {
     margin: 10px 0 15px 1rem;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 1.2rem;
 }
 
-p#child-modal-description a:hover{
+p#child-modal-description a:hover {
     background-color: #60525288;
     color: #fff;
 }
-div#Close_Logout{
+
+div#Close_Logout {
     margin: 20px 0 10px 0;
     width: 100%;
     display: flex;
@@ -34,7 +35,7 @@ div#Close_Logout{
 }
 
 /* 閉じるボタン */
-#closeButton{
+#closeButton {
     padding: 5px;
     font-weight: bold;
     font-size: 0.9rem;
@@ -45,12 +46,12 @@ div#Close_Logout{
 }
 
 /* ログアウト */
-.cursor{
+.cursor {
     /*margin: 16px 0 0 0;*/
     padding: 5px;
     display: inline;
     cursor: pointer;
-    font-size:0.9rem;
+    font-size: 0.9rem;
     font-weight: bold;
     vertical-align: bottom;
 
@@ -62,16 +63,29 @@ div#Close_Logout{
     transition: 0.2s;
 
 }
-#closeButton:hover,.cursor:hover{
+
+#closeButton:hover, .cursor:hover {
     box-shadow: none;
     opacity: 0.8;
 }
 
 /*　アイコンホバー　*/
-.iconButton img{
-    transition:opacity 0.2s;
+.iconButton img {
+    transition: opacity 0.2s;
 }
-.iconButton:hover{
+
+.iconButton:hover {
     opacity: 0.8;
-    filter:drop-shadow(0 0 5px #fff);
+    filter: drop-shadow(0 0 5px #fff);
+}
+
+@media screen and (max-width: 768px) {
+
+    .UserNavigationIcon {
+        width: 50px;
+        height: auto;
+        margin-top: -6px;
+        margin-left: -30px;
+        color: #4c4d48;
+    }
 }

@@ -197,7 +197,7 @@ const Header = () => {
                             <span className="long_line"></span>
 
 
-                            <li>
+                            <li >
                                 {userData?.profilePicture !== "" ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
                                     :
@@ -214,7 +214,13 @@ const Header = () => {
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
                             ): (
-                                ""
+
+                                <li>
+                                    {userData ? "" :
+                                        <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
+                                    {/*確認用　ネーム上限15*/}
+                                    {/*<p id={"usernameGet"}>123456789012345</p>*/}
+                                </li>
                             )}
                             <li id={"list_bell"}>
                                 {userData ?
