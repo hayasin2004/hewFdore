@@ -318,6 +318,7 @@ span.under_bar {
 
     header{
         position: fixed;
+        width: 100%;
         z-index: 999;
     }
 
@@ -467,9 +468,20 @@ span.under_bar {
         /*margin-left: 74px;*/
     }
 
+    .iconFrame{
+        width: 20%;
+    }
+    .loginFrame{
+        /*width: 20%;*/
+    }
+
     /*ベル*/
     #list_bell{
         width: 10%;
+    }
+
+    .reaa{
+        width: 100%;
     }
 
     .bell{
@@ -493,6 +505,10 @@ span.under_bar {
     }
     .alertDisplay p{
 
+    }
+
+    .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+        padding: 0;
     }
 
     div.bar ul span#short_line{

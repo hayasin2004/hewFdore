@@ -197,7 +197,7 @@ const Header = () => {
                             <span className="long_line"></span>
 
 
-                            <li >
+                            <li className={"iconFrame"}>
                                 {userData?.profilePicture !== "" ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
                                     :
@@ -215,7 +215,7 @@ const Header = () => {
                             </li>
                             ): (
 
-                                <li>
+                                <li className={"loginFrame"}>
                                     {userData ? "" :
                                         <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                     {/*確認用　ネーム上限15*/}
