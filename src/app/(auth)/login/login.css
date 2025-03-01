@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
 
+body{
+    background-color: #D0C7B2;
+}
 
 .allScreen{
     margin: 0;
     padding: 0;
-    background-color: #D0C7B2;
     height: 100vh;
     overflow: hidden;
 }
@@ -57,7 +59,7 @@ div#bgwhite{
     /*margin-top:50px ;*/
 
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 
@@ -135,5 +137,44 @@ div .slide_img{
 
 
 .each-slide-effect {
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .allScreen{
+        margin: 0;
+        padding: 0;
+        background-color: #D0C7B2;
+        height: 80vh;
+        overflow: hidden;
+    }
+
+    div#bgwhite{
+        display: flex;
+        width: 70%;
+        background: #e5e5e5;
+        border: #000000aa 3px solid;
+        border-radius: 10px;
+        margin: 0 auto;
+        padding-bottom: 35px;
+        box-shadow: #000000cc 0 0 10px;
+        /*margin-top:50px ;*/
+        position: relative;
+        z-index: 10;
+    }
+
+    div#form{
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+
+    }
+
+    #form h2{
+        margin: 20px 0 0px 0;
+    }
 
 }

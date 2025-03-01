@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
+body{
+    background-color: #D0C7B2;
+}
 
 /* コンテナ */
 .container {
@@ -8,11 +11,13 @@
     background-color: #D0C7B2;
     background-size: 90%;
 }
-.backImage{
+
+.backImage {
     position: absolute;
     width: 90%;
-    height: 80vh    ;
+    height: 80vh;
 }
+
 .form-wrapper {
     max-width: 30rem;
     margin: 1.25rem auto 0;
@@ -152,4 +157,26 @@
 .input:hover,
 .textarea:hover {
     border-color: #9ca3af;
+}
+
+@media screen and (max-width: 768px) {
+    /* コンテナ */
+    .container {
+        height: 40vh;
+        padding: 2rem 2rem 5rem;
+        font-family: var(--font-geist-sans);
+        background-color: #D0C7B2;
+        background-size: 90%;
+    }
+
+    .form-wrapper {
+        max-width: 18rem;
+        margin: 13% 5% 0 9.5%;
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid #777;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        background-color: #DCD7C5;
+    }
+
 }

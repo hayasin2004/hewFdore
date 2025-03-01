@@ -64,15 +64,20 @@ const UserNavigation = (props: { src: string | undefined }) => {
     return (
         <div>
 
-                {props.src ?
+            {props.src && userData?.profilePicture ?
                 <Button onClick={handleOpen}>
-                    <Images src={props.src ? props.src : "/profile.png"} style={{borderRadius: "50px"}} width={50} height={50}
+                    <Images src={props.src ? props.src : "/profile.png"} style={{borderRadius: "50px"}} width={50}
+                            height={50}
                             alt={"サンプルユーザーアイコン"}/>
                 </Button>
-                        :
-                    <Images src={ "/profile.png"} style={{borderRadius: "50px"}} width={50} height={50}
+                :
+                <Button onClick={handleOpen}>
+
+                    <Images src={"/profile.png"} style={{borderRadius: "50px"}} width={50} height={50}
                             alt={"サンプルユーザーアイコン"}/>
-                }
+                </Button>
+
+            }
 
             <Modal
                 open={open}

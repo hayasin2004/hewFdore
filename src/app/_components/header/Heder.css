@@ -132,7 +132,8 @@ p#usernameGet{
 
 p#name{
     padding: 5px;
-    width: 10rem;
+    width: 15rem;
+    margin-top: 8px;
     overflow-wrap: break-word;
     transition: 0.3s;
     /*margin-left: 74px;*/

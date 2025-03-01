@@ -118,9 +118,17 @@ const Header = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsDesktop(window.innerWidth >= 768);
+        }
+    }, []);
 
     return (
         <>
+
             <header>
                 <div className="nav">
                     <div className="title">
@@ -197,12 +205,17 @@ const Header = () => {
                                 }
 
                             </li>
-                            <li >
+                            {isDesktop ? (
+
+                            <li>
                                 {userData ? <p id={"name"}>{userData?.username}</p> :
                                     <Link href={"/login"}><p id={"name"} >ログイン</p></Link>}
                                 {/*確認用　ネーム上限15*/}
                                 {/*<p id={"usernameGet"}>123456789012345</p>*/}
                             </li>
+                            ): (
+                                ""
+                            )}
                             <li id={"list_bell"}>
                                 {userData ?
                                     <div>

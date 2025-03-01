@@ -14,6 +14,13 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
     const [userInputCode, setUserInputCode] = useState("");
     const [isVerified, setIsVerified] = useState(false);
     const [showVerification, setShowVerification] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsDesktop(window.innerWidth >= 768);
+        }
+    }, []);
     console.log(email)
     useEffect(() => {
         const verifyTenMinToken = async () => {
@@ -79,6 +86,9 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
         }
     };
     return (
+        <>
+            {isDesktop ? (
+
         <div className="container" style={{
             backgroundImage: 'url(/images/flower_a.png)'
         }}>
@@ -158,6 +168,88 @@ const AuthGmail = ({params}: { params: { id: string } }) => {
                 )}
             </div>
         </div>
+            ) : (
+                <div className="container" style={{
+                    backgroundImage: 'url(/images/flower_a.png)'
+                }}>
+
+                    <div className="form-wrapper">
+                        <h2 className="title">メール認証</h2>
+
+                        {!showVerification ? (
+                            <form onSubmit={handleSubmit} className="form">
+                                <div className="form-group">
+                                    <label htmlFor="name" className="label">
+                                        ログインメールアドレス
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        value={email}
+                                        required
+                                        className="input"
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="password" className="label">
+                                        パスワード
+                                    </label>
+                                    <input
+                                        type="password"
+                                        value={password}
+                                        id="password"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                        className="input"
+                                    />
+                                </div>
+
+
+                                <button
+                                    type="submit"
+                                    className="button submit-button"
+                                >
+                                    メール送信
+                                </button>
+                            </form>
+                        ) : !isVerified ? (
+                            <form onSubmit={handleVerification} className="form">
+                                <div className="form-group">
+                                    <label htmlFor="verificationCode" className="label">
+                                        確認コードを入力してください
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="verificationCode"
+                                        value={userInputCode}
+                                        onChange={(e) => setUserInputCode(e.target.value)}
+                                        required
+                                        className="input"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="button verify-button"
+                                >
+                                    確認
+                                </button>
+                            </form>
+                        ) : (
+                            <div className="success-message">
+                                認証が完了しました！
+                            </div>
+                        )}
+                        {status && (
+                            <p className="status">
+                                {status}
+                            </p>
+                        )}
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 
