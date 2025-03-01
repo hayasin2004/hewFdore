@@ -312,9 +312,14 @@ span.under_bar {
     height: 11px;
     border-bottom: 1px solid #000000;
 }
+@media screen and (max-width: 1230px){
+    p#name{
+        display: none;
+    }
+}
 
-
-@media screen and (max-width: 768px) {
+/*元々は768の所をヘッダー改行回避のために延長*/
+@media screen and (max-width: 963px) {
 
 
     li#UserName{
@@ -484,6 +489,22 @@ span.under_bar {
         font-size: 0.5rem;
     }
 
-}
+/*    モーダル*/
+    .modal-content{
+        position: relative;
 
+        width: 400px;
+        /*height: 70%;*/
+        margin: 0 auto 0 auto;
+        overflow-y: auto;
+        /*overflow-x: hidden;*/
+    }
+    .modal-title-tab{
+        display: flex;
+        flex-direction: column;
+    }
+    .modal-title-tab-text{
+        width: 40%;
+    }
+}
 
