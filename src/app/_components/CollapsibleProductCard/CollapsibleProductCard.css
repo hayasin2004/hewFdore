@@ -311,6 +311,9 @@ li.picts a img.pictS{
         max-height: 90vh; /* 画面の90%の高さに制限 */
         object-fit: contain; /* 画像が切れないように表示 */
     }
+    .expanded-comment{
+        height: 1300px;
+    }
 
     /* 展開時のカードスタイル */
     .collapsible-product-card.expanded {
@@ -319,7 +322,7 @@ li.picts a img.pictS{
         left: 0;
         display: none;
         width: 100vw !important; /* ビューポート幅いっぱい */
-        height: 100vh !important; /* ビューポート高さいっぱい */
+        height: 170vh !important; /* ビューポート高さいっぱい */
         margin: 0 !important;
         padding: 0 !important;
         border-radius: 0 !important; /* 角丸を削除 */
@@ -371,5 +374,15 @@ li.picts a img.pictS{
         height: auto;
         margin: 0 auto;
     }
+    .expanded-Cart{
+        padding: 15px;
+        margin-top: 40px;
+        margin-bottom: 310px;
+        text-align: center;
+        border: 1.5px solid #000;
+        border-radius: 30px;
+        background-color: #A58473;
+    }
+
 
 }
