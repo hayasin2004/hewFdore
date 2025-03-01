@@ -71,7 +71,7 @@ const SearchProductCategory = () => {
 
                             <FormControlLabel
                                 onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                value="T-shirt" control={<Radio/>} label="Tシャツ"/>
+                                value="tops" control={<Radio/>} label="Tシャツ"/>
                             <FormControlLabel
                                 onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
                                 value="perfume" control={<Radio/>} label="香水"/>
@@ -80,7 +80,7 @@ const SearchProductCategory = () => {
                                 value="hat" control={<Radio/>} label="帽子"/>
                             <FormControlLabel
                                 onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                value="shose" control={<Radio/>} label="靴"/>
+                                value="shoes" control={<Radio/>} label="靴"/>
                         </Box>
 
                     </Box>

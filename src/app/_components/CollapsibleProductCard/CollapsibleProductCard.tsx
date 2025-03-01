@@ -92,7 +92,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                         sm: isOpen ? '100%' : '45%',
                         md: isOpen ? '100%' : '30%'
                     },
-                    margin: '0 auto', // 左右のマージンを自動に設定して中央揃え
+                    // margin: '0 auto', // 左右のマージンを自動に設定して中央揃え
                     transition: 'width 0.3s ease-in-out',
                     bgcolor: '#ddd',
                     boxShadow: '3px 4px #aaa',
