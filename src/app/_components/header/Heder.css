@@ -53,7 +53,6 @@ header div.title h1:hover{
 /* タイトルとの間 */
 div.bar{
     /*width: 400px;*/
-    margin-left: 10%;
 }
 
 header div.bar ul {
@@ -133,7 +132,7 @@ p#usernameGet{
 
 p#name{
     padding: 5px;
-    width: 8rem;
+    width: 10rem;
     overflow-wrap: break-word;
     transition: 0.3s;
     /*margin-left: 74px;*/
@@ -283,12 +282,17 @@ div.bar ul span.long_line {
     align-items: center;
     border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
 }
+
+.loginProfilePictureAndLogin{}
 #uru_ul{
     width :100px;
     align-items: center;
     padding-left: 45px;
 
 }
+
+
+
 #uru{
     font-family: "Zen Kaku Gothic Antique", sans-serif;
     font-weight: 400;
@@ -308,15 +312,18 @@ span.under_bar {
     border-bottom: 1px solid #000000;
 }
 
-/* 1250より小さい場合は要素を畳まないとだめかも */
-@media screen and (max-width: 1380px) {
-    li#UserName{
-        display: none;
-    }
-
-}
 
 @media screen and (max-width: 768px) {
+
+
+    li#UserName{
+        overflow:hidden;
+        vertical-align: bottom;
+    }
+    li#UserName:hover{
+        color: #000;
+        text-shadow: none;
+    }
 
     header div.title {
         width: 20%;
@@ -441,15 +448,23 @@ span.under_bar {
         display: none;
     }
 
+
+    p#name{
+        padding: 5px;
+        width: 5rem;
+        margin-top: 10px;
+        margin-left: 2px;
+        font-size: 1rem;
+        overflow-wrap: break-word;
+        transition: 0.3s;
+        /*margin-left: 74px;*/
+    }
+
     /*ベル*/
     #list_bell{
         width: 10%;
     }
 
-    /*ログイン*/
-    #UserName{
-        width: 10%;
-    }
 
     div.bar ul span#short_line{
         display: none;
