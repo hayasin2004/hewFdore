@@ -70,7 +70,7 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                             <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="tops"
+                                    defaultValue="トップス"
                                 name="radio-buttons-group">
                                 <Box className={"radio_button_flex"}>
                                     <Box className={"radio_button_low1"}>
@@ -79,33 +79,28 @@ const ListingScreenRadiobutton: React.FC<productStatusType> = ({
                                                 const target = e.target as HTMLInputElement
                                                 handleProductExplainCategorySet(target.value)
                                             }}
-                                            value="tops" className={"radioButton"} control={<Radio/>} label="トップス"/>
+                                            value="トップス" className={"radioButton"} control={<Radio/>} label="トップス"/>
                                         <FormControlLabel
                                             onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="denim" control={<Radio/>} label="デニム"/>
+                                            value="ボトム" control={<Radio/>} label="ボトム"/>
                                         <FormControlLabel
                                             onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="outer" control={<Radio/>} label="アウター"/>
-                                        <FormControlLabel
-                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="shirt" control={<Radio/>} label="シャツ"/>
-                                        <FormControlLabel
-                                            onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="longShirt" control={<Radio/>} label="長袖"/>
+                                            value="アウター" control={<Radio/>} label="アウター"/>
                                     </Box>
                                     <Box className={"radio_button_low2"}>
+
                                         <FormControlLabel
                                             onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="T-shirt" control={<Radio/>} label="Tシャツ"/>
+                                            value="帽子" control={<Radio/>} label="帽子"/>
                                         <FormControlLabel
                                             onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="perfume" control={<Radio/>} label="香水"/>
+                                            value="靴" control={<Radio/>} label="靴"/>
                                         <FormControlLabel
                                             onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="hat" control={<Radio/>} label="帽子"/>
+                                            value="アクセサリー" control={<Radio/>} label="アクセサリー"/>
                                         <FormControlLabel
                                             onChange={(e: React.SyntheticEvent<Element, Event>) => handleProductExplainCategorySet((e.currentTarget as HTMLInputElement).value)}
-                                            value="shose" control={<Radio/>} label="靴"/>
+                                            value="香水" control={<Radio/>} label="香水"/>
                                     </Box>
                                 </Box>
                             </RadioGroup>

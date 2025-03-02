@@ -197,7 +197,7 @@ const Header = () => {
                             <span className="long_line"></span>
 
 
-                            <li >
+                            <li className={"iconFrame"}>
                                 {userData?.profilePicture !== "" ?
                                     <UserNavigationModal src={userData?.profilePicture}/>
                                     :
@@ -215,7 +215,7 @@ const Header = () => {
                             </li>
                             ): (
 
-                                <li>
+                                <li className={"loginFrame"}>
                                     {userData ? "" :
                                         <Link href={"/login"}><p id={"name"}>ログイン</p></Link>}
                                     {/*確認用　ネーム上限15*/}
@@ -224,7 +224,7 @@ const Header = () => {
                             )}
                             <li id={"list_bell"}>
                                 {userData ?
-                                    <div>
+                                    <div className={"reaa"}>
                                         <Button className={"bell"} onClick={handleOpen}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
@@ -276,7 +276,7 @@ const Header = () => {
                                                                         <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
                                                                     </svg>
                                                                     {item.followerUserId !== "" ?
-                                                                        <Link
+                                                                        <Link className={"bellM"}
                                                                             href={`/userDetail/${item.followerUserId}`}>
                                                                             <p>{item.message}</p>
                                                                         </Link>

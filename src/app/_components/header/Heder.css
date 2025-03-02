@@ -316,6 +316,12 @@ span.under_bar {
 
 @media screen and (max-width: 768px) {
 
+    header{
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+    }
+
 
     li#UserName{
         overflow:hidden;
@@ -462,11 +468,51 @@ span.under_bar {
         /*margin-left: 74px;*/
     }
 
+    .iconFrame{
+        width: 20%;
+    }
+    .loginFrame{
+        /*width: 20%;*/
+    }
+
     /*ベル*/
     #list_bell{
         width: 10%;
     }
 
+    .reaa{
+        width: 100%;
+    }
+
+    .bell{
+        margin: 0;
+    }
+
+    .modal-content{
+        width: 400px;
+    }
+    .modal-title-tab-text{
+        width: 200px;
+    }
+    .alertDisplay{
+        width: 100%;
+        color: #4b5563;
+    }
+    .alert svg{
+        width: 50px;
+        height: 50px;
+        margin: 0;
+    }
+    .alertDisplay p{
+
+    }
+
+
+
+    .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+        margin: 0;
+        padding: 0;
+    }
 
     div.bar ul span#short_line{
         display: none;
