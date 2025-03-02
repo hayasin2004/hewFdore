@@ -117,7 +117,7 @@ const ConfirmUserProfile = () => {
             <Link href={"paidNote"}><h2>購入履歴</h2></Link>
 
                 <div className={"rightbar_flex"}>
-                <div className={"rightbar_product"}>
+                    <div className={"rightbar_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"rightbar_product_text"}>
                         <p>
@@ -127,10 +127,9 @@ const ConfirmUserProfile = () => {
                         <p>価格 : xxxx</p>
                     </div>
                 </div>
-
-            </div>
-            <div className={"rightbar_flex"}>
-                <div className={"rightbar_product"}>
+                </div>
+                <div className={"rightbar_flex"}>
+                    <div className={"rightbar_product"}>
                     <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>
                     <div className={"rightbar_product_text"}>
                         <p>
@@ -141,8 +140,7 @@ const ConfirmUserProfile = () => {
                     </div>
 
                 </div>
-
-            </div>
+                </div>
             {/*<div className={"rightbar_flex"}>*/}
             {/*    <div className={"rightbar_product"}>*/}
             {/*        <Image src={"/images/clothes/product.jpg"} width={200} height={200} alt={"購入履歴"}/>*/}

@@ -154,14 +154,14 @@ const SearchPageProducts = () => {
                         setSearchCategory(e.target.value)
                     }}>
                         <option value="">カテゴリー</option>
-                        <option value="T-shirt">トップス</option>
-                        <option value="bottom">ボトム</option>
-                        <option value="outer">アウター
+                        <option value="トップス">トップス</option>
+                        <option value="ボトム">ボトム</option>
+                        <option value="アウター">アウター
                         </option>
-                        <option value="hat">帽子</option>
-                        <option value="shose">靴</option>
-                        {/*<option value="アクセサリー">アクセサリー</option>*/}
-                        <option value="perfume">香水</option>
+                        <option value="帽子">帽子</option>
+                        <option value="靴">靴</option>
+                        <option value="アクセサリー">アクセサリー</option>
+                        <option value="香水">香水</option>
                     </select>
                     {/*　サイズ絞り込み　*/}
                     <select id={"SearchSize"} onChange={(e) => {

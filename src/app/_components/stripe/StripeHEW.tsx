@@ -144,7 +144,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}:CompleteStripeType) => {
                                         <option value="payPay">PayPay</option>
                                     </select>
                                 </label>
-                                <Image src={"/img.png"} width={100} height={100} alt={"card"}/>
+                                <Image src={"/accessories.png"} width={100} height={100} alt={"card"}/>
                                 <Image src={"/paypay.png"} width={100} height={100} alt={"paypay"}/>
                             </div>
                         </div>

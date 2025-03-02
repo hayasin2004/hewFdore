@@ -118,6 +118,40 @@ div.siteunbermain{
     margin-top: 5px;
 }
 
+@media screen and (max-width: 768px) {
+
+    .responsiveStaffBlogMidashi{
+        font-size: 1.9rem;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    .site3{
+        text-align: center;
+        width: 80%;
+        margin: 7% 9% 3% 8%;
+        display:flex;
+        align-items:center;
+        list-style : none ;
+        justify-content: center;
+    }
+
+
+    .blog-images {
+        width: 100vw;
+        height: 10vh; /* 画像の高さを統一 */
+        object-fit: cover; /* 画像の比率を維持しつつサイズ調整 */
+        border-radius: 8px;
+    }
+    .blog-images {
+        width: 100%;
+        margin-right: 20px;
+        height: auto; /* 画像の高さを統一 */
+        object-fit: cover; /* 画像の比率を維持しつつサイズ調整 */
+        border-radius: 8px;
+    }
+
+}
 
 
 

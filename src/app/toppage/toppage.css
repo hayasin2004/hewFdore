@@ -6,7 +6,8 @@ body.top {
     padding: 0;
     /*overflow-x: hidden;*/
 }
-div.top{
+
+div.top {
     background: #f3f3eb;
 }
 
@@ -56,18 +57,22 @@ div.introduction h1 {
     font-size: 4rem;
     padding-top: 80px;
 }
+
 div.introduction h3 {
     text-align: left;
     font-size: 1.5rem;
     line-height: 2.5rem;
     padding-top: 20px;
 }
-#smallFont{
+
+#smallFont {
     font-size: 1.5rem;
 }
-.smallFonth3{
+
+.smallFonth3 {
     font-size: 1rem;
 }
+
 div.introduction p {
     font-size: 2rem;
     padding-top: 80px;
@@ -124,3 +129,77 @@ li.toppageBottomLi h2 {
     text-align: center;
 }
 
+
+@media (max-width: 768px) {
+
+    div.introduction {
+        width: 100%;
+        height: 880px;
+        margin: auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #CFC8A9;
+        text-align: center;
+    }
+
+    div.siteIntroduction {
+        height: 1000px;
+        background: #D9D0C7;
+        display: flex;
+    }
+
+
+
+    div.introductionMain {
+        font-family: "Italiana", sans-serif;
+        width: 400px;
+        color: #444;
+    }
+
+    div.siteIntroduction{
+        margin-top: 50px;
+    }
+
+    div.introductionMain h1{
+        margin-bottom: 20px;
+    }
+    div.introductionMain h3{
+        width: 380px;
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+
+
+    div.toppageBottomPicture_Text {
+        display: flex;
+        align-items: center;
+        height: 200px;
+        margin-top: 300px;
+    }
+
+
+    ul.toppageBottomUl {
+        width: 100%;
+        display: block;
+        align-items: center;
+        list-style: none;
+    }
+
+
+    li.toppageBottomLi {
+        width: 100%;
+        margin-top: 40px;
+       text-align: center;
+        align-items: center;
+    }
+
+
+    .toppageBottomImage {
+        width: 430px !important;
+        height: auto;
+        align-items: center;
+        margin: 0;
+    }
+
+}

@@ -210,3 +210,12 @@ a.RPnext,a.RPprev{
 a.RPnext:hover,a.RPprev:hover{
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+}
+.listImage {
+    width: 100%;
+    height: 40vh;
+    border-radius: 10px 10px 0 0;
+    background-color: #ccc;
+}

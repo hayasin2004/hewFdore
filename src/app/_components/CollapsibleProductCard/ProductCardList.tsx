@@ -7,8 +7,8 @@ export interface ProductCardListProps {
     items?: ProductType[];
     category?: string;
     size?: string
-    currentProduct? : ProductType[];
-    categoryProductList? : ProductType[]
+    currentProduct?: ProductType[];
+    categoryProductList?: ProductType[]
 }
 
 const ProductCardList = ({items, category, size}: ProductCardListProps) => {
@@ -20,9 +20,10 @@ const ProductCardList = ({items, category, size}: ProductCardListProps) => {
 
 
     console.log("item" + JSON.stringify(items), "category" + category, "size" + size);
-     return (
-        <div className="product-card-list">
-            {items?.map((item) => (
+    return (
+        <div className={"responsiveSmartPhone"}>
+            <div className="product-card-list">
+                {items?.map((item) => (
                     <CollapsibleProductCard
                         key={item._id}
                         item={item}
@@ -31,6 +32,7 @@ const ProductCardList = ({items, category, size}: ProductCardListProps) => {
                     />
                 ))}
 
+            </div>
         </div>
     );
 };

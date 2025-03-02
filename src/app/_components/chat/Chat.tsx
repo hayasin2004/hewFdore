@@ -113,9 +113,6 @@ const Chat = (props: { paramsProductData: string | undefined }) => {
                         </div>
                         <div className="comment-area-rig">
                             メッセージ内容:{item?.buyerChatMessage[0]?.buyerMessage} <br/>
-                            <EmojiPicker stamp={item?.buyerChatMessage[0]?.buyerMessageStamp[0]?.buyerMessageStampLike}
-                                         currentUser={currentUser} productId={productId}
-                                         item={item?.buyerChatMessage[0]?._id} setIcon={setIcon}/>
                         </div>
                     </div>
                 )

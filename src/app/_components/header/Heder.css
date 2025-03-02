@@ -35,6 +35,14 @@ header div.title{
     margin-left: 20%;
     text-decoration: none;
 }
+.logoImage2 {
+    display: none;
+    width: 90%;
+    height: auto;
+    margin-top: -5%;
+    margin-left: 20%;
+    text-decoration: none;
+ }
 header div.title h1:hover{
     text-decoration: underline 1px solid;
     transition: text-decoration 0.3s;
@@ -45,7 +53,6 @@ header div.title h1:hover{
 /* タイトルとの間 */
 div.bar{
     /*width: 400px;*/
-    margin-left: 10%;
 }
 
 header div.bar ul {
@@ -75,23 +82,35 @@ div.bar ul li:hover{
     text-shadow: 0 0 30px #BF9E80 ,0 0 20px #BF9E80,0 0 15px #D0C7B2;
 }
 
+.categoryLogoFrame{
+    display: none;
+}
 div.bar ul li p#category{
     position: relative;
     font-family: "JetBrains Mono", monospace;
     font-weight: 400;
     font-size: 1.5rem;
     margin-left: 30px;
-    margin-top: 3px;
+}
+
+#megane{
+    display: flex;
 }
 
 li.Headersearch{
     text-align: center;
 }
 li.Headersearch svg{
-    margin:5px 0 0 0;
+    margin:5px 0 -5px 0;
+}
+.lucidelucide-search2{
+    display:none;
+    text-align: center;
 }
 
-
+.sellImageFrame{
+    display: none;
+}
 
 /* ユーザーネーム:ログイン遷移 */
 li#UserName{
@@ -107,10 +126,14 @@ li#UserName:hover{
 p#usernameGet{
 }
 
+#search,#sell{
+    font-size: 1.5rem;
+}
 
 p#name{
     padding: 5px;
-    width: 8rem;
+    width: 15rem;
+    margin-top: 8px;
     overflow-wrap: break-word;
     transition: 0.3s;
     /*margin-left: 74px;*/
@@ -260,12 +283,17 @@ div.bar ul span.long_line {
     align-items: center;
     border-left: 1px solid #000000; /*線の設定*/ /*余白の設定*/;
 }
+
+.loginProfilePictureAndLogin{}
 #uru_ul{
     width :100px;
     align-items: center;
     padding-left: 45px;
 
 }
+
+
+
 #uru{
     font-family: "Zen Kaku Gothic Antique", sans-serif;
     font-weight: 400;
@@ -285,10 +313,223 @@ span.under_bar {
     border-bottom: 1px solid #000000;
 }
 
-/* 1250より小さい場合は要素を畳まないとだめかも */
-@media screen and (max-width: 1380px) {
+
+@media screen and (max-width: 768px) {
+
+    header{
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+    }
+
+
     li#UserName{
+        overflow:hidden;
+        vertical-align: bottom;
+    }
+    li#UserName:hover{
+        color: #000;
+        text-shadow: none;
+    }
+
+    header div.title {
+        width: 20%;
+    }
+
+    header div.bar {
+        width: 80%;
+        margin: 0;
+    }
+
+    header div.nav{
+        margin-top: 10px;
+    }
+
+    /*ロゴ*/
+    .logoFrame{
+        width: 50%;
+    }
+    .logoImage {
         display: none;
     }
 
+    .logoImage2 {
+        width: 100%;
+        margin-left: 0;
+        display: inline;
+    }
+
+    /*カテゴリー*/
+    .categoryFrame {
+        width: 20%;
+    }
+    .caregoryLogoBase{
+        width: 10%;
+    }
+
+
+    .categoryLogoFrame {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+    }
+
+    .categoryImage {
+        width: 100%;
+        height: auto;
+    }
+
+    div.bar ul li p#category {
+        width: 80%;
+        margin: 0;
+        text-align: center;
+        font-size: 0.5rem;
+        color: #4b5563;
+    }
+
+    /*サーチ*/
+    .searchFrame {
+        width: 20%;
+    }
+
+    li.Headersearch {
+        width: 80%;
+    }
+
+    .lucidelucide-search {
+        display: none;
+        text-align: center;
+    }
+
+    .lucidelucide-search2 {
+        display: inline;
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    .searchImage {
+        width: 90%;
+        height: auto;
+    }
+
+    #search {
+        width: 100%;
+        font-size: 0.5rem;
+        text-align: center;
+        color: #4b5563;
+    }
+
+    /*売る*/
+    .seleFrame {
+        width: 20%;
+    }
+
+    #uru_ul {
+        width: 80%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sellImageFrame {
+        display: inline;
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+
+    .seleImage {
+        width: 90%;
+        height: auto;
+    }
+
+    #sell {
+        width: 100%;
+        font-size: 0.5rem;
+        text-align: center;
+        color: #4b5563;
+    }
+
+    #uru {
+        display: none;
+    }
+
+
+    p#name{
+        padding: 5px;
+        width: 5rem;
+        margin-top: 10px;
+        margin-left: -10px;
+        font-size: 1rem;
+        overflow-wrap: break-word;
+        transition: 0.3s;
+        color: #4b5563;
+        /*margin-left: 74px;*/
+    }
+
+    .iconFrame{
+        width: 20%;
+    }
+    .loginFrame{
+        /*width: 20%;*/
+    }
+
+    /*ベル*/
+    #list_bell{
+        width: 10%;
+    }
+
+    .reaa{
+        width: 100%;
+    }
+
+    .bell{
+        margin: 0;
+    }
+
+    .modal-content{
+        width: 400px;
+    }
+    .modal-title-tab-text{
+        width: 200px;
+    }
+    .alertDisplay{
+        width: 100%;
+        color: #4b5563;
+    }
+    .alert svg{
+        width: 50px;
+        height: 50px;
+        margin: 0;
+    }
+    .alertDisplay p{
+
+    }
+
+
+
+    .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+        margin: 0;
+        padding: 0;
+    }
+
+    div.bar ul span#short_line{
+        display: none;
+    }
+    div.bar ul span.long_line{
+        display: none;
+    }
+    header div.bar ul {
+        display: flex;
+    }
+
+
+    div.bar ul li {
+        margin: 0;
+        font-size: 0.5rem;
+    }
+
 }
+
+

@@ -13,31 +13,17 @@ import ToppageSite3 from "@/app/_components/toppage_site3/Toppage_site3";
 import axios from "axios";
 
 const Toppage = () => {
-    // useEffect(() => {
-    //
-    //     const handleSubmit = async ( ) => {
-    //
-    //         try {
-    //             const res = await fetch('/api/contact/', {
-    //                 method: "POST",
-    //                 headers: {
-    //                     Accept: "application/json, text/plain",
-    //                     "Content-Type": "application/json",
-    //                 },
-    //                 body: JSON.stringify({a:"a"}),
-    //             });
-    //
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     };
-    //     handleSubmit()
-    // }, []);
     const [productList, setProductList] = useState([])
     console.log(productList)
 
-   　
 
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsDesktop(window.innerWidth >= 768);
+        }
+    }, []);
 
     useEffect(() => {
         // エンコードしたtokenを検証する
@@ -90,26 +76,38 @@ const Toppage = () => {
                     </div>
                 </div>
 
-                 <h2 style={{color: "red", fontSize: "6rem"}}></h2>
+                <h2 style={{color: "red", fontSize: "6rem"}}></h2>
                 <Toppage_2nd/>
                 <ToppageSite3/>
 
+                {isDesktop ? (
 
-                <div className={"toppageBottomPicture_Text"}>
-                    <ul className={"toppageBottomUl"}>
-                        <li className={"toppageBottomLi"}>
+                    <div className={"toppageBottomPicture_Text"}>
+                        <ul className={"toppageBottomUl"}>
+                            <li className={"toppageBottomLi"}>
 
 
-                            <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
-                                   width={1920}
-                                   height={1280} alt={"トップページ下の画像"}/>
-                        </li>
-                        <li className={"toppageBottomLi"}>
+                                <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
+                                       width={1920}
+                                       height={1280} alt={"トップページ下の画像"}/>
+                            </li>
+                            <li className={"toppageBottomLi"}>
 
-                            <h2>F&apos;dore</h2>
-                        </li>
-                    </ul>
-                </div>
+                                <h2>F&apos;dore</h2>
+                            </li>
+                        </ul>
+                    </div>
+                ) : (
+                    <div className={"toppageBottomPicture_Text"}>
+                        <ul className={"toppageBottomUl"}>
+                            <li className={"toppageBottomLi"}>
+                                <Image src={"/images/clothes/toppagepicture.jpg"} className={"toppageBottomImage"}
+                                       width={1920}
+                                       height={1280} alt={"トップページ下の画像"}/>
+                            </li>
+                        </ul>
+                    </div>
+                )}
                 {/*<Slideshow/>*/}
             </div>
             <ToppageProducts/>
