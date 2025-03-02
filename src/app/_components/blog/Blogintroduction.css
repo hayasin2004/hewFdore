@@ -119,9 +119,10 @@ body{
 /* リセットボタン */
 .reset-btn {
     padding: 15px 30px;
-    background-color: #d9534f;
-    color: #fff;
-    border: none;
+    background-color: #fffaf3;
+    color: #4b3e2b;
+    /*border: none;*/
+    border: 3px solid #a39482;
     border-radius: 7px;
     font-size: 1.2em;
     cursor: pointer;
@@ -130,7 +131,7 @@ body{
 }
 
 .reset-btn:hover {
-    background-color: #c9302c;
+    background-color: #ede3d7;
 }
 
 
@@ -347,7 +348,7 @@ body{
     z-index: 1100;
 }
 
-/* ヘッダーのスライドアニメーション */
+
 .hednav {
     position: fixed;
     top: 0;
@@ -373,7 +374,7 @@ body{
 
 @media screen and (max-width: 1024px) {
     .backmain {
-        grid-template-columns: repeat(2, 1fr); /* タブレットでは2列 */
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 30px 15px;
     }
@@ -387,7 +388,7 @@ body{
 
 @media screen and (max-width: 768px) {
     .backmain {
-        grid-template-columns: repeat(1, 1fr); /* スマホでは1列 */
+        grid-template-columns: repeat(1, 1fr);
         gap: 10px;
         padding: 20px 10px;
     }
@@ -400,12 +401,12 @@ body{
     /* フィルターボタンの位置調整 */
     .filter-toggle {
         left: 10px;
-        top: 100px; /* さらに下に配置 */
+        top: 100px;
         padding: 10px 15px;
         font-size: 1em;
     }
 
-    /* モーダルを小さめに */
+
     .modal-content {
         width: 90%;
         max-height: 80vh;
@@ -413,7 +414,7 @@ body{
         padding: 30px 20px;
     }
 
-    /* トップに戻るボタンを小さく */
+
     .page-top {
         right: 10px;
         bottom: 10px;
