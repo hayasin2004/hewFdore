@@ -20,13 +20,14 @@ body{
     text-align: center;
 }
 
-/* 絞り込みボタン（ヘッダーから下にずらす） */
+/* 絞り込みボタン */
 .filter-toggle {
+    margin-top: 50px;
     position: fixed;
     left: 20px;
-    top: 150px; /* ヘッダーからの距離調整 */
+    top: 150px;
     padding: 15px 25px;
-    background-color: #4b3e2b;
+    background-color: #a39482;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -157,13 +158,28 @@ body{
 }
 
 
+/* 該当するブログがない場合のメッセージ */
+.no-blogs-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    width: 100%;
+    height: 100px; /* 適宜調整 */
 
+    color: #7a5c45;
+    font-size: 1.4em;
+    text-align: center;
+
+    grid-column: 1 / -1; /* 親の .backmain の全列を使う */
+}
 
 .backmain {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /*4列に固定*/
     gap: 20px;
+    width: 100%;
+    height: 100%;
     padding: 40px 20px;
     background-color: #f8f4ef;
     justify-items: center;
@@ -331,22 +347,6 @@ body{
     transform: translateY(2px);
 }
 
-/*HeaderのCSS*/
-
-/* ハンバーガーメニューのボタン */
-.hamburger-button {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    background-color: #4b3e2b;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1100;
-}
 
 
 .hednav {
