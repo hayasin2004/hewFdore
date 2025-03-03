@@ -187,7 +187,7 @@ const UpdateProfile = () => {
 
                 <div className={"updateProfile_user"}>
                     <form>
-                                <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
+                                <label id={"Name"} htmlFor="UserName">ユーザー名</label><br/>
                                 <input type="text" name="UserName" id="UserName"
                                        placeholder={username !== null ? username : "新しいユーザー名"} onChange={(e) => {
                                     setUsername(e.target.value)
