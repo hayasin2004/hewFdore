@@ -77,7 +77,7 @@ const Blogintroduction = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // 日付フォーマット関数
+    // 日付関数
     const formatDate = (dateString: string | undefined): string => {
         if (!dateString) return "";
         const date = new Date(dateString);
@@ -113,7 +113,7 @@ const Blogintroduction = () => {
 
             {/* フィルターボタン（スマホではアイコン） */}
             <button className="filter-toggle" onClick={() => setShowFilter(true)}>
-                {isMobile ? "🔍" : "絞り込み"}
+                {isMobile ? <Image src={"/images/cms/filter.png"} width={20} height={20}/> : "絞り込み"}
             </button>
 
             {/* 絞り込みモーダル */}
@@ -188,6 +188,12 @@ const Blogintroduction = () => {
 
             {/* ブログリスト */}
             <ul className="backmain">
+                {filteredBlogs.length === 0 && (
+                    <div className="no-blogs-message">
+                        該当するブログがありません
+                    </div>
+                )}
+
                 {filteredBlogs.slice(0, visibleCount).map((blog) => (
                     <li key={blog.id} className="blog-item">
                         <Link href={`/${blog.id}`} className="blog-link">
