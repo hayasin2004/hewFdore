@@ -43,7 +43,7 @@ const Blogintroduction = () => {
     const [visibleCount, setVisibleCount] = useState(12);
     const [showScrollButton, setShowScrollButton] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
-    const [isHeaderVisible, setIsHeaderVisible] = useState(false); // 追加: ヘッダー表示状態
+    const [isHeaderVisible, setIsHeaderVisible] = useState(false);
     const isMobile = useIsMobile(); // スマホ判定
 
     // ブログデータ取得
@@ -100,11 +100,7 @@ const Blogintroduction = () => {
 
             {/*<h1 className="title-h1">ブログ一覧</h1>*/}
 
-            {isMobile && (
-                <button className="hamburger-button" onClick={toggleHeader}>
-                    {isHeaderVisible ? "✖" : "≡"}
-                </button>
-            )}
+
 
             {/* ヘッダー（スマホではスライド） */}
             <div className={`hednav ${isMobile ? (isHeaderVisible ? "slide-in" : "slide-out") : ""}`}>
