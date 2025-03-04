@@ -317,7 +317,8 @@ span.under_bar {
 @media screen and (max-width: 768px) {
 
     header{
-        position: fixed;
+        position: sticky;
+        top: 0;
         width: 100%;
         z-index: 999;
     }
@@ -458,10 +459,10 @@ span.under_bar {
 
     p#name{
         padding: 5px;
-        width: 5rem;
+        width: 4rem;
         margin-top: 10px;
         margin-left: -10px;
-        font-size: 1rem;
+        font-size: 0.8rem;
         overflow-wrap: break-word;
         transition: 0.3s;
         color: #4b5563;
