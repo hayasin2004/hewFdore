@@ -127,6 +127,7 @@ const CompleteStripe = ({productId, sellingOrSoldOut}: CompleteStripeType) => {
                         </div>
                         <Modal
                             open={open}
+
                             onClose={handleClose}
                             aria-labelledby="modal-modal-title"
                             aria-describedby="modal-modal-description"
@@ -136,11 +137,18 @@ const CompleteStripe = ({productId, sellingOrSoldOut}: CompleteStripeType) => {
                                     お支払い方法の選択
                                 </Typography>
                                 <Typography id="modal-modal-description" sx={{mt: 2}}>
-
-                                    <Image src="/img.png" alt="card " width={100} height={100}
-                                           onClick={() => handlePayment("card")}/>
-                                    <Image src="/paypay.png" alt="payPay" width={100} height={100}
-                                           onClick={() => handlePayment("payPay")}/>
+                                    <div className={"Iconset"} id={"card"}>
+                                        <Image src="/img.png"className={"PayIcon"} alt="card " width={100}
+                                               height={100}
+                                               onClick={() => handlePayment("card")}/>
+                                        <p>クレジット</p>
+                                    </div>
+                                    <div className={"Iconset"}>
+                                        <Image src="/paypay.png" id={"ppIcon"} className={"PayIcon"} alt="payPay" width={100}
+                                               height={100}
+                                               onClick={() => handlePayment("payPay")}/>
+                                        <p>Paypay</p>
+                                    </div>
                                 </Typography>
                             </Box>
                         </Modal>
