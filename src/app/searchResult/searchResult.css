@@ -179,9 +179,11 @@ select#ChangePPP{
 /* ページネーションのCSS */
 .PaginateFlame{
     /*background-color: #660000;*/
+    width: 100%;
     display: flex;
     flex-direction: row;
-    margin: 10px 10px 50px 10px;
+    justify-content: center;
+    margin: 10px auto 50px auto;
     list-style: none;
 }
 

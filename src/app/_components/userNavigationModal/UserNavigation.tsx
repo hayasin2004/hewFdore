@@ -131,7 +131,7 @@ const UserNavigation = (props: { src: string | undefined }) => {
 
                     {/*<ChildModal/>*/}
                     <div id={"Close_Logout"}>
-                        <Button id={"closeButton"} onClick={handleClose}>閉じる</Button>
+                        <Button id={"UNcloseButton"} onClick={handleClose}>閉じる</Button>
                         <p className={"cursor"} onClick={Logout}>
                             ログアウト
                         </p>

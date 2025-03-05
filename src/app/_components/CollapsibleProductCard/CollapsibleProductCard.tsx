@@ -135,7 +135,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                        src={item?.productImage !== undefined ? item?.productImage : "/images/clothes/product.jpg"}
                                        width={400} height={310}
                                        alt="サンプル" id="sum"
-                                       style={{maxWidth: '100%', height: 'auto'}}
+                                       style={{maxWidth: '100%', height: '300px'}}
                                 />
                             </div>
                             <p className="product-Size">{item.productSize}</p>
@@ -228,11 +228,11 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
 
                                     <Grid item xs={12} md={3}>
 
-                                        <div >
+
                                             <Box className={"expanded-reverse"}>
                                                 <p>×</p>
                                             </Box>
-                                        </div>
+
                                         <Box className={"expanded-comment"} sx={{width: '100%'}}>
                                             <div className="expanded-comment-fream">
                                                 <div className="comment-account">

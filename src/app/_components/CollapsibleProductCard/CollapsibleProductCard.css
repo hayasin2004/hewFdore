@@ -5,18 +5,22 @@
 
 /* 通常時の画像スタイル */
 .collapsed-image {
-    width: 100%;
-    height: 50vh;
+    width: 230px;
+    height: 300px;
     border-radius: 10px 10px 0 0;
     background-color: #ccc;
-    margin: 0;
-    padding-bottom: 20px;
+    margin: 0 auto;
+    /*padding-bottom: 20px;*/
     /* 通常時特有のスタイルをここに追加 */
 }
+
+
 
 .testttt{
     width: 100%;
     position: relative;
+    /*box-shadow: 0 10px 10px -5px gray;*/
+
 }
 
 .product-Size{
@@ -41,11 +45,12 @@
 /* 展開時の画像スタイル */
 .expanded-image {
     width: 80%;
-    height: 100vh;
+    height: 80%;
+    transform: scale(80%);
     margin: 20px 0 20px 20px;
     border-radius: 10px;
-    background-color: #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*background-color: #ccc;*/
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
     object-fit: cover;
 }
 
@@ -167,8 +172,7 @@ li.picts a img.pictS{
 .expanded-comment-fream{
     width: 90%;
     padding: 10px;
-    margin-top: 90px;
-    margin-left: 20px;
+    margin: 90px 5% 20px 20px;
     border-radius: 10px;
     border: 2px solid #bbb;
     box-shadow: 2px 2px 2px #bbb;
@@ -195,7 +199,7 @@ li.picts a img.pictS{
 }
 .expanded-image img{
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 2px;
     object-fit: cover;
     box-shadow: 0 10px 10px -5px gray;
@@ -209,7 +213,6 @@ li.picts a img.pictS{
     width: 100%;
     border-radius: 2px;
     object-fit: cover;
-    box-shadow: 0 10px 10px -5px gray;
 }
 
 .comment-account{
@@ -217,8 +220,9 @@ li.picts a img.pictS{
     padding: 15px 0 0 10px;
 }
 #ac_img{
-    width: 20%;
-    height: 6vh;
+    /*width: 20%;*/
+    /*height: 20%;*/
+    object-fit: cover;
     border-radius: 50%;
     background-color: #555555;
 }
@@ -228,21 +232,27 @@ li.picts a img.pictS{
 }
 
 .pu_comment{
-    margin-top: 10px;
-    height: 36vh;
+    margin: 10px 0 0 0;
+    height: 25vh;
     line-height: 1.5rem;
     overflow: hidden;
 }
 
 .expanded-reverse{
     padding: 0;
-    margin-left: 220px;
-    text-align: center;
+    width: 100%;
+
+}
+.expanded-reverse p{
+    text-align: right;
+    margin: 0 8% 0 0;
+
     font-size: 3rem;
 }
 
 .product-card-list {
     display: flex;
+    flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
     gap: 20px;
@@ -252,8 +262,10 @@ li.picts a img.pictS{
 
 /* 展開時のカードのスタイル */
 .product-card-list .collapsible-product-card {
-    flex: 0 0 auto;
-    width: calc(20% - 20px);
+    padding: 10px 0 0 0;
+    /*flex: 0 0 auto;*/
+    width: 280px;
+    /*width: calc(20% - 20px);*/
     transition: all 0.3s ease-in-out;
 }
 
@@ -262,6 +274,21 @@ li.picts a img.pictS{
     width: 90% !important;
     margin: 0;
     order: -1;  /* 展開したカードを最上部に移動 */
+}
+
+@media screen and (max-width:900px){
+    .product-card-list {
+        display: flex;
+        flex-direction: column;
+    }
+    .expanded-reverse {
+        position: absolute;
+        top: 12%;
+        right: 9%;
+    }
+    .expanded-Size{
+        margin: 50px;
+    }
 }
 
 @media (max-width: 768px) {

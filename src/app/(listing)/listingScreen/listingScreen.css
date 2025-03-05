@@ -2,10 +2,16 @@ body {
     margin: 0;
     padding: 0;
     background: #EBE8DB;
+    height: 100%;
+    height: 100%;
 }
 
 
 main{
+}
+
+div#bgsell{
+    margin: 25px auto 20px auto;
 }
 
 div.content{
@@ -24,7 +30,7 @@ div.content{
 h2#LStitle{
     padding: 10px 0;
     width: 90%;
-    margin: 10px auto 10px auto;
+    margin: 20px auto 10px auto;
     text-align: center;
     /*font-family: "JetBrains Mono";*/
     font-size: 40px;
