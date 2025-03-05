@@ -191,6 +191,20 @@ div.ListingBtn button.listingcompletebtn{
 
 @media screen and (max-width: 768px) {
 
+    .initCameraIcon{
+        width: 70%;
+        height: auto;
+    }
+
+    div.kamera{
+        height: 10vh;
+    }
+    div.kamera img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
     div.content{
         /*display: flex;*/
         /*flex-direction: column;*/
