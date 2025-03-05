@@ -13,15 +13,14 @@
     /*padding-bottom: 20px;*/
     /* 通常時特有のスタイルをここに追加 */
 }
-.collapsed-image img{
-    width: 100%;
-    object-fit: cover;
-}
+
 
 
 .testttt{
     width: 100%;
     position: relative;
+    /*box-shadow: 0 10px 10px -5px gray;*/
+
 }
 
 .product-Size{
@@ -46,11 +45,12 @@
 /* 展開時の画像スタイル */
 .expanded-image {
     width: 80%;
-    height: 70%;
+    height: 80%;
+    transform: scale(80%);
     margin: 20px 0 20px 20px;
     border-radius: 10px;
-    background-color: #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*background-color: #ccc;*/
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
     object-fit: cover;
 }
 
@@ -200,7 +200,7 @@ li.picts a img.pictS{
 }
 .expanded-image img{
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 2px;
     object-fit: cover;
     box-shadow: 0 10px 10px -5px gray;
@@ -214,7 +214,6 @@ li.picts a img.pictS{
     width: 100%;
     border-radius: 2px;
     object-fit: cover;
-    box-shadow: 0 10px 10px -5px gray;
 }
 
 .comment-account{
@@ -241,8 +240,13 @@ li.picts a img.pictS{
 
 .expanded-reverse{
     padding: 0;
-    margin-left: 220px;
-    text-align: center;
+    width: 100%;
+
+}
+.expanded-reverse p{
+    text-align: right;
+    margin: 0 8% 0 0;
+
     font-size: 3rem;
 }
 
