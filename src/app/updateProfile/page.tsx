@@ -93,7 +93,6 @@ const UpdateProfile = () => {
             }
         } else {
 
-
             const response = await userInfoChange(
                 userId,
                 username,
