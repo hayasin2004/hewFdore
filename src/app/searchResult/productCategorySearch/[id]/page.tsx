@@ -78,15 +78,15 @@ const SearchResultParamsId = ({ params }: { params: { id: string } }) => {
                         </select>
 
                         {/* サイズ絞り込み */}
-                        <select id="SearchSize" onChange={(e) => setSearchSize(e.target.value)}>
-                            <option value="">サイズ</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="LL">LL</option>
-                            <option value="XL">XL</option>
-                        </select>
+                        {/*<select id="SearchSize" onChange={(e) => setSearchSize(e.target.value)}>*/}
+                        {/*    <option value="">サイズ</option>*/}
+                        {/*    <option value="XS">XS</option>*/}
+                        {/*    <option value="S">S</option>*/}
+                        {/*    <option value="M">M</option>*/}
+                        {/*    <option value="L">L</option>*/}
+                        {/*    <option value="LL">LL</option>*/}
+                        {/*    <option value="XL">XL</option>*/}
+                        {/*</select>*/}
 
                         <button id="SearchSubmit" className="searchButton">
                             <Link href={`/searchResult/productSearch/${searchWord}`}>検索</Link>
@@ -106,20 +106,20 @@ const SearchResultParamsId = ({ params }: { params: { id: string } }) => {
                         {ProductOffset + 1}件目から{endOffset}件目を表示
                     </p>
 
-                    <div id="ChangeSetting">
-                        <select name="ChangeSort" id="ChangeSort" onChange={(event) => console.log(event.target.value)}>
-                            <option value="新着順">新着順</option>
-                            <option value="人気順">人気順</option>
-                            <option value="値段昇順">値段昇順</option>
-                            <option value="値段降順">値段降順</option>
-                        </select>
-                        <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+                    {/*<div id="ChangeSetting">*/}
+                    {/*    <select name="ChangeSort" id="ChangeSort" onChange={(event) => console.log(event.target.value)}>*/}
+                    {/*        <option value="新着順">新着順</option>*/}
+                    {/*        <option value="人気順">人気順</option>*/}
+                    {/*        <option value="値段昇順">値段昇順</option>*/}
+                    {/*        <option value="値段降順">値段降順</option>*/}
+                    {/*    </select>*/}
+                    {/*    <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>*/}
+                    {/*        <option value="2">2</option>*/}
+                    {/*        <option value="3">3</option>*/}
+                    {/*        <option value="4">4</option>*/}
+                    {/*        <option value="5">5</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
                 </div>
 
                 <div className="productListFrame">

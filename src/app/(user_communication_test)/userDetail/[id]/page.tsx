@@ -104,7 +104,7 @@ const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
             <div>
                 <div className={"partnerProfile"}>
                     <div className={"partnerProfileImg"}><Images
-                        src={userData?.profilePicture !== undefined ? userData?.profilePicture : "/profile.png"}
+                        src={userData?.profilePicture !== "" && userData?.profilePicture !== undefined ? userData?.profilePicture : "/profile.png"}
                         alt={"ユーザーのプロフィール画像"} width={100}
                         height={100}/>
                     </div>
