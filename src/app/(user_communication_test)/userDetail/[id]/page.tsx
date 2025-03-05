@@ -1,6 +1,5 @@
 "use client"
 import {useEffect, useState} from "react";
-import {data} from "@remix-run/router/utils";
 import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
