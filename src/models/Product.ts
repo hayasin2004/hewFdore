@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const postageBurden = ["出品者", "購入者"] as const;
 // type postageBurdenType = (typeof postageBurden)[number];
 
-const productCondition = ["新品未使用", "未使用に近い", "多少使用感がある", "使用感がある"]
+const productCondition = ["新品未使用", "未使用に近い", "多少の使用感がある", "使用感がある"]
 // type productConditionType = (typeof productCondition)[number];
 
 const productSize = ["XS", "S", "M", "L","LL","XL"]

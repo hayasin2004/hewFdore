@@ -103,7 +103,7 @@ export const createProduct = async (token: string | null, productName: string | 
                 await toastProduct(CompleteproductId, CompletesellerId)
                 addUserProductCategoryToMail(newProduct.productCategory, newProduct)
                 toastProduct(newProduct._id, newProduct.sellerId)
-                const returnProduct = JSON.stringify(newProduct)
+                const returnProduct = JSON.stringify(newProduct)　
                 return {result: returnProduct};
             }
         }
