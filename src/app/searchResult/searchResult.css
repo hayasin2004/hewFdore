@@ -191,6 +191,7 @@ a.PagiClassLink{
     margin: 0 25px;
     width: 2rem;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 a.PagiClassLink:hover{
     text-decoration: underline;
