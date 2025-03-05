@@ -19,7 +19,7 @@ const UpdateProfile = () => {
     const [description, setDescription] = useState<string | null>("")
     const [profilePicture, setProfilePicture] = useState<string | null>("")
     const [newProfilePicture, setNewProfilePicture] = useState<string | null>("")
-    console.log(newProfilePicture)
+    console.log(newProfilePicture ,email)
     const [token, setToken] = useState<string | null>(null)
     useEffect(() => {
 
