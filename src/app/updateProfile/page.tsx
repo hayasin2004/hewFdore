@@ -110,7 +110,7 @@ const UpdateProfile = () => {
                 }
             }
             if (response?.status == "successChangingData") {
-                const setNewToken = localStorage.setItem("token", JSON.parse(JSON.stringify(response.token)))
+                const setNewToken = localStorage.setItem("token", JSON.parse(JSON.stringify(response.NewToken)))
                 console.log("新しいトークン" + setNewToken)
                 return;
             }
