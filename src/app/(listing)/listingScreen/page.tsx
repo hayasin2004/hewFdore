@@ -173,6 +173,7 @@ const ListingScreen: React.FC = () => {
                                 if (product?.result !== undefined) {
                                     const productParse = JSON.parse(product?.result as string)
                                     setProductId(productParse)
+                                    window.location.href = "/searchResult"
                                 }
                             })
                         )
@@ -368,11 +369,7 @@ const ListingScreen: React.FC = () => {
                             </button>
 
                             <button className={"listingcompletebtn"} type={"submit"}>
-                                {productId ?
-                                    <Link href={`/listingcomplete/${productId?._id}`}>
-                                        <p>確認ページ</p>
-                                    </Link>
-                                    : <p>出品</p>}
+                                 <p>出品</p>
                             </button>
                         </div>
 

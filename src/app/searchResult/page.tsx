@@ -186,21 +186,7 @@ const SearchPageProducts = () => {
             <div id={"NumView"}>
                 <h2 id={"SRTotal"}>{searchCategory == ""  ?productList.length : productListLength}件の検索結果</h2>
                 <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
-                <div id={"ChangeSetting"}>
-                    {/*<p>ここに並び替えとProductPerPage変更を置く</p>*/}
-                    <select name="ChangeSort" id="ChangeSort" onChange={(event) => console.log(event.target.value)}>
-                        <option value="新着順">新着順</option>
-                        <option value="人気順">人気順</option>
-                        <option value="値段昇順">値段昇順</option>
-                        <option value="値段降順">値段降順</option>
-                    </select>
-                    <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
+
 
             </div>
 

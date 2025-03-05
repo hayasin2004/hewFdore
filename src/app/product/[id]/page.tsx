@@ -196,11 +196,11 @@ const Product = ({params}: { params: { id: string } }) => {
                                         商品価格<br/>
                                         {product?.productPrice}円<br/>
                                     </p>
-                                    <p id="size">サイズ:S</p>
-                                    <p id="used">商品状態:多少使用感がある</p>
-                                    <p id="postage">送料:出品者負担</p>
+                                    <p id="size">サイズ:{product?.productSize}</p>
+                                    <p id="used">商品状態:{product?.productCondition}</p>
+                                    <p id="postage">送料:{product?.postageBurden}</p>
                                     <span className={"StripeButtonDisplay"}>
-                                <p id="category">カテゴリ: ニット Sサイズ 春物 色</p>
+                                <p id="category">カテゴリ: {product?.productCategory}</p>
                                         {/*<video src={`/api/fetchVideo/${product?._id}`}*/}
                                         {/*       loop autoPlay controls></video>*/}
                                         <div className={"ProductInStripe"}>

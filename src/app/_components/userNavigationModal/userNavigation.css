@@ -25,6 +25,7 @@ p#child-modal-description a:hover {
 }
 
 div#Close_Logout {
+    font-size: 1.2rem;
     margin: 20px 0 10px 0;
     width: 100%;
     display: flex;
@@ -35,23 +36,24 @@ div#Close_Logout {
 }
 
 /* 閉じるボタン */
-#closeButton {
-    padding: 5px;
+#UNcloseButton {
+    padding: 8px 15px;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #605252;
     background-color: #D0C7B2;
     border: 2px solid #605252;
+    border-radius: 3px;
     box-shadow: 2px 2px 0 #0008;
 }
 
 /* ログアウト */
 .cursor {
     /*margin: 16px 0 0 0;*/
-    padding: 5px;
+    padding: 5px 10px;
     display: inline;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
     vertical-align: bottom;
 
@@ -64,7 +66,8 @@ div#Close_Logout {
 
 }
 
-#closeButton:hover, .cursor:hover {
+
+#UNcloseButton:hover, .cursor:hover {
     box-shadow: none;
     opacity: 0.8;
 }
