@@ -172,8 +172,7 @@ li.picts a img.pictS{
 .expanded-comment-fream{
     width: 90%;
     padding: 10px;
-    margin-top: 90px;
-    margin-left: 20px;
+    margin: 90px 5% 20px 20px;
     border-radius: 10px;
     border: 2px solid #bbb;
     box-shadow: 2px 2px 2px #bbb;
@@ -221,8 +220,9 @@ li.picts a img.pictS{
     padding: 15px 0 0 10px;
 }
 #ac_img{
-    width: 20%;
-    height: 6vh;
+    /*width: 20%;*/
+    /*height: 20%;*/
+    object-fit: cover;
     border-radius: 50%;
     background-color: #555555;
 }
@@ -232,8 +232,8 @@ li.picts a img.pictS{
 }
 
 .pu_comment{
-    margin-top: 10px;
-    height: 36vh;
+    margin: 10px 0 0 0;
+    height: 25vh;
     line-height: 1.5rem;
     overflow: hidden;
 }
@@ -252,6 +252,7 @@ li.picts a img.pictS{
 
 .product-card-list {
     display: flex;
+    flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
     gap: 20px;
@@ -261,7 +262,8 @@ li.picts a img.pictS{
 
 /* 展開時のカードのスタイル */
 .product-card-list .collapsible-product-card {
-    flex: 0 0 auto;
+    padding: 10px 0 0 0;
+    /*flex: 0 0 auto;*/
     width: 280px;
     /*width: calc(20% - 20px);*/
     transition: all 0.3s ease-in-out;
@@ -272,6 +274,21 @@ li.picts a img.pictS{
     width: 90% !important;
     margin: 0;
     order: -1;  /* 展開したカードを最上部に移動 */
+}
+
+@media screen and (max-width:900px){
+    .product-card-list {
+        display: flex;
+        flex-direction: column;
+    }
+    .expanded-reverse {
+        position: absolute;
+        top: 12%;
+        right: 9%;
+    }
+    .expanded-Size{
+        margin: 50px;
+    }
 }
 
 @media (max-width: 768px) {
