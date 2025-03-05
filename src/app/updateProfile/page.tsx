@@ -97,10 +97,11 @@ const UpdateProfile = () => {
                 userId,
                 username,
                 password,
-                email,
                 address,
                 description,
-                newProfilePicture
+                newProfilePicture,
+                existToken
+
             )
             console.log("token" + response)
             if (response?.status == "existEmailOrPassword") {
