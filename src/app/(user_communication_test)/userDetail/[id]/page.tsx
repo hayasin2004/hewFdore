@@ -1,5 +1,6 @@
 "use client"
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+import {data} from "@remix-run/router/utils";
 import userProfile from "@/app/utils/user/userProfile";
 import {UserType} from "@/app/api/user/catchUser/route";
 import Link from "next/link";
@@ -9,9 +10,10 @@ import {ProductType} from "@/app/utils/product/productDetail";
 import CatchLikeList from "@/app/utils/user/CatchlikeList";
 import confirmUser from "@/app/utils/user/confirmUser";
 import Images from "next/image";
+import "./userDetail.css"
 
 
-const UserDetailPage = ({params}: { params: { id: string } }) => {
+const UserDetailPage = ({params}: { params: { id: UserType | null } }) => {
     const [userData, setUserData] = useState<UserType | null>(null)
     const [followerData, setFollowerData] = useState<UserType[] | null>(null)
     const [followingsData, setFollowingsData] = useState<UserType[] | null>(null)
@@ -47,7 +49,6 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
             console.log(err)
         }
     }
-
     useEffect(() => {
         const response = async () => {
             try {
@@ -98,15 +99,16 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
     }, [token, loginUserData, id]);
     return (
         <div>
-            <h1>
-                ObjectId: {params?.id}
-            </h1>
+            {/*<h1>*/}
+            {/*    ObjectId: {params?.id}*/}
+            {/*</h1>*/}
             <div>
                 <div className={"partnerProfile"}>
-                    <div className={"partnerProfile img"}><Images
+                    <div className={"partnerProfileImg"}><Images
                         src={userData?.profilePicture !== undefined ? userData?.profilePicture : "/profile.png"}
                         alt={"ユーザーのプロフィール画像"} width={100}
-                        height={100}/></div>
+                        height={100}/>
+                    </div>
                     {/*<li>オブジェクトID: {userData?._id}</li>*/}
                     <div className={"user"}>
                         <div>ユーザー名: {userData?.username}</div>
@@ -142,6 +144,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                 </div>
 
 
+
                 <div className={"selfIntroduction"}>
                     自己紹介: {userData?.desc}
                 </div>
@@ -170,7 +173,7 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                                 <div>送料負担 : {item.postageBurden}</div>
                                 <div>商品カテゴリー : {item.productCategory}</div>
                                 <Images src={item?.productImage ? item?.productImage : "/"} alt={"商品画像"}
-                                        width={500} height={500}/>
+                                        width={300} height={300}/>
                                 <Link href={`/product/${item._id}`}>
                                     <div>詳細を見る</div>
                                 </Link>
@@ -180,27 +183,35 @@ const UserDetailPage = ({params}: { params: { id: string } }) => {
                     </div>
 
                     <div className="tab_content" id="tab2_content">
-                        フォロー一覧
+                        {/*フォロー一覧*/}
                         {followingsData?.map((item: UserType) => (
                             <ul key={item._id}>
-                                <li>{item.username}</li>
-                                <Images src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
-                                        width={100} height={100} alt={"ユーザープロフィール画像"}/>
+                                <Images className={"img2"}
+                                        src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
+                                        width={100} height={100} alt={"プロフィール画像"}/>
+                                <li className={"name2"}>{item.username}</li>
                             </ul>
                         ))}
                     </div>
 
                     <div className="tab_content" id="tab3_content">
-                        フォロワー一覧
+                        {/*フォロワー一覧*/}
                         {followerData?.map((item: UserType) => (
                             <ul key={item._id}>
-                                <li>{item.username}</li>
-                                <Images src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
-                                        width={100} height={100} alt={"ユーザープロフィール画像"}/>
+                                <Images className={"img3"}
+                                        src={item.profilePicture !== undefined ? item.profilePicture : "/profile.png"}
+                                        width={100} height={100} alt={"プロフィール画像"}/>
+                                <li className={"name3"}>{item.username}</li>
                             </ul>
                         ))}
                     </div>
                 </div>
+
+                {/*<div>*/}
+                {/*    <p>ログインしている人</p>*/}
+                {/*    id : {loginUserData?._id} <br/>*/}
+                {/*    username : {loginUserData?.username}*/}
+                {/*</div>*/}
 
             </div>
 
