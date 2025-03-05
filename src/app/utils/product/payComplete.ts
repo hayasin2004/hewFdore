@@ -30,9 +30,7 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
             purchase.save()
 
             await toastPurchase(userId,productId,purchase._id)
-
             if (paymentStatus == "stripe") {
-
                 const product = await Product.findByIdAndUpdate({_id: productId}, {
                     $set: {
                         buyerId: userId,
@@ -43,7 +41,6 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                 console.log(product)
             }
             else if (paymentStatus == "payPay") {
-
                 const product = await Product.findByIdAndUpdate({_id: productId}, {
                     $set: {
                         buyerId: userId,
@@ -52,20 +49,15 @@ const payComplete = async (productId: string | null, stripeCode: string | null, 
                     }
                 }, {new: true, upsert: true});
                 console.log(product)
-
             }
-
             const user = User.findByIdAndUpdate({id: userId}, {
                 $set: {
                     purchaseProduct: purchase?._id
                 }
             }, {new: true, upsert: true});
-
-
             const sendPurchaseComplete = await toastGmailForPurchase(productId, CheckProduct.sellerId, userId)
              console.log(user , sendPurchaseComplete)
              return JSON.stringify(purchase._id)
-
         }
     } catch (err) {
         console.log(err)

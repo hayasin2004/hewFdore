@@ -21,7 +21,7 @@ button.StripePurchaseButton{
 }
 button.StripePurchaseButton:hover{
     box-shadow: 0 0 0 #605252;
-    opacity: 0.8;
+    background-color: #8e756088;
 }
 
 .selectProduct{

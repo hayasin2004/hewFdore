@@ -30,7 +30,6 @@ const Favorite = () => {
     }, []);
 
     useEffect(() => {
-
         const token = localStorage.getItem("token")
         if (token) {
             const confirmUserData = async () => {
@@ -73,7 +72,6 @@ const Favorite = () => {
                 <Link href={"confirmUser"}><p className={"breadText"}>プロフィール</p></Link>
                 <p className={"breadArrow"}>＞</p>
                 <Link href={"/"}><p className={"breadText"}>お気に入り</p></Link>
-
             </div>
             <div className={"favorite"}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"

@@ -19,7 +19,7 @@ const UpdateProfile = () => {
     const [description, setDescription] = useState<string | null>("")
     const [profilePicture, setProfilePicture] = useState<string | null>("")
     const [newProfilePicture, setNewProfilePicture] = useState<string | null>("")
-    console.log(username, email, password, address)
+    console.log(newProfilePicture)
     const [token, setToken] = useState<string | null>(null)
     useEffect(() => {
 
@@ -57,6 +57,7 @@ const UpdateProfile = () => {
                 console.log(responseParse._id)
             }
 
+
         }
         userData()
     }, [token]);
@@ -75,7 +76,6 @@ const UpdateProfile = () => {
                 profilePicture,
                 existToken
             )
-            console.log("token" + response)
             if (response?.status == "existUsername") {
                 if (existToken !== null) {
                     const setToken = localStorage.setItem("token", existToken)
@@ -91,28 +91,40 @@ const UpdateProfile = () => {
                 console.log("新しいトークン" + setNewToken)
                 return;
             }
+
+
         } else {
             const response = await userInfoChange(
                 userId,
                 username,
                 password,
-                email,
                 address,
                 description,
-                newProfilePicture
+                newProfilePicture,
+                existToken
             )
             console.log("token" + response)
-            if (response?.status == "existEmailOrPassword") {
-                if (existToken !== null) {
-                    const setToken = localStorage.setItem("token", existToken)
-                    console.log("既存のトークン" + setToken)
+            if (response !== null || response !== undefined) {
+                console.log("ちぇっく２" + response)
+
+                const responseParse = JSON.parse(JSON.stringify(response))
+                console.log("responseParse status"  +responseParse.status , "responseParse NewToken" + responseParse.NewToken)
+                if (responseParse?.status == "existEmailOrPassword") {
+                    console.log("ちぇっく3" + responseParse)
+                    if (existToken !== null) {
+                        const setToken = localStorage.setItem("token", existToken)
+                        console.log("既存のトークン" + setToken)
+                        return;
+                    }
+                }
+                if (responseParse?.status == "successChangingData") {
+                    console.log("ちぇっく4" + responseParse)
+                    console.log(responseParse.NewToken)
+                    const setNewToken = localStorage.setItem("token", responseParse.NewToken)
+                    console.log("新しいトークン" + setNewToken)
+                    // window.alert("ぼくだよ")
                     return;
                 }
-            }
-            if (response?.status == "successChangingData") {
-                const setNewToken = localStorage.setItem("token", JSON.parse(JSON.stringify(response.token)))
-                console.log("新しいトークン" + setNewToken)
-                return;
             }
         }
 
@@ -144,7 +156,7 @@ const UpdateProfile = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                      className="lucide lucide-user-cog" id={"arrow"}>
-                    <circle cx="18" cy="15" r="3" />
+                    <circle cx="18" cy="15" r="3"/>
                     <circle cx="9" cy="7" r="4"/>
                     <path d="M10 15H6a4 4 0 0 0-4 4v2"/>
                     <path d="m21.7 16.4-.9-.3"/>
@@ -187,41 +199,42 @@ const UpdateProfile = () => {
 
                 <div className={"updateProfile_user"}>
                     <form>
-                                <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
-                                <input type="text" name="UserName" id="UserName"
-                                       placeholder={username !== null ? username : "新しいユーザー名"} onChange={(e) => {
-                                    setUsername(e.target.value)
-                                }}/><br/>
+                        <label id={"Name"} htmlFor="UserName">ユーザー名</label><br/>
+                        <input type="text" name="UserName" id="UserName"
+                               placeholder={username !== null ? username : "新しいユーザー名"} onChange={(e) => {
+                            setUsername(e.target.value)
+                        }}/><br/>
 
-                                {/*<label htmlFor="Email">Email</label><br/>*/}
-                                {/*<input type="text" name="Email" id="Email"*/}
-                                {/*       placeholder={email !== "" ? email : "Eメールアドレス"} onChange={(e) => {*/}
-                                {/*    setEmail(e.target.value)*/}
-                                {/*}}/><br/>*/}
-                                <label htmlFor="Password">パスワード</label><br/>
-                                <input type="password" onChange={(e) => {
-                                    setPassword(e.target.value)
-                                }} name="Password" id="Password" placeholder="パスワード"/><br/>
-                                <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
-                                <input type="password" name="PWCheck" id="PWCheck"
-                                       placeholder="パスワードを再入力 "/><br/>
-                                <label htmlFor="Address">住所入力</label><br/>
-                                <input type="text" name="UserName" id="Address"
-                                       placeholder={address !== null ? address : "住所を入力して下さい。"}
-                                       onChange={(e) => {
-                                           setAddress(e.target.value)
-                                       }}/><br/>
-                                <label htmlFor="UserName">自己紹介</label><br/>
-                                <input type="text" name="UserName" id="UserName"
-                                       placeholder={description !== null ? description : "自己紹介文を入力してください。"}
-                                       onChange={(e) => {
-                                           setDescription(e.target.value)
-                                       }}/><br/>
-                                <button type="submit" className={"UPbtn"}
-                                        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => changeUserInfo(e)}>更新する
-                                </button>
-                            </form>
-                    <button type="submit" className={"UPbtn"} id={"delete"} onClick={deleteUser}>ユーザーを削除する</button>
+                        {/*<label htmlFor="Email">Email</label><br/>*/}
+                        {/*<input type="text" name="Email" id="Email"*/}
+                        {/*       placeholder={email !== "" ? email : "Eメールアドレス"} onChange={(e) => {*/}
+                        {/*    setEmail(e.target.value)*/}
+                        {/*}}/><br/>*/}
+                        <label htmlFor="Password">パスワード</label><br/>
+                        <input type="password" onChange={(e) => {
+                            setPassword(e.target.value)
+                        }} name="Password" id="Password" placeholder="パスワード"/><br/>
+                        <label htmlFor="PWCheck">パスワード(再入力)</label><br/>
+                        <input type="password" name="PWCheck" id="PWCheck"
+                               placeholder="パスワードを再入力 "/><br/>
+                        <label htmlFor="Address">住所入力</label><br/>
+                        <input type="text" name="UserName" id="Address"
+                               placeholder={address !== null ? address : "住所を入力して下さい。"}
+                               onChange={(e) => {
+                                   setAddress(e.target.value)
+                               }}/><br/>
+                        <label htmlFor="UserName">自己紹介</label><br/>
+                        <input type="text" name="UserName" id="UserName"
+                               placeholder={description !== null ? description : "自己紹介文を入力してください。"}
+                               onChange={(e) => {
+                                   setDescription(e.target.value)
+                               }}/><br/>
+                        <button type="submit" className={"UPbtn"}
+                                onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => changeUserInfo(e)}>更新する
+                        </button>
+                    </form>
+                    <button type="submit" className={"UPbtn"} id={"delete"} onClick={deleteUser}>ユーザーを削除する
+                    </button>
 
                 </div>
             </div>
