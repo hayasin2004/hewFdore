@@ -140,8 +140,8 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                             </div>
                             <p className="product-Size">{item.productSize}</p>
                         </div>
+                        <p className="explanation">商品名 : {item.productName}</p>
                         <p className="explanation">商品説明 : {item.productDesc}</p>
-                        <p className="explanation">出品者名 : {item.productName}</p>
                         <p className="price">商品価格 : {Number(item.productPrice).toLocaleString()}円</p>
                     </CardContent>
                 </Collapse>
