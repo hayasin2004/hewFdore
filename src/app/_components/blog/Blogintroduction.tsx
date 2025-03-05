@@ -43,7 +43,7 @@ const Blogintroduction = () => {
     const [visibleCount, setVisibleCount] = useState(12);
     const [showScrollButton, setShowScrollButton] = useState(false);
     const [showFilter, setShowFilter] = useState(false);
-    const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+    const [isHeaderVisible] = useState(false);
     const isMobile = useIsMobile(); // スマホ判定
 
     // ブログデータ取得
@@ -87,9 +87,7 @@ const Blogintroduction = () => {
             .padStart(2, "0")}`;
     };
 
-    const toggleHeader = () => {
-        setIsHeaderVisible(!isHeaderVisible);
-    };
+
 
 
     return (
@@ -113,7 +111,7 @@ const Blogintroduction = () => {
 
             {/* フィルターボタン（スマホではアイコン） */}
             <button className="filter-toggle" onClick={() => setShowFilter(true)}>
-                {isMobile ? <Image src={"/images/cms/filter.png"} width={20} height={20}/> : "絞り込み"}
+                {isMobile ? <Image src={"/images/cms/filter.png"} width={20} height={20} alt={"絞り込み"}/> : "絞り込み"}
             </button>
 
             {/* 絞り込みモーダル */}
