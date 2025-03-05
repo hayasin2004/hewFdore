@@ -217,12 +217,12 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                                         ) : null}
                                                     </li>
                                                 ))}
-                                            </ul>
-                                            <Link href={`product/${item?._id}`}>
-                                                <p className="expanded-Cart">
+                                            </ul>　
+                                            <p className="expanded-Cart">
+                                                <Link href={`product/${item?._id}`}>
                                                     もっと見る
-                                                </p>
-                                            </Link>
+                                                </Link>
+                                            </p>
                                         </Box>
                                     </Grid>
 
