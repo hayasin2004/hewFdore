@@ -5,8 +5,7 @@ import "./listingScreen.css";
 import Image from "next/image";
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from "next/link";
-import productDetail, {ProductType} from "@/app/utils/product/productDetail";
-import io from "socket.io-client";
+import productDetail, {ProductType} from "@/app/utils/product/productDetail";　
 import editProduct from "@/app/utils/product/editProduct";
 import deleteProduct from "@/app/utils/product/deleteProduct";
 import {useRouter} from "next/navigation";
