@@ -9,6 +9,7 @@ import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import Footer from "@/app/_components/footer/Footer";
+import {useRouter} from "next/navigation";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -39,7 +40,7 @@ const ListingScreen: React.FC = () => {
     const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
-
+    const router = useRouter()
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
     console.log(shippingArea ,productVideoFiles)
@@ -93,7 +94,7 @@ const ListingScreen: React.FC = () => {
         const token = localStorage.getItem("token")
         if (!token) {
             window.alert("ログインしていないので出品できません。ログインページに移ります")
-            window.location.href = ("/login")
+            router.push("/login")
         }
     }, []);
 

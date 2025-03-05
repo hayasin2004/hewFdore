@@ -43,7 +43,7 @@ const Product = ({params}: { params: { id: string } }) => {
 
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean | null>(false)
-    console.log(status)
+    console.log(sameSellerStatus)
     const [productLike, setProductLike] = useState<boolean>(false)
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
@@ -75,7 +75,7 @@ const Product = ({params}: { params: { id: string } }) => {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
-    }, [user, id, router]);
+    }, [user]);
 
     useEffect(() => {
 
@@ -122,7 +122,7 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [loginUserData?._id, id, router]);
+    }, [id ,loginUserData?._id]);
 
 
     useEffect(() => {

@@ -38,10 +38,8 @@ export interface ProductType {
 
 const productDetail = async (id: ProductType | string | null) => {
     await connectDB()
-    try {
-        console.log("まずここまで来たかの確認" + id)
-        const product = await Product.findById(id)
-        console.log(product)
+    try {　
+        const product = await Product.findById(id)　
         return {product: JSON.stringify(product)}
     } catch (err) {
         console.error(err)
