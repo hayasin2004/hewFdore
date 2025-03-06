@@ -37,14 +37,14 @@ const ListingScreen: React.FC = () => {
     const [productImage2, setProductImage2] = useState<string | null>(null);
     const [productImage3, setProductImage3] = useState<string | null>(null);
     const [productImage4, setProductImage4] = useState<string | null>(null);
-    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
+    // const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
     // const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
     
     const router = useRouter()
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
-    console.log(shippingArea, productVideoFiles)
+    console.log(shippingArea,)
 
     const productImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
