@@ -53,7 +53,7 @@ const SearchResultParamsId = ({ params }: { params: { id: string } }) => {
     }
 
     const T_items: React.FC<T_itemsProps> = ({ currentProduct }) => {
-        return <ProductCardList items={currentProduct} category={searchCategory} size={searchSize} />;
+        return <ProductCardList items={currentProduct} category={searchCategory}  />;
     };
 
     return (

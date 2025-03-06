@@ -68,11 +68,11 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                 {
                     category == "" ?
                         <>
-                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={currentProduct} category={searchCategory} />
                         </>
                         :
                         <>
-                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={currentProduct} category={searchCategory} />
                         </>
 
                 }

@@ -94,11 +94,11 @@ const SearchPageProducts = () => {
                 {
                     category == ""  ?
                         <>
-                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={currentProduct} category={searchCategory}/>
                         </>
                         :
                         <>
-                            <ProductCardList items={categoryProductList} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={categoryProductList} category={searchCategory}/>
                         </>
 
                 }
