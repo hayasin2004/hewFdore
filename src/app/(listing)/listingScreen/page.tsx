@@ -299,9 +299,6 @@ const ListingScreen: React.FC = () => {
                         {/*</div>*/}
 
 
-                        <h3 className={"formTitle"} id="product_name">
-                            動画
-                        </h3>
                         {/*<div className={"kamera"}>*/}
                         {/*    {videoUrl &&*/}
                         {/*        <video src={videoUrl} width={250} height={250} aria-label={"選択した商品画像"}/>}*/}
