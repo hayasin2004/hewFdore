@@ -61,7 +61,7 @@ export async function stripePaymentPayPay(productId: string | undefined, payment
                     requestedAt: Math.floor(Date.now() / 1000),
                     orderDescription: productDesc,
                     codeType: 'ORDER_QR',
-                    redirectUrl: `https://hew-fdore.vercel.app/payComplete/checkout-success?session_id=${merchantPaymentId}&productId=${productId}&userId=${userId}&paymentStatus=payPay`,
+                    redirectUrl: `http://localhost:3000/payComplete/checkout-success?session_id=${merchantPaymentId}&productId=${productId}&userId=${userId}&paymentStatus=payPay`,
                 };
                  const res = await QRCodeCreate(payload);
                 const url = PayPaySuccessResponse.parse(res).BODY.data.url;
@@ -79,8 +79,8 @@ export async function stripePaymentPayPay(productId: string | undefined, payment
                         paypay_code_id: merchantPaymentId,
                         paypay_qr_url: url,
                     },
-                    success_url: `https://hew-fdore.vercel.apppayComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
-                    cancel_url: "https://hew-fdore.vercel.app",
+                    success_url: `http://localhost:3000payComplete/checkout-succesee?session_id={CHECKOUT_SESSION_ID}`,
+                    cancel_url: "http://localhost:3000",
                 });
                 console.log(session)
                 return {url: url};

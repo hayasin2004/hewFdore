@@ -31,7 +31,7 @@ export async function POST(req :Request ) {
         codeType: 'ORDER_QR',
         orderDescription: 'Test Order',
         isAuthorization: false,
-        redirectUrl: `https://hew-fdore.vercel.app/payment/paypay/${merchantPaymentId}`,
+        redirectUrl: `http://localhost:3000/payment/paypay/${merchantPaymentId}`,
         redirectType: 'WEB_LINK',
     }
 

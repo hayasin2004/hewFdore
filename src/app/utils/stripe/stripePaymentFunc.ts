@@ -50,8 +50,8 @@ export async function stripePaymentFunc(productId: string|undefined, paymentMeth
                 ],
                 mode: "payment",
                 // req.body.url　→　mongodbのproductIdを付与するのかな？
-                success_url: `https://hew-fdore.vercel.app/payComplete/checkout-success?session_id={CHECKOUT_SESSION_ID}&productId=${productId}&userId=${userId}&paymentStatus=stripe`,
-                cancel_url: `https://hew-fdore.vercel.app/product/checkout-false?session_id=cancel&productId=${productId}`,
+                success_url: `http://localhost:3000/payComplete/checkout-success?session_id={CHECKOUT_SESSION_ID}&productId=${productId}&userId=${userId}&paymentStatus=stripe`,
+                cancel_url: `http://localhost:3000/product/checkout-false?session_id=cancel&productId=${productId}`,
             })
             console.log("こにちは" + session)
              return {checkout_url: session.url}

@@ -6,7 +6,7 @@ const clickButton = (server) => {
 
     const io = new Server(server, {
         cors: {
-            origin: ["https://hew-fdore.vercel.app"],
+            origin: ["http://localhost:3000"],
         }
     })
 
