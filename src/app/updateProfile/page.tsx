@@ -92,7 +92,7 @@ const UpdateProfile = () => {
                 return;
             }
         } else {
-
+            
             const response = await userInfoChange(
                 userId,
                 username,
@@ -189,7 +189,7 @@ const UpdateProfile = () => {
 
                 <div className={"updateProfile_user"}>
                     <form>
-                                <label id={"Name"} htmlFor="UserName">ユーザー名</label><br/>
+                                <label id={"Name"} htmlFor="UserName">Masataka</label><br/>
                                 <input type="text" name="UserName" id="UserName"
                                        placeholder={username !== null ? username : "新しいユーザー名"} onChange={(e) => {
                                     setUsername(e.target.value)
