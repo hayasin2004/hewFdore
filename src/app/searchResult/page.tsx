@@ -18,7 +18,6 @@ const SearchPageProducts = () => {
     const [productListLength, setProductListLength] = useState<number>(0)
     console.log(productList.length)
     const [searchCategory, setSearchCategory] = useState<string>("")
-    const [searchSize, setSearchSize] = useState<string>("")
     const [searchWord, setSearchWord] = useState<string>("")
     console.log(searchCategory)
     // console.log(JSON.stringify(productList) + "取得")
@@ -34,7 +33,6 @@ const SearchPageProducts = () => {
 
         // この書き方冗長化だからなおしたい
         const CallProductList = async function data() {
-
             //  やりとり。
             //  .thenはプロミスチェーンといわれる書き方。fetchで取得してきたものをitemsに配列型で渡している。　気持ちmap関数と激似。
             await fetch("/api/product").then(async (items) => {
@@ -96,11 +94,11 @@ const SearchPageProducts = () => {
                 {
                     category == ""  ?
                         <>
-                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={currentProduct} category={searchCategory}/>
                         </>
                         :
                         <>
-                            <ProductCardList items={categoryProductList} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={categoryProductList} category={searchCategory}/>
                         </>
 
                 }
@@ -150,7 +148,7 @@ const SearchPageProducts = () => {
                     }} placeholder="お探しの商品を検索…" type="text"/>
                     {/*　カテゴリ絞り込み　*/}
                     {/*<input id={"CatSearch"} list={"SearchCat"}/>*/}
-                    <select id={"SearchCat"} onChange={(e) => {
+                    <select id={"SearchCatSearchCat"} onChange={(e) => {
                         setSearchCategory(e.target.value)
                     }}>
                         <option value="">カテゴリー</option>
@@ -164,17 +162,17 @@ const SearchPageProducts = () => {
                         <option value="香水">香水</option>
                     </select>
                     {/*　サイズ絞り込み　*/}
-                    <select id={"SearchSize"} onChange={(e) => {
-                        setSearchSize(e.target.value)
-                    }}>
-                        <option value="">サイズ</option>
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="LL">LL</option>
-                        <option value="XL">XL</option>
-                    </select>
+                    {/*<select id={"SearchSize"} onChange={(e) => {*/}
+                    {/*    setSearchSize(e.target.value)*/}
+                    {/*}}>*/}
+                    {/*    <option value="">サイズ</option>*/}
+                    {/*    <option value="XS">XS</option>*/}
+                    {/*    <option value="S">S</option>*/}
+                    {/*    <option value="M">M</option>*/}
+                    {/*    <option value="L">L</option>*/}
+                    {/*    <option value="LL">LL</option>*/}
+                    {/*    <option value="XL">XL</option>*/}
+                    {/*</select>*/}
                     <button id={"SearchSubmit"} type={"submit"} >
                         <a href={`/searchResult/productSearch/${searchWord}`} target={"_blank"}>
                             検索

@@ -71,8 +71,11 @@
 }
 
 .collapsible-product-card .explanation {
+    max-height: 100px;
     margin: 10px 10px 0 10px;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
     border-bottom: 2px solid;
     border-image: linear-gradient(to left, #cccccc, #000000) 1;
 }

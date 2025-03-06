@@ -21,7 +21,6 @@ form#WordSearch{
     flex-direction: row;
     justify-content: center;
     align-content: baseline;
-
 }
 form#WordSearch input[type='text']{
     margin: 0 1rem 0 0;
@@ -192,6 +191,7 @@ a.PagiClassLink{
     margin: 0 25px;
     width: 2rem;
     font-size: 1.5rem;
+    cursor: pointer;
 }
 a.PagiClassLink:hover{
     text-decoration: underline;
@@ -214,10 +214,35 @@ a.RPnext:hover,a.RPprev:hover{
 }
 
 @media (max-width: 768px) {
+    form#WordSearch{
+        height: 3rem;
+        display: block;
+        flex-direction: row;
+        justify-content: center;
+        align-content: baseline;
+    }
+
+    form#WordSearch input[type='text']{
+        margin: 0 1rem 0 0;
+        width: 20rem ;
+        margin-bottom: 10px;
+        padding: 1.5% 1% ;
+        border-radius: 10px;
+        font-size: 1.5rem ;
+        border: solid 2px #D0C7B2;
+        box-shadow: #D0C7B2 2px 2px 0 ;
+
+        background-color: #fff ;
+    }
+    form#WordSearch input[type='text']:hover{
+        border: #8e7560 3px solid;
+    }
+
 }
 .listImage {
     width: 100%;
     height: 40vh;
     border-radius: 10px 10px 0 0;
     background-color: #ccc;
+
 }

@@ -9,6 +9,7 @@ div.Productchat{
     flex-direction: row;
     /*margin: 50px auto 50px 50px;*/
     width: 100%;
+    margin-top: 15px;
     background: #D9D9D9;
     border-radius: 3px;
     border-top: #AAA solid 2px;
@@ -67,94 +68,118 @@ button img#sendMsg{
     border-radius: 0;
 }
 
-.comment-areaFrame{
-    /*padding: 10px;*/
+/* Chat area frame */
+.comment-areaFrame {
     margin: 0 50px;
     border-radius: 5px;
     border: #000 2px solid;
-    background-color: #bbb;
+    background-color: #f5f5f5;
+    padding: 15px;
 }
 
-.comment-sec-lef{
+/* Left-aligned comments (partner's messages) */
+.comment-sec-lef {
     padding-top: 15px;
 }
 
-.comment-user-lef{
+.comment-user-lef {
     display: flex;
     align-items: center;
     padding-bottom: 5px;
     margin-left: 10px;
     font-size: 1.1rem;
 }
-.comment-user-lef img{
+
+.comment-user-lef img {
     margin-right: 8px;
 }
 
-.comment-area-lef{
-    display: flex;
-    align-items: center;
-    width: 60%;
-    padding: 0 10px;
+.comment-user-name-lef {
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.comment-area-lef {
+    display: inline-block;
+    max-width: 60%;
+    padding: 10px 15px;
     margin-left: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
     overflow-wrap: break-word;
-    border-radius: 3px;
+    border-radius: 10px;
     border: #000 1px solid;
-    background-color: #ddd;
+    background-color: #fff;
+    position: relative;
 }
 
-#good{
-    width: 10%;
-    height: auto;
-    border:none ;
-    background-color: #ddd;
-}
-
-
-
-.comment-sec-rig{
+/* Right-aligned comments (current user's messages) */
+.comment-sec-rig {
     padding-top: 15px;
 }
 
-.comment-user-rig{
+.comment-user-rig {
     display: flex;
     align-items: center;
     padding-bottom: 5px;
+    justify-content: flex-end;
     margin-right: 10px;
     font-size: 1.1rem;
-    justify-content: flex-end;
-}
-.comment-user-rig img{
-    margin-right: 8px;
 }
 
-.comment-area-rig{
+.comment-user-name-rig {
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.comment-area-rig {
+    display: inline-block;
+    max-width: 60%;
+    padding: 10px 15px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border-radius: 10px;
+    border: #000 1px solid;
+    background-color: #e1f5fe;
+    float: right;
+    clear: both;
+}
+
+/* Chat icon */
+.chaticon {
     display: flex;
     align-items: center;
-    width: 60%;
-    padding: 0 10px;
-    margin-right: 10px;
-    overflow-wrap: break-word;
-    border-radius: 3px;
-    border: #000 1px solid;
-    background-color: #ddd;
-    justify-content: flex-end;
+    margin-right: 5px;
 }
 
-@media screen and (max-width: 1060px) {
+.chaticon img {
+    border-radius: 50%;
+    object-fit: cover;
+}
 
-    /*チャット*/
+/* Emoji button position */
+.emojiButtonPosition {
+    position: absolute;
+    right: -30px;
+    bottom: 0;
+}
 
-    .comment-areaFrame{
-        /*padding: 10px;*/
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .comment-areaFrame {
+        margin: 0;
         width: 100%;
-        margin: 0 auto;
-        border-radius: 5px;
-        border: #000 2px solid;
-        background-color: #bbb;
     }
 
-    .comment-area-lef{
-        width: 80%;
+    .comment-area-lef,
+    .comment-area-rig {
+        max-width: 80%;
+    }
+
+    .emojiButtonPosition {
+        right: -25px;
     }
 
     /*---右寄せのチャット範囲---*/

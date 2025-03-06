@@ -302,7 +302,7 @@ const CollapsibleProductCard = ({item, isOpen, onToggle}: CollapsibleProductCard
                                             </div>
 　
                                             <p className="expanded-Cart">
-                                                <Link href={`product/${item?._id}`}>
+                                                <Link href={`/product/${item?._id}`}>
                                                     もっと見る
                                                 </Link>
                                             </p>

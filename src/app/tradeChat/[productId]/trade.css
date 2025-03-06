@@ -136,6 +136,7 @@ div.purchaseMessage{
 div.Productchat{
     position: relative;
     overflow-y: auto;
+    padding-top: 15px;
     height: 80%;
 }
 

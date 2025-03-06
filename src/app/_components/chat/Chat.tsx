@@ -75,7 +75,7 @@ const Chat = (props: { paramsProductData: string | undefined }) => {
                     <div className="comment-sec-lef" key={index}>
                         <div className="comment-user-lef">
 
-                            <svg style={{color: "#000", marginTop: "10px"}} xmlns="http://www.w3.org/2000/svg"
+                            <svg style={{color: "#000", marginTop: "0"}} xmlns="http://www.w3.org/2000/svg"
                                  width={50} height={50}
                                  viewBox="0 0 24 24">
                                 <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
@@ -88,7 +88,7 @@ const Chat = (props: { paramsProductData: string | undefined }) => {
                             {/*{item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.senderUserName : ""} さん<br/>*/}
                         </div>
                         <div className="comment-area-lef">
-                            メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
+                             {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}
                             {/*メッセージ内容: {item?.listingChatMessage !== undefined ? item?.listingChatMessage[0]?.listingMessage : ""}*/}
                             <br/>
                             <EmojiPicker
@@ -112,7 +112,7 @@ const Chat = (props: { paramsProductData: string | undefined }) => {
                             {item?.buyerChatMessage[0]?.buyerUsername} さん<br/>
                         </div>
                         <div className="comment-area-rig">
-                            メッセージ内容:{item?.buyerChatMessage[0]?.buyerMessage} <br/>
+                            {item?.buyerChatMessage[0]?.buyerMessage} <br/>
                         </div>
                     </div>
                 )

@@ -73,7 +73,7 @@ const EmojiPicker: React.FC<EmojiPickerProps> = ({
             {stamp === undefined ? (
                 existIcon ? (
                     <div key={item}>
-                        <div className={"comment-emoji-rig"} onClick={deleteStamp}>
+                        <div className={"   comment-emoji-rig"} onClick={deleteStamp}>
                             {icon}
                         </div>
                     </div>

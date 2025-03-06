@@ -5,8 +5,7 @@ import "./listingScreen.css";
 import Image from "next/image";
 import ListingScreenRadiobutton from "@/app/_components/listingScreenRadiobutton/ListingScreenRadiobutton";
 import Link from "next/link";
-import productDetail, {ProductType} from "@/app/utils/product/productDetail";
-import io from "socket.io-client";
+import productDetail, {ProductType} from "@/app/utils/product/productDetail";　
 import editProduct from "@/app/utils/product/editProduct";
 import deleteProduct from "@/app/utils/product/deleteProduct";
 import {useRouter} from "next/navigation";
@@ -19,7 +18,7 @@ export interface productStatusType {
     deliveryTime?: string;
 }
 
-const ListingScreen = ({ params }: { params: { productId: string | null } }) => {
+const ListingScreen = ({params}: { params: { productId: string | null } }) => {
     const [productCategory, setProductCategory] = useState<string | null>(null);
     const [productSize, setProductSize] = useState<string | null>(null);
     const [productCondition, setProductCondition] = useState<string | null>(null);
@@ -31,10 +30,9 @@ const ListingScreen = ({ params }: { params: { productId: string | null } }) => 
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
     const router = useRouter();
-    console.log(product , images)
+    console.log(product, images)
     const EditProduct = params.productId;
 
-    const socket = io("http://localhost:8080");
 
     useEffect(() => {
         const productResult = async () => {
@@ -58,16 +56,24 @@ const ListingScreen = ({ params }: { params: { productId: string | null } }) => 
             ]);
         };
         productResult();
-    }, [productId ,router, socket]);
+    }, [productId]);
 
     const deleteProductFunc = async () => {
-        const response = await deleteProduct(EditProduct);
-        console.log(response);
+        try {
+            const response = await deleteProduct(EditProduct);
+            console.log(response);
+            if (response){
+                window.alert("削除完了しました。")
+                router.push("/");
+            }
+        } catch (err) {
+            console.log(err)
+        }
     };
 
     return (
         <>
-            <Header />
+            <Header/>
             <div className={"content"}>
                 <div className={"listingScreenBackground"}>
                     <form
@@ -106,13 +112,13 @@ const ListingScreen = ({ params }: { params: { productId: string | null } }) => 
                         </div>
 
                         <h3 id="s_name">商品名</h3>
-                        <input type="text" name={"productName"} className="txtInput" />
+                        <input type="text" name={"productName"} className="txtInput"/>
 
                         <h3 className="kakaku">価格</h3>
-                        <input type="text" name={"productPrice"} className="txtInput" placeholder={"¥"} />
+                        <input type="text" name={"productPrice"} className="txtInput" placeholder={"¥"}/>
 
                         <h3 id="s_name">商品詳細</h3>
-                        <input type="text" name={"productDesc"} className="txtInput" />
+                        <input type="text" name={"productDesc"} className="txtInput"/>
 
                         <h3 className="cat">カテゴリ</h3>
                         <ListingScreenRadiobutton

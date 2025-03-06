@@ -4,7 +4,7 @@ import Image from "next/image"
 import "./product.css"
 import Header from "@/app/_components/header/Header";
 import Footer from "@/app/_components/footer/Footer";
-import Link from 'next/link';　
+import Link from 'next/link';
 import productDetail, {ProductType} from "@/app/utils/product/productDetail";
 import Favorite from '@mui/icons-material/Favorite';
 import {Checkbox} from "@mui/material";
@@ -43,7 +43,7 @@ const Product = ({params}: { params: { id: string } }) => {
 
     // const [productLikeUpdate, setProductLikeUpdate] = useState<ProductType | null>(null)
     const [sameSellerStatus, setSameSellerStatus] = useState<boolean | null>(false)
-    console.log(status)
+    console.log(sameSellerStatus)
     const [productLike, setProductLike] = useState<boolean>(false)
     const [images, setImages] = useState<string[]>([]);
     const [mainImage, setMainImage] = useState<string>("");
@@ -75,7 +75,7 @@ const Product = ({params}: { params: { id: string } }) => {
             const userParse = JSON.parse(user)
             setLoginUserData(JSON.parse(userParse));
         }
-    }, [user, id, router]);
+    }, [user]);
 
     useEffect(() => {
 
@@ -122,7 +122,7 @@ const Product = ({params}: { params: { id: string } }) => {
         }
 
         response()
-    }, [loginUserData?._id, id, router]);
+    }, [id, loginUserData?._id]);
 
 
     useEffect(() => {
@@ -183,7 +183,8 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <div id="text">
                                     <h1>{product?.productName}</h1>
                                     <span className="under_bar"></span>
-                                    <Link href="/" id="seller">
+                                    <Link href={`/userDetail/${product?.sellerId}`} id="seller">
+
                                         <h2>出品者:{product?.sellerUserName}</h2>
 
                                         <h2>{product?.username}</h2>
@@ -254,7 +255,7 @@ const Product = ({params}: { params: { id: string } }) => {
                                 <div id="text">
                                     <h1>{product?.productName}</h1>
                                     <span className="under_bar"></span>
-                                    <Link href="/" id="seller">
+                                    <Link href={`/userDetail/${product?.sellerId}`} id="seller">
                                         <h2>出品者<br/>{product?.sellerUserName}</h2>
 
                                         <h2>{product?.username}</h2>

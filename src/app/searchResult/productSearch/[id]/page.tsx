@@ -38,7 +38,6 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     // 検索結果ネーション
     const ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
-    const [searchSize, setSearchSize] = useState<string>("")
     const [searchCategory, setSearchCategory] = useState<string>("")
     const [categoryProductList, setCategoryProductList] = useState<ProductType[]>([])
     const endOffset = ProductOffset + ProductPerPage;
@@ -69,11 +68,11 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                 {
                     category == "" ?
                         <>
-                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={currentProduct} category={searchCategory} />
                         </>
                         :
                         <>
-                            <ProductCardList items={currentProduct} category={searchCategory} size={searchSize}/>
+                            <ProductCardList items={currentProduct} category={searchCategory} />
                         </>
 
                 }
@@ -105,17 +104,17 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                             <option value="香水">香水</option>
                         </select>
                         {/*　サイズ絞り込み　*/}
-                        <select id={"SearchSize"} onChange={(e) => {
-                            setSearchSize(e.target.value)
-                        }}>
-                            <option value="">サイズ</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="LL">LL</option>
-                            <option value="XL">XL</option>
-                        </select>
+                        {/*<select id={"SearchSize"} onChange={(e) => {*/}
+                        {/*    setSearchSize(e.target.value)*/}
+                        {/*}}>*/}
+                        {/*    <option value="">サイズ</option>*/}
+                        {/*    <option value="XS">XS</option>*/}
+                        {/*    <option value="S">S</option>*/}
+                        {/*    <option value="M">M</option>*/}
+                        {/*    <option value="L">L</option>*/}
+                        {/*    <option value="LL">LL</option>*/}
+                        {/*    <option value="XL">XL</option>*/}
+                        {/*</select>*/}
                         <button id={"SearchSubmit"} className={"searchButton"}>
                             <Link href={`/searchResult/productSearch/${searchWord}`}>
                                 検索
@@ -130,23 +129,23 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
                             ? "0件の検索結果"
                             : searchProductResult.length === 0
                                 ? "0件の検索結果"
-                                : `${searchProductResult[0]._id}件の検索結果`}</h2>
+                                : `${searchProductResult.length}件の検索結果`}</h2>
                     <p id={"SRNn"}>{ProductOffset + 1}件目から{endOffset}件目を表示</p>
-                    <div id={"ChangeSetting"}>
-                        {/*<p>ここに並び替えとProductPerPage変更を置く</p>*/}
-                        <select name="ChangeSort" id="ChangeSort" onChange={(event) => console.log(event.target.value)}>
-                            <option value="新着順">新着順</option>
-                            <option value="人気順">人気順</option>
-                            <option value="値段昇順">値段昇順</option>
-                            <option value="値段降順">値段降順</option>
-                        </select>
-                        <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
+                    {/*<div id={"ChangeSetting"}>*/}
+                    {/*    /!*<p>ここに並び替えとProductPerPage変更を置く</p>*!/*/}
+                    {/*    <select name="ChangeSort" id="ChangeSort" onChange={(event) => console.log(event.target.value)}>*/}
+                    {/*        <option value="新着順">新着順</option>*/}
+                    {/*        <option value="人気順">人気順</option>*/}
+                    {/*        <option value="値段昇順">値段昇順</option>*/}
+                    {/*        <option value="値段降順">値段降順</option>*/}
+                    {/*    </select>*/}
+                    {/*    <select name="ChangePPP" id="ChangePPP" onChange={(event) => console.log(event.target.value)}>*/}
+                    {/*        <option value="2">2</option>*/}
+                    {/*        <option value="3">3</option>*/}
+                    {/*        <option value="4">4</option>*/}
+                    {/*        <option value="5">5</option>*/}
+                    {/*    </select>*/}
+                    {/*</div>*/}
 
                 </div>
 

@@ -9,6 +9,7 @@ import createProduct from "@/app/utils/product/createProduct";
 import {ProductType} from "@/app/utils/product/productDetail";
 import io from "socket.io-client";
 import Footer from "@/app/_components/footer/Footer";
+import {useRouter} from "next/navigation";
 
 export interface productStatusType {
     productCategory?: string[],
@@ -36,13 +37,14 @@ const ListingScreen: React.FC = () => {
     const [productImage2, setProductImage2] = useState<string | null>(null);
     const [productImage3, setProductImage3] = useState<string | null>(null);
     const [productImage4, setProductImage4] = useState<string | null>(null);
-    const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
-    const [videoUrl, setVideoUrl] = useState<string | null>(null);
+    // const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
+    // const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
-
+    
+    const router = useRouter()
     console.log(JSON.stringify(productId))
     const shippingArea = shippingAreaText
-    console.log(shippingArea ,productVideoFiles)
+    console.log(shippingArea,)
 
     const productImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
@@ -92,8 +94,11 @@ const ListingScreen: React.FC = () => {
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (!token) {
-            window.alert("ログインしていないので出品できません。ログインページに移ります")
-            window.location.href = ("/login")
+            (async () => {
+                window.alert("ログインしていないので出品できません。ログインページに移ります")
+                await new Promise(resolve => setTimeout(resolve, 100));
+                router.push("/login")
+            })()
         }
     }, []);
 
@@ -123,14 +128,14 @@ const ListingScreen: React.FC = () => {
     // };
 
 
-    const productVideoFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files;
-        if (files && files.length > 0) {
-            const file = files[0];
-            setProductVideoFiles(file);
-            setVideoUrl(URL.createObjectURL(file)); // 動画ファイルのURLを生成
-        }
-    };
+    // const productVideoFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const files = e.target.files;
+    //     if (files && files.length > 0) {
+    //         const file = files[0];
+    //         setProductVideoFiles(file);
+    //         setVideoUrl(URL.createObjectURL(file)); // 動画ファイルのURLを生成
+    //     }
+    // };
     // console.log(socket)
     return (
         <>
@@ -187,9 +192,10 @@ const ListingScreen: React.FC = () => {
                                 写真
                             </h3>
                             <div id={"Photos"}>
-                                <div className={"kamera"} >
+                                <div className={"kamera"}>
                                     {productImage &&
-                                        <Image className={"photo_preview"} src={productImage} width={250} height={250} alt={"選択した商品画像"}/>}
+                                        <Image className={"photo_preview"} src={productImage} width={250} height={250}
+                                               alt={"選択した商品画像"}/>}
                                     {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                     <label htmlFor="clothes1">
                                         {productImage ?
@@ -212,7 +218,8 @@ const ListingScreen: React.FC = () => {
                                 </div>
                                 <div className={"kamera"}>
                                     {productImage2 &&
-                                        <Image className={"photo_preview"} src={productImage2} width={250} height={250} alt={"選択した商品画像"}/>}
+                                        <Image className={"photo_preview"} src={productImage2} width={250} height={250}
+                                               alt={"選択した商品画像"}/>}
                                     {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                     <label htmlFor="clothes2">
 
@@ -259,7 +266,8 @@ const ListingScreen: React.FC = () => {
                                 </div>
                                 <div className={"kamera"}>
                                     {productImage4 &&
-                                        <Image　className={"photo_preview"} src={productImage4} width={250} height={250} alt={"選択した商品画像"}/>}
+                                        <Image className={"photo_preview"} src={productImage4} width={250} height={250}
+                                               alt={"選択した商品画像"}/>}
                                     {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
                                     <label htmlFor="clothes4">
                                         {productImage4 ?
@@ -294,34 +302,36 @@ const ListingScreen: React.FC = () => {
                         <h3 className={"formTitle"} id="product_name">
                             動画
                         </h3>
-                        <div className={"kamera"}>
-                            {videoUrl &&
-                                <video  src={videoUrl} width={250} height={250} aria-label={"選択した商品画像"}/>}
-                            {/*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*/}
-                            <label htmlFor="video">
-                                {/*ここマージの時注意　名称はこっちでない方を優先してください*/}
-                                {videoUrl ?
-                                    <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg" width="150"
-                                         height="150" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>
-                                    </svg> :
-                                    <svg  style={{pointerEvents: "auto"}} className={"initCameraIcon"} xmlns="http://www.w3.org/2000/svg" width="150"
-                                          height="150" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                              d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>
-                                    </svg>}
+                        {/*<div className={"kamera"}>*/}
+                        {/*    {videoUrl &&*/}
+                        {/*        <video src={videoUrl} width={250} height={250} aria-label={"選択した商品画像"}/>}*/}
+                        {/*    /!*<Image src={"/images/clothes/product.jpg"} width={377} height={377} alt={"商品がないとき"}/>*!/*/}
+                        {/*    <label htmlFor="video">*/}
+                        {/*        /!*ここマージの時注意　名称はこっちでない方を優先してください*!/*/}
+                        {/*        {videoUrl ?*/}
+                        {/*            <svg className={"initCameraIcon_none"} xmlns="http://www.w3.org/2000/svg"*/}
+                        {/*                 width="150"*/}
+                        {/*                 height="150" viewBox="0 0 24 24">*/}
+                        {/*                <path fill="currentColor"*/}
+                        {/*                      d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>*/}
+                        {/*            </svg> :*/}
+                        {/*            <svg style={{pointerEvents: "auto"}} className={"initCameraIcon"}*/}
+                        {/*                 xmlns="http://www.w3.org/2000/svg" width="150"*/}
+                        {/*                 height="150" viewBox="0 0 24 24">*/}
+                        {/*                <path fill="currentColor"*/}
+                        {/*                      d="M21.53 7.15a1 1 0 0 0-1 0L17 8.89A3 3 0 0 0 14 6H5a3 3 0 0 0-3 3v6a3 3 0 0 0 3 3h9a3 3 0 0 0 3-2.89l3.56 1.78A1 1 0 0 0 21 17a1 1 0 0 0 .53-.15A1 1 0 0 0 22 16V8a1 1 0 0 0-.47-.85ZM15 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1Zm5-.62l-3-1.5v-1.76l3-1.5Z"/>*/}
+                        {/*            </svg>}*/}
 
-                            </label>
-                            <input
-                                type="file"
-                                accept="video/*"
-                                style={{display: "none"}}
-                                id={"video"}
-                                name={"productVideo"}
-                                onChange={productVideoFile}
-                            />
-                        </div>
+                        {/*    </label>*/}
+                        {/*    <input*/}
+                        {/*        type="file"*/}
+                        {/*        accept="video/*"*/}
+                        {/*        style={{display: "none"}}*/}
+                        {/*        id={"video"}*/}
+                        {/*        name={"productVideo"}*/}
+                        {/*        onChange={productVideoFile}*/}
+                        {/*    />*/}
+                        {/*</div>*/}
 
 
                         <h3 className={"formTitle"} id="product_name">
@@ -369,7 +379,7 @@ const ListingScreen: React.FC = () => {
                             </button>
 
                             <button className={"listingcompletebtn"} type={"submit"}>
-                                 <p>出品</p>
+                                <p>出品</p>
                             </button>
                         </div>
 
