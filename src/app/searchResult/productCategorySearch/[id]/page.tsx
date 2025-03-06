@@ -13,7 +13,6 @@ import productCategorySearch from "@/app/utils/search/(product)/productCategoryS
 const SearchResultParamsId = ({ params }: { params: { id: string } }) => {
     const [searchProductResult, setSearchProductResult] = useState<ProductType[] | undefined>([]);
     const [searchCategory, setSearchCategory] = useState<string>("");
-    const [searchSize, setSearchSize] = useState<string>("");
     const [ProductOffset, setProductoffset] = useState(0);
     const ProductPerPage = 4;
     const searchWord = params.id;

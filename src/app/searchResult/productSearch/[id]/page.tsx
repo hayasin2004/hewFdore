@@ -38,7 +38,6 @@ const SearchResultParamsId = ({params}: { params: { id: string } }) => {
     // 検索結果ネーション
     const ProductPerPage = 4;
     const [ProductOffset, setProductoffset] = useState(0);
-    const [searchSize, setSearchSize] = useState<string>("")
     const [searchCategory, setSearchCategory] = useState<string>("")
     const [categoryProductList, setCategoryProductList] = useState<ProductType[]>([])
     const endOffset = ProductOffset + ProductPerPage;

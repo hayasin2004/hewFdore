@@ -18,7 +18,6 @@ const SearchPageProducts = () => {
     const [productListLength, setProductListLength] = useState<number>(0)
     console.log(productList.length)
     const [searchCategory, setSearchCategory] = useState<string>("")
-    const [searchSize, setSearchSize] = useState<string>("")
     const [searchWord, setSearchWord] = useState<string>("")
     console.log(searchCategory)
     // console.log(JSON.stringify(productList) + "取得")
