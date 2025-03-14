@@ -37,9 +37,6 @@ const ListingScreen: React.FC = () => {
     const [productImage2, setProductImage2] = useState<string | null>(null);
     const [productImage3, setProductImage3] = useState<string | null>(null);
     const [productImage4, setProductImage4] = useState<string | null>(null);
-    // const [productVideoFiles, setProductVideoFiles] = useState<File | null>(null);
-    // const [videoUrl, setVideoUrl] = useState<string | null>(null);
-
     
     const router = useRouter()
     console.log(JSON.stringify(productId))
@@ -101,42 +98,11 @@ const ListingScreen: React.FC = () => {
             })()
         }
     }, []);
-
-
-    // const productCategory = productCategory
-    // const productSize = productSize
-    // const productCondition = productCondition
-    // const postageBurden = postageBurden
-    // const deliveryTime = deliveryTime
     // const shippingArea = shippingArea
     const socket = io("http://localhost:8080");
     console.log(socket)
 
-    // const handleVideoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const files = e.target.files
-    //     if (files && files.length > 0) {
-    //         setProductVideoFiles(files[0])
-    //     }
-    // }
 
-    // const handleSubmit = async (e : React.ChangeEvent<HTMLInputElement>) => {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('video', productVideoFiles);　
-    //     formData.append('name', productVideoFiles?.name);　
-    //     await  testvideoSave(formData)
-    // };
-
-
-    // const productVideoFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const files = e.target.files;
-    //     if (files && files.length > 0) {
-    //         const file = files[0];
-    //         setProductVideoFiles(file);
-    //         setVideoUrl(URL.createObjectURL(file)); // 動画ファイルのURLを生成
-    //     }
-    // };
-    // console.log(socket)
     return (
         <>
             <Header/>
