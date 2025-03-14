@@ -27,15 +27,8 @@ const DirectMessageserver = async (tokenUser?: string, detailUser?: string) => {
         })
         //console.log(chatExists?._id)
         if (chatExists) {
-            //console.log("ここがアンディファインド"+chatId)　
-            // const currentUser = tokenUser
-            // const partnerUser = detailUser
-            //console.log("既にcurrentUser , detailUserのチャットルームが作られています")
-            // const returnUserData = async () => {
-                const currentUserData : UserType | null = await User.findById({_id: tokenUser}).select("username email profilePicture coverProfilePicture").exec();
+          const currentUserData : UserType | null = await User.findById({_id: tokenUser}).select("username email profilePicture coverProfilePicture").exec();
                 const partnerUserData : UserType | null= await User.findById({_id: detailUser}).select(" username email profilePicture coverProfilePicture").exec();
-            // //console.log("うけとり" + currentUserData)
-            // return {currentUser: currentUserData?._id, partnerUser: partnerUserData?._id}
             return {status:"chatExists" , chatId : JSON.stringify(chatExists) , currentUser : JSON.stringify(currentUserData)  , partnerUser : JSON.stringify(partnerUserData)}
 
         } else if (chatExistsPart2) {

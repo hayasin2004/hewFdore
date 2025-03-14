@@ -19,7 +19,6 @@ const saveMessageStauts1 = async (chatId: string | undefined, pushedUser: string
 
         //console.log("asagayasimai"+chatId, pushedUser, message)
         // チャットルーム検索
-        // const fCHatRoomId =await PurchaseChat.findById({_id : chatId})
         // //console.log(fCHatRoomId)
 
 //     チャットルームにmessageを新しく挿入
